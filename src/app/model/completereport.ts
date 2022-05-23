@@ -1,4 +1,5 @@
-export interface CompleteReport {   
+export interface CompleteReport {
+    date: any;   
     bus_operator_id: any;   
     payment_id: any;
     date_type: any;

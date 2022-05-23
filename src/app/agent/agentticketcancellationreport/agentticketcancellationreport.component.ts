@@ -56,12 +56,8 @@ export class AgentticketcancellationreportComponent implements OnInit {
   ngOnInit(): void {
     this.spinner.show();
     this.searchFrom = this.fb.group({
-      bus_operator_id: [null],
-      payment_id : [null],
       date_type:['booking'],
       rows_number: Constants.RecordLimit,
-      source_id:[null],
-      destination_id:[null],
       rangeFromDate:[null],
       rangeToDate :[null]
 
@@ -78,12 +74,8 @@ export class AgentticketcancellationreportComponent implements OnInit {
      this.cancelTicketsReportRecord = this.searchFrom.value ; 
      
     const data = {
-      bus_operator_id: this.cancelTicketsReportRecord.bus_operator_id,
-      payment_id:this.cancelTicketsReportRecord.payment_id,
       date_type :this.cancelTicketsReportRecord.date_type,
       rows_number:this.cancelTicketsReportRecord.rows_number,
-      source_id:this.cancelTicketsReportRecord.source_id,
-      destination_id:this.cancelTicketsReportRecord.destination_id,
       rangeFromDate:this.cancelTicketsReportRecord.rangeFromDate,
       rangeToDate :this.cancelTicketsReportRecord.rangeToDate,
       user_id : localStorage.getItem('USERID'),               

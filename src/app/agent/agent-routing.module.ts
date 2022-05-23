@@ -18,11 +18,11 @@ const routes: Routes = [
         loadChildren: () => import('./agentwalletreport/agentwalletreport.module').then(module => module.AgentWalletReportModule)
       },
       {
-        path: 'cancellationreport',
+        path: 'cancelreport',
         loadChildren: () => import('./agentticketcancellationreport/agentticketcancellationreport.module').then(module => module.AgentTicketCancellationReportModule)
       }, 
       {
-        path: 'completereport',
+        path: 'bookingreport',
         loadChildren: () => import('./agentcompletereport/agentcompletereport.module').then(module => module.AgentCompleteReportModule)
       },
       {
@@ -59,6 +59,10 @@ const routes: Routes = [
       {
         path: 'agentprofile',
         loadChildren: () => import('./agentprofile/agentprofile.module').then(module => module.AgentprofileModule)
+      },
+      {
+        path: 'datewiseroute',
+        loadChildren: () => import('./datewiseroute/datewiseroute.module').then(module => module.DatewiserouteModule)
       },
 
      

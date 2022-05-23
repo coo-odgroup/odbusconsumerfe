@@ -20,13 +20,26 @@ export class AgentreportService {
   constructor(private httpClient: HttpClient) { }
 
   completeReport(data): Observable<any> {
-    return this.httpClient.post<any>(this.apiURL + '/agentcompletereport',JSON.stringify(data), this.httpOptions).pipe(
+    return this.httpClient.post<any>(this.apiURL + '/apiclientbookingreport',JSON.stringify(data), this.httpOptions).pipe(
       catchError(this.errorHandler)
     )
   }
 
 
   completepaginationReport(url,data): Observable<any> {
+    return this.httpClient.post<any>(url,JSON.stringify(data), this.httpOptions).pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
+  datewiseroute(data): Observable<any> {
+    return this.httpClient.post<any>(this.apiURL + '/datewiseroute',JSON.stringify(data), this.httpOptions).pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
+
+  datewiseroutepagination(url,data): Observable<any> {
     return this.httpClient.post<any>(url,JSON.stringify(data), this.httpOptions).pipe(
       catchError(this.errorHandler)
     )
@@ -47,7 +60,7 @@ export class AgentreportService {
 
 
   cancelticketReport(data): Observable<any> {
-    return this.httpClient.post<any>(this.apiURL + '/agentcancelticketreport',JSON.stringify(data), this.httpOptions).pipe(
+    return this.httpClient.post<any>(this.apiURL + '/apiclientcancelreport',JSON.stringify(data), this.httpOptions).pipe(
       catchError(this.errorHandler)
     )
   }

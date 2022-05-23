@@ -73,10 +73,29 @@ const ApiClientItems = [
         type: 'item',
         icon: 'ng-tns-c12-3 feather icon-file-text',
         url: 'apiclient/cancelTicket'
+      },  
+      {
+        id: 'cancelreport',
+        title: 'Cancel Ticket Report',
+        type: 'item',
+        icon: 'ng-tns-c12-3 feather icon-file-text',
+        url: 'apiclient/cancelreport'
+      },  
+      {
+        id: 'bookingreport',
+        title: 'Booking Report',
+        type: 'item',
+        icon: 'ng-tns-c12-3 feather icon-file-text',
+        url: 'apiclient/bookingreport'
+      },  
+      {
+        id: 'datewiseroute',
+        title: 'Datewise Route',
+        type: 'item',
+        icon: 'ng-tns-c12-3 feather icon-file-text',
+        url: 'apiclient/datewiseroute'
       }   
       
-  
-
     ]
   },
   // {

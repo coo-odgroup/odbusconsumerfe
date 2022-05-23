@@ -17,21 +17,20 @@ import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiedi
 import { WalletbalanceService } from '../../services/walletbalance.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
-
 @Component({
-  selector: 'app-agentcompletereport',
-  templateUrl: './agentcompletereport.component.html',
-  styleUrls: ['./agentcompletereport.component.scss'],
+  selector: 'app-datewiseroute',
+  templateUrl: './datewiseroute.component.html',
+  styleUrls: ['./datewiseroute.component.scss'],
   providers: [DatePipe]
 })
-export class AgentcompletereportComponent implements OnInit {
+export class DatewiserouteComponent implements OnInit {
 
   public searchFrom: FormGroup;
 
   completeReport: CompleteReport[];
   completeReportRecord: CompleteReport;
   todayDate:any;
-  completedata: any;
+  completedata: any = '';
   totalfare = 0;
   busoperators: any;
   url: any;
@@ -87,9 +86,6 @@ export class AgentcompletereportComponent implements OnInit {
   ) {
     
     this.todayDate =this.datePipe.transform((new Date), 'yyyy-MM-dd'); 
-   
-
-
     config.backdrop = 'static';
     config.keyboard = false;
     this.fromDate = calendar.getToday();
@@ -107,109 +103,80 @@ export class AgentcompletereportComponent implements OnInit {
   title = 'angular-app';
   fileName = 'Agent-Complete-Report.xlsx';
   ngOnInit(): void {
-    this.spinner.show();
+    // this.spinner.show();
     this.searchFrom = this.fb.group({
-      bus_operator_id: [null],
-      rangeFromDate: [null],
-      rangeToDate: [null],
-      payment_id: [null],
-      date_type: ['booking'],
+      date: [null],
       rows_number: Constants.RecordLimit,
       source_id: [null],
       destination_id: [null]
     })
-    this.search();
+    this.loadServices();
   }
 
-  exportexcel(): void {
-
-    /* pass here the table id */
-    let element = document.getElementById('export-section');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    /* save to file */
-    XLSX.writeFile(wb, this.fileName);
-
-  }
-
-  page(label: any) {
-    return label;
-  }
   search(pageurl = "") {
-    this.spinner.show();
+   
+    if( this.searchFrom.value.source_id == null ||this.searchFrom.value.destination_id == null ||this.searchFrom.value.date == null)
+    {
+      this.notificationService.notify("All Fields Are Required","Error");
+      return
+    }
+    else{
     this.completeReportRecord = this.searchFrom.value;
 
     const data = {
-      bus_operator_id: this.completeReportRecord.bus_operator_id,
-      date_type: this.completeReportRecord.date_type,
-      rows_number: this.completeReportRecord.rows_number,
-      rangeFromDate: this.completeReportRecord.rangeFromDate,
-      rangeToDate: this.completeReportRecord.rangeToDate,
+      source_id: this.completeReportRecord.source_id,
+      destination_id: this.completeReportRecord.destination_id,
+      date: this.completeReportRecord.date,
       user_id: localStorage.getItem('USERID'),
     };
     // console.log(data);
     if (pageurl != "") {
-      this.rs.completepaginationReport(pageurl, data).subscribe(
+      this.rs.datewiseroutepagination(pageurl, data).subscribe(
         res => {
           this.completedata = res.data;
-          // console.log( this.completedata);
           this.spinner.hide();
         }
       );
     }
     else {
-      this.rs.completeReport(data).subscribe(
+      this.rs.datewiseroute(data).subscribe(
         res => {
-          this.completedata = res;
-          console.log( this.completedata);
+          this.completedata = res.data.data;
           this.spinner.hide();
         }
       );
     }
 
-
-
   }
 
-
-
-
-  ///////////////Function to Copy data to Clipboard/////////////////
-  copyMessage($event: any) {
-    // console.log($event);
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = $event;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
   }
 
   refresh() {
     this.spinner.show();
     this.searchFrom = this.fb.group({
-      bus_operator_id: [null],
-      rangeFromDate: [null],
-      rangeToDate: [null],
-      payment_id: [null],
-      date_type: ['booking'],
+      date: [null],  
       rows_number: Constants.RecordLimit,
       source_id: [null],
       destination_id: [null]
-
     })
     this.search();
   }
 
+  loadServices() {
 
- 
+    this.busOperatorService.readAll().subscribe(
+      res => {
+        this.busoperators = res.data;
+      }
+    );
+    this.locationService.readAll().subscribe(
+      records => {
+        this.locations = records.data;
+      }
+    );
+  }
+
+
+
+
 }

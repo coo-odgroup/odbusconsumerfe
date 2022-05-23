@@ -54,4 +54,8 @@ ngb-datepicker.dropdown-menu.show {
     margin-top: 18%;
     transform: none !important;
 }
+::ng-deep u {
+    font-weight: bolder;
+    color: rgb(223, 12, 12);
 
+}
