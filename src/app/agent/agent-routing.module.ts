@@ -41,17 +41,14 @@ const routes: Routes = [
         path: 'booking',
         loadChildren: () => import('./booking/booking.module').then(module => module.BookingModule)
       },
-
       {
         path: 'listing',
         loadChildren: () => import('./search/search.module').then(module => module.SearchModule)
       },
-
       {
         path: 'bookTicket',
         loadChildren: () => import('./book-ticket/book-ticket.module').then(module => module.BookTicketModule)
       },
-
       {
         path: 'cancelTicket',
         loadChildren: () => import('./cancel-ticket/cancel-ticket.module').then(module => module.CancelTicketModule)
@@ -64,11 +61,6 @@ const routes: Routes = [
         path: 'datewiseroute',
         loadChildren: () => import('./datewiseroute/datewiseroute.module').then(module => module.DatewiserouteModule)
       },
-
-     
-     
-    
-      
     ]
   }
 ];

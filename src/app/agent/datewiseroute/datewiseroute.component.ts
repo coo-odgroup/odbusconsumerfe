@@ -93,12 +93,9 @@ export class DatewiserouteComponent implements OnInit {
 
     this.cancelForm = this.fb.group({
       pnr: ['', Validators.required],
-      mobile: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]
+      // mobile: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]
     });
 
-    this.FinalcancelForm = this.fb.group({
-      otp: ['', Validators.required],
-    });
   }
   title = 'angular-app';
   fileName = 'Agent-Complete-Report.xlsx';
@@ -121,6 +118,7 @@ export class DatewiserouteComponent implements OnInit {
       return
     }
     else{
+    this.spinner.show();
     this.completeReportRecord = this.searchFrom.value;
 
     const data = {
