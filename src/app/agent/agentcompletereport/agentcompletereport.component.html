@@ -1,41 +1,33 @@
-<ngx-spinner bdColor = "rgba(60,55,55,0.8)" size = "large" color = "#fff" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<ngx-spinner bdColor="rgba(60,55,55,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+    [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
 
 
 <div class="row">
     <div class="col-sm-12">
         <app-card cardTitle="Booking Report" cardClass="card-datatable" [options]="false" [isCardFooter]="false">
-           
-
             <div class=" mb-3">
                 <div class="row p-0">
                     <div class="col-12">
                         <form [formGroup]="searchFrom">
                             <div class="row">
-                                <!-- <div class="col-3">
-                                    <div class="form-group">
-                                            <ng-select [items]="busoperators" bindLabel="operator_name" bindValue="id"
-                                                placeholder="Select Operator" formControlName="bus_operator_id"
-                                                [clearable]="false">
-                                            </ng-select>
-                                    </div>
-                                </div> -->
-                                
                                 <div class="col-4">
-                                  <div class="row">  
-                                      <div class="form-group col-6">
-                                          <div class="form-group row">
-                                              <input type="date" class="form-control sml_input" placeholder="Enter pnr"
-                                              required formControlName="rangeFromDate" />
-                                          </div> 
-                                      </div>
-                                      <div class="form-group col-6">
-                                          <div class="form-group row">
-                                              <input type="date" class="form-control sml_input" placeholder="Enter pnr"
-                                              required formControlName="rangeToDate" />
-                                          </div>                                            
-                                      </div>
-                                  </div>
-                              </div>
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <div class="form-group row">
+                                                <input type="date" class="form-control sml_input"
+                                                    placeholder="Enter pnr" required formControlName="rangeFromDate" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <div class="form-group row">
+                                                <input type="date" class="form-control sml_input"
+                                                    placeholder="Enter pnr" required formControlName="rangeToDate" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="col-2">
                                     <div class="dropdown">
@@ -47,34 +39,32 @@
                                 </div>
 
                                 <div class="col-4">
-                                  <button type="button" class="btn btn-success  sml_input mr-10" (click)="search()" title="search">
-                                    <i class="fas fa-search"> </i> Search
-                                  </button>
-                                  <button type="button" class="btn btn-danger sml_input mr-10" (click)="refresh()" title="refresh">
-                                    <i class="fas fa-sync-alt"> </i> Refresh
-                                  </button>
-                                  <button type="button" (click)="exportexcel()" class="btn btn-warning  sml_input mr-10" title="Export">
-                                    <i class="fas fa-file-export"> </i> Export
-                                  </button>
-                              </div>
+                                    <button type="button" class="btn btn-success  sml_input mr-10" (click)="search()"
+                                        title="search">
+                                        <i class="fas fa-search"> </i> Search
+                                    </button>
+                                    <button type="button" class="btn btn-danger sml_input mr-10" (click)="refresh()"
+                                        title="refresh">
+                                        <i class="fas fa-sync-alt"> </i> Refresh
+                                    </button>
+                                    <!-- <button type="button" (click)="exportexcel()" class="btn btn-warning  sml_input mr-10" title="Export">
+                                                                    <i class="fas fa-file-export"> </i> Export
+                                                                </button> -->
+                                </div>
 
-                              <div class="col-2">
-                                <div class="dropdown float-right">
-                                    <select class="form-control sml_input" formControlName="rows_number" (change)=search()>
-                                        <option value=10>10</option>
-                                        <option value=25>25</option>
-                                        <option value=50>50</option>
-                                        <option value=100>100</option>
-                                        <option value='all'>All</option>
-                                    </select>
+                                <div class="col-2">
+                                    <div class="dropdown float-right">
+                                        <select class="form-control sml_input" formControlName="rows_number"
+                                            (change)=search()>
+                                            <option value=10>10</option>
+                                            <option value=25>25</option>
+                                            <option value=50>50</option>
+                                            <option value=100>100</option>
+                                            <option value='all'>All</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-
-                               
-
-                                
-                            </div>
-                        
                         </form>
                     </div>
                 </div>
@@ -84,41 +74,41 @@
                 <table class="table table-striped ">
                     <thead>
                         <tr>
-                            <th scope="col"  width="80px" style="text-align: center;">#</th>
+                            <th scope="col" width="80px" style="text-align: center;">#</th>
                             <th scope="col">Ticket Details</th>
                             <th scope="col">Bus Details </th>
-                            <th scope="col">Boarding Point/Time</th>                            
+                            <th scope="col">Boarding Point/Time</th>
                             <th scope="col">Source >> Destination</th>
-                            <th scope="col">Seat No</th>                            
-                            <th scope="col">User Details</th>                            
+                            <th scope="col">Seat No</th>
                             <th scope="col">Passenger Details</th>
-                            <!-- <th scope="col">Seater / Sleeper </th> -->
-                            <th scope="col">Fare</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Ticket Fare</th>
+                            <th scope="col">Comission</th>
                         </tr>
                     </thead>
                     <tbody *ngIf="completedata?.length != 0">
-                        <!-- <tr *ngFor="let complete of completedata?.data.data; let i = index">
+                        <tr *ngFor="let complete of completedata?.data.data; let i = index">
                             <td style="text-align: center;">{{ i+1 }}</td>
                             <td>
-                                <strong>{{complete.pnr}}</strong> (<strong style="color: darkgoldenrod;">DOj- {{complete.journey_dt}} )  </strong>                              
+                                <strong>{{complete.pnr}}</strong> (<strong style="color: darkgoldenrod;">DOj-
+                                    {{complete.journey_dt}} ) </strong>
                                 <br>
-                                 <strong style="color: brown;">DOB-{{complete.created_at | date: 'dd/MM/yyyy HH:mm:ss'}}</strong>
-                              
+                                <strong style="color: brown;">DOB-{{complete.created_at | date: 'dd/MM/yyyy
+                                    HH:mm:ss'}}</strong>
+
                             </td>
                             <td>
                                 <strong>{{ complete.bus.name }}<br>
-                                {{ complete.bus.bus_number }}</strong>
-                               
+                                    {{ complete.bus.bus_number }}</strong>
+
                             </td>
-                            <td>                               
+                            <td>
                                 <span *ngFor="let frlocation of complete.from_location">
                                     {{frlocation.name}}
                                 </span> -
                                 ( <b>{{complete.boarding_point}} </b> )<br>
                                 Time : <b>{{complete.boarding_time }}</b>
                             </td>
-                           
+
                             <td>
                                 <ng-template #tipContent1>
                                     <table style="width: 350px;">
@@ -146,12 +136,12 @@
                                 </ng-template>
 
                                 <span [ngbTooltip]="tipContent1">
-                                  
+
                                     <span *ngFor="let boarding of complete.from_location;">
                                         <strong> {{boarding.name}}</strong>
                                     </span> >>
                                     <span *ngFor="let dropping of complete.to_location;">
-                                       <strong> {{dropping.name}}</strong> 
+                                        <strong> {{dropping.name}}</strong>
                                     </span>
                                 </span>
                             </td>
@@ -160,40 +150,7 @@
                                     {{seat.bus_seats.seats.seatText}}
                                 </p>
                             </td>
-                            <td class="text-capitalize">
-                                <ng-template #tipContent>
-                                 
-                                    
-                                    <table>
-                                        <tr>
-                                            <td>Phone-</td>
-                                            <td><b>{{complete.users.phone}}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email-</td>
-                                            <td>{{complete.users.email}}</td>
-                                        </tr>
-                                    </table>
-                                </ng-template>
 
-                                <strong [ngbTooltip]="tipContent">
-                                    {{complete.users?.name}}
-                                </strong> <br>
-                                <div class="text-center">
-                                    <button class="btn btn-sm btn-info text-light  mr-3 ml-2 mt-2 hide_print" placement="bottom"
-                                    ngbTooltip="Click to Copy Phone Number" (click)="copyMessage(complete.users.phone)">
-                                    <i class="fas fa-mobile-alt"></i>
-                                </button>
-
-                                <button class="btn btn-sm btn-danger text-light mt-2 hide_print" placement="bottom"
-                                    ngbTooltip=" Click to Copy Email" (click)="copyMessage(complete.users.email)">
-                                    <i class="far fa-envelope"></i>
-                                </button>
-
-                                </div>
-                              
-
-                            </td>
                             <td>
                                 <p *ngFor="let passanger of complete.booking_detail;">
                                     <ng-template #tipContent1>
@@ -215,39 +172,23 @@
                                     <strong [ngbTooltip]="tipContent1">{{passanger.passenger_name}}</strong>
                                 </p>
                             </td>
- 
+
                             <td>
                                 <i class="fas fa-rupee-sign"></i> <b>{{complete.total_fare}}</b>
                             </td>
                             <td>
-                                <div class="text-center">
-                                    <button class="btn btn-sm btn-primary text-light  mr-1 ml-1 mt-1 hide_print" placement="bottom"
-                                        ngbTooltip="Click to Print the pnr" (click)="OpenModal(content);print_tkt(i)">
-                                        <i class="fa-solid fa-print"></i>
-                                    </button>
-                                    
-
-                                    <button class="btn btn-sm btn-success text-light mr-1 ml-1 mt-1 hide_print" placement="left"
-                                        ngbTooltip=" Click to Send Message and Email"   (click)="emailSms(i)" >
-                                        <i class="fa-solid fa-message"></i>
-                                    </button>
-
-                                    <button *ngIf="complete.journey_dt > todayDate"  class="btn btn-sm btn-danger text-light mr-1 ml-1 mt-1" placement="left"
-                                        ngbTooltip="  Click to Cancel the PNR"   (click)="OpenCancelModal(cancelTicketTab,i)" >
-                                        <i class="fa-solid fa-cancel"></i>
-                                    </button>
-                                </div>
+                                <i class="fas fa-rupee-sign"></i> <b>{{complete.client_comission}}</b>
                             </td>
-                        </tr> -->
-                    </tbody> 
+                        </tr>
+                    </tbody>
                     <tbody *ngIf="completedata?.length == 0">
                         <tr>
-                          <td colspan="10" class="no-data-available">No data!</td>
+                            <td colspan="10" class="no-data-available">No data!</td>
                         </tr>
-                    <tbody>                   
+                    <tbody>
                 </table>
                 <div *ngIf="completedata?.length != 0">
-                    <!-- <div class="d-flex flex-row-reverse mb-4 text-center" *ngIf="completedata?.data.links">
+                    <div class="d-flex flex-row-reverse mb-4 text-center" *ngIf="completedata?.data.links">
                         <nav class="my-1 pt-1 ">
                             <ul class="pagination pagination-circle pg-blue mb-0 hide_print">
                                 <li (click)="search(completedata.data.links.first_page_url,statusLabel)"
@@ -256,8 +197,7 @@
                                 </li>
                                 <li class="page-item " *ngFor="let b of completedata.data.links ; let i = index ">
                                     <a class="page-link {{ completedata.data.current_page == b.label ? 'active' : '' }}"
-                                        (click)="(b.url) ? search(b.url) : ''"
-                                        [innerHTML]="page(b.label)"></a>
+                                        (click)="(b.url) ? search(b.url) : ''" [innerHTML]="page(b.label)"></a>
                                 </li>
                                 <li class="page-item {{ completedata.data.links.last_page == 1 ? 'disabled' : '' }} clearfix d-none d-md-block"
                                     (click)="search(completedata.data.links.last_page_url,statusLabel)">
@@ -265,38 +205,37 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div> -->
+                    </div>
                 </div>
             </div>
-
             <div class="app-card-footer">
-
                 <ng-template #confirmDialog let-modal>
                     <div class="modal-header">
-                      <h5 class="ng-tns-c116-5"> Please Confirm</h5>
-                      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')"><span
-                          aria-hidden="true">&times;</span></button>
+                        <h5 class="ng-tns-c116-5"> Please Confirm</h5>
+                        <button type="button" class="close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-material">
-                            <div class="right-icon-control">
-                              Would you Like to Send Email And SMS ??          
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-material">
+                                    <div class="right-icon-control">
+                                        Would you Like to Send Email And SMS ??
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" (click)="emailSms()" class="btn btn-primary" ngbAutofocus>Confirm Delete</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal" #defaultClick
-                        (click)="modal.dismiss('Cross click')">Cancel</button>
+                        <button type="button" (click)="emailSms()" class="btn btn-primary" ngbAutofocus>Confirm
+                            Delete</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" #defaultClick
+                            (click)="modal.dismiss('Cross click')">Cancel</button>
                     </div>
-                  </ng-template>
-                
-                
-                  <!-- <ng-template #confirmDialogofCancel let-modal>
+                </ng-template>
+
+
+                <!-- <ng-template #confirmDialogofCancel let-modal>
                     <div class="modal-header">
                       <h5 class="ng-tns-c116-5"> Please Confirm</h5>
                       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')"><span
@@ -320,8 +259,8 @@
                     </div>
                   </ng-template> -->
 
-              
-              </div>
+
+            </div>
         </app-card>
     </div>
 </div>

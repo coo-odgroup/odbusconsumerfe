@@ -164,7 +164,7 @@ export class AgentcompletereportComponent implements OnInit {
     else {
       this.rs.completeReport(data).subscribe(
         res => {
-          this.completedata = res;
+          this.completedata = res.data;
           console.log( this.completedata);
           this.spinner.hide();
         }
