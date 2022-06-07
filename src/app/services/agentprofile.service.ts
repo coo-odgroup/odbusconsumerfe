@@ -21,14 +21,14 @@ export class AgentprofileService {
 
 
   agentProfile(post): Observable<any> {
-    return this.httpClient.post<any>(this.apiURL+ '/Agentprofile', JSON.stringify(post), this.httpOptions)
+    return this.httpClient.post<any>(this.apiURL+ '/apiclientprofile', JSON.stringify(post), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   update(post): Observable<any> {
-    return this.httpClient.post<any>(this.apiURL + '/updateAgentProfile' , JSON.stringify(post), this.httpOptions)
+    return this.httpClient.post<any>(this.apiURL + '/updateapiclient' , JSON.stringify(post), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
@@ -43,4 +43,5 @@ export class AgentprofileService {
     }
     return throwError(errorMessage);
  }
+ 
 }

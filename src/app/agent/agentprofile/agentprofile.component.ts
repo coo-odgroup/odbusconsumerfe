@@ -105,7 +105,8 @@ export class AgentprofileComponent implements OnInit {
     };
     this.aps.agentProfile(data).subscribe(
       res => {
-        //console.log(res.data[0]);
+        // console.log(res.data);
+        // return;
         this.profileDetails=res.data[0];
         this.form.controls['name'].setValue(this.profileDetails.name);
         this.form.controls['email'].setValue(this.profileDetails.email);

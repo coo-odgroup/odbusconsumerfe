@@ -1,4 +1,7 @@
-<ngx-spinner bdColor = "rgba(60,55,55,0.8)" size = "large" color = "#fff" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<ngx-spinner bdColor="rgba(60,55,55,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+    [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
 
 
 <div class="row">
@@ -10,24 +13,24 @@
                     <div class="col-12">
                         <form [formGroup]="searchFrom">
                             <div class="row">
-                               
-                                <div class="col-6">
-                                    <div class="row">  
+
+                                <div class="col-md-5">
+                                    <div class="row">
                                         <div class="form-group col-6">
                                             <div class="form-group row">
-                                                <input type="date" class="form-control sml_input" placeholder="Enter pnr"
-                                                required formControlName="rangeFromDate" />
-                                            </div> 
+                                                <input type="date" class="form-control sml_input"
+                                                    placeholder="Enter pnr" required formControlName="rangeFromDate" />
+                                            </div>
                                         </div>
                                         <div class="form-group col-6">
                                             <div class="form-group row">
-                                                <input type="date" class="form-control sml_input" placeholder="Enter pnr"
-                                                required formControlName="rangeToDate" />
-                                            </div>                                            
+                                                <input type="date" class="form-control sml_input"
+                                                    placeholder="Enter pnr" required formControlName="rangeToDate" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-2">
                                     <div class="dropdown">
                                         <select class="form-control sml_input" formControlName="date_type">
                                             <option value='booking'>Booking Date</option>
@@ -35,7 +38,25 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-success  sml_input mr-10" (click)="search()"
+                                        title="search">
+                                        <i class="fas fa-search"> </i> Search
+                                    </button>
+                                    <button type="button" class="btn btn-danger sml_input mr-10" (click)="refresh()"
+                                        title="refresh">
+                                        <i class="fas fa-sync-alt"> </i> Refresh
+                                    </button>
+                                    <!-- <button type="button" (click)="exportexcel()" class="btn btn-warning  sml_input mr-10"
+                                        title="Export">
+                                        <i class="fas fa-file-export"> </i> Export
+                                    </button>
+                                    <button type="button" printSectionId="print-section" ngxPrint
+                                        class="btn btn-info sml_input" [useExistingCss]="true" title="Print">
+                                        <i class="fas fa-print"> </i> Print
+                                    </button> -->
+                                </div>
+                                <div class="col-md-2">
                                     <div class="dropdown float-right">
                                         <select class="form-control sml_input" formControlName="rows_number"
                                             (change)=search()>
@@ -48,26 +69,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row "> 
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-success  sml_input mr-10" (click)="search()"
-                                        title="search">
-                                        <i class="fas fa-search"> </i> Search
-                                    </button>
-                                    <button type="button" class="btn btn-danger sml_input mr-10" (click)="refresh()"
-                                        title="refresh">
-                                        <i class="fas fa-sync-alt"> </i> Refresh
-                                    </button>
-                                    <button type="button" (click)="exportexcel()" class="btn btn-warning  sml_input mr-10"
-                                        title="Export">
-                                        <i class="fas fa-file-export"> </i> Export
-                                    </button>
-                                    <button type="button" printSectionId="print-section" ngxPrint
-                                        class="btn btn-info sml_input" [useExistingCss]="true" title="Print">
-                                        <i class="fas fa-print"> </i> Print
-                                    </button>
-                                </div>
-                            </div> 
                         </form>
                     </div>
                 </div>
@@ -98,7 +99,7 @@
                             <td>
                                 <strong>{{complete.pnr}}</strong> ( {{complete.journey_dt}} )
                                 <br>
-                              
+
                                 <!-- {{complete.customer_payment?.order_id}}
                                 <br>
                                 {{complete.customer_payment?.razorpay_id}} -->
@@ -108,8 +109,8 @@
                                     {{frlocation.name}}
                                 </span> -
                                 ( <b>{{complete.boarding_point}} </b> )<br>
-                                 Time : <b>{{complete.boarding_time}}</b>
-                                
+                                Time : <b>{{complete.boarding_time}}</b>
+
                             </td>
                             <td>
                                 {{ complete.updated_at | date }}
@@ -118,8 +119,8 @@
 
                             <td>
                                 <strong>{{ complete.bus.name }}<br>
-                                {{ complete.bus.bus_number }}</strong>
-                                
+                                    {{ complete.bus.bus_number }}</strong>
+
                             </td>
                             <td>
                                 <ng-template #tipContent1>
@@ -167,7 +168,7 @@
                                 </div>
 
                             </td>
-                        
+
                             <td>
                                 <div *ngIf="complete.booking_detail?.length != 0">
                                     <p *ngFor="let passanger of complete.booking_detail;">
@@ -199,18 +200,18 @@
                             <td>
 
                                 <p class="text-danger text-center">
-                                    <i class="fas fa-rupee-sign"></i> &nbsp;<b>{{complete.refund_amount}}</b>                                   
+                                    <i class="fas fa-rupee-sign"></i> &nbsp;<b>{{complete.refund_amount}}</b>
                                 </p>
 
 
                             </td>
-                           
+
                         </tr>
                     </tbody>
 
                     <tbody *ngIf="cancelticketdata?.data.data?.length == 0">
                         <tr>
-                          <td colspan="10" class="no-data-available">No data!</td>
+                            <td colspan="10" class="no-data-available">No data!</td>
                         </tr>
                     <tbody>
 

@@ -99,9 +99,6 @@ export class AgentticketcancellationreportComponent implements OnInit {
         }
       );
     }
-
-
-    
   }
 
 
