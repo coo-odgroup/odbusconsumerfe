@@ -94,6 +94,13 @@ const ApiClientItems = [
         type: 'item',
         icon: 'ng-tns-c12-3 feather icon-file-text',
         url: 'apiclient/datewiseroute'
+      } ,  
+      {
+        id: 'clientissue',
+        title: 'Client Issue',
+        type: 'item',
+        icon: 'ng-tns-c12-3 feather icon-file-text',
+        url: 'apiclient/clientissue'
       }   
       
     ]

@@ -12,13 +12,13 @@ import { BookingComponent } from './booking/booking.component';
 import { AgentprofileComponent } from './agentprofile/agentprofile.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { DatewiserouteComponent } from './datewiseroute/datewiseroute.component';
+import { ClientissueComponent } from './clientissue/clientissue.component';
 
 
 
 @NgModule({
   declarations: [
     
-  
   ],
   imports: [
     CommonModule,

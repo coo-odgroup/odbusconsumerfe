@@ -61,6 +61,10 @@ const routes: Routes = [
         path: 'datewiseroute',
         loadChildren: () => import('./datewiseroute/datewiseroute.module').then(module => module.DatewiserouteModule)
       },
+      {
+        path: 'clientissue',
+        loadChildren: () => import('./clientissue/clientissue.module').then(module => module.ClientissueModule)
+      },
     ]
   }
 ];
