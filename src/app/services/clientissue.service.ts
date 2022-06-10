@@ -32,6 +32,25 @@ export class ClientissueService {
       catchError(this.errorHandler)
     )
   }
+
+  addClientIssue(post): Observable<any> {
+    return this.httpClient.post<any>(Constants.BASE_URL+'/addapiclientissue', JSON.stringify(post), this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  
+  apiclientissuedata(post): Observable<any> {
+    return this.httpClient.post<any>(Constants.BASE_URL+'/apiclientissuedata', JSON.stringify(post), this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  getapiclientissuedata(url,data): Observable<any> {
+    return this.httpClient.post<any>(url,JSON.stringify(data), this.httpOptions).pipe(
+      catchError(this.errorHandler)
+    )
+  }
   
 
 

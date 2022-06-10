@@ -37,21 +37,38 @@
             <tr>
               <th scope="col" width="80px" style="text-align: center;">#</th>
               <th scope="col">Request Date</th>
-              <th scope="col">Tran ID</th>
-              <th scope="col">Ref No</th>
-              <th scope="col">Tran Via</th>
-              <th scope="col">Amount</th>
-           
+              <th scope="col">Issue Type</th>
+              <th scope="col" style="width: 500px;">Message</th>
               <th scope="col">Status </th>              
-              <th scope="col">Message</th>
               
             </tr>
           </thead>
-          <tbody >
-        
+          <tbody *ngIf="clientissue?.length != 0">
+            <tr *ngFor="let page of clientissue; let i=index;">
+              <td style="text-align: center;">{{i+1}}</td>
+              <td>{{page.created_at | date: 'dd/MM/yyyy'}}</td>
+              <td >
+                    {{page.apiclientissuetype.name}}<br>
+                    <b class="text-danger">{{page.apiclientissuesubtype.name}} </b>
+              </td>
+              <td >
+                  {{page.message}}
+              </td>
+              
+              <td>
+                <label *ngIf="page.status==0" class="btn btn-sm bg-warning  text-light"
+                  ><strong>Pending</strong></label>
+                <label *ngIf="page.status==1" class="btn btn-sm  bg-success  text-light"
+                 ><strong>Solved</strong></label>
+                <label *ngIf="page.status==2" class="btn btn-sm bg-danger  text-light"
+                  ><strong>Rejected</strong></label>
+                <label *ngIf="page.status==3" class="btn btn-sm bg-info  text-light"
+                  ><strong>Under Progress</strong></label>
+              </td>
+            </tr>
           </tbody>
         </table>
-<!-- 
+
         <div *ngIf="pagination?.length!= 0" class="hide_print">
           <div class="d-flex flex-row-reverse mb-4 text-center" *ngIf="pagination?.links">
             <nav class="my-1 pt-4">
@@ -71,7 +88,7 @@
               </ul>
             </nav>
           </div>
-        </div> -->
+        </div>
       </div>
 
 
@@ -134,8 +151,7 @@
                           <div class="row ">
                             <div class="col-md-4">
                               <div class="from-group">
-                                <label for="name" class="col-sm-8 col-form-label">Referance No:<span
-                                    class="text-danger">*</span></label>
+                                <label for="name" class="col-sm-8 col-form-label">Referance No:</label>
                                 <div class="col-sm-12">
                                   <input type="text" class="form-control sml_input" ngbAutofocus placeholder="Enter Referance number here" 
                                     formControlName="refNo" />
@@ -144,41 +160,56 @@
                             </div>
                             <div class="col-md-4">
                               <div class="from-group">
-                                <label for="name" class="col-sm-8 col-form-label">Source:<span
-                                    class="text-danger">*</span></label>
+                                <label for="name" class="col-sm-8 col-form-label">Source:</label>
                                 <div class="col-sm-12">
-                                  <input type="text" class="form-control sml_input" ngbAutofocus placeholder="Enter Source here" 
-                                    formControlName="source" />
+                                  <div class="form-group dropdown ">
+                                    <ng-select 
+                                      [items]="locations"
+                                      bindLabel="name"
+                                      bindValue="id"
+                                      placeholder="Select Source"                                       
+                                      formControlName="source"
+                                      [clearable]="false">
+                                    </ng-select>                                                             
+                                </div> 
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="from-group">
-                                <label for="name" class="col-sm-8 col-form-label">Destination:<span
-                                    class="text-danger">*</span></label>
+                                <label for="name" class="col-sm-8 col-form-label">Destination:</label>
                                 <div class="col-sm-12">
-                                  <input type="text" class="form-control sml_input" ngbAutofocus placeholder="Enter Destination here" 
-                                    formControlName="destination" />
+                                  <div class="form-group dropdown">
+                                    <ng-select 
+                                      [items]="locations"
+                                      bindLabel="name"
+                                      bindValue="id"
+                                      placeholder="Select Destination"                                       
+                                      formControlName="destination"
+                                      [clearable]="false">
+                                    </ng-select>      
+                                </div> 
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="from-group">
-                                <label for="name" class="col-sm-8 col-form-label">Operator:<span
-                                    class="text-danger">*</span></label>
+                                <label for="name" class="col-sm-8 col-form-label">Operator:</label>
                                 <div class="col-sm-12">
-                                  <input type="text" class="form-control sml_input" ngbAutofocus placeholder="Select Operator here" 
-                                    formControlName="operatorId" />
+                                    <ng-select [items]="busoperators" bindLabel="operatorData" bindValue="id"
+                                            placeholder="Select Operator" formControlName="operatorId" 
+                                            [clearable]="false" (change)="findOperator($event)">
+                                    </ng-select>
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="from-group">
-                                <label for="name" class="col-sm-8 col-form-label">Bus:<span
-                                    class="text-danger">*</span></label>
+                                <label for="name" class="col-sm-8 col-form-label">Bus:</label>
                                 <div class="col-sm-12">
-                                  <input type="text" class="form-control sml_input" ngbAutofocus placeholder="Select Bus here" 
-                                    formControlName="busId" />
+                                    <ng-select [items]="buses" bindLabel="testing" bindValue="id" placeholder="Select Bus"
+                                    formControlName="busId"  [clearable]="false">
+                                  </ng-select>
                                 </div>
                               </div>
                             </div>
@@ -189,6 +220,11 @@
                                 <div class="col-sm-12">
                                   <textarea type="text" rows="5" class="form-control sml_input" ngbAutofocus placeholder="Enter Message here" 
                                     formControlName="message" ></textarea>
+
+                                    <span class="text-danger"
+                                    *ngIf="form.controls['message'].touched && form.controls['message'].hasError('required')">
+                                    Message is Required
+                                  </span>
                                 </div>
                               </div>
                             </div>

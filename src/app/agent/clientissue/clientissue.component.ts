@@ -7,7 +7,9 @@ import { ClientissueService } from '../../services/clientissue.service'
 import { Constants } from '../../constant/constant';
 import * as XLSX from 'xlsx';
 import { NgxSpinnerService } from "ngx-spinner";
-
+import { LocationService } from '../../services/location.service';
+import { BusOperatorService } from './../../services/bus-operator.service';
+import { BusService} from '../../services/bus.service';
 @Component({
   selector: 'app-clientissue',
   templateUrl: './clientissue.component.html',
@@ -33,12 +35,18 @@ export class ClientissueComponent implements OnInit {
   issType: any;
   issSubType: any;
   message: any;
+  locations: any;
+  buses: any;
+  clientissue: any;
 
   constructor(
     private spinner: NgxSpinnerService ,
     private http: HttpClient,
     private notificationService: NotificationService,
-    private fb: FormBuilder, 
+    private fb: FormBuilder,    
+     private busOperatorService: BusOperatorService,
+     private locationService: LocationService,
+     private busService:BusService,
 
     private cis: ClientissueService,
     private modalService: NgbModal,
@@ -57,8 +65,8 @@ export class ClientissueComponent implements OnInit {
   ngOnInit(): void {
 
     // this.spinner.show();
+    this.message='';
     this.form = this.fb.group({
-      id: [null],
       issueType: [null, Validators.compose([Validators.required])],
       issueSubType: [null, Validators.compose([Validators.required])],
       refNo: [null],
@@ -77,8 +85,6 @@ export class ClientissueComponent implements OnInit {
 
     this.search();
     this.loadservices();
-
-
   }
 
 
@@ -87,11 +93,10 @@ export class ClientissueComponent implements OnInit {
   }
   ResetAttributes() {
     this.form = this.fb.group({
-      id: [null],
       issueType: [null, Validators.compose([Validators.required])],
       issueSubType: [null, Validators.compose([Validators.required])],
       refNo: [null],
-      message: [null],
+      message: [null, Validators.compose([Validators.required])],
       source: [null],
       destination: [null],
       busId: [null],
@@ -111,7 +116,20 @@ export class ClientissueComponent implements OnInit {
            this.issType = resp.data;
           }
         }
-      );   
+      ); 
+      
+      this.busOperatorService.readAll().subscribe(
+        res => {
+          this.busoperators = res.data;
+          this.busoperators.map((i: any) => { i.operatorData = i.organisation_name + '    (  ' + i.operator_name  + '  )'; return i; });
+          // console.log(this.busoperators); 
+        }
+      );
+      this.locationService.readAll().subscribe(
+        records => {
+          this.locations = records.data;
+        }
+      );
   }
 
   issuSubType(){
@@ -147,6 +165,23 @@ export class ClientissueComponent implements OnInit {
      }
   }
 
+  findOperator(event:any)
+{
+  let operatorId=event.id;
+  if(operatorId)
+  {
+    this.spinner.show();
+    this.busService.getByOperaor(operatorId).subscribe(
+      res=>{
+        this.buses=res.data;        
+        this.buses.map((i:any) => { i.testing = i.name + ' - ' + i.bus_number +'('+i.from_location[0].name +'>>'+i.to_location[0].name+')' ; return i; });
+        this.spinner.hide();
+      }
+    );
+  }
+  
+}
+
 
   page(label: any) {
     return label;
@@ -157,38 +192,36 @@ export class ClientissueComponent implements OnInit {
     // this.spinner.show();
     const data = {
       rows_number: this.searchForm.value.rows_number,
-      user_id : localStorage.getItem('USERID'),
+      user_id : localStorage.getItem('USERID')
     };
 
     // console.log(data);
-    // if (pageurl != "") {
-    //   this.ws.getAllaginationData(pageurl, data).subscribe(
-    //     res => {
-    //       this.wallet = res.data.data.data;
-    //       this.pagination = res.data.data;
-    //       // console.log( this.BusOperators);
-    //       this.spinner.hide();
-    //     }
-    //   );
-    // }
-    // else {
-    //   this.ws.getAllData(data).subscribe(
-    //     res => {
-    //       this.wallet = res.data.data.data;
-    //       this.pagination = res.data.data;
-    //       // console.log( res.data);
-    //       this.spinner.hide();
-    //     }
-    //   );
-    // }
+    if (pageurl != "") {
+      this.cis.getapiclientissuedata(pageurl,data).subscribe(
+        res => {
+          this.clientissue = res.data.data.data;
+          this.pagination = res.data.data;
+          // console.log( this.BusOperators);
+          this.spinner.hide();
+        }
+      );
+    }
+    else {
+      this.cis.apiclientissuedata(data).subscribe(
+        res => {
+          this.clientissue = res.data.data.data;
+          this.pagination = res.data.data;
+          // console.log( res.data);
+          this.spinner.hide();
+        }
+      );
+    }
   }
 
 
   refresh() {
     this.spinner.show();
     this.searchForm = this.fb.group({
-      name: [null],
-      payment_via: [null],
       rows_number: Constants.RecordLimit,
       user_id : localStorage.getItem('USERID'),
     });
@@ -217,33 +250,42 @@ export class ClientissueComponent implements OnInit {
 
   addData() {
     this.spinner.show();
+    // console.log(this.form.value);
+    // return;
+
     const data = {
-      transaction_id: this.form.value.transaction_id,
-      reference_id: this.form.value.reference_id,
-      payment_via:this.form.value.payment_via,
-      amount: this.form.value.amount,
-      remarks: this.form.value.remarks,
+      issueType_id: this.form.value.issueType,
+      issueSubType_id: this.form.value.issueSubType,
+      reference_id: this.form.value.refNo,
+      busId: this.form.value.busId,
+      operatorId: this.form.value.operatorId,
+      source:this.form.value.source,
+      destination: this.form.value.destination,
+      message: this.form.value.message,
       user_id: localStorage.getItem('USERID'),
-      user_name: localStorage.getItem('USERNAME'),
-      transaction_type: "c",
+      created_by: localStorage.getItem('USERNAME')
+
     };
+
     // console.log(data);
    
-      // this.ws.create(data).subscribe(
-      //   resp => {
+      this.cis.addClientIssue(data).subscribe(
+        resp => {
 
-      //     if (resp.status == 1) {
-      //       this.notificationService.addToast({ title: 'Success', msg: resp.message, type: 'success' });
-      //       this.modalReference.close();
-      //       this.ResetAttributes();
-      //       this.refresh();
-      //     }
-      //     else {
-      //       this.notificationService.addToast({ title: 'Error', msg: resp.message, type: 'error' });
-      //       this.spinner.hide();
-      //     }
-      //   }
-      // );   
+          if (resp.status == 1) {
+            this.notificationService.addToast({ title: 'Success', msg: resp.message, type: 'success' });
+            this.modalReference.close();
+            this.ResetAttributes();
+            this.spinner.hide();
+            this.search();
+            // console.log(resp.data);
+          }
+          else {
+            this.notificationService.addToast({ title: 'Error', msg: resp.message, type: 'error' });
+            this.spinner.hide();
+          }
+        }
+      );   
 
   }
 
