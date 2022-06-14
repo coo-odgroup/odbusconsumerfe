@@ -20,14 +20,28 @@ export class ApiclientcancelticketService {
   constructor(private httpClient: HttpClient) { }
 
 
-   
-  getbookingdetails(params :any): Observable<any> { 
-    console.log(this.data);
-    return ;
-    // return this.httpClient.post<any>(this.apiURL + '/BookingDetails' , JSON.stringify(params) ,this.httpOptions)
-    // .pipe(
-    //   catchError(this.errorHandler)
-    // )
+  //https://testing.odbus.co.in/api/ClientCancelTicketInfo
+
+  // getbookingdetails(params :any): Observable<any> { 
+  //   // console.log(this.data);
+  //   // return ;
+  //   return this.httpClient.post<any>(this.apiURL + '/ClientCancelTicketInfo' , JSON.stringify(params) ,this.httpOptions)
+  //   .pipe(
+  //     catchError(this.errorHandler)
+  //   )
+  // }
+  getbookingdetails(post): Observable<any> {
+    return this.httpClient.post<any>(this.apiURL + '/ClientCancelTicketInfo', post)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
+  pnrCancel(post): Observable<any> {
+    return this.httpClient.post<any>(this.apiURL + '/ClientCancelTicket', post)
+    .pipe(
+      catchError(this.errorHandler)
+    )
   }
  
   errorHandler(error:HttpErrorResponse) {

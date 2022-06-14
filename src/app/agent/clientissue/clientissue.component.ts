@@ -189,7 +189,7 @@ export class ClientissueComponent implements OnInit {
 
 
   search(pageurl = "") {
-    // this.spinner.show();
+    this.spinner.show();
     const data = {
       rows_number: this.searchForm.value.rows_number,
       user_id : localStorage.getItem('USERID')
