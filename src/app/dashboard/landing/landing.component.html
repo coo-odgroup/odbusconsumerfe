@@ -65,67 +65,6 @@
     </app-card>
 
   </div>
-
-  <div class="col-md-6">
-    <app-card [hidHeader]="true" cardClass="bg-c-yellow text-black widget-visitor-card" blockClass="text-center">
-      <a  href="https://www.buds.com.ua/images/Lorem_ipsum.pdf"  target="_blank" >
-        <h2 class="text-white">Developer’s Guide</h2>
-        <h6 class="text-white btn bg-c-blue">Click Here</h6>
-      </a>
-            <!-- <h6 class="text-dark "><strong>Point of Contact</strong></h6> -->
-    </app-card>
-  </div>
-  <div class="col-md-6">
-    <app-card [hidHeader]="true" cardClass="bg-c-yellow text-white widget-visitor-card" blockClass="text-center">
-      <h2 class="text-white">Developer Name</h2>
-      <h6 class="text-white"><a href="tel: 09999999999" class="btn bg-c-blue text-white"><b>9999999999</b></a> &nbsp;&nbsp; <a href="mailto:info@dev.in" class="btn bg-c-blue text-white"><b>info@dev.in</b></a></h6>
-      <!-- <i class="feather icon-award"></i> -->
-    </app-card>
-  </div>
-  <!-- <div class="col-md-6">
-    <app-card [hidHeader]="true" cardClass="text-white widget-visitor-card" blockClass="text-center">
-      <h6 class="text-white">Commission from Odbus</h6>
-      <i class="feather icon-cpu"></i>
-    </app-card>
-  </div> -->
-  <div class="container" *ngIf="RoleType==1">
-    <div class="row">
-      <div class="col-md-12 col-xl-4">
-
-        <app-card [hidHeader]="true" cardClass="bg-c-blue order-card borderless">
-          <h6 class="text-white">Sales {{RangeText}}</h6>
-          <h2 class="text-white">
-            <span *ngFor="let book_pft of dashboarddata.booking_profit;">
-              <i class="fas fa-rupee-sign"></i> {{dashboarddata.sales_data[0].today_amount || "0"}}
-            </span>
-          </h2>
-          <i class="card-icon feather icon-filter"></i>
-        </app-card>
-
-
-      </div>
-      <div class="col-md-6 col-xl-4">
-        <app-card [hidHeader]="true" cardClass="bg-c-blue order-card borderless">
-          <h6 class="text-white">Booking Profit {{RangeText}}</h6>
-          <h2 class="text-white">
-            <span *ngFor="let book_pft of dashboarddata.booking_profit;">
-              <i class="fas fa-rupee-sign"></i> {{book_pft.odbus_amount || "0"}}
-            </span>
-          </h2>
-          <i class="card-icon feather icon-users"></i>
-        </app-card>
-      </div>
-      <div class="col-md-6 col-xl-4">
-        <app-card [hidHeader]="true" cardClass="bg-c-green order-card borderless">
-          <h6 class="text-white">Cancellation Profit {{RangeText}}</h6>
-          <h2 class="text-white">{{dashboarddata.cancellation_profit || "0"}}</h2>
-          <i class="card-icon feather icon-radio"></i>
-        </app-card>
-      </div>
-    </div>
-  </div>
-
-
   <div class="col-xl-12 col-md-12">
     <app-card cardTitle="Top Routes Bookings" cardClass="table-card" blockClass="p-0">
       <div class="table-responsive">
@@ -152,28 +91,4 @@
       </div>
     </app-card>
   </div>
-  <!-- <div class="col-xl-6 col-md-12">
-            <app-card cardTitle="Bus Operators Bookings {{RangeText}}" cardClass="table-card" blockClass="p-0">
-              <div class="table-responsive">
-                <table class="table table-hover mb-0">
-                  <thead>
-                  <tr>   
-                    <th>#</th>                      
-                    <th>OPERATORS</th>
-                    <th>PNR</th>
-                    <th>PRICE</th>                    
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr *ngFor="let Operator of oprdata; let i = index">
-                    <td>{{i+1}}</td>
-                    <td style="font-size: 12px;"> {{Operator.operatorName[0].bus_operator.organisation_name}} [ <strong>{{Operator.operatorName[0].bus_operator.operator_name}}</strong> ] </td>
-                    <td> {{Operator.count}} PNR</td>
-                    <td><i class="fas fa-rupee-sign"></i> {{Operator.amount}}</td>                   
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-            </app-card>
-          </div> -->
 </div>
