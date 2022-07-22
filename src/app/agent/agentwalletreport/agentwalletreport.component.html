@@ -123,8 +123,11 @@
                   </td>
                 <td >{{page.balance}}</td>
                 <td>
+                  <span *ngIf='page.type=="CancelCommission"'>
+                          Cancel Commission Received
+                  </span>
                   <span *ngIf='page.type=="Commission"'>
-                          Commission Received
+                          Booking Commission Received
                   </span>
                   <span *ngIf='page.type=="Refund"'>
                           Ticket Cancel Refund
