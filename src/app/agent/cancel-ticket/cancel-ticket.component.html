@@ -140,13 +140,13 @@
                     <tbody>
                         <tr class="thead-dark">
                             <th scope="col">#</th>
-                            <th scope="col">Time Duration<br><small class="text-danger"><b>(in minutes)</b></small></th>
-                            <th scope="col">Deduction Percentage <br><small class="text-danger"><b>(in %)</b></small></th>
+                            <th scope="col">Time Duration </th>
+                            <th scope="col">Deduction Percentage </th>
                         </tr>
                         <tr *ngFor="let data of cancelPnrDetails.bookingDetails[0].bus.cancellationslabs.cancellation_slab_info; let i = index">
                             <td>{{i+1}}</td>
-                            <td><h4>{{data.duration}}</h4></td>
-                            <td><h4>{{data.deduction}}</h4></td>
+                            <td><h4>{{data.duration}}<small> Hours of Departure </small></h4> </td>
+                            <td class="text-right"><h4>{{data.deduction}} % <small>of Ticket Fare</small>  </h4></td>
                         </tr>
                     </tbody>
                 </table>
