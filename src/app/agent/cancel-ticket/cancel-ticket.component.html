@@ -91,12 +91,12 @@
                                     <td>{{cancelPnrDetails.refundAmount}}</td>
         
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                    
                                     <td>Client Comission Amount:</td>
                                     <td class="text-info">{{cancelPnrDetails.clientCancelCommission}}</td>
         
-                                </tr>
+                                </tr> -->
                                 <tr class="text-center">
                                     <td colspan="2">
                                         <button class="btn btn-sm btn-danger" (click)="pnrCancel();"> Cancel The PNR</button>
@@ -129,10 +129,10 @@
             </div>
         </section>
     </div>
-    <div class="col-md-5 ">
+    <div class="col-md-5 " *ngIf="cancelPnrDetails">
         <div class="card  mt-3">
             <div class="card-header bg-warning">
-                <h5>Operator Policy (Cancellation Policy) </h5>
+                <h5>Operator Cancellation Policy) </h5>
             </div>
             <div class="card-body">
                 <table class="table table-striped table-bordered">
@@ -140,36 +140,13 @@
                     <tbody>
                         <tr class="thead-dark">
                             <th scope="col">#</th>
-                            <th scope="col">Time Duration</th>
-                            <th scope="col">Deduction Percentage</th>
+                            <th scope="col">Time Duration<br><small class="text-danger"><b>(in minutes)</b></small></th>
+                            <th scope="col">Deduction Percentage <br><small class="text-danger"><b>(in %)</b></small></th>
                         </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Before <b>240</b> Minutes</td>
-                            <td>Deduct <u>75 %</u> of Amount</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Before <b>480</b> Minutes</td>
-                            <td>Deduct <u>65 %</u> of the Amount</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Before <b>1440</b> Minutes</td>
-                            <td>Deduct <u>20 %</u> of the Amount</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Before <b>4320</b> Minutes</td>
-                            <td>Deduct <u>10 %</u> of the Amount</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">No Cancellation Allowed After <b>240</b> Minutes of Pickup Time</td>
+                        <tr *ngFor="let data of cancelPnrDetails.bookingDetails[0].bus.cancellationslabs.cancellation_slab_info; let i = index">
+                            <td>{{i+1}}</td>
+                            <td><h4>{{data.duration}}</h4></td>
+                            <td><h4>{{data.deduction}}</h4></td>
                         </tr>
                     </tbody>
                 </table>
