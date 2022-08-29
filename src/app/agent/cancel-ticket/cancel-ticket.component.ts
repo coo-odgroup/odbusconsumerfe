@@ -60,10 +60,12 @@ export class CancelTicketComponent implements OnInit {
       res=>{
         if (res.status == 1) {
           this.cancelPnrDetails = res.data;
+          
           this.notify.addToast({ title: 'Success', msg: res.message, type: 'success' });
           this.spinner.hide();
         }
         else {
+          
           this.notify.addToast({ title: 'Error', msg: res.message +" Or you may searching for a cancelled PNR", type: 'error' });
           this.cancelPnrDetails = "";
           this.spinner.hide();
