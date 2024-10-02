@@ -15,7 +15,7 @@
           <div class="col-12">
             <form [formGroup]="searchForm">
               <div class="row"> 
-                 <div class="col-2">
+                 <div class="col-3">
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <input type="date" class="form-control sml_input" placeholder="Search Here " required
@@ -23,7 +23,7 @@
                     </div>
                   </div>
                 </div>
-                 <div class="col-2">
+                 <div class="col-3">
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <input type="date" class="form-control sml_input" placeholder="Search Here " required
@@ -31,7 +31,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-2">
+                <!-- <div class="col-2">
                   <div class="form-group row">
                     <div class="dropdown">
                       <select class="form-control input-sm" formControlName="name">
@@ -43,7 +43,7 @@
                       </select>
                     </div>
                   </div>
-                </div>  
+                </div>   -->
   
                 <div class="col-5">
                   <button type="button" class="btn btn-success  sml_input mr-10" (click)="search()" title="search">
@@ -82,70 +82,57 @@
   
         </div>
         <!-- class="table-responsive"  -->
-        <div id="print-section">
+        <div class="table-responsive" id="print-section">
           <table class="table table-striped table-bordered">
             <thead>
               <tr>
-                <th scope="col" width="80px" style="text-align: center;">#</th>
-                <th scope="col">Request Date</th>
-                <th scope="col">Tran ID</th>
-                <th scope="col">Tran Via</th> 
-                <th scope="col">PNR No</th> 
+                <th scope="col" width="10px">#</th>
+                <th>Transaction Date</th>
+                <th>PNR Details</th>
+                <th scope="col">Route Name</th>
+                <th scope="col">Jounery Date & Time</th>
+                <th scope="col">Seat</th>
                 <th scope="col">Amount</th>
-                <th scope="col">Tran. Type</th>               
-                <th scope="col">Balance</th>
-                <th scope="col">Note</th>
-                
+                <th scope="col">GST</th>   
+                <th scope="col">Commission</th>               
+                <th scope="col">Opening Balance</th>   
+                <th scope="col">Debit</th>   
+                <th scope="col">Credit</th>   
+                <th scope="col">Refund</th>   
+                <th scope="col">Type</th>   
+                <th scope="col">Closing Balance</th>   
+                <th scope="col">Cancellation(%) </th>   
+                <th scope="col">Cancellation Charges</th>   
               </tr>
             </thead>
             <tbody *ngIf="wallet?.length != 0">
               <tr *ngFor="let page of wallet; let i=index;">
-                <td style="text-align: center;">{{i+1}}</td>
-                <td>{{page.created_at | date: 'dd/MM/yyyy'}}</td>
-                <td >{{page.transaction_id}}</td>
-                <td >{{page.payment_via}}</td>
-                <td >
-                  <span *ngIf="page.pnrDetails && page.pnrDetails.length > 0">
-                   {{page.pnrDetails[0].pnr}} 
-                   
-                  </span> 
+                <td>{{i+1}}</td>
+                <td>{{page.created_at | date: 'dd/MM/yyyy HH:mm a'}}</td>
+                <td><span *ngIf =" page.pnr !=''"> {{page.pnr}}</span></td>
+                <td><span *ngIf =" page.source !=''">{{page.source}}</span> >> 
+                <span *ngIf =" page.destination !=''">{{page.destination}}</span></td>
+                <td><span *ngIf =" page.journey_date !=''">{{page.journey_date}}<br>{{page.journey_time}}</span></td>
+                <td><span *ngIf =" page.seat !=''">{{page.seat}}</span></td>
+                <td><span *ngIf =" page.booking_amount !=''">{{page.booking_amount | number : '1.2-2'}}</span></td>
+                <td><span *ngIf =" page.client_gst !=''">{{page.client_gst | number : '1.2-2'}}</span></td>
+                <td><span *ngIf =" page.Commission !=''">{{page.Commission | number : '1.2-2'}}</span></td>
+                <td><span *ngIf =" page.opening_balance !=''">{{page.opening_balance | number : '1.2-2'}}</span></td>
+                <td><span *ngIf =" page.debit !='' &&  page.debit > 0" class="text-danger"> <b>- {{page.debit | number : '1.2-2'}}</b></span></td>
+                <td><span *ngIf =" page.credit !='' && page.credit > 0" class="text-success"><b> + {{page.credit | number : '1.2-2'}}</b></span></td>
+                <td><span *ngIf =" page.Refund !='' && page.Refund >0" class="text-info"><b> +{{page.Refund | number : '1.2-2'}}</b></span></td>
+                <td>
+                  <span *ngIf =" page.Refund !='' && page.Refund >0 && !page.credit" class="text-danger"><b>Cancel</b></span>
+                  <span *ngIf =" !page.Refund && !page.credit" class="text-success"><b>Booking</b></span>
+                  <span *ngIf =" page.credit !='' && page.credit > 0  && !page.Refund " class="text-info"><b> Recharge</b></span>
+                </td>
+                
+                
+                <td><span *ngIf =" page.closing_balance !=''">{{page.closing_balance | number : '1.2-2'}}</span></td>
+                <td><span *ngIf =" page.cancel_percent !=''">{{page.cancel_percent | number : '1.2-2'}}</span></td>
+                <td><span *ngIf =" page.cancel_charges !=''">{{page.cancel_charges | number : '1.2-2'}}</span></td>
 
-                 <span *ngIf="!page.pnrDetails">
-                    ----
-                  </span>
-                </td>
-                <td >{{page.amount}}</td>
-                <td>
-                    <label *ngIf="page.transaction_type=='c'" class="btn btn-sm  bg-success  text-light"
-                     ><strong>Credit</strong></label>
-                    <label *ngIf="page.transaction_type=='d'" class="btn btn-sm bg-danger  text-light"
-                      ><strong>Debit</strong></label>
-                  </td>
-                <td >{{page.balance}}</td>
-                <td>
-                  <span *ngIf='page.type=="CancelCommission"'>
-                          Cancel Commission Received
-                  </span>
-                  <span *ngIf='page.type=="Commission"'>
-                          Booking Commission Received
-                  </span>
-                  <span *ngIf='page.type=="Refund"'>
-                          Ticket Cancel Refund
-                  </span>
-                  <span *ngIf='page.payment_via == "" && page.transaction_type=="d"'>
-                          Ticket Book
-                  </span>
-                  <span *ngIf='page.payment_via != "" && page.transaction_type=="c"'>
-                            Wallet Recharge
-                  </span>
-                  <!-- {{page.remarks}} -->
-                </td>
-                <!-- <td>
-                  <label *ngIf="page.status==1" class="btn btn-sm  bg-info  text-light"
-                   ><strong>Active</strong></label>
-                  <label *ngIf="page.status==0" class="btn btn-sm bg-danger  text-light"
-                    ><strong>Pending</strong></label>
-                </td> -->
+                
               </tr>
             </tbody>
           </table>

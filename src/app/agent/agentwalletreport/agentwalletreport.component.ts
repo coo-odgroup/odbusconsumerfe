@@ -33,6 +33,7 @@ export class AgentwalletreportComponent implements OnInit {
   wallet: AgentWallet[];
   walletRecord: AgentWallet;
   busoperators: any;
+  all: any;
 
   constructor(
     private spinner: NgxSpinnerService ,
@@ -86,28 +87,33 @@ export class AgentwalletreportComponent implements OnInit {
       name: this.searchForm.value.name,
       bus_operator_id: this.searchForm.value.bus_operator_id,
       rows_number: this.searchForm.value.rows_number,
-      startDate: this.searchForm.value.startDate,
-      endDate: this.searchForm.value.endDate,
+      rangeFromDate: this.searchForm.value.startDate,
+      rangeToDate: this.searchForm.value.endDate,
       user_id : localStorage.getItem('USERID'),
       // tran_type:this.searchForm.value.tran_type,
     };
 
     // console.log(data);
     if (pageurl != "") {
-      this.ws.agentwalletpaginationReport(pageurl, data).subscribe(
+      this.ws.getAllAgentPaginationTransaction(pageurl, data).subscribe(
         res => {
           this.wallet = res.data.data.data;
+          // console.log(this.wallet);
           this.pagination = res.data.data;
+          this.all = res.data;
           this.spinner.hide();
         }
       );
     }
     else {
-      this.ws.agentwalletReport(data).subscribe(
+      this.ws.getApiTransaction(data).subscribe(
         res => {
-          this.wallet = res.data.data.data;
-          this.pagination = res.data.data;
+          this.wallet = res.data;
+
+          // this.wallet = res.data.data.data;
           // console.log(this.wallet);
+          this.pagination = res.data.data;
+          this.all = res.data;
           this.spinner.hide();
         }
       );
@@ -129,7 +135,7 @@ export class AgentwalletreportComponent implements OnInit {
   }
 
   title = 'angular-app';
-  fileName = 'Seo-Setting.xlsx';
+  fileName = 'all_transaction_report.xlsx';
 
   exportexcel(): void {
 

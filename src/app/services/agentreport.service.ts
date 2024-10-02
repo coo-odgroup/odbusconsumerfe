@@ -94,6 +94,26 @@ export class AgentreportService {
   }
 
 
+  
+  getApiTransaction(post): Observable<any> {
+    return this.httpClient.post<any>(this.apiURL+ '/apiClientTotalTransactions', JSON.stringify(post), this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
+  
+
+  getAllAgentPaginationTransaction(url,post): Observable<any> {
+    return this.httpClient.post<any>(url, JSON.stringify(post), this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
+
+
+
 
 
   errorHandler(error) {
