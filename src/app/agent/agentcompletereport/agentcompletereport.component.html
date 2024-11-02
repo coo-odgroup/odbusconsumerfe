@@ -75,9 +75,10 @@
                         <tr>
                             <th scope="col" width="80px" style="text-align: center;">#</th>
                             <th scope="col">Ticket Details</th>
+                            <th scope="col">Booking date</th>
                             <th scope="col">Bus Details </th>
-                            <th scope="col">Boarding Point/Time</th>
-                            <th scope="col">Source >> Destination</th>
+                            <!-- <th scope="col">Boarding Point/Time</th>
+                            <th scope="col">Source >> Destination</th> -->
                             <th scope="col">Seat No</th>
                             <th scope="col">Passenger Details</th>
                             <th scope="col">Ticket Fare</th>
@@ -87,34 +88,28 @@
                     <tbody *ngIf="completedata?.length != 0">
                         <tr *ngFor="let complete of completedata?.data.data; let i = index">
                             <td style="text-align: center;">{{ i+1 }}</td>
+                            <td> {{complete.pnr}} (DOj-{{complete.journey_dt}} )  </td>
+                            <td>DOB-{{complete.created_at | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
                             <td>
-                                <strong>{{complete.pnr}}</strong> (<strong style="color: darkgoldenrod;">DOj-
-                                    {{complete.journey_dt}} ) </strong>
-                                <br>
-                                <strong style="color: brown;">DOB-{{complete.created_at | date: 'dd/MM/yyyy
-                                    HH:mm:ss'}}</strong>
+                                <en *ngIf="complete.origin == 'DOLPHIN' || complete.origin == 'MANTIS' ">
+                                    {{ complete.bus_name }}<br>
+                                    {{ complete.bus_number }}
+                                </en>
+                                <en *ngIf="complete.origin != 'DOLPHIN' && complete.origin != 'MANTIS' ">
+                                    {{ complete.bus.name }}<br>
+                                    {{ complete.bus.bus_number }}
+                                </en>
 
                             </td>
-                            <td>
-                                <span *ngIf="complete.origin == 'DOLPHIN' || complete.origin == 'MANTIS' ">
-                                    <strong>{{ complete.bus_name }}<br>
-                                    {{ complete.bus_number }}</strong>
-                                </span>
-                                <span *ngIf="complete.origin != 'DOLPHIN' && complete.origin != 'MANTIS' ">
-                                    <strong>{{ complete.bus.name }}<br>
-                                    {{ complete.bus.bus_number }}</strong>
-                                </span>
-
-                            </td>
-                            <td>
-                                <span *ngFor="let frlocation of complete.from_location">
+                            <!-- <td>
+                                <en *ngFor="let frlocation of complete.from_location">
                                     {{frlocation.name}}
-                                </span> -
-                                ( <b>{{complete.boarding_point}} </b> )<br>
-                                Time : <b>{{complete.boarding_time }}</b>
-                            </td>
+                                </en> -
+                                ( {{complete.boarding_point}}  )<br>
+                                Time : {{complete.boarding_time }}
+                            </td> -->
 
-                            <td>
+                            <!-- <td>
                                 <ng-template #tipContent1>
                                     <table style="width: 350px;">
                                         <tr>
@@ -127,14 +122,14 @@
                                         </tr>
                                         <tr>
                                             <td style="text-align: left;">
-                                                <span *ngFor="let frlocation of complete.source">
+                                                <en *ngFor="let frlocation of complete.source">
                                                     {{frlocation[0].name}}<br />
-                                                </span>
+                                                </en>
                                             </td>
                                             <td style="text-align: left;">
-                                                <span *ngFor="let tolocation of complete.destination">
+                                                <en *ngFor="let tolocation of complete.destination">
                                                     {{tolocation[0].name}} <br />
-                                                </span>
+                                                </en>
                                             </td>
                                         </tr>
                                     </table>
@@ -143,13 +138,13 @@
                                 <span [ngbTooltip]="tipContent1">
 
                                     <span *ngFor="let boarding of complete.from_location;">
-                                        <strong> {{boarding.name}}</strong>
+                                        <en> {{boarding.name}}</en>
                                     </span> >>
                                     <span *ngFor="let dropping of complete.to_location;">
-                                        <strong> {{dropping.name}}</strong>
+                                        <en> {{dropping.name}}</en>
                                     </span>
                                 </span>
-                            </td>
+                            </td> -->
                             <td>
                                 <span *ngIf="complete.origin == 'DOLPHIN' || complete.origin == 'MANTIS' ">
                                     <p *ngFor="let seat of complete.booking_detail;">
@@ -182,15 +177,15 @@
                                             </tr>
                                         </table>
                                     </ng-template>
-                                    <strong [ngbTooltip]="tipContent1">{{passanger.passenger_name}}</strong>
+                                    <en [ngbTooltip]="tipContent1">{{passanger.passenger_name}}</en>
                                 </p>
                             </td>
 
                             <td>
-                                <i class="fas fa-rupee-sign"></i> <b>{{complete.total_fare}}</b>
+                                <i class="fas fa-rupee-sign"></i> <en>{{complete.total_fare}}</en>
                             </td>
                             <td>
-                                <i class="fas fa-rupee-sign"></i> <b>{{complete.client_comission}}</b>
+                                <i class="fas fa-rupee-sign"></i> <en>{{complete.client_comission}}</en>
                             </td>
                         </tr>
                     </tbody>

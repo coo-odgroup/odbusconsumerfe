@@ -58,7 +58,7 @@
     }
 </style>
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-12">
         <section class="search-result2 mt60" *ngIf="cancelPnrDetails">
             <div class="container ">
                 <div class="card  mt-3">
@@ -73,12 +73,12 @@
                                     <td>Total fare:</td>
                                     <td>{{ cancelPnrDetails.totalfare}}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                    
                                     <td>Deduction Percentage:</td>
                                     <td class="text-danger">{{ cancelPnrDetails.deductionPercentage}}</td>
         
-                                </tr>
+                                </tr> -->
                                 <tr>
                                   
                                     <td>Deduction Amount:</td>
@@ -129,7 +129,7 @@
             </div>
         </section>
     </div>
-    <div class="col-md-5 " *ngIf="cancelPnrDetails">
+    <!-- <div class="col-md-5 " *ngIf="cancelPnrDetails">
         <div class="card  mt-3">
             <div class="card-header bg-warning">
                 <h5>Operator Cancellation Policy) </h5>
@@ -152,6 +152,6 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 

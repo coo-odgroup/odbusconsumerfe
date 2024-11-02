@@ -84,7 +84,7 @@
                 {{route.from_location[0].name}} - {{route.to_location[0].name}}
               </td>
               <td>{{route.pnr_count}} PNR</td>
-              <td><i class="fas fa-rupee-sign"></i> {{route.amount}}</td>
+              <td><i class="fas fa-rupee-sign"></i> {{route.amount |number : '1.2-2'}}</td>
             </tr>
           </tbody>
         </table>
