@@ -54,11 +54,11 @@ export class AgentwalletreportComponent implements OnInit {
     this.spinner.show();
     this.searchForm = this.fb.group({
       name: [null],
-      startDate: [null],
-      endDate: [null],
+      rangeFromDate:[null],
+      rangeToDate:[null],
+      user_id:[null],
+      tranType:['all_transaction'],      
       rows_number: Constants.RecordLimit,
-      user_id : localStorage.getItem('USERID'),
-      // tran_type:[null]
     });
     this.search();
   }
@@ -85,15 +85,15 @@ export class AgentwalletreportComponent implements OnInit {
     this.spinner.show();
     const data = {
       name: this.searchForm.value.name,
-      bus_operator_id: this.searchForm.value.bus_operator_id,
-      rows_number: this.searchForm.value.rows_number,
-      rangeFromDate: this.searchForm.value.startDate,
-      rangeToDate: this.searchForm.value.endDate,
+      bus_operator_id: this.searchForm.value.bus_operator_id,      
+      rows_number: Constants.RecordLimit,
+      rangeFromDate:this.searchForm.value.rangeFromDate,
+      rangeToDate :this.searchForm.value.rangeToDate,
       user_id : localStorage.getItem('USERID'),
-      // tran_type:this.searchForm.value.tran_type,
+      tranType :'all_transaction',
     };
 
-    // console.log(data);
+     console.log(data);
     if (pageurl != "") {
       this.ws.getAllAgentPaginationTransaction(pageurl, data).subscribe(
         res => {
@@ -128,8 +128,8 @@ export class AgentwalletreportComponent implements OnInit {
       startDate: [null],
       endDate: [null],
       rows_number: Constants.RecordLimit,
-      user_id : localStorage.getItem('USERID'),
-      // tran_type:[null]
+      user_id : localStorage.getItem('USERID'),      
+      tranType:['all_transaction']
     });
     this.search();
   }
