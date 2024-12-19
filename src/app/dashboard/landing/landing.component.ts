@@ -175,6 +175,7 @@ export class LandingComponent implements OnInit {
           }
         }]
       };
+      this.spinner.hide();
     }
     ngAfterViewInit()
     {
@@ -188,10 +189,10 @@ export class LandingComponent implements OnInit {
         rangeFrom:"",
         rangeTo:""
       };
-      this.getall("All");
+      this.getall("Today");
       this.toproute();
       this.operatordata();
-      this.pnrstaticsdata("All");
+      this.pnrstaticsdata("Today");
 
 
      
@@ -200,6 +201,7 @@ export class LandingComponent implements OnInit {
 
    
     getall(range:any) {
+      this.spinner.show();
       this.RangeText=range;
     
       const data={
