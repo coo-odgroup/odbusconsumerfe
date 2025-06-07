@@ -24,6 +24,7 @@ export class Constants {
    public static BASE_URL:any ='https://provider.odbus.co.in/api';
     public static CONSUMER_API_URL:any ='https://consumer.odbus.co.in/api';
     public static CONSUMER_BASE_URL:any ='https://www.odbus.in/';
+    public static URL:any ='https://apiclient.odbus.co.in/';
 
     //  public static BASE_URL:any ='https://testingadminapi.odbus.co.in/api';
     //  public static CONSUMER_API_URL:any ='https://testing.odbus.co.in/api';
