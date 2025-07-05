@@ -127,8 +127,7 @@
 
                   <span *ngIf =" !page.Refund && !page.credit && !page.booking_id" class="text-success"><b>{{page.remarks}}</b></span>
                   <span *ngIf =" page.credit !='' && page.credit > 0  && !page.Refund " class="text-info"><b> Recharge</b></span>
-                </td>
-                
+                </td>               
                 
                 <td><span *ngIf =" page.closing_balance !=''">{{page.closing_balance | number : '1.2-2'}}</span></td>
                 <td><span *ngIf =" page.cancel_percent !=''">{{page.cancel_percent | number : '1.2-2'}}</span></td>
