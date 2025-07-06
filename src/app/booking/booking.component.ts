@@ -1013,7 +1013,7 @@ get_seatno(seat_id:any){
   //console.log(this.MakePaymnetResponse.razorpay_order_id.payment_session_id);
   //console.log(this.MakePaymnetResponse.razorpay_order_id.receipt_id);
     const cashfree=await load({
-      mode:"production" //production , sandbox
+      mode:GlobalConstants.PAYMENT_MODE //production , sandbox
     });
     const checkOptions={
       paymentSessionId:this.MakePaymnetResponse.razorpay_order_id.payment_session_id,
