@@ -26,8 +26,8 @@ export class PopularRoutesService {
     )
   }
 
-  allroutes(): Observable<any> {
-    return this.httpClient.get<any>(this.apiURL + '/AllRoutes',  this.httpOptions)
+  allroutes(per_page,page_no): Observable<any> {
+    return this.httpClient.get<any>(this.apiURL + '/AllRoutes?per_page='+per_page+'&page_no='+page_no,  this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

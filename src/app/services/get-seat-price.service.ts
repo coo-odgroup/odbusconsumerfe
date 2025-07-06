@@ -34,7 +34,7 @@ export class GetSeatPriceService {
   // }
 
   getprice(queryparam:any): Observable<any> {
-    return this.httpClient.get<any>(this.apiURL + '/PriceOnSeatsSelection?' +queryparam ,this.httpOptions)
+    return this.httpClient.post<any>(this.apiURL + '/PriceOnSeatsSelection' ,JSON.stringify(queryparam) ,this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

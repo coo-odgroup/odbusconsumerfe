@@ -1,3 +1,9 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff"  type="ball-clip-rotate" [fullScreen]="true">
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+
+
+<ng-container *ngIf="!isMobile">
 <section class="careers faq-sec">
   <span class="line-span"><div class="container"><h2>Current Openings</h2></div></span>
  <div class="textimonials-result1">
@@ -87,7 +93,214 @@
      </div>
   </div>
  </section>
+</ng-container>
 
 
+<ng-container *ngIf="isMobile && !MenuActive">
+  <div class="mobile-mybooking-top">
+    <div class="row">
+      <div class="col-1 pr-0 pl-2 mob-arrow-left">
+        <a routerLink="/">
+          <i class="fas fa-arrow-left"></i>
+        </a>  
+      </div>
+      <div class="col-7 pl-2 pr-2 mob-list-center">
+        <h5>Career</h5>
+      </div>
+      <div class="col-4 pl-2 pr-2">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
+        </div>
+      </div>
+    </div>
+  </div>
 
-  
+  <div class="mobile-middle-box">
+   <div class="row">
+    
+      <!-- <span class="line-span"><div class="container"><h2>Current Openings</h2></div></span> -->
+     <div class="textimonials-result1" style="padding:0px ; background-color: unset; border: none;">
+         <div class="container">
+             <div > 
+               <div class="row">
+                <div class="col-12">
+                  <ngb-accordion  activeIds="ngb-panel-0">
+                    <ngb-panel id="ngb-panel-0" title="Sr. Business Development Executive - Aggregation / Distribution">
+                      <ng-template ngbPanelContent>
+                        <div>
+                       <h3 class="faq-header">Sr. Business Development Executive - Aggregation / Distribution</h3>
+                          <p class="faq-para"><strong>Job code:</strong> ODBUS-SALES<br/>
+                          <strong>Location:</strong> All over Odisha<br/>
+                          <strong>Experience:</strong> 2-4 Years<br/>
+                          <strong>Qualification:</strong> Any Graduate<br/>
+                          <strong>Languages Proficiency:</strong> English, Hindi & Odia (Hindi, Odia Mandatory)<br/>
+                          <strong>Salary:</strong> Best in the industry<br/>
+                          </p>
+                         <h3 class="faq-header">Job Description</h3>
+                         <ul class="main-tnc-ul-cr">
+                            <li>Experience in Business Development, market mapping and direct customer engagements to reach established targets.</li>
+                            <li>Able to handle the bus partner aggregation and distribution.</li>
+                            <li>Responsible for Account Management.</li>
+                            <li>Candidates must be from the bus industry.</li>
+                            <li>Candidates should be passionate about Sales/BD and have Go-Getter Attitude.</li>
+                          </ul>
+                          <p class="faq-para">Email us your resume to <a href="mailto:coo@odgroup.in?subject=Sr. Business Development Executive - Aggregation / Distribution">coo@odgroup.in.</a> Please include the job designation in the subject line of the email, and we will revert back to you about the same.
+                          </p>
+                        </div>
+                      </ng-template>
+                    </ngb-panel>
+    
+                    <ngb-panel id="ngb-panel-1" title="Customer Support Executive">
+                      <ng-template ngbPanelContent>
+                        <div>
+                       <h3 class="faq-header">Customer Support Executive</h3>
+                          <p class="faq-para"><strong>Job code:</strong> ODBUS-SUPPORT<br/>
+                          <strong>Experience:</strong> 0 Year - Max 3 Years<br/>
+                          <strong>Qualification:</strong> Any Graduate<br/>
+                          <strong>Languages Proficiency:</strong> English, Hindi & Odia (Hindi, Odia Mandatory)<br/>
+                          <strong>Salary:</strong> Best in the industry<br/></p>
+    
+                         <h3 class="faq-header">Job Description</h3>
+                         <ul class="main-tnc-ul-cr">
+                            <li>Inbound & Outbound Voice Process, Non- Technical, Pure Customer Service.</li>
+                            <li>No Sale, No Upselling, No targets.</li>
+                            <li>Comfortable Shift Timings.</li>
+                            <li>Have to solve customer queries.</li>
+                            <li>Provide customer satisfaction over customer queries.</li>
+                            <li>Update the team leader with proper reports.</li>
+                          </ul>
+                          <p class="faq-para">Email us your resume to <a href="mailto:coo@odgroup.in?subject=Customer Support Executive">coo@odgroup.in.</a> Please include the job designation in the subject line of the email, and we will revert back to you about the same.
+                          </p>
+                        </div>
+                      </ng-template>
+                    </ngb-panel>
+    
+                    <ngb-panel id="ngb-panel-2" title="Graphic/UI Designer">
+                      <ng-template ngbPanelContent>
+                        <div>
+                       <h3 class="faq-header">Graphic/UI Designer</h3>
+                          <p class="faq-para"><strong>Job code:</strong> ODBUS-DEV<br/>
+                          <strong>Experience:</strong> 2-4 Years<br/>
+                          <strong>Qualification:</strong> Diploma in Graphic / Web Designing / Any Graduate<br/>
+                          <strong>Salary:</strong> Best in the industry<br/>
+                        </p>
+                         <h3 class="faq-header">Job Description</h3>
+                         <ul class="main-tnc-ul-cr">
+                            <li>Experience in User Experience (UX) and User Interface (UI).</li>
+                            <li>Proficiency in graphic design software including Adobe Photoshop, Adobe Illustrator, InDesign and other visual design tools.</li>
+                            <li>Knowledge of typography, handling and manipulation of images, freehand graphics and basic design elements.</li>
+                            <li>Proficiency in front-end development web programming languages such as HTML5, CSS3, Bootstrap, JQuery, Javascript.</li>
+                            <li>You will be responsible of handling major design projects from concept design, collaborating with marketing, delivering world class and cutting edge designs for online and print advertising. </li>
+                            <li>Work with WordPress or other content management systems as an advantage.</li>
+                          </ul>
+                          <p class="faq-para">Email us your resume to <a href="mailto:coo@odgroup.in?subject=Graphic/UI Designer">coo@odgroup.in.</a> Please include the job designation in the subject line of the email, and we will revert back to you about the same.
+                          </p>
+                        </div>
+                      </ng-template>
+                    </ngb-panel>
+                  </ngb-accordion>
+                </div>                  
+               </div>
+             </div>
+         </div>
+      </div>
+    </div>   
+  </div>   
+</ng-container>
+
+<ng-container *ngIf="isMobile && MenuActive">
+  <div class="mobile-myaccount-top">
+    <div class="row">
+      <div class="col-5">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
+        </div>
+      </div>
+      <div class="col-7 mob-logintx">
+        <a routerLink="/login" *ngIf="!session.isLoggedIn()">
+          Login / Signup
+        </a>
+        <a routerLink="/dashboard" *ngIf="session.isLoggedIn()"> Dashboard </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-myaccount-middle">
+    <ul class="mobile-menu">
+      <li>
+        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i> Manage Booking</a>
+      </li>
+      <li>
+        <a routerLink="/contact-us"><i class="fas fa-gifts"></i>Contact Us</a>
+      </li>
+      <li>
+        <a routerLink="/offers"><i class="fas fa-gifts"></i> Offers</a>
+      </li>
+      <li>
+        <a routerLink="/operators"><i class="fas fa-bus"></i> Operators</a>
+      </li>
+      <li>
+        <a routerLink="/routes"><i class="fas fa-map-marker-alt"></i> Routes</a>
+      </li>
+      <li>
+        <a routerLink="/faq"><i class="fas fa-question"></i> FAQ's</a>
+      </li>
+      <li>
+        <a routerLink="/testimonials"><i class="fa fa-star"></i> Testimonials</a>
+      </li>
+      <li>
+        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i> Terms & Conditions</a>
+      </li>
+      <li>
+        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i> Privacy Policy</a>
+      </li>     
+      <li *ngIf="session.isLoggedIn()">
+        <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
+      </li>
+      <li *ngIf="session.isLoggedIn()">
+        <a (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+      </li>
+    </ul>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isMobile">
+  <div class="mob-mtbh"></div>
+  <div class="mobile-fixed-bottom">
+    <div class="footer-menu row m-0 mobile-bg-danger">
+      <div class="col-3 p-0 text-center">
+        <a routerLink="/" class="home">
+          <i class="fas fa-home"></i>
+          <p class="mb-0 small">Home</p>
+        </a>
+      </div>
+      <div class="col-3 p-0 text-center">
+        <a routerLink="/dashboard" class="home">
+          <i class="fas fa-ticket-alt"></i>
+          <p class="mb-0 small">My Bookings</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
+        <a routerLink="/login" class="home">
+          <i class="fas fa-user"></i>
+          <p class="mb-0 small">Login</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
+        <a routerLink="/myaccount" class="home">
+          <i class="fas fa-user"></i>
+          <p class="mb-0 small">My Account</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center">
+        <a (click)="menu()" class="home">
+          <i class="fas fa-bars"></i>
+          <p class="mb-0 small">Menu</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</ng-container> 

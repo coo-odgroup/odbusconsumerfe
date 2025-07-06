@@ -4,7 +4,8 @@ import { Title, Meta } from '@angular/platform-browser';
 import { SeoService } from './services/seo.service';
 import { DOCUMENT } from '@angular/common';
 import{ GlobalConstants } from './constants/global-constants';
-
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { Router } from '@angular/router';
 import { CommonService } from './services/common.service';
 
 
@@ -22,17 +23,20 @@ export class AppComponent {
   og_image:any='';
   common:any=[];
 
+  isMobile:boolean=false;
 
   constructor(@Inject(DOCUMENT) private doc,private auth: AuthService,
     private titleService: Title, 
     private metaService: Meta,
-    private seo:SeoService,private commonService: CommonService,
-
+    private seo:SeoService,
+    private commonService: CommonService,
+    private deviceService: DeviceDetectorService,
+    public router: Router
     ) {
 
     this.auth.getToken().subscribe(
       res=>{
-        localStorage.setItem('AuthAccessToken',res.data.access_token);        
+        localStorage.setItem('AuthAccessToken',res.data);        
       }
     );
    
@@ -40,20 +44,38 @@ export class AppComponent {
 
    ngOnInit() {
 
+    this.isMobile = this.deviceService.isMobile();
+
     const data={
      user_id:GlobalConstants.MASTER_SETTING_USER_ID
     };
 
     this.commonService.getCommonData(data).subscribe(
       resp => {
-        this.logo=resp.data.common.logo_image;
-        this.og_image=resp.data.common.og_image;
+        if(resp.data.common.maintenance==1){
+          this.router.navigate(['maintenance']); 
+        }
+
+       this.commonService.setCommonData(resp.data);
+
+      
+
+
+       // console.log(resp);
+
+        // this.logo=resp.data.common.logo_image;
+        // this.og_image=resp.data.common.og_image;
 
         this.common=resp.data.common;
+
+
+        this.meta_description=this.common.meta_description;
+        this.meta_title=this.common.meta_title;
+        this.meta_keyword=this.common.meta_keyword;
        
-        this.seo.deafultmeta_description.subscribe((s:any) => { this.meta_description = s});
-        this.seo.deafultmeta_title.subscribe((s:any) => { this.meta_title = s});
-        this.seo.deafultmeta_keyword.subscribe((s:any) => { this.meta_keyword = s});
+        // this.seo.deafultmeta_description.subscribe((s:any) => { this.meta_description = s});
+        // this.seo.deafultmeta_title.subscribe((s:any) => { this.meta_title = s});
+        // this.seo.deafultmeta_keyword.subscribe((s:any) => { this.meta_keyword = s});
 
         this.titleService.setTitle(this.meta_title);
 
@@ -90,6 +112,7 @@ export class AppComponent {
           chatScript.type = "text/javascript";
           chatScript.async = true;
           chatScript.src = this.common.google_analytics;
+          chatScript.id = "google_analytics";
           document.head.appendChild(chatScript);
          
         }
@@ -98,14 +121,16 @@ export class AppComponent {
          
           let chatScript = document.createElement("noscript");
           chatScript.innerHTML  = this.common.no_script;
+          chatScript.id = "noscript";
           document.head.append(chatScript);
          
         }
 
-        if(this.common.seo_script!='' && this.common.seo_script!=null){
+        if(this.isMobile== false && this.common.seo_script!='' && this.common.seo_script!=null){
          
           let chatScript = document.createElement("script");
-          chatScript.innerHTML = this.common.seo_script;          
+          chatScript.innerHTML = this.common.seo_script;  
+          chatScript.id = "seo_script";
           document.head.append(chatScript);
          
         }

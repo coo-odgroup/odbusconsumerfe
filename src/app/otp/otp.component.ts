@@ -8,7 +8,8 @@ import { LoginService } from '../services/login.service';
 import { SignupService } from '../services/signup.service';
 import { LoginChecker } from '../helpers/loginChecker';
 import {NgbAlertConfig} from '@ng-bootstrap/ng-bootstrap';
-
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { EncryptionService } from '../encrypt.service';
 import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
 
@@ -23,6 +24,8 @@ export class OtpComponent implements OnInit {
   otpForm: FormGroup;
   submitted = false;
   userId: any;
+  isMobile:boolean;
+  MenuActive: boolean = false;
 
   ResendOtp :boolean=false;
   ResendTimer :boolean=true;
@@ -33,26 +36,31 @@ export class OtpComponent implements OnInit {
   @Input()
   session: LoginChecker; 
   currentUrl: any;
+  activeMenu: string;
 
-  constructor( public router: Router,
+  constructor( 
+      public router: Router,
       public fb: FormBuilder, 
       private notify: NotificationService,    
       private otpService : OTPService,
       private spinner: NgxSpinnerService,
       public loginService: LoginService,
       private signupService: SignupService,  
-      private alertConfig: NgbAlertConfig  
-
-      ,private seo:SeoService,
+      private alertConfig: NgbAlertConfig ,
+      private seo:SeoService,
+      private deviceService: DeviceDetectorService,
+      private enc:EncryptionService,
       private location: Location) { 
-  
+        
+      this.isMobile = this.deviceService.isMobile();
+
       this.currentUrl = location.path().replace('/','');
           this.seo.seolist(this.currentUrl);
 
-    this.session = new LoginChecker();
+      this.session = new LoginChecker();
 
-    alertConfig.type = 'success';
-    alertConfig.dismissible = false;
+      alertConfig.type = 'success';
+      alertConfig.dismissible = false;
 
     this.otpForm = this.fb.group({
       otp: ['', Validators.required]
@@ -69,6 +77,11 @@ export class OtpComponent implements OnInit {
       this.signupService.currentalert.subscribe((message:any) => { this.alert = message; }); 
     }
       
+  }
+
+  menu(){
+    this.MenuActive = (this.MenuActive==false) ? true : false;  
+    this.activeMenu='';      
   }
 
 
@@ -101,10 +114,14 @@ export class OtpComponent implements OnInit {
       } ;
 
 
+
       this.otpService.submit_otp(param).subscribe(
         res=>{ 
+         // console.log(res);
           if(res.status==1){
-            this.session.setLoggedInUser(JSON.stringify(res.data[0]) );
+            let data=this.enc.decrypt(res.data);
+            data = JSON.parse(data); 
+            this.session.setLoggedInUser(JSON.stringify(data) );
             //localStorage.setItem('user', JSON.stringify(res.data[0]) );
             localStorage.removeItem('userId');
             localStorage.removeItem('otp_type');
@@ -171,7 +188,9 @@ export class OtpComponent implements OnInit {
           this.spinner.hide();         
           if(res.status==1){            
             this.ResendTimer=true;
-            localStorage.setItem('userId',res.data.id);
+            let data :any=this.enc.decrypt(res.data);
+            data = JSON.parse(data); 
+            localStorage.setItem('userId',data.id);
             this.signupService.setAlert("OTP has been sent to "+via);
             //this.notify.notify("OTP has been sent to "+via,"Success");
 
@@ -192,6 +211,9 @@ export class OtpComponent implements OnInit {
 
     
     this.userId = localStorage.getItem('userId');
+    
+    console.log(this.userId);
+
     if(this.userId=='' || this.userId==null){
       this.router.navigate(['']);
     }

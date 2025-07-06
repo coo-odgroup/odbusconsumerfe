@@ -33,8 +33,8 @@ export class AuthInterceptor implements HttpInterceptor {
                 if (err.status === 401) {
                         this.tokenSubject.next(null);                        
                         this.auth.getToken().subscribe(res=>{
-                            localStorage.setItem('AuthAccessToken', res.access_token);
-                            this.tokenSubject.next(res.access_token);
+                            localStorage.setItem('AuthAccessToken', res.data);
+                            this.tokenSubject.next(res.data);
                             this.collectFailedRequest(req);
                             this.retryFailedRequests(req,next);
                           }); 
@@ -55,25 +55,11 @@ collectFailedRequest(request): void {
    this.cachedRequests.push(request);
    }
 
+
 retryFailedRequests(request: HttpRequest<any>, next: HttpHandler): void {
 
-    const AuthAccessToken =  localStorage.getItem('AuthAccessToken');        
-
-
-   this.cachedRequests.forEach( request => {
-   request = request.clone( {
-       setHeaders: {
-           Accept: 'application/json',
-           'Content-Type': 'application/json',
-           Authorization: "Bearer " + AuthAccessToken
-       }
-   } );   
-   window.location.reload();
-   return  next.handle(request);    
-   } );
+    window.location.reload();
 
 }
-
-
 
 }

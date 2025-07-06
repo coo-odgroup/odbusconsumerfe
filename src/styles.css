@@ -53,4 +53,17 @@ body { margin: 0;}
     border: none;
   }
 
+  .hero-banner {
+    padding: 165px 0 100px !important;
+}
+@media only screen and (min-width: 1600px) and (max-width: 2200px)  {
+.hero-banner {
+  padding: 210px 0 190px !important;
+  
+}
+
+}
+
+
+
 

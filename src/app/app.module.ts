@@ -42,10 +42,7 @@ import { AuthInterceptor } from './shared/auth.interceptor';
 import { MyaccountComponent } from './user/myaccount/myaccount.component';
 import { UserdashboardComponent } from './user/userdashboard/userdashboard.component';
 import { UsernavbarComponent } from './user/usernavbar/usernavbar.component';
-
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
-
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { UsernotificationsComponent } from './user/usernotifications/usernotifications.component';
 import { UserwalletComponent } from './user/userwallet/userwallet.component';
 import { UserinvitefriendsComponent } from './user/userinvitefriends/userinvitefriends.component';
@@ -60,9 +57,13 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { LightboxModule } from 'ngx-lightbox';
 import { FilterPipe } from './filter.pipe';
-import{ GlobalConstants } from './constants/global-constants';
-
-
+import { QRCodeModule } from 'angular2-qrcode';
+import { PnrdetailComponent } from './pnrdetail/pnrdetail.component';
+import { ApiComponent } from './api/api.component';
+import { SuccessComponent } from './success/success.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { ProfiledeleteComponent } from './profiledelete/profiledelete.component';
+import { environment } from '../environments/environment';
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
 }
@@ -115,7 +116,12 @@ const ngWizardConfig: NgWizardConfig = {
     UserreviewsComponent,
     UserhelpsupportComponent,
     OperatorDetailComponent,
-    FilterPipe
+    FilterPipe,
+    PnrdetailComponent,
+    ApiComponent,
+    SuccessComponent,
+    MaintenanceComponent,
+    ProfiledeleteComponent
   ], 
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -135,11 +141,12 @@ const ngWizardConfig: NgWizardConfig = {
     CountdownModule ,
     IvyCarouselModule,
     AuthModule.forRoot({
-      domain: GlobalConstants.BASE_URL + '/ClientLogin',
-      clientId: 'odbusSas'
+      domain: 'dev-seofied.us.auth0.com',
+      clientId: 'RsznkkMUqmJD0nUXjYv2LS8HPopT4xy1'
     }),
     ImageCropperModule,
-    LightboxModule
+    LightboxModule,
+    QRCodeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
   providers: [AppInitializerService,
@@ -155,8 +162,6 @@ const ngWizardConfig: NgWizardConfig = {
       useClass: AuthInterceptor,
       multi: true
     },
-    
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     
     JwtHelperService,

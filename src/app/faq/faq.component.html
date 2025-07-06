@@ -1,273 +1,1639 @@
-<section class="faq-sec">
-  <span class="line-span"><div class="container"><h2>Frequently Asked Questions</h2></div></span>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+
+<ng-container *ngIf="!isMobile">
+  <section class="faq-sec">
+    <span class="line-span"
+      ><div class="container"><h2>Frequently Asked Questions</h2></div></span
+    >
     <div class="container">
-        
-        <div class="main-tnc"> 
-        <div class="row">  
+      <div class="main-tnc">
+        <div class="row">
           <div class="col-md-12">
-
-
             <ngb-accordion #acc="ngbAccordion" activeIds="panel1">
               <ngb-panel id="panel1" title="General">
                 <ng-template ngbPanelContent>
-                    <div class="ml30">
+                  <div class="ml30">
                     <h3 class="faq-header">What is an e-ticket?</h3>
-                    <p class="faq-para">An e–ticket, also known as an electronic ticket, is an electronic document that contains the details of your bus ticket, like a unique confirmation number issued by the bus operator for the booking you have made, along with other details like your departure date, time, boarding point,Conductor number and so on. It is important to carry a print-out of the e-ticket along with a valid photo-id proof at the time of bus departure.</p>
-
-                    <h3 class="faq-header">What are the advantages of purchasing a bus ticket with ODBUS?</h3>
-                    <p class="faq-para">ODBUS is Odisha’s largest bus ticket company and therefore, you will find the largest option of bus seats on the site. There are many advantages of online bus ticket booking.<br/><br/>
-                    - You can choose your preferred seats.<br/>
-                    -	Online bus ticket booking keeps you away from the long queues of the offline ticket  counters.<br/>
-                    -	You can book your bus tickets online or by phone.<br/>
-                    -	You can view plenty of buses and choose an appropriate bus for your travel considering the amenities, reviews, ratings and bus images available.<br/>
-                    -	You can choose from over 200+ bus operators.<br/>
-                    -	You can choose the preferred bus type (Volvo Bus, AC or Non AC) and also pickup and dropping point and timings.<br/>
-                    -	Your tickets can be booked at a reasonable price with multiple payment options.<br/>
+                    <p class="faq-para">
+                      An e–ticket, also known as an electronic ticket, is an
+                      electronic document that contains the details of your bus
+                      ticket, like a unique confirmation number issued by the
+                      bus operator for the booking you have made, along with
+                      other details like your departure date, time, boarding
+                      point,Conductor number and so on. It is important to carry
+                      a print-out of the e-ticket along with a valid photo-id
+                      proof at the time of bus departure.
                     </p>
 
-                   <h3 class="faq-header">Do I need to create an account to book bus tickets on ODBUS?</h3>
-                    <p class="faq-para">ODBUS login credentials can be used for booking the bus tickets. In case, a customer does not have an ODBUS login he can book through guest user login by providing required email id and mobile no. 
+                    <h3 class="faq-header">
+                      What are the advantages of purchasing a bus ticket with
+                      ODBUS?
+                    </h3>
+                    <p class="faq-para">
+                      ODBUS is Odisha’s largest bus ticket company and
+                      therefore, you will find the largest option of bus seats
+                      on the site. There are many advantages of online bus
+                      ticket booking.<br /><br />
+                      - You can choose your preferred seats.<br />
+                      - Online bus ticket booking keeps you away from the long
+                      queues of the offline ticket counters.<br />
+                      - You can book your bus tickets online or by phone.<br />
+                      - You can view plenty of buses and choose an appropriate
+                      bus for your travel considering the amenities, reviews,
+                      ratings and bus images available.<br />
+                      - You can choose from over 200+ bus operators.<br />
+                      - You can choose the preferred bus type (Volvo Bus, AC or
+                      Non AC) and also pickup and dropping point and timings.<br />
+                      - Your tickets can be booked at a reasonable price with
+                      multiple payment options.<br />
                     </p>
 
-                   <h3 class="faq-header">Does booking online cost me more?</h3>
-                    <p class="faq-para">Not at all! The price of the bus ticket is the same as you would get from the bus operator too.The price of a bus ticket is the same or sometimes discounted depending on the season/time.</p>
-                   
+                    <h3 class="faq-header">
+                      Do I need to create an account to book bus tickets on
+                      ODBUS?
+                    </h3>
+                    <p class="faq-para">
+                      ODBUS login credentials can be used for booking the bus
+                      tickets. In case, a customer does not have an ODBUS login
+                      he can book through guest user login by providing required
+                      email id and mobile no.
+                    </p>
+
+                    <h3 class="faq-header">
+                      Does booking online cost me more?
+                    </h3>
+                    <p class="faq-para">
+                      Not at all! The price of the bus ticket is the same as you
+                      would get from the bus operator too.The price of a bus
+                      ticket is the same or sometimes discounted depending on
+                      the season/time.
+                    </p>
+
                     <h3 class="faq-header">Can I book a multi-city trip?</h3>
-                    <p class="faq-para">No, currently we do not have this facility. We will update you as soon as this feature is launched on our site.</p>
-                    
-                    <h3 class="faq-header">While travelling with an infant on the bus, is there anything special I must know?</h3>
-                    <p class="faq-para">Make sure they have valid proof–of–age documents when they're checking in, and remember that infants must be accompanied by an adult at least 18 years old. You can book no more than one infant per adult. Infants below 2year of age do not require a bus ticket as they are not allotted any bus seat.</p>
+                    <p class="faq-para">
+                      No, currently we do not have this facility. We will update
+                      you as soon as this feature is launched on our site.
+                    </p>
+
+                    <h3 class="faq-header">
+                      While travelling with an infant on the bus, is there
+                      anything special I must know?
+                    </h3>
+                    <p class="faq-para">
+                      Make sure they have valid proof–of–age documents when
+                      they're checking in, and remember that infants must be
+                      accompanied by an adult at least 18 years old. You can
+                      book no more than one infant per adult. Infants below
+                      2year of age do not require a bus ticket as they are not
+                      allotted any bus seat.
+                    </p>
                   </div>
-                   
-                    
                 </ng-template>
               </ngb-panel>
 
-              <ngb-panel id="panel2"  title="Booking Bus Ticket">
+              <ngb-panel id="panel2" title="Booking Bus Ticket">
                 <ng-template ngbPanelContent>
                   <div class="ml30">
-                    <h3 class="faq-header">Is it mandatory to take a printout of the ticket?</h3>
-                    <p class="faq-para">It depends on the bus operator you have booked your ticket with. Even mTickets are available on ODBUS. For operators that support mTickets, the SMS that is sent to your mobile can be produced at the time of boarding and you will be allowed to travel.
-                      <br/>
-                      For operators that do not support mTickets it is a must to take a printout of the e-ticket and produce it at the time of boarding. The e-ticket is sent to the e-mail ID provided at the time of boarding.
-                      <br/>
-                      To know which operators are mTicket enabled, look for the mTicket icon under the mTicket column while searching for buses.
-                      </p>
-            
-                    <h3 class="faq-header">I've lost my ticket. What should I do now?</h3>
-                    <p class="faq-para">A copy of the ticket would have been sent to you by e-mail when you booked it. Please take a printout of that mail and produce it at the time of boarding. If you have not received the ticket e-mail, please call any of our call centers 9583918888 and our executive will resend you a copy by mail.
-                    </p>
-            
-                    <h3 class="faq-header">What is an mTicket?</h3>
-                    <p class="faq-para">An mTicket is an SMS that is sent to your mobile on booking a ticket with select operators. This SMS has the PNR number and the PNR number along with other ticket related information. It can be used to board the bus. Please note that not all operators accept mTickets. To know which operators are mTicket enabled, look for the mTicket icon under the mTicket column while searching for buses.
-                    </p>
-            
-                    <h3 class="faq-header">I didn’t receive my mTicket. Can you resend it?
+                    <h3 class="faq-header">
+                      Is it mandatory to take a printout of the ticket?
                     </h3>
-                    <p class="faq-para">You can generate your mTicket online. Go to customer support Click on the Print/SMS ticket link on the home page on www.odbus.in. Enter your PNR number mentioned on the e-ticket we emailed you. Choose the SMS option and click on Submit. In case you don’t have a copy of the e-ticket either, contact our call center and our executive will assist you.</p>
-            
-                    <h3 class="faq-header">I entered the wrong mobile number while booking. Can I get my mTicket on a different number?</h3>
-                    <p class="faq-para">Sure you can. Please contact our call center  and our executive <b>9583918888</b> will send you the mTicket on your desired number. Otherwise You can send an email to us <a href="mailto:support@odbus.in">support@odbus.in</a> </p>
-            
+                    <p class="faq-para">
+                      It depends on the bus operator you have booked your ticket
+                      with. Even mTickets are available on ODBUS. For operators
+                      that support mTickets, the SMS that is sent to your mobile
+                      can be produced at the time of boarding and you will be
+                      allowed to travel.
+                      <br />
+                      For operators that do not support mTickets it is a must to
+                      take a printout of the e-ticket and produce it at the time
+                      of boarding. The e-ticket is sent to the e-mail ID
+                      provided at the time of boarding.
+                      <br />
+                      To know which operators are mTicket enabled, look for the
+                      mTicket icon under the mTicket column while searching for
+                      buses.
+                    </p>
+
+                    <h3 class="faq-header">
+                      I've lost my ticket. What should I do now?
+                    </h3>
+                    <p class="faq-para">
+                      A copy of the ticket would have been sent to you by e-mail
+                      when you booked it. Please take a printout of that mail
+                      and produce it at the time of boarding. If you have not
+                      received the ticket e-mail, please call any of our call
+                      centers 9583918888 and our executive will resend you a
+                      copy by mail.
+                    </p>
+
+                    <h3 class="faq-header">What is an mTicket?</h3>
+                    <p class="faq-para">
+                      An mTicket is an SMS that is sent to your mobile on
+                      booking a ticket with select operators. This SMS has the
+                      PNR number and the PNR number along with other ticket
+                      related information. It can be used to board the bus.
+                      Please note that not all operators accept mTickets. To
+                      know which operators are mTicket enabled, look for the
+                      mTicket icon under the mTicket column while searching for
+                      buses.
+                    </p>
+
+                    <h3 class="faq-header">
+                      I didn’t receive my mTicket. Can you resend it?
+                    </h3>
+                    <p class="faq-para">
+                      You can generate your mTicket online. Go to customer
+                      support Click on the Print/SMS ticket link on the home
+                      page on www.odbus.in. Enter your PNR number mentioned on
+                      the e-ticket we emailed you. Choose the SMS option and
+                      click on Submit. In case you don’t have a copy of the
+                      e-ticket either, contact our call center and our executive
+                      will assist you.
+                    </p>
+
+                    <h3 class="faq-header">
+                      I entered the wrong mobile number while booking. Can I get
+                      my mTicket on a different number?
+                    </h3>
+                    <p class="faq-para">
+                      Sure you can. Please contact our call center and our
+                      executive <b>9583918888</b> will send you the mTicket on
+                      your desired number. Otherwise You can send an email to us
+                      <a href="mailto:support@odbus.in">support@odbus.in</a>
+                    </p>
+
                     <h3 class="faq-header">What are bus types?</h3>
-                    <p class="faq-para">Bus types indicate the type of bus it is. For example, the standard bus types are Volvo AC buses, AC buses, Non AC buses, Mercedes buses, Non Mercedes buses, Seater buses, Sleeper buses, etc. <br/>
-                      Fares vary between AC and non AC seats/berths as well as sleeper or seater options. AC seats/berths are usually more expensive than non AC options. Sleeper berths are usually more expensive than seater options. Same for Valvo cases. <br/>
-                     When choosing your seat or sleeper berth on the seat map, please give attention to the type of seat or sleeper berth you are booking, especially in buses which provide both the options.
-                     </p>
-            
+                    <p class="faq-para">
+                      Bus types indicate the type of bus it is. For example, the
+                      standard bus types are Volvo AC buses, AC buses, Non AC
+                      buses, Mercedes buses, Non Mercedes buses, Seater buses,
+                      Sleeper buses, etc. <br />
+                      Fares vary between AC and non AC seats/berths as well as
+                      sleeper or seater options. AC seats/berths are usually
+                      more expensive than non AC options. Sleeper berths are
+                      usually more expensive than seater options. Same for Valvo
+                      cases.
+                      <br />
+                      When choosing your seat or sleeper berth on the seat map,
+                      please give attention to the type of seat or sleeper berth
+                      you are booking, especially in buses which provide both
+                      the options.
+                    </p>
+
                     <h3 class="faq-header">What are boarding points?</h3>
-                    <p class="faq-para">Boarding points are locations within the city from where you can board your bus. In large cities like Bhubaneswar, Sambalpur, etc. there may be more than one boarding point for the same bus. You can choose the boarding point most convenient to you and board the bus from there.(Example- Bhubaneswar Boarding point (Khandagiri,Hotel crown,Jayadev Vihar, Achary Vihar,Satsang Vihar,Palasuni).</p>
-            
-                    <h3 class="faq-header">Why are different seats priced differently?</h3>
-                    <p class="faq-para">The price varies as per the seat type. Some buses have both seats as well as sleeper berths in the same bus, and some buses also have both AC and non AC sections. As an approximate guide, seater seats are priced less than sleeper berths and non AC section is priced less than the AC section. For example, an AC sleeper berth will have a higher fare than a non AC sleeper berth in the same bus. Similarly, a sleeper berth will have a higher fare than a seater in the same bus.</p>
-            
-                    <h3 class="faq-header">I am travelling with a child. Do I need to purchase a bus ticket for the child?</h3>
-                    <p class="faq-para">There will be no charges for children below 2 years of age. They will not be given a seat and will have to travel on an adult's lap/seat. For children over 2 years of age, a full ticket will need to be purchased.</p>
-            
-                    <h3 class="faq-header">What is the maximum number of seats I can book on a bus?</h3>
-                    <p class="faq-para">It depends entirely on the seat availability with the bus. To check how many seats can be booked in any bus, you will have to individually "view" the blueprint of each bus from the bus search result page to see which bus has the required number of vacant seats. However, please note that if you delay your payment after having selected your seats, the seats can be booked by another individual in the meanwhile and will no longer be available for you. As seats are subject to availability, please ensure that you immediately make the payment after having shortlisted and finalized your bus and seat.One time you can maximum no seats booked Six.</p>
-                    
-                    <h3 class="faq-header">Can I modify my bus search result according to my specific preference? For example: if I want to see only specific bus operators or if I want to see only particular bus types, like Volvo, is that possible?</h3>
-                    <p class="faq-para">Yes, that's possible. You can refine your search result in the bus search page</p>
-
-                    <h3 class="faq-header">Can I book a return trip bus ticket?</h3>
-                    <p class="faq-para">No, currently we do not have this facility. We will update you as soon as this feature is launched on our site.</p>
-
-                    <h3 class="faq-header">After searching for my bus, I do not see any search result for buses. Instead I see a message stating "no records found". Why?</h3>
-                    <p class="faq-para">Sometimes bus services are not available on some routes. This may be due to multiple reasons. It could be because of high demand on a particular route resulting in the availability running out, leaving no seats to book or because of temporary withdrawal of bus services by the bus operator, etc. We suggest that you leave your email address with us in such cases. We would take a note of your request and strive to make the bus services available as soon as possible.
-                    </p>
-                    <p class="faq-para">Another possible reason can be if you have refined your search to be too narrow and the system is not able to find the exact match for your search query. In such a case, please keep a broad search range and try again.</p>
-
-                    <h3 class="faq-header">How do I choose my boarding point and my seats on the bus?</h3>
-                    <p class="faq-para">After entering your to and from city in the search box, ODBUS will display list of buses plying for that route on the given date. You can click on the "View" button and a bus blueprint will be showcased to you. Please select your preferred seats and boarding point and then click on "continue"
+                    <p class="faq-para">
+                      Boarding points are locations within the city from where
+                      you can board your bus. In large cities like Bhubaneswar,
+                      Sambalpur, etc. there may be more than one boarding point
+                      for the same bus. You can choose the boarding point most
+                      convenient to you and board the bus from there.(Example-
+                      Bhubaneswar Boarding point (Khandagiri,Hotel crown,Jayadev
+                      Vihar, Achary Vihar,Satsang Vihar,Palasuni).
                     </p>
 
-                    <h3 class="faq-header">After selecting my seat and boarding point, how do I make payment?</h3>
-                    <p class="faq-para">After you have selected your seat and boarding point, you will be redirected to the bus search result page. Your selected bus will be highlighted with the "Book" button. Click on "book" to proceed for payment.</p>
+                    <h3 class="faq-header">
+                      Why are different seats priced differently?
+                    </h3>
+                    <p class="faq-para">
+                      The price varies as per the seat type. Some buses have
+                      both seats as well as sleeper berths in the same bus, and
+                      some buses also have both AC and non AC sections. As an
+                      approximate guide, seater seats are priced less than
+                      sleeper berths and non AC section is priced less than the
+                      AC section. For example, an AC sleeper berth will have a
+                      higher fare than a non AC sleeper berth in the same bus.
+                      Similarly, a sleeper berth will have a higher fare than a
+                      seater in the same bus.
+                    </p>
 
-                    <h3 class="faq-header">On the booking page, there is a tab asking for "promotional code/Coupon Code". What is this?</h3>
-                    <p class="faq-para">Promotional code is the unique discount code through which you can get your bus fare reduced. All you need to do is simply enter the promotional code in the field given on the booking page and click on the "Apply Now" button. Depending upon your code and its validity, your bus fare will be automatically adjusted.</p>
+                    <h3 class="faq-header">
+                      I am travelling with a child. Do I need to purchase a bus
+                      ticket for the child?
+                    </h3>
+                    <p class="faq-para">
+                      There will be no charges for children below 2 years of
+                      age. They will not be given a seat and will have to travel
+                      on an adult's lap/seat. For children over 2 years of age,
+                      a full ticket will need to be purchased.
+                    </p>
 
-                    <h3 class="faq-header">Where do I find the ODBUS promotional code?</h3>
-                    <p class="faq-para">You can look into our offer section on www.odbus.in/offers to check for any currently running offers and discounts on bus booking.</p>
+                    <h3 class="faq-header">
+                      What is the maximum number of seats I can book on a bus?
+                    </h3>
+                    <p class="faq-para">
+                      It depends entirely on the seat availability with the bus.
+                      To check how many seats can be booked in any bus, you will
+                      have to individually "view" the blueprint of each bus from
+                      the bus search result page to see which bus has the
+                      required number of vacant seats. However, please note that
+                      if you delay your payment after having selected your
+                      seats, the seats can be booked by another individual in
+                      the meanwhile and will no longer be available for you. As
+                      seats are subject to availability, please ensure that you
+                      immediately make the payment after having shortlisted and
+                      finalized your bus and seat.One time you can maximum no
+                      seats booked Six.
+                    </p>
+
+                    <h3 class="faq-header">
+                      Can I modify my bus search result according to my specific
+                      preference? For example: if I want to see only specific
+                      bus operators or if I want to see only particular bus
+                      types, like Volvo, is that possible?
+                    </h3>
+                    <p class="faq-para">
+                      Yes, that's possible. You can refine your search result in
+                      the bus search page
+                    </p>
+
+                    <h3 class="faq-header">
+                      Can I book a return trip bus ticket?
+                    </h3>
+                    <p class="faq-para">
+                      No, currently we do not have this facility. We will update
+                      you as soon as this feature is launched on our site.
+                    </p>
+
+                    <h3 class="faq-header">
+                      After searching for my bus, I do not see any search result
+                      for buses. Instead I see a message stating "no records
+                      found". Why?
+                    </h3>
+                    <p class="faq-para">
+                      Sometimes bus services are not available on some routes.
+                      This may be due to multiple reasons. It could be because
+                      of high demand on a particular route resulting in the
+                      availability running out, leaving no seats to book or
+                      because of temporary withdrawal of bus services by the bus
+                      operator, etc. We suggest that you leave your email
+                      address with us in such cases. We would take a note of
+                      your request and strive to make the bus services available
+                      as soon as possible.
+                    </p>
+                    <p class="faq-para">
+                      Another possible reason can be if you have refined your
+                      search to be too narrow and the system is not able to find
+                      the exact match for your search query. In such a case,
+                      please keep a broad search range and try again.
+                    </p>
+
+                    <h3 class="faq-header">
+                      How do I choose my boarding point and my seats on the bus?
+                    </h3>
+                    <p class="faq-para">
+                      After entering your to and from city in the search box,
+                      ODBUS will display list of buses plying for that route on
+                      the given date. You can click on the "View" button and a
+                      bus blueprint will be showcased to you. Please select your
+                      preferred seats and boarding point and then click on
+                      "continue"
+                    </p>
+
+                    <h3 class="faq-header">
+                      After selecting my seat and boarding point, how do I make
+                      payment?
+                    </h3>
+                    <p class="faq-para">
+                      After you have selected your seat and boarding point, you
+                      will be redirected to the bus search result page. Your
+                      selected bus will be highlighted with the "Book" button.
+                      Click on "book" to proceed for payment.
+                    </p>
+
+                    <h3 class="faq-header">
+                      On the booking page, there is a tab asking for
+                      "promotional code/Coupon Code". What is this?
+                    </h3>
+                    <p class="faq-para">
+                      Promotional code is the unique discount code through which
+                      you can get your bus fare reduced. All you need to do is
+                      simply enter the promotional code in the field given on
+                      the booking page and click on the "Apply Now" button.
+                      Depending upon your code and its validity, your bus fare
+                      will be automatically adjusted.
+                    </p>
+
+                    <h3 class="faq-header">
+                      Where do I find the ODBUS promotional code?
+                    </h3>
+                    <p class="faq-para">
+                      You can look into our offer section on www.odbus.in/offers
+                      to check for any currently running offers and discounts on
+                      bus booking.
+                    </p>
 
                     <h3 class="faq-header">Why does my booking fail?</h3>
-                    <p class="faq-para">There could be multiple reasons as to why a booking may fail. If you take too long to make your payment, the seats you selected may no longer be available. In such cases it is advisable to select some other seats and try again. There might also be momentary communication issues at the bus operator end. However, such issues are rare and making a new booking should help in most cases.</p>
-
-                      <h3 class="faq-header">The departure time shown with the search result is from which boarding point?</h3>
-                      <p class="faq-para">The departure time shown along with the search results is the time at which the bus will depart from the first boarding point. Departure times from subsequent boarding points will be after this time. The exact departure time from a boarding point will be mentioned along with the boarding point name, when you choose your boarding point.
-                      </p>
-
-                    <h3 class="faq-header">How do I find out which are seater seats and which are sleeper berths in the seat layout?
-                    </h3>
-                    <p class="faq-para">Usually a seat is represented by a square cell while a sleeper berth is rectangular in shape (bigger than a seat cell). The blueprint of the bus which gets displayed on clicking the "View" button will also be carrying details about what seat type it is.</p>
-
-                    <h3 class="faq-header">Can I book bus tickets for travel on the next day or the same day?</h3>
-                    <p class="faq-para">Upon entering the starting and destination city, you can select the travel date for today or tomorrow, depending upon when you want to travel. If any seats will be available with any of the buses, the result will get displayed. However, if no buses are available then the system will display the message as "no records found/No Bus Found". In such a case you will have to select a later date of travel to check for bus availability and then make the booking.</p>
-
-                    <h3 class="faq-header">Can I choose my own seats?</h3>
-                    <p class="faq-para">Yes, you can choose your own seats. After short-listing your bus for travel, click on the "view" button and you will be shown a blueprint of the bus with seat options available and a choice for boarding point. Select your seat as per your preference and proceed by clicking the "continue" button. Your seats will be confirmed only when you have completed the transaction and made the payment.</p>
-
-                    <h3 class="faq-header">What do I do after choosing my seats?</h3>
-                    <p class="faq-para">After choosing your seats and clicking the 'Book' button, you will be shown a summary of your booking details. You would now need to:<br/><br/>
-                      Fill the payment form with the required details.Accept the Rules & Regulations for this booking, odbus Privacy Policy and odbus User Agreement.<br/>
-                      After providing these details, please choose the payment option by which you wish to pay for your booking and then proceed to pay.<br/>
-                      After successful payment, we will confirm your booking. Once your booking is confirmed, we will mail your e-ticket to the email address provided by you. You can also print your e-ticket after the payment from the site itself. Additionally, you can choose to download a PDF copy of the e-ticket and print it later or email the e-ticket to another email address (different than the one provided, since an e-ticket copy is already mailed to it by default).
+                    <p class="faq-para">
+                      There could be multiple reasons as to why a booking may
+                      fail. If you take too long to make your payment, the seats
+                      you selected may no longer be available. In such cases it
+                      is advisable to select some other seats and try again.
+                      There might also be momentary communication issues at the
+                      bus operator end. However, such issues are rare and making
+                      a new booking should help in most cases.
                     </p>
 
-                    <h3 class="faq-header">I entered my payment details and submitted the information. My card is charged but I see a blank screen. What now?</h3>
-                    <p class="faq-para">We're really sorry for the inconvenience. Please don't worry. We'll call you within four hours and complete this booking offline. We suggest you do not try booking again as you may end up getting charged twice. If you want, you can call us at 9583918888 and we'll help you fix this immediately.</p>
+                    <h3 class="faq-header">
+                      The departure time shown with the search result is from
+                      which boarding point?
+                    </h3>
+                    <p class="faq-para">
+                      The departure time shown along with the search results is
+                      the time at which the bus will depart from the first
+                      boarding point. Departure times from subsequent boarding
+                      points will be after this time. The exact departure time
+                      from a boarding point will be mentioned along with the
+                      boarding point name, when you choose your boarding point.
+                    </p>
+
+                    <h3 class="faq-header">
+                      How do I find out which are seater seats and which are
+                      sleeper berths in the seat layout?
+                    </h3>
+                    <p class="faq-para">
+                      Usually a seat is represented by a square cell while a
+                      sleeper berth is rectangular in shape (bigger than a seat
+                      cell). The blueprint of the bus which gets displayed on
+                      clicking the "View" button will also be carrying details
+                      about what seat type it is.
+                    </p>
+
+                    <h3 class="faq-header">
+                      Can I book bus tickets for travel on the next day or the
+                      same day?
+                    </h3>
+                    <p class="faq-para">
+                      Upon entering the starting and destination city, you can
+                      select the travel date for today or tomorrow, depending
+                      upon when you want to travel. If any seats will be
+                      available with any of the buses, the result will get
+                      displayed. However, if no buses are available then the
+                      system will display the message as "no records found/No
+                      Bus Found". In such a case you will have to select a later
+                      date of travel to check for bus availability and then make
+                      the booking.
+                    </p>
+
+                    <h3 class="faq-header">Can I choose my own seats?</h3>
+                    <p class="faq-para">
+                      Yes, you can choose your own seats. After short-listing
+                      your bus for travel, click on the "view" button and you
+                      will be shown a blueprint of the bus with seat options
+                      available and a choice for boarding point. Select your
+                      seat as per your preference and proceed by clicking the
+                      "continue" button. Your seats will be confirmed only when
+                      you have completed the transaction and made the payment.
+                    </p>
+
+                    <h3 class="faq-header">
+                      What do I do after choosing my seats?
+                    </h3>
+                    <p class="faq-para">
+                      After choosing your seats and clicking the 'Book' button,
+                      you will be shown a summary of your booking details. You
+                      would now need to:<br /><br />
+                      Fill the payment form with the required details.Accept the
+                      Rules & Regulations for this booking, odbus Privacy Policy
+                      and odbus User Agreement.<br />
+                      After providing these details, please choose the payment
+                      option by which you wish to pay for your booking and then
+                      proceed to pay.<br />
+                      After successful payment, we will confirm your booking.
+                      Once your booking is confirmed, we will mail your e-ticket
+                      to the email address provided by you. You can also print
+                      your e-ticket after the payment from the site itself.
+                      Additionally, you can choose to download a PDF copy of the
+                      e-ticket and print it later or email the e-ticket to
+                      another email address (different than the one provided,
+                      since an e-ticket copy is already mailed to it by
+                      default).
+                    </p>
+
+                    <h3 class="faq-header">
+                      I entered my payment details and submitted the
+                      information. My card is charged but I see a blank screen.
+                      What now?
+                    </h3>
+                    <p class="faq-para">
+                      We're really sorry for the inconvenience. Please don't
+                      worry. We'll call you within four hours and complete this
+                      booking offline. We suggest you do not try booking again
+                      as you may end up getting charged twice. If you want, you
+                      can call us at 9583918888 and we'll help you fix this
+                      immediately.
+                    </p>
                   </div>
-                   
                 </ng-template>
               </ngb-panel>
 
-              <ngb-panel id="panel3"  title="After making my Bus Booking">
+              <ngb-panel id="panel3" title="After making my Bus Booking">
                 <ng-template ngbPanelContent>
                   <div class="ml30">
-                <h3 class="faq-header">How do I print my booked ticket?</h3>
-                <p class="faq-para">Log on to www.odbus.in using your username and password. At the top panel of the home page you will see a tab "E-ticket / Voucher". Click on this tab and type in the correct ticket number and/or bus booking ID and press Submit. Your ticket will be displayed and on right there will be a print symbol which you can use to print the ticket.</p>
+                    <h3 class="faq-header">How do I print my booked ticket?</h3>
+                    <p class="faq-para">
+                      Log on to www.odbus.in using your username and password.
+                      At the top panel of the home page you will see a tab
+                      "E-ticket / Voucher". Click on this tab and type in the
+                      correct ticket number and/or bus booking ID and press
+                      Submit. Your ticket will be displayed and on right there
+                      will be a print symbol which you can use to print the
+                      ticket.
+                    </p>
 
-                <h3 class="faq-header">How much luggage can I take on the bus?</h3>
-                <p class="faq-para">You can carry luggage (all inclusive) free of cost to an extent of 15 kgs. If the luggage is more than the permissible free allowance then you will be charged some additional cost. However, you have to contact our support team for further details as the luggage price varies from bus operator to operator.</p>
+                    <h3 class="faq-header">
+                      How much luggage can I take on the bus?
+                    </h3>
+                    <p class="faq-para">
+                      You can carry luggage (all inclusive) free of cost to an
+                      extent of 15 kgs. If the luggage is more than the
+                      permissible free allowance then you will be charged some
+                      additional cost. However, you have to contact our support
+                      team for further details as the luggage price varies from
+                      bus operator to operator.
+                    </p>
 
-                <h3 class="faq-header">Can someone else travel on my bus ticket?</h3>
-                <p class="faq-para">No, someone else cannot travel on your bus ticket. You will need to present a photo identity proof (passport, driver's license, etc.) along with the bus-ticket to the bus conductor when boarding the bus. The name of the person on the bus ticket MUST BE the same as that on the photographic identity proof presented.</p>
+                    <h3 class="faq-header">
+                      Can someone else travel on my bus ticket?
+                    </h3>
+                    <p class="faq-para">
+                      No, someone else cannot travel on your bus ticket. You
+                      will need to present a photo identity proof (passport,
+                      driver's license, etc.) along with the bus-ticket to the
+                      bus conductor when boarding the bus. The name of the
+                      person on the bus ticket MUST BE the same as that on the
+                      photographic identity proof presented.
+                    </p>
 
-                <h3 class="faq-header">What all necessary photo identity proofs do I need to carry along with my e-ticket?</h3>
-                <p class="faq-para">The e-ticket once booked is not transferable and is valid only if one of the passengers booked on the ticket presents a valid identity proof with the passenger's photograph on it. Some of the identity cards which you may use include voter identity card, passport, PAN card, driving license, photo identity card issued by Central/State Government/present employer etc.</p>
+                    <h3 class="faq-header">
+                      What all necessary photo identity proofs do I need to
+                      carry along with my e-ticket?
+                    </h3>
+                    <p class="faq-para">
+                      The e-ticket once booked is not transferable and is valid
+                      only if one of the passengers booked on the ticket
+                      presents a valid identity proof with the passenger's
+                      photograph on it. Some of the identity cards which you may
+                      use include voter identity card, passport, PAN card,
+                      driving license, photo identity card issued by
+                      Central/State Government/present employer etc.
+                    </p>
 
-                <h3 class="faq-header">Is it necessary to carry my e-ticket with me?</h3>
-                <p class="faq-para">Yes, it's very important. The bus operator might not allow you inside without a printout of your e–ticket, so be sure to carry one with you. If you've forgotten your e–ticket printout but can get to a computer, login to your ODBUS account and print yourself a copy.</p>
+                    <h3 class="faq-header">
+                      Is it necessary to carry my e-ticket with me?
+                    </h3>
+                    <p class="faq-para">
+                      Yes, it's very important. The bus operator might not allow
+                      you inside without a printout of your e–ticket, so be sure
+                      to carry one with you. If you've forgotten your e–ticket
+                      printout but can get to a computer, login to your ODBUS
+                      account and print yourself a copy.
+                    </p>
 
-                <h3 class="faq-header">What if my paper tickets are lost or stolen?</h3>
-                <p class="faq-para">If this happens, email us at support@odbus.in immediately and we'll help you process a lost ticket application.
-                </p>
+                    <h3 class="faq-header">
+                      What if my paper tickets are lost or stolen?
+                    </h3>
+                    <p class="faq-para">
+                      If this happens, email us at support@odbus.in immediately
+                      and we'll help you process a lost ticket application.
+                    </p>
 
-                <h3 class="faq-header">Do I have to pay something extra at the bus boarding point / to the bus operator?</h3>
-                <p class="faq-para">It depends on the bus operator. Some bus operators might charge a bare minimum amount of Rs.10 for keeping the luggage.</p>
+                    <h3 class="faq-header">
+                      Do I have to pay something extra at the bus boarding point
+                      / to the bus operator?
+                    </h3>
+                    <p class="faq-para">
+                      It depends on the bus operator. Some bus operators might
+                      charge a bare minimum amount of Rs.10 for keeping the
+                      luggage.
+                    </p>
 
-                <h3 class="faq-header">How do I know what boarding point will my bus depart from / arrive on?</h3>
-                <p class="faq-para">Your boarding point will be mentioned in the e-ticket. It will be the same boarding point you have selected at the time of booking.</p>
+                    <h3 class="faq-header">
+                      How do I know what boarding point will my bus depart from
+                      / arrive on?
+                    </h3>
+                    <p class="faq-para">
+                      Your boarding point will be mentioned in the e-ticket. It
+                      will be the same boarding point you have selected at the
+                      time of booking.
+                    </p>
 
-                <h3 class="faq-header">How long before the bus departure do I need to be at the boarding point?</h3>
-                <p class="faq-para">ODBUS requests you to arrive at the boarding point at least 15 minutes prior to departure.</p>
-
-                </div>
+                    <h3 class="faq-header">
+                      How long before the bus departure do I need to be at the
+                      boarding point?
+                    </h3>
+                    <p class="faq-para">
+                      ODBUS requests you to arrive at the boarding point at
+                      least 15 minutes prior to departure.
+                    </p>
+                  </div>
                 </ng-template>
               </ngb-panel>
-           
 
+              <ngb-panel
+                id="panel4"
+                title="Cancellation / Refund in Bus Booking"
+              >
+                <ng-template ngbPanelContent>
+                  <div class="ml30">
+                    <h3 class="faq-header">Can I cancel my ticket online?</h3>
+                    <p class="faq-para">
+                      Most of the tickets can be cancelled online. However,
+                      there are some tickets that can only be cancelled through
+                      our support team or call center.<br /><br />
+                      However please note that the cancellation fee and
+                      cancellation period may differ for specific bus services.
+                      Please contact any of our executives for cancellation
+                      details on any specific service.
+                    </p>
 
-            <ngb-panel id="panel4"  title="Cancellation / Refund in Bus Booking">
-              <ng-template ngbPanelContent>
-                <div class="ml30">
-                <h3 class="faq-header">Can I cancel my ticket online?</h3>
-                <p class="faq-para">Most of the tickets can be cancelled online. However, there are some tickets that can only be cancelled through our support team or call center.<br/><br/>
-                  However please note that the cancellation fee and cancellation period may differ for specific bus services. Please contact any of our executives for cancellation details on any specific service.
-                  </p>
+                    <h3 class="faq-header">
+                      How can I cancel my bus ticket online?
+                    </h3>
+                    <p class="faq-para">
+                      You need to click on the cancellation link provided on our
+                      home page. Enter your ticket number and the e-mail ID that
+                      was provided at the time of booking and click on cancel
+                      ticket.
+                    </p>
 
-                <h3 class="faq-header">How can I cancel my bus ticket online?</h3>
-                <p class="faq-para">You need to click on the cancellation link provided on our home page. Enter your ticket number and the e-mail ID that was provided at the time of booking and click on cancel ticket.</p>
+                    <h3 class="faq-header">
+                      Can I do a partial cancellation of the ticket?
+                    </h3>
+                    <p class="faq-para">
+                      Yes, you can do a partial cancellation of the ticket.
+                      However, partial cancellation (cancellation of one Sector)
+                      or segment change is not permitted for Discounted Return
+                      Fares.you can’t do a partial cancellation of the
+                      ticket.Contact our support team he will do that.
+                    </p>
 
-                <h3 class="faq-header">Can I do a partial cancellation of the ticket?</h3>
-                <p class="faq-para">Yes, you can do a partial cancellation of the ticket. However, partial cancellation (cancellation of one Sector) or segment change is not permitted for Discounted Return Fares.you can’t do a partial cancellation of the ticket.Contact our support team he will do that.
-                </p>
+                    <h3 class="faq-header">
+                      Can I modify my bus ticket booking?
+                    </h3>
+                    <p class="faq-para">
+                      a . To make changes to your bus ticket booking which
+                      involves change of passengers, partial cancellations,
+                      change in journey date, change in bus type, and change in
+                      timings, you will need to cancel your original ticket and
+                      make a new bus ticket booking.
+                    </p>
+                    <p class="faq-para">
+                      b. Changes which involve change in boarding point may be
+                      done in certain cases. Same is subject to the discretion
+                      of the bus operator and is not guaranteed. For all such
+                      changes, please call the bus operator directly at the
+                      phone number given on your e-ticket.
+                    </p>
 
-                <h3 class="faq-header">Can I modify my bus ticket booking?</h3>
-                <p class="faq-para">a . To make changes to your bus ticket booking which involves change of passengers, partial cancellations, change in journey date, change in bus type, and change in timings, you will need to cancel your original ticket and make a new bus ticket booking.</p>
-                  <p class="faq-para"> b. Changes which involve change in boarding point may be done in certain cases. Same is subject to the discretion of the bus operator and is not guaranteed. For all such changes, please call the bus operator directly at the phone number given on your e-ticket.
-                  </p>
+                    <h3 class="faq-header">
+                      Do you charge any transaction charges or convenience fees
+                      over and above the bus fare?
+                    </h3>
+                    <p class="faq-para">
+                      No, we do not charge any transaction charges or
+                      convenience fees. You only pay for your bus fare.
+                    </p>
 
-                <h3 class="faq-header">Do you charge any transaction charges or convenience fees over and above the bus fare?
-                </h3>
-                <p class="faq-para">No, we do not charge any transaction charges or convenience fees. You only pay for your bus fare.
-                </p>
+                    <h3 class="faq-header">Is there a bus cancellation fee?</h3>
+                    <p class="faq-para">
+                      Yes. A cancellation fee will be levied on every bus ticket
+                      cancelled. The cancellation fee varies based on bus
+                      operator as well as the time before departure that a
+                      ticket is cancelled. The cancellation policy applicable on
+                      your booking is printed on your e-ticket. Please refer to
+                      your e-ticket for the same.
+                    </p>
+                    <p class="faq-para">
+                      b. There are certain exceptions to this policy. Some bus
+                      operators do not allow cancellations and hence no refund
+                      is possible in such cases. Some bus operators charge
+                      higher cancellation penalties while some allow
+                      cancellation up to 12 hours before departure. The exact
+                      cancellation charges and restrictions as applicable to
+                      your booking will be printed on your e-ticket. Please
+                      refer to the same.
+                    </p>
+                    <p class="faq-para">
+                      Please note that any Amendment and Cancellation can be
+                      done only 12 hours prior to the bus with us. All
+                      cancellations done within 12 hours of bus time, will have
+                      to be coordinated by the traveller directly with the
+                      respective operator.
+                    </p>
 
-                <h3 class="faq-header">Is there a bus cancellation fee?
-                </h3>
-                <p class="faq-para">Yes. A cancellation fee will be levied on every bus ticket cancelled. The cancellation fee varies based on bus operator as well as the time before departure that a ticket is cancelled. The cancellation policy applicable on your booking is printed on your e-ticket. Please refer to your e-ticket for the same.</p>
-                  <p class="faq-para">b. There are certain exceptions to this policy. Some bus operators do not allow cancellations and hence no refund is possible in such cases. Some bus operators charge higher cancellation penalties while some allow cancellation up to 12 hours before departure. The exact cancellation charges and restrictions as applicable to your booking will be printed on your e-ticket. Please refer to the same.</p>
-                  <p class="faq-para">Please note that any Amendment and Cancellation can be done only 12 hours prior to the bus with us. All cancellations done within 12 hours of bus time, will have to be coordinated by the traveller directly with the respective operator.
-                  </p>
+                    <h3 class="faq-header">
+                      I booked a bus ticket and payment was charged. But my
+                      booking was not confirmed. What to do?
+                    </h3>
+                    <p class="faq-para">
+                      In such cases please call our customer care number
+                      9583918888. We will make the booking offline over the
+                      phone or process the full refund, as this happens due to
+                      unavailability of the seats, internet or time out issue.
+                      In case you opt for a refund then the refund will be
+                      credited to your respective bank account or wallet in
+                      seven working days.
+                    </p>
 
-                <h3 class="faq-header">I booked a bus ticket and payment was charged. But my booking was not confirmed. What to do?</h3>
-                <p class="faq-para">In such cases please call our customer care number 9583918888. We will make the booking offline over the phone or process the full refund, as this happens due to unavailability of the seats, internet or time out issue. In case you opt for a refund then the refund will be credited to your respective bank account or wallet  in seven working days.</p>
+                    <h3 class="faq-header">
+                      I had booked an Air-Conditioned bus but the bus operator
+                      made me travel in a Non-Air-Conditioned bus. Can I get a
+                      refund?
+                    </h3>
+                    <p class="faq-para">
+                      In such cases where the class or type of bus ticket booked
+                      differs from what you actually travelled on, refund will
+                      be based on the difference in fare between the higher and
+                      lower bus type. Kindly note, the refund will be granted by
+                      the bus operator and odbus.in will not be held responsible
+                      in any way.
+                    </p>
 
-                <h3 class="faq-header">I had booked an Air-Conditioned bus but the bus operator made me travel in a Non-Air-Conditioned bus. Can I get a refund?</h3>
-                <p class="faq-para">In such cases where the class or type of bus ticket booked differs from what you actually travelled on, refund will be based on the difference in fare between the higher and lower bus type. Kindly note, the refund will be granted by the bus operator and odbus.in will not be held responsible in any way.</p>
+                    <h3 class="faq-header">
+                      What if the bus I was supposed to travel in gets
+                      cancelled?
+                    </h3>
+                    <p class="faq-para">
+                      If the bus tour operator cancels the bus, kindly note, the
+                      refund will be granted by the bus operator and will be
+                      processed to you by odbus.
+                    </p>
 
-                <h3 class="faq-header">What if the bus I was supposed to travel in gets cancelled?</h3>
-                <p class="faq-para">If the bus tour operator cancels the bus, kindly note, the refund will be granted by the bus operator and will be processed to you by odbus.</p>
+                    <h3 class="faq-header">
+                      What happens if the bus operator has changed the landmark
+                      without giving any information?
+                    </h3>
+                    <p class="faq-para">
+                      In such cases we need to speak to the Operator & confirm
+                      about the alternatives available. In case if the passenger
+                      misses his/her bus due to this error we will ask Operator
+                      and process the refund & the same will be communicated to
+                      you. In case denies giving the full refund please drop us
+                      a mail at
+                      <a href="mailto:support@odbus.in"></a>support@odbus.in
+                    </p>
 
-                <h3 class="faq-header">What happens if the bus operator has changed the landmark without giving any information?
-                </h3>
-                <p class="faq-para">In such cases we need to speak to the Operator  & confirm about the alternatives available. In case if the passenger misses his/her bus due to this error we will ask Operator and  process the refund & the same will be communicated to you. In case denies giving the full refund please drop us a mail at <a href="mailto:support@odbus.in"></a>support@odbus.in</p>
+                    <h3 class="faq-header">
+                      If I miss my bus, am I eligible for a refund?
+                    </h3>
+                    <p class="faq-para">
+                      ODBUS provides a 100% refund if the bus is missed due to
+                      either ODBUS or its Operators fault. However if the bus is
+                      missed due to any other reason not directly related to
+                      odbus no refund is provided.
+                    </p>
 
-                <h3 class="faq-header">If I miss my bus, am I eligible for a refund?</h3>
-                <p class="faq-para">ODBUS provides a 100% refund if the bus is missed due to either ODBUS or its Operators fault. However if the bus is missed due to any other reason not directly related to odbus no refund is provided.
-                </p>
+                    <h3 class="faq-header">
+                      How can I get a refund in case I cancel my ticket?
+                    </h3>
+                    <p class="faq-para">
+                      The refund is provided as per our cancellation policy. The
+                      refund can be credited to the source of payment (Example:
+                      debit card, credit card, net banking) or credited to
+                      wallet. Wallet credit can be used for bus booking in
+                      future (within 3 months of cancellation).
+                    </p>
 
-                <h3 class="faq-header">How can I get a refund in case I cancel my ticket?</h3>
-                <p class="faq-para">The refund is provided as per our cancellation policy. The refund can be credited to the source of payment (Example: debit card, credit card, net banking) or credited to wallet. Wallet credit can be used for bus booking in future (within 3 months of cancellation).</p>
+                    <h3 class="faq-header">What payment options do I have?</h3>
+                    <p class="faq-para">
+                      The different payment options are<br /><br />
+                      1. Credit card<br />
+                      2. Debit card<br />
+                      3. Internet banking (Internet enabled online bank
+                      account)<br />
+                      4. Wallets<br />
+                      5. UPI<br />
+                    </p>
 
-                <h3 class="faq-header">What payment options do I have?</h3>
-                <p class="faq-para">The different payment options are<br/><br/>
-                 1. Credit card<br/>
-                 2. Debit card<br/>
-                 3. Internet banking (Internet enabled online bank account)<br/>
-                 4. Wallets<br/>
-                 5. UPI<br/>
-                  </p>
+                    <h3 class="faq-header">
+                      Is it safe to use my credit card on this site?
+                    </h3>
+                    <p class="faq-para">
+                      Transactions on ODBUS are very safe. We employ the
+                      best-in-class security and the transactions done are
+                      secure. Apart from being certified by Verisign, odbus uses
+                      Secure Socket Layers (SSL) data encryption. Using SSL
+                      ensures that the information exchanged with us is never
+                      transmitted unencrypted, thus protecting the information
+                      from being viewed by unauthorized individuals.
+                    </p>
 
-                <h3 class="faq-header">Is it safe to use my credit card on this site?
-                </h3>
-                <p class="faq-para">Transactions on ODBUS are very safe. We employ the best-in-class security and the transactions done are secure. Apart from being certified by Verisign, odbus uses Secure Socket Layers (SSL) data encryption. Using SSL ensures that the information exchanged with us is never transmitted unencrypted, thus protecting the information from being viewed by unauthorized individuals.
-                </p>
+                    <h3 class="faq-header">
+                      How Many passengers can book one transaction?
+                    </h3>
+                    <p class="faq-para">
+                      Maximum 6 passengers can be booked in one transaction.
+                    </p>
 
-                <h3 class="faq-header">How Many passengers can book one transaction? </h3>
-                <p class="faq-para">Maximum 6 passengers can be booked in one transaction.
-                </p>
+                    <h3 class="faq-header">
+                      Can we change and modify after booking ?
+                    </h3>
+                    <p class="faq-para">
+                      No. In such cases booking needs to be cancelled and to be
+                      rebooked. Cancellation charges as per policy shall levy.
+                    </p>
 
-                <h3 class="faq-header">Can we change and modify after booking ?</h3>
-                <p class="faq-para"> No. In such cases booking needs to be cancelled and to be rebooked. Cancellation charges as per policy shall levy.
-                </p>
-
-                <h3 class="faq-header">Is name change and gender change permissible?
-                </h3>
-                <p class="faq-para">No, name change or gender change is not allowed. In case of changes, it is to be cancelled and go for fresh booking.</p>
-              </div>
-              </ng-template>
-            </ngb-panel>
-          </ngb-accordion> 
-            
-
-            
-
-             </div>
+                    <h3 class="faq-header">
+                      Is name change and gender change permissible?
+                    </h3>
+                    <p class="faq-para">
+                      No, name change or gender change is not allowed. In case
+                      of changes, it is to be cancelled and go for fresh
+                      booking.
+                    </p>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </div>
         </div>
       </div>
     </div>
-</section>
+  </section>
+</ng-container>
 
-  
+<ng-container *ngIf="isMobile && !MenuActive">
+  <div class="mobile-mybooking-top">
+    <div class="row">
+      <div class="col-1 pr-0 pl-2 mob-arrow-left">
+        <a routerLink="/">
+          <i class="fas fa-arrow-left"></i>
+        </a>  
+      </div>
+      <div class="col-7 pl-2 pr-2 mob-list-center">
+        <h5>Support</h5>
+      </div>
+      <div class="col-4 pl-2 pr-2">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-support-middle">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Need some help?</h2>
+        <h3>Here is how we can support you?</h3>
+        <a href="/contact-us"><img src="assets/img/raise-ticket.png" /></a>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-12 text-left">
+        <h4>Frequently Asked Questions</h4>
+        
+            <div class="row">
+              <div class="col-md-12">
+                <ngb-accordion #acc="ngbAccordion" activeIds="panel1">
+                  <ngb-panel id="panel1" title="General">
+                    <ng-template ngbPanelContent>
+                      <div class="ml30">
+                        <h3 class="faq-header">What is an e-ticket?</h3>
+                        <p class="faq-para">
+                          An e–ticket, also known as an electronic ticket, is an
+                          electronic document that contains the details of your bus
+                          ticket, like a unique confirmation number issued by the
+                          bus operator for the booking you have made, along with
+                          other details like your departure date, time, boarding
+                          point,Conductor number and so on. It is important to carry
+                          a print-out of the e-ticket along with a valid photo-id
+                          proof at the time of bus departure.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          What are the advantages of purchasing a bus ticket with
+                          ODBUS?
+                        </h3>
+                        <p class="faq-para">
+                          ODBUS is Odisha’s largest bus ticket company and
+                          therefore, you will find the largest option of bus seats
+                          on the site. There are many advantages of online bus
+                          ticket booking.<br /><br />
+                          - You can choose your preferred seats.<br />
+                          - Online bus ticket booking keeps you away from the long
+                          queues of the offline ticket counters.<br />
+                          - You can book your bus tickets online or by phone.<br />
+                          - You can view plenty of buses and choose an appropriate
+                          bus for your travel considering the amenities, reviews,
+                          ratings and bus images available.<br />
+                          - You can choose from over 200+ bus operators.<br />
+                          - You can choose the preferred bus type (Volvo Bus, AC or
+                          Non AC) and also pickup and dropping point and timings.<br />
+                          - Your tickets can be booked at a reasonable price with
+                          multiple payment options.<br />
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Do I need to create an account to book bus tickets on
+                          ODBUS?
+                        </h3>
+                        <p class="faq-para">
+                          ODBUS login credentials can be used for booking the bus
+                          tickets. In case, a customer does not have an ODBUS login
+                          he can book through guest user login by providing required
+                          email id and mobile no.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Does booking online cost me more?
+                        </h3>
+                        <p class="faq-para">
+                          Not at all! The price of the bus ticket is the same as you
+                          would get from the bus operator too.The price of a bus
+                          ticket is the same or sometimes discounted depending on
+                          the season/time.
+                        </p>
+    
+                        <h3 class="faq-header">Can I book a multi-city trip?</h3>
+                        <p class="faq-para">
+                          No, currently we do not have this facility. We will update
+                          you as soon as this feature is launched on our site.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          While travelling with an infant on the bus, is there
+                          anything special I must know?
+                        </h3>
+                        <p class="faq-para">
+                          Make sure they have valid proof–of–age documents when
+                          they're checking in, and remember that infants must be
+                          accompanied by an adult at least 18 years old. You can
+                          book no more than one infant per adult. Infants below
+                          2year of age do not require a bus ticket as they are not
+                          allotted any bus seat.
+                        </p>
+                      </div>
+                    </ng-template>
+                  </ngb-panel>
+    
+                  <ngb-panel id="panel2" title="Booking Bus Ticket">
+                    <ng-template ngbPanelContent>
+                      <div class="ml30">
+                        <h3 class="faq-header">
+                          Is it mandatory to take a printout of the ticket?
+                        </h3>
+                        <p class="faq-para">
+                          It depends on the bus operator you have booked your ticket
+                          with. Even mTickets are available on ODBUS. For operators
+                          that support mTickets, the SMS that is sent to your mobile
+                          can be produced at the time of boarding and you will be
+                          allowed to travel.
+                          <br />
+                          For operators that do not support mTickets it is a must to
+                          take a printout of the e-ticket and produce it at the time
+                          of boarding. The e-ticket is sent to the e-mail ID
+                          provided at the time of boarding.
+                          <br />
+                          To know which operators are mTicket enabled, look for the
+                          mTicket icon under the mTicket column while searching for
+                          buses.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          I've lost my ticket. What should I do now?
+                        </h3>
+                        <p class="faq-para">
+                          A copy of the ticket would have been sent to you by e-mail
+                          when you booked it. Please take a printout of that mail
+                          and produce it at the time of boarding. If you have not
+                          received the ticket e-mail, please call any of our call
+                          centers 9583918888 and our executive will resend you a
+                          copy by mail.
+                        </p>
+    
+                        <h3 class="faq-header">What is an mTicket?</h3>
+                        <p class="faq-para">
+                          An mTicket is an SMS that is sent to your mobile on
+                          booking a ticket with select operators. This SMS has the
+                          PNR number and the PNR number along with other ticket
+                          related information. It can be used to board the bus.
+                          Please note that not all operators accept mTickets. To
+                          know which operators are mTicket enabled, look for the
+                          mTicket icon under the mTicket column while searching for
+                          buses.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          I didn’t receive my mTicket. Can you resend it?
+                        </h3>
+                        <p class="faq-para">
+                          You can generate your mTicket online. Go to customer
+                          support Click on the Print/SMS ticket link on the home
+                          page on www.odbus.in. Enter your PNR number mentioned on
+                          the e-ticket we emailed you. Choose the SMS option and
+                          click on Submit. In case you don’t have a copy of the
+                          e-ticket either, contact our call center and our executive
+                          will assist you.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          I entered the wrong mobile number while booking. Can I get
+                          my mTicket on a different number?
+                        </h3>
+                        <p class="faq-para">
+                          Sure you can. Please contact our call center and our
+                          executive <b>9583918888</b> will send you the mTicket on
+                          your desired number. Otherwise You can send an email to us
+                          <a href="mailto:support@odbus.in">support@odbus.in</a>
+                        </p>
+    
+                        <h3 class="faq-header">What are bus types?</h3>
+                        <p class="faq-para">
+                          Bus types indicate the type of bus it is. For example, the
+                          standard bus types are Volvo AC buses, AC buses, Non AC
+                          buses, Mercedes buses, Non Mercedes buses, Seater buses,
+                          Sleeper buses, etc. <br />
+                          Fares vary between AC and non AC seats/berths as well as
+                          sleeper or seater options. AC seats/berths are usually
+                          more expensive than non AC options. Sleeper berths are
+                          usually more expensive than seater options. Same for Valvo
+                          cases.
+                          <br />
+                          When choosing your seat or sleeper berth on the seat map,
+                          please give attention to the type of seat or sleeper berth
+                          you are booking, especially in buses which provide both
+                          the options.
+                        </p>
+    
+                        <h3 class="faq-header">What are boarding points?</h3>
+                        <p class="faq-para">
+                          Boarding points are locations within the city from where
+                          you can board your bus. In large cities like Bhubaneswar,
+                          Sambalpur, etc. there may be more than one boarding point
+                          for the same bus. You can choose the boarding point most
+                          convenient to you and board the bus from there.(Example-
+                          Bhubaneswar Boarding point (Khandagiri,Hotel crown,Jayadev
+                          Vihar, Achary Vihar,Satsang Vihar,Palasuni).
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Why are different seats priced differently?
+                        </h3>
+                        <p class="faq-para">
+                          The price varies as per the seat type. Some buses have
+                          both seats as well as sleeper berths in the same bus, and
+                          some buses also have both AC and non AC sections. As an
+                          approximate guide, seater seats are priced less than
+                          sleeper berths and non AC section is priced less than the
+                          AC section. For example, an AC sleeper berth will have a
+                          higher fare than a non AC sleeper berth in the same bus.
+                          Similarly, a sleeper berth will have a higher fare than a
+                          seater in the same bus.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          I am travelling with a child. Do I need to purchase a bus
+                          ticket for the child?
+                        </h3>
+                        <p class="faq-para">
+                          There will be no charges for children below 2 years of
+                          age. They will not be given a seat and will have to travel
+                          on an adult's lap/seat. For children over 2 years of age,
+                          a full ticket will need to be purchased.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          What is the maximum number of seats I can book on a bus?
+                        </h3>
+                        <p class="faq-para">
+                          It depends entirely on the seat availability with the bus.
+                          To check how many seats can be booked in any bus, you will
+                          have to individually "view" the blueprint of each bus from
+                          the bus search result page to see which bus has the
+                          required number of vacant seats. However, please note that
+                          if you delay your payment after having selected your
+                          seats, the seats can be booked by another individual in
+                          the meanwhile and will no longer be available for you. As
+                          seats are subject to availability, please ensure that you
+                          immediately make the payment after having shortlisted and
+                          finalized your bus and seat.One time you can maximum no
+                          seats booked Six.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Can I modify my bus search result according to my specific
+                          preference? For example: if I want to see only specific
+                          bus operators or if I want to see only particular bus
+                          types, like Volvo, is that possible?
+                        </h3>
+                        <p class="faq-para">
+                          Yes, that's possible. You can refine your search result in
+                          the bus search page
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Can I book a return trip bus ticket?
+                        </h3>
+                        <p class="faq-para">
+                          No, currently we do not have this facility. We will update
+                          you as soon as this feature is launched on our site.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          After searching for my bus, I do not see any search result
+                          for buses. Instead I see a message stating "no records
+                          found". Why?
+                        </h3>
+                        <p class="faq-para">
+                          Sometimes bus services are not available on some routes.
+                          This may be due to multiple reasons. It could be because
+                          of high demand on a particular route resulting in the
+                          availability running out, leaving no seats to book or
+                          because of temporary withdrawal of bus services by the bus
+                          operator, etc. We suggest that you leave your email
+                          address with us in such cases. We would take a note of
+                          your request and strive to make the bus services available
+                          as soon as possible.
+                        </p>
+                        <p class="faq-para">
+                          Another possible reason can be if you have refined your
+                          search to be too narrow and the system is not able to find
+                          the exact match for your search query. In such a case,
+                          please keep a broad search range and try again.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          How do I choose my boarding point and my seats on the bus?
+                        </h3>
+                        <p class="faq-para">
+                          After entering your to and from city in the search box,
+                          ODBUS will display list of buses plying for that route on
+                          the given date. You can click on the "View" button and a
+                          bus blueprint will be showcased to you. Please select your
+                          preferred seats and boarding point and then click on
+                          "continue"
+                        </p>
+    
+                        <h3 class="faq-header">
+                          After selecting my seat and boarding point, how do I make
+                          payment?
+                        </h3>
+                        <p class="faq-para">
+                          After you have selected your seat and boarding point, you
+                          will be redirected to the bus search result page. Your
+                          selected bus will be highlighted with the "Book" button.
+                          Click on "book" to proceed for payment.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          On the booking page, there is a tab asking for
+                          "promotional code/Coupon Code". What is this?
+                        </h3>
+                        <p class="faq-para">
+                          Promotional code is the unique discount code through which
+                          you can get your bus fare reduced. All you need to do is
+                          simply enter the promotional code in the field given on
+                          the booking page and click on the "Apply Now" button.
+                          Depending upon your code and its validity, your bus fare
+                          will be automatically adjusted.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Where do I find the ODBUS promotional code?
+                        </h3>
+                        <p class="faq-para">
+                          You can look into our offer section on www.odbus.in/offers
+                          to check for any currently running offers and discounts on
+                          bus booking.
+                        </p>
+    
+                        <h3 class="faq-header">Why does my booking fail?</h3>
+                        <p class="faq-para">
+                          There could be multiple reasons as to why a booking may
+                          fail. If you take too long to make your payment, the seats
+                          you selected may no longer be available. In such cases it
+                          is advisable to select some other seats and try again.
+                          There might also be momentary communication issues at the
+                          bus operator end. However, such issues are rare and making
+                          a new booking should help in most cases.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          The departure time shown with the search result is from
+                          which boarding point?
+                        </h3>
+                        <p class="faq-para">
+                          The departure time shown along with the search results is
+                          the time at which the bus will depart from the first
+                          boarding point. Departure times from subsequent boarding
+                          points will be after this time. The exact departure time
+                          from a boarding point will be mentioned along with the
+                          boarding point name, when you choose your boarding point.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          How do I find out which are seater seats and which are
+                          sleeper berths in the seat layout?
+                        </h3>
+                        <p class="faq-para">
+                          Usually a seat is represented by a square cell while a
+                          sleeper berth is rectangular in shape (bigger than a seat
+                          cell). The blueprint of the bus which gets displayed on
+                          clicking the "View" button will also be carrying details
+                          about what seat type it is.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Can I book bus tickets for travel on the next day or the
+                          same day?
+                        </h3>
+                        <p class="faq-para">
+                          Upon entering the starting and destination city, you can
+                          select the travel date for today or tomorrow, depending
+                          upon when you want to travel. If any seats will be
+                          available with any of the buses, the result will get
+                          displayed. However, if no buses are available then the
+                          system will display the message as "no records found/No
+                          Bus Found". In such a case you will have to select a later
+                          date of travel to check for bus availability and then make
+                          the booking.
+                        </p>
+    
+                        <h3 class="faq-header">Can I choose my own seats?</h3>
+                        <p class="faq-para">
+                          Yes, you can choose your own seats. After short-listing
+                          your bus for travel, click on the "view" button and you
+                          will be shown a blueprint of the bus with seat options
+                          available and a choice for boarding point. Select your
+                          seat as per your preference and proceed by clicking the
+                          "continue" button. Your seats will be confirmed only when
+                          you have completed the transaction and made the payment.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          What do I do after choosing my seats?
+                        </h3>
+                        <p class="faq-para">
+                          After choosing your seats and clicking the 'Book' button,
+                          you will be shown a summary of your booking details. You
+                          would now need to:<br /><br />
+                          Fill the payment form with the required details.Accept the
+                          Rules & Regulations for this booking, odbus Privacy Policy
+                          and odbus User Agreement.<br />
+                          After providing these details, please choose the payment
+                          option by which you wish to pay for your booking and then
+                          proceed to pay.<br />
+                          After successful payment, we will confirm your booking.
+                          Once your booking is confirmed, we will mail your e-ticket
+                          to the email address provided by you. You can also print
+                          your e-ticket after the payment from the site itself.
+                          Additionally, you can choose to download a PDF copy of the
+                          e-ticket and print it later or email the e-ticket to
+                          another email address (different than the one provided,
+                          since an e-ticket copy is already mailed to it by
+                          default).
+                        </p>
+    
+                        <h3 class="faq-header">
+                          I entered my payment details and submitted the
+                          information. My card is charged but I see a blank screen.
+                          What now?
+                        </h3>
+                        <p class="faq-para">
+                          We're really sorry for the inconvenience. Please don't
+                          worry. We'll call you within four hours and complete this
+                          booking offline. We suggest you do not try booking again
+                          as you may end up getting charged twice. If you want, you
+                          can call us at 9583918888 and we'll help you fix this
+                          immediately.
+                        </p>
+                      </div>
+                    </ng-template>
+                  </ngb-panel>
+    
+                  <ngb-panel id="panel3" title="After making my Bus Booking">
+                    <ng-template ngbPanelContent>
+                      <div class="ml30">
+                        <h3 class="faq-header">How do I print my booked ticket?</h3>
+                        <p class="faq-para">
+                          Log on to www.odbus.in using your username and password.
+                          At the top panel of the home page you will see a tab
+                          "E-ticket / Voucher". Click on this tab and type in the
+                          correct ticket number and/or bus booking ID and press
+                          Submit. Your ticket will be displayed and on right there
+                          will be a print symbol which you can use to print the
+                          ticket.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          How much luggage can I take on the bus?
+                        </h3>
+                        <p class="faq-para">
+                          You can carry luggage (all inclusive) free of cost to an
+                          extent of 15 kgs. If the luggage is more than the
+                          permissible free allowance then you will be charged some
+                          additional cost. However, you have to contact our support
+                          team for further details as the luggage price varies from
+                          bus operator to operator.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Can someone else travel on my bus ticket?
+                        </h3>
+                        <p class="faq-para">
+                          No, someone else cannot travel on your bus ticket. You
+                          will need to present a photo identity proof (passport,
+                          driver's license, etc.) along with the bus-ticket to the
+                          bus conductor when boarding the bus. The name of the
+                          person on the bus ticket MUST BE the same as that on the
+                          photographic identity proof presented.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          What all necessary photo identity proofs do I need to
+                          carry along with my e-ticket?
+                        </h3>
+                        <p class="faq-para">
+                          The e-ticket once booked is not transferable and is valid
+                          only if one of the passengers booked on the ticket
+                          presents a valid identity proof with the passenger's
+                          photograph on it. Some of the identity cards which you may
+                          use include voter identity card, passport, PAN card,
+                          driving license, photo identity card issued by
+                          Central/State Government/present employer etc.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Is it necessary to carry my e-ticket with me?
+                        </h3>
+                        <p class="faq-para">
+                          Yes, it's very important. The bus operator might not allow
+                          you inside without a printout of your e–ticket, so be sure
+                          to carry one with you. If you've forgotten your e–ticket
+                          printout but can get to a computer, login to your ODBUS
+                          account and print yourself a copy.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          What if my paper tickets are lost or stolen?
+                        </h3>
+                        <p class="faq-para">
+                          If this happens, email us at support@odbus.in immediately
+                          and we'll help you process a lost ticket application.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Do I have to pay something extra at the bus boarding point
+                          / to the bus operator?
+                        </h3>
+                        <p class="faq-para">
+                          It depends on the bus operator. Some bus operators might
+                          charge a bare minimum amount of Rs.10 for keeping the
+                          luggage.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          How do I know what boarding point will my bus depart from
+                          / arrive on?
+                        </h3>
+                        <p class="faq-para">
+                          Your boarding point will be mentioned in the e-ticket. It
+                          will be the same boarding point you have selected at the
+                          time of booking.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          How long before the bus departure do I need to be at the
+                          boarding point?
+                        </h3>
+                        <p class="faq-para">
+                          ODBUS requests you to arrive at the boarding point at
+                          least 15 minutes prior to departure.
+                        </p>
+                      </div>
+                    </ng-template>
+                  </ngb-panel>
+    
+                  <ngb-panel
+                    id="panel4"
+                    title="Cancellation / Refund in Bus Booking"
+                  >
+                    <ng-template ngbPanelContent>
+                      <div class="ml30">
+                        <h3 class="faq-header">Can I cancel my ticket online?</h3>
+                        <p class="faq-para">
+                          Most of the tickets can be cancelled online. However,
+                          there are some tickets that can only be cancelled through
+                          our support team or call center.<br /><br />
+                          However please note that the cancellation fee and
+                          cancellation period may differ for specific bus services.
+                          Please contact any of our executives for cancellation
+                          details on any specific service.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          How can I cancel my bus ticket online?
+                        </h3>
+                        <p class="faq-para">
+                          You need to click on the cancellation link provided on our
+                          home page. Enter your ticket number and the e-mail ID that
+                          was provided at the time of booking and click on cancel
+                          ticket.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Can I do a partial cancellation of the ticket?
+                        </h3>
+                        <p class="faq-para">
+                          Yes, you can do a partial cancellation of the ticket.
+                          However, partial cancellation (cancellation of one Sector)
+                          or segment change is not permitted for Discounted Return
+                          Fares.you can’t do a partial cancellation of the
+                          ticket.Contact our support team he will do that.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Can I modify my bus ticket booking?
+                        </h3>
+                        <p class="faq-para">
+                          a . To make changes to your bus ticket booking which
+                          involves change of passengers, partial cancellations,
+                          change in journey date, change in bus type, and change in
+                          timings, you will need to cancel your original ticket and
+                          make a new bus ticket booking.
+                        </p>
+                        <p class="faq-para">
+                          b. Changes which involve change in boarding point may be
+                          done in certain cases. Same is subject to the discretion
+                          of the bus operator and is not guaranteed. For all such
+                          changes, please call the bus operator directly at the
+                          phone number given on your e-ticket.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Do you charge any transaction charges or convenience fees
+                          over and above the bus fare?
+                        </h3>
+                        <p class="faq-para">
+                          No, we do not charge any transaction charges or
+                          convenience fees. You only pay for your bus fare.
+                        </p>
+    
+                        <h3 class="faq-header">Is there a bus cancellation fee?</h3>
+                        <p class="faq-para">
+                          Yes. A cancellation fee will be levied on every bus ticket
+                          cancelled. The cancellation fee varies based on bus
+                          operator as well as the time before departure that a
+                          ticket is cancelled. The cancellation policy applicable on
+                          your booking is printed on your e-ticket. Please refer to
+                          your e-ticket for the same.
+                        </p>
+                        <p class="faq-para">
+                          b. There are certain exceptions to this policy. Some bus
+                          operators do not allow cancellations and hence no refund
+                          is possible in such cases. Some bus operators charge
+                          higher cancellation penalties while some allow
+                          cancellation up to 12 hours before departure. The exact
+                          cancellation charges and restrictions as applicable to
+                          your booking will be printed on your e-ticket. Please
+                          refer to the same.
+                        </p>
+                        <p class="faq-para">
+                          Please note that any Amendment and Cancellation can be
+                          done only 12 hours prior to the bus with us. All
+                          cancellations done within 12 hours of bus time, will have
+                          to be coordinated by the traveller directly with the
+                          respective operator.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          I booked a bus ticket and payment was charged. But my
+                          booking was not confirmed. What to do?
+                        </h3>
+                        <p class="faq-para">
+                          In such cases please call our customer care number
+                          9583918888. We will make the booking offline over the
+                          phone or process the full refund, as this happens due to
+                          unavailability of the seats, internet or time out issue.
+                          In case you opt for a refund then the refund will be
+                          credited to your respective bank account or wallet in
+                          seven working days.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          I had booked an Air-Conditioned bus but the bus operator
+                          made me travel in a Non-Air-Conditioned bus. Can I get a
+                          refund?
+                        </h3>
+                        <p class="faq-para">
+                          In such cases where the class or type of bus ticket booked
+                          differs from what you actually travelled on, refund will
+                          be based on the difference in fare between the higher and
+                          lower bus type. Kindly note, the refund will be granted by
+                          the bus operator and odbus.in will not be held responsible
+                          in any way.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          What if the bus I was supposed to travel in gets
+                          cancelled?
+                        </h3>
+                        <p class="faq-para">
+                          If the bus tour operator cancels the bus, kindly note, the
+                          refund will be granted by the bus operator and will be
+                          processed to you by odbus.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          What happens if the bus operator has changed the landmark
+                          without giving any information?
+                        </h3>
+                        <p class="faq-para">
+                          In such cases we need to speak to the Operator & confirm
+                          about the alternatives available. In case if the passenger
+                          misses his/her bus due to this error we will ask Operator
+                          and process the refund & the same will be communicated to
+                          you. In case denies giving the full refund please drop us
+                          a mail at
+                          <a href="mailto:support@odbus.in"></a>support@odbus.in
+                        </p>
+    
+                        <h3 class="faq-header">
+                          If I miss my bus, am I eligible for a refund?
+                        </h3>
+                        <p class="faq-para">
+                          ODBUS provides a 100% refund if the bus is missed due to
+                          either ODBUS or its Operators fault. However if the bus is
+                          missed due to any other reason not directly related to
+                          odbus no refund is provided.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          How can I get a refund in case I cancel my ticket?
+                        </h3>
+                        <p class="faq-para">
+                          The refund is provided as per our cancellation policy. The
+                          refund can be credited to the source of payment (Example:
+                          debit card, credit card, net banking) or credited to
+                          wallet. Wallet credit can be used for bus booking in
+                          future (within 3 months of cancellation).
+                        </p>
+    
+                        <h3 class="faq-header">What payment options do I have?</h3>
+                        <p class="faq-para">
+                          The different payment options are<br /><br />
+                          1. Credit card<br />
+                          2. Debit card<br />
+                          3. Internet banking (Internet enabled online bank
+                          account)<br />
+                          4. Wallets<br />
+                          5. UPI<br />
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Is it safe to use my credit card on this site?
+                        </h3>
+                        <p class="faq-para">
+                          Transactions on ODBUS are very safe. We employ the
+                          best-in-class security and the transactions done are
+                          secure. Apart from being certified by Verisign, odbus uses
+                          Secure Socket Layers (SSL) data encryption. Using SSL
+                          ensures that the information exchanged with us is never
+                          transmitted unencrypted, thus protecting the information
+                          from being viewed by unauthorized individuals.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          How Many passengers can book one transaction?
+                        </h3>
+                        <p class="faq-para">
+                          Maximum 6 passengers can be booked in one transaction.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Can we change and modify after booking ?
+                        </h3>
+                        <p class="faq-para">
+                          No. In such cases booking needs to be cancelled and to be
+                          rebooked. Cancellation charges as per policy shall levy.
+                        </p>
+    
+                        <h3 class="faq-header">
+                          Is name change and gender change permissible?
+                        </h3>
+                        <p class="faq-para">
+                          No, name change or gender change is not allowed. In case
+                          of changes, it is to be cancelled and go for fresh
+                          booking.
+                        </p>
+                      </div>
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+              </div>
+            
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="MenuActive">
+  <div class="mobile-myaccount-top">
+    <div class="row">
+      <div class="col-5">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
+        </div>
+      </div>
+      <div class="col-7 mob-logintx">
+        <a routerLink="/login" *ngIf="!session.isLoggedIn()">
+          Login / Signup
+        </a>
+        <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
+          Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-myaccount-middle">
+    <ul class="mobile-menu">
+      <li>
+        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i> Manage Booking</a>
+      </li>
+      <li>
+        <a routerLink="/about-us"><i class="fas fa-info-circle"></i> About Us</a>
+      </li>
+      <li>
+        <a routerLink="/contact-us"><i class="fas fa-envelope"></i> Contact Us</a>
+      </li>
+      <li>
+        <a routerLink="/offers"><i class="fas fa-gifts"></i> Offers</a>
+      </li>
+      <li>
+        <a routerLink="/operators"><i class="fas fa-bus"></i> Operators</a>
+      </li>
+      <li>
+        <a routerLink="/routes"><i class="fas fa-map-marker-alt"></i> Routes</a>
+      </li>     
+      <li>
+        <a routerLink="/testimonials"><i class="fa fa-star"></i> Testimonials</a>
+      </li>
+      <li>
+        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i> Terms & Conditions</a>
+      </li>
+      <li>
+        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i> Privacy Policy</a>
+      </li>
+      <li *ngIf="session.isLoggedIn()">
+        <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
+      </li>
+      <li *ngIf="session.isLoggedIn()">
+        <a (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+      </li>
+    </ul>
+  </div>
+</ng-container>
+
+  <ng-container *ngIf="isMobile">
+    <div class="mob-mtbh"></div>
+    <div class="mobile-fixed-bottom">
+      <div class="footer-menu row m-0 mobile-bg-danger">
+        <div class="col-3 p-0 text-center">
+          <a routerLink="/" class="home">
+            <i class="fas fa-home"></i>
+            <p class="mb-0 small">Home</p>
+          </a>
+        </div>
+        <div class="col-3 p-0 text-center">
+          <a routerLink="/dashboard" class="home">
+            <i class="fas fa-ticket-alt"></i>
+            <p class="mb-0 small">My Bookings</p>
+          </a>
+        </div>
+
+        <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
+          <a routerLink="/login" class="home">
+            <i class="fas fa-user"></i>
+            <p class="mb-0 small">Login</p>
+          </a>
+        </div>
+
+        <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
+          <a routerLink="/myaccount" class="home">
+            <i class="fas fa-user"></i>
+            <p class="mb-0 small">My Account</p>
+          </a>
+        </div>
+
+        <div class="col-3 p-0 text-center">
+          <a (click)="menu()" class="home {{activeMenu}}">
+            <i class="fas fa-bars"></i>
+            <p class="mb-0 small">Menu</p>
+          </a>
+        </div>
+      </div>
+    </div>
+</ng-container>

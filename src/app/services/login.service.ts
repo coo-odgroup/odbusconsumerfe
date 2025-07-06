@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import {  BehaviorSubject, Observable, ReplaySubject, throwError } from 'rxjs'; 
 import { catchError } from 'rxjs/operators';
 import{ GlobalConstants } from '../constants/global-constants';
+import { EncryptionService } from '../encrypt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class LoginService {
 
   private alert = new  BehaviorSubject('');
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private enc:EncryptionService) { }
 
   currentalert = this.alert.asObservable();
 
@@ -30,7 +31,13 @@ export class LoginService {
  }
 
   signin(param: any): Observable<any> { 
-    return this.httpClient.post<any>(this.apiURL + '/Login', JSON.stringify(param) ,  this.httpOptions)
+
+    let requestParam = this.enc.encrypt(JSON.stringify(param));
+
+		let reqData = { 'REQUEST_DATA': requestParam};
+
+
+    return this.httpClient.post<any>(this.apiURL + '/Loginweb', reqData ,  this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

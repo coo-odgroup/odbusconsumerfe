@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import {  BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { EncryptionService } from '../encrypt.service';
 
 import{ GlobalConstants } from '../constants/global-constants';
 
@@ -21,7 +22,7 @@ export class SignupService {
 
   private alert = new  BehaviorSubject('');
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private enc:EncryptionService) { }
 
   currentalert = this.alert.asObservable();
 
@@ -31,9 +32,12 @@ export class SignupService {
 
   signup(params :any): Observable<any> {
 
-    //console.log(JSON.stringify(params));
+    let requestParam = this.enc.encrypt(JSON.stringify(params));
 
-    return this.httpClient.post<any>(this.apiURL + '/Register' , JSON.stringify(params) ,this.httpOptions)
+		let reqData = { 'REQUEST_DATA': requestParam};
+
+
+    return this.httpClient.post<any>(this.apiURL + '/Registerweb' , reqData ,this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

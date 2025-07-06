@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { PageErrorComponent } from './page-error/page-error.component';
 import { SearchComponent } from './search/search.component';
 import { BookingComponent } from './booking/booking.component';
-
+import { ApiComponent } from './api/api.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { OperatorsComponent } from './operators/operators.component';
 import { TncComponent } from './tnc/tnc.component';
@@ -35,22 +35,27 @@ import { UserhelpsupportComponent } from './user/userhelpsupport/userhelpsupport
 import { OperatorDetailComponent } from './operator-detail/operator-detail.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { SeoService } from './services/seo.service';
-import { CommonModule, HashLocationStrategy, Location, LocationStrategy } from '@angular/common';
+import {LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { PopularRoutesService } from './services/popular-routes.service';
-
-
+import { PnrdetailComponent } from './pnrdetail/pnrdetail.component';
+import { SuccessComponent } from './success/success.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { ProfiledeleteComponent } from './profiledelete/profiledelete.component';
 
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent }, 
+  { path: 'pnr', component: PageErrorComponent},   
+  { path: 'pnr/:id', component: PnrdetailComponent},   
   { path: 'listing', component: SearchComponent },
+  { path: 'success', component: SuccessComponent },
   { path: 'booking', component: BookingComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'manage-booking', component: ManageBookingComponent },
   { path: 'manage-booking-detail', component: ManagebookingdetailsComponent},  
   { path: 'support', component: SupportComponent },
   { path: 'operators', component: OperatorsComponent },    
-  { path: 'operator/:url', component: OperatorDetailComponent},   
+  { path: 'operator/:url', component: OperatorDetailComponent},  
   { path: 'routes', component: RoutesComponent },
   { path: 'offers', component: OffersComponent },
   { path: 'testimonials', component: TestimonialsComponent },
@@ -66,6 +71,8 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent},  
   { path: 'otp', component: OtpComponent}, 
   { path: 'thankyou', component: ThankyouComponent}, 
+  { path: 'api-reference', component: ApiComponent}, 
+  { path: 'maintenance', component: MaintenanceComponent}, 
   { path: 'dashboard', component: UserdashboardComponent,canActivate: [AuthGuard]},    
   { path: 'notifications', component: UsernotificationsComponent,canActivate: [AuthGuard]},    
   { path: 'wallet', component: UserwalletComponent,canActivate: [AuthGuard]},    
@@ -74,15 +81,18 @@ export const routes: Routes = [
   { path: 'my-reviews', component: UserreviewsComponent,canActivate: [AuthGuard]},  
   { path: 'helpandsupport', component: UserhelpsupportComponent,canActivate: [AuthGuard]},    
   { path: 'myaccount', component: MyaccountComponent,canActivate: [AuthGuard]},
-  { path: '**', component: SearchComponent}
+  { path: 'profile/delete', component: ProfiledeleteComponent},
+  { path: '**', component: SearchComponent}, // wildcard routes
+  { path: '**/:dt', component: SearchComponent} // wildcard routes
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    onSameUrlNavigation: 'reload'
+    onSameUrlNavigation: 'reload',
+    scrollPositionRestoration: 'enabled'
   })],
   exports: [RouterModule],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}]
+  providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}]
 })
 export class AppRoutingModule {
   currentUrl: any; 
@@ -91,24 +101,24 @@ export class AppRoutingModule {
     private seo:SeoService ,private router: Router ,private popularRoutesService:PopularRoutesService  
     ) {
 
-      this.popularRoutesService.allroutes().subscribe(
-        res=>{
-          if(res.status==1)
-          { 
+      // this.popularRoutesService.allroutes().subscribe(
+      //   res=>{
+      //     if(res.status==1)
+      //     { 
 
-            if(res.data.length>0){
-              res.data.forEach(e => {
-                let r: Route = {
-                  path: e.source_url+'-'+e.destination_url+'-bus-services',
-                  component: SearchComponent
-                };
-                routes.push(r);
-              });  
-          }  
-          this.router.resetConfig(routes);         
-        }       
+      //       if(res.data.length>0){
+      //         res.data.forEach(e => {
+      //           let r: Route = {
+      //             path: e.source[0].url+'-'+e.destination[0].url+'-bus-services',
+      //             component: SearchComponent
+      //           };
+      //           routes.push(r);
+      //         });  
+      //     }  
+      //     this.router.resetConfig(routes);         
+      //   }       
         
-        });
+      //   });
     }
 
 

@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from '../services/notification.service';
 import { ContactService } from '../services/contact.service';
 import { GlobalConstants } from '../constants/global-constants';
-
-
 import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { LoginChecker } from '../helpers/loginChecker';
+import { CommonService } from '../services/common.service';
+
 
 @Component({
   selector: 'app-contact-us',
@@ -20,17 +22,25 @@ export class ContactUsComponent implements OnInit {
   contactForm: FormGroup;
   submitted = false;
   currentUrl: any;
-
-
+  isMobile: boolean;
+  MenuActive: boolean = false;
+  session: LoginChecker;
+  activeMenu: string;
+  @Input() masterSettingRecord;
   constructor( public router: Router,
     public fb: FormBuilder,
     private contactService: ContactService,    
     private notify: NotificationService, 
     private spinner: NgxSpinnerService,
     private seo:SeoService,
-      private location: Location,
+    private deviceService: DeviceDetectorService,
+    private location: Location,
+    private commonService: CommonService,
+
     ) { 
 
+      this.isMobile = this.deviceService.isMobile();
+      this.session = new LoginChecker();
       this.currentUrl = location.path().replace('/','');
       this.seo.seolist(this.currentUrl);
       
@@ -45,7 +55,20 @@ export class ContactUsComponent implements OnInit {
       })
     }
 
+    menu() {
+      this.MenuActive = (this.MenuActive==false) ? true : false;  
+      this.activeMenu='';    
+    }
+  
+    signOut() {
+        this.session.logout();
+        this.router.navigate(['login']);
+    }
 
+    ngAfterContentChecked(){
+      
+      //console.log(this.masterSettingRecord.common.office_address_map);
+    }
     onlyNumbers(event:any) {
       var e = event ;
       var charCode = e.which || e.keyCode;
@@ -88,6 +111,9 @@ export class ContactUsComponent implements OnInit {
   get f() { return this.contactForm.controls; }
 
   ngOnInit(): void {
+
+    this.masterSettingRecord = this.commonService.commonData;
+    console.log(this.masterSettingRecord.common.office_address_map);
   }
 
 }

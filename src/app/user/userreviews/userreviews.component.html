@@ -1,20 +1,18 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
-type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
-<div class="container-xl dash-80">
-<div class="main min-500">
-  
-    <app-usernavbar></app-usernavbar>
-  
-    <div class="card card-ta dash-82">
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p>
+</ngx-spinner>
 
+<ng-container *ngIf="!isMobile">
+  <div class="container-xl dash-80">
+   <div class="main min-500">  
+    <app-usernavbar></app-usernavbar>  
+    <div class="card card-ta dash-82">
       <div class="card-body">
         <div class="row">
             <div class="col-md-4">
                 <h2 class="py-3 booking-hi"><img src="assets/img/booking-history.svg">My Reviews</h2>
             </div>
           </div>
-          <!-- <hr/> -->
-      
+     <!-- <hr/> -->  
 
       <table class="table table-hover mb-0">
         <!--Table head-->
@@ -31,7 +29,6 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
         </thead>       
 
         <tbody *ngIf="userReviews && userReviews.length>0">
-
           <tr *ngFor="let review of userReviews; let i=index">
             <!-- <th scope="row">
                 
@@ -40,14 +37,12 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
             </td>
             <td></td> -->
             <td>
-
-              <h5>{{review.bus.name}} ({{review.bus.bus_number}} ) </h5>
+              <h5>{{review.bus.name}} <span *ngIf="review.bus.bus_number!=null">({{review.bus.bus_number}} )</span> </h5>
               <h4>{{review.bus.booking.src_name}} <img src="assets/img/arrow.svg"> {{review.bus.booking.dest_name}}</h4>
               <h6>{{review.title}}</h6>
               <p>{{review.comments}}</p>
             </td>
-            <td>
-              
+            <td>              
               <p class="rating8">
                 <b>Behavior : </b> <ngb-rating [rate]="review.rating_behavior"  [max]="5" [readonly]="true"></ngb-rating> <br>
                 <b>Clean : </b><ngb-rating [rate]="review.rating_clean"  [max]="5" [readonly]="true"></ngb-rating> <br>
@@ -55,34 +50,178 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
                 <b>Overall : </b><ngb-rating [rate]="review.rating_overall"  [max]="5" [readonly]="true"></ngb-rating> <br>
                 <b>Timing : </b><ngb-rating [rate]="review.rating_timing"  [max]="5" [readonly]="true"></ngb-rating> <br>
               </p>
-
             </td>
             <td>
               <p><b>{{review.users.name}}</b></p>
                <span>{{ review.created_at | date:'dd-MM-yyyy HH:mm' }} </span><br>
               <span>Updated on : {{ review.updated_at | date:'dd-MM-yyyy HH:mm' }} </span>
-
-
             </td>
             <td>
               <a class="cursor btn btn-danger btn-xs" (click)="deleteReview(i);"><i class="fa fa-trash"></i></a>
               <a class="cursor btn btn-info btn-xs" (click)="editReview(i,Review);"><i class="fa fa-edit"></i></a>
-              
-
             </td>
             </tr>
-          
         </tbody>
-
         </table>
-
         <p *ngIf="userReviews && userReviews.length==0">No Review available..</p>
-    
-
     </div>
     </div>
   </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isMobile && !MenuActive">
+ 
+<div class="mobile-mybooking-top">
+  <div class="row">
+          <div class="col-1 pr-0 pl-2 mob-arrow-left">  <a routerLink="/">
+            <i class="fas fa-arrow-left"></i>
+          </a>  </div>
+        
+          <div class="col-7 pl-2 pr-2 mob-list-center">
+              <h5>My Reviews</h5>
+          </div>
+          <div class="col-4 pl-2 pr-2">
+              <div class="mobile-logo">
+                  <img src="assets/img/mob-img/logo.png" />
+              </div>
+          </div>
+      </div> 
 </div>
+
+
+
+<div class="mobile-mybooking-middle" *ngIf="userReviews && userReviews.length>0">
+ <!-- Reviews Start -->
+ <div class="mobile-ticket-box shadow"  *ngFor="let review of userReviews; let i=index" >
+    <div class="row mob-tkbox-top">
+      <div  class="col-12"><h5 class="confirmed">PNR: {{review.pnr}}</h5></div>
+    </div>
+
+    <div class="row mob-tkbox-mid">
+      <div  class="col-12 pl-3 pr-3">
+        <h6>{{review.bus.name}} <br>{{review.bus.bus_number}}</h6>
+      </div>
+      <div class="col-12 pl-3 pr-3"><h5>{{review.bus.booking.src_name}} <i class="fas fa-arrow-right"></i> {{review.bus.booking.dest_name}}</h5></div>
+      <div class="col-12 pl-3 pr-3"><h6>{{review.title}}</h6></div>
+      <div class="col-12 pl-3 pr-3"><p>{{review.comments}}</p></div>
+    </div>
+
+    <div class="row mob-tkbox-bot">
+      <div  class="col-12">Review Date: {{ review.created_at | date:'dd-MM-yyyy HH:mm' }}</div>
+    </div>
+    <hr/>
+    <div class="row mob-tkbox-bot">
+      <div  class="col-12" style="text-align: right;">
+        <a (click)="editReview(i,Review);" class="edit-btn">Edit</a>
+        <a class="delete-btn" (click)="deleteReview(i);">Delete</a>
+      </div>
+    </div>
+ </div>
+ <!-- Reviews End -->
+
+</div>
+<div class="mobile-mybooking-middle" *ngIf="userReviews?.length==0">
+
+  No reviews available..
+
+</div>
+</ng-container>
+
+<ng-container *ngIf="isMobile && MenuActive">
+  <div class="mobile-myaccount-top">
+    <div class="row">
+      <div class="col-5">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
+        </div>
+      </div>
+      <div class="col-7 mob-logintx">
+        <a routerLink="/login" *ngIf="!session.isLoggedIn()">
+          Login / Signup
+        </a>
+        <a routerLink="/dashboard" *ngIf="session.isLoggedIn()"> Dashboard </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-myaccount-middle">
+    <ul class="mobile-menu">
+      <li>
+        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i> Manage Booking</a>
+      </li>
+      <li>
+        <a routerLink="/offers"><i class="fas fa-gifts"></i> Offers</a>
+      </li>
+      <li>
+        <a routerLink="/operators"><i class="fas fa-bus"></i> Operators</a>
+      </li>
+      <li>
+        <a routerLink="/routes"><i class="fas fa-map-marker-alt"></i> Routes</a>
+      </li>
+      <li>
+        <a routerLink="/faq"><i class="fas fa-question"></i> FAQ's</a>
+      </li>
+      <li>
+        <a routerLink="/testimonials"><i class="fa fa-star"></i> Testimonials</a>
+      </li>
+      <li>
+        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i> Terms & Conditions</a>
+      </li>
+      <li>
+        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i> Privacy Policy</a>
+      </li>
+      <li>
+        <a routerLink="/about-us"><i class="fas fa-info-circle"></i> About Us</a>
+      </li>
+      <li *ngIf="session.isLoggedIn()">
+        <a (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+      </li>
+    </ul>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isMobile">
+  <div class="mob-mtbh"></div>
+  <div class="mobile-fixed-bottom">
+    <div class="footer-menu row m-0 mobile-bg-danger">
+      <div class="col-3 p-0 text-center">
+        <a routerLink="/" class="home">
+          <i class="fas fa-home"></i>
+          <p class="mb-0 small">Home</p>
+        </a>
+      </div>
+      <div class="col-3 p-0 text-center">
+        <a routerLink="/dashboard" class="home">
+          <i class="fas fa-ticket-alt"></i>
+          <p class="mb-0 small">My Bookings</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
+        <a routerLink="/login" class="home">
+          <i class="fas fa-user"></i>
+          <p class="mb-0 small">Login</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
+        <a routerLink="/myaccount" class="home active">
+          <i class="fas fa-user"></i>
+          <p class="mb-0 small">My Account</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center">
+        <a (click)="menu()" class="home {{activeMenu}}">
+          <i class="fas fa-bars"></i>
+          <p class="mb-0 small">Menu</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
 
 <ng-template #Review let-modal>
   <div class="modal-header">
@@ -92,38 +231,27 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
     </button>
   </div>
 
-  <div class="modal-body">
-    
-    <form class="form-horizontal" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
-
-        
+  <div class="modal-body">    
+    <form class="form-horizontal" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">        
       <div class="form-group">
-
         <div class="cols-sm-10 add-rev">
               <span><b>Enter Your Title (Max. 4 Words)</b></span>
               <input type="text" class="form-control" formControlName="title" id="title" 
-              placeholder="Enter title" maxlength="30" >
-              
+              placeholder="Enter title" maxlength="30" >              
               <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
                   <div *ngIf="f.title.errors.required">Title is required</div>
-              </div>
-
-             
+              </div>            
       </div>
 
-          <div class="cols-sm-10 add-rev">
-            <span><b>Enter Your Comments (Max. 500 Characters)</b></span>              
-                  <textarea  class="form-control" formControlName="comments" id="comments" 
-                  placeholder="Enter Comments" rows="5" maxlength="500"></textarea>
-                  
-                  <div *ngIf="submitted && f.comments.errors" class="invalid-feedback">
-                      <div *ngIf="f.comments.errors.required">Comment is required</div>
-                      <!-- <div  *ngIf="f.comments.errors.pattern "> Comments  must be of 200 Characters..</div> -->
-                   </div>
-             
-          </div>
-
-
+        <div class="cols-sm-10 add-rev">
+          <span><b>Enter Your Comments (Max. 500 Characters)</b></span>              
+                <textarea  class="form-control" formControlName="comments" id="comments" 
+                placeholder="Enter Comments" rows="5" maxlength="500"></textarea>                  
+                <div *ngIf="submitted && f.comments.errors" class="invalid-feedback">
+                    <div *ngIf="f.comments.errors.required">Comment is required</div>
+                    <!-- <div  *ngIf="f.comments.errors.pattern "> Comments  must be of 200 Characters..</div> -->
+                  </div>             
+        </div>
           <hr>
           <div class="row">
             <div class="col-md-4 rate">
@@ -154,20 +282,12 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
               <pre>Rate:<b>{{TimingRate}}</b></pre>
             </div>
             <div class="col-md-4 rate"></div>
-          </div>
-
-     
-      </div>
-
-    
+          </div>     
+      </div>    
       <div class="form-group login-app center ">
           <button  type="submit" class="btn btn-success">Submit</button>
-      </div>
-     
-  </form>
-
-    
+      </div>     
+  </form>    
   </div>
-
 </ng-template>
    

@@ -1,0 +1,103 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff"  type="ball-clip-rotate" [fullScreen]="true">
+    <p style="color: white">Loading...</p>
+  </ngx-spinner>
+ 
+  <section class="contactus pb-40">
+    <span class="line-span"><div class="container"><h2>Contact Us</h2></div></span>
+    <div class="container">
+      <div class="main-tnc">
+        <div class="row">
+          <div class="col-md-12 mt15">
+            <h2 class="heah22">
+              We'd love to hear from you. Please get in touch !
+            </h2>
+            <span class="heder-line"></span>
+          </div>
+        </div>
+
+   <div class="row">
+          
+    <div class="col-md-6">
+        <h3 class="contact-he"> Bus Booking API</h3>
+        <div class="r1">
+          
+         
+            Our Fast, Easy and Flexible Bus API straightforwardly interface you to all the stock need to fabricate an
+            existing website or app on-premise of your necessity.
+            
+            Key Features:
+            <ul>
+            <li> Enables seamless integration.</li>
+            <li> Simple and well documented.</li>
+            <li> Built with modern web technologies (REST, JSON, etc…)</li>
+            <li> Features like Instant Messages, Booking, Cancellation, Refunds, etc.</li>
+            <li> Largest Bus Inventory in Odisha.</li>
+            <li> Get instant access to 500 Operators and 1500 Bus.</li>
+            <li> Highly qualified and experienced Technical Support.</li>
+            <li> Friendly Customer Support team.</li>
+          </ul>       
+        </div>
+      </div>
+   
+
+        <div class="col-md-6">
+            <form  class="form-horizontal" [formGroup]="form1" (ngSubmit)="onSubmit()">
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <label class="text-inverse" for="validationCustom02">Your Name <span class="red">*</span></label>
+                    <input type="text" class="form-control" formControlName="name" placeholder="Your Name Please" required/>
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.name.errors.required">Name is required</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <label class="text-inverse" for="validationCustom02">Company Name <span class="red">*</span></label>
+                    <input type="text" class="form-control" formControlName="company_name" placeholder="Company Name Please" required/>
+                    <div *ngIf="submitted && f.company_name.errors" class="invalid-feedback">
+                      <div *ngIf="f.company_name.errors.required">Company Name is required</div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-12">
+                    <label class="text-inverse" for="validationCustom02">Your Mobile No <span class="red">*</span></label>
+                    <input type="text" class="form-control" (keydown)="onlyNumbers($event)" formControlName="phone" placeholder="Your Mobile No Please"
+                      required />
+                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                      <div *ngIf="f.phone.errors.required">
+                        Mobile no. is required
+                      </div>
+                      <div *ngIf="f.phone.errors.pattern">
+                        Enter 10 digit Mobile Number
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <label class="text-inverse" for="validationCustom02">Your Email <span class="red">*</span></label>
+                    <input type="text"  class="form-control" formControlName="email" placeholder="Your Email Id Please" required/>
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required">
+                        Email ID is required
+                      </div>
+                      <div *ngIf="f.email.errors.email">
+                        Email must be a valid email address
+                      </div>
+                    </div>
+                  </div>
+  
+                 
+                </div>  
+              
+  
+                <div class="form-group login-app sub-but">
+                  <button type="submit" class="log-in">Submit</button>
+                </div>
+              </form>
+        </div>
+
+    </div>
+</div>
+</div>
+</section>

@@ -9,9 +9,8 @@ import { NotificationService } from '../services/notification.service';
 import { CommonService  } from '../services/common.service';
 import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
-
-
-
+import { LoginChecker } from '../helpers/loginChecker';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-operator-detail',
@@ -29,8 +28,13 @@ export class OperatorDetailComponent implements OnInit {
   url_path : any;
   currentUrl: any;
 
+  isMobile:boolean;
+  session: LoginChecker;
+  MenuActive: boolean = false;
+  activeMenu: string;
   
-  constructor(private spinner: NgxSpinnerService,
+  constructor(
+    private spinner: NgxSpinnerService,
     private topOperatorsService: TopOperatorsService,
     private router: Router,
     private locationService: LocationdataService,    
@@ -39,11 +43,14 @@ export class OperatorDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private notify: NotificationService,
     private Common: CommonService,
-      private location: Location,
-      private seo:SeoService
+    private location: Location,
+    private seo:SeoService,
+    private detectService: DeviceDetectorService
 
     ) { 
 
+      this.isMobile = this.detectService.isMobile();
+      this.session = new LoginChecker();
       this.currentUrl = location.path().replace('/','');
       this.seo.seolist(this.currentUrl);
 
@@ -60,10 +67,17 @@ export class OperatorDetailComponent implements OnInit {
 
       if(this.operator_url==''){
         this.router.navigate(['operators']);     
-      }
+      }    
+    }
 
-     
+    menu(){
+      this.MenuActive = (this.MenuActive==false) ? true : false;
+      this.activeMenu='';   
+    }
 
+    signOut(){
+      this.session.logout();
+      this.router.navigate(['login']);   
     }
 
     getProfileImagePath(icon :any){  
@@ -97,8 +111,7 @@ export class OperatorDetailComponent implements OnInit {
             this.total_rating=this.OperatorData.total_rating;
           }else{
             this.notify.notify(res.message,"Error");
-            this.router.navigate(['operators']);     
-
+            this.router.navigate(['operators']);  
           }
 
           this.spinner.hide();

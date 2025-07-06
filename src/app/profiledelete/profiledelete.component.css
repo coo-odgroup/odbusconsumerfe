@@ -1,0 +1,26 @@
+
+
+
+
+/* Customize font styles */
+h1, p {
+    font-family: 'Your Font', sans-serif;
+}
+
+/* Customize spacing */
+.jumbotron {
+    padding: 20px;
+    margin-top: 10px;
+}
+
+/* Customize link styles */
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Customize a custom class */
+.custom-paragraph {
+    font-size: 16px;
+    font-weight: bold;
+}

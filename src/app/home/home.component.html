@@ -1,8 +1,9 @@
+<ng-template #Desktop>  
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
 type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 
-<!-- Section Hero banner -->
-<section class="hero-banner" style="background-image: url({{bannerImage}}); background-size: cover;"  >
+
+<section class="hero-banner" style="background-image: url({{bannerImage}}); background-size: cover; background-position: bottom !important;"  >
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -72,11 +73,12 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
                                         <div class="input-group-prepend">
                                             <span class="input-group-text calendar" id="basic-addon3" (click)="d.toggle()" ><img src="assets/img/Icon-metro-calendar.svg"></span>
                                         </div>
-                                        <input type="text" id="entryDate" autocomplete="off" readonly class="form-control calendar rounded-0 pl-0" formControlName="entry_date"  
-                                        placeholder="Journey Date" aria-label="Journey Date" 
-                                        aria-describedby="basic-addon3" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker"
 
-                                        >
+                                        <input type="text" id="entryDate" autocomplete="off" class="form-control calendar"
+                                        formControlName="entry_date" placeholder="Journey Date"
+                                        [min]="dtconfig.minDate" [max]="dtconfig.maxDate" ngbDatepicker (click)="d.toggle()"
+                                        #d="ngbDatepicker" readonly>
+
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +100,7 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
 
 <!-- Offer Section -->
 
-<section class="section-offer carousel-home fluid-15">
+<section class="section-offer carousel-home fluid-15" *ngIf="Offers.length>0">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -109,14 +111,14 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
             <div class="col-md-6">
 
                 <ul class="nav nav-tabs " id="myTab" role="tablist">
-                    <li class="nav-item cursor" role="presentation" (click)="getOffer('Bus Offers')">
+                    <!-- <li class="nav-item cursor" role="presentation"  (click)="getOffer('Bus Offers')">
                         <a class="nav-link {{ (activeTab=='Bus Offers') ? 'active' : '' }} " id="home-tab" data-toggle="tab"  role="tab"
                             aria-controls="home" aria-selected="true">Bus Offers</a>
                     </li>
-                    <li class="nav-item cursor" role="presentation" (click)="getOffer('Festive Offers')">
+                    <li class="nav-item cursor" role="presentation"  (click)="getOffer('Festive Offers')">
                         <a class="nav-link {{ (activeTab=='Festive Offers') ? 'active' : '' }}" id="profile-tab" data-toggle="tab" role="tab"
                             aria-controls="profile" aria-selected="false">Festive Offers</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item cursor" role="presentation">
                         <a class="nav-link" id="messages-tab" data-toggle="tab" routerLink="offers" role="tab"
                             aria-controls="messages" aria-selected="false">View All</a>
@@ -126,13 +128,12 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
 
             <div class="col-md-12 section-offer-right-tab mt-4">
 
-                <carousel [cellsToShow]="3">
-                    <div  class="carousel-cell" *ngFor="let f of offerList;">
-                       
-                        <a href="{{f.url}}" target="_blank"> <img *ngIf="f.slider_photo!='' && f.slider_photo!=null" 
-                            src="{{ f.slider_photo }}" /> 
-                            </a>   
-                    </div>
+                <carousel 
+                [cellsToShow]="3"
+                [loop]="true"
+                [autoplay]="true"
+                [autoplayInterval]="2000" 
+                [images]="offerList">                    
                 </carousel>         
             </div>
         </div>
@@ -199,38 +200,6 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
     </div>
 </section>
 
-<section class="top-routs fluid-15" *ngIf="popular_routes!=''" >
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h3 class="title-section">Poupular Routes</h3>
-            </div>
-            <div class="col-md-6 text-right">
-                <a routerLink="routes" class="border-btn bh">All Routes</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="container">
-        <input type="hidden" [(ngModel)]="dtconfig.minDate" [min]="dtconfig.minDate" [max]="dtconfig.maxDate" name="todayDate" id="todayDate" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker">
-
-        <ul>
-            <li *ngFor="let p of popular_routes;">
-               
-                <a class="cursor" style="text-decoration: none;" (click)="popularSearch(p.source[0].url,p.destination[0].url);">
-                    <img class="popl-routs-icon1" src="assets/img/Icon-metro-location.svg">
-                    <span>{{ p.source[0].name }}</span>
-
-                    <img class="popl-routs-icon2" src="assets/img/left-right.png">
-
-                    <span>{{ p.destination[0].name }}</span>
-
-                
-                </a>
-            </li>       
-        </ul>
-    </div>
-</section>
 
 
 <section class="app fluid-15">
@@ -247,29 +216,29 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
                    
 
 
-                <div class="row">
-                    <div class="col-md-6 pr-0">
-                        <input type="text"  (keydown)="onlyNumbers($event);" maxlength ="10" class="form-control" formControlName="phone" id="phone" placeholder="Enter Mobile No." />
-                                                    
-                        <div *ngIf="appsubmitted && f.phone.errors" class="invalid-feedback">
-                            <div class="log-left" *ngIf="f.phone.errors.required">Mobile no. is required</div>
-                            <div class="log-left" *ngIf="f.phone.errors.pattern">Enter 10 digit Mobile Number</div>
+                    <div class="row">
+                        <div class="col-md-6 pr-0">
+                            <input type="text"  (keydown)="onlyNumbers($event);" maxlength ="10" class="form-control" formControlName="phone" id="phone" placeholder="Enter Mobile No." />
+                                                        
+                            <div *ngIf="appsubmitted && f.phone.errors" class="invalid-feedback">
+                                <div class="log-left" *ngIf="f.phone.errors.required">Mobile no. is required</div>
+                                <div class="log-left" *ngIf="f.phone.errors.pattern">Enter 10 digit Mobile Number</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 pl-0">
+                            <button type="submit" class="btn">Get Link</button>
                         </div>
                     </div>
-                    <div class="col-md-3 pl-0">
-                        <button type="submit" class="btn">Get Link</button>
-                    </div>
-                </div>
-
                 
-
-                <div class="row">
-                    <ngb-alert *ngIf="setAlert!=''">
-                        {{ setAlert }}
-                      </ngb-alert>
-                      </div>
-
-            </form>
+                    
+                
+                    <div class="row">
+                        <ngb-alert *ngIf="setAlert!=''">
+                            {{ setAlert }}
+                          </ngb-alert>
+                          </div>
+                
+                </form>
             </div>
             <div class="col-md-6">
                 <div class="app-right">
@@ -344,3 +313,272 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
     </div>
 </section>
 
+
+
+</ng-template>  
+
+
+<ng-template #Mobile>
+
+    <ng-container *ngIf="!MenuActive">
+    
+    <div class="mobile-search-box">
+        <div class="row">
+            <div class="col-7"><h3>Book Bus Tickets</h3></div>
+            <div class="col-5">
+                <div class="mobile-logo">
+                    <img src="assets/img/mob-img/logo.png" />
+                </div>
+            </div>
+        </div>
+        <div class="mobile-white-box shadow-sm">
+            <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
+                <div class="row">
+                    <div class="col-1 p-0">
+                        <img src="assets/img/Icon metro-location (1).svg" class="img1"><br>
+                        <img src="assets/img/Line 11.svg"  class="img2"> <br>
+                        <img src="assets/img/Icon metro-location (1).svg"  class="img3">
+                    </div>
+                    <div class="col-9 p-2">
+                        <div class="form-group border-bottom">
+                             <label class="mb-2">From</label><br>
+                             <input autocomplete="off" id="from" type="text" class=""
+                                            [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter"
+                                            [ngModel]="swapsource" placeholder="Enter Source" formControlName="source"
+                                            (selectItem)="tabChange('to')" />
+                                        <ng-template #rt let-r="result" let-t="term">
+                                            <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+                                        </ng-template>
+                        </div>
+                        <div class="form-group border-bottom">
+                            <label class="mb-2">To</label><br>
+                            <input autocomplete="off" id="to" type="text" class=""
+                            [ngbTypeahead]="search" [resultTemplate]="rt2" [inputFormatter]="formatter"
+                            [ngModel]="swapdestination" formControlName="destination"
+                            placeholder="Enter Destination" />
+                        <ng-template #rt2 let-r="result" let-t="term">
+                            <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+                        </ng-template>
+                       </div>
+                       <!-- <div class="form-group border-bottom">
+                            <label class="mb-2">Date of Journey</label><br>
+                            <input type="text" placeholder="Journey Date" />
+                        </div> -->
+                    </div>
+                    <div class="col-2 p-1"><img (click)="swap();" src="assets/img/mob-img/swap.png" class="img4"></div>
+                </div>
+                <div class="row mobile-date-box pl-2">
+                    <div class="col-1 p-0"></div>
+                    <input [(ngModel)]="dtconfig.minDate" style="display:none" formControlName="entry_date">
+
+                    <div class="col-9 pb-3 pl-0 pr-2" (click)="OpenCalendar(calendar)">
+                        <div class="mob-dt-big">
+                            Departure Date<br/>
+                            <i class="far fa-calendar-alt"></i> {{ selectedDate |  date:'EEE, d MMMM , y'}}
+                        </div>
+                    </div> 
+                    <div class="col-2 p-1"></div>                  
+                </div>
+                <div class="row pl-2">
+                    <div class="col-1 p-0"></div>
+                    <div class="col-9 pb-3 pl-0 pr-2">
+                        <div class="mob-bus_search">
+                            <button type="submit" class="btn mob-bt shadow-sm">Search Buses</button>
+                        </div>
+                    </div>
+                    <div class="col-2 p-1"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+
+    <div class="p-3 mobile-recent-searches">
+        <h6 class="text-left" *ngIf="recentSearchFrom!=null && recentSearchTo!=null && recentSearchDt !=null"><i class="fas fa-search"></i> Recent Searches</h6>
+        <h6 class="text-left" *ngIf="recentSearchFrom==null && recentSearchTo==null && recentSearchDt ==null"><i class="fas fa-search"></i>No Recent Searches ...</h6>
+        <div class="row m-0" (click)="bookAgain()">
+              <div class="col-12 pl-1 pr-1">
+                 <div class="mob-res shadow-sm"  *ngIf="recentSearchFrom!=null && recentSearchTo!=null && recentSearchDt !=null">
+                    <div class="mob-res-left">
+                        <span>{{recentSearchFrom}}</span><br/>
+                        <i class="fas fa-long-arrow-alt-down"></i><br/>
+                        <span>{{recentSearchTo}}</span>
+                    </div>
+                    <div class="mob-res-right">
+                        <span>{{recentSearchDt |  date:'EEE' }}</span>
+                        <br/>
+                        <span>{{recentSearchDt |  date:'d MMM,y' }}</span>
+                        
+                        <div class="bn" (click)="bookAgain()">Book Now</div>
+                    </div>
+                    <div class="clearfix"></div>
+                 </div>
+              </div>
+        </div>
+    </div>
+    
+
+
+     
+    <div class="p-3 mobile-discount">
+        <div class="row m-0 ">
+            <div class="col-7 pl-1"><h6 class="text-left mb-0">ODBUS Offers</h6></div>
+            <div class="col-5 pr-1 text-right off-text"> <a class="text-right" id="messages-tab" data-toggle="tab" routerLink="offers" role="tab"
+                aria-controls="messages" aria-selected="false">View All Offer</a></div>
+        </div>
+        <div class="row m-0">        
+            
+            <div class="col-12 pl-1 pr-1 section-offer-right-tab mt-1">
+
+                <carousel 
+                [cellsToShow]="1"
+                [loop]="true"
+                [autoplay]="true"
+                [arrows]="false"
+                [autoplayInterval]="2000" 
+                [images]="offerList" style="height: 160px;">                    
+                </carousel>   
+
+                <!-- <carousel [cellsToShow]="1" [autoplay]="true" [dots]="true" [arrows]="false" [arrowsTheme]="dark" style="height: 170px;" [images]="offerList"> 
+                </carousel>          -->
+            </div>
+
+        </div>
+    </div>
+
+   
+
+     </ng-container>
+
+
+    <!-- Bus Seat Layout Start-->
+     
+    
+
+    <!-- Bus Seat Layout End-->
+    
+
+    <ng-template #calendar let-modal>
+        
+        <div class="cal-modal-mobile">
+            <div class="modal-body">
+                <ngb-datepicker  #dp [(ngModel)]="model" [min]="dtconfig.minDate" [max]="dtconfig.maxDate" (dateSelect)="onDateSelect($event)"></ngb-datepicker>
+            </div>
+        </div>
+    
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+             </div>
+
+    </ng-template>
+
+    <ng-container *ngIf="MenuActive">
+    
+            
+        <div class="mobile-myaccount-top">
+            <div class="row">
+                <div class="col-5">
+                    <div class="mobile-logo">
+                        <img src="assets/img/mob-img/logo.png" />
+                    </div>
+                </div>
+                <div class="col-7 mob-logintx">
+                      <a routerLink="login" *ngIf="! session.isLoggedIn()" > Login / Signup </a>
+                      <a routerLink="dashboard" *ngIf="session.isLoggedIn()" > Dashboard </a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="mobile-myaccount-middle">
+           <ul class="mobile-menu">
+              <li><a routerLink="manage-booking"><i class="far fa-window-restore"></i> Manage Booking</a></li>
+              <li><a routerLink="offers"><i class="fas fa-gifts"></i> Offers</a></li>
+              <li><a routerLink="operators"><i class="fas fa-bus"></i> Operators</a></li>
+              <li><a routerLink="routes"><i class="fas fa-map-marker-alt"></i>  Routes</a></li>
+              <li><a routerLink="faq"><i class="fas fa-question"></i> FAQ's</a></li>
+              <li><a routerLink="testimonials"><i class="fa fa-star"></i> Testimonials</a></li>
+              <li><a routerLink="terms-conditions"><i class="fas fa-file-image"></i> Terms & Conditions</a></li>
+              <li><a routerLink="privacy-policy"><i class="far fa-file-powerpoint"></i> Privacy Policy</a></li>
+              <li><a routerLink="about-us"><i class="fas fa-info-circle"></i> About Us</a></li>
+           </ul>
+        </div>
+                
+            </ng-container>
+        
+        
+            <div class="mob-mtbh"></div>
+            <div class="mobile-fixed-bottom">
+                <div class="footer-menu row m-0 mobile-bg-danger">
+                   <div class="col-3 p-0 text-center">
+                      <a routerLink="/" class="home active">
+                        <i class="fas fa-home"></i>
+                         <p class="mb-0 small">Home</p>
+                      </a>
+                   </div>
+                   <div class="col-3 p-0 text-center">
+                      <a routerLink="/dashboard" class="home">
+                        <i class="fas fa-ticket-alt"></i>
+                         <p class="mb-0 small">My Bookings</p>
+                      </a>
+                   </div>
+                 
+         
+                   <div class="col-3 p-0 text-center" *ngIf="! session.isLoggedIn()" >
+                       <a routerLink="/login" class="home">
+                         <i class="fas fa-user"></i>
+                          <p class="mb-0 small">Login</p>
+                       </a>
+                    </div>
+         
+         
+                   <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
+                      <a routerLink="/myaccount" class="home">
+                        <i class="fas fa-user"></i>
+                         <p class="mb-0 small">My Account</p>
+                      </a>
+                   </div>
+        
+                   <div class="col-3 p-0 text-center">
+                    <a (click)="menu()" class="home {{activeMenu}}">
+                      <i class="fas fa-bars"></i>
+                       <p class="mb-0 small">Menu</p>
+                    </a>
+                 </div>
+         
+                  
+                </div>
+             </div>
+             <img src="../../assets/img/ODBUSLucky Draw_Popup_image.jpg">
+
+<!--  footer END -->
+
+</ng-template>
+
+
+  <ng-template #popup let-modal> 
+     
+    <div class="filter-mobile-modal">
+      
+    <div class="modal-body">
+        <button type="button" class="close close-mob" aria-label="Close" (click)="modal.dismiss('Cross Click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    
+         <p *ngIf="popupData.common.popup_heading && popupData.common.popup_heading !='null'" style="font-weight: bold;color:red;">{{popupData.common.popup_heading}}</p>
+
+         <img *ngIf="popupData.common.popup_image && popupData.common.popup_image !='null'" src="{{popupData.common.popup_image}}" width="100%">
+
+         <p *ngIf="popupData.common.popup_description && popupData.common.popup_description !='null'"> {{popupData.common.popup_description}}</p>
+         
+         <a  style="text-align: right;" target="_blank" *ngIf="popupData.common.popup_url && popupData.common.popup_url !='null'" class="btn btn-primary" href="{{popupData.common.popup_url}}">Click Here</a>
+     
+  </div> 
+  </div>     
+  </ng-template>
+
+<ng-container
+  *ngIf="isMobile; then Mobile; else Desktop">
+</ng-container>

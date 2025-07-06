@@ -9,12 +9,14 @@ import { LoginChecker } from '../../helpers/loginChecker';
 import { ManagebookingService } from '../../services/managebooking.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GlobalConstants } from 'src/app/constants/global-constants';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-userdashboard',
   templateUrl: './userdashboard.component.html',
   styleUrls: ['./userdashboard.component.css'],
-  providers: [NgbActiveModal]
+  providers: [NgbActiveModal,DatePipe]
 })
 export class UserdashboardComponent implements OnInit {
 
@@ -25,9 +27,7 @@ export class UserdashboardComponent implements OnInit {
   @Input() session: LoginChecker; 
 
   statusLabel:any='';
-
   profile:any;
-
   cancelInfo:any;
 
   pnr:any;
@@ -44,7 +44,13 @@ export class UserdashboardComponent implements OnInit {
   submitted = false;
   user:any;
 
-  constructor(private userdataservice: UserdataService,
+  isMobile: boolean;
+  MenuActive:boolean = false;
+  currentDate:any;
+  activeMenu: string;
+
+  constructor(
+    private userdataservice: UserdataService,
     private spinner: NgxSpinnerService,    
     private notify: NotificationService,
     private dtconfig: NgbDatepickerConfig,
@@ -53,26 +59,41 @@ export class UserdashboardComponent implements OnInit {
     private managebookingService: ManagebookingService,
     private modalService: NgbModal,
     public activeModal: NgbActiveModal,
-    public fb: FormBuilder) { 
+    public fb: FormBuilder,
+    private deviceService: DeviceDetectorService,
+    private datePipe: DatePipe
+    ) 
+       { 
+          this.currentDate =this.datePipe.transform((new Date), 'yyyy-MM-dd'); 
+          //console.log(this.currentDate);
+          this.isMobile = this.deviceService.isMobile();
+          this.session = new LoginChecker();
+          this.user=JSON.parse(localStorage.getItem('user'));
+          
+          this.getList();
+          this.profileData();
 
-      this.user=JSON.parse(localStorage.getItem('user'));
+          const current = new Date();
+            this.dtconfig.minDate = { year: current.getFullYear(), month: 
+            current.getMonth() + 1, day: current.getDate() };
+
+            this.reviewForm = this.fb.group({
+              comments: ['', Validators.required],
+              title: ['', Validators.required]
+            })        
+       }
       
-      this.getList();
-      this.profileData();
 
+     menu(){
+      this.MenuActive = (this.MenuActive==false) ? true : false;  
+        this.activeMenu='';       
+     }
 
-      const current = new Date();
-        this.dtconfig.minDate = { year: current.getFullYear(), month: 
-         current.getMonth() + 1, day: current.getDate() };
-
-         this.reviewForm = this.fb.group({
-          comments: ['', Validators.required],
-          title: ['', Validators.required]
-        })
-
-        
-   }
-
+     signOut(){
+      this.session.logout();
+      this.router.navigate(['login']);   
+    }
+       
    viewTicket(pnr:any){
 
     const request= {
@@ -132,8 +153,10 @@ export class UserdashboardComponent implements OnInit {
     
      this.userdataservice.BookingHistroy(url,param).subscribe(
       res=>{ 
-        if(res.status==1){             
-         this.list=res.data.data;
+        if(res.status==1)
+        {             
+            this.list = res.data.data;
+            //console.log(this.list);
         }
         this.spinner.hide();
 
@@ -187,9 +210,7 @@ export class UserdashboardComponent implements OnInit {
    cancelTicketTab(pnr:any,content:any) {   
 
     this.pnr=pnr;
-
     this.spinner.show();
-
 
     const request= {
       "pnr":this.pnr,
@@ -199,27 +220,25 @@ export class UserdashboardComponent implements OnInit {
     this.managebookingService.getcancelTicketInfo(request).subscribe(
       res=>{
 
-        if(res.status==1){
-          if(typeof res.data ==='string'){
+        if(res.status==1)
+        {
+            if(typeof res.data ==='string')
+            {
+                this.notify.notify(res.data,"Error");
+            }
 
-            this.notify.notify(res.data,"Error");
-
-          }
-          if(typeof res.data ==='object'){
-
-            this.open(content);
-
-            this.cancelInfo=res.data; 
-
-          }              
+            if(typeof res.data ==='object')
+            {
+                this.open(content);
+                this.cancelInfo=res.data; 
+            }              
         }
 
         if(res.status==0){
           this.notify.notify(res.message,"Error");
         }
 
-        this.spinner.hide();
-         
+        this.spinner.hide();         
 
       },
     error => {
@@ -237,9 +256,7 @@ export class UserdashboardComponent implements OnInit {
   sourceData:any;
   destinationData:any;
   bookAgain(sr:any,ds:any){
-    this.spinner.show();
-
-    
+  this.spinner.show();    
 
     this.locationService.all().subscribe(
       res=>{
@@ -263,28 +280,23 @@ export class UserdashboardComponent implements OnInit {
         }
       });  
 
-      this.spinner.hide();
-
-      
+      this.spinner.hide();     
 
   }
 
-  listing(s:any,d:any,dt: any){
-  
-    this.locationService.setSource(s);
-    this.locationService.setDestination(d);
-    this.locationService.setDate(dt);    
-    this.router.navigate(['/listing']);
+  listing(s:any,d:any,dt: any)
+  {  
+      this.locationService.setSource(s);
+      this.locationService.setDestination(d);
+      this.locationService.setDate(dt);    
+      this.router.navigate(['/listing']);
   }
-  
 
-
-
-
-  addReview(pnr:any,bus_id:any,review:any){
-    this.pnr=pnr;
-    this.bus_id=bus_id;
-    this.modalService.open(review, { size: 'lg' });
+  addReview(pnr:any,bus_id:any,review:any)
+  {
+      this.pnr=pnr;
+      this.bus_id=bus_id;
+      this.modalService.open(review, { size: 'lg' });
 
   }
 
@@ -305,7 +317,7 @@ export class UserdashboardComponent implements OnInit {
         "pnr": this.pnr,
         "bus_id":this.bus_id,
         "users_id": this.profile.id,
-        "reference_key": this.profile.email,
+        "reference_key": (this.profile.email==null) ? this.profile.phone: this.profile.email ,
         "rating_overall": this.OverallRate,
         "rating_comfort": this.ComfortRate,
         "rating_clean": this.CleanRate,
@@ -316,32 +328,30 @@ export class UserdashboardComponent implements OnInit {
         "user_id":GlobalConstants.MASTER_SETTING_USER_ID,
         "created_by": this.profile.name
        };
+
+      // console.log(reviewData);
      
        this.userdataservice.addreview(reviewData).subscribe(
         res=>{ 
-
-         if(res.status==1){
-          this.modalService.dismissAll();
-          this.notify.notify(res.message,"Success");
-          this.router.navigate(['/my-reviews']);
+      // console.log(res);
+         if(res.status==1)
+         {
+              this.modalService.dismissAll();
+              this.notify.notify(res.message,"Success");
+              this.router.navigate(['/my-reviews']);
          }
 
-          this.spinner.hide();
-
-         
+         this.spinner.hide();         
         },
       error => {
         this.spinner.hide();
         this.notify.notify(error.error,"Error");
       }
       );        
-     }
-   
+     }   
   }
-
 
   ngOnInit(): void {
     
   }
-
 }

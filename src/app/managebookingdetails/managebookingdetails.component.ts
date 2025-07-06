@@ -3,15 +3,18 @@ import { Router } from '@angular/router';
 import { ManagebookingService } from '../services/managebooking.service';
 import { NotificationService } from '../services/notification.service';
 import { NgxSpinnerService } from "ngx-spinner";
-
-
 import { SeoService } from '../services/seo.service';
-import { Location } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { LoginChecker } from '../helpers/loginChecker';
+import { GlobalConstants } from '../constants/global-constants';
+
 
 @Component({
   selector: 'app-managebookingdetails',
   templateUrl: './managebookingdetails.component.html',
-  styleUrls: ['./managebookingdetails.component.css']
+  styleUrls: ['./managebookingdetails.component.css'],
+  providers: [DatePipe]
 })
 export class ManagebookingdetailsComponent implements OnInit {
 
@@ -19,39 +22,74 @@ export class ManagebookingdetailsComponent implements OnInit {
   tab2:boolean=false;
   tab3:boolean=false;
 
+  qrCode:any='';
+
   bookingDetails:any;
+  isMobile:boolean;  
+  displayCancelInfo:boolean = false;
+  session: LoginChecker;
+  MenuActive:boolean = false;
 
   seats:any=[];
   totalseats:any=[];
   cancelInfo:any=[];
   currentUrl: string;
+  currentDate:any;
+  brdtime:any;
+  drptime:any;
+  activeMenu: string;
 
-  constructor(public router: Router,private notify: NotificationService,
+  constructor(
+    public router: Router,
+    private notify: NotificationService,
     private managebookingService: ManagebookingService,
-    private spinner: NgxSpinnerService ,private seo:SeoService,
-    private location: Location) { 
+    private spinner: NgxSpinnerService ,
+    private seo:SeoService,
+    private location: Location,
+    private deviceService: DeviceDetectorService,
+    private datePipe: DatePipe
+    ) { 
+          this.currentDate = this.datePipe.transform((new Date), 'yyyy-MM-dd'); 
+          this.isMobile = this.deviceService.isMobile();
+          this.session = new LoginChecker();
 
-    this.currentUrl = location.path().replace('/','');
-        this.seo.seolist(this.currentUrl); 
+          this.currentUrl = location.path().replace('/','');
+          this.seo.seolist(this.currentUrl); 
 
-    this.bookingDetails= JSON.parse(localStorage.getItem("bookingDetails"));
+          this.bookingDetails= JSON.parse(localStorage.getItem("bookingDetails"));
 
-    if(this.bookingDetails == null){
+          console.log(this.bookingDetails);
 
-      this.router.navigate(['manage-booking']);
+          let brdtmarr = this.bookingDetails.booking[0].boarding_time.split(':');
+          this.brdtime = brdtmarr[0]+':'+brdtmarr[1];  
+          
+          let drptmarr = this.bookingDetails.booking[0].dropping_time.split(':');
+          this.drptime = drptmarr[0]+':'+drptmarr[1];  
 
-    }
+          if(this.bookingDetails == null)
+          {
+              this.router.navigate(['manage-booking']);
+          }         
 
+          for(let i=0;i< this.bookingDetails.booking[0].booking_detail.length ;i++){
+            this.seats.push(this.bookingDetails.booking[0].booking_detail[i].bus_seats.seats.seatText);
+          }
 
-    for(let i=0;i< this.bookingDetails.booking[0].booking_detail.length ;i++){
-      this.seats.push(this.bookingDetails.booking[0].booking_detail[i].bus_seats.seats.seatText);
-    }
+          //console.log(this.bookingDetails.booking[0].booking_detail);
+          //console.log(this.seats);
+          this.totalseats  = this.seats.length;  
 
+          // this.qrCode ="PNR - "+this.bookingDetails.booking[0].pnr+" , Customer Phone No- "+this.bookingDetails.phone+", Conductor No- "+this.bookingDetails.booking[0].bus
+          // .bus_contacts.phone+" , Bus Name- "+this.bookingDetails.booking[0].bus.name+", Bus No- "+this.bookingDetails.booking[0].bus.bus_number+" , Journey Date- "+this.bookingDetails.booking[0].journey_dt+", Bus Route- "+this.bookingDetails.booking[0].source[0].name+" -> "+this.bookingDetails.booking[0].destination[0].name+", Seat- "+this.seats;
 
-    this.totalseats  = this.seats.length;
-   
-   
+          this.qrCode =GlobalConstants.URL+"pnr/"+this.bookingDetails.booking[0].pnr;
 
+  }
+
+  menu()
+  {
+    this.MenuActive = (this.MenuActive==false) ? true : false;
+      this.activeMenu='';   
   }
 
   print_ticketTab() {  
@@ -72,7 +110,6 @@ export class ManagebookingdetailsComponent implements OnInit {
 
     this.spinner.show();
 
-
     const request= {
       "pnr":this.bookingDetails.booking[0].pnr,
       "mobile":this.bookingDetails.phone
@@ -84,10 +121,11 @@ export class ManagebookingdetailsComponent implements OnInit {
 
         if(res.status==1){
 
-          this.cancelInfo=res.data;
-              this.tab1=false;
-              this.tab2=false;
-              this.tab3=true;                      
+          this.cancelInfo = res.data;
+          this.displayCancelInfo = true;
+          this.tab1=false;
+          this.tab2=false;
+          this.tab3=true;                      
         }
         if(res.status==0){
           this.notify.notify(res.message,"Error");
@@ -186,8 +224,7 @@ export class ManagebookingdetailsComponent implements OnInit {
     const popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
     popupWin.document.open();
    
-    popupWin.document.write(`
-        <html>
+    popupWin.document.write(` <html>
             <head>
                 <title>Print Page</title>
             </head>
@@ -195,7 +232,7 @@ export class ManagebookingdetailsComponent implements OnInit {
                 style="font-size: 14px;
                     font-family: 'Source Sans Pro', 'Helvetica Neue',
                     Helvetica, Arial, sans-serif;
-                    color: #333";
+                    color: #333;border: solid 1px #000; padding:5px;";
                 onload="document.execCommand('print');window.close()">${printContents}</body>
         </html>`
     );

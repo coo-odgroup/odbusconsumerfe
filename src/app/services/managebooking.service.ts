@@ -56,6 +56,22 @@ export class ManagebookingService {
     )
   }
 
+  pnrDetail(pnr:any): Observable<any> {     
+
+    return this.httpClient.get<any>(this.apiURL + '/getPnrDetail/'+pnr, this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
+  GetPnr(trans_id:any): Observable<any> {     
+
+    return this.httpClient.get<any>(this.apiURL + '/GetPnr/'+trans_id, this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
   errorHandler(error:HttpErrorResponse) {
     let errorMessage :any;
     if(error.error instanceof HttpErrorResponse) {

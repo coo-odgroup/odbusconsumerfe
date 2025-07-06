@@ -6,6 +6,7 @@ import { SeoService } from '../services/seo.service';
 import { CommonService } from '../services/common.service';
 import{ GlobalConstants } from '../constants/global-constants';
 import { Location } from '@angular/common';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 
 @Component({
@@ -30,27 +31,27 @@ export class HeaderComponent implements OnInit {
     seolist:any;
     currentUrl:any;
     logo:any='';
+    isMobile:boolean;
 
     constructor( private router: Router,private titleService: Title, 
     private commonService: CommonService,
     private metaService: Meta,
-      private seo:SeoService,location: Location) { 
-          
-        const data={
-          user_id:GlobalConstants.MASTER_SETTING_USER_ID
-        };
-    
-        this.commonService.getCommonData(data).subscribe(
-          resp => {
-            this.masterSettingRecord=resp.data; 
-            this.logo=this.masterSettingRecord.common.logo_image;
-          });
-
+      private seo:SeoService,location: Location,
+      private deviceService: DeviceDetectorService) { 
+      this.isMobile = this.deviceService.isMobile();
+        
       
       this.session = new LoginChecker();  
       this.currentUrl = location.path().replace('/','');
       
     }
+
+    ngAfterContentChecked(){
+      this.masterSettingRecord = this.commonService.commonData;
+      this.logo=this.masterSettingRecord.common.logo_image;
+    }
+
+    
 
     ngOnInit(): void {
        

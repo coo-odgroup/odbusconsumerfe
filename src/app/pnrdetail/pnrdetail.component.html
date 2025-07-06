@@ -1,0 +1,420 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
+    <p style="color: white">Loading...</p></ngx-spinner>
+   
+      <ng-container>
+       
+      
+        <div *ngIf="bookingDetails">
+          <section class="search-result2">
+            <div class="container">
+              <div class="row">
+      
+                <div class="col-md-12">
+                  <div id="print_ticket">
+                    <div [id]="'print-section'">
+                      <div class="container pl-0 pr-0">
+                        <div class="od-body mb25">
+                          <div class="row mb40">
+                            <table class="tableclass2" cellpadding="10">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <img
+                                      src="../../assets/img/email-logo.png"
+                                      class="od-logo"
+                                    />
+                                  </td>
+                                  <td>
+                                    <span>ODBUS</span> e-Ticketing Service<br />
+                                    Electronic Reservation Slip
+                                  </td>
+                                  <td>
+                                    <div class="od-bktext">Booking Date</div>
+                                    <div class="od-bktext">
+                                      {{
+                                        bookingDetails.booking[0].created_at
+                                          | date: "EEEE, d MMMM , y"
+                                      }}
+                                    </div>
+      
+                                    <div class="od-bktext" *ngIf="bookingDetails.status==2" style="color:red;font-size:bold">
+                                      STATUS:- CANCELLED
+                                     </div>
+         
+                                     <div class="od-bktext" *ngIf="bookingDetails.status==1" style="color:green;font-size:bold">
+                                       STATUS:- CONFIRMED
+                                      </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="row mt30 mb25">
+                            <div class="col-md-12 odtext24">
+                              <h3>JOURNEY DETAILS:</h3>
+                              <table width="100%">
+                                <tr>
+                                  <td style="width: 80%;">
+                                    <table class="table table-bordered odbus-journey" border="1" cellpadding="0" cellspacing="0">
+                                     
+                                      <tbody>
+      
+                                        <tr>
+                                          <td>
+                                            PNR No:
+                                            {{ bookingDetails.booking[0].pnr }}
+                                          </td>
+                                          <td>
+                                            Bus Name/Number:
+                                            {{
+                                              bookingDetails.booking[0].bus.name
+                                            }}-{{
+                                              bookingDetails.booking[0].bus.bus_number
+                                            }} ({{ bookingDetails.booking[0].bus.bus_sitting.name}} , {{bookingDetails.booking[0].bus.bus_type.name}})
+                                          </td>
+                                        </tr>
+      
+                                        <tr>
+                                          <td>
+                                            Journey Date:
+                                            {{
+                                              bookingDetails.booking[0].journey_dt
+                                                | date: "EEEE, d MMMM , y"
+                                            }}
+                                          </td>
+                                          <td>
+                                            Bus Route:
+                                            {{
+                                              bookingDetails.booking[0].main_source[0]
+                                                .name
+                                            }}-{{
+                                              bookingDetails.booking[0].main_destination[0]
+                                                .name
+                                            }}
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            Deparature Time:
+                                            {{brdtime}}
+                                           
+                                          
+                                           
+                                          </td>
+                                          <td>
+                                            Arrival Time:
+                                            {{drptime}}
+                                            
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            From:
+                                            {{
+                                              bookingDetails.booking[0].source[0].name
+                                            }}
+                                            ({{
+                                              bookingDetails.booking[0].boarding_point
+                                            }})
+                                          </td>
+                                          <td>
+                                            To:
+                                            {{
+                                              bookingDetails.booking[0].destination[0].name
+                                            }}
+                                            ({{
+                                              bookingDetails.booking[0].dropping_point
+                                            }})
+                                          </td>
+                                        </tr>
+                                        <!-- <tr>
+                                          <td>
+                                            Boarding At :
+                                            {{
+                                              bookingDetails.booking[0].boarding_point
+                                            }}
+                                          </td>
+                                          <td>
+                                            Droping At:
+                                            {{
+                                              bookingDetails.booking[0].dropping_point
+                                            }}
+                                          </td>
+                                        </tr> -->
+                                        <tr>
+                                          <!-- <td>
+                                            Passenger Mobile No: +91
+                                            {{ bookingDetails.booking[0].users.phone }}
+                                          </td> -->
+                                          <td>
+                                            Conductor Mobile No: +91
+                                            {{
+                                              bookingDetails.booking[0].bus
+                                                .bus_contacts.phone
+                                            }}
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            Seat({{ totalseats }})- {{ seats }}
+                                          </td>
+                                          <td>GST Invoice : {{ (bookingDetails.booking[0].customer_gst_status==1) ? 'yes' : 'no' }}</td>
+                                        </tr>
+      
+                                        <tr *ngIf="bookingDetails.customer_gst_status==1">
+                                          <td>
+                                            GSTIN : {{ bookingDetails.booking[0].customer_gst_number }}
+                                          </td>
+                                          <td>Business Name : {{ bookingDetails.booking[0].customer_gst_business_name }}</td>
+                                        </tr>
+      
+                                        <tr *ngIf="bookingDetails.customer_gst_status==1">
+                                          <td>Business Email : {{ bookingDetails.booking[0].customer_gst_business_email }}</td>
+                                          <td>Business Address : {{ bookingDetails.booking[0].customer_gst_business_address }}</td>
+                                        </tr>
+      
+                                      </tbody>
+                                    </table>
+                                  </td>
+      
+                                  <td style="width: 20%;">
+                                    <qr-code [value]="qrCode" size="250" level="M"></qr-code>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+      
+                          <div class="row mt30 mb25  p-3 " *ngIf="bookingDetails.status==2" >
+                            <div class="col-md-12 odtext24 cancelled-box pt-2" >
+                              <h3>CANCELLED DETAILS:</h3>
+                              <table class="table table-bordered " cellpadding="0" cellspacing="0" border="1" width="100%">                          
+                                <tbody>
+                                  <tr>
+                                    <td>Deduction Percent: {{ bookingDetails.booking[0].deduction_percent}} %</td>
+                                    <td>Refund Amount: Rs {{ bookingDetails.booking[0].refund_amount}} /-</td>
+                                    <td>Cancelled On: {{ bookingDetails.booking[0].updated_at | date: "EEEE, d MMMM , y"}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <p class="pt-0">*The amount will be refund to your respective Bank Account / UPI / Phone Pay / Credit card, etc. within 10-12 Bank Working days.</p>
+                            </div>
+                          </div>                 
+      
+                          <div class="row mt30 mb25">
+                            <div class="col-md-12 odtext24">
+                              <h3>PASSENGER DETAILS:</h3>
+                              <table class="table table-bordered odbus-journey" cellpadding="0" cellspacing="0" border="1" width="100%">
+                                <thead>
+                                  <tr>
+                                    <th>Sl No.</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Seat No</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr
+                                    *ngFor="
+                                      let dt of bookingDetails.booking[0].booking_detail;
+                                      let i = index
+                                    "
+                                  >
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ dt.passenger_name }}</td>
+                                    <td>{{ dt.passenger_age }}</td>
+                                    <td>{{ dt.passenger_gender }}</td>
+                                    <td>{{ seats[i] }}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+      
+                          <table style="width: 100%; margin-top: 20px;">
+                            <tr>
+                              <td style="width: 50%;"><div class="col-md-12 pl-0 odtext24 fare-backup">
+                                <h3>FARE BREAKUP</h3>
+                                <table class="table table-bordered" cellpadding="0" cellspacing="0" border="1" style="width: 100%;" >
+                
+                                  <tbody>
+                                    <tr>
+                                      <td class="text-left">Base Fare</td>
+                                      <td class="text-right"><b>₹{{bookingDetails.booking[0].owner_fare + bookingDetails.booking[0].odbus_charges + bookingDetails.booking[0].customer_comission}}</b></td>
+                                    </tr>
+                                    <tr *ngIf="bookingDetails.booking[0].coupon_discount > 0">
+                                      <td class="text-left">Coupon Discount</td>
+                                      <td class="text-right"><b>- ₹{{bookingDetails.booking[0].coupon_discount}}</b></td>
+                                    </tr>
+                                    <tr *ngIf="bookingDetails.booking[0].customer_gst_status == 1">
+                                      <td class="text-left">GST ({{bookingDetails.booking[0].customer_gst_percent}}%)</td>
+                                      <td class="text-right"><b>+ ₹{{bookingDetails.booking[0].customer_gst_amount}}</b></td>
+                                    </tr>
+
+                                    <tr *ngIf="bookingDetails.booking[0].additional_festival_fare > 0 || bookingDetails.booking[0].additional_special_fare > 0">
+                                      <td class="text-left">Convenience Fee </td>
+                                      <td class="text-right"><b>+ ₹{{bookingDetails.booking[0].additional_festival_fare + bookingDetails.booking[0].additional_special_fare }}</b></td>
+                                    </tr>
+                                    <tr>
+                                      
+                                    <!-- <tr>
+                                      <td class="text-left">Transaction Fee</td>
+                                      <td class="text-right"><b>+₹{{bookingDetails.booking[0].transactionFee}}</b></td>
+                                    </tr> -->
+        
+                                    <!-- <tr *ngIf="bookingDetails.booking[0].customer_comission > 0">
+                                      <td class="text-left">Agent Commission</td>
+                                      <td class="text-right"><b>+₹{{bookingDetails.booking[0].customer_comission}}</b></td>
+                                    </tr> -->
+
+                                  
+        
+                                    <tr>
+                                      <td class="text-left"><strong>Total Fare</strong></td>
+                                      <td class="text-right"><strong>₹{{bookingDetails.booking[0].payable_amount + bookingDetails.booking[0].customer_comission}}</strong></td>
+                                    </tr>
+                                  </tbody>
+                                  
+                                </table>
+                              </div></td>
+                              <td style="width: 50%;">
+                                
+                            <div class="col-md-12 odtext24 pr-0">
+                              <h3>CANCELLATION POLICY</h3>
+                              <table class="table table-bordered odbus-journey" cellpadding="0" cellspacing="0" border="1">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Cancellation Time</th>
+                                    <th scope="col">Cancellation Charges</th>
+                                  </tr>
+                                </thead>
+                                <tbody *ngIf="bookingDetails.booking[0].bus.cancellationslabs.cancellation_slab_info.length > 0 ">
+                                  <tr
+                                    *ngFor="let can of bookingDetails.booking[0].bus.cancellationslabs.cancellation_slab_info; let i=index">
+                                    <td>{{ can.duration }} hr</td>
+                                    <td>{{ can.deduction }}%</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+      
+                            </div>
+                              </td>
+                            </tr>
+                          </table>
+      
+      
+                          <p style="color: red;font-weight:bold">You are requested to call conductor no before 1 hour and reach on the boarding points before 15 min of bus departure.</p>
+      
+                          <div class="row mt30" *ngIf="bookingDetails.booking[0].status != 2">
+      
+      
+                          <div class="col-md-12 odtext24">
+                              <h3>TERMS & CONDITIONS</h3>
+                            </div>
+                            <div class="col-12">
+                              <div class="odbox1">
+                                <div class="row" style="font-size: 12px;">
+                                  <div class="col-md-12">
+      
+                                    <table width="100%">
+                                      <tr> <td style="width: 50%;">
+                                    <h6> ARE NOT ODBUS RESPONSIBILITIES</h6>
+                                    <ol>
+                                     
+                                      <li>	Any incorrect data provided by customer while booking the ticket.</li>
+                                      <li>	Any Bus delays, breakdowns, service cancellations and accidents.</li>
+                                      <li>	Any misbehavior by the bus partner staff or co-passenger.</li>
+                                      <li>	Loss/damage of baggage.</li>
+                                      <li>	Late arrival by customer at the boarding point.</li>
+                                      <li>	Customer phone not reachable, bus Conductor did not call at the boarding point and left without picking the customer.</li>
+                                      <li>	Customer waiting at wrong boarding point.</li>
+                                      <li>	Any change of seat numbers done by the bus Conductor manually.</li>
+                                      <li>	Bus Partner changing the boarding point for any reason.</li>
+                                      <li>	Bus Conductor arranging a different vehicle for pickup at boarding point and boarding the actual vehicle at a different place.</li>
+                                      <li>	Bus Conductor objecting on carrying pets.</li>
+                                      <li>	Improper booking done by agent, please contact the agent directly.</li>
+                                      <li>	Bus owners not providing In-bus amenities/facilities mentioned while booking.</li>
+                                      <li>	Change of bus type by Bus owner for any reason.</li>
+                                      <li>	Bus fares are not controlled by ODBUS, so any change in fares is not the responsibility of ODBUS.</li>
+                                      <li>	The fare might vary based on the seat selected. So the fare shown in the “Search Page” and “Seat Selection Page” might vary</li>
+                                      
+                                    </ol>
+                                    </td>
+                                   
+                                    <td style="width: 50%;">
+                                    <h6> CANCELLATION POLICY</h6>
+                                    <ol>
+                                     
+                                      <p>The tickets booked through ODBUS Can be cancelled and note that Cancel Can be possible before 12 hours of the departure of the said bus. </p>
+                                      <li>Partial cancellation not allowed in ODBUS.</li>
+                                      <li>	In respect of refunds due to cancellation of service by Operator , passenger is required to send an e-mail to support@odbus.in mentioning PNR of the ticket. We will verify and refund the amount to the concerned Credit card / Internet banking / UPI.</li>
+                                      <li>	Refunds for Ticket cancellations / Failed Transactions to passengers will be given normally in 10 - 12 Bank working days by ODBUS, after the cancellation of ticket or receipt of e-mail. If refunds are delayed, passengers may contact ODBUS Executive at 9583918888 ( 09:00 AM to 07:00 PM )</li>
+                                      <li>	Customer can't claim any cancellation refund on rescheduled tickets.</li>
+                                      <li>	The cancellation terms are different for each Operator which is set by Bus Owners itself. These terms are shown while booking as well as on the ticket printout/Email confirmation.</li>
+                                      <li>	Tickets booked through online should be cancelled only through online.</li>
+                                      <li>	Transaction & convenience charges are non-refundable for Ticket Cancellation / Service Cancellation.</li>
+                                      <li>	Cancellation charges are applicable on Base fare not on the discounted .</li>
+                                      
+                                    </ol>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                  </div>
+                                 
+                                </div>
+                              </div>
+                            </div>
+      
+                            <div class="col-md-12 mt30">
+                              <div class="odbox2">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <p>Contact Information</p>
+                                    <p>
+                                      ODBUS Helpline (07:00 AM To 11:00
+                                      PM):9583-918-888 (For Online Booking issue or
+                                      Online Cancellation issue.)
+                                    </p>
+                                    <p>
+                                      ODBUS Customer Support Email (Response time 3
+                                      working days): support@odbus.in
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+      
+                            <div class="col-md-12 mt30">
+                              <div class="odbox3">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <p>Thankyou</p>
+                                    <p>Team ODBUS</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+      
+                      <div class="box-padding man-print">
+                        <button
+                          (click)="print()"
+                          class="btn btn-warning proceed"
+                          id="print_btn"
+                        >
+                          PRINT TICKET
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </ng-container>
+    

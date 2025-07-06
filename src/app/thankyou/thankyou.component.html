@@ -1,4 +1,5 @@
-<div class="jumbotron text-center thankyou">
+<ng-container *ngIf="!isMobile">
+  <div class="jumbotron text-center thankyou">
     <h1 class="display-3">Thank You!</h1>
     <p class="lead"><strong>We Received Your Message.</strong></p>
     <hr>
@@ -7,3 +8,38 @@
       <a class="btn btn-primary btn-sm bt-back" routerLink="/" role="button">Continue to homepage</a>
     </p>
   </div>
+</ng-container>
+
+<ng-container *ngIf="isMobile && !MenuActive">
+  <div class="mobile-mybooking-top">
+    <div class="row">
+      <div class="col-1 pr-0 pl-2 mob-arrow-left">
+        <a routerLink="/">
+          <i class="fas fa-arrow-left"></i>
+        </a>  
+      </div>
+      <div class="col-7 pl-2 pr-2 mob-list-center">
+        <h5>{{ pageTitle }}</h5>
+      </div>
+      <div class="col-4 pl-2 pr-2">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-middle-box">
+    <div class="row">
+      <div class="jumbotron text-center thankyou">
+        <h1 class="display-3">Thank You!</h1>
+        <p class="lead"><strong>We Received Your Message.</strong></p>
+        <hr>
+        <p>Having trouble? <a routerLink="/contact-us">Contact us</a></p>
+        <p class="lead">
+          <a class="btn btn-primary btn-sm bt-back" routerLink="/" role="button">Continue to homepage</a>
+        </p>
+      </div>
+    </div>
+  </div>
+ </ng-container> 

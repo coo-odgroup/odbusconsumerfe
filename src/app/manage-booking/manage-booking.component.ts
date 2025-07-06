@@ -1,96 +1,118 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from '../services/notification.service';
 import { ManagebookingService } from '../services/managebooking.service';
-import { NgxSpinnerService } from "ngx-spinner";
-
+import { NgxSpinnerService } from 'ngx-spinner';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { LoginChecker } from '../helpers/loginChecker';
 import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
-
 
 @Component({
   selector: 'app-manage-booking',
   templateUrl: './manage-booking.component.html',
-  styleUrls: ['./manage-booking.component.css']
+  styleUrls: ['./manage-booking.component.css'],
 })
 export class ManageBookingComponent implements OnInit {
-
   bookForm: FormGroup;
 
-  submitted=false;
+  submitted = false;
+  MenuActive: boolean = false;
 
-  bookingDetails:any=[];
+  @Input() session: LoginChecker;
+  isMobile: boolean;
+
+  bookingDetails: any = [];
   currentUrl: string;
+  activeMenu: string;
 
-  constructor(public router: Router,
+  constructor(
+    public router: Router,
     public fb: FormBuilder,
     private notify: NotificationService,
     private managebookingService: ManagebookingService,
-    private spinner: NgxSpinnerService
-    ,private seo:SeoService,
-    private location: Location) { 
+    private spinner: NgxSpinnerService,
+    private seo: SeoService,
+    private location: Location,
+    private deviceService: DeviceDetectorService
+  ) {
+    this.isMobile = this.deviceService.isMobile();
 
-    this.currentUrl = location.path().replace('/','');
-        this.seo.seolist(this.currentUrl);
+    this.session = new LoginChecker();
 
-      localStorage.removeItem('bookingDetails');
+    this.currentUrl = location.path().replace('/', '');
+    this.seo.seolist(this.currentUrl);
 
-      this.bookForm = this.fb.group({
-        pnr: ['', Validators.required],
-        mobile: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]
-      })
+    localStorage.removeItem('bookingDetails');
 
-    }
+    this.bookForm = this.fb.group({
+      pnr: ['', Validators.required],
+      mobile: [
+        '',
+        [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
+      ],
+    });
+  }
 
-    get f() { return this.bookForm.controls; }
+  get f() {
+    return this.bookForm.controls;
+  }
 
-    
+  menu() {
+    this.MenuActive = (this.MenuActive==false) ? true : false;
+    this.activeMenu='';   
+  }
+
+  signOut() {
+    this.session.logout();
+    this.router.navigate(['login']);
+  }
+
   onSubmit() {
-
-    this.spinner.show();
-
     this.submitted = true;
-     // stop here if form is invalid
-     if (this.bookForm.invalid) {      
+    // stop here if form is invalid
+    if (this.bookForm.invalid) {
       return;
-     }else{        
-       const request= {
-        "pnr":this.bookForm.value.pnr,
-        "mobile":this.bookForm.value.mobile
-       };     
-       this.managebookingService.getbookingdetails(request).subscribe(
-        res=>{ 
-          if(res.status==1){
-            
-            localStorage.setItem('bookingDetails',JSON.stringify(res.data[0]));
-            this.router.navigate(['manage-booking-detail']);            
-          } 
-          if(res.status==0){
-            this.notify.notify(res.message,"Error");
-          } 
+    } else {
+      this.spinner.show();
+      const request = {
+        pnr: this.bookForm.value.pnr,
+        mobile: this.bookForm.value.mobile,
+      };
+      this.managebookingService.getbookingdetails(request).subscribe(
+        (res) => {
+          if (res.status == 1) {
+            localStorage.setItem('bookingDetails', JSON.stringify(res.data[0]));
+            this.router.navigate(['manage-booking-detail']);
+          }
+          if (res.status == 0) {
+            this.notify.notify(res.message, 'Error');
+          }
 
           this.spinner.hide();
         },
-      error => {
-        this.spinner.hide();
-        this.notify.notify(error.error.message,"Error");
-      });
-
-     }
-   
+        (error) => {
+          this.spinner.hide();
+          this.notify.notify(error.error.message, 'Error');
+        }
+      );
+    }
   }
 
-  onlyNumbers(event:any) {
-    var e = event ;
+  onlyNumbers(event: any) {
+    var e = event;
     var charCode = e.which || e.keyCode;
-   
-      if ((charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105) || charCode ==8 || charCode==9)
-        return true;
-        return false;        
-}
 
-  ngOnInit(): void {
+    if (
+      (charCode >= 48 && charCode <= 57) ||
+      (charCode >= 96 && charCode <= 105) ||
+      charCode == 8 ||
+      charCode == 9
+    )
+      return true;
+    return false;
   }
 
+  ngOnInit(): void {}
 }

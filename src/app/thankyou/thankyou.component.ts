@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SeoService } from '../services/seo.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { LoginChecker } from '../helpers/loginChecker';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-thankyou',
@@ -16,13 +18,23 @@ export class ThankyouComponent implements OnInit {
 
   seolist:any;
   currentUrl:any;
+  session: LoginChecker;
+
+  isMobile: boolean;
+  MenuActive: boolean = false;
  
   constructor(
-      private router:Router,private seo:SeoService,
-      private location: Location) { 
+      private router:Router,
+      private seo:SeoService,
+      private location: Location,
+      private deviceService: DeviceDetectorService
+    
+      ) { 
   
+      this.session = new LoginChecker();
+      this.isMobile = this.deviceService.isMobile();  
       this.currentUrl = location.path().replace('/','');
-          this.seo.seolist(this.currentUrl);  
+      this.seo.seolist(this.currentUrl);  
   }
   
 

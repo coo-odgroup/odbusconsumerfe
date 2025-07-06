@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import{ GlobalConstants } from '../constants/global-constants';
-
+import { EncryptionService } from '../encrypt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +12,6 @@ import{ GlobalConstants } from '../constants/global-constants';
 export class AuthService {
 
   private apiURL = GlobalConstants.BASE_URL;
-
-  // params={
-  //   "client_id": "RsznkkMUqmJD0nUXjYv2LS8HPopT4xy1" ,
-  //   "client_secret": "GZu_62xk_zFCSHAq3jdWdG9E6vXLD0moEksC4BGv46IFRuQp5rcdjWCxDIJTvNRs",
-  //   "audience": this.apiURL+'/',
-  //   "grant_type": "client_credentials"
-  // }
 
   params={
     "client_id": "odbusSas" ,
@@ -33,13 +26,23 @@ export class AuthService {
 
   
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private enc:EncryptionService) { }
 
   getToken(): Observable<any> { 
-     return this.httpClient.post<any>(this.apiURL + '/ClientLogin' , JSON.stringify(this.params) ,this.httpOptions)
-     .pipe(
-       catchError(this.errorHandler)
-     )
+    let requestParam = this.enc.encrypt(JSON.stringify(this.params));
+
+		//let reqData = { 'REQUEST_DATA': requestParam, 'REQUEST_TOKEN': requestToken, 'REQUEST_KEY': requestKey };
+		let reqData = { 'REQUEST_DATA': requestParam};
+
+    return this.httpClient.post<any>(this.apiURL + '/Auth' , reqData ,this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+    
+    //  return this.httpClient.post<any>(this.apiURL + '/Clientlogin' , this.params ,this.httpOptions)
+    //  .pipe(
+    //    catchError(this.errorHandler)
+    //  )
    }
  
    errorHandler(error:HttpErrorResponse) {

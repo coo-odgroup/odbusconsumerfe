@@ -5,6 +5,8 @@ import { SignupService } from '../services/signup.service';
 import { NotificationService } from '../services/notification.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { LoginChecker } from '../helpers/loginChecker';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { EncryptionService } from '../encrypt.service';
 
 import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
@@ -19,27 +21,37 @@ export class SignupComponent implements OnInit {
   @Input()session: LoginChecker; 
   signupForm: FormGroup;
   submitted = false;
+  isMobile:boolean;
+
+  MenuActive:boolean = false;
 
   viaphone:boolean=true;
   viaemail:boolean=false;
   currentUrl: any;
+  activeMenu: string;
 
-  constructor( public router: Router,
+  constructor( 
+    public router: Router,
     public fb: FormBuilder,
     private signupService: SignupService,    
     private notify: NotificationService,
     private spinner: NgxSpinnerService,
     private seo:SeoService,
-    private location: Location) { 
+    private location: Location,
+    private enc:EncryptionService,
+    private deviceService: DeviceDetectorService
 
-    this.currentUrl = location.path().replace('/','');
-        this.seo.seolist(this.currentUrl);
+    ) { 
+
+      this.isMobile = this.deviceService.isMobile();
+      this.currentUrl = location.path().replace('/','');
+      this.seo.seolist(this.currentUrl);
 
       this.session = new LoginChecker();
 
       this.signupForm = this.fb.group({
-        name: ['', Validators.required],
-        email: [null],
+        name: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+        email: ['',[Validators.required,Validators.email]],
         phone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]
       })
     }
@@ -81,6 +93,11 @@ export class SignupComponent implements OnInit {
       }  
     } 
 
+    menu(){
+      this.MenuActive = (this.MenuActive==false) ? true : false;
+      this.activeMenu='';        
+    }
+
 
    onlyNumbers(event:any) {
       var e = event ;
@@ -119,11 +136,6 @@ export class SignupComponent implements OnInit {
 
       }
 
-      if(this.signupForm.value.email){
-        sentTo=this.signupForm.value.email;
-      }
-     
-
      
        this.signupService.signup(signupData).subscribe(
         res=>{ 
@@ -131,12 +143,14 @@ export class SignupComponent implements OnInit {
           this.spinner.hide();
          
           if(res.status==1){
-
+            let data :any=this.enc.decrypt(res.data);  
+             data = JSON.parse(data);         
+           // console.log(data);
+           // console.log(data.id);
            localStorage.setItem("resendParam",JSON.stringify(signupData));
            localStorage.setItem("otp_type",'signup');
            localStorage.setItem("via",sentTo);
-
-            localStorage.setItem('userId',res.data.id);
+            localStorage.setItem('userId',data.id);
             this.signupService.setAlert("OTP has been sent to "+sentTo);
               
 
@@ -146,7 +160,8 @@ export class SignupComponent implements OnInit {
 
           }
            else if(res.status==0){
-              this.notify.notify(res.message,"Error");
+            let msg=this.enc.decrypt(res.message);
+              this.notify.notify(msg,"Error");
             }
           else{
             let msg  = JSON.parse(res.message); 

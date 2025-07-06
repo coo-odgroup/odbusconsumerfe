@@ -322,9 +322,361 @@ input[type="radio"]:checked {
 }
 
 .tableclass tbody{
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .tableclass2 tbody{
+    /* text-transform: uppercase; */
+}
+
+.container {
+    max-width:1320px !important;
+    margin:0 auto ;
+}
+
+.od-body{
+    border:2px solid #323232;
+    padding: 25px;
+    margin-top: 20px;
+    background-color: #ffffff;
+}
+
+.row {
+ display: flex;
+ flex-wrap: wrap;
+ margin-right: -15px;
+ margin-left: -15px;
+}
+
+.od-logo{
+   height: 80px;
+}
+
+.odtext24 h3{
+   font-size:20px;
+   text-align: left;
+   line-height:26px;
+   font-weight:600;
+   color: #323232;
+}
+
+.odtext32{
+   font-size:28px;
+   text-align: center;
+   line-height:34px;
+   font-weight:600;
+   padding-top: 8px;
+   color: #043c5d;
+}
+
+.odtext32 span{
+   font-weight: 800;
+}
+
+.od-bktext{
+   font-size:18px;
+   text-align: center;
+   line-height: 22px;
+   color: #000000;
+   border:1px solid #c4c4c4 ;
+   padding:8px ;
+   font-weight: 600;
+}
+.od-banner{
+   width: 100%;
+}
+.od-qrcode{
+   background:#c4c4c4;
+   padding: 15px;
+   width: 100%;
+   margin-top: 34px;
+}
+.mt30{
+ margin-top: 35px;
+}
+.mb25{
+   
+   margin-bottom: 35px;
+}
+
+.mb40{
+   margin-bottom: 40px;
+}
+
+.odbox1{
+ border: 1px solid #c4c4c4;
+ padding:25px 15px;
+}
+
+.odbox1 ol{
+ margin-left: -20px;
+}
+
+.odbox2{
+ border: 1px solid #c4c4c4;
+ padding:25px 15px;
+}
+
+.odbox2 p{
+ font-size:18px;
+ color: #000000;
+ font-weight: 600;
+ margin-bottom: 8px;
+}
+
+.odbox3 p{
+ font-size:18px;
+ color: #000000;
+ font-weight: 600;
+ margin-bottom: 8px;
+ text-align: right;
+}
+
+ /* Mobile Version Ticket Cancellation Start- */
+ .mobile-mybooking-top{
+    background-color: #efc003;
+    padding:12px 18px 80px;
+    /*position: fixed;
+    z-index: 99;*/
+    width: 100%;
+    top: 0;
+    box-shadow: 0 3px 10px #0003;
+  }
+  
+  .mobile-mybooking-top .mob-arrow-left i{
+    font-size:30px;
+    color: #072c6b;
+    margin-top:10px;
+  }
+  
+  .mobile-mybooking-top .mob-list-center h5{
+    color: #072c6b;
+    font-size:20px;
+    font-weight:800;
+    text-align: left;
+    padding-top:10px;
+    padding-left:5px;
+    margin-bottom: 4px;
+  
+  }
+  
+  .mobile-logo img{
+    height:42px;
+    float:right;
+  }
+  
+  .mobile-ticket-canceldt-box{
+    margin:-55px 20px 30px
+  }
+  
+  .mobile-ticket-canceldt-box{
+    background-color: #fff;
+    border-radius:8px;
+    padding:20px;    
+  }
+  
+  .mobile-ticket-canceldt-box .mob-tk-dt h5{
+   font-size: 17px;
+   font-weight: 600;
+   color: #072c6b;
+   text-align: center;
+  }
+  
+  .mobile-ticket-canceldt-box .mob-tk-dt img{
+   width:100%;
+   text-align: center;
+  }
+  
+  .mobile-ticket-canceldt-box .linebg{
+    height:18px;
+  }
+  
+  .mobile-ticket-canceldt-box .mob-tk-dt2 h6{
+   font-size: 15px;
+   font-weight: 600;
+   color: #072c6b;
+   line-height: 20px;
+   text-align: center !important;
+  }
+  
+  .mobile-ticket-canceldt-box .mob-tk-dt3 h6{
+   font-size: 15px;
+   font-weight: 600;
+   color: #072c6b;
+   line-height: 24px;
+  }
+  
+  .mobile-ticket-canceldt-box .mob-tk-dt3 h6 span{
+   font-size: 15px;
+   font-weight: 500;
+   color: #b5b6b8;
+  }
+  
+  .mobile-ticket-canceldt-box .mob-tk-dt4{
+   margin-top: 12px;
+  }
+  
+  .mobile-ticket-canceldt-box .mob-tk-dt4 h6{
+   font-size: 15px;
+   font-weight: 600;
+   color: #072c6b;
+   line-height: 24px;
+  }
+  
+  
+  .mobile-ticket-canceldt-box .mob-tk-dt4 h6 span{
+   font-size: 18px;
+   font-weight: 500;
+   color: #b5b6b8;
+  }
+  
+  .mobile-ticket-canceldt-box .mob-submit{
+    background: #efc003;
+    color: #072c6b;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align:center;
+    border: none;
+    padding:8px 15px;
     text-transform: uppercase;
+    font-weight: 600;
+    width: 100%;
+  }  
+  .mobile-fixed-bottom {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index:99999;
+  }
+  .mobile-fixed-bottom .home{
+    color: #323232;
+  }
+  
+  .mobile-fixed-bottom .home i{
+    font-size: 24px;
+  }
+  
+  .mobile-fixed-bottom .active{
+    color: #efc003;
+  }
+  
+  .mobile-fixed-bottom .active p{
+    color: #efc003 !important;
+  }
+  
+  .mobile-fixed-bottom .home p{
+    color: #323232;
+    font-size:16px;
+    font-weight: 600;
+  }
+  
+  .mobile-bg-danger {
+    background-color: #ffffff!important;
+    padding-top:12px;
+    padding-bottom: 8px;
+    -webkit-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
+   -moz-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
+   box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
+  }
+  
+  .mob-mtbh{
+    height: 80px;
+  }
+
+   /* Mobile Menu Section */
+
+   .mobile-logo img{
+    height:42px;
+    float:right;
+  } 
+  
+  .mobile-myaccount-top .mob-logintx a{
+      float:right;
+      font-size:17px;
+      color: #072c6b;
+      font-weight: 600;
+      padding-top:8px ;
+  }
+
+  .mobile-myaccount-top{
+    background-color: #efc003;
+    padding:12px 18px 14px;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    top: 0;
+    box-shadow: 0 3px 10px #0003;
+  } 
+
+  .mobile-myaccount-middle{
+       margin:88px 20px 60px
+   }
+
+  .mobile-myaccount-middle .mobile-menu {
+    width:100%; 
+    list-style-type: none;
+    padding-left: 0px; 
+  }
+
+  .mobile-myaccount-middle .mobile-menu a {
+      background-color: #fff;
+      display: block;   
+      color: #072c6b;
+      padding:8px 18px; 
+      text-decoration: none; 
+      font-size :17px;
+      font-weight: 600;
+      margin-bottom:10px;
+      border-radius: 4px;
+  }
+
+  .mobile-myaccount-middle .mobile-menu a i{
+    color: #efc003;
+    margin-right: 8px;
+  } 
+
+  .mob-tk-dt3 small{
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #323232 !important;
+  }
+
+  .pass-mob table td, .pass-mob table th{
+    padding:4px 12px;
+  }
+
+  .fare-backup table td{
+    padding:3px 12px;
+    color: #323232;
+  }
+
+  .fare-backup table td strong{
+    font-size: 16px;
+    color: #c7a003
+  }
+  
+  /* Mobile Version Ticket Cancellation End- */  
+
+  .odbus-journey td{
+        padding:6px 12px !important;
+        color: #323232;
+   }
+
+   .odbus-journey th{
+    padding:8px 12px !important;
+    
+}
+
+.cancelled-box{
+    background-color: #efc003;
+    border-radius: 4px;
+}
+
+.cancelled-box table td{
+    font-size: 18px;
+}
+
+.cancelled-box .table-bordered td, .cancelled-box .table-bordered th {
+    border: 1px solid #000000;
 }

@@ -20,7 +20,7 @@
 
 .passenger-detail{
     font-size: 16px;
-    font-weight: 600;
+    font-weight: bold;
     background: #f8f8f8 0% 0% no-repeat padding-box;
     border: 1px solid #00000026;
     border-radius: 3px;
@@ -38,6 +38,9 @@
     margin-top: 30px;
 
 }
+
+
+
 
  label ,p{
     padding-top: 10px;
@@ -134,7 +137,7 @@ thead{
 tbody{
     color: #072C6B;
     font-size: 14px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     
 }
 .roboto{
@@ -267,11 +270,11 @@ input[type="radio"]:checked {
 .form-control {
     border: 1px solid #072c6b;
     border-radius:3px;
-    font-size: 17px;
+    font-size: 15px;
     height: 40px;
-    font-weight: 400;
+    /* font-weight: 400; */
     line-height: 20px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .ng-select.ng-select-single .ng-select-container {
@@ -308,35 +311,20 @@ input[type="radio"]:checked {
 }
 
 .ng-select span {
-    text-transform: uppercase !important;
+    /* text-transform: uppercase !important; */
 }
 
 
-/* .container {
+.container {
     max-width:1320px !important;
     margin:0 auto ;
-} */
+}
 
 .od-body{
     border:3px solid #323232;
     padding: 25px;
     margin-top: 20px;
-    background: #ffffff;
-}
-
-.od-body thead {
-    color: #072c6b;
-}
-
-.od-body tbody{
-    color: #323232;
-    font-size: 15px;
-    text-transform: capitalize;
-
-}
-
-.od-body .passenger-detail{
-    font-weight: 500 !important;
+    background-color: #ffffff;
 }
 
 .row {
@@ -411,42 +399,512 @@ input[type="radio"]:checked {
 }
 
 .odbox2{
- border: 1px solid #c4c4c4;
- padding:15px 20px;
+ border: 1px solid #000000;
+ padding:25px 15px;
 }
 
 .odbox2 p{
-    font-size:18px;
-    color: #000000;
-    font-weight: 600;
-    margin-bottom:0px;
-    margin-top:0px;
-    padding-top: 6px;
+ font-size:18px;
+ color: #000000;
+ font-weight: 600;
+ margin-bottom: 8px;
+}
+
+.odbox3 p{
+ font-size:18px;
+ color: #000000;
+ font-weight: 600;
+ margin-bottom: 8px;
+ text-align: right;
+}
+
+.mobile-booking-top{
+    background-color: #efc003;
+    padding:12px 18px 15px;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    top: 0;
+    box-shadow: 0 3px 10px #0003;
+  }
+  
+  
+  
+  .mobile-booking-top .mob-arrow-left i{
+    font-size:30px;
+    color: #072c6b;
+    margin-top:10px;
   }
 
-  .odbox3 p{
+  .mobile-booking-top .mob-arrow-right i{
+    font-size:30px;
+    color: #072c6b;
+    margin-top:10px;
+  }
+  
+  .mobile-booking-top .btn-show-modify{
+    background-color: #072c6b;
+    border-radius: 4px;
+    color: #ffffff !important;
+    height:35px !important;
+    line-height:24px;
+    padding:4px 4px !important;
+    width: 80px !important;
+    float: right;
+    margin-top: 10px;
+  }
+  
+  .mobile-booking-top .mob-list-center h5{
+    color: #072c6b;
     font-size:18px;
-    color: #000000;
-    font-weight: 600;
-    margin-bottom:0px;
-    margin-top:0px;
-    text-align: right;
-    padding-top: 6px;
+    font-weight:800;
+    text-align: center;
+    margin-bottom: 4px;
+    padding-top: 0px;
   }
 
- 
-   .od-body ol li {
-    margin-bottom: 8px;
+  .mob-bk2 label{
+   padding-top:2px !important;
+  }
+  
+  .mobile-booking-top .mob-list-center{
+    color: #072c6b;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .mobile-booking-top .mob-list-center i{
+    padding-left:15px;
+    padding-right:15px;
+  }
+  
+  .mobile-booking-top .mob-list-center .wh10{
+   color: #323232 !important;
+   font-size: 15px;
+  }
+  
+  .mobile-booking-middle{
+     margin:130px 20px 40px
+  }
+  
+  .mobile-booking-middle h3{
+    font-size: 18px;
+    color: #002F80;
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  
+  .mobile-contact-infbox{
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding:12px 15px;
+    margin-bottom:24px;
+  }
+  .mobile-contact-infbox input{
+  color: #072c6b;
+  width: 100%;
+  background-color: #f5f1f1;
+  padding:8px 12px;
+  border: none;
+  border-bottom: 2px solid #979494;
+  }
+  
+  .mobile-contact-infbox .form-group input:focus-visible {
+    outline: -webkit-focus-ring-color auto 0px;
+  }
+  
+  .mobile-contact-infbox h5{
     font-size: 15px;
-    font-weight: 500 !important;
-   }
+    text-align: left;
+    color: #002F80;
+    margin-top: -10px;
+    font-weight: 600;
+  }
+  
+  .mobile-contact-infbox h6{
+    font-size: 13px;
+    text-align: right;
+    color: #002F80;
+    margin-top: 0px;
+    font-weight: 600;
+  }
+
+  .mob-total{
+    font-size:18px !important;
+  }
+  
+  
+  .mobile-jou-details{
+    color: #002F80;
+    font-size:16px;
+    text-align: left;
+    line-height:16px;
+    font-weight: 600;
+  }
+  
+  .mobile-jou-details span{
+    color:#787878;
+    font-size:14px;
+    text-align: left;
+    line-height: 28px;
+  
+  }
+  
+  .mobile-jou-details .fsm15{
+    font-size:16px;
+    font-weight: 600;
+  
+  }
+
+  .mobile-contact-infbox .table th{
+    padding:5px 8px;
+    vertical-align: top;
+    font-size: 14px;
+    color: #615e5e;
+  }
+  
+  .mobile-contact-infbox .table td{
+    padding:5px 8px;
+    vertical-align: top;
+    font-size: 14px;
+    color: #002F80;
+  }
+  
+  
+  .mobile-booking-bottom{
+    background-color: #efc003;
+    box-shadow: 0px -2px 6px 0px rgb(0 0 0 / 60%);
+    text-align: center;
+    padding:12px 15px;
+    width: 100%;
+  }
+  
+  .mobile-booking-bottom{
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #002F80;
+    line-height: 28px;
+    font-weight: 600;
+    border-radius: 0;
+  }
+ 
+
+  .mobile-contact-ad  h6{
+    font-size: 15px;
+    text-align: left;
+    color:#615e5e;
+    padding-bottom:9px ;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 22px !important;
+  }
+  
+  .mobile-contact-ad  h5{
+    font-size: 18px;
+    text-align: left;
+    color: #002F80;
+    padding-bottom:10px ;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 25px !important;
+  }
+  
+  
+  
+  .mobile-fair-det{
+    color: #002F80;
+    font-size: 15px;
+    text-align: left;
+    line-height: 28px;
+  }
+  
+  .mobile-fair-det span{
+    color: #d69a0d;
+    font-size: 15px;
+    text-align:right;
+    line-height: 28px;
+    float: right;
+    margin-right:5px;
+  }
+  
+  .mobile-fair-det strong{
+    font-size: 18px;
+    
+  }
+  
+
+  
+  .mob-term-priv p a{
+    font-size: 14px;
+    color: #002F80;
+    font-weight: 600;
+    line-height: 20px;
+  }
+  
+  /* .mob-term-priv p a{
+    font-size: 14px;
+    color:#d69a0d;
+    font-weight: 600;
+  } */
+   
+  .mobile-booking-middle input::placeholder{
+    font-size:15px;
+    color:#323232
+  }
 
 
 
 
 
+  .mobile-booking-middle .od-body{
+    border:unset !important;
+    padding:unset !important;
+    margin-top:unset !important;
+}
 
 
+.mobile-booking-middle .od-logo{
+   height:auto !important;
+   width: 100%;
+}
+
+.mobile-booking-middle .odtext24 h3{
+   font-size:20px;
+   text-align: left;
+   line-height:26px;
+   font-weight:600;
+   color: #323232;
+}
+
+.mobile-booking-middle .odtext32{
+   font-size:20px;
+   text-align: center;
+   line-height:24px;
+   font-weight:600;
+   padding-top: 8px;
+   color: #043c5d;
+   margin-bottom: 20px;
+}
+
+.pnrr{
+  color: #dc3545;
+}
+.mobile-booking-middle tbody tr td {
+  padding:4px 8px !important;
+}
+
+.mobile-booking-middle tbody {
+  font-size: 12px;
+}
+
+.mobile-booking-middle .passenger-detail{
+  font-size: 15px;
+  font-weight:500;
+}
+
+.mobile-booking-middle .odtext32 span{
+   font-weight: 800;
+}
+
+.mobile-booking-middle .od-bktext{
+   font-size:16px;
+   text-align: center;
+   line-height: 22px;
+   color: #000000;
+   border:1px solid #c4c4c4 ;
+   padding:8px ;
+   font-weight: 600;
+}
+.mobile-booking-middle .od-banner{
+   width: 100%;
+}
+.mobile-booking-middle .od-qrcode{
+   background:#c4c4c4;
+   padding: 15px;
+   width: 100%;
+   margin-top: 34px;
+}
 
 
+.mobile-booking-middle .odbox1{
+ border: 1px solid #c4c4c4;
+ padding:25px 15px;
+}
 
+.mobile-booking-middle .odbox1 ol{
+ margin-left: -20px;
+}
+
+.mobile-booking-middle .odbox2{
+ border: 1px solid #c4c4c4;
+ padding:25px 15px;
+}
+
+.mobile-booking-middle .odbox2 p{
+ font-size:15px;
+ color: #000000;
+ font-weight: 400;
+ margin-bottom:4px;
+ padding-top: 5px;
+}
+
+.mobile-booking-middle .odbox3 p{
+ font-size:15px;
+ color: #000000;
+ font-weight:500;
+ margin-bottom:0px;
+ text-align: right;
+ padding-top: 5px;
+}
+
+.mobile-booking-middle .mt30{
+  margin-top:18px;
+}
+
+.mb60{
+  margin-bottom:80px ;
+}
+
+.bh80{
+  margin-bottom:80px ;
+}
+
+
+.mobile-fixed-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index:99999;
+}
+.mobile-fixed-bottom .home{
+  color: #323232;
+}
+
+.mobile-fixed-bottom .home i{
+  font-size: 24px;
+}
+
+.mobile-fixed-bottom .active{
+  color: #efc003;
+}
+
+.mobile-fixed-bottom .active p{
+  color: #efc003 !important;
+}
+
+.mobile-fixed-bottom .home p{
+  color: #323232;
+  font-size:16px;
+  font-weight: 600;
+}
+
+.mobile-bg-danger {
+  background-color: #ffffff!important;
+  padding-top:12px;
+  padding-bottom: 8px;
+  -webkit-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
+ -moz-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
+ box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
+}
+
+.mob-mtbh{
+  height: 80px;
+}
+
+/* Mobile Menu Section */
+
+.mobile-logo img{
+  height:42px;
+  float:right;
+} 
+
+.mobile-myaccount-top .mob-logintx a{
+    float:right;
+    font-size:17px;
+    color: #072c6b;
+    font-weight: 600;
+    padding-top:8px ;
+}
+
+.mobile-myaccount-top{
+  background-color: #efc003;
+  padding:12px 18px 14px;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  top: 0;
+  box-shadow: 0 3px 10px #0003;
+} 
+
+.mobile-myaccount-middle{
+     margin:88px 20px 60px
+ }
+
+.mobile-myaccount-middle .mobile-menu {
+  width:100%; 
+  list-style-type: none;
+  padding-left: 0px; 
+}
+
+.mobile-myaccount-middle .mobile-menu a {
+    background-color: #fff;
+    display: block;   
+    color: #072c6b;
+    padding:8px 18px; 
+    text-decoration: none; 
+    font-size :17px;
+    font-weight: 600;
+    margin-bottom:10px;
+    border-radius: 4px;
+}
+
+.mobile-myaccount-middle .mobile-menu a i{
+  color: #efc003;
+  margin-right: 8px;
+}
+
+.mob-mtbh-8 {
+  height: 50px;
+}
+
+.mb-font16{
+ font-size: 16px !important;
+ line-height: 17px !important;
+}
+
+
+.odbus-journey td{
+  padding:6px 12px !important;
+  color: #323232;
+}
+
+.odbus-journey th{
+padding:8px 12px !important;
+
+}
+
+.fare-backup table td{
+  padding:3px 12px;
+  color: #323232;
+}
+
+.fare-backup table td strong{
+  font-size: 16px;
+  color: #c7a003
+}
+
+.mobile-booking-top .mob-list-center2 h5 {
+  color: #072c6b;
+  font-size:22px !important;
+  font-weight: 800;
+  text-align: left;
+  padding-left: 5px;
+  margin-bottom: 4px;
+  padding-top: 14px !important;
+}
+.mob-gst{
+  font-size:15px;
+  color: #dc3545;
+}

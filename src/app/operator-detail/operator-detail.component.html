@@ -1,47 +1,61 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
-  <p style="color: white"> Loading... </p>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
 </ngx-spinner>
-
-<section class="operators-result">
-  <div class="container">
-    <h1 class="oper-heading">{{ OperatorData.organisation_name }}</h1>
-    <p class="oper-para">
-      {{ OperatorData.operator_info }} </p>
-    <div class="row">
-      <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
-        <div class="icon-box">
-          <div class="icon"><img src="../../assets/img/Group 632.svg" class="opo-img"></div>
-          <h4>{{ routes.length }}</h4>
-          <p class="oper-para">Routes</p>
+<ng-container *ngIf="!isMobile">
+  <section class="operators-result">
+    <div class="container">
+      <h1 class="oper-heading">{{ OperatorData.organisation_name }}</h1>
+      <p class="oper-para">
+        {{ OperatorData.operator_info }}
+      </p>
+      <div class="row">
+        <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
+          <div class="icon-box">
+            <div class="icon">
+              <img src="../../assets/img/Group 632.svg" class="opo-img" />
+            </div>
+            <h4>{{ routes.length }}</h4>
+            <p class="oper-para">Routes</p>
+          </div>
         </div>
-      </div>
-      <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
-        <div class="icon-box">
-          <div class="icon"><img src="../../assets/img/Group 633.svg" class="opo-img"></div>
-          <h4>{{ buses.length }}</h4>
-          <p class="oper-para">Buses</p>
+        <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
+          <div class="icon-box">
+            <div class="icon">
+              <img src="../../assets/img/Group 633.svg" class="opo-img" />
+            </div>
+            <h4>{{ buses.length }}</h4>
+            <p class="oper-para">Buses</p>
+          </div>
         </div>
-      </div>
-      <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
-        <div class="icon-box">
-          <div class="icon"><img src="../../assets/img/ratings.svg" class="opo-img"></div>
-          <h4>{{ OperatorData.total_rating }}</h4>
-          <p class="oper-para">Ratings</p>
+        <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
+          <div class="icon-box">
+            <div class="icon">
+              <img src="../../assets/img/ratings.svg" class="opo-img" />
+            </div>
+            <h4>{{ OperatorData.total_rating }}</h4>
+            <p class="oper-para">Ratings</p>
+          </div>
         </div>
-      </div>
-      <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
-        <div class="icon-box">
-          <div class="icon"><img src="../../assets/img/Group 635.svg" class="opo-img"></div>
-          <h4>Customer</h4>
-          <p class="oper-para">Friendly</p>
+        <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
+          <div class="icon-box">
+            <div class="icon">
+              <img src="../../assets/img/Group 635.svg" class="opo-img" />
+            </div>
+            <h4>Customer</h4>
+            <p class="oper-para">Friendly</p>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- <section class="operators-result" style="background-color: #E7EAEB;">
+  <section class="operators-result" style="background-color: #E7EAEB;">
   <div class="container">
     <h1 class="ma-heading">Popular Routes</h1>
     <table class="table">
@@ -64,7 +78,7 @@
 
         </tbody>
       </table>
-      <div class="box-footer clearfix">
+      <!-- <div class="box-footer clearfix">
          <ul class="pagination pagination-sm no-margin">
              <li><a href="#" data-abc="true">1</a></li>
              <li><a href="#" data-abc="true">2</a></li>
@@ -72,79 +86,409 @@
              <li><a href="#" data-abc="true">»</a></li>
              <li><a href="#" data-abc="true">«</a></li>
          </ul>
-     </div>
+     </div> -->
     </div>
-  </section> -->
-<section class="operators-aminitis">
-  <div class="container">
-    <h1 class="ma-heading">Amenities</h1>
-    <!-- <div class="row" *ngIf="OperatorData.amenities"> -->
-    <div class="row justify-content-md-center">
-      <div class="col-lg-2 col-md-2 align-items-stretch" *ngFor="let am of OperatorData.amenities">
-        <div class="icon-box-am">
-          <div class="icon1">
-            <img *ngIf="am.amenities && (am.amenities.amenities_image=='' || am.amenities.amenities_image==null)"
-              class="profile" src="../../../assets/img/noImage.png" height="100" />
-            <img *ngIf="am.amenities && (am.amenities.amenities_image!='' && am.amenities.amenities_image!=null)"
-              class="profile" src="{{ am.amenities.amenities_image }}" height="100" />
-            <!-- <img src="../../assets/uploads/amenities/{{ am.amenities.amenities_image }}"/> -->
-            <!-- <img [attr.src]="getImagePath(am.amenities.icon)"  class="aminitis-img"> -->
-          </div>
-          <div>
-            <p class="ami-para">{{ am.amenities.name }}</p>
+  </section>
+  <section class="operators-aminitis">
+    <div class="container">
+      <h1 class="ma-heading">Amenities</h1>
+      <!-- <div class="row" *ngIf="OperatorData.amenities"> -->
+      <div class="row justify-content-md-center">
+        <div
+          class="col-lg-2 col-md-2 align-items-stretch"
+          *ngFor="let am of OperatorData.amenities"
+        >
+          <div class="icon-box-am">
+            <div class="icon1">
+              <img
+                *ngIf="
+                  am.amenities &&
+                  (am.amenities.amenities_image == '' ||
+                    am.amenities.amenities_image == null)
+                "
+                class="profile"
+                src="../../../assets/img/noImage.png"
+                height="100"
+              />
+              <img
+                *ngIf="
+                  am.amenities &&
+                  am.amenities.amenities_image != '' &&
+                  am.amenities.amenities_image != null
+                "
+                class="profile"
+                src="{{ am.amenities.amenities_image }}"
+                height="100"
+              />
+           
+            </div>
+            <div>
+              <p class="ami-para">{{ am.amenities.name }}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<section class="operators-result" style="background-color: #E7EAEB;">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h1 class="ma-heading" style="margin-bottom: 10px;">Customer Reviews</h1>
-      </div>
-      <div class="col-md-12">
-        <div class="author item">
-          <h5 class="re-name1">{{ OperatorData.total_rating }}</h5>
-          <span class="stars" style="margin-left: 45%;">
-            <ngb-rating [rate]="total_rating" [max]="5" [readonly]="true"></ngb-rating>
-          </span>
+  </section>
+  <section class="operators-result" style="background-color: #e7eaeb">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="ma-heading" style="margin-bottom: 10px">
+            Customer Reviews
+          </h1>
+        </div>
+        <div class="col-md-12">
+          <div class="author item">
+            <h5 class="re-name1">{{ OperatorData.total_rating }}</h5>
+            <span class="stars" style="margin-left: 45%">
+              <ngb-rating
+                [rate]="total_rating"
+                [max]="5"
+                [readonly]="true"
+              ></ngb-rating>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row justify-content-md-center testi-padding-bottom" *ngIf="OperatorData.reviews">
-      <div class="col-md-4 testimonials-clean" *ngFor="let rv of OperatorData.reviews ">
-        <div class="de-angu3 border">
-          <h2 class="heading-ser-tes">{{rv.title}}</h2>
-          <div class="box">
-            <p class="description">{{rv.comments}}</p>
-          </div>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="author item">
-                <div style="width:200px">
-                </div>
-                <img *ngIf="rv.profile_image=='' || rv.profile_image==null" class="profile"
-                  src="../../assets/img/user.png" />
-                <img *ngIf="rv.profile_image!='' && rv.profile_image!=null" class="profile"
-                  src="{{ rv.profile_image }}" />
+      <div
+        class="row justify-content-md-center testi-padding-bottom"
+        *ngIf="OperatorData.reviews"
+      >
+        <div
+          class="col-md-4 testimonials-clean"
+          *ngFor="let rv of OperatorData.reviews"
+        >
+          <div class="de-angu3 border">
+            <h2 class="heading-ser-tes">{{ rv.title }}</h2>
+            <div class="box">
+              <p class="description">{{ rv.comments }}</p>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="author item">
+                  <div style="width: 200px"></div>
+                  <img
+                    *ngIf="rv.profile_image == '' || rv.profile_image == null"
+                    class="profile"
+                    src="../../assets/img/user.png"
+                  />
+                  <img
+                    *ngIf="rv.profile_image != '' && rv.profile_image != null"
+                    class="profile"
+                    src="{{ rv.profile_image }}"
+                  />
 
-                <h5 class="name">{{ rv.name}}</h5>
-                <h6 class="place">{{ rv.district}}</h6>
+                  <h5 class="name">{{ rv.name }}</h5>
+                  <h6 class="place">{{ rv.district }}</h6>
+                </div>
               </div>
-            </div>
-            <div class="col-md-4">
-              <div class="author item">
-                <h5 class="re-name">{{ rv.rating_overall }}</h5>
-                <span class="stars">
-                  <ngb-rating [rate]="rv.rating_overall" [max]="5" [readonly]="true"></ngb-rating>
-                </span>
+              <div class="col-md-4">
+                <div class="author item">
+                  <h5 class="re-name">{{ rv.rating_overall }}</h5>
+                  <span class="stars">
+                    <ngb-rating
+                      [rate]="rv.rating_overall"
+                      [max]="5"
+                      [readonly]="true"
+                    ></ngb-rating>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
+</ng-container>
+
+
+<ng-container *ngIf="isMobile && !MenuActive">
+  <div class="mobile-mybooking-top">
+    <div class="row">
+      <div class="col-1 pr-0 pl-2 mob-arrow-left">
+        <a routerLink="/operators">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+      </div>
+      <div class="col-7 pl-2 pr-2 mob-list-center">
+        <h5>Operators Details</h5>
+      </div>
+      <div class="col-4 pl-2 pr-2">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
+        </div>
+      </div>
+    </div>
   </div>
-</section>
+
+  <div class="mobile-operators-busd-middle">
+    <div class="row">
+      <div class="col-12">
+        <h4>{{ OperatorData.organisation_name }}</h4>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-3 pl-2 pr-2">
+        <div class="icon-box">
+          <div class="icon">
+            <img src="assets/img/mob-img/Group 632.svg" class="opo-img" />
+          </div>
+          <h4>{{ routes.length }}</h4>
+          <p class="oper-para">Routes</p>
+        </div>
+      </div>
+      <div class="col-3 pl-2 pr-2">
+        <div class="icon-box">
+          <div class="icon">
+            <img src="assets/img/mob-img/Group 633.svg" class="opo-img" />
+          </div>
+          <h4>{{ buses.length }}</h4>
+          <p class="oper-para">Buses</p>
+        </div>
+      </div>
+      <div class="col-3 pl-2 pr-2">
+        <div class="icon-box">
+          <div class="icon">
+            <img src="assets/img/mob-img/ratings.svg" class="opo-img" />
+          </div>
+          <h4>{{ OperatorData.total_rating }}</h4>
+          <p class="oper-para">Ratings</p>
+        </div>
+      </div>
+      <div class="col-3 pl-2 pr-2">
+        <div class="icon-box">
+          <div class="icon">
+            <img src="assets/img/mob-img/Group 635.svg" class="opo-img" />
+          </div>
+          <h4>Customer</h4>
+          <p class="oper-para">Friendly</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-amenities-middle">
+    <div class="row">
+      <div class="col-12 pl-2 pr-2"><h4>Amenities</h4></div>
+    </div>
+    <div class="row justify-content-center" >
+      <div class="col-4 mb-3 pl-2 pr-2" *ngFor="let am of OperatorData.amenities">
+        <div class="de-angu">
+          <img *ngIf="am.amenities &&  (am.amenities.amenities_image == '' || am.amenities.amenities_image == null)" class="iconsize" src="../../../assets/img/noImage.png"
+            height="100" />
+          <img *ngIf="am.amenities && am.amenities.amenities_image != '' && am.amenities.amenities_image != null" class="iconsize" src="{{ am.amenities.amenities_image }}"           height="100"
+          />
+          <p class="safety_span">{{ am.amenities.name }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row">
+      <div class="col-12 pl-2 pr-2"><h4>Bus Photos</h4></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-4 mb-3 pl-2 pr-2">
+        <img class="mob-photo" src="assets/img/mob-img/bus-img01.jpeg" />
+      </div>
+      <div class="col-4 mb-3 pl-2 pr-2">
+        <img class="mob-photo" src="assets/img/mob-img/bus-img01.jpeg" />
+      </div>
+      <div class="col-4 mb-3 pl-2 pr-2">
+        <img class="mob-photo" src="assets/img/mob-img/bus-img01.jpeg" />
+      </div>
+    </div> -->
+
+    <div class="row">
+      <div class="col-12 pl-2 pr-2"><h4>Customer Reviews</h4></div>
+    </div>
+    <div class="row">
+      <div class="col-12 mb-3 pl-2 pr-2">
+        <div class="review" id="review">
+          <div class="row mb-2">
+            <div class="col-3">
+              <!-- <h6 class="font-weight-normal">Review</h6> -->
+              <p class="mb-0">
+                <span class="h4 mb-0">{{ OperatorData.total_rating }}</span><span class="h6">/5</span>
+              </p>
+              <!-- <span class="f-10">Punctuality</span> -->
+            </div>
+            <ngb-rating
+            [rate]="total_rating"
+            [max]="5"
+            [readonly]="true"
+          ></ngb-rating>
+          
+          </div>
+          
+         <div *ngIf="OperatorData.reviews">
+          <div class="comments mt-3"  *ngFor="let rv of OperatorData.reviews">
+            
+            <div class="reviews bg-white p-3 shadow-sm rounded-1 mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <img
+                  src="assets/img/mob-img/r1.jpg"
+                  class="img-fluid rounded-pill"
+                />
+                <div class="ml-2">
+                  <p class="mb-0 small font-weight-bold">Mike Jhon</p>
+                  <div class="start-rating2 d-flex align-items-center f-8">
+                    <i class="fas fa-star text-danger"></i>
+                    <i class="fas fa-star text-danger"></i>
+                    <i class="fas fa-star text-danger"></i>
+                    <i class="fas fa-star text-danger"></i>
+                    <i class="fas fa-star text-muted"></i>
+                  </div>
+                </div>
+                <div class="date ml-auto mb-auto small">
+                  <small class="f-10">24/03/2021</small>
+                </div>
+              </div>
+              <p class="small text-muted mb-0">
+                Dummy comment Lorem ipsum dolor sit amet, consectetur
+                adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.
+              </p>
+            </div>
+            <div class="reviews bg-white p-3 shadow-sm rounded-1 mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <img
+                    *ngIf="rv.profile_image == '' || rv.profile_image == null"
+                    class="img-fluid rounded-pill"
+                    src="assets/img/mob-img/r1.jpg"
+                  />
+                  <img
+                    *ngIf="rv.profile_image != '' && rv.profile_image != null"
+                    class="profile"
+                    src="{{ rv.profile_image }}"
+                  />               
+                <div class="ml-2">
+                  <p class="mb-0 small font-weight-bold">{{ rv.title }}</p>
+                  <div class="start-rating2 d-flex align-items-center f-8">
+                    <i class="fas fa-star text-danger"></i>
+                    <i class="fas fa-star text-danger"></i>
+                    <i class="fas fa-star text-muted"></i>
+                    <i class="fas fa-star text-muted"></i>
+                    <i class="fas fa-star text-muted"></i>
+                  </div>
+                </div>
+                <div class="date ml-auto mb-auto small">
+                  <small class="f-10">24/03/2020</small>
+                </div>
+              </div>
+              <p class="small text-muted mb-0">
+                {{ rv.comments }}
+              </p>
+            </div>
+          </div>
+        </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+  </ng-container>
+
+  <ng-container *ngIf="MenuActive">
+    <div class="mobile-myaccount-top">
+      <div class="row">
+        <div class="col-5">
+          <div class="mobile-logo">
+            <img src="assets/img/mob-img/logo.png" />
+          </div>
+        </div>
+        <div class="col-7 mob-logintx">
+          <a routerLink="/login" *ngIf="!session.isLoggedIn()">
+            Login / Signup
+          </a>
+          <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
+            Dashboard
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-myaccount-middle">
+      <ul class="mobile-menu">
+        <li>
+          <a routerLink="/manage-booking"><i class="far fa-window-restore"></i>Manage Booking</a>
+        </li>
+        <li>
+          <a routerLink="/contact-us"><i class="fas fa-envelope"></i>Contact Us</a>
+        </li>
+        <li>
+          <a routerLink="/offers"><i class="fas fa-gifts"></i>Offers</a>
+        </li>
+        <li>
+          <a routerLink="/operators"><i class="fas fa-bus"></i>Operators</a>
+        </li>
+        <li>
+          <a routerLink="/routes"><i class="fas fa-map-marker-alt"></i>Routes</a>
+        </li>
+        <li>
+          <a routerLink="/faq"><i class="fas fa-question"></i>FAQ's</a>
+        </li>
+        <li>
+          <a routerLink="/testimonials"><i class="fa fa-star"></i>Testimonials</a>
+        </li>
+        <li>
+          <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i>Terms & Conditions</a>
+        </li>
+        <li>
+          <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i>Privacy Policy</a>
+        </li>
+        <li>
+          <a routerLink="/about-us"><i class="fas fa-info-circle"></i>About Us</a>
+        </li>
+        <li *ngIf="session.isLoggedIn()">
+          <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
+        </li>
+        <li *ngIf="session.isLoggedIn()">
+          <a (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="isMobile"> 
+
+  <div class="mob-mtbh"></div>
+  <div class="mobile-fixed-bottom">
+    <div class="footer-menu row m-0 mobile-bg-danger">
+      <div class="col-3 p-0 text-center">
+        <a routerLink="/" class="home active">
+          <i class="fas fa-home"></i>
+          <p class="mb-0 small">Home</p>
+        </a>
+      </div>
+      <div class="col-3 p-0 text-center">
+        <a routerLink="/dashboard" class="home">
+          <i class="fas fa-ticket-alt"></i>
+          <p class="mb-0 small">My Bookings</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
+        <a routerLink="/login" class="home">
+          <i class="fas fa-user"></i>
+          <p class="mb-0 small">Login</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
+        <a routerLink="/myaccount" class="home">
+          <i class="fas fa-user"></i>
+          <p class="mb-0 small">My Account</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center">
+        <a (click)="menu()" class="home {{activeMenu}}">
+          <i class="fas fa-bars"></i>
+          <p class="mb-0 small">Menu</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</ng-container>

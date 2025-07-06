@@ -24,10 +24,19 @@ export class FilterService {
 
   constructor(private httpClient: HttpClient) { }
 
+  // getlist(params :any): Observable<any> {
+
+  //   //console.log(this.apiURL + '/Filter?'+ params);
+  //   return this.httpClient.get<any>(this.apiURL + '/Filter?'+ params+'&user_id='+this.USER_ID,this.httpOptions)
+  //   .pipe(
+  //     catchError(this.errorHandler)
+  //   )
+  // }
+
   getlist(params :any): Observable<any> {
 
     //console.log(this.apiURL + '/Filter?'+ params);
-    return this.httpClient.get<any>(this.apiURL + '/Filter?'+ params+'&user_id='+this.USER_ID,this.httpOptions)
+    return this.httpClient.post<any>(this.apiURL + '/Filter',JSON.stringify(params),this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

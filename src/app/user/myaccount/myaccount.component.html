@@ -1,201 +1,414 @@
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
 type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 
-<div class="container-xl dash-80">
-<div class="main min-500">
-  
-  <app-usernavbar></app-usernavbar>
+<ng-container *ngIf="!isMobile">
+  <div class="container-xl dash-80">
+    <div class="main min-500">
+    
+    <app-usernavbar></app-usernavbar>
 
-  <div class=" col-md-12 card-ta dash-81">
-    <div class="row">
-    <div class="col-md-6">
-      <div class="settings-heading review-card mb-3">
-         <h2 class="profile-hi"><img src="assets/img/profile-se.svg">Profile</h2>
-      </div>
-      <div class="settings-heading review-card mb-3">
-         <div class="review-box align-items-center">   
-           <div class="se-profile-img">
-            <img *ngIf="profile && (profile.profile_image=='' || profile.profile_image==null)" class="profile" src="../../../assets/img/user.png" />
-          
-            <img *ngIf="profile && (profile.profile_image!='' && profile.profile_image!=null)" 
-            class="profile" src="{{ profile.profile_image }}" />
-            </div>
-          <div class="box-top">
-              <div class="profile">
-                  <div class="name-user">
-                      <h4><strong>{{ profile.name }}</strong> </h4>
-                      <span><i class="fa fa-location-arrow" aria-hidden="true"></i> {{ profile.district }}</span>
-                  </div>
+    <div class=" col-md-12 card-ta dash-81">
+      <div class="row">
+      <div class="col-md-6">
+        <div class="settings-heading review-card mb-3">
+          <h2 class="profile-hi"><img src="assets/img/profile-se.svg">Profile</h2>
+        </div>
+        <div class="settings-heading review-card mb-3">
+          <div class="review-box align-items-center">   
+            <div class="se-profile-img">
+              <img *ngIf="profile && (profile.profile_image=='' || profile.profile_image==null)" class="profile" src="../../../assets/img/user.png" />
+            
+              <img *ngIf="profile && (profile.profile_image!='' && profile.profile_image!=null)" 
+              class="profile" src="{{ profile.profile_image }}" />
               </div>
-          </div>
-      </div>
-      </div>
-
-      <div class="settings-heading review-card mb-3">
-         <ul class="setting-ul">
-           <li>
-             <h3>Email ID</h3>
-             <p>{{profile.email}}</p>
-           </li>
-         </ul>
-
-         <ul class="setting-ul">
-           <li>
-             <h3>Phone No</h3>
-             <p>+91 {{profile.phone}}</p>
-           </li>
-         </ul>
-         <ul class="setting-ul">
-          <li>
-            <h3>Pin Code</h3>
-            <p>{{profile.pincode}}</p>
-          </li>
-        </ul>
-        <ul class="setting-ul">
-          <li>
-            <h3>Dist</h3>
-            <p>{{profile.district}}</p>
-          </li>
-        </ul>
-
-         <ul class="setting-ul">
-           <li>
-             <h3>Adress</h3>
-             <p>{{profile.address}}</p>
-           </li>
-         </ul>
-      </div>
-    </div>
-
-
-    <div class="col-md-6">
-      <div class="settings-heading review-card mb-3">
-         <h2 class="profile-hi"><img src="assets/img/editprofile.svg">Edit Profile</h2>
-      </div>
-
-      <div class="settings-heading review-card mb-3">
-
-        <form class="form-horizontal"[formGroup]="profileForm" (ngSubmit)="onSubmit()">
-
-        
-            <div class="container">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group" style="margin-bottom: 0px !important;">
-                    <div class="dropzone-wrapper">
-                      <div class="dropzone-desc">
-                        <img src="assets/img/upload.svg" class="fa fa-upload" aria-hidden="true">
-                        <p>Drop files to upload </p>
-
-                        <div class="form-group login-app center ">
-                          <button class="log-in">Or Click Here</button>
-                      </div>
+            <div class="box-top">
+                <div class="profile">
+                    <div class="name-user">
+                        <h4><strong>{{ profile.name }}</strong> </h4>
+                        <span><i class="fa fa-location-arrow" aria-hidden="true"></i> {{ profile.district }}</span>
                     </div>
-                      <input type="file"  id="profile_image" accept="image/*" (change)="fileChangeEvent($event)" class="dropzone">
-                     </div>
-                  </div>
-
-                  <div class="row">
-
-                  <div class="col-md-6"> 
-                    <image-cropper
-                    [imageChangedEvent]="imageChangedEvent"
-                    [maintainAspectRatio]="true"
-                    [aspectRatio]="1 / 1"
-                    format="png"
-                    (imageCropped)="imageCropped($event)"
-                    (imageLoaded)="imageLoaded()"
-                    (cropperReady)="cropperReady()"
-                    (loadImageFailed)="loadImageFailed()"
-                ></image-cropper>
-                 </div>
-
-                  <div class="col-md-6"> 
-                      <img [src]="croppedImage" style="width: 70%;" />                   
-                      </div>
-                    </div>
-
                 </div>
-                <div class="col-md-12">
-                    
-                      <div class="form-group">
-                        <label for="inputName">Name</label>
-                        <input type="text" class="form-control" id="name" formControlName="name" placeholder="Full Name">
-                          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                              <div *ngIf="f.name.errors.required">Name is required</div>
-                          </div>
+            </div>
+        </div>
+        </div>
 
+        <div class="settings-heading review-card mb-3">
+          <ul class="setting-ul">
+            <li>
+              <h3>Email ID</h3>
+              <p>{{profile.email}}</p>
+            </li>
+          </ul>
+
+          <ul class="setting-ul">
+            <li>
+              <h3>Phone No</h3>
+              <p>+91 {{profile.phone}}</p>
+            </li>
+          </ul>
+          <ul class="setting-ul">
+            <li>
+              <h3>Pin Code</h3>
+              <p>{{profile.pincode}}</p>
+            </li>
+          </ul>
+          <ul class="setting-ul">
+            <li>
+              <h3>Dist</h3>
+              <p>{{profile.district}}</p>
+            </li>
+          </ul>
+
+          <ul class="setting-ul">
+            <li>
+              <h3>Adress</h3>
+              <p>{{profile.address}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <div class="settings-heading review-card mb-3">
+          <h2 class="profile-hi"><img src="assets/img/editprofile.svg">Edit Profile</h2>
+        </div>
+
+        <div class="settings-heading review-card mb-3">
+
+          <form class="form-horizontal"[formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+          
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group" style="margin-bottom: 0px !important;">
+                      <div class="dropzone-wrapper">
+                        <div class="dropzone-desc">
+                          <img src="assets/img/upload.svg" class="fa fa-upload" aria-hidden="true">
+                          <p>Drop files to upload </p>
+
+                          <div class="form-group login-app center ">
+                            <button class="log-in">Or Click Here</button>
+                        </div>
                       </div>
-                      <div class="form-group">
-                        <label for="inputeEmail">Email ID</label>
-                        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email Adrress">
-                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                          <div *ngIf="f.email.errors.required">Email ID is required</div>
-                          <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        <input type="file"  id="profile_image" accept="image/*" (change)="fileChangeEvent($event)" class="dropzone">
                       </div>
-                      </div>
-                                      
-                    <div class="form-row">
+                    </div>
+
+                    <div class="row">
+
+                      <div class="col-md-6"> 
+                        <image-cropper
+                        [imageChangedEvent]="imageChangedEvent"
+                        [maintainAspectRatio]="true"
+                        [aspectRatio]="1 / 1"
+                        format="png"
+                        (imageCropped)="imageCropped($event)"
+                        (imageLoaded)="imageLoaded()"
+                        (cropperReady)="cropperReady()"
+                        (loadImageFailed)="loadImageFailed()"         ></image-cropper>
+                    </div>
+
+                      <div class="col-md-6"> 
+                        <img [src]="croppedImage" style="width: 70%;" />                   
+                        </div>
+                   </div>
+
+                  </div>
+                  <div class="col-md-12">
+                      
+                        <div class="form-group">
+                          <label for="inputName">Name</label>
+                          <input type="text" class="form-control" id="name" formControlName="name" placeholder="Full Name">
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">Name is required</div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                          <label for="inputeEmail">Email ID</label>
+                          <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email Adrress">
+                          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email ID is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        </div>
+                        </div>
+                                        
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputPin">Pin Code</label>
+                          <input type="text" class="form-control" id="pincode" formControlName="pincode"  placeholder="Pincode">
+                          
+                          <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                            <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+                        </div>                      
+                        </div>          
+                      
                       <div class="form-group col-md-6">
-                        <label for="inputPin">Pin Code</label>
-                        <input type="text" class="form-control" id="pincode" formControlName="pincode"  placeholder="Pincode">
+                        <label for="inputDist">Dist</label>
+                        <input type="text" class="form-control" id="district" formControlName="district" placeholder="District">
                         
-                        <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
-                          <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+                        <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                          <div *ngIf="f.district.errors.required">District is required</div>
                       </div>
-                     
+                    
                       </div>
-                      <!-- <div class="form-group col-md-6">
-                        <label for="inputstreet">Street</label>
+                    </div>
+                    <div class="form-group">                      
+                      <label for="inputstreet">Street</label>
                         <input type="text" class="form-control" id="street" formControlName="street" placeholder="Street">
                         
                         <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
                           <div *ngIf="f.street.errors.required">Street is required</div>
-                      </div>
-                     
-                      </div> -->
+                        </div> 
+                    </div>
                     
+                      <div class="form-group">
+                        <label for="inputAddress">Address</label>
+                        <input type="text" class="form-control" id="address" formControlName="address" placeholder="Address">
+                        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                          <div *ngIf="f.address.errors.required">Address is required</div>
+                      </div>
+                    
+                      </div>
 
-                    <div class="form-group col-md-6">
-                      <label for="inputDist">Dist</label>
-                      <input type="text" class="form-control" id="district" formControlName="district" placeholder="District">
-                      
-                      <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
-                        <div *ngIf="f.district.errors.required">District is required</div>
+                      <div class="login-app center ">
+                        <button  type="submit" class="log-in">Update</button>
                     </div>
-                   
-                    </div>
+
+                      <!-- <div class="form-group">
+                      <button class="btn-invite" type="submit">Update</button>
+                    </div> -->
+
+
                   </div>
-                    <div class="form-group">
-                      <label for="inputAddress">Address</label>
-                      <input type="text" class="form-control" id="address" formControlName="address" placeholder="Address">
-                      <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
-                        <div *ngIf="f.address.errors.required">Address is required</div>
-                    </div>
-                   
-                    </div>
-
-                    <div class="login-app center ">
-                      <button  type="submit" class="log-in">Update</button>
-                  </div>
-
-                    <!-- <div class="form-group">
-                    <button class="btn-invite" type="submit">Update</button>
-                  </div> -->
-
-
                 </div>
               </div>
-            </div>
-            
-          </form>
+              
+            </form>
+
+        </div>
 
       </div>
-
+    </div>
     </div>
   </div>
   </div>
+</ng-container>  
+
+<ng-container *ngIf="isMobile && !MenuActive">
+  <div class="mobile-mybooking-top">
+      <div class="row">
+            <div class="col-1 pr-0 pl-2 mob-arrow-left">
+              <a routerLink="/">
+                <i class="fas fa-arrow-left"></i>
+              </a>  
+            </div>
+            <div class="col-7 pl-2 pr-2 mob-list-center">
+                <h5>My Profile</h5>
+            </div>
+            <div class="col-4 pl-2 pr-2">
+                <div class="mobile-logo">
+                    <img src="assets/img/mob-img/logo.png" />
+                </div>
+            </div>
+        </div>   
+   </div>
+
+
+
+<div class="mobile-myprofile-middle">
+  <div class="row">
+    <div class="col-12">
+       <div class="px-2 pt-3 pb-1">
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+               <div class="d-flex justify-content-center rounded-2 mb-4">
+                  <div class="form-profile w-100">
+                     <div class="text-center mb-3 position-relative">
+                        <div class="position-absolute edit-bt">
+                           <label for="upload-photo" class="mb-0"><span class="fas fa-edit text-white"></span></label>
+                           <input type="file"  id="profile_image" accept="image/*" (change)="fileChangeEvent($event)" class="dropzone">                           
+                        </div>
+                        <img *ngIf="profile && (profile.profile_image=='' || profile.profile_image==null)" class="rounded-pill" src="../../../assets/img/user.png" width="100px"  />
+      
+                        <img *ngIf="profile && (profile.profile_image!='' && profile.profile_image!=null)" 
+                        class="rounded-pill" src="{{ profile.profile_image }}" width="100px" />                      
+                     </div>
+                     <div class="row" *ngIf="displays == 'True'" >
+
+                      <div class="col-md-6"> 
+                        <image-cropper
+                        [imageChangedEvent]="imageChangedEvent"
+                        [maintainAspectRatio]="true"
+                        [aspectRatio]="1 / 1"
+                        format="png"
+                        (imageCropped)="imageCropped($event)"
+                        (imageLoaded)="imageLoaded()"
+                        (cropperReady)="cropperReady()"
+                        (loadImageFailed)="loadImageFailed()"         ></image-cropper>
+                    </div>
+
+                      <div class="col-md-6"> 
+                        <img [src]="croppedImage" style="width: 70%;" />                   
+                        </div>
+                   </div>
+                     
+                     
+                     <div class="form-group">
+                        <label class="text-muted f-10 mb-1">Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" placeholder="Full Name">
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                          <div *ngIf="f.name.errors.required">Name is required</div>
+                      </div>
+                     </div>
+                     <!-- <div class="form-group">
+                        <label class="text-muted f-10 mb-1">Mobile Number</label>
+                        <input type="number" class="form-control" placeholder="Enter Mobile Number" >
+                     </div> -->
+                     <div class="form-group">
+                        <label class="text-muted f-10 mb-1">Email ID</label>
+                        <input type="email" class="form-control" placeholder="Enter Your Email" formControlName="email">
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                          <div *ngIf="f.email.errors.required">Email ID is required</div>
+                          <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                      </div>
+                     </div>
+                     <div class="form-group">
+                        <label class="text-muted f-10 mb-1">Pincode</label>
+                        <input type="number" class="form-control" placeholder="Pincode" id="pincode" formControlName="pincode">
+                          <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                            <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+                          </div>
+                     </div>
+                     <div class="form-group">
+                        <label class="text-muted f-10 mb-1">District</label>
+                        <input type="text" class="form-control" placeholder="Enter District" id="district" formControlName="district">
+                        <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                          <div *ngIf="f.district.errors.required">District is required</div>
+                        </div>
+                     </div> 
+                     <div class="form-group">
+                      <label class="text-muted f-10 mb-1">Street</label>
+                      <input type="text" class="form-control" placeholder="Enter Street" id="street" formControlName="street">
+                      <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+                        <div *ngIf="f.street.errors.required">Street is required</div>
+                      </div>
+                   </div>                     
+                     <div class="form-group">
+                        <label class="text-muted f-10 mb-1">Address</label>
+                        <textarea class="form-control" placeholder="Enter Address" id="address" formControlName="address"></textarea>
+                        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                          <div *ngIf="f.address.errors.required">Address is required</div>
+                        </div>
+                     </div>
+                     
+                     <div class="mb-2">
+                        <button type="submit" class="btn btn-danger btn-block osahanbus-btn rounded-1">UPDATE PROFILE</button>
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+    </div>
+  </div>
 </div>
-</div>
-  
+</ng-container>
+
+<ng-container *ngIf="isMobile && MenuActive">
+    <div class="mobile-myaccount-top">
+      <div class="row">
+        <div class="col-5">
+          <div class="mobile-logo">
+            <img src="assets/img/mob-img/logo.png" />
+          </div>
+        </div>
+        <div class="col-7 mob-logintx">
+          <a routerLink="/login" *ngIf="!session.isLoggedIn()">
+            Login / Signup
+          </a>
+          <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">Dashboard </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-myaccount-middle">
+      <ul class="mobile-menu">
+        <li>
+          <a routerLink="/manage-booking"><i class="far fa-window-restore"></i>Manage Booking</a>
+        </li>
+        <li>
+          <a routerLink="/offers"><i class="fas fa-gifts"></i>Offers</a>
+        </li>
+        <li>
+          <a routerLink="/operators"><i class="fas fa-bus"></i>Operators</a>
+        </li>
+        <li>
+          <a routerLink="/routes"><i class="fas fa-map-marker-alt"></i>Routes</a>
+        </li>
+        <li>
+          <a routerLink="/faq"><i class="fas fa-question"></i>FAQ's</a>
+        </li>
+        <li>
+          <a routerLink="/testimonials"><i class="fa fa-star"></i>Testimonials</a>
+        </li>
+        <li>
+          <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i>Terms & Conditions</a>
+        </li>
+        <li>
+          <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i>Privacy Policy</a>
+        </li>
+        <li>
+          <a routerLink="/about-us"><i class="fas fa-info-circle"></i>About Us</a>
+        </li>
+        <li *ngIf="session.isLoggedIn()">
+          <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
+        </li>
+        <li *ngIf="session.isLoggedIn()">
+          <a (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+        </li>
+      </ul>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="isMobile">
+  <div class="mob-mtbh"></div>
+  <div class="mobile-fixed-bottom">
+    <div class="footer-menu row m-0 mobile-bg-danger">
+      <div class="col-3 p-0 text-center">
+        <a routerLink="/" class="home">
+          <i class="fas fa-home"></i>
+          <p class="mb-0 small">Home</p>
+        </a>
+      </div>
+      <div class="col-3 p-0 text-center">
+        <a routerLink="/dashboard" class="home">
+          <i class="fas fa-ticket-alt"></i>
+          <p class="mb-0 small">My Bookings</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
+        <a routerLink="/login" class="home">
+          <i class="fas fa-user"></i>
+          <p class="mb-0 small">Login</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
+        <a routerLink="/myaccount" class="home active">
+          <i class="fas fa-user"></i>
+          <p class="mb-0 small">My Account</p>
+        </a>
+      </div>
+
+      <div class="col-3 p-0 text-center">
+        <a (click)="menu()" class="home {{activeMenu}}">
+          <i class="fas fa-bars"></i>
+          <p class="mb-0 small">Menu</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</ng-container>
  

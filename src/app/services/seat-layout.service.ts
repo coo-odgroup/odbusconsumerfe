@@ -22,8 +22,12 @@ export class SeatLayoutService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getSeats(dt:any,bus_id:any,s:any,d:any): Observable<any> {
-    return this.httpClient.get<any>(this.apiURL + '/viewSeats?entry_date=' + dt+'&busId='+bus_id+'&sourceId='+s+'&destinationId='+d,this.httpOptions)
+  //getSeats(dt:any,bus_id:any,s:any,d:any,rf_no:any,origin:any): Observable<any> {
+  getSeats(params:any): Observable<any> {
+
+    //console.log(this.apiURL + '/viewSeats?entry_date=' + dt+'&busId='+bus_id+'&sourceId='+s+'&destinationId='+d+'&ReferenceNumber='+rf_no+'&origin='+origin);
+
+    return this.httpClient.post<any>(this.apiURL + '/viewSeats', JSON.stringify(params) ,this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

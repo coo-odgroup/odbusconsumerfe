@@ -416,7 +416,7 @@ section.top-operators ul li img{
 
 section.top-routs ul li {
     display: inline-block;
-    width: 19%;
+    width: 19.3%;
     line-height: 30px;
     margin-right: 8px;
 }
@@ -436,7 +436,7 @@ section.top-operators ul li a{
 }
 
 section.top-routs ul li a{
-    font-size: 13.5px;
+    font-size: 13px;
     text-transform: uppercase;
 }
 
@@ -785,9 +785,7 @@ section.search-result {
 .bs-srch-dt-dtl li a img {
     margin-left: 5px;
 }
-img.pllygn-dn {
-    display: none;
-}
+
 .bs-srch-dt-dtl li a.intro {
     color: #efc003;
 }
@@ -799,14 +797,7 @@ a.srt-by-prc.intro img.pllygn-dn,
 a.srt-by-seats.intro img.pllygn-dn {
     display: inline;
 }
-a.srt-by-arival.intro img.pllygn-up,
-a.srt-by-dept.intro img.pllygn-up,
-a.srt-by-duraton.intro img.pllygn-up,
-a.srt-by-opert.intro img.pllygn-up,
-a.srt-by-prc.intro img.pllygn-up,
-a.srt-by-seats.intro img.pllygn-up {
-    display: none;
-}
+
 .bs-srch-dt-dtl li a {
     color: #072c6b;
     font-size: 15px;
@@ -1321,7 +1312,7 @@ ngb-datepicker-navigation {
 }
 
 .ng-select span {
-    text-transform: uppercase !important;
+    /* text-transform: uppercase !important; */
 }
 
 .lb-dataContainer {
@@ -1331,7 +1322,7 @@ ngb-datepicker-navigation {
   }
 
 .ng-select, .ng-select div, .ng-select input, .ng-select span{
-    text-transform:uppercase !important;
+    /* text-transform:uppercase !important; */
     font-size:14px;
 }
 
@@ -1355,3 +1346,92 @@ ngb-datepicker-navigation {
     margin-left:28px !important;
   }
 
+
+/* mobile section */
+
+.cal-modal-mobile .ngb-dp-day, .cal-modal-mobile .ngb-dp-week-number, .cal-modal-mobile .ngb-dp-weekday {
+    width: 18% !important;
+    height: 2.5rem !important;
+    padding: 4px;
+    border: 0;
+  }
+
+  .modal-backdrop .modal-dialog {
+    transform: none;
+    margin: 0px !important;
+    border-radius: 0;
+  }
+
+  .cal-modal-mobile .btn-light{
+    width:100%!important;  
+  }
+
+  .cal-modal-mobile .ngb-dp-month {
+    pointer-events: none;
+    width: 100%;
+}
+
+.cal-modal-mobile ngb-datepicker {
+    width: 100%;
+}
+
+/* ngb-modal-window .modal-lg {
+    margin: 0px !important; 
+} */
+
+.mobile-modalbox .modal-dialog{
+    margin: 0px !important; 
+    max-width: 100% !important;
+}
+
+.mobile-modalbox .modal-body-m0 {
+   padding: 0px !important; 
+}
+
+.mobile-modalbox .modal-content{
+    border-radius: 0px !important;
+}
+
+.mobile-middle-box ol{
+    margin-left: -22px !important;
+  }
+  .mobile-middle-box ol li ul{
+    margin-left: -22px !important;
+  }
+  
+
+.mobile-support-middle .card-header .btn-link{
+    font-size: 18px !important;
+    text-align: left !important;
+    padding:4px 12px  !important;
+    width: 100%;
+  }
+
+  .mobile-myaccount-top .mobile-logo img{
+      float: left !important;
+  }
+
+  .mobile-mybooking-middle .list-inline-item:not(:last-child) {
+    margin-right: 0.3rem !important;
+}
+
+.mobile-mybooking-middle .table-ul li a{
+    padding: 4px 10px !important;
+}
+
+.mobile-fixed-bottom .home p{
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.mobile-modalbox{
+    background: #ffffff !important;
+  }
+
+.modal-content{
+    border: none !important;
+}
+
+.mb-8{
+    margin-bottom: 120px;
+}

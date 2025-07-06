@@ -1,0 +1,61 @@
+
+
+
+<ng-container *ngIf="!isMobile">
+    <div class="jumbotron text-center thankyou">
+      <h1 class="display-3">Payment Success!</h1>
+      <div>
+        <h5 style="text-transform: capitalize;">Hello {{ name }}</h5>
+        <h6 class="print">Your Ticket is Confirmed.</h6>
+        <h6 class="print">ODBUS Wishing You A Happy Journey <img class="smile" src="../../assets/img/Icon awesome-smile-beam.svg"></h6>
+
+        <h6 class="print-sm">Your Payment Receipt ID<b>{{ receipt_id }}</b> </h6> 
+        <h6 class="print-sm">We have sent booking details to your <b>{{ phone}}</b>  <b *ngIf="email!=''"> & {{ email}}</b> </h6>
+    </div>
+      <hr>
+      <p>Having trouble? <a routerLink="/contact-us">Contact us</a></p>
+      <p class="lead">
+        <a class="btn btn-primary btn-sm bt-back" routerLink="/" role="button">Continue to homepage</a>
+      </p>
+    </div>
+  </ng-container>
+  
+  <ng-container *ngIf="isMobile && !MenuActive">
+    <div class="mobile-mybooking-top">
+      <div class="row">
+        <div class="col-1 pr-0 pl-2 mob-arrow-left">
+          <a routerLink="/">
+            <i class="fas fa-arrow-left"></i>
+          </a>  
+        </div>
+        <div class="col-7 pl-2 pr-2 mob-list-center">
+          <h5>{{ pageTitle }}</h5>
+        </div>
+        <div class="col-4 pl-2 pr-2">
+          <div class="mobile-logo">
+            <img src="assets/img/mob-img/logo.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="mobile-middle-box">
+      <div class="row">
+        <div class="jumbotron text-center thankyou">
+          <h1 class="display-3">Payment Success!</h1>
+          <div>
+            <h5 style="text-transform: capitalize;">Hello {{ passengerData.customerInfo.name }}</h5>
+            <h6 class="print">Your Ticket is Confirmed.</h6>
+            <h6 class="print">ODBUS Wishing You A Happy Journey <img class="smile" src="../../assets/img/Icon awesome-smile-beam.svg"></h6>
+            <h6 class="print-sm">Your Payment Receipt ID <b>{{ receipt_id }}</b> </h6> 
+            <h6 class="print-sm">We have sent booking details to your <b>{{ passengerData.customerInfo.phone}}</b>  <b *ngIf="passengerData.customerInfo.email"> & {{ passengerData.customerInfo.email}}</b> </h6>
+        </div>
+          <hr>
+          <p>Having trouble? <a routerLink="/contact-us">Contact us</a></p>
+          <p class="lead">
+            <a class="btn btn-primary btn-sm bt-back" routerLink="/" role="button">Continue to homepage</a>
+          </p>
+        </div>
+      </div>
+    </div>
+   </ng-container> 

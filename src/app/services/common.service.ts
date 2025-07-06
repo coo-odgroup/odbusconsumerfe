@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpErrorResponse  } from '@angular/common/http';
    
-import {  Observable, throwError } from 'rxjs';
+import {  BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 
@@ -19,7 +19,18 @@ export class CommonService {
     })
   }
 
+   commonData: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  commonData$: Observable<any> = this.commonData.asObservable();
+  
+ 
   constructor(private httpClient: HttpClient) { }
+
+  
+  setCommonData(newData) {
+    this.commonData=newData;
+    this.commonData.next(this.commonData);
+  }
+
 
   getCommonData(post): Observable<any> {
     return this.httpClient.post<any>(this.apiURL + '/CommonService', JSON.stringify(post), this.httpOptions)
@@ -27,6 +38,14 @@ export class CommonService {
       catchError(this.errorHandler)
     )
   }
+
+  PopularInfo(post): Observable<any> {
+    return this.httpClient.post<any>(this.apiURL + '/PopularInfo', JSON.stringify(post), this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
   getPathUrls(): Observable<any> {
     return this.httpClient.get<any>(this.apiURL + '/AllPathUrls', this.httpOptions)
     .pipe(

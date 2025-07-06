@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import{ GlobalConstants } from '../constants/global-constants';
+import { EncryptionService } from '../encrypt.service';
 
 
 @Injectable({
@@ -18,12 +19,15 @@ export class OTPService {
     })
   }
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private enc:EncryptionService) { }
 
   submit_otp(params :any): Observable<any> {
 
-   // console.log(JSON.stringify(params));
-    return this.httpClient.post(this.apiURL + '/VerifyOtp', JSON.stringify(params) ,this.httpOptions)
+    let requestParam = this.enc.encrypt(JSON.stringify(params));
+
+		let reqData = { 'REQUEST_DATA': requestParam};
+
+    return this.httpClient.post(this.apiURL + '/VerifyOtpweb', reqData ,this.httpOptions)
     .pipe(
       
       catchError(this.errorHandler)
