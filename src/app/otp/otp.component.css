@@ -1,0 +1,81 @@
+.card-header {
+    color: #072c6b;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 0;
+    background-color: rgb(239 192 3);
+}
+label {
+   font-size: 1rem;
+    font-weight: 500;
+    color: #7f7f7f;
+}
+.form-control {
+    height: 0; 
+    padding: 1.3rem .75rem;
+    font-size: .8rem;
+    font-weight: 400;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #fafafa;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    box-shadow: 1px 2px 7px #f4f4f4;
+}
+.reg{    background-color: #072c6b;
+    border-radius: 34px;}
+.formlink{color: #efc003;
+    text-decoration: underline;}
+
+    .center{
+        text-align: center;
+    }
+
+    .justify-content-center{
+        padding: 60px;
+      }
+
+      .login-app .log-in{
+        display: inline-block;
+        width: 140px;
+        background-color: #072C6B;
+        height: 38px;
+        line-height: 38px;
+        text-align: center;
+        box-shadow: 3px 3px 6px #00000029;
+        border-radius: 8px;
+        color: #fff;
+        letter-spacing: 0.25px;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: bold;
+        border: none;
+      }
+
+
+
+
+    .loginbg{
+        background: #e7eaeb;
+    }
+
+    .card-header{
+        font-size: 25px;;
+    }
+
+    .loginbg .form-control{
+      border: 1px solid #072c6b !important;
+      border-radius: 4px;
+    }
+
+    .loginbg .input-group-addon{
+      padding:8px 12px 8px 0px;
+    }
+
+    .log-left{
+      margin-left:30px;
+  }
+
+.alert-success{
+    margin-left:28px !important;
+    text-align: center;
+  }

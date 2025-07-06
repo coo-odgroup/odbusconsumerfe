@@ -1,0 +1,442 @@
+
+body{background-color: #F5F5F5; font-family: 'Montserrat', sans-serif;}
+
+
+.main {
+  margin-left: 254px;
+  padding: 0px 10px;
+}
+
+
+
+/*booking history table*/
+
+.input-group.md-form.form-sm.form-2 input {
+    border: 1px solid #bdbdbd;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+.input-group.md-form.form-sm.form-2 input.purple-border {
+    border: 1px solid #9e9e9e;
+}
+.input-group.md-form.form-sm.form-2 input[type=text]:focus:not([readonly]).purple-border {
+    border: 1px solid #ba68c8;
+    box-shadow: none;
+}
+.form-2 .input-group-addon {
+    border: 1px solid #ba68c8;
+}
+.table-bordered.red-border, .table-bordered.red-border th, .table-bordered.red-border td {
+    border: 1px solid #ff3547!important;
+}        
+.table.table-bordered th {
+    text-align: center;
+}
+.table {
+    font-size: 12px;
+}
+.table td, .table th {
+    border-top: 1px solid #EFEFEF;
+    vertical-align: middle!important;
+}
+.table thead th {
+    border-bottom: none;
+    font-size: 15px;
+}
+.table-hover tbody tr:hover {
+    color: #212529;
+    background-color: rgb(247 249 255);
+}
+/*booking history table end*/
+
+.table-ul{float: right;}
+.table-ul a{color: #0E204B;
+    font-size: 15px;
+    padding: 4px 13px; transition: all 0.2s;}
+
+.table-ul li:last-child {
+  border: none ;
+}
+
+.table-ul > li a{
+  float: left;
+  
+  margin-right: 0 !important;
+  transition: all .2s;
+  background: #efc317;
+  padding:4px 18px;
+  margin-right:3px !important;
+  border-radius: 4px;
+
+}
+.table-ul .active a{
+    background:#0E204B; color: #ffffff;
+}
+/* .table-ul a::after {
+border-bottom: 2px solid #FFCC01;
+    bottom: -2px;
+    content: " ";
+    left: 10px;
+    position: absolute;
+    right: 0;
+    width: 80%;
+    transition: all .2s;
+} */
+.table-ul li a:hover {text-decoration: none; background:#0E204B; color: #ffffff;}
+
+.booking-hi{
+    font-size: 16px;
+    font-weight: 600;
+    color: #707070;}
+
+.booking-hi img{    
+  width: 6%;
+  margin-right: 10px;
+}
+
+.table-ul-sub{float: right;}
+.table-ul-sub a{
+    color: #0E204B;
+    font-size: 10px;
+    padding: 2px 5px;
+    transition: all .2s;}
+
+.table-ul-sub a:hover{
+    text-decoration: underline !important;
+}
+.table-ul-sub > li {
+    float: left;
+    position: relative;
+    margin-right: 0 !important;
+    transition: all 0.2s;
+}
+.table-ul-sub .deactive {
+   color: #000000;
+}
+.table-ul-sub a:hover{text-decoration: none;}
+.span-cm{
+    width: 100%;
+    display: block;
+    float: right;}
+.Completed{    
+    float: right;
+    background-color: #FFEC9E;
+    color: #000 !important;
+    padding: 5px 13px;
+    text-decoration: none !important;}
+
+.Upcoming{    
+float: right;
+background-color: #0080007a;
+color: #000 !important;
+padding: 5px 13px;
+text-decoration: none !important;}
+
+
+.Ongoing{    
+    float: right;
+    background-color: #2d59d17a;
+    color: #000 !important;
+    padding: 5px 13px;
+    text-decoration: none !important;}
+
+.Cancelled{    
+float: right;
+background-color: #ff000040;
+color: #000 !important;
+padding: 5px 13px;
+text-decoration: none !important;}
+/*pagination*/
+.page-item.disabled .page-link {
+    color: #b9b9b9;
+}
+.page-link {
+    padding: 1rem 1em;
+    margin-left: 7px;
+    font-size: 12px;
+    line-height: 0;
+    box-shadow: 1px 1px 5px #d6d6d6;
+    border-radius: 8px;
+    color: #0e204b;
+    background-color: #fff;
+    cursor: pointer;
+
+}
+.page-link.active {
+    color: #0e204b;
+    background-color: #ffec9e;
+    border: none !important;
+}
+
+
+/*faq*/
+.faq .faq-link{
+  border-radius: 20px;
+  box-shadow: 2px 3px 10px #cecece;
+  background-color: #ffffff;
+  padding: .8rem 1.2rem;
+  margin-bottom: 8px;
+  text-decoration: none;
+}
+.faq-link .faq-img{
+  width: 5%;
+}
+.faq{display: block;}
+.faq .faq-link h2{
+  font-size: 14px;
+  color: #0E204B;
+  margin-top: 3px;
+  margin-bottom: 0;
+}
+.faq-content{
+  padding: 10px;
+}
+.faq-content p{
+  margin-bottom: 0;
+  padding: 25px 19px 16px 19px;
+  background-color: #dce6ff;
+  position: relative;
+  width: 100%;
+  z-index: -1;
+  top: -21px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: block;
+  font-size: 12px;
+}
+.faq-main h1{    
+  font-size: 34px;
+  font-weight: 500; color: #0E204B;}
+.faq-main p{    
+  font-size: 14px; color: #A1A1A1;}
+.card-faq{    
+  background-color: transparent;
+  border: none;
+  display: block;
+  padding: 36px 0 30px;}
+
+
+/* faq top banner*/
+.night-fade-gradient{background-image: linear-gradient(180deg, #425DE1, #172D73);}
+.faq-heading h1{font-size: 2rem;
+  color: #fff;
+  font-weight: 600;}
+.faq-heading p{    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;}
+.banner-faq img{    
+    width: 64%;
+    position: absolute;
+    bottom: 0;}
+.faq-heading{
+    display: block;
+    padding: 7rem 6rem;}
+
+/*notification*/
+.notification-hi{
+    font-size: 16px;
+    font-weight: 600;
+    color: #707070;}
+
+.notification-hi img{    
+    width: 2%;
+    margin-right: 10px;
+    margin-left: 6px;
+}
+.noti-link{    
+    padding: 15px 17px 15px;
+    color: #515866;}
+.noti-link:hover{    
+    text-decoration: none;}
+.noti-link img{    
+    margin-right: 12px;
+    margin-top: -5px;
+    width: 1.6%;}
+.noti-link h5{
+    font-size: 12px;
+    margin-bottom: 0;
+    color: #4B4B4B;}
+.noti-link p{    
+    font-size: 12px;
+    padding: 11px;
+    margin-bottom: 0;
+    color: #707070;}
+
+.color-gift{background-color: #FFF6F6;}
+.color-star{background-color: #EEF3FF;}
+.color-bell{background-color: #F6E3FF;}
+.color-offer{background-color: #FFEFAE;}
+
+/*wallet*/
+.wallet img{width: 12%;}
+.wallet h5{margin-left: 17px;
+    font-size: 24px;
+    margin-top: 15px;
+    font-weight: bold;
+    line-height: 23px;
+    color: #0E204B;}
+.wallet small{    
+    font-size: 12px;
+    color: #707070;}
+.wallet-btn{    
+    padding: 7px 15px;
+    background-color: #ffcc01;
+    border-radius: 5px;
+    float: right;
+    display: table;
+    margin-top: 16px;
+    color: #0E204B;
+    font-weight: 800; transition: all .2s;}
+.wallet-btn:hover{    
+    text-decoration: none; background-color: #0e204b; color: #ffffff; }
+.wallet-hi{
+    font-size: 16px;
+    font-weight: 600;
+    color: #707070;}
+
+.wallet-hi img{    
+    width: 2%;
+    margin-right: 10px;
+    margin-left: 6px;
+}
+
+/* Reward top banner*/
+.reward-heading h1{font-size: 2rem;
+  color: #fff; text-align: center; 
+  font-weight: 600;}
+.reward-heading p{    
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 0.2rem;}
+.reward-heading{
+    display: block;
+    padding: 3rem 6rem;}
+
+
+/* Invite Friend top banner*/
+.invite-friend-heading h1{    
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;}
+.invite-friend-heading p{    
+  font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    color: #95B2F9;
+    margin-bottom: 0.2rem;}
+.invite-friend-heading{
+    display: block;
+    padding: 3rem 6rem;}
+.invite-friend-heading img{
+    margin-top: 20px !important;
+    width: 62%;
+    display: block;
+    margin: 0 auto;}
+
+/* Invite Friend */
+.invite-friend-input{
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    border-bottom: solid 2px #FFCC01;
+}
+/* Invite Friend */
+.form-subscribe
+{
+    position: relative;
+    margin-top: -3rem !important;
+    max-width:600px;
+    margin:0 auto
+}
+.form-subscribe .form-control{
+    background-color: #fff;
+    padding-left: 24px;
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 12px;
+    padding-right: 24px;
+    border: none;
+    border-top-left-radius: 36px;
+    border-bottom-left-radius: 36px;
+}
+.form-subscribe .form-control.focus,.form-subscribe .form-control:focus
+{
+  z-index:2;
+  background-color:hsla(0,0%,100%,.8)
+}
+.form-subscribe .btn{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 36px;
+    border-bottom-right-radius: 36px;
+    background: #ffcc01;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 12px;
+    border-color: #ffcc01;}
+
+
+/*end Invite Friend */
+
+/*Rewards*/
+.reward-link{    
+    padding: 0;
+    color: #515866;
+    background-color: #fff;}
+.reward-link:hover{    
+    text-decoration: none;}
+.reward-link img{    
+    margin-right: 12px;
+    width: 5%;}
+.reward-link h5{
+    font-size: 14px;
+    margin-bottom: 0;
+    color: #4B4B4B;
+    vertical-align: middle;
+    padding: 18px 0px;}
+.reward-link small{    
+    font-size: 14px;
+    padding: 15px 12px;
+    margin-bottom: 0;
+    color: #707070;}
+.card-rewads{    
+    background-color: transparent;
+    border: none;
+    display: block;
+    padding: 0;
+}
+
+ngb-rating.d-inline-flex {
+    color: #efc317 !important;
+    font-size: 28px;
+    margin-left: 5px;
+}
+
+.modal-dialog {
+    max-width:700px !important;
+    margin: 1.75rem auto;
+}
+
+.add-rev{
+    margin-bottom:20px;
+}
+
+.add-rev .form-control{
+    margin-top: 10px;
+}
+
+.close{
+    font-size: 38px !important;
+}
+
+.rate pre{
+    font-size: 16px;
+}
+
+
+
+

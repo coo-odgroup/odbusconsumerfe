@@ -1,0 +1,122 @@
+
+
+<section class="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-logo" *ngIf="master_info && master_info.footer_logo!='' && master_info.footer_logo!=null">
+                         <img  src="{{master_info.footer_logo}}" alt="logo-ODBUS" title="" >
+                    </div>
+                    <p class="footer-logo-about">ODBUS is the Odisha's first and largest online bus ticket booking service provider trusted by over thousands happy customers and hundred of bus operator. Anyone can book bus ticket booking through our website and mobile apps for all major routes in Odisha and other surrounded states.</p>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="foot-link">
+                                        <h4>About ODBUS</h4>
+                                        <ul>
+                                            <li><a routerLink="about-us">About Us</a></li>
+                                            <li><a routerLink="contact-us">Contact Us</a></li>
+                                            <!-- <li><a routerLink="">Mobile Version</a></li>
+                                            <li><a routerLink="">ODBUS on Mobile</a></li>
+                                            <li><a routerLink="">Sitemap</a></li> -->
+                                            <li><a routerLink="offers">Offers</a></li>
+                                            <li><a routerLink="careers">Careers</a></li>
+                                            <li><a routerLink="privacy-policy">Privacy Policy</a></li>
+                                            <li><a routerLink="terms-conditions">Terms & Conditions</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="foot-link">
+                                        <h4>Information</h4>
+                                        <ul>
+                                            <li><a routerLink="operators">Operators</a></li>
+                                            <li><a routerLink="routes">Routes</a></li>
+                                            <li><a routerLink="faq">FAQ</a></li>
+                                            <!-- <li><a routerLink="">Blog</a></li>
+                                            <li><a routerLink="">Mission</a></li> -->
+                                            <li><a routerLink="testimonials">Testimonials</a></li>
+                                            <li><a target="_blank" href="https://agent.odbus.co.in">Agent Login</a></li>
+                                            <li><a target="_blank" href="https://admin.odbus.co.in">Association Login</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="foot-link">
+                                        <h4>Our Partners</h4>
+                                        <ul>
+                                            
+                                            <li><a target="_blank" href="https://www.odcar.in">ODCAR </a></li>
+                                            <li><a target="_blank" href="https://www.odtravels.in/">OD TRAVELS</a></li>
+                                            <li><a target="_blank" href="https://www.seofied.com/">SEOFIED</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="foot-cnt">
+                                <h4>Contact Us</h4>
+                                <ul>
+                                    <li>Email : {{master_info.support_email}}</li>
+                                    <li *ngIf="master_info">Phone : {{master_info.mobile_no_1}}</li>
+                                </ul>
+                            </div>
+                          
+                            <div class="payment-option mt-2">
+                                <p>Payment Option</p>
+                            <img src="assets/img/payment-option.png" alt="payment-ODBUS" title="" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- <div class="col-md-12"><p class="mt-3 ft-btm-tit">Connect with us</p></div> -->
+                <div class="col-md-6">
+                    <div class="footer-bottom-left">
+                        <ul>
+                            <li><a href="{{mastersocial_info.facebook_link}}" target="_blank"><img src="assets/img/icon-facebook.svg"></a></li>
+                            <li><a href="{{mastersocial_info.twitter_link}}" target="_blank"><img src="assets/img/icon-twitter.svg"></a></li>
+                            <li><a href="{{mastersocial_info.instagram_link}}" target="_blank"><img src="assets/img/icon-instagram.svg"></a></li>
+                            <li><a href="{{mastersocial_info.linkedin_link}}" target="_blank"><img src="assets/img/icon-linkedin.svg"></a></li>
+                            <li><a href="{{mastersocial_info.googleplus_link}}" target="_blank"><img src="assets/img/icon-pinintrest.svg"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6">
+                    <ul class="footer-bottom-link">
+                      <li><a href="#">Mission</a></li>  
+                      <li><a href="#">Careers</a></li>  
+                      <li><a href="#">FAQ</a></li>  
+                      <li><a href="#">Blog</a></li>  
+                    </ul>
+                </div> -->
+                <div class="col-md-6 text-right">
+                    <p class="m-0">Copyright @ ODBUS Tours & Travels PVT. LTD. All Rights Reserved</p>
+                    <!-- <div class="footer-bottom-right text-right">
+                        <ul>
+                            <li><img src="assets/img/tripadvisor-nederland.svg"></li>
+                            <li><img src="assets/img/paytm.svg"></li>
+                            <li><img src="assets/img/net-banking.png"></li>
+                            <li><img src="assets/img/visa.svg"></li>
+                            <li><img src="assets/img/master-card.png"></li>
+                            <li><img src="assets/img/masterio.png"></li>
+                        </ul>
+                    </div> -->
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+

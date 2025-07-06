@@ -1,0 +1,19 @@
+.dropdown-menu {
+    background-color: #f8f8f8;
+}
+a{
+    text-decoration: none;
+}
+
+.navbar {
+    padding: 0 !important;
+}
+
+.dropdown-toggle {
+    white-space: nowrap;
+    color: #072c6b;
+}
+
+.fix-top{
+    margin-top:75px !important;
+}

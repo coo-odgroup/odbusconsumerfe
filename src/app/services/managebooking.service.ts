@@ -4,14 +4,16 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
    
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {Constants} from '../constant/constant' ;
+
+
+import{ GlobalConstants } from '../constants/global-constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManagebookingService {
 
-  private apiURL = Constants.CONSUMER_API_URL;
+  private apiURL = GlobalConstants.BASE_URL;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -27,7 +29,16 @@ export class ManagebookingService {
       catchError(this.errorHandler)
     )
   }
- 
+
+  
+
+  sendEmailSms(param:any): Observable<any> { 
+
+    return this.httpClient.post<any>(this.apiURL + '/EmailSms' , JSON.stringify(param) ,this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
 
   cancelTicket(param:any): Observable<any> { 
 
@@ -37,17 +48,9 @@ export class ManagebookingService {
     )
   }
 
-  AgentcancelTicketOTP(param:any): Observable<any> { 
+  getcancelTicketInfo(param:any): Observable<any> { 
 
-    return this.httpClient.post<any>(this.apiURL + '/AgentcancelTicketOTP' , JSON.stringify(param) ,this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }
-
-  AgentCancelTicket(param:any): Observable<any> { 
-
-    return this.httpClient.post<any>(this.apiURL + '/AgentcancelTicket' , JSON.stringify(param) ,this.httpOptions)
+    return this.httpClient.post<any>(this.apiURL + '/cancelTicketInfo' , JSON.stringify(param) ,this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

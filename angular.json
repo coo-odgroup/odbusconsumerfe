@@ -1,15 +1,14 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "od-bus-provider-fe": {
+    "consumerfenew": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -17,19 +16,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "lodash",
-              "lodash-es",
-              "rxjs-compat",
-              "crossvent",
-              "dragula",
-              "highcharts",
-              "angular2-chartjs",
-              "rxjs",
-              "apexcharts",
-              "contra/emitter"
-            ],
-            "outputPath": "dist/od-bus-provider-fe",
+            "allowedCommonJsDependencies": ["ngx-lightbox","rxjs"],
+            "outputPath": "dist/consumerfenew/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -37,21 +25,18 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/fake-data"
+              "src/assets"
+             
             ],
             "styles": [
-              "src/styles.scss",
+              "src/styles.css",
               "node_modules/ngx-toastr/toastr.css",
-              "src/assets/css/style.scss",
-              "src/assets/css/customwizard.scss",
-              "src/assets/css/bootstarp.min.scss",
+              "src/assets/css/style.css",
+              "src/assets/css/customwizard.css",
+              "src/assets/css/bootstarp.min.css",
               "node_modules/ngx-lightbox/lightbox.css"
-
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js"                           
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -64,7 +49,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -72,13 +56,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "5mb",
+                  "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "10mb",
-                  "maximumError": "10mb"
+                  "maximumWarning": "50kb",
+                  "maximumError": "50kb"
                 }
               ]
             }
@@ -87,18 +71,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "od-bus-provider-fe:build"
+            "browserTarget": "consumerfenew:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "od-bus-provider-fe:build:production"
+              "browserTarget": "consumerfenew:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "od-bus-provider-fe:build"
+            "browserTarget": "consumerfenew:build"
           }
         },
         "test": {
@@ -113,7 +97,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -124,7 +108,8 @@
             "tsConfig": [
               "tsconfig.app.json",
               "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "e2e/tsconfig.json",
+              "tsconfig.server.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -135,19 +120,63 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "od-bus-provider-fe:serve"
+            "devServerTarget": "consumerfenew:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "od-bus-provider-fe:serve:production"
+              "devServerTarget": "consumerfenew:serve:production"
             }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/consumerfenew/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "consumerfenew:build",
+            "serverTarget": "consumerfenew:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "consumerfenew:build:production",
+              "serverTarget": "consumerfenew:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "consumerfenew:build:production",
+            "serverTarget": "consumerfenew:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
     }
   },
-  "defaultProject": "od-bus-provider-fe",
-  "cli": {
-    "analytics": "3592d93c-7870-42d5-a5f1-711ce835b187"
-  }
+  "defaultProject": "consumerfenew"
 }

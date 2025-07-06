@@ -1,0 +1,145 @@
+.textimonials-result {
+    margin:110px 0 50px;
+    padding: 0 20px 0 5px;
+}
+.textimoni-h2 {
+    text-align: center;
+    color: #072C6B;
+    margin-bottom: 0px;
+    font: normal 900 32px Cooper;
+}
+.textimoni-h1 {
+    text-align: center;
+    color: #072C6B;
+    font: normal 900 52px Cooper;
+}
+
+.de-angu3{
+    width: 100%;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    padding: 30px 30px 10px;
+    opacity: 1;
+    border: 0 !important;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin-bottom: 37px;
+    min-height: 350px;
+}
+
+.box p{
+    -webkit-line-clamp:6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    display: -webkit-box;
+}
+
+
+.testimonials-clean .item {
+    margin-bottom: 8px;
+    display: inline-block;
+    width: 100%;
+}
+
+.author {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+.testimonials-clean .item img {
+    max-width: 40px;
+    float: left;
+    margin-right: 12px;
+    margin-top: 0px;
+}
+.testimonials-clean .item .star1 {
+    max-width: 39px;
+    float: left;
+    margin-right: 2px;
+    margin-top: -4px;
+}
+
+.testimonials-clean .item img {
+    max-width: 40px;
+    float: left;
+    margin-right: 12px;
+    margin-top: 0px;
+}
+.star1 {
+    width: 12px;
+    opacity: 1;
+}
+.heading-ser-tes {
+    color: #072C6B;
+    margin-bottom: 35px !important;
+    padding-top: 25px !important;
+    font-size: 20px;
+    font-weight: 500 !important;
+    text-align: center;
+}
+.description {
+    color: #072C6B;
+    font-size: 14px;
+}
+.testimonial-link{
+    background-color: #EFC003;
+    font-size: 16px;
+    display: block;
+    color: #002F80;
+    margin: auto;
+    padding: 6px 0;
+    margin-top: 28px;
+    text-align: center;
+    border-radius: 5px;
+    width: 15%;
+}
+.testi-padding-bottom{
+    margin-top: 72px;
+}
+.re-name{
+    text-align: center;
+    color: #072C6B;
+    font-size: 25px;}
+.name{
+    color: #072C6B;
+    font-size: 18px;}
+.place{
+    color: #072C6B;
+    font-size: 16px;
+}
+.box{margin-bottom:20px; min-height: 180px;}
+
+ngb-rating.d-inline-flex {
+    color: #efc317 !important;
+  }
+  span.ng-star-inserted {
+    font-size: 21px !important;
+  }
+
+/* span.stars, span.stars span {
+    display: block;
+    background: url('../../assets/img/stars.png') 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+} */
+
+.review-gicon{
+    width:35px;
+    position: absolute;
+    right: 15px;
+    top:15px;
+}
+
+.review-gicon img{
+    width: 100%;
+}
+
+.de-angu3 h4{
+    font-size:21px;
+    font-weight: 600;
+}

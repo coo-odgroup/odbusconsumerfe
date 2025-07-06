@@ -1,0 +1,394 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading...  </p></ngx-spinner>
+
+
+<span class="line-span">
+    <div class="container">
+    <div class="linkbo">
+        <a (click)="print_ticketTab()" class="btn btn-warning btn-xs btn-anup {{ (tab1) ? 'active' : '' }}">Print Ticket</a>
+        <a (click)="sms_email_ticketTab()" class="btn btn-warning btn-xs btn-anup {{ (tab2) ? 'active' : '' }} ">SMS & Email Ticket</a>
+        <a (click)="cancelTicketTab()" class="btn btn-warning btn-xs btn-anup {{ (tab3) ? 'active' : '' }} ">Cancel Ticket</a>
+    </div>
+    </div>
+</span>
+
+<div *ngIf="tab1">
+<section class="search-result2">
+    <div class="container">
+        <div class="row">
+
+<div class="col-md-12">
+<div id="print_ticket">
+ 
+
+
+        <div [id]="'print-section'" >
+            <div class="passenger-detail box-padding">
+
+                <div class="row " id="print_logo" style="margin-top:10px;text-align: center;">
+                    <div class="col-md-12">
+                        <img src="assets/img/odbus-logo.svg" alt="logo-ODBUS" title="Logo" />
+                    </div>
+               </div>
+
+               <hr>
+            
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="tableclass" cellpadding="12">
+                            <thead>
+                                <th>
+                                    <h5><img src="assets/img/Icon awesome-bus-alt (1).svg"> PNR Number</h5>
+                                    <h5 class="od20">{{ bookingDetails.booking[0].pnr }}</h5>
+                                </th>
+                                <th>
+                                    <h5><img src="assets/img/Icon metro-location (1).svg"> {{bookingDetails.booking[0].source[0].name}}</h5>
+                                    <h5 class="od22">{{ bookingDetails.booking[0].boarding_point}} - {{ bookingDetails.booking[0].boarding_time}}</h5>
+                                </th>
+                                <th >
+                                    <img src="assets/img/bus.svg">
+                                </th>
+                                <th>
+                                    <h5><img src="assets/img/Icon metro-location (1).svg"> {{bookingDetails.booking[0].destination[0].name}}
+                                </h5>
+                                <h5 class="od22">{{ bookingDetails.booking[0].dropping_point}} - {{ bookingDetails.booking[0].dropping_time}}</h5>
+                                </th>
+                                <th>
+                                    <h5><img src="assets/img/Icon awesome-bus-alt (1).svg"> {{bookingDetails.booking[0].bus.name}}</h5>
+                                    <h5 class="od20">{{ bookingDetails.booking[0].booking_detail.length }} Passenger(s)</h5>
+                                    <h5 class="od21">{{ bookingDetails.booking[0].journey_dt | date:'EEEE, d MMMM , y' }}</h5>
+                                </th>
+                            
+                            </thead>
+                            
+                        </table>
+                    </div>
+                        
+                </div>
+            
+                    
+                <h5>Passenger Details</h5><hr>
+            
+                <div class="row mb25">
+                    <div class="col-md-12">
+                        <table class="tableclass" cellpadding="12">
+                            <thead>
+                                <th>Passenger Name</th>
+                                <th class="mb-center">Seats</th>
+                                <th class="mb-center">Gender</th>
+                                <th class="mb-center">Age</th>
+                                <th>&nbsp;</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let dt of bookingDetails.booking[0].booking_detail; let i = index;">
+                                    <td>{{ dt.passenger_name }}</td>
+                                    <td class="mb-center">{{ dt.bus_seats.seats.seatText }}</td>
+                                    <td class="mb-center">{{ dt.passenger_gender }}</td>
+                                    <td class="mb-center">{{ dt.passenger_age }}</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <h5>Contact Details</h5><hr>
+
+                <div class="row mb25">
+                    <div class="col-md-12">
+                        <table class="tableclass2" cellpadding="10">
+                            <thead>
+                                    <th>Name</th>
+                                    <th>Mobile Number</th>
+                                    <th>Email Address</th>
+                                    <th>&nbsp;</th>
+                            </thead>
+                            <tbody>
+                                <tr style="font-weight: normal;">
+                                    <td>{{bookingDetails.name}}</td>
+                                    <td>+91 {{bookingDetails.phone}}</td>
+                                    <td>{{bookingDetails.email}}</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> 
+                    
+                </div>
+            
+            </div>
+
+            <div class="box-padding man-print">
+
+            <button (click)="print();" class="btn btn-warning proceed" id="print_btn">PRINT TICKET</button>
+            </div>
+
+       </div>
+
+    </div>
+</div>
+
+
+</div>
+</div>
+</section>
+</div>
+
+<div  *ngIf="tab2">
+<section class="search-result2">
+    <div class="container"> 
+        <div class="row">
+
+            <div class="col-md-12">
+        <div id="print_ticket">
+            <div class="passenger-detail box-padding">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="roboto red">Ticket Details will be sent to your registered email and phone number</p>
+                            <table class="tableclass2" cellpadding="10">
+                                
+                                    <thead>
+                                        <td>Mobile Number</td>
+                                        <td>Email Address</td>
+                                        <td>&nbsp;</td>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>+91 {{bookingDetails.phone}}</td>
+                                            <td>{{bookingDetails.email}}</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+
+
+
+
+            <div class="passenger-detail box-padding">
+
+                    
+                <div class="row" style="margin-top:10px">
+                    <div class="col-md-6">
+                        <h5>Journey Details</h5>
+                    </div>
+                </div>
+            
+                <hr>
+            
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="tableclass" cellpadding="12">
+                                <thead>
+                                    <th>
+                                        <h5><img src="assets/img/Icon awesome-bus-alt (1).svg"> PNR Number</h5>
+                                        <h5 class="od20">{{ bookingDetails.booking[0].pnr }}</h5>
+                                    </th>
+                                    <th >
+                                        <h5><img src="assets/img/Icon metro-location (1).svg"> {{bookingDetails.booking[0].source[0].name}}</h5>
+                                        <h5 class="od22">{{ bookingDetails.booking[0].boarding_point}} - {{ bookingDetails.booking[0].boarding_time}}</h5>
+                                    </th>
+                                    <th>
+                                        <img src="assets/img/bus.svg">
+                                    </th>
+                                    <th>
+                                        <h5><img src="assets/img/Icon metro-location (1).svg"> {{bookingDetails.booking[0].destination[0].name}}
+                                    </h5>
+                                    <h5 class="od22">{{ bookingDetails.booking[0].dropping_point}} - {{ bookingDetails.booking[0].dropping_time}}</h5>
+                                    </th>
+                                    <th>
+                                        <h5><img src="assets/img/Icon awesome-bus-alt (1).svg"> {{bookingDetails.booking[0].bus.name}}</h5>
+                                        <h5 class="od20">{{ bookingDetails.booking[0].booking_detail.length }} Passenger(s)</h5>
+                                        <h5 class="od21">{{ bookingDetails.booking[0].journey_dt | date:'EEEE, d MMMM , y' }}</h5>
+                                    </th>
+                                </thead>
+                                
+                            </table>
+                        </div> 
+                    </div>
+            
+                    
+                <h5>Passenger Details</h5><hr>
+            
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="tableclass" cellpadding="12">
+                            <thead>
+                                <th>Passenger Name</th>
+                                <th class="mb-center">Seats</th>
+                                <th class="mb-center">Gender</th>
+                                <th class="mb-center">Age</th>
+                                <th class="mb-center">&nbsp;</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let dt of bookingDetails.booking[0].booking_detail; let i = index;">
+                                    <td>{{ dt.passenger_name }}</td>
+                                    <td class="mb-center">{{ dt.bus_seats.seats.seatText }}</td>
+                                    <td class="mb-center">{{ dt.passenger_gender }}</td>
+                                    <td class="mb-center">{{ dt.passenger_age }}</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+                <h5>Contact Details</h5><hr>
+            
+                <div class="row mb25">
+                    <div class="col-md-12">
+                        <table class="tableclass2" cellpadding="10">
+                            
+                            
+                                <thead>
+                                    <th>Name</th>
+                                    <th>Mobile Number</th>
+                                    <th>Email Address</th>
+                                    <th>&nbsp;</th>
+                                </thead>
+                                <tbody>
+                                <tr style="font-weight: normal;">
+                                    <td>{{bookingDetails.name}}</td>
+                                    <td>+91 {{bookingDetails.phone}}</td>
+                                    <td>{{bookingDetails.email}}</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                
+                            </tbody>
+                        </table>
+                    </div> 
+                </div>
+            
+            </div>
+
+            <div class="box-padding man-print">
+                <button (click)="send_email_sms();" class="btn btn-warning proceed">SEND TICKET</button>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+</div>
+
+<div  *ngIf="tab3">
+<section class="search-result2 mt60">
+    <div class="container ">
+       
+                <div id="print_ticket">
+                <div class="passenger">
+                    <div class="head-section"><h2>Journey Details</h2></div>
+                            <div class="passenger-detail">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table class="tableclass2" cellpadding="10">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="st-ri">PNR Number:</td>
+                                                    <td class="st-le">{{ bookingDetails.booking[0].pnr }}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="st-ri">Boarding Point:</td>
+                                                    <td class="st-le">{{ bookingDetails.booking[0].boarding_point}}, {{bookingDetails.booking[0].source[0].name}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="st-ri">Bus Name:</td>
+                                                    <td class="st-le">{{bookingDetails.booking[0].bus.name}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="st-ri">No.of Seats:</td>
+                                                    <td class="st-le">{{ totalseats }}</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                            <table class="tableclass2" cellpadding="10" > 
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="st-ri">Date of Journey:</td>
+                                                        <td class="st-le">{{ bookingDetails.booking[0].journey_dt | date:'EEEE, d MMMM , y' }} {{ bookingDetails.booking[0].boarding_time }}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="st-ri">Dropping Point:</td>
+                                                        <td class="st-le">{{ bookingDetails.booking[0].dropping_point}} , {{bookingDetails.booking[0].destination[0].name}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="st-ri">Bus Type:</td>
+                                                        <td class="st-le"> {{ bookingDetails.booking[0].bus.bus_type.name}} 
+                                                            {{ bookingDetails.booking[0].bus.bus_type.bus_class.class_name}}
+                                                            {{ bookingDetails.booking[0].bus.bus_sitting.name}}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="st-ri">Seat No:</td>
+                                                        <td class="st-le">{{ seats }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        <div class="col-md-12">
+                        <div class="row passenger box-padding">
+                        <div class="head-section"><h2>Cancellation Details</h2></div>
+                        <div class="col-md-12 passenger-detail">
+                            <div class="row">
+                                <div class="col-md-6" style="margin: 0 auto;">
+                                <table class="tableclass2" cellpadding="10">
+                                <tbody>
+                                    <tr>
+                                        <td class="st-ri">Amount Paid:</td>
+                                        <td class="st-le">₹{{ cancelInfo.totalfare }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="st-ri">Cancellation Fees:</td>
+                                        <td class="st-le">₹{{ cancelInfo.deductAmount }} ( {{ cancelInfo.deductionPercentage }})</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="st-ri">Refund Amount:</td>
+                                        <td class="st-le">₹{{ cancelInfo.refundAmount}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div align="center">
+                            <button (click)="cancel_ticket();" class="btn btn-danger proceed btn-de" 
+                            *ngIf="cancelInfo.cancel_status">Cancel Ticket</button>
+
+                            <d (click)="cancel_ticket();"  
+                            *ngIf="cancelInfo.cancel_status==false">Ticket has been cancelled</d>
+
+                            </div>
+                        </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    </div>
+
+                    </div>
+                </div>
+
+</div>
+</section>
+
+</div>
+
+

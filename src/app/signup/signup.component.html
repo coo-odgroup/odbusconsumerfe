@@ -1,30 +1,93 @@
-<div class="auth-wrapper">
-  <div class="auth-content text-center">
-    <img src="assets/images/odbus-logo.svg" alt="" class="img-fluid mb-4">
-    <div class="card borderless">
-      <div class="row align-items-center text-center">
-        <div class="col-md-12">
-          <div class="card-body">
-            <h4 class="mb-3 f-w-400">Signup</h4>
-            <form [formGroup]="form" class="editForm" novalidate>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<section class="signupbg">
 
-              <div class=" mb-4">
-                <input type="phone" class="form-control" formControlName="phone" placeholder="Enter mobile no">
-                <span class="text-danger"
-                  *ngIf="form.controls['phone'].touched && form.controls['phone'].hasError('required')">
-                  Phone is required! </span>
-                <span class="text-danger row col-12" *ngIf="form.controls['phone'].errors?.pattern">
-                  Enter 10 digit Mobile Number
-                </span>
-              </div>
-              <button class="btn btn-block btn-primary mb-4" type="button" (click)="check_credentials()">Get
-                OTP</button>
-              <p class="text-center"> <a class="formlink" routerLink="/dashboard/landing">Back to home</a> </p>
-              <!-- <p class="text-center">Already Registered? <a class="formlink" routerLink="/login">Login</a> </p>   -->
-            </form>
-          </div>
-        </div>
-      </div>
+<div class="container">
+    <div class="row justify-content-center">
+                        <div class="col-md-5">                           
+                                
+                            <div class="card">
+                                <div class="card-header center">SIGNUP</div>
+                                <div class="card-body">
+    
+                                    <form class="form-horizontal" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+                                       
+                                        <div class="row form-group">
+                                            
+                                            <div class="col-md-6">
+
+                                                <label for="via1" class="cursor"><input type="radio" name="via" 
+                                                    id="via1" value="phone" (click)="getLogin($event);" checked> <span class="via_login" >&nbsp; &nbsp;Via Phone</span></label> 
+                                                
+                                            </div>
+
+                                            <div class="col-md-6">
+
+                                                <label for="via2" class="cursor">
+                                                    <input type="radio" name="via" value="email" id="via2" (click)="getLogin($event);">  
+                                                    <span class="via_login" >&nbsp; &nbsp;Via Email</span></label> 
+                                               
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                    <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter Name" />
+                                                    
+                                                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.name.errors.required">Name is required</div>
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+
+    
+                                        <div class="form-group" *ngIf="viaphone">
+                                            <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+                                                    <input type="text"  (keydown)="onlyNumbers($event);" maxlength ="10" class="form-control" formControlName="phone" id="phone" placeholder="Enter Mobile No." />
+                                                    
+                                                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.phone.errors.required">Mobile no. is required</div>
+                                                        <div *ngIf="f.phone.errors.pattern">Enter 10 digit Mobile Number</div>
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" *ngIf="viaemail">
+                                           <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                                    <input type="text" class="form-control" formControlName="email" id="email" placeholder="Enter Your Email" />
+                                                    
+                                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.email.errors.required">Email ID is required</div>
+                                                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                                    </div>
+                                               
+                                               
+                                                </div>
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="form-group login-app center ">
+                                            <button  type="submit" class="log-in">Submit</button>
+                                        </div>
+                                        <p class="text-center">Already Registered with us? <a class="formlink" routerLink="/login">Login</a> </p>   
+                                 
+                                    </form>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
     </div>
-  </div>
-</div>
+</section>

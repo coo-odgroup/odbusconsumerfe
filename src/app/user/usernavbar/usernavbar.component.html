@@ -1,0 +1,48 @@
+
+    <div class="sidebar-main">
+        <div class="row">
+          <div class="col-md-12">
+              <div class="card profile-card-1">
+                <img *ngIf="profile && (profile.profile_image=='' || profile.profile_image==null)" class="profile" src="../../../assets/img/user.png" />
+              
+                <img *ngIf="profile && (profile.profile_image!='' && profile.profile_image!=null)" 
+                class="profile" src="{{ profile.profile_image }}" />
+                
+                
+                    <div class="card-content">
+                    <h3 *ngIf="profile.length>0">{{ profile.name }}</h3>
+                    <!-- <div class="subname"><img src="assets/img/sidebar-icon/wallet.svg">Wallet: ₹200</div> -->
+                    </div>
+                </div>
+          </div>
+        </div>
+        <div class="sidebar">
+            <a routerLink="/dashboard" class="collapsed cursor" routerLinkActive="active" > <span class="nav-label"> Dashboards </span> <img src="assets/img/sidebar-icon/dashboard.svg"> </a>
+      
+            <!-- <a routerLink="/notifications" class="collapsed cursor" routerLinkActive="active"> <span class="nav-label"> Notifications </span> <img src="assets/img/sidebar-icon/noti.svg"> </a> -->
+      
+            <!-- <a routerLink="/wallet" class="collapsed cursor" routerLinkActive="active"> <span class="nav-label"> My Wallet </span> <img src="assets/img/sidebar-icon/wallet.svg"> </a> -->
+      
+            <!-- <a routerLink="/invite-friend" class="collapsed cursor" routerLinkActive="active"> <span class="nav-label">  Invite Friends </span> <img src="assets/img/sidebar-icon/invitefriend.svg"> </a> -->
+      
+            <!-- <a  routerLink="/rewards" class="collapsed cursor"  routerLinkActive="active"> <span class="nav-label"> Rewards </span> <img src="assets/img/sidebar-icon/reward.svg"> </a> -->
+      
+            <a routerLink="/my-reviews" class="collapsed cursor" routerLinkActive="active"> <span class="nav-label"> My Reviews </span> <img src="assets/img/sidebar-icon/myrevews.svg"> </a>
+      
+            <!-- <a routerLink="/helpandsupport" class="collapsed cursor" routerLinkActive="active"> <span class="nav-label"> Help & Support </span> <img src="assets/img/sidebar-icon/help.svg"> </a> -->
+      
+            <a routerLink="/myaccount" class="collapsed cursor" routerLinkActive="active"> <span class="nav-label"> Settings </span> <img src="assets/img/sidebar-icon/settings.svg"> </a>
+      
+            <a (click)="signOut()" data-toggle="collapse" data-target="#logout" class="collapsed cursor" > <span class="nav-label"> Logout</span> <img src="assets/img/sidebar-icon/logout.svg"> </a>
+        </div>
+      </div>
+
+      <!-- <div class="card card-ta mb-2 mt-2">
+        <div class="container">
+          <div class="row banner pt-1 pb-1">
+            <div class="col-md-4 pl-1 pr-1"><img src="assets/img/banner/s1.png"></div>
+            <div class="col-md-4 pl-1 pr-1"><img src="assets/img/banner/s2.png"></div>
+            <div class="col-md-4 pl-1 pr-1"><img src="assets/img/banner/s3.png"></div>
+          </div>
+        </div>
+      </div> -->

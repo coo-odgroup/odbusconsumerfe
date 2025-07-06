@@ -1,0 +1,88 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading...  </p></ngx-spinner>
+
+<span class="line-span"><div class="container"><h2>Print / SMS / Email / Cancel Ticket</h2></div></span>
+<section class="textimonials-result1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2" >
+            	<div class="manage-heading"><h1>Enter Ticket Details</h1></div>
+            	<div class="main-tnc-heading">
+            		
+
+						<form class="form-horizontal" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+					<div class="row">
+            			<div class="col col-lg-6 col-md-6">
+							<div class="form-group">
+								<label for="pnr" class="cols-sm-2 control-label"><img src="../../assets/img/ticket.svg" class="star4">PNR Number</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
+										<input type="text" class="form-control modul-text" formControlName="pnr" id="pnr" placeholder="Enter PNR" />
+														
+										<div *ngIf="submitted && f.pnr.errors" class="invalid-feedback">
+											<div *ngIf="f.pnr.errors.required">PNR is required</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					    </div>
+                        <div class="col col-lg-6 col-md-6">
+							<div class="form-group">
+								<label for="mobile" class="cols-sm-2 control-label"><img src="../../assets/img/call.svg" class="star4">Mobile Number</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
+										<input type="text"  (keydown)="onlyNumbers($event);" maxlength ="10" class="form-control modul-text" formControlName="mobile" id="mobile" placeholder="Enter Mobile No." />
+														
+										<div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+											<div *ngIf="f.mobile.errors.required">Mobile no. is required</div>
+											<div *ngIf="f.mobile.errors.pattern">Enter 10 digit Mobile Number</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					    </div>
+                   
+						<div class="col-md-12">
+							<button type="submit"  class="btn btn-primary submit" >Submit</button>
+						</div>
+
+					</div>	
+					</form>
+
+            		
+            	</div>
+
+
+
+            	<div class="main-tnc-buttom">
+            		<div class="row">
+            			<div class="col-md-12 main-te">
+            				<h2>Quick Support</h2>
+            				<h3><img src="../../assets/img/call.svg" class="star3">+91 9583918888</h3>
+            				<h3><img src="../../assets/img/email.svg" class="star3">support@odbus.in</h3>
+                    	</div>
+            		</div>
+            	</div>
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+// JavaScript for label effects only
+	$(window).load(function(){
+		$(".effect input").val("");
+		
+		$(".input-effect input").focusout(function(){
+			if($(this).val() != ""){
+				$(this).addClass("has-content");
+			}else{
+				$(this).removeClass("has-content");
+			}
+		})
+	});
+</script>

@@ -1,0 +1,53 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<section class="opertbg top-routs">
+    <span class="line-span"><div class="container"><h2>All Routes</h2></div></span>
+   <div class="textimonials-result1">
+       <div class="container">
+          
+           <div class="row">
+
+               <div class="col-md-12 ">
+                <div class="main-tnc">
+
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                  <div class="form-group col-md-4" align="right">
+                    <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search Route">
+                  </div>
+                    </div>
+
+                    
+
+                <ul *ngIf="(all_routes | filter: searchText).length > 0; else noResults">
+                    <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker">
+        
+                    <li  *ngFor="let p of all_routes | filter: searchText ;">
+               
+                        <a class="cursor" style="text-decoration: none;" (click)="popularSearch(p.source_url,p.destination_url);">
+                            <img class="popl-routs-icon1" src="assets/img/Icon-metro-location.svg">
+                            <span>{{ p.source_name }}</span>
+        
+                            <img class="popl-routs-icon2" src="assets/img/left-right.png">
+        
+                            <span>{{ p.destination_name }}</span>
+        
+                        
+                        </a>
+                    </li>     
+                    
+                </ul>
+               </div>
+
+               <ng-template #noResults>
+                <p *ngIf="searchText">No results found for "{{searchText}}".</p>
+              </ng-template>
+
+            </div>
+           </div>
+       </div>
+    </div>
+   </section>
+
+

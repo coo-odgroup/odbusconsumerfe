@@ -1,0 +1,173 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<div class="container-xl dash-80">
+<div class="main min-500">
+  
+    <app-usernavbar></app-usernavbar>
+  
+    <div class="card card-ta dash-82">
+
+      <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <h2 class="py-3 booking-hi"><img src="assets/img/booking-history.svg">My Reviews</h2>
+            </div>
+          </div>
+          <!-- <hr/> -->
+      
+
+      <table class="table table-hover mb-0">
+        <!--Table head-->
+        <thead>
+            <tr>
+                <!-- <th scope="row">Bus Detail</th>                
+                <th scope="row">Route</th>
+                <th scope="row">Title</th> -->
+                <th style="width: 50%;" >Bus Detail / Comments</th>
+                <th class="th-lg">Rating</th>
+                <th class="th-lg"><a>Review Date</a></th>
+                <th class="th-lg" style="text-align: right;"><a>Action</a></th>
+            </tr>
+        </thead>       
+
+        <tbody *ngIf="userReviews && userReviews.length>0">
+
+          <tr *ngFor="let review of userReviews; let i=index">
+            <!-- <th scope="row">
+                
+            </th>
+            <td>   
+            </td>
+            <td></td> -->
+            <td>
+
+              <h5>{{review.bus.name}} ({{review.bus.bus_number}} ) </h5>
+              <h4>{{review.bus.booking.src_name}} <img src="assets/img/arrow.svg"> {{review.bus.booking.dest_name}}</h4>
+              <h6>{{review.title}}</h6>
+              <p>{{review.comments}}</p>
+            </td>
+            <td>
+              
+              <p class="rating8">
+                <b>Behavior : </b> <ngb-rating [rate]="review.rating_behavior"  [max]="5" [readonly]="true"></ngb-rating> <br>
+                <b>Clean : </b><ngb-rating [rate]="review.rating_clean"  [max]="5" [readonly]="true"></ngb-rating> <br>
+                <b>Comfort : </b><ngb-rating [rate]="review.rating_comfort"  [max]="5" [readonly]="true"></ngb-rating> <br>
+                <b>Overall : </b><ngb-rating [rate]="review.rating_overall"  [max]="5" [readonly]="true"></ngb-rating> <br>
+                <b>Timing : </b><ngb-rating [rate]="review.rating_timing"  [max]="5" [readonly]="true"></ngb-rating> <br>
+              </p>
+
+            </td>
+            <td>
+              <p><b>{{review.users.name}}</b></p>
+               <span>{{ review.created_at | date:'dd-MM-yyyy HH:mm' }} </span><br>
+              <span>Updated on : {{ review.updated_at | date:'dd-MM-yyyy HH:mm' }} </span>
+
+
+            </td>
+            <td>
+              <a class="cursor btn btn-danger btn-xs" (click)="deleteReview(i);"><i class="fa fa-trash"></i></a>
+              <a class="cursor btn btn-info btn-xs" (click)="editReview(i,Review);"><i class="fa fa-edit"></i></a>
+              
+
+            </td>
+            </tr>
+          
+        </tbody>
+
+        </table>
+
+        <p *ngIf="userReviews && userReviews.length==0">No Review available..</p>
+    
+
+    </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #Review let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit Review</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross Click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    
+    <form class="form-horizontal" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+
+        
+      <div class="form-group">
+
+        <div class="cols-sm-10 add-rev">
+              <span><b>Enter Your Title (Max. 4 Words)</b></span>
+              <input type="text" class="form-control" formControlName="title" id="title" 
+              placeholder="Enter title" maxlength="30" >
+              
+              <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                  <div *ngIf="f.title.errors.required">Title is required</div>
+              </div>
+
+             
+      </div>
+
+          <div class="cols-sm-10 add-rev">
+            <span><b>Enter Your Comments (Max. 500 Characters)</b></span>              
+                  <textarea  class="form-control" formControlName="comments" id="comments" 
+                  placeholder="Enter Comments" rows="5" maxlength="500"></textarea>
+                  
+                  <div *ngIf="submitted && f.comments.errors" class="invalid-feedback">
+                      <div *ngIf="f.comments.errors.required">Comment is required</div>
+                      <!-- <div  *ngIf="f.comments.errors.pattern "> Comments  must be of 200 Characters..</div> -->
+                   </div>
+             
+          </div>
+
+
+          <hr>
+          <div class="row">
+            <div class="col-md-4 rate">
+              <label><b>Overall  :</b></label>
+              <ngb-rating [(rate)]="OverallRate" [max]="5"></ngb-rating>
+              <pre>Rate:<b>{{OverallRate}}</b></pre>
+            </div>
+            <div class="col-md-4 rate">
+              <label><b>Comfort  :</b></label>
+              <ngb-rating [(rate)]="ComfortRate" [max]="5"></ngb-rating>
+              <pre>Rate:<b>{{ComfortRate}}</b></pre>
+            </div>
+            <div class="col-md-4 rate">
+              <label><b>Clean  :</b></label>
+              <ngb-rating [(rate)]="CleanRate" [max]="5"></ngb-rating>
+              <pre>Rate:<b>{{CleanRate}}</b></pre>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 rate">
+              <label><b>Behaviour :</b></label>
+              <ngb-rating [(rate)]="BehaviourRate" [max]="5"></ngb-rating>
+              <pre>Rate:<b>{{BehaviourRate}}</b></pre>
+            </div>
+            <div class="col-md-4 rate">
+              <label><b>Timing  :</b></label>
+              <ngb-rating [(rate)]="TimingRate" [max]="5"></ngb-rating>
+              <pre>Rate:<b>{{TimingRate}}</b></pre>
+            </div>
+            <div class="col-md-4 rate"></div>
+          </div>
+
+     
+      </div>
+
+    
+      <div class="form-group login-app center ">
+          <button  type="submit" class="btn btn-success">Submit</button>
+      </div>
+     
+  </form>
+
+    
+  </div>
+
+</ng-template>
+   

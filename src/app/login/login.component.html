@@ -1,36 +1,77 @@
-<div class="auth-wrapper" style="background-image:url(../../assets/images/login-bg01.jpg)">
-    <div class="auth-content text-center">
-      <img src="assets/images/odbus-logo.svg" alt="" class="img-fluid mb-4">
-      <div class="card borderless">
-        <div class="row align-items-center text-center">
-          <div class="col-md-12">
-            <div class="card-body">
-                    <h4 class="mb-3 f-w-400">API Client Login</h4>
-                    <form [formGroup]="form" class="editForm" novalidate>
-                      <div class=" mb-3">
-                        <input type="email" class="form-control" formControlName="email" placeholder="Email address">
-                        <span class="text-danger"
-                                *ngIf="form.controls['email'].touched && form.controls['email'].hasError('required')">
-                                Email is required! </span>
-                      </div>
-                      <div class=" mb-3">
-                        <input type="password" class="form-control" formControlName="password"  placeholder="Password">
-                        <span class="text-danger"
-                                *ngIf="form.controls['password'].touched && form.controls['password'].hasError('required')">
-                                Password is required! </span>
-                      </div>
-                    
-                      <div class="form-group text-left mt-2">
-                        <a class="formlink" routerLink="/forget-password">Forgot Password ?</a>
-                      </div> 
-                    
-                      <button class="btn btn-block btn-primary mb-4" [disabled]="!form.valid" type="button" (click)="check_credentials()">Login</button>
-                      <!-- <p class="text-center">Don't have an account? <a class="formlink" routerLink="/signup">Signup</a> </p>   -->
-                  </form>
-            </div>
-          </div>
-        </div>
-      </div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<section class="loginbg">
+<div class="container">
+    <div class="row justify-content-center">
+                        <div class="col-md-5">                           
+                                
+                            <div class="card">
+                                <div class="card-header center">LOGIN</div>
+                                <div class="card-body">
+                                    
+    
+                                    <form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                                        <div class="row form-group">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-5">
+
+                                                <label for="via1" class="cursor"><input type="radio" name="via" 
+                                                    id="via1" value="phone" (click)="getLogin($event);" checked> <span class="via_login" >&nbsp; &nbsp;Via Phone</span></label> 
+                                                
+                                            </div>
+
+                                            <div class="col-md-6">
+
+                                                <label for="via2" class="cursor">
+                                                    <input type="radio" name="via" value="email" id="via2" (click)="getLogin($event);">  
+                                                    <span class="via_login" >&nbsp; &nbsp;Via Email</span></label> 
+                                               
+                                            </div>
+                                        </div>
+
+    
+                                        <div class="form-group" *ngIf="viaphone">
+                                            <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+                                                    <input type="text"  (keydown)="onlyNumbers($event);" maxlength ="10" class="form-control" formControlName="phone" id="phone" placeholder="Enter Mobile No." />
+                                                    
+                                                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                                        <div class="log-left" *ngIf="f.phone.errors.required">Mobile no. is required</div>
+                                                        <div class="log-left" *ngIf="f.phone.errors.pattern">Enter 10 digit Mobile Number</div>
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" *ngIf="viaemail">
+                                           <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                                    <input type="text" class="form-control" formControlName="email" id="email" placeholder="Enter Your Email" />
+                                                    
+                                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                                        <div class="log-left" *ngIf="f.email.errors.required">Email ID is required</div>
+                                                        <div class="log-left" *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                                    </div>
+                                               
+                                               
+                                                </div>
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="form-group login-app">
+                                            <button  type="submit" class="log-in">Submit</button>
+                                        </div>
+                                         <p class="text-center">Don't have an account with us? <a class="formlink" routerLink="/signup">Signup</a> </p>   
+                                        </form>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
     </div>
-  </div>
-  
+    </section>
+    

@@ -1,0 +1,346 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<!-- Section Hero banner -->
+<section class="hero-banner" style="background-image: url({{bannerImage}}); background-size: cover;"  >
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="hero-banner-inner-text">
+                    <!-- <h1 *ngIf="masterSettingRecord.common">{{master_info.operator_slogan}}</h1> -->
+                    <!-- <h1>the most trusted & safest online bus booking platform</h1> -->
+                    <h1 class="banner-text"> PLAN YOUR JOURNEY WITH <br/>THE MOST TRUSTED & SAFEST ONLINE BUS BOOKING PLATFORM</h1>
+                </div>
+            </div>
+
+            <div class="col-md-12 top-ban">
+            <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
+                <div class="hero-banner-inner-srchbus">
+                    <div class="row no-gutters">
+                       
+                        <div class="col-md-10">
+                            <div class="row no-gutters">
+                                <div class="col-md-4 pr-1">
+                                    <label><b>From</b></label>
+                                    <div class="input-group mb-3 d-block">
+
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><img src="assets/img/Icon-metro-location.svg"></span>
+                                        
+                                            <input autocomplete="off" id="from" type="text" class="form-control pl-0"  
+                                            [ngbTypeahead]="search" [resultTemplate]="rt" 
+                                            [inputFormatter]="formatter" [ngModel]="swapsource" placeholder="Enter Source" 
+                                            formControlName="source" (selectItem)="tabChange('to')"/>
+
+                                            <ng-template #rt let-r="result" let-t="term">
+                                                <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+                                            </ng-template>
+                                        
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pr-1 to_dest_block">
+                                    <label><b>To</b></label>
+                                    <div class="swap-srch cursor">
+                                       <img (click)="swap();"  src="assets/img/swap.svg">
+                                    </div>
+                                    <div class="input-group mb-3 d-block">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text pl-3 pr-3" id="basic-addon2"><img
+                                                    src="assets/img/Icon-metro-location.svg"></span>
+
+                                                    <input autocomplete="off" id="to" type="text" class="form-control pl-0"  [ngbTypeahead]="search" 
+                                                    [resultTemplate]="rt2" [inputFormatter]="formatter" 
+                                                    [ngModel]="swapdestination" formControlName="destination" 
+                                                    placeholder="Enter Destination"
+                                                    (selectItem)="tabChange('entryDate')"
+                                                    />
+                                                  
+                                                        <ng-template #rt2 let-r="result" let-t="term">
+                                                            <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+                                                        </ng-template>
+                                                    
+                                                    
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-4 date_inp">
+                                    <label><b>Date of Journey</b></label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text calendar" id="basic-addon3" (click)="d.toggle()" ><img src="assets/img/Icon-metro-calendar.svg"></span>
+                                        </div>
+                                        <input type="text" id="entryDate" autocomplete="off" readonly class="form-control calendar rounded-0 pl-0" formControlName="entry_date"  
+                                        placeholder="Journey Date" aria-label="Journey Date" 
+                                        aria-describedby="basic-addon3" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker"
+
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label style="opacity: 0;"><b>Search</b></label>
+                            <div class="bus_search">
+                                <button type="submit"  class="btn">Search</button>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Offer Section -->
+
+<section class="section-offer carousel-home fluid-15">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="section-offer-left">
+                    <h2>ODBUS OFFERS</h2>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <ul class="nav nav-tabs " id="myTab" role="tablist">
+                    <li class="nav-item cursor" role="presentation" (click)="getOffer('Bus Offers')">
+                        <a class="nav-link {{ (activeTab=='Bus Offers') ? 'active' : '' }} " id="home-tab" data-toggle="tab"  role="tab"
+                            aria-controls="home" aria-selected="true">Bus Offers</a>
+                    </li>
+                    <li class="nav-item cursor" role="presentation" (click)="getOffer('Festive Offers')">
+                        <a class="nav-link {{ (activeTab=='Festive Offers') ? 'active' : '' }}" id="profile-tab" data-toggle="tab" role="tab"
+                            aria-controls="profile" aria-selected="false">Festive Offers</a>
+                    </li>
+                    <li class="nav-item cursor" role="presentation">
+                        <a class="nav-link" id="messages-tab" data-toggle="tab" routerLink="offers" role="tab"
+                            aria-controls="messages" aria-selected="false">View All</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-12 section-offer-right-tab mt-4">
+
+                <carousel [cellsToShow]="3">
+                    <div  class="carousel-cell" *ngFor="let f of offerList;">
+                       
+                        <a href="{{f.url}}" target="_blank"> <img *ngIf="f.slider_photo!='' && f.slider_photo!=null" 
+                            src="{{ f.slider_photo }}" /> 
+                            </a>   
+                    </div>
+                </carousel>         
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section About -->
+
+<section class="section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 about-img">
+                <img src="assets/img/bus-stop.png">
+                <!-- <div class="section-about-left">
+                    <h3>About Us</h3>
+                </div> -->
+            </div>
+            <div class="col-md-6">
+                <div class="section-about-right">
+                    <h3>About Us</h3>
+                    <p *ngIf="masterSettingRecord.common" >{{master_info.operator_home_content}}</p>
+                    <a routerLink="about-us"  class="border-btn bh mt-3">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Growing section -->
+
+<section class="section-growing fluid-15">
+    <div class="container">
+        <h4>The Numbers are Growing</h4>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="section-growing-box">
+                <div class="grow-img"><img src="assets/img/routs.png"></div>
+                    <h3>1500</h3>
+                    <p>Routes</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="section-growing-box">
+                <div class="grow-img"><img src="assets/img/buses.png"></div>
+                    <h3>10000</h3>
+                    <p>Buses</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="section-growing-box">
+                <div class="grow-img"><img src="assets/img/sat-cust.png"></div>
+                    <h3>300,000+</h3>
+                    <p>Satisfied Customers</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="section-growing-box">
+                <div class="grow-img"><img src="assets/img/support.png"></div>
+                    <h3>24/7</h3>
+                    <p>Customer Service</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="top-routs fluid-15" *ngIf="popular_routes!=''" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="title-section">Poupular Routes</h3>
+            </div>
+            <div class="col-md-6 text-right">
+                <a routerLink="routes" class="border-btn bh">All Routes</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <input type="hidden" [(ngModel)]="dtconfig.minDate" [min]="dtconfig.minDate" [max]="dtconfig.maxDate" name="todayDate" id="todayDate" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker">
+
+        <ul>
+            <li *ngFor="let p of popular_routes;">
+               
+                <a class="cursor" style="text-decoration: none;" (click)="popularSearch(p.source[0].url,p.destination[0].url);">
+                    <img class="popl-routs-icon1" src="assets/img/Icon-metro-location.svg">
+                    <span>{{ p.source[0].name }}</span>
+
+                    <img class="popl-routs-icon2" src="assets/img/left-right.png">
+
+                    <span>{{ p.destination[0].name }}</span>
+
+                
+                </a>
+            </li>       
+        </ul>
+    </div>
+</section>
+
+
+<section class="app fluid-15">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="app-left">
+                    <h3 class="title-section">Drive yourself <br />through the mobile</h3>
+                    <img src="assets/img/app-down.png">
+                    <p>Get SMS with link to download ODBUS App</p>
+                </div>
+                <form [formGroup]="appForm" (ngSubmit)="submitAppForm()">
+
+                   
+
+
+                <div class="row">
+                    <div class="col-md-6 pr-0">
+                        <input type="text"  (keydown)="onlyNumbers($event);" maxlength ="10" class="form-control" formControlName="phone" id="phone" placeholder="Enter Mobile No." />
+                                                    
+                        <div *ngIf="appsubmitted && f.phone.errors" class="invalid-feedback">
+                            <div class="log-left" *ngIf="f.phone.errors.required">Mobile no. is required</div>
+                            <div class="log-left" *ngIf="f.phone.errors.pattern">Enter 10 digit Mobile Number</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 pl-0">
+                        <button type="submit" class="btn">Get Link</button>
+                    </div>
+                </div>
+
+                
+
+                <div class="row">
+                    <ngb-alert *ngIf="setAlert!=''">
+                        {{ setAlert }}
+                      </ngb-alert>
+                      </div>
+
+            </form>
+            </div>
+            <div class="col-md-6">
+                <div class="app-right">
+                    <img src="assets/img/app-bg.png">
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<section class="why-us fluid-15">
+    <div class="container">
+        <h3 class="title-section">why ride with odbus?</h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <div class="why-us-box services">
+                    <div class="why-img"><img src="assets/img/open-24-hours.svg">
+                    </div>    
+                    <h3>services</h3>
+                    <p>We offer the best in class facilities and services for a happy journey</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-us-box secure">
+                    <div class="why-img"><img src="assets/img/surface1.svg">
+                    </div>    
+                    <h3>secure</h3>
+                    <p>High standard safety measures and customer friendly staffs</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-us-box friendly">
+                    <div class="why-img"><img src="assets/img/pocket-friendly.svg">
+                    </div>    
+                    <h3>pocket friendly</h3>
+                    <p>Affordable rates to suit every pocket</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-us-box exciting">
+                    <div class="why-img"><img src="assets/img/gift-box.svg">
+                    </div>    
+                    <h3>exciting offers</h3>
+                    <p>We offer unmatched discounts to make your journey more economical</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="top-operators fluid-15" *ngIf="topOperators && topOperators.length > 0 " >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="title-section">Top Operators</h3>
+            </div>
+            <div class="col-md-6 text-right">
+                <a routerLink="operators" class="border-btn bh">All Operators</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <ul>
+            <li *ngFor="let t of topOperators;">
+                <a href="javascript:void(0);" (click)="operator_detail(t.operator_url);" > <img src="assets/img/icon-bus-alt.svg">{{ t.organisation_name}}</a></li>
+           
+        </ul>
+    </div>
+</section>
+

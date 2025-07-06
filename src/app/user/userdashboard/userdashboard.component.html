@@ -1,0 +1,234 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="container-xl dash-80">
+<div class="main min-500">
+  <app-usernavbar></app-usernavbar>
+
+  <div class="card card-ta dash-81">
+      <div class="card-body">
+          <div class="row">
+              <div class="col-md-4">
+                  <h2 class="py-3 booking-hi"><img src="assets/img/booking-history.svg">Bookings History</h2>
+              </div>
+              <div class="col-md-8">
+                  <ul class="list-inline py-3 table-ul">
+                    <li class="list-inline-item {{ statusLabel == '' ? 'active' : ''}} cursor"><a (click)="getList(list.first_page_url)">All</a></li>
+                    <li class="list-inline-item {{ statusLabel == 'Completed' ? 'active' : ''}} cursor"><a (click)="getList(list.first_page_url,'Completed')">Completed</a></li>
+                    <li class="list-inline-item {{ statusLabel == 'Upcoming' ? 'active' : ''}} cursor"><a (click)="getList(list.first_page_url,'Upcoming')">Upcoming</a></li>
+                    <li class="list-inline-item {{ statusLabel == 'Cancelled' ? 'active' : ''}} cursor" ><a (click)="getList(list.first_page_url,'Cancelled')">Cancelled</a></li>
+                  </ul>
+
+                 
+              </div>
+          </div>
+
+          <table class="table table-hover mb-0">
+              <!--Table head-->
+              <thead>
+                  <tr>
+                      <th scope="row">PNR</th>
+                      <th scope="row">Routes</th>
+                      <th scope="row">Bus Name</th>
+                      <!-- <th class="th-lg">Bus Number</th> -->
+                      <th class="th-lg">Booking Date</th>
+                      <th class="th-lg">Time</th>
+                      <!-- <th class="th-lg"><a>Fare </a></th> -->
+                      <th class="th-lg" style="text-align: right; width: 196px;"><a>Status</a></th>
+                  </tr>
+              </thead>
+              <tbody *ngIf="list.data && list.data.length == 0">
+                <tr><td colspan="6">No record available..</td></tr>
+              </tbody>
+
+              <tbody *ngIf="list.data">
+                  <tr *ngFor="let b of list.data;">
+                    <th scope="row">{{b.pnr}}</th>
+                    <td>{{ b.source[0].name }} to {{ b.destination[0].name }}</td>
+                    <td>{{ b.bus.name }} ({{ b.bus.bus_number }})</td>
+                    <!-- <td></td> -->
+                    <td>{{ b.journey_dt | date:'d MMMM , y' }}</td>
+                    <td>{{ b.boarding_time }} </td>
+                    <!-- <td>₹ {{ b.total_fare }}/-</td> -->
+                    <td>
+                        <a  class="{{ b.booking_status }} cursor">{{ b.booking_status }}</a>
+                        <span class="span-cm">
+                          <ul class="list-inline pt-1 mb-0 table-ul-sub">
+
+                            <li class="list-inline-item">
+                              <a  class="cursor" (click)="viewTicket(b.pnr)">View Ticket</a>|</li>
+
+                            <li class="list-inline-item active" *ngIf="b.cancel">
+                              <a  class="cursor" (click)="cancelTicketTab(b.pnr,content)">Cancel</a>|</li>
+                            <li class="list-inline-item" *ngIf="b.review">
+                              <a class="cursor" (click)="addReview(b.pnr,b.bus_id,review)">Review</a>|</li>
+                            <li class="list-inline-item"><a class="cursor" (click)="bookAgain(b.source[0].name,b.destination[0].name);" >Book again</a></li>
+                          </ul>
+                        </span>
+                    </td>
+                  </tr>
+              
+                  <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker">
+
+              </tbody>
+
+             
+             
+          </table>
+      </div>
+  </div>
+  <div class="d-flex flex-row-reverse mb-5" *ngIf="list.links && list.data.length > 0">
+    <nav class="my-1 pt-1 ">
+        <ul class="pagination pagination-circle pg-blue mb-0">
+           
+            <li (click)="getList(list.first_page_url,statusLabel)" class="page-item {{ list.current_page == 1 ? 'disabled' : '' }} clearfix d-none d-md-block">
+              <a class="page-link">First</a></li>
+            
+            <li class="page-item " *ngFor="let b of list.links ; let i = index ">
+              <a class="page-link {{ list.current_page == b.label ? 'active' : '' }}"  (click)="(b.url) ? getList(b.url,statusLabel) : ''" [innerHTML]="page(b.label)"></a>
+            </li>
+            
+           
+            <li class="page-item {{ list.last_page == 1 ? 'disabled' : '' }} clearfix d-none d-md-block" (click)="getList(list.last_page_url,statusLabel)">
+              <a class="page-link">Last</a></li>
+        </ul>
+    </nav>
+</div>
+</div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Cancellation Info</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross Click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    
+    <div class="row">
+      <div class="col-md-12" style="margin: 0 auto;">
+      <table width="100%" cellpadding="10">
+      <tbody>
+          <tr>
+              <td class="st-ri">Amount Paid:</td>
+              <td class="st-le">₹{{ cancelInfo.totalfare }}</td>
+          </tr>
+
+          <tr>
+              <td class="st-ri">Cancellation Fees:</td>
+              <td class="st-le">₹{{ cancelInfo.deductAmount }} ( {{ cancelInfo.deductionPercentage }})</td>
+          </tr>
+
+          <tr>
+              <td class="st-ri">Refund Amount:</td>
+              <td class="st-le">₹{{ cancelInfo.refundAmount}}</td>
+          </tr>
+      </tbody>
+  </table>
+  <div align="center">
+   <button (click)="cancel_ticket();" class="btn btn-danger proceed btn-de">Cancel Ticket</button>
+  </div>
+</div>
+  </div>
+
+    
+  </div>
+
+</ng-template>
+
+
+
+
+<ng-template #review let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"><strong>Add Review For (PNR : {{pnr}}) </strong></h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross Click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    
+    <form class="form-horizontal" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+
+        
+      <div class="form-group">
+
+        <div class="cols-sm-10 add-rev">
+              <span><b>Enter Your Title (Max. 4 Words)</b></span>
+              <input type="text" class="form-control" formControlName="title" id="title" 
+              placeholder="Enter title" maxlength="30">
+              
+              <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                  <div *ngIf="f.title.errors.required">Title is required</div>
+              </div>
+
+            
+      </div>
+
+          <div class="cols-sm-10 add-rev">
+                  <span><b>Enter Your Comments (Max. 500 Characters)</b></span>         
+                  <textarea  class="form-control" rows="5" formControlName="comments" id="comments" 
+                  placeholder="Enter Comments" maxlength="500"></textarea>
+                  
+                  <div *ngIf="submitted && f.comments.errors" class="invalid-feedback">
+                      <div *ngIf="f.comments.errors.required">Comment is required</div>
+                      <!-- <div  *ngIf="f.comments.errors.pattern "> Comments  must be of 200 Characters..</div> -->
+                   </div>
+             
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-4 rate">
+              <label><b>Overall  : </b></label>
+              <ngb-rating [(rate)]="OverallRate" [max]="5"></ngb-rating>
+              <pre>Rate: <b>{{OverallRate}}</b></pre>
+            </div>
+
+            <div class="col-md-4 rate">
+              <label><b>Comfort  : </b></label>
+              <ngb-rating [(rate)]="ComfortRate" [max]="5"></ngb-rating>
+              <pre>Rate: <b>{{ComfortRate}}</b></pre>
+            </div>
+            <div class="col-md-4 rate">
+              <label><b>Clean  : </b></label>
+              <ngb-rating [(rate)]="CleanRate" [max]="5"></ngb-rating>
+              <pre>Rate: <b>{{CleanRate}}</b></pre>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 rate">
+              <label><b>Behaviour : </b></label>
+              <ngb-rating [(rate)]="BehaviourRate" [max]="5"></ngb-rating>
+              <pre>Rate: <b>{{BehaviourRate}}</b></pre> 
+            </div>
+
+            <div class="col-md-4 rate">
+              <label><b>Timing  : </b></label>
+              <ngb-rating [(rate)]="TimingRate" [max]="5"></ngb-rating>
+            <pre>Rate: <b>{{TimingRate}}</b></pre>
+            </div>
+            <div class="col-md-4 rate">
+             
+            </div>
+          </div>
+         
+
+
+      </div>
+
+    
+      <div class="form-group login-app center ">
+          <button  type="submit" class="btn btn-success">Submit</button>
+      </div>
+     
+  </form>
+
+    
+  </div>
+
+</ng-template>

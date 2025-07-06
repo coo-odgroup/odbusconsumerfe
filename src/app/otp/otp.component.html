@@ -1,49 +1,47 @@
-<div class="auth-wrapper">
-    <div class="auth-content text-center">
-      <img src="assets/images/odbus-logo.svg" alt="" class="img-fluid mb-4">
-      <div class="card borderless">
-        <div class="row align-items-center text-center">
-          <div class="col-md-12">
-            <div class="card-body">
-                <form class="form-horizontal"[formGroup]="otpForm" (ngSubmit)="onSubmit()">
-                     <ngb-alert *ngIf="alert!=''">
-                        {{ alert }}
-                      </ngb-alert>
-                      <div class="otp-msg">OTP has been send to: {{mobileNo}}</div>
-                      <div class="form-group phone">
-                        <div class="cols-sm-10">
-                            <div class="input-group">
-                                <!-- <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span> -->
-                                <input type="text" class="form-control"  formControlName="otp" id="otp" placeholder="Enter OTP here" />
-                                <div *ngIf="submitted && f.otp.errors" class="invalid-feedback">
-                                    <div *ngIf="f.otp.errors.required">OTP is required</div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<section class="loginbg">
+<div class="container">
+    <div class="row justify-content-center">
+                        <div class="col-md-5">                           
+                                
+                            <div class="card">
+                                <div class="card-header center">VERIFY OTP</div>
+                                <div class="card-body">
+    
+                                    <form class="form-horizontal login-f20"[formGroup]="otpForm" (ngSubmit)="onSubmit()">
+
+                                         <ngb-alert *ngIf="alert!=''">
+                                            {{ alert }}
+                                          </ngb-alert>
+
+                                        <div class="form-group phone">
+                                            <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+                                                    <input type="text" class="form-control"  formControlName="otp" id="otp" placeholder="Enter OTP" />
+                                                    <div *ngIf="submitted && f.otp.errors" class="invalid-feedback">
+                                                        <div  class="log-left" *ngIf="f.otp.errors.required">OTP is required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group login-app center ">
+                                            <button  type="submit" class="log-in">Submit</button>
+                                        </div>
+
+                                     
+	                                     <p class="text-center" *ngIf="ResendTimer">
+                                            Resend OTP after <countdown #countdown [config]="{leftTime: Timer, format: 'ss' }" (event)="handleEvent($event)"></countdown> Seconds..
+
+                                         </p>                                         
+                                         <!-- <p class="text-center">Already Registered with us? <a class="formlink" routerLink="/login">Login</a> OR  <a class="formlink" routerLink="/signup">Signup</a></p>    -->
+                                        <p class="text-center" *ngIf="ResendOtp" >Did not receive the Code? <a class="formlink cursor"  (click)="resend_otp()"> Resend OTP  </a> </p> 
+                                    </form>
                                 </div>
+    
                             </div>
                         </div>
                     </div>
-                    <div class="form-group login-app center ">
-                        <button class="btn btn-block btn-primary mb-4" type="submit">Verify</button>
-                    </div>
-                     <!-- <p class="text-center" *ngIf="ResendTimer">
-                        Resend OTP after <countdown #countdown [config]="{leftTime: Timer, format: 'ss' }" (event)="handleEvent($event)"></countdown> Seconds..
-                     </p>                                          -->
-                     <!-- <p class="text-center">Already Registered? <a class="formlink" routerLink="/otp">Login</a> </p>    -->
-                    <!-- <p class="text-center" *ngIf="ResendOtp" >Did not receive the Code? <a class="formlink cursor"(click)="resend_otp()"> Resend OTP  </a> </p>  -->
-                </form>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
+</section>

@@ -3,7 +3,9 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
    
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import{ Constants } from '../constant/constant';
+
+
+import{ GlobalConstants } from '../constants/global-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +13,8 @@ import{ Constants } from '../constant/constant';
 
 export class ListingService {
 
-  private apiURL = Constants.CONSUMER_API_URL;
-  private USER_ID = Constants.USER_ID;
+  private apiURL = GlobalConstants.BASE_URL;
+  private USER_ID = GlobalConstants.USER_ID;
 
 
   httpOptions = {

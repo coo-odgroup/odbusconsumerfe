@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse, HttpEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpSentEvent, HttpUserEvent, HttpClient } from "@angular/common/http";
-
+import { TokenService } from "../shared/token.service";
 import { Router } from "@angular/router";
 import { catchError} from 'rxjs/operators';
 import { BehaviorSubject, Observable,throwError } from 'rxjs';
+import { UserdataService  } from '../services/userdata.service'; 
 import { AuthService } from '../services/auth.service';
 
 
@@ -11,24 +12,20 @@ import { AuthService } from '../services/auth.service';
 
 export class AuthInterceptor implements HttpInterceptor {
 
-    
-
     tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   
-    constructor(private router: Router,
+    constructor(private token: TokenService, private router: Router,private userdataservice: UserdataService,
         public auth: AuthService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
       
-        const APIAccessToken =  localStorage.getItem('APIAccessToken');   
-      
+        const AuthAccessToken =  localStorage.getItem('AuthAccessToken');        
+
         req = req.clone({
             setHeaders: {
-                Authorization: "Bearer " + APIAccessToken
+                Authorization: "Bearer " + AuthAccessToken
             }
         });
-
-    //    console.log(APIAccessToken);
 
      
         return next.handle(req).pipe(catchError( (err: HttpErrorResponse) => {                
@@ -36,8 +33,8 @@ export class AuthInterceptor implements HttpInterceptor {
                 if (err.status === 401) {
                         this.tokenSubject.next(null);                        
                         this.auth.getToken().subscribe(res=>{
-                            localStorage.setItem('APIAccessToken', res.data);
-                            this.tokenSubject.next(res.data);
+                            localStorage.setItem('AuthAccessToken', res.access_token);
+                            this.tokenSubject.next(res.access_token);
                             this.collectFailedRequest(req);
                             this.retryFailedRequests(req,next);
                           }); 
@@ -60,7 +57,23 @@ collectFailedRequest(request): void {
 
 retryFailedRequests(request: HttpRequest<any>, next: HttpHandler): void {
 
-    window.location.reload();
+    const AuthAccessToken =  localStorage.getItem('AuthAccessToken');        
+
+
+   this.cachedRequests.forEach( request => {
+   request = request.clone( {
+       setHeaders: {
+           Accept: 'application/json',
+           'Content-Type': 'application/json',
+           Authorization: "Bearer " + AuthAccessToken
+       }
+   } );   
+   window.location.reload();
+   return  next.handle(request);    
+   } );
+
 }
+
+
 
 }

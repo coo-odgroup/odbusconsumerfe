@@ -7,6 +7,7 @@ export interface Buslist {
     maxSeatBook:any;
     operatorId:number,
     operatorName:string,
+    operatorUrl:string,
     sittingType:string
     busType:string
     busTypeName:string

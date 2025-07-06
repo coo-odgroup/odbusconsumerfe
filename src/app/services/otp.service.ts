@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
    
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {Constants} from '../constant/constant';
+import{ GlobalConstants } from '../constants/global-constants';
 
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class OTPService {
 
-  private apiURL = Constants.BASE_URL;
+  private apiURL = GlobalConstants.BASE_URL;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -21,22 +20,24 @@ export class OTPService {
 
   constructor(private httpClient: HttpClient) { }
 
-  submit_otp(params): Observable<any> {
-    //console.log(JSON.stringify(params));
+  submit_otp(params :any): Observable<any> {
+
+   // console.log(JSON.stringify(params));
     return this.httpClient.post(this.apiURL + '/VerifyOtp', JSON.stringify(params) ,this.httpOptions)
-    .pipe( 
+    .pipe(
+      
       catchError(this.errorHandler)
     )
   }
-  
-  errorHandler(error:any) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
+  errorHandler(error:HttpErrorResponse) {
+    let errorMessage :any;
+    if(error.error instanceof HttpErrorResponse) {
       errorMessage = error.error.message;
     } else {
       errorMessage = error;
+      
+      //`Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-
     return throwError(errorMessage);
  }
 }

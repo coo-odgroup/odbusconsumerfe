@@ -1,0 +1,125 @@
+
+.sidebar a {
+  padding: 8px 20px 8px 20px;
+  font-size:16px;
+  font-weight: 500;
+  color: #0E204B;
+  display: block;
+  transition: all .4s;
+  margin-top: 5px;
+}
+
+.sidebar a:hover {
+  color: #0E204B;
+  font-weight: 500;
+  background-color: #DCE6FF;
+}
+
+.sidebar a,.sidebar a.collapsed.active{ display:block; color:#0E204B; text-decoration:none}
+.sidebar a.active{background-color: #DCE6FF; color: #0E204B; transition: all 0.5s  ease-in-out}
+.sidebar a img{ float: right; margin-top:0; width: 1.3rem;}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px; padding-bottom:15px ;}
+  .sidebar a {    font-size: 16px;
+}
+}
+
+
+/*sidebar-profile*/
+
+
+
+.profile-card-1 {
+    float: left;
+    padding: 22px 5px 6px;
+    width: 100%;
+    color: #ffffff;
+    background-color: #072c6b;
+    text-align: center;
+    border: none;
+    border-radius: 0;
+  }
+  .card-content h3{    
+    font-size: 18px;
+    color: #0e204b;
+    line-height: 10px;}
+  .card-content .subname{    
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;}
+  .card-content img{    
+    width: 11%;
+    margin-right: 8px;}
+  .profile-card-1 .card-content {
+    width: 100%;
+    padding: 15px 25px;
+  }
+  .profile-card-1 .profile {
+    border-radius: 100%;
+    margin: 0 auto;
+    max-width: 125px;
+    height: 125px;
+    opacity: 1;
+    border: 8px solid #002056;
+    /* border: 2px solid rgba(255, 255, 255, 1); */
+  }
+  .profile-card-1 h2 {
+    margin: 0 0 5px;
+    font-weight: 600;
+    font-size:25px;
+  }
+  .profile-card-1 h2 small {
+    display: block;
+    font-size: 15px;
+    margin-top:10px;
+  }
+  .profile-card-1 i {
+    display: inline-block;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    border: 1px solid #fff;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    margin:0 5px;
+  }
+  .profile-card-1 .icon-block{
+    float:left;
+    width:100%;
+    margin-top:15px;
+  }
+  .profile-card-1 .icon-block a{
+    text-decoration:none;
+  }
+  .profile-card-1 i:hover {
+    background-color:#fff;
+    color:#2E3434;
+    text-decoration:none;
+  }
+  /*sidebar-profile end*/
+
+  
+.banner img{width: 100%;}
+.card-ta {border-radius: 8px;
+    border: none;}
+
+@media only screen and (max-width: 425px) {
+.main {
+  margin-left: 0;
+}
+.sidebar-main {
+  width: 100%;
+  position: inherit;
+}
+.banner img {
+  margin-top: 5px;
+}
+.booking-hi {
+  font-size: 16px;
+  padding: 0 !important;
+  margin: 0 !important;
+  }
+}

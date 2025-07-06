@@ -1,23 +1,124 @@
-import {Component, OnInit} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
+import { Component, Inject} from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { Title, Meta } from '@angular/platform-browser';
+import { SeoService } from './services/seo.service';
+import { DOCUMENT } from '@angular/common';
+import{ GlobalConstants } from './constants/global-constants';
 
+import { CommonService } from './services/common.service';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  constructor(private router: Router) {   }
+  meta_title:any;
+  meta_keyword:any;
+  meta_description:any;
+  logo: any='';
+  og_image:any='';
+  common:any=[];
 
-  ngOnInit() {
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
+
+  constructor(@Inject(DOCUMENT) private doc,private auth: AuthService,
+    private titleService: Title, 
+    private metaService: Meta,
+    private seo:SeoService,private commonService: CommonService,
+
+    ) {
+
+    this.auth.getToken().subscribe(
+      res=>{
+        localStorage.setItem('AuthAccessToken',res.data.access_token);        
       }
-      window.scrollTo(0, 0);
-    });
+    );
+   
   }
+
+   ngOnInit() {
+
+    const data={
+     user_id:GlobalConstants.MASTER_SETTING_USER_ID
+    };
+
+    this.commonService.getCommonData(data).subscribe(
+      resp => {
+        this.logo=resp.data.common.logo_image;
+        this.og_image=resp.data.common.og_image;
+
+        this.common=resp.data.common;
+       
+        this.seo.deafultmeta_description.subscribe((s:any) => { this.meta_description = s});
+        this.seo.deafultmeta_title.subscribe((s:any) => { this.meta_title = s});
+        this.seo.deafultmeta_keyword.subscribe((s:any) => { this.meta_keyword = s});
+
+        this.titleService.setTitle(this.meta_title);
+
+       const metaArr= [
+          {name: 'keywords', content: this.meta_keyword},
+          {name: 'description', content: this.meta_description},
+          { name: 'og:url', content: this.doc.URL },
+          { name: 'og:type', content: "website" },
+          { name: 'og:title', content: this.meta_title },
+          { name: 'og:description', content: this.meta_description }      
+        ];        
+
+        if(this.og_image!='' && this.og_image!=null){
+          metaArr.push({ name: 'og:image', content: this.og_image });
+        }
+
+        if(this.common.google_verification_code!='' && this.common.google_verification_code!=null){
+          metaArr.push({ name: 'google-site-verification', content: this.common.google_verification_code });
+        }
+
+        if(this.common.bing_verification_code!='' && this.common.bing_verification_code!=null){
+          metaArr.push({ name: 'msvalidate.01', content: this.common.bing_verification_code });
+        }
+
+        if(this.common.pintrest_verification_code!='' && this.common.pintrest_verification_code!=null){
+          metaArr.push({ name: 'p:domain_verify', content: this.common.pintrest_verification_code });
+        }
+
+        this.metaService.addTags(metaArr);
+
+        if(this.common.google_analytics!='' && this.common.google_analytics!=null){
+         
+          let chatScript = document.createElement("script");
+          chatScript.type = "text/javascript";
+          chatScript.async = true;
+          chatScript.src = this.common.google_analytics;
+          document.head.appendChild(chatScript);
+         
+        }
+
+        if(this.common.no_script!='' && this.common.no_script!=null){
+         
+          let chatScript = document.createElement("noscript");
+          chatScript.innerHTML  = this.common.no_script;
+          document.head.append(chatScript);
+         
+        }
+
+        if(this.common.seo_script!='' && this.common.seo_script!=null){
+         
+          let chatScript = document.createElement("script");
+          chatScript.innerHTML = this.common.seo_script;          
+          document.head.append(chatScript);
+         
+        }
+
+        
+
+
+      });
+
+
+    
+
+   }
+
+  
 }

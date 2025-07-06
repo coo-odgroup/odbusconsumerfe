@@ -1,0 +1,111 @@
+
+<section class="contactus pb-40">
+	<span class="line-span"><div class="container"><h2>Contact Us</h2></div></span>
+    <div class="container">
+		<div class="main-tnc">
+        <div class="row">
+            <div class="col-md-12 mt15">
+            		<h2 class="heah22">We'd love to hear from you. Please get in touch !</h2>
+            		<span class="heder-line"></span>
+            </div>
+        </div>
+		 
+        <div class="row">
+            <div class="col-md-6">
+            	
+				<form class="form-horizontal" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+            	  <div class="row form-group">
+					<div class="col-md-6">
+	                <label class="text-inverse" for="validationCustom02">Your Name <span class="red">*</span></label>
+	                <input type="text" class="form-control" formControlName="name" placeholder="Your Name Please"  required>
+					<div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+						<div *ngIf="f.name.errors.required">Name is required</div>
+					</div>
+					</div>
+
+					<div class="col-md-6">
+						<label class="text-inverse" for="validationCustom02">Your Mobile No <span class="red">*</span></label>
+						<input type="text" class="form-control" (keydown)="onlyNumbers($event);" formControlName="phone" placeholder="Your Mobile No Please" required>
+						<div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+							<div *ngIf="f.phone.errors.required">Mobile no. is required</div>
+							<div *ngIf="f.phone.errors.pattern">Enter 10 digit Mobile Number</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="row form-group">
+
+					<div class="col-md-6">
+
+					
+	                <label class="text-inverse" for="validationCustom02">Your Email <span class="red">*</span></label>
+	                <input type="text" class="form-control" formControlName="email" placeholder="Your Email Id Please" required>
+					<div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+						<div *ngIf="f.email.errors.required">Email ID is required</div>
+						<div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+					</div>
+
+				   </div>
+	              
+				   <div class="col-md-6">
+	                <label class="text-inverse" for="select-menu">Select Your Purpose</label>
+	                <select class="custom-select d-block form-control" formControlName="service" >
+	                  <option value="">Select Service</option>
+	                  <option value="Feedback">Feedback</option>
+	                  <option value="Complaints">Complaints</option>
+	                  <option value="Marketing">Marketing</option>
+	                  <option value="Agency Enquiry">Agency Enquiry</option>
+	                  <option value="Solutions Enquiry">Solutions Enquiry</option>
+	                </select>
+
+					<div *ngIf="submitted && f.service.errors" class="invalid-feedback">
+						<div *ngIf="f.service.errors.required">Please selected any option.</div>
+					</div>
+	              </div>
+
+				</div>
+
+	            <div class="form-group">
+	                <label class="text-inverse" for="validationCustom02">Your Message</label>
+	                <textarea formControlName="message" class="form-control" rows="10"></textarea>
+					<div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+						<div *ngIf="f.message.errors.required">Please write your message.</div>
+					</div>
+	            </div> 
+
+				<div class="row form-group">
+                   <div class="col-md-4">
+						<label class="text-inverse" for="validationCustom02">Enter Your Captcha <span class="red">*</span></label>
+						<input type="text" class="form-control" required>
+				   </div>
+				   <div class="col-md-2">
+                      <img src="../../assets/img/captcha.png" alt="" class="captcha" />
+				   </div>
+				</div>
+
+				  <div class="form-group login-app sub-but">
+					<button  type="submit" class="log-in">Submit</button>
+				</div>
+
+            	</form>
+            </div>
+            <div class="col-md-6">
+				
+			  	<h3 class="contact-he">Head Office</h3>
+				<div class="r1">
+					<h4 class="contact-he1">OD Tours and Travels Pvt Ltd</h4>
+					<p>3rd Floor, Hotel Rajdhani, Cuttack Puri Road,<br/>
+						Bhubaneswar - 751006 (Odisha), India
+					<br>
+					<span>Phone No:</span> +9583918888<br>
+					<strong>Email: </strong> support@odbus.in<br>
+					</p>
+
+					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14971.416013908058!2d85.8584996!3d20.2648888!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xba4e025a3ec98f16!2sODBUS!5e0!3m2!1sen!2sin!4v1635570161200!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+				</div>
+            </div>
+        </div>
+	</div>
+    </div>
+</section>

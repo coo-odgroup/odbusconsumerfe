@@ -1,91 +1,197 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { LoginService } from '../services/login.service';
-import {Login} from '../model/login';
-import {RoleService} from '.././services/role.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../services/notification.service';
-import{Constants} from '../constant/constant';
-import { EncryptionService } from '../encrypt.service';
+import { LoginChecker } from '../helpers/loginChecker';
+import { NgxSpinnerService } from "ngx-spinner";
+
+import { SeoService } from '../services/seo.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public form: FormGroup;
-  public loginRecord:Login;
-  usertypes: [] ;
 
-  public saveUsername:boolean;
-  public onSaveUsernameChanged(value:boolean){
-      this.saveUsername = value;
+  loginForm: FormGroup;
+
+  submitted=false;
+
+  viaphone:boolean=true;
+  viaemail:boolean=false;
+
+  @Input()
+  session: LoginChecker; 
+  currentUrl: string;
+
+  constructor(
+    public router: Router,
+    public fb: FormBuilder,
+    public loginService: LoginService,
+    private notify: NotificationService,
+    private spinner: NgxSpinnerService
+    ,private seo:SeoService,
+    private location: Location) { 
+
+    this.currentUrl = location.path().replace('/','');
+        this.seo.seolist(this.currentUrl);
+
+    this.session = new LoginChecker();      
+    this.loginForm = this.fb.group({
+      email: [null],
+      phone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]
+    })
+
+}
+
+
+  getLogin(e:any){
+
+
+
+    this.submitted=false;
+
+    this.loginForm = this.fb.group({
+      email: [null],
+      phone: [null]
+    })
+
+    let v= e.target.value;
+
+    if(v=='phone'){
+
+      this.loginForm = this.fb.group({
+        email: [null],
+        phone: ['', [Validators.required,Validators.pattern("^[0-9]{10}$")]]
+      })
+      this.viaphone=true ;
+      this.viaemail=false ;
+    }
+
+    if(v=='email'){
+
+      this.loginForm = this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
+        phone: [null]
+      })
+      
+      this.viaphone=false ;
+        this.viaemail=true;
+    }
   }
 
-  constructor(public router: Router,protected fb:FormBuilder, private loginService: LoginService, private notificationService: NotificationService,private notify: NotificationService,private roleService: RoleService,private enc:EncryptionService) {
+  get f() { return this.loginForm.controls; }
 
-    this.roleService.getRoles().subscribe(
-      res=>{
-        this.usertypes=res.data;
+  
+  onlyNumbers(event:any) {
+    var e = event ;
+    var charCode = e.which || e.keyCode;
+   
+      if ((charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105) || charCode ==8 || charCode==9)
+        return true;
+        return false;        
+}
+
+
+  onSubmit() {
+
+    this.submitted=true;
+
+    if(this.loginForm.invalid){
+       return;
+    }else{
+
+      let sentTo='';
+
+      this.spinner.show();
+
+      let param= {};
+
+      if( this.viaphone){
+
+        sentTo=this.loginForm.value.phone;
+
+         param={
+          phone:this.loginForm.value.phone
+        }
       }
-    );
-  }
- 
-  ngOnInit() {
-    this.form = this.fb.group({
-      email: [null, Validators.compose([Validators.required])],
-      password: [null, Validators.compose([Validators.required])],
-      user_type: [null ],
-    });  
-  }
-  ResetForm()
-  {
-    this.form = this.fb.group({
-      email: [null, Validators.compose([Validators.required])],
-      password: [null, Validators.compose([Validators.required])],
-      user_type: [null],
-    });
-  }
-  check_credentials()
-  {
-    const data={
-      email:this.form.value.email,
-      password:this.form.value.password,
-      user_type:6, 
-    };
-    // console.log(data);
-    // return;
 
-    this.loginService.checkLogin(data).subscribe(
+      if(this.viaemail){
+        sentTo=this.loginForm.value.email;
+         param={
+          email:this.loginForm.value.email
+        }
+      }
 
-      res=>{
+
+     
+
+      if(param){
+        this.loginService.signin(param).subscribe(
+          res => {
+            if(res.status==1){ 
+
+              if(res.message=="Not a Registered User"){
+
+                this.notify.notify(res.message,"Error");
+
+              }else{
+
                  
-        if(res.status==1){ 
-          let loginRecord:any=this.enc.decrypt(res.data);
-          loginRecord=JSON.parse(loginRecord);
-          this.loginRecord=loginRecord;  
-          localStorage.setItem("USERRECORDS",JSON.stringify(this.loginRecord));
-          localStorage.setItem("USERID",JSON.stringify(this.loginRecord.id)); 
-          localStorage.setItem("ROLE_ID",JSON.stringify(this.loginRecord.role_id)); 
-          localStorage.setItem("USERNAME",this.loginRecord.name); 
-          localStorage.setItem("USER_BUS_OPERATOR_ID",''); 
-          if(this.loginRecord.role_id==4)
-          {
-            localStorage.setItem("USER_BUS_OPERATOR_ID",this.loginRecord.user_bus_operator.bus_operator.id); 
+
+              localStorage.setItem("resendParam",JSON.stringify(param));
+              localStorage.setItem("otp_type",'login');
+              localStorage.setItem("via",sentTo);
+                
+              localStorage.setItem('userId',res.data.id);
+
+              this.loginService.setAlert("OTP has been sent to "+sentTo);
+
+               //this.notify.notify("OTP has been sent to "+sentTo,"Success"); 
+               
+               this.router.navigate(['otp']);
+
+              }               
+   
+             }else{ 
+              let msg  = JSON.parse(res.message); 
+                let message='';
+               
+                 if(this.viaemail && msg['email']){
+                   message = msg['email']+"\n";
+                 }
+  
+                 if(this.viaphone && msg['phone']){
+                   message = msg['phone']+"\n";
+                 }
+  
+              this.notify.notify(message,"Error");
+             }
+
+             this.spinner.hide();
+            
           }
-          // var ROLE_ID = localStorage.getItem("ROLE_ID");
-          // var USERID = localStorage.getItem("USERID");
-          // console.log("ROLE ID : "+ROLE_ID+", USER ID : "+USERID);
-          this.router.navigate(['dashboard/landing']);
-        }else{
-          this.notify.notify(res.message,"Error");
-        }    
-      },
-      error => {
-       this.notify.notify(error.error.message,"Error");
+        );
+
       }
-    );
+     
+     
+
+    }
+
+    
+}
+
+
+  ngOnInit(): void {
+   if(this.session.isLoggedIn()){
+      this.router.navigate(['myaccount']);  
+    }
+
   }
 
 }

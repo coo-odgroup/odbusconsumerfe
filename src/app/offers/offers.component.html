@@ -1,0 +1,28 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+
+<section class="top-routs offer-sec">
+  <span class="line-span"><div class="container"><h2>Offers</h2></div></span>
+ <div class="textimonials-result1">
+     <div class="container">
+         <div class="main-tnc"> 
+           <div class="row">
+            <div class="col-md-4" *ngFor="let o of allOffers">
+              <div class="card">  
+              <a href="{{o.url}}" target="_blank"><img *ngIf="o.slider_photo && (o.slider_photo!='' && o.slider_photo!=null)"
+              class="card-img-top" src="{{ o.slider_photo }}" /></a>
+                <div class="card-block">
+                  <h4 class="card-title">{{o.occassion}}</h4>
+                </div>
+              </div>
+            </div>
+              
+             </div>
+         </div>
+     </div>
+  </div>
+ </section>
+
+
+

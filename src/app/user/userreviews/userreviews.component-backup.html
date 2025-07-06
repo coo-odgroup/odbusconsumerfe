@@ -1,0 +1,71 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<div class="container-xl dash-80">
+<div class="main min-500">
+  
+    <app-usernavbar></app-usernavbar>
+  
+    <div class="card card-ta dash-81">
+
+      <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <h2 class="py-3 booking-hi"><img src="assets/img/booking-history.svg">My Reviews</h2>
+            </div>
+          </div>
+          <hr/>
+     
+
+      <div class="review-card mb-3" *ngIf="userReviews.length==0">
+
+        No reviews available..
+
+      </div>
+      <div class="review-card mb-3" *ngIf="userReviews.length>0">
+        <div class="review-box" *ngFor="let review of userReviews;">   
+             <!-- <div class="profile-img"><img src="assets/img/bus-profile.svg" /></div> -->
+
+            <!-- <div class="profile-img">
+              <div *ngIf="review.bus.bus_gallery?.image?.length;else ifNotShow" > 
+                <img [attr.src]="getBusImagePath(review.bus.bus_gallery.image)">
+              </div>
+              <ng-template #ifNotShow>
+                <img src="assets/img/bus-no-image.svg" />
+              </ng-template>
+            </div> -->
+
+            <div class="box-top">
+                <div class="profile">
+                    <div class="name-user">
+                        <h4><strong>{{review.bus.name}} </strong> {{review.bus.bus_number}} </h4>
+                        <span>{{review.bus.booking.src_name}} <img src="assets/img/arrow.svg"> {{review.bus.booking.dest_name}}</span>
+                    </div>
+                    <!-- <div class="reviews"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                      <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                      <i class="fa fa-star-o"></i>
+                </div> -->
+                </div>
+                <div class="client-comment">
+                      <b>{{review.title}}</b>
+                      <p>{{review.comments}}</p>
+                      <p>
+                        <b>Behavior : </b> <ngb-rating [rate]="review.rating_behavior"  [max]="5" [readonly]="true"></ngb-rating> <br>
+                        <b>Clean : </b><ngb-rating [rate]="review.rating_clean"  [max]="5" [readonly]="true"></ngb-rating> <br>
+                        <b>Comfort : </b><ngb-rating [rate]="review.rating_comfort"  [max]="5" [readonly]="true"></ngb-rating> <br>
+                        <b>Overall : </b><ngb-rating [rate]="review.rating_overall"  [max]="5" [readonly]="true"></ngb-rating> <br>
+                        <b>Timing : </b><ngb-rating [rate]="review.rating_timing"  [max]="5" [readonly]="true"></ngb-rating> <br>
+                      </p>
+                  </div>
+                  <div class="client-details">
+                    <p>{{review.users.name}}</p>
+                    <span>{{ review.created_at | date:'dd-MM-yyyy HH:mm' }} </span>
+                  </div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+</div>
+   

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';   
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+   
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {Constants} from '../constant/constant';
+import{ GlobalConstants } from '../constants/global-constants';
 
 
 @Injectable({
@@ -10,10 +11,17 @@ import {Constants} from '../constant/constant';
 })
 export class AuthService {
 
-  private apiURL = Constants.CONSUMER_API_URL;
+  private apiURL = GlobalConstants.BASE_URL;
+
+  // params={
+  //   "client_id": "RsznkkMUqmJD0nUXjYv2LS8HPopT4xy1" ,
+  //   "client_secret": "GZu_62xk_zFCSHAq3jdWdG9E6vXLD0moEksC4BGv46IFRuQp5rcdjWCxDIJTvNRs",
+  //   "audience": this.apiURL+'/',
+  //   "grant_type": "client_credentials"
+  // }
 
   params={
-    "client_id": "odbusSasAgent" ,
+    "client_id": "odbusSas" ,
     "password": "Admin@2010"
   }
 
