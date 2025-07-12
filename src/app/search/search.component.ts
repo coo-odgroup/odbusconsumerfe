@@ -675,7 +675,7 @@ export class SearchComponent  implements OnInit {
         this.selectedUB.push(e.seatText);
       }
 
-       let otherId = 'upper'+e.id;
+       let otherId = (this.isMobile) ? 'upper_mo'+e.id : 'upper'+e.id   ;
         let otherElement = document.getElementById(otherId) as HTMLInputElement;
         otherElement.checked = true;
 
@@ -752,7 +752,6 @@ export class SearchComponent  implements OnInit {
      //  console.log(Upperberth);
      
     } else {
-    console.log(e);
       let vl=e.target.value.split('-');
       let i: number = 0;
       Upperberth.controls.forEach((item: AbstractControl) => {
@@ -769,7 +768,7 @@ export class SearchComponent  implements OnInit {
               if (index !== -1) {
                 this.selectedUB.splice(index, 1);
               }
-              let otherId = 'upper'+e.id;
+              let otherId = (this.isMobile) ? 'upper_mo'+e.id : 'upper'+e.id   ;
                 let otherElement = document.getElementById(otherId) as HTMLInputElement;
                 otherElement.checked = false;
                 const valueToRemove = otherElement.value;
