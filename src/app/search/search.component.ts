@@ -649,7 +649,7 @@ export class SearchComponent  implements OnInit {
                 && at.seatText!='' && t.seatText != at.seatText && at.bus_seats){ 
 
                   if(ubnames.indexOf(at.seatText) === -1){
-                    this.dualsleeper_warning='Please note that ODBUS has the right to cancel single sleeper booking in double sleepers without notice as well the traveler will be bound to share the adjacent sleeper with other passenger. For details contact customer support.';
+                    this.dualsleeper_warning='Double sleeper auto-selected as Single booking not allowed. Continue or pick a different seat/sleeper or Bus.';
                      
                   }
                   at['linkedseat']=t;
