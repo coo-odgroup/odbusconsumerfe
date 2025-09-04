@@ -7,6 +7,27 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
+                {{countdown_status}}
+                <div class="my-countdown" *ngIf="countdown_status==1"  style="color:red">
+                    <div class="countdown-container">
+                        
+            <div *ngIf="!isExpired" class="countdown-timer">
+                <b> {{countdown_title}} </b>
+                <span class="countdown-value" *ngIf="days > 0">{{ days }} Days </span>                
+                <span class="countdown-value" *ngIf="hours > 0">{{ hours }} Hours </span>                
+                <span class="countdown-value" *ngIf="minutes > 0">{{ minutes }} Minutes </span>
+                <span class="countdown-value" >{{ seconds }} Seconds</span>
+            </div>
+
+            <div *ngIf="isExpired" class="countdown-expired">
+                Booking is open now ....
+            </div>
+
+            </div>
+
+
+                </div>
+
                 <div class="hero-banner-inner-text">
                     <!-- <h1 *ngIf="masterSettingRecord.common">{{master_info.operator_slogan}}</h1> -->
                     <!-- <h1>the most trusted & safest online bus booking platform</h1> -->

@@ -8,7 +8,7 @@ import { OfferService } from '../services/offer.service';
 import { CommonService } from '../services/common.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
-import { Observable } from 'rxjs';
+import { interval, Observable, Subscription } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
 import { GlobalConstants } from '../constants/global-constants';
@@ -96,7 +96,17 @@ export class HomeComponent implements OnInit {
   activeMenu: string;
 
   CurrentDate:any = new Date();
-  
+ 
+  configcount = {
+  leftTime: 60 * 60 * 24 * 14 + 60 * 30 + 36000,
+  format: 'dd [Day] hh [hr] mm [min]'
+};
+
+ days: number = 0;
+      hours: number = 0;
+      minutes: number = 0;
+      seconds:number=0;
+       public isExpired: boolean = false;
  
     constructor(private router: Router,private _fb: FormBuilder,
       private locationService: LocationdataService,
@@ -132,7 +142,10 @@ export class HomeComponent implements OnInit {
             let topOperators =resp.data.topOperators;
             const mapped = Object.keys(topOperators).map(key => topOperators[key]);
             this.topOperators = mapped;  
-            
+            this.endDate=resp.data.common.countdown_enddate+' '+resp.data.common.countdown_endtime;
+           // console.log(this.endDate);
+            this.countdown_status=resp.data.common.countdown_status;
+            this.countdown_title=resp.data.common.countdown_title;
             
             this.location_list =resp.data.locationName;
                   this.search = (text$: Observable<string>) =>
@@ -495,7 +508,52 @@ export class HomeComponent implements OnInit {
     //console.log(this.offerList);
   }
 
+   private countdownSubscription!: Subscription;
+
+    ngOnDestroy(): void {
+        if (this.countdownSubscription) {
+          this.countdownSubscription.unsubscribe();
+        }
+      }
+
+      private startCountdown(): void {
+        this.countdownSubscription = interval(1000).subscribe(() => {
+          this.updateCountdown();
+        });
+      }
+
+      endDate:string;
+      countdown_status:any;
+      countdown_title:any;
+
+      private updateCountdown(): void {
+        const now = new Date().getTime();
+        const end = new Date(this.endDate).getTime();
+        const distance = end - now;
+
+        if (distance < 0) {
+          this.isExpired = true;
+          // Timer has expired
+          this.days = 0;
+          this.hours = 0;
+          this.minutes = 0;
+          this.seconds = 0;
+          
+          if (this.countdownSubscription) {
+            this.countdownSubscription.unsubscribe();
+          }
+          return;
+        }
+
+        this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        this.seconds = Math.floor((distance % (1000 * 60)) / 1000); // Optional
+      }
+
   ngOnInit() {
+
+    this.startCountdown();
     
     this.searchForm = this._fb.group({
       source: [null],

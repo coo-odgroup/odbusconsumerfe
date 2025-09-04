@@ -7,6 +7,17 @@
    line-height:42px;
  }
   
+.my-countdown {
+  font-size: 24px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  
+}
+.ng-star-inserted{
+text-align: center;
+}
 
 .jrny_dt{
   background-color: #fff !important;

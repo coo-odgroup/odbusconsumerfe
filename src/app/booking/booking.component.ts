@@ -196,14 +196,15 @@ export class BookingComponent implements OnInit{
     this.genderRestrictSeats=localStorage.getItem('genderRestrictSeats');
 
     
-   // console.log(this.busRecord);
+   //console.log(this.busRecord);
 
     if(this.bookingdata == null && this.busRecord == null){
       this.router.navigate(['/']);
     }else{
       this.bookingdata= JSON.parse(this.bookingdata);
       this.busRecord= JSON.parse(this.busRecord);      
-      if(this.busRecord.couponDetails!= null && this.busRecord.couponDetails.length==1){
+      if(this.busRecord.couponDetails!= null && this.busRecord.couponDetails.length>0){
+        console.log(this.busRecord.couponDetails[0].coupon_code);
         this.autoApplyCouponcode=this.busRecord.couponDetails[0].coupon_code;
       }
 
@@ -272,6 +273,7 @@ export class BookingComponent implements OnInit{
             coupon_code:this.autoApplyCouponcode, 
             user_id:GlobalConstants.USER_ID,
             bus_id: [this.busRecord.busId],
+            bus_operator_id: [this.busRecord.operatorId],
             source_id: [this.source_id],
             destination_id: [this.destination_id],
             journey_date: [this.entdate],
