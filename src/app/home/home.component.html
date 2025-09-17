@@ -7,7 +7,6 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                {{countdown_status}}
                 <div class="my-countdown" *ngIf="countdown_status==1"  style="color:red">
                     <div class="countdown-container">
                         
@@ -327,7 +326,7 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
     </div>
     <div class="container">
         <ul>
-            <li *ngFor="let t of topOperators;">
+            <li class="text-left" *ngFor="let t of topOperators;">
                 <a href="javascript:void(0);" (click)="operator_detail(t.operator_url);" > <img src="assets/img/icon-bus-alt.svg">{{ t.organisation_name}}</a></li>
            
         </ul>
