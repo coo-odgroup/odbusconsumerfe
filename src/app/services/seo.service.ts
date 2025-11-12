@@ -30,7 +30,7 @@ export class SeoService {
 
   constructor(@Inject(DOCUMENT) private doc, private httpClient: HttpClient, private title: Title, private meta: Meta) {}
 
-  // deafultmeta_title = this.meta_title.asObservable();
+  // deafultmeta_title = this.meta_title.asObservable(); 
   // deafultmeta_keyword = this.meta_keyword.asObservable();
   // deafultmeta_description = this.meta_description.asObservable();
 

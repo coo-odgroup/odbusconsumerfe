@@ -46,7 +46,6 @@ export class OperatorDetailComponent implements OnInit {
     private location: Location,
     private seo:SeoService,
     private detectService: DeviceDetectorService
-
     ) { 
 
       this.isMobile = this.detectService.isMobile();

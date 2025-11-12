@@ -367,15 +367,10 @@ export class HomeComponent implements OnInit {
 
     this.entry_date = event;
 
-    //this.searchForm.controls.entry_date.setValue(event);
-
     let dt = event;
-
 
     this.selectedDate = [dt.year, dt.month, dt.day].join("-");
     this.modalService.dismissAll();
-
-    //console.log(this.searchForm.value.entry_date);
 
   }
 

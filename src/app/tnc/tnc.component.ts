@@ -7,7 +7,6 @@ import { LoginChecker } from '../helpers/loginChecker';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-tnc',
   templateUrl: './tnc.component.html',

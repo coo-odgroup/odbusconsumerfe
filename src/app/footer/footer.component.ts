@@ -66,7 +66,6 @@ export class FooterComponent implements OnInit {
 
       this.commonService.PopularInfo(param).subscribe(
         resp => {
-          // console.log('API Response:', resp.data);
           localStorage.setItem('PopularInfo', JSON.stringify(resp.data));
           this.popularInfoGetData(resp.data);
         },

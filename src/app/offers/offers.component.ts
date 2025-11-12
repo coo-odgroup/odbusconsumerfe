@@ -10,7 +10,6 @@ import { LoginChecker } from '../helpers/loginChecker';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { NgbDatepickerConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
