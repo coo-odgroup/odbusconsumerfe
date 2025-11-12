@@ -55,7 +55,7 @@ export class AboutUsComponent implements OnInit {
     const aboutContent = localStorage.getItem('aboutContent');
 
     if (aboutContent) {
-      const data = JSON.parse(aboutContent);
+      const data = JSON.parse(aboutContent); 
       this.aboutContent(data);
     } else {
       const param = {
