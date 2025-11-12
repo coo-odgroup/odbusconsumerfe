@@ -71,7 +71,7 @@ export class AboutUsComponent implements OnInit {
       );
     }
 
-    this.spinner.hide(); 
+    this.spinner.hide();
   }
 
   aboutContent(res: any) {

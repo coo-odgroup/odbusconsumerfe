@@ -37,12 +37,12 @@ export class TncComponent implements OnInit {
   }
 
   menu() {
-     this.MenuActive = true;    
+    this.MenuActive = true;
   }
 
   signOut() {
-      this.session.logout();
-      this.router.navigate(['login']);
+    this.session.logout();
+    this.router.navigate(['login']);
   }
 
   ngOnInit(): void {

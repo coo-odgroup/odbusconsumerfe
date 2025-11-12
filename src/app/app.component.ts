@@ -142,5 +142,4 @@ export class AppComponent {
       document.head.append(chatScript);
     }
   }
-
 }

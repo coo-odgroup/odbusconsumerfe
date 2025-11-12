@@ -12,7 +12,7 @@ import { NgbDatepickerConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-
 
 @Component({
   selector: 'app-offers',
-  templateUrl: './offers.component.html',
+  templateUrl: './offers.component.html', 
   styleUrls: ['./offers.component.css'],
   providers: [NgbActiveModal]
 })

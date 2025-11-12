@@ -40,7 +40,6 @@ export class SeoService {
         this.setMeta(resp['data'], current_url);
       }
     );
-
   }
 
   setMeta(res: any, current_url: any) {

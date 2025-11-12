@@ -367,7 +367,7 @@ export class HomeComponent implements OnInit {
 
     this.entry_date = event;
 
-    let dt = event;
+    let dt = event; 
 
     this.selectedDate = [dt.year, dt.month, dt.day].join("-");
     this.modalService.dismissAll();

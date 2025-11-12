@@ -2739,9 +2739,6 @@ export class SearchComponent implements OnInit {
 
 
   setPrevNextDate(entDate: any) {
-
-
-
     let dt = entDate.split("-");
     let dd = dt[2] + '-' + dt[1] + '-' + dt[0];
     let entdate = dd;

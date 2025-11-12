@@ -149,7 +149,7 @@ export class BookingComponent implements OnInit{
     .lazyLoadLibrary('https://checkout.razorpay.com/v1/checkout.js')
     .subscribe();
     
-      this.isMobile = this.deviceService.isMobile();
+      this.isMobile = this.deviceService.isMobile(); 
 
       if(this.isMobile){
         this.app_type='MOB';
