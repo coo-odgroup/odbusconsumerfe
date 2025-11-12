@@ -914,18 +914,41 @@ get_seatno(seat_id:any){
 
     this.generateCaptcha();
 
-    const data={
-      user_id:GlobalConstants.MASTER_SETTING_USER_ID
-    };
+    const storedData = localStorage.getItem('commonData');
 
-    this.commonService.getCommonData(data).subscribe(
-      resp => {
-        this.masterSettingRecord=resp.data; 
+    if (storedData) {
+      const resp = JSON.parse(storedData);
+      this.masterSettingRecord=resp.data; 
+      this.customer_gst=this.masterSettingRecord.common.customer_gst;
+    } else {
+      const param = {
+        user_id:GlobalConstants.MASTER_SETTING_USER_ID
+      };
 
-        this.customer_gst=this.masterSettingRecord.common.customer_gst;
+      this.commonService.getCommonData(param).subscribe(
+        resp => {
+          localStorage.setItem('commonData', JSON.stringify(resp.data));
+          this.masterSettingRecord=resp.data; 
+          this.customer_gst=this.masterSettingRecord.common.customer_gst;
+        },
+        error => {
+          console.error('Error fetching Data:', error);
+        }
+      );
+    }
 
-        //console.log(this.masterSettingRecord.common.customer_gst);
-      });
+
+
+    // const data={
+    //   user_id:GlobalConstants.MASTER_SETTING_USER_ID
+    // };
+
+    // this.commonService.getCommonData(data).subscribe(
+    //   resp => {
+    //     localStorage.setItem('commonData', JSON.stringify(resp.data));
+    //     this.masterSettingRecord=resp.data; 
+    //     this.customer_gst=this.masterSettingRecord.common.customer_gst;
+    //   });
 
     this.passengerData=this.bookForm1.value;
     

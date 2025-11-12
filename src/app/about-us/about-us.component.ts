@@ -52,19 +52,32 @@ export class AboutUsComponent implements OnInit {
   ngOnInit(): void {
     this.spinner.show();
 
-    const data = {
-      user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-      page_url: 'about-us',
-    };
+    const aboutContent = localStorage.getItem('aboutContent');
 
-    this.pagesService.PageContent(data).subscribe((res) => {
-      // console.log(res);
-      if (res.data.length > 0) {
-        this.pageTitle = res.data[0].page_name;
-        this.pageContent = res.data[0].page_description;
-      }
+    if (aboutContent) {
+      const data = JSON.parse(aboutContent);
+      this.aboutContent(data);
+    } else {
+      const param = {
+        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+        page_url: 'about-us',
+      };
 
-      this.spinner.hide();
-    });
+      this.pagesService.PageContent(param).subscribe(
+        res => {
+          localStorage.setItem('aboutContent', JSON.stringify(res.data));
+          this.aboutContent(res.data);
+        }
+      );
+    }
+
+    this.spinner.hide();
+  }
+
+  aboutContent(res: any) {
+    if (res.length > 0) {
+      this.pageTitle = res[0].page_name;
+      this.pageContent = res[0].page_description;
+    }
   }
 }

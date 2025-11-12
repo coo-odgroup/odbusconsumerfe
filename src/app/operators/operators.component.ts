@@ -15,93 +15,82 @@ import { LoginChecker } from '../helpers/loginChecker';
 })
 export class OperatorsComponent implements OnInit {
 
-  allOperators:any;
+  allOperators: any;
   currentUrl: any;
   isMobile: boolean;
   session: LoginChecker;
   MenuActive: boolean = false;
 
 
-  per_page=400;
+  per_page = 400;
 
   searchText: string;
-  alphabets:any = [];
+  alphabets: any = [];
   activeMenu: string;
 
   constructor(
     private spinner: NgxSpinnerService,
     private topOperatorsService: TopOperatorsService,
     private router: Router,
-    private seo:SeoService,
+    private seo: SeoService,
     private location: Location,
     private detectService: DeviceDetectorService
 
-    ) {
+  ) {
 
-      this.getList();
+    this.getList();
 
-     
-      for (let i = 65; i <= 90;i++) {
-          this.alphabets.push(String.fromCharCode(i));
-      }
 
-      this.isMobile = this.detectService.isMobile();
-      this.session = new LoginChecker();
-      this.currentUrl = location.path().replace('/','');
-      this.seo.seolist(this.currentUrl); 
-
+    for (let i = 65; i <= 90; i++) {
+      this.alphabets.push(String.fromCharCode(i));
     }
 
-    menu(){
-      this.MenuActive = (this.MenuActive==false) ? true : false;
-      this.activeMenu='';   
+    this.isMobile = this.detectService.isMobile();
+    this.session = new LoginChecker();
+    this.currentUrl = location.path().replace('/', '');
+    this.seo.seolist(this.currentUrl);
+
+  }
+
+  menu() {
+    this.MenuActive = (this.MenuActive == false) ? true : false;
+    this.activeMenu = '';
+  }
+
+  signOut() {
+    this.session.logout();
+    this.router.navigate(['login']);
+  }
+
+  operator_detail(url: any) {
+    if (url != '') {
+      this.router.navigate(['operator/' + url]);
     }
+  }
 
-    signOut(){
-      this.session.logout();
-      this.router.navigate(['login']);   
-    }
+  getList(url: any = '', filter: any = '') {
+    this.spinner.show();
+    const param = {
+      "paginate": this.per_page,
+      "filter": filter,
+    };
 
-    operator_detail(url:any){
-      if(url!=''){
-        this.router.navigate(['operator/'+url]);  
-      }         
-    }
+    this.topOperatorsService.allOperator(url, param).subscribe(
+      res => {
+        if (res.status == 1) {
+          this.allOperators = res.data.data;
+          let arr = [];
+          this.allOperators.data.forEach(e => {
+            arr.push(e.operator_url)
+          });
+        }
+        this.spinner.hide();
+      });
+  }
 
-    getList(url:any='',filter:any=''){
-      this.spinner.show();
-      const param= {
-        "paginate":this.per_page,
-        "filter":filter,
-       }; 
-
-
-      this.topOperatorsService.allOperator(url,param).subscribe(
-        res=>{
-          if(res.status==1)
-          { 
-            this.allOperators =res.data.data;    
-            //console.log(this.allOperators); 
-
-           let arr=[];
-            
-            this.allOperators.data.forEach(e => {
-
-              arr.push(e.operator_url)
-              
-            });
-
-           // console.log(arr);
-
-
-          }
-         this.spinner.hide();            
-        });
-    }
-
-    page(label:any){
-      return label;
-     }
+  page(label: any) {
+    return label;
+  }
 
   ngOnInit(): void {
   }

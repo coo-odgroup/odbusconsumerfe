@@ -161,11 +161,29 @@ export class OperatorDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.Common.getPathUrls().subscribe( res=>{          
-      if(res.status==1){  
-        this.url_path=res.data[0];        
-      }    
-    });
+    // this.Common.getPathUrls().subscribe( res=>{          
+    //   if(res.status==1){  
+    //     this.url_path=res.data[0];
+    //   }    
+    // });
+
+    const pathUrls = localStorage.getItem('pathUrls');
+
+    if (pathUrls) {
+      const data = JSON.parse(pathUrls);
+      if (data.status == 1) {
+        this.url_path = data.data[0];
+      }
+    } else {
+      this.Common.getPathUrls().subscribe(
+        res => {
+          localStorage.setItem('pathUrls', JSON.stringify(res));
+          if (res.status == 1) {
+            this.url_path = res.data[0];
+          }
+        }
+      );
+    }
    
   }
 
