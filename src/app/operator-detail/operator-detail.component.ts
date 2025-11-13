@@ -60,7 +60,7 @@ export class OperatorDetailComponent implements OnInit {
       this.spinner.show();
 
       this.route.params.subscribe(params => {
-        this.operator_url = params['url']; 
+        this.operator_url = params['url'];
         this.getdetail();
       });
 

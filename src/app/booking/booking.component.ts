@@ -155,8 +155,6 @@ export class BookingComponent implements OnInit{
         this.app_type='MOB';
       }
 
-      
-
       this.currentUrl = location.path().replace('/','');
       this.seo.seolist(this.currentUrl);
 

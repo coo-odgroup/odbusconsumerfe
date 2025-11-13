@@ -2730,13 +2730,9 @@ export class SearchComponent implements OnInit {
     this.modalService.open(viewreview, { windowClass: 'mobile-modalbox' });
   }
 
-
-
   viewpolicy(viewpolicy: any) {
     this.modalService.open(viewpolicy, { windowClass: 'mobile-modalbox' });
   }
-
-
 
   setPrevNextDate(entDate: any) {
     let dt = entDate.split("-");

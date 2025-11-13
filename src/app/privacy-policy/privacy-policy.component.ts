@@ -64,7 +64,7 @@ export class PrivacyPolicyComponent implements OnInit {
       this.pagesService.PageContent(param).subscribe(
         res => {
           localStorage.setItem('privacyPolicyContent', JSON.stringify(res.data));
-          this.privacyPolicyContent(res.data); 
+          this.privacyPolicyContent(res.data);
         }
       );
     }

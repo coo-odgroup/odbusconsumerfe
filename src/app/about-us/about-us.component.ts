@@ -45,8 +45,8 @@ export class AboutUsComponent implements OnInit {
   }
 
   signOut() {
-      this.session.logout();
-      this.router.navigate(['login']);
+    this.session.logout();
+    this.router.navigate(['login']);
   }
 
   ngOnInit(): void {

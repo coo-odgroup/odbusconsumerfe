@@ -112,7 +112,6 @@ export class SeoService {
       errorMessage = error.error.message;
     } else {
       errorMessage = error;
-      //`Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
   }

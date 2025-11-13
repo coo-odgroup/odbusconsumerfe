@@ -139,7 +139,7 @@ export class AppComponent {
       let chatScript = document.createElement("script");
       chatScript.innerHTML = this.common.seo_script;
       chatScript.id = "seo_script";
-      document.head.append(chatScript);
+      document.head.append(chatScript); 
     }
   }
 }

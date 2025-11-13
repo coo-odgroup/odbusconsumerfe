@@ -62,7 +62,7 @@ export class TncComponent implements OnInit {
           localStorage.setItem('tncContent', JSON.stringify(res.data));
           this.tncContent(res.data);
         }
-      );
+      ); 
     }
   }
 

@@ -73,7 +73,7 @@ export class FooterComponent implements OnInit {
           console.error('Error fetching PopularInfo:', error); 
         }
       );
-    }
+    } 
   }
 
   popularInfoGetData(resp: any) {

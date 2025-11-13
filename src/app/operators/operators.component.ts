@@ -40,7 +40,6 @@ export class OperatorsComponent implements OnInit {
 
     this.getList();
 
-
     for (let i = 65; i <= 90; i++) {
       this.alphabets.push(String.fromCharCode(i));
     }
