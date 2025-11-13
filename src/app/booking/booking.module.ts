@@ -7,7 +7,7 @@ import { BookingComponent } from './booking.component';
   imports: [ BrowserModule,FormsModule],
   bootstrap: [BookingComponent],
   declarations: [
-    BookingComponent
+    // BookingComponent
   ]
 })
 export class BookingModule { }
