@@ -8,8 +8,7 @@ import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
 import { LoginChecker } from '../helpers/loginChecker';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { NgbDatepickerConfig,NgbModal,NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbDatepickerConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-offers',
@@ -19,14 +18,14 @@ import { NgbDatepickerConfig,NgbModal,NgbActiveModal} from '@ng-bootstrap/ng-boo
 })
 export class OffersComponent implements OnInit {
 
-  allOffers:any=[];
-  url_path ='';
+  allOffers: any = [];
+  url_path = '';
   currentUrl: any;
 
-  isMobile:boolean;
+  isMobile: boolean;
   session: LoginChecker;
-  MenuActive:boolean = false;
-  OfferData:any=[];
+  MenuActive: boolean = false;
+  OfferData: any = [];
   activeMenu: string;
 
   constructor(
@@ -34,55 +33,79 @@ export class OffersComponent implements OnInit {
     private offerService: OfferService,
     private router: Router,
     private sanitizer: DomSanitizer,
-    private seo:SeoService,
+    private seo: SeoService,
     private location: Location,
     private detectService: DeviceDetectorService,
     private modalService: NgbModal
-    ) { 
+  ) {
 
-      this.isMobile = this.detectService.isMobile();
-      this.session = new LoginChecker();
-      this.currentUrl = location.path().replace('/','');
-      this.seo.seolist(this.currentUrl);
-      
-      this.spinner.show();
-      const data={
-        user_id:GlobalConstants.MASTER_SETTING_USER_ID
-      };
-    this.offerService.Offers(data).subscribe(
-      res=>{
-        if(res.status==1)
-        { 
-          this.allOffers = res.data;
-          //console.log(this.allOffers);
-        } 
-        
-        this.spinner.hide();
-      });
-    }
+    this.isMobile = this.detectService.isMobile();
+    this.session = new LoginChecker();
+    this.currentUrl = location.path().replace('/', '');
+    this.seo.seolist(this.currentUrl);
 
-    menu(){
-      this.MenuActive = true;
-      this.activeMenu='active';
-    }
+    this.spinner.show();
 
-    signOut(){
-        this.session.logout();
-        this.router.navigate(['login']);   
-    }
+    const offerData = localStorage.getItem('offerData');
 
-    OfferModal(modal:any,i:any){
-      this.spinner.show();
-      this.modalService.open(modal);
-      this.OfferData=this.allOffers[i];
-      console.log(this.OfferData);
+    if (offerData) {
+      const data = JSON.parse(offerData);
+      this.allOffers = data;
       this.spinner.hide();
+    } else {
+      const param = {
+        user_id: GlobalConstants.MASTER_SETTING_USER_ID
+      };
+
+      this.offerService.Offers(param).subscribe(
+        res => {
+          localStorage.setItem('offerData', JSON.stringify(res.data));
+          if (res.status == 1) {
+            this.allOffers = res.data;
+          }
+
+          this.spinner.hide();
+        }
+      );
     }
 
-    getImagePath(slider_img :any){
-      let objectURL = 'data:image/*;base64,'+slider_img;
-      return this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
-     }  
+    // const data = {
+    //   user_id: GlobalConstants.MASTER_SETTING_USER_ID
+    // };
 
-    ngOnInit(): void { }
+    // this.offerService.Offers(data).subscribe(
+    //   res => {
+    //     if (res.status == 1) {
+    //       this.allOffers = res.data;
+    //       // console.log(this.allOffers);
+    //     }
+
+    //     this.spinner.hide();
+    //   });
+  }
+
+  menu() {
+    this.MenuActive = true;
+    this.activeMenu = 'active';
+  }
+
+  signOut() {
+    this.session.logout();
+    this.router.navigate(['login']);
+  }
+
+  OfferModal(modal: any, i: any) {
+    this.spinner.show();
+    this.modalService.open(modal);
+    this.OfferData = this.allOffers[i];
+    console.log(this.OfferData);
+    this.spinner.hide();
+  }
+
+  getImagePath(slider_img: any) {
+    let objectURL = 'data:image/*;base64,' + slider_img;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
+  }
+
+  ngOnInit(): void { }
 }

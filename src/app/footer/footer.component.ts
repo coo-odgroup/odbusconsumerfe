@@ -53,28 +53,38 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     
+    const storedData = localStorage.getItem('PopularInfo');
 
+    if (storedData) {
+      const data = JSON.parse(storedData);
+      this.popularInfoGetData(data);
+    } else {
+      const param = {
+        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+        locationName: ""
+      };
+
+      this.commonService.PopularInfo(param).subscribe(
+        resp => {
+          localStorage.setItem('PopularInfo', JSON.stringify(resp.data));
+          this.popularInfoGetData(resp.data);
+        },
+        error => {
+          console.error('Error fetching PopularInfo:', error); 
+        }
+      );
+    } 
+  }
+
+  popularInfoGetData(resp: any) {
     const current = new Date();
     this.dtconfig.minDate = { year: current.getFullYear(), month: current.getMonth() + 1, day: current.getDate() };
-    
-    let param={
-      user_id:GlobalConstants.MASTER_SETTING_USER_ID,
-      locationName: ""
-    };
 
-    this.commonService.PopularInfo(param).subscribe(
-      resp => {  
-        this.popular_routes =resp.data.popularRoutes;
-           
-        this.location_list =resp.data.locationName;
-        let maxDate = current.setDate(current.getDate() + resp.data.common.advance_days_show); 
-        const max = new Date(maxDate);
-        this.dtconfig.maxDate = { year: max.getFullYear(), month:  max.getMonth() + 1, day: max.getDate() };
-      });
-
-    
-   
+    this.popular_routes = resp.popularRoutes;
+    this.location_list = resp.locationName;
+    let maxDate = current.setDate(current.getDate() + resp.common.advance_days_show); 
+    const max = new Date(maxDate);
+    this.dtconfig.maxDate = { year: max.getFullYear(), month:  max.getMonth() + 1, day: max.getDate() };
   }
 
   CurrentDate:any = new Date();

@@ -12,9 +12,13 @@ export class GlobalConstants {
    // public static URL:any ='https://odtesting.odbus.co.in/';
    // public static PAYMENT_MODE:any ='sandbox';
 
+//    public static BASE_URL:any ='http://localhost:7001/ODBUS/odbusconsumerbe/api';
+//     public static URL:any ='http://localhost:4200/';
+//     public static PAYMENT_MODE:any ='sandbox';
+
    public static BASE_URL:any ='http://localhost:7001/ODBUS/odbusconsumerbe/api';
-    public static URL:any ='http://localhost:4200/';
-    public static PAYMENT_MODE:any ='sandbox';
+   public static URL:any ='http://localhost:4200/';
+   public static PAYMENT_MODE:any ='production';
 
    public static USER_ID:any = "";
    public static MASTER_SETTING_USER_ID:any = "1";

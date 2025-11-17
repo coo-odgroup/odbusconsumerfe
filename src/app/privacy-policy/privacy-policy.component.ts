@@ -50,15 +50,30 @@ export class PrivacyPolicyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const data = {
-      user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-      page_url: 'privacy-policy',
-    };
-    this.pagesService.PageContent(data).subscribe((res) => {
-      if (res.data.length > 0) {
-        this.pageTitle = res.data[0].page_name;
-        this.pageContent = res.data[0].page_description;
-      }
-    });
+    const privacyPolicyContent = localStorage.getItem('privacyPolicyContent');
+
+    if (privacyPolicyContent) {
+      const data = JSON.parse(privacyPolicyContent);
+      this.privacyPolicyContent(data);
+    } else {
+      const param = {
+        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+        page_url: 'privacy-policy',
+      };
+
+      this.pagesService.PageContent(param).subscribe(
+        res => {
+          localStorage.setItem('privacyPolicyContent', JSON.stringify(res.data));
+          this.privacyPolicyContent(res.data);
+        }
+      );
+    }
+  }
+
+  privacyPolicyContent(res: any) {
+    if (res.length > 0) {
+      this.pageTitle = res[0].page_name;
+      this.pageContent = res[0].page_description;
+    }
   }
 }

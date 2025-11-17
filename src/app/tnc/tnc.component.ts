@@ -7,7 +7,6 @@ import { LoginChecker } from '../helpers/loginChecker';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-tnc',
   templateUrl: './tnc.component.html',
@@ -38,24 +37,39 @@ export class TncComponent implements OnInit {
   }
 
   menu() {
-     this.MenuActive = true;    
+    this.MenuActive = true;
   }
 
   signOut() {
-      this.session.logout();
-      this.router.navigate(['login']);
+    this.session.logout();
+    this.router.navigate(['login']);
   }
 
   ngOnInit(): void {
-    const data = {
-      user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-      page_url: 'terms-conditions',
-    };
-    this.pagesService.PageContent(data).subscribe((res) => {
-      if (res.data.length > 0) {
-        this.pageTitle = res.data[0].page_name;
-        this.pageContent = res.data[0].page_description;
-      }
-    });
+    const tncContent = localStorage.getItem('tncContent');
+
+    if (tncContent) {
+      const data = JSON.parse(tncContent);
+      this.tncContent(data);
+    } else {
+      const param = {
+        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+        page_url: 'terms-conditions',
+      };
+
+      this.pagesService.PageContent(param).subscribe(
+        res => {
+          localStorage.setItem('tncContent', JSON.stringify(res.data));
+          this.tncContent(res.data);
+        }
+      ); 
+    }
+  }
+
+  tncContent(res: any) {
+    if (res.length > 0) {
+      this.pageTitle = res[0].page_name;
+      this.pageContent = res[0].page_description;
+    }
   }
 }

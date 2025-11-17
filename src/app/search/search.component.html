@@ -47,7 +47,7 @@
                             <div class="mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><img
-                                            src="assets/img/Icon-metro-location.svg"></span>
+                                            src="assets/img/Icon-metro-location.svg" alt="Icon-metro-location"></span>
                                     <input autocomplete="off" id="from" type="text"
                                         class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt"
                                         [inputFormatter]="formatter" [ngModel]="swapsource"
@@ -66,9 +66,7 @@
                                 <div class="mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon2"><img
-                                                src="assets/img/Icon-metro-location.svg"></span>
-                                
-                                
+                                                src="assets/img/Icon-metro-location.svg" alt="Icon-metro-location"></span>
                                         <input autocomplete="off" id="to" type="text"
                                             class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt2"
                                             [inputFormatter]="formatter" [ngModel]="swapdestination"
@@ -89,7 +87,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text calendar" id="basic-addon3"
                                             (click)="d.toggle()"><img
-                                                src="assets/img/Icon-metro-calendar.svg"></span>
+                                                src="assets/img/Icon-metro-calendar.svg" alt="Icon-metro-location"></span>
                                     </div>
                                     <input type="text" id="entryDate" autocomplete="off" class="form-control calendar"
                                         formControlName="entry_date" placeholder="Journey Date"
@@ -127,7 +125,7 @@
         <form [formGroup]="filterForm">
         <p style="opacity: 0">Filters</p>
         <div class="search-result-left">
-        <h3 class="tit-filtr"><img src="assets/img/Icon-awesome-filter.svg">Filters</h3>
+        <h3 class="tit-filtr"><img src="assets/img/Icon-awesome-filter.svg" alt="Icon-awesome-filter">Filters</h3>
         <ngb-accordion #acc="ngbAccordion" [destroyOnHide]='false' 
         [closeOthers]="true" (panelChange)='panelShadow($event, shadow)' 
         activeIds="price" #shadow>
@@ -241,44 +239,44 @@
         <ul class="bs-srch-dt-dtl sort-bus-top">
         <li class="bs-dtl-one tx-left">
         <a class="srt-by-opert cursor" (click)="sort('busName')">Bus Name
-            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='busName' && arrowStatus=='up'">
-            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='busName' && arrowStatus=='down'">
+            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='busName' && arrowStatus=='up'" alt="up">
+            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='busName' && arrowStatus=='down'" alt="down">
             </a>
         </li>
         <li class="bs-dtl-one">
         <!-- bs-dtl-from -->
         <a class="srt-by-dept cursor" (click)="sort('departureTime')">Departure
-            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='departureTime' && arrowStatus=='up'">
-            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='departureTime' && arrowStatus=='down'">
+            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='departureTime' && arrowStatus=='up'" alt="up">
+            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='departureTime' && arrowStatus=='down'" alt="down">
 
         </a>
         </li>
         <li class="bs-dtl-one">
         <!-- bs-dtl-bs-tm-take -->
         <a class="srt-by-duraton cursor" (click)="sort('totalJourneyTime')">Duration
-            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='totalJourneyTime' && arrowStatus=='up'">
-            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='totalJourneyTime' && arrowStatus=='down'">
+            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='totalJourneyTime' && arrowStatus=='up'" alt="up">
+            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='totalJourneyTime' && arrowStatus=='down'" alt="down">
         </a>
         </li>
         <li class="bs-dtl-one">
         <!-- bs-dtl-bs-reach -->
         <a class="srt-by-arival cursor" (click)="sort('arrivalTime')">Arrival
-            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='arrivalTime' && arrowStatus=='up'">
-            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='arrivalTime' && arrowStatus=='down'">
+            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='arrivalTime' && arrowStatus=='up'" alt="up">
+            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='arrivalTime' && arrowStatus=='down'" alt="down">
         </a>
         </li>
         <li class="bs-dtl-one">
         <!-- bs-dtl-seat-dtl -->
         <a class="srt-by-seats cursor" (click)="sort('totalSeats')">Seats
-            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='totalSeats' && arrowStatus=='up'">
-            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='totalSeats' && arrowStatus=='down'">
+            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='totalSeats' && arrowStatus=='up'" alt="up">
+            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='totalSeats' && arrowStatus=='down'" alt="down">
         </a>
         </li>
         <li class="bs-dtl-one">
         <!-- bs-dtl-start-pont -->
         <a class="srt-by-prc cursor" (click)="sort('startingFromPrice')">Price
-            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='startingFromPrice' && arrowStatus=='up'">
-            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='startingFromPrice' && arrowStatus=='down'">
+            <img class="pllygn-up"src="assets/img/Polygon-icon-2.png" *ngIf="columnName=='startingFromPrice' && arrowStatus=='up'" alt="up">
+            <img class="pllygn-dn" src="assets/img/Polygon-icon.png" *ngIf="columnName=='startingFromPrice' && arrowStatus=='down'" alt="down">
         </a>
         </li>
         <li class="bs-dtl-one"></li>
@@ -288,7 +286,7 @@
         </div>
         <div *ngIf="!bussearching && totalfound == 0">
             <div class="col-md-12"  style="text-align: center;">        
-                <img src="../../assets/img/no-bus.png">            
+                <img src="../../assets/img/no-bus.png" alt="no bus">            
                 <br>There are no Bus found in this route for the selected date of journey. Please try a different route or date.
             </div>
         </div>
@@ -312,7 +310,7 @@
 
             <div class="row cursor" (click)="coupon_detail(i,CouponDetail)" *ngIf="bus.couponDetails && bus.couponDetails.length>0">
                 <div class="new-deal deal coupon_terms" title="Click To View">
-                    <img src="assets/img/deal.png">
+                    <img src="assets/img/deal.png" alt="deal">
                     <span>{{bus.couponDetails[0].short_desc}}</span>
                     <span class="cpnbox"> {{ bus.couponDetails[0].coupon_code}}</span>
                    
@@ -322,7 +320,7 @@
         <div class="row">
             <div class="col-md-12 pt-3 pb-1 bck-white bck-white-one" *ngIf="bus.origin=='ODBUS'">
                 <div class="icon-assured">
-                    <img src="assets/img/icon-assured.png">
+                    <img src="assets/img/icon-assured.png" alt="icon-assured">
                 </div>
             </div>
         </div>
@@ -344,7 +342,7 @@
                     </li>
                     <li class="p-2 flex-fill">
                         <div class="search-result-bus-box-inner-box">
-                            <p class="tit-up"><img src="assets/img/Icon-time-bus.svg">
+                            <p class="tit-up"><img src="assets/img/Icon-time-bus.svg" alt="Icon-time-bus">
                             </p>
                             <p>{{ bus.totalJourneyTime }}</p>
                         </div>
@@ -437,7 +435,7 @@
 
             <div class="col-md-8">
                 <div *ngIf="seatLoader" class="seatLoader"><img
-                        src="assets/img/seat-loader.gif"></div>
+                        src="assets/img/seat-loader.gif" alt="seat-loader"></div>
                 <div class="layout2" *ngIf="busId==bus.busId && UpperberthArr.length">
                     <h2 class="driver-sleeper">UPPER BERTH</h2>
                     <div class="layout-bg">
@@ -533,7 +531,7 @@
                     style="color:red;font-weight:bold">You have selected maximum no of
                     seats</div>
                 <div class="layout1" *ngIf="busId==bus.busId &&  LowerberthArr.length">
-                    <h2 class="driver-seat">LOWER BERTH erer</h2>
+                    <h2 class="driver-seat">LOWER BERTH</h2>
                     <div class="layout-bg">
                         <ol class="cabin fuselage">
                             <div class="driver-seat-img"> 
@@ -2027,7 +2025,7 @@
                       </div>
                 </div>              
             </div>
-          
+
         </div>
       
       </ng-template> 

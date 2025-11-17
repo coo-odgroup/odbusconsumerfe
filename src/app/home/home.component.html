@@ -2,7 +2,6 @@
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
 type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 
-
 <section class="hero-banner" style="background-image: url({{bannerImage}}); background-size: cover; background-position: bottom !important;"  >
     <div class="container">
         <div class="row justify-content-center">
@@ -46,7 +45,7 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
                                     <div class="input-group mb-3 d-block">
 
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><img src="assets/img/Icon-metro-location.svg"></span>
+                                            <span class="input-group-text" id="basic-addon1"><img src="assets/img/Icon-metro-location.svg" alt="Icon-metro-location"></span>
                                         
                                             <input autocomplete="off" id="from" type="text" class="form-control pl-0"  
                                             [ngbTypeahead]="search" [resultTemplate]="rt" 
@@ -64,12 +63,11 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
                                 <div class="col-md-4 pr-1 to_dest_block">
                                     <label><b>To</b></label>
                                     <div class="swap-srch cursor">
-                                       <img (click)="swap();"  src="assets/img/swap.svg">
+                                       <img (click)="swap();"  src="assets/img/swap.svg"> 
                                     </div>
                                     <div class="input-group mb-3 d-block">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text pl-3 pr-3" id="basic-addon2"><img
-                                                    src="assets/img/Icon-metro-location.svg"></span>
+                                            <span class="input-group-text pl-3 pr-3" id="basic-addon2"><img src="assets/img/Icon-metro-location.svg"></span>
 
                                                     <input autocomplete="off" id="to" type="text" class="form-control pl-0"  [ngbTypeahead]="search" 
                                                     [resultTemplate]="rt2" [inputFormatter]="formatter" 
