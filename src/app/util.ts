@@ -1,6 +1,6 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { ReplaySubject, Observable, forkJoin } from 'rxjs';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 /**
  * Handled loading the external library ondemand into our app
@@ -10,7 +10,10 @@ export class ExternalLibraryService {
 
     private _loadedLibraries: { [url: string]: ReplaySubject<any> } = {};
 
-    constructor(@Inject(DOCUMENT) private readonly document: any) {}
+    constructor(
+        @Inject(DOCUMENT) private readonly document: any,
+        @Inject(PLATFORM_ID) private platformId: Object
+    ) {}
 
     // forkjoin parameters will grow when we are adding any new external library into app
     lazyLoadLibrary(resourceURL: string): Observable<any> {
@@ -20,6 +23,14 @@ export class ExternalLibraryService {
     }
 
     private loadScript(url: string): Observable<any> {
+        // Only load scripts in browser
+        if (!isPlatformBrowser(this.platformId)) {
+            const emptySubject = new ReplaySubject();
+            emptySubject.next(null);
+            emptySubject.complete();
+            return emptySubject.asObservable();
+        }
+
         if (this._loadedLibraries[url]) {
             return this._loadedLibraries[url].asObservable();
         }
@@ -35,7 +46,12 @@ export class ExternalLibraryService {
             this._loadedLibraries[url].complete();
         };
     
-        this.document.body.appendChild(script);    
+        if (this.document.body) {
+            this.document.body.appendChild(script);
+        } else {
+            // Fallback if body doesn't exist yet
+            this.document.head.appendChild(script);
+        }
         return this._loadedLibraries[url].asObservable();
     }    
 }

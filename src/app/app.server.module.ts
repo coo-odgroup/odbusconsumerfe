@@ -1,24 +1,18 @@
-
-import { AppModule } from './app.module';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-//Installed separatly
+import { NgModule, Injector } from '@angular/core';
 import { ServerModule } from '@angular/platform-server';
-
+import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+// For SSR, we need to use NoopAnimationsModule instead of BrowserAnimationsModule
+// Since AppModule imports BrowserAnimationsModule, we import NoopAnimationsModule here
+// Angular's DI system will use the last imported module
 @NgModule({
-    declarations: [],
     imports: [
-        //Make sure the string matches
-        BrowserModule.withServerTransition({
-            appId: 'my-app-id'
-        }),
         ServerModule,
-        AppModule
+        AppModule,
+        NoopAnimationsModule
     ],
-    providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-
 export class AppServerModule {}

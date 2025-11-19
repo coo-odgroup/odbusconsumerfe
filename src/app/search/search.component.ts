@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, forwardRef, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormBuilder, FormGroup, FormArray, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { NgbNavConfig, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { LocationdataService } from '../services/locationdata.service';
@@ -14,7 +14,7 @@ import { Buslist } from '../model/buslist';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from '../services/notification.service';
-import { DatePipe, formatDate } from '@angular/common';
+import { DatePipe, formatDate, isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 import { GlobalConstants } from '../constants/global-constants';
@@ -223,10 +223,12 @@ export class SearchComponent implements OnInit {
     private popularRoutesService: PopularRoutesService,
     private deviceService: DeviceDetectorService,
     private modalService: NgbModal,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    @Inject(PLATFORM_ID) private platformId: Object
 
   ) {
-    const allLocData = localStorage.getItem('allLoc');
+    // Only access localStorage in browser
+    const allLocData = isPlatformBrowser(this.platformId) ? localStorage.getItem('allLoc') : null;
     // console.log('storage- ',allLocData);
     if (allLocData) {
       const data = JSON.parse(allLocData);
@@ -234,12 +236,15 @@ export class SearchComponent implements OnInit {
     } else {
       this.locationService.all().subscribe(
         res => {
-          localStorage.setItem('allLoc', JSON.stringify(res));
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('allLoc', JSON.stringify(res));
+          }
           this.locationList(res);
         });
     }
 
-    this.isMobile = this.deviceService.isMobile();
+    // Only detect device in browser, default to false (desktop) for SSR
+    this.isMobile = isPlatformBrowser(this.platformId) ? this.deviceService.isMobile() : false;
 
     this.currentUrl = location.path().replace('/', '');
     this.seo.seolist(this.currentUrl);
@@ -441,8 +446,10 @@ export class SearchComponent implements OnInit {
 
       console.log(bookingdata);
 
-      localStorage.setItem('bookingdata', JSON.stringify(bookingdata));
-      localStorage.setItem('busRecord', JSON.stringify(this.buslistRecord));
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('bookingdata', JSON.stringify(bookingdata));
+        localStorage.setItem('busRecord', JSON.stringify(this.buslistRecord));
+      }
       this.router.navigate(['booking']);
     } else {
 
@@ -699,7 +706,9 @@ export class SearchComponent implements OnInit {
 
 
 
-    localStorage.setItem('genderRestrictSeats', JSON.stringify(genderRestrictSeatarray));
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('genderRestrictSeats', JSON.stringify(genderRestrictSeatarray));
+    }
 
     this.spinner.show();
 
@@ -1502,11 +1511,13 @@ export class SearchComponent implements OnInit {
 
         this.bussearching = false;
 
-        localStorage.setItem('source', this.sourceData.name);
-        localStorage.setItem('source_id', this.sourceData.id);
-        localStorage.setItem('destination', this.destinationData.name);
-        localStorage.setItem('destination_id', this.destinationData.id);
-        localStorage.setItem('entdate', this.entdate);
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('source', this.sourceData.name);
+          localStorage.setItem('source_id', this.sourceData.id);
+          localStorage.setItem('destination', this.destinationData.name);
+          localStorage.setItem('destination_id', this.destinationData.id);
+          localStorage.setItem('entdate', this.entdate);
+        }
 
 
 
@@ -2385,7 +2396,7 @@ export class SearchComponent implements OnInit {
     //     this.seoData(resp);
     //   });
 
-    const storedSeoData = localStorage.getItem('seoData');
+    const storedSeoData = isPlatformBrowser(this.platformId) ? localStorage.getItem('seoData') : null;
 
     if (storedSeoData) {
       const data = JSON.parse(storedSeoData);
@@ -2393,7 +2404,9 @@ export class SearchComponent implements OnInit {
     } else {
       this.seo.seoList().subscribe(
         resp => {
-          localStorage.setItem('seoData', JSON.stringify(resp));
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('seoData', JSON.stringify(resp));
+          }
           this.seoData(resp);
         },
         error => {
@@ -2423,7 +2436,7 @@ export class SearchComponent implements OnInit {
 
         let l_ar = urlstr.split('-');
 
-        const allLoc = localStorage.getItem('allLoc');
+        const allLoc = isPlatformBrowser(this.platformId) ? localStorage.getItem('allLoc') : null;
 
         if (allLoc) {
           const data = JSON.parse(allLoc);
@@ -2431,7 +2444,9 @@ export class SearchComponent implements OnInit {
         } else {
           this.locationService.all().subscribe(
             res => {
-              localStorage.setItem('allLoc', JSON.stringify(res));
+              if (isPlatformBrowser(this.platformId)) {
+                localStorage.setItem('allLoc', JSON.stringify(res));
+              }
               this.locAll(res, l_ar);
             });
         }
@@ -2464,7 +2479,7 @@ export class SearchComponent implements OnInit {
 
         this.showformattedDate(this.entdate);
 
-        const storedData_2 = localStorage.getItem('commonData');
+        const storedData_2 = isPlatformBrowser(this.platformId) ? localStorage.getItem('commonData') : null;
 
         if (storedData_2) {
           const data = JSON.parse(storedData_2);
@@ -2476,7 +2491,9 @@ export class SearchComponent implements OnInit {
 
           this.Common.getCommonData(param).subscribe(
             resp => {
-              localStorage.setItem('commonData', JSON.stringify(resp.data));
+              if (isPlatformBrowser(this.platformId)) {
+                localStorage.setItem('commonData', JSON.stringify(resp.data));
+              }
               this.commonData_2(resp.data);
             },
             error => {
@@ -2490,7 +2507,7 @@ export class SearchComponent implements OnInit {
       }
     }
 
-    const pathUrls = localStorage.getItem('pathUrls');
+    const pathUrls = isPlatformBrowser(this.platformId) ? localStorage.getItem('pathUrls') : null;
 
     if (pathUrls) {
       const data = JSON.parse(pathUrls);
@@ -2500,7 +2517,9 @@ export class SearchComponent implements OnInit {
     } else {
       this.Common.getPathUrls().subscribe(
         res => {
-          localStorage.setItem('pathUrls', JSON.stringify(res));
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('pathUrls', JSON.stringify(res));
+          }
           if (res.status == 1) {
             this.url_path = res.data[0];
           }
@@ -2567,7 +2586,7 @@ export class SearchComponent implements OnInit {
 
       //   });
 
-      const storedData = localStorage.getItem('commonData');
+      const storedData = isPlatformBrowser(this.platformId) ? localStorage.getItem('commonData') : null;
 
       if (storedData) {
         const data = JSON.parse(storedData);
@@ -2579,7 +2598,9 @@ export class SearchComponent implements OnInit {
 
         this.Common.getCommonData(param).subscribe(
           resp => {
-            localStorage.setItem('commonData', JSON.stringify(resp.data));
+            if (isPlatformBrowser(this.platformId)) {
+              localStorage.setItem('commonData', JSON.stringify(resp.data));
+            }
             this.commonData_1(resp.data);
           },
           error => {

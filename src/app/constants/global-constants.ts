@@ -12,6 +12,10 @@ export class GlobalConstants {
 //    public static URL:any ='https://odtesting.odbus.co.in/';
 //    public static PAYMENT_MODE:any ='sandbox';
 
+   // public static BASE_URL:any ='https://testing.odbus.co.in/api';
+   // public static URL:any ='https://odtestingssr.odbus.co.in/';
+   // public static PAYMENT_MODE:any ='sandbox';
+
    // public static BASE_URL:any ='https://localhost/api';
    //  public static URL:any ='http://localhost:4200/';
 

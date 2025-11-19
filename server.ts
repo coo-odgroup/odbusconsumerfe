@@ -1,4 +1,4 @@
-import 'zone.js/dist/zone-node';
+import 'zone.js/node';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
@@ -27,6 +27,7 @@ Object.defineProperty(win.document.body.style, 'transform', {
       configurable: true,
     };
   },
+  writable: true
 });
 
 // mock documnet
@@ -46,6 +47,7 @@ export function app(): express.Express {
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule,
+    inlineCriticalCss: false,
   }));
 
   server.set('view engine', 'html');
@@ -60,7 +62,32 @@ export function app(): express.Express {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    res.render(indexHtml, { 
+      req, 
+      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] 
+    }, (err: Error, html: string) => {
+      if (err) {
+        console.error('========================================');
+        console.error('SSR RENDERING ERROR:');
+        console.error('Error message:', err.message);
+        console.error('Error name:', err.name);
+        console.error('Stack trace:', err.stack);
+        console.error('========================================');
+        // Don't fallback silently - show the error to help debug
+        // Fallback to client-side rendering if SSR fails
+        const fs = require('fs');
+        const indexPath = join(distFolder, 'index.html');
+        if (existsSync(indexPath)) {
+          console.warn('Falling back to static HTML due to SSR error');
+          const indexContent = fs.readFileSync(indexPath, 'utf8');
+          return res.send(indexContent);
+        }
+        return res.status(500).send('SSR Error: ' + err.message + '\n\nStack: ' + err.stack);
+      }
+      // Log successful SSR rendering
+      console.log('SSR rendering successful for:', req.url);
+      res.send(html);
+    });
   });
 
   return server;

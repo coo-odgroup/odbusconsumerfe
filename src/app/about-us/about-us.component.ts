@@ -36,6 +36,8 @@ export class AboutUsComponent implements OnInit {
     this.session = new LoginChecker();
 
     this.currentUrl = location.path().replace('/', '');
+    console.log(this.currentUrl);
+    
     this.seo.seolist(this.currentUrl);
   }
 

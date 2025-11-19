@@ -1,19 +1,43 @@
 import { Injectable } from '@angular/core';
+
 @Injectable()
 
 export class LoginChecker {
+  // Check if we're in browser environment
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
+  }
+
   isLoggedIn(): boolean{
+    if (!this.isBrowser()) {
+      return false;
+    }
     return localStorage.getItem('user') == null ? false : true;
   }
     setLoggedInUser(user: any): void {
-        localStorage.setItem('user', user);
+        if (this.isBrowser()) {
+          localStorage.setItem('user', user);
+        }
     }
     logout(){
-        localStorage.removeItem('user');
+        if (this.isBrowser()) {
+          localStorage.removeItem('user');
+        }
     }
     getUser(){
-        const userdata= JSON.parse(localStorage.getItem('user'));
-        return userdata;
+        if (!this.isBrowser()) {
+          return null;
+        }
+        const userStr = localStorage.getItem('user');
+        if (!userStr) {
+          return null;
+        }
+        try {
+          const userdata = JSON.parse(userStr);
+          return userdata;
+        } catch (e) {
+          return null;
+        }
     }
 
 }

@@ -19,16 +19,20 @@ export class CommonService {
     })
   }
 
-   commonData: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  commonData$: Observable<any> = this.commonData.asObservable();
+   private _commonData: any = null;
+   commonData$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   
  
   constructor(private httpClient: HttpClient) { }
 
+  // Getter for commonData (returns the actual data, not the BehaviorSubject)
+  get commonData(): any {
+    return this._commonData;
+  }
   
   setCommonData(newData) {
-    this.commonData=newData;
-    this.commonData.next(this.commonData);
+    this._commonData = newData;
+    this.commonData$.next(newData);
   }
 
 

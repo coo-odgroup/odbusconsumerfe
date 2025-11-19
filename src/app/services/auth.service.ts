@@ -13,6 +13,9 @@ export class AuthService {
 
   private apiURL = GlobalConstants.BASE_URL;
 
+  // Holds the current AuthAccessToken for server-side usage
+  public currentToken: string | null = null;
+
   params={
     "client_id": "odbusSas" ,
     "password": "Admin@2010"
@@ -44,6 +47,11 @@ export class AuthService {
     //    catchError(this.errorHandler)
     //  )
    }
+
+  // set current token in memory (used during SSR)
+  setCurrentToken(token: string | null) {
+   this.currentToken = token;
+  }
  
    errorHandler(error:HttpErrorResponse) {
     let errorMessage :any;

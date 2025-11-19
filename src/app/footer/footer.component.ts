@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Inject, PLATFORM_ID } from '@angular/core';
 import{ GlobalConstants } from '../constants/global-constants';
 import { LoginChecker } from '../helpers/loginChecker';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -8,6 +8,7 @@ import { NgbDatepickerConfig,NgbModal,NgbActiveModal, NgbDateStruct} from '@ng-b
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from '@angular/router';
 import { DatePipe, formatDate, Location } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 
 @Component({
@@ -17,43 +18,69 @@ import { DatePipe, formatDate, Location } from '@angular/common';
   styleUrls: ['./footer.component.css'],
   providers: [DatePipe,NgbActiveModal]
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, OnDestroy {
   url_path = '';
   @Input() session: LoginChecker; 
-  isMobile:boolean;
+  isMobile:boolean = false; // Default to false for SSR
   popular_routes: any=[];
   masterSettingRecord:any=[];
   master_info:any=[];
     mastersocial_info:any=[];
     location_list:any=[];
+    private commonDataSubscription: any;
   
-  constructor(private sanitizer: DomSanitizer,
+  constructor(
+    private sanitizer: DomSanitizer,
     private commonService: CommonService,
     private deviceService: DeviceDetectorService,
     private dtconfig: NgbDatepickerConfig,
     private spinner: NgxSpinnerService,
-     private router: Router,
-     private datePipe: DatePipe
-    ) { 
-    this.isMobile = this.deviceService.isMobile();
+    private router: Router,
+    private datePipe: DatePipe,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { 
+    // Only detect device in browser, default to false (desktop) for SSR
+    this.isMobile = isPlatformBrowser(this.platformId) ? this.deviceService.isMobile() : false;
     this.session = new LoginChecker();  
-
-   
-
+    
+    // Initialize from current commonData if available
+    this.updateCommonData();
   }
+  
   getImagePath(image :any){
     let objectURL = 'data:image/*;base64,'+image;
     return this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
    }
 
-   ngAfterContentChecked(){
+   updateCommonData() {
     this.masterSettingRecord = this.commonService.commonData;
-    this.master_info=this.masterSettingRecord.common;
-    this.mastersocial_info=this.masterSettingRecord.socialMedia;
+    // Safely access nested properties with null checks for SSR
+    if (this.masterSettingRecord) {
+      this.master_info = this.masterSettingRecord.common || {};
+      this.mastersocial_info = this.masterSettingRecord.socialMedia || {};
+    } else {
+      this.master_info = {};
+      this.mastersocial_info = {};
+    }
+  }
+
+   ngAfterContentChecked(){
+    this.updateCommonData();
   }
 
   ngOnInit(): void {
-    const storedData = localStorage.getItem('PopularInfo');
+    // Subscribe to commonData changes
+    this.commonDataSubscription = this.commonService.commonData$.subscribe(data => {
+      if (data) {
+        this.updateCommonData();
+      }
+    });
+    
+    // Also check current value immediately
+    this.updateCommonData();
+    
+    // Only access localStorage in browser
+    const storedData = isPlatformBrowser(this.platformId) ? localStorage.getItem('PopularInfo') : null;
 
     if (storedData) {
       const data = JSON.parse(storedData);
@@ -66,7 +93,11 @@ export class FooterComponent implements OnInit {
 
       this.commonService.PopularInfo(param).subscribe(
         resp => {
-          localStorage.setItem('PopularInfo', JSON.stringify(resp.data));
+          console.log(resp.data);
+          
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('PopularInfo', JSON.stringify(resp.data));
+          }
           this.popularInfoGetData(resp.data);
         },
         error => {
@@ -74,6 +105,12 @@ export class FooterComponent implements OnInit {
         }
       );
     } 
+  }
+
+  ngOnDestroy(): void {
+    if (this.commonDataSubscription) {
+      this.commonDataSubscription.unsubscribe();
+    }
   }
 
   popularInfoGetData(resp: any) {
@@ -92,7 +129,13 @@ export class FooterComponent implements OnInit {
   popularSearch(sr:any,ds:any){
     this.CurrentDate = this.datePipe.transform(this.CurrentDate, 'dd-MM-yyyy');
 
+    // Only use window.location in browser
+    if (isPlatformBrowser(this.platformId)) {
       window.location.href = GlobalConstants.URL+sr+'-'+ds+'-bus-services?date='+this.CurrentDate;
+    } else {
+      // For SSR, use router navigation
+      this.router.navigate([sr+'-'+ds+'-bus-services'], { queryParams: { date: this.CurrentDate } });
+    }
   }
 
 }

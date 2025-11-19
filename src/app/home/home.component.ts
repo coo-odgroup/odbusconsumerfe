@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocationdataService } from '../services/locationdata.service';
 import { NotificationService } from '../services/notification.service';
@@ -20,6 +20,7 @@ import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDatepickerConfig, NgbModal, NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { LoginChecker } from '../helpers/loginChecker';
+import { isPlatformBrowser } from '@angular/common';
 
 
 
@@ -88,7 +89,7 @@ export class HomeComponent implements OnInit {
 
   masterSettingRecord: any = [];
   master_info: any = [];
-  isMobile: boolean;
+  isMobile: boolean = false; // Default to false for SSR (desktop view)
 
   MenuActive: boolean = false;
 
@@ -108,7 +109,9 @@ export class HomeComponent implements OnInit {
   seconds: number = 0;
   public isExpired: boolean = false;
 
-  constructor(private router: Router, private _fb: FormBuilder,
+  constructor(
+    private router: Router, 
+    private _fb: FormBuilder,
     private locationService: LocationdataService,
     private dtconfig: NgbDatepickerConfig,
     private notify: NotificationService,
@@ -124,8 +127,10 @@ export class HomeComponent implements OnInit {
     private modalService: NgbModal,
     private alertConfig: NgbAlertConfig,
     private datePipe: DatePipe,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    const storedData = localStorage.getItem('PopularInfo');
+    // Only access localStorage in browser
+    const storedData = isPlatformBrowser(this.platformId) ? localStorage.getItem('PopularInfo') : null;
 
     if (storedData) {
       const data = JSON.parse(storedData);
@@ -139,7 +144,9 @@ export class HomeComponent implements OnInit {
       this.commonService.PopularInfo(param).subscribe(
         resp => {
           console.log('API Response:', resp.data);
-          localStorage.setItem('PopularInfo', JSON.stringify(resp.data));
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('PopularInfo', JSON.stringify(resp.data));
+          }
           this.setPopularInfoData(resp.data);
         },
         error => {
@@ -151,9 +158,12 @@ export class HomeComponent implements OnInit {
     this.session = new LoginChecker();
 
 
-    this.recentSearchFrom = localStorage.getItem('source');
-    this.recentSearchTo = localStorage.getItem('destination');
-    this.recentSearchDt = localStorage.getItem('entdate');
+    // Only access localStorage in browser
+    if (isPlatformBrowser(this.platformId)) {
+      this.recentSearchFrom = localStorage.getItem('source');
+      this.recentSearchTo = localStorage.getItem('destination');
+      this.recentSearchDt = localStorage.getItem('entdate');
+    }
 
     this.recentSearchDt = this.showformattedDate(this.recentSearchDt);
 
@@ -167,17 +177,21 @@ export class HomeComponent implements OnInit {
 
 
 
-    this.isMobile = this.deviceService.isMobile();
+    // Only detect device in browser, default to false (desktop) for SSR
+    this.isMobile = isPlatformBrowser(this.platformId) ? this.deviceService.isMobile() : false;
 
     this.currentUrl = location.path().replace('/', '');
     this.seo.seolist(this.currentUrl);
 
 
-    localStorage.removeItem('bookingdata');
-    localStorage.removeItem('busRecord');
-    localStorage.removeItem('genderRestrictSeats');
-    localStorage.removeItem('source_id');
-    localStorage.removeItem('destination_id');
+    // Only access localStorage in browser
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('bookingdata');
+      localStorage.removeItem('busRecord');
+      localStorage.removeItem('genderRestrictSeats');
+      localStorage.removeItem('source_id');
+      localStorage.removeItem('destination_id');
+    }
 
     this.searchForm = _fb.group({
       source: ['', Validators.required],
@@ -415,33 +429,70 @@ export class HomeComponent implements OnInit {
   // bannerpopup:any="../../assets/img/starpower_discount.jpg";
   popupData: any = [];
 
+  // ngAfterViewInit(): void {
+
+  //   this.CurrentDate = this.datePipe.transform(this.CurrentDate, 'yyyy-MM-dd');
+
+  //   const current = new Date();
+  //   const timestamp = current.getTime();
+
+  //   this.popupData = this.commonService.commonData;
+
+  //   if (this.popupData.common.popup_status == 1) {
+
+  //     const popup_s_datetime = new Date(this.popupData.common.popup_start_date + " " + this.popupData.common.popup_start_time);
+  //     const popup_st_datetime = popup_s_datetime.getTime();
+
+  //     const popup_e_datetime = new Date(this.popupData.common.popup_end_date + " " + this.popupData.common.popup_end_time);
+
+  //     const popup_end_datetime = popup_e_datetime.getTime();
+
+
+  //     if (popup_st_datetime <= timestamp && timestamp <= popup_end_datetime) {
+  //       this.modalService.open(this.popup);
+  //     }
+
+  //   }
+
+
+  // }
+
   ngAfterViewInit(): void {
+  this.CurrentDate = this.datePipe.transform(this.CurrentDate, 'yyyy-MM-dd');
 
-    this.CurrentDate = this.datePipe.transform(this.CurrentDate, 'yyyy-MM-dd');
+  const current = new Date();
+  const timestamp = current.getTime();
 
-    const current = new Date();
-    const timestamp = current.getTime();
+  // read commonData safely
+  this.popupData = this.commonService?.commonData || {};
 
-    this.popupData = this.commonService.commonData;
-
-    if (this.popupData.common.popup_status == 1) {
-
-      const popup_s_datetime = new Date(this.popupData.common.popup_start_date + " " + this.popupData.common.popup_start_time);
-      const popup_st_datetime = popup_s_datetime.getTime();
-
-      const popup_e_datetime = new Date(this.popupData.common.popup_end_date + " " + this.popupData.common.popup_end_time);
-
-      const popup_end_datetime = popup_e_datetime.getTime();
-
-
-      if (popup_st_datetime <= timestamp && timestamp <= popup_end_datetime) {
-        this.modalService.open(this.popup);
-      }
-
-    }
-
-
+  // guard against missing common or popup properties
+  const common = this.popupData?.common;
+  if (!common) {
+    // nothing to do — safe exit
+    return;
   }
+
+  if (common.popup_status == 1) {
+    // guard date fields exist before constructing Date
+    const startDateStr = (common.popup_start_date || '').trim();
+    const startTimeStr = (common.popup_start_time || '').trim();
+    const endDateStr = (common.popup_end_date || '').trim();
+    const endTimeStr = (common.popup_end_time || '').trim();
+
+    if (startDateStr && startTimeStr && endDateStr && endTimeStr) {
+      const popup_s_datetime = new Date(startDateStr + ' ' + startTimeStr).getTime();
+      const popup_e_datetime = new Date(endDateStr + ' ' + endTimeStr).getTime();
+
+      if (!isNaN(popup_s_datetime) && !isNaN(popup_e_datetime)) {
+        if (popup_s_datetime <= timestamp && timestamp <= popup_e_datetime) {
+          this.modalService.open(this.popup);
+        }
+      }
+    }
+  }
+}
+
 
   getImagePath(slider_img: any) {
     let objectURL = 'data:image/*;base64,' + slider_img;

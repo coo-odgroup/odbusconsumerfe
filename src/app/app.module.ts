@@ -70,7 +70,11 @@ export function appInit(appInitializerService: AppInitializerService) {
 
 
 export function tokenGetter() {
-  return localStorage.getItem("access_token");
+  // Only access localStorage in browser
+  if (typeof window !== 'undefined' && window.localStorage) {
+    return localStorage.getItem("access_token");
+  }
+  return null;
 }
 
 
@@ -142,7 +146,11 @@ const ngWizardConfig: NgWizardConfig = {
     IvyCarouselModule,
     AuthModule.forRoot({
       domain: 'dev-seofied.us.auth0.com',
-      clientId: 'RsznkkMUqmJD0nUXjYv2LS8HPopT4xy1'
+      clientId: 'RsznkkMUqmJD0nUXjYv2LS8HPopT4xy1',
+      httpInterceptor: {
+        allowedList: ['*'] // Allow all requests to be intercepted
+      },
+      cacheLocation: 'localstorage' // Use localStorage for token storage
     }),
     ImageCropperModule,
     LightboxModule,

@@ -1,8 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { SeoService } from './services/seo.service';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { GlobalConstants } from './constants/global-constants';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Router } from '@angular/router';
@@ -25,7 +25,9 @@ export class AppComponent {
 
   isMobile: boolean = false;
 
-  constructor(@Inject(DOCUMENT) private doc, private auth: AuthService,
+  constructor(@Inject(DOCUMENT) private doc, 
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private auth: AuthService,
     private titleService: Title,
     private metaService: Meta,
     private seo: SeoService,
@@ -34,33 +36,59 @@ export class AppComponent {
     public router: Router
   ) {
 
-    // this.auth.getToken().subscribe(
-    //   res => {
-    //     localStorage.setItem('AuthAccessToken', res.data);
-    //   }
-    // );
+    // Only access localStorage in browser
+    if (isPlatformBrowser(this.platformId)) {
+      // this.auth.getToken().subscribe(
+      //   res => {
+      //     localStorage.setItem('AuthAccessToken', res.data);
+      //   }
+      // );
 
-    const AuthAccessToken = localStorage.getItem('AuthAccessToken');
+      const AuthAccessToken = localStorage.getItem('AuthAccessToken');
 
-    if (AuthAccessToken) {
-      // Nothing to do
-    } else {
-      this.auth.getToken().subscribe(
-        res => {
-          localStorage.setItem('AuthAccessToken', res.data);
-        }
-      );
+      if (AuthAccessToken) {
+        // Nothing to do
+      } else {
+        this.auth.getToken().subscribe(
+          res => {
+            localStorage.setItem('AuthAccessToken', res.data);
+          }
+        );
+      }
     }
   }
 
   ngOnInit() {
-    const storedData = localStorage.getItem('commonData');
+    // Only access localStorage in browser
+    if (isPlatformBrowser(this.platformId)) {
+      const storedData = localStorage.getItem('commonData');
 
-    if (storedData) {
-      const data = JSON.parse(storedData);
-      this.getCommonInfo(data);
+      if (storedData) {
+        const data = JSON.parse(storedData);
+        this.getCommonInfo(data);
+      } else {
+        if (isPlatformBrowser(this.platformId)) {
+          this.isMobile = this.deviceService.isMobile();
+        }
+        const param = {
+          user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+          locationName: ""
+        };
+
+        this.commonService.getCommonData(param).subscribe(
+          resp => {
+            if (isPlatformBrowser(this.platformId)) {
+              localStorage.setItem('commonData', JSON.stringify(resp.data));
+            }
+            this.getCommonInfo(resp.data);
+          },
+          error => {
+            console.error('Error fetching Data:', error);
+          }
+        );
+      }
     } else {
-      this.isMobile = this.deviceService.isMobile();
+      // Server-side: fetch data without localStorage
       const param = {
         user_id: GlobalConstants.MASTER_SETTING_USER_ID,
         locationName: ""
@@ -68,7 +96,6 @@ export class AppComponent {
 
       this.commonService.getCommonData(param).subscribe(
         resp => {
-          localStorage.setItem('commonData', JSON.stringify(resp.data));
           this.getCommonInfo(resp.data);
         },
         error => {
@@ -86,6 +113,9 @@ export class AppComponent {
     this.commonService.setCommonData(resp);
 
     this.common = resp.common;
+
+    console.log(this.common);
+    
 
     this.meta_description = this.common.meta_description;
     this.meta_title = this.common.meta_title;
@@ -119,27 +149,30 @@ export class AppComponent {
 
     this.metaService.addTags(metaArr);
 
-    if (this.common.google_analytics != '' && this.common.google_analytics != null) {
-      let chatScript = document.createElement("script");
-      chatScript.type = "text/javascript";
-      chatScript.async = true;
-      chatScript.src = this.common.google_analytics;
-      chatScript.id = "google_analytics";
-      document.head.appendChild(chatScript);
-    }
+    // Only manipulate DOM in browser
+    if (isPlatformBrowser(this.platformId)) {
+      if (this.common.google_analytics != '' && this.common.google_analytics != null) {
+        let chatScript = this.doc.createElement("script");
+        chatScript.type = "text/javascript";
+        chatScript.async = true;
+        chatScript.src = this.common.google_analytics;
+        chatScript.id = "google_analytics";
+        this.doc.head.appendChild(chatScript);
+      }
 
-    if (this.common.no_script != '' && this.common.no_script != null) {
-      let chatScript = document.createElement("noscript");
-      chatScript.innerHTML = this.common.no_script;
-      chatScript.id = "noscript";
-      document.head.append(chatScript);
-    }
+      if (this.common.no_script != '' && this.common.no_script != null) {
+        let chatScript = this.doc.createElement("noscript");
+        chatScript.innerHTML = this.common.no_script;
+        chatScript.id = "noscript";
+        this.doc.head.append(chatScript);
+      }
 
-    if (this.isMobile == false && this.common.seo_script != '' && this.common.seo_script != null) {
-      let chatScript = document.createElement("script");
-      chatScript.innerHTML = this.common.seo_script;
-      chatScript.id = "seo_script";
-      document.head.append(chatScript); 
+      if (this.isMobile == false && this.common.seo_script != '' && this.common.seo_script != null) {
+        let chatScript = this.doc.createElement("script");
+        chatScript.innerHTML = this.common.seo_script;
+        chatScript.id = "seo_script";
+        this.doc.head.append(chatScript); 
+      }
     }
   }
 }

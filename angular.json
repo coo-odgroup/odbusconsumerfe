@@ -16,7 +16,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["ngx-lightbox","rxjs"],
+            "allowedCommonJsDependencies": ["ngx-lightbox","rxjs","crypto-js","lodash"],
             "outputPath": "dist/consumerfenew/browser",
             "index": "src/index.html",
             "main": "src/main.ts",

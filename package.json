@@ -5,13 +5,15 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
+    "build:client": "ng build --configuration=production",
+    "build:server": "ng run consumerfenew:server:production",
+    "build:ssr": "ng build --configuration production && ng run consumerfenew:server:production",
     "dev:ssr": "ng run consumerfenew:serve-ssr",
     "serve:ssr": "node dist/consumerfenew/server/main.js",
-    "build:ssr": "ng build --prod && ng run consumerfenew:server:production",
-    "prerender": "ng run consumerfenew:prerender"
+    "prerender": "ng run consumerfenew:prerender",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +40,7 @@
     "angular2-qrcode": "^2.0.3",
     "bootstrap-auto-dismiss-alert": "^1.0.2",
     "crypto-js": "^4.2.0",
+    "domino": "^2.1.6",
     "express": "^4.15.2",
     "jwt-decode": "^3.1.2",
     "localstorage-polyfill": "^1.0.1",
