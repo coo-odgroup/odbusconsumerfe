@@ -390,6 +390,7 @@ get_seatno(seat_id:any){
     let seat_ar= this.bookingdata.Lowerberth[i].split('-');    
     let seat= seat_ar[0];
      if(seat==seat_id){
+      console.log(seat_ar[1]);
       return seat_ar[1];
       //return this.bookingdata.LowerBerthSeats[i]
      }
@@ -529,7 +530,8 @@ get_seatno(seat_id:any){
       this.spinner.show();
       this.passengerData=this.bookForm1.value; 
 
-    //   console.log(this.passengerData);
+      console.log(this.passengerData);
+      console.log("Working");
     //  return;
 
         this.bookticketService.book(this.passengerData).subscribe(
@@ -913,20 +915,20 @@ get_seatno(seat_id:any){
 
     this.generateCaptcha();
 
-    const storedData = localStorage.getItem('commonData');
+    const storedData = localStorage.getItem('commonDetails');
 
+    console.log(storedData);
     if (storedData) {
       const resp = JSON.parse(storedData);
-      this.masterSettingRecord=resp.data; 
+      this.masterSettingRecord=resp.data;
       this.customer_gst=this.masterSettingRecord.common.customer_gst;
     } else {
       const param = {
         user_id:GlobalConstants.MASTER_SETTING_USER_ID
       };
-
       this.commonService.getCommonData(param).subscribe(
         resp => {
-          localStorage.setItem('commonData', JSON.stringify(resp.data));
+          localStorage.setItem('commonDetails', JSON.stringify(resp));
           this.masterSettingRecord=resp.data; 
           this.customer_gst=this.masterSettingRecord.common.customer_gst;
         },
@@ -935,8 +937,6 @@ get_seatno(seat_id:any){
         }
       );
     }
-
-
 
     // const data={
     //   user_id:GlobalConstants.MASTER_SETTING_USER_ID
