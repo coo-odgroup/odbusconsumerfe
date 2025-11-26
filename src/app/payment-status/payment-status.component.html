@@ -1,0 +1,23 @@
+<!-- src/app/payment-status/payment-status.component.html -->
+<!-- Full-screen default spinner -->
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+>
+  <p style="color: #fff; margin: 0;">Loading, please wait...</p>
+</ngx-spinner>
+
+<ngx-spinner
+  name="mySpinner"
+  template='<img src="../../assets/img/loader.gif" style="width:120px;" alt="loader">'
+>
+  <p style="color: white; font-weight: bold; font-size: 18px;">
+    Processing your request...
+  </p>
+</ngx-spinner>
+
+<div class="payment-status-content">
+  <h3>Payment Status</h3>
+</div>

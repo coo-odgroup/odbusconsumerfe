@@ -580,6 +580,8 @@ get_seatno(seat_id:any){
 
   countdown:any;
 
+  pp_orderId :any;
+
   submitForm2(){
 
     this.submitted2=true;
@@ -677,6 +679,27 @@ get_seatno(seat_id:any){
        // console.log(JSON.stringify(paymentParam));
         //return;
 
+        // this.makepaymentService.getOrderid(paymentParam).subscribe(
+        //   res=>{
+                    
+        //     if(res.status==1){
+        //       if(res.data=='SEAT UN-AVAIL'){
+        //         this.notify.notify(res.message,"Error");
+        //       }else{
+        //         this.MakePaymnetResponse=res.data;          
+        //        // this.OpenRazorpayModal();
+        //           this.cashfressRedirect();
+        //       }
+              
+        //     }else{
+        //       this.notify.notify(res.message,"Error");
+        //     } 
+
+        //     this.spinner.hide();  
+
+        // });
+
+
         this.makepaymentService.getOrderid(paymentParam).subscribe(
           res=>{
                     
@@ -684,9 +707,24 @@ get_seatno(seat_id:any){
               if(res.data=='SEAT UN-AVAIL'){
                 this.notify.notify(res.message,"Error");
               }else{
-                this.MakePaymnetResponse=res.data;          
+                this.MakePaymnetResponse=res.data;
+                localStorage.setItem('od_success_name',this.passengerData.customerInfo.name);
+                localStorage.setItem('od_success_email',this.passengerData.customerInfo.email);
+                localStorage.setItem('od_success_phone',this.passengerData.customerInfo.phone);
+                localStorage.setItem('od_razor_id',this.pp_orderId);
+                // console.log(res)  
+                this.pp_orderId = this.MakePaymnetResponse.pp_resp.original.orderId;      
+                // console.log(this.MakePaymnetResponse.pp_resp.original.redirectUrl)
+                
+                const redirectUrl = this.MakePaymnetResponse.pp_resp.original.redirectUrl;
+                // console.log(redirectUrl);
+
+                // Redirect to PhonePe
+                window.location.href = redirectUrl;
+                localStorage.setItem('transaction_id',this.bookTicketResponse.transaction_id);
+                localStorage.setItem('pp_orderId',this.pp_orderId)
                // this.OpenRazorpayModal();
-                  this.cashfressRedirect();
+                  // this.cashfressRedirect();
               }
               
             }else{
@@ -700,6 +738,9 @@ get_seatno(seat_id:any){
   }
 
    }
+
+
+  
 
    razorpay:any;
 

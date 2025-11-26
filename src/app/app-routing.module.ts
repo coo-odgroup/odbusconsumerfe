@@ -41,6 +41,7 @@ import { PnrdetailComponent } from './pnrdetail/pnrdetail.component';
 import { SuccessComponent } from './success/success.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { ProfiledeleteComponent } from './profiledelete/profiledelete.component';
+import { PaymentStatusComponent } from './payment-status/payment-status.component';
 
 
 export const routes: Routes = [
@@ -82,8 +83,10 @@ export const routes: Routes = [
   { path: 'helpandsupport', component: UserhelpsupportComponent,canActivate: [AuthGuard]},    
   { path: 'myaccount', component: MyaccountComponent,canActivate: [AuthGuard]},
   { path: 'profile/delete', component: ProfiledeleteComponent},
+  { path: 'payment-status',component:PaymentStatusComponent},
+  // { path: 'payment-failed',component:PaymentFailedComponent},
   { path: '**', component: SearchComponent}, // wildcard routes
-  { path: '**/:dt', component: SearchComponent} // wildcard routes
+  { path: '**/:dt', component: SearchComponent}, // wildcard routes
 ]
 
 @NgModule({

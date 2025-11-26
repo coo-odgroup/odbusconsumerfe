@@ -40,4 +40,12 @@ export class MakepaymentService {
     }
     return throwError(errorMessage);
  }
+
+ paymentStatus(params:any): Observable<any> {
+  console.log(params)
+  return this.httpClient.post<any>(this.apiURL + '/paymentStatus' , JSON.stringify(params) ,this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+ }
 }

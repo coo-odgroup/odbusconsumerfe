@@ -64,6 +64,8 @@ import { SuccessComponent } from './success/success.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { ProfiledeleteComponent } from './profiledelete/profiledelete.component';
 import { environment } from '../environments/environment';
+import { PaymentStatusModule } from './payment-status/payment-status.module';
+
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
 }
@@ -125,7 +127,7 @@ const ngWizardConfig: NgWizardConfig = {
     ApiComponent,
     SuccessComponent,
     MaintenanceComponent,
-    ProfiledeleteComponent
+    ProfiledeleteComponent,
   ], 
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
