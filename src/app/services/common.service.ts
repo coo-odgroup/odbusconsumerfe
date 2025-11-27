@@ -21,6 +21,9 @@ export class CommonService {
 
    private _commonData: any = null;
    commonData$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
+   private _popularInfo: any = null;
+   popularInfo$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   
  
   constructor(private httpClient: HttpClient) { }
@@ -33,6 +36,16 @@ export class CommonService {
   setCommonData(newData) {
     this._commonData = newData;
     this.commonData$.next(newData);
+  }
+
+  // Getter for popularInfo
+  getPopularInfo(): any {
+    return this._popularInfo;
+  }
+
+  setPopularInfo(newData) {
+    this._popularInfo = newData;
+    this.popularInfo$.next(newData);
   }
 
 

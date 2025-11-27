@@ -1,6 +1,7 @@
 import { Observable ,  Subscriber } from 'rxjs';
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable, NgZone, Inject, PLATFORM_ID } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ private _currentFile : File ;
 private _currentImage : ICompressedImage = {} ;
 
 // Constructor
-constructor( private sanitizer : DomSanitizer , private _zone : NgZone) {
+constructor( private sanitizer : DomSanitizer , private _zone : NgZone,
+  @Inject(PLATFORM_ID) private platformId: Object) {
 
 }
 
@@ -29,13 +31,25 @@ readerOnload(observer : Subscriber<ICompressedImage>)  {
 // Image Onload callback
  imageOnload(image : HTMLImageElement , observer : Subscriber<ICompressedImage>) {
   return () => {
-  const canvas = document.createElement('canvas');
-  canvas.width = 100;
-  canvas.height = 100;
-  const context = <CanvasRenderingContext2D>canvas.getContext('2d');
-  context.drawImage(image , 0 , 0 , 100 , 100);
-  this.toICompressedImage(context , observer);
-}}
+    // Only do canvas operations in the browser
+    if (!isPlatformBrowser(this.platformId)) {
+      // Skip compression on server; emit minimal image object
+      this._currentImage = this._currentImage || {};
+      this._zone.run(() => {
+        observer.next(this._currentImage);
+        observer.complete();
+      });
+      return;
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 100;
+    canvas.height = 100;
+    const context = <CanvasRenderingContext2D>canvas.getContext('2d');
+    context.drawImage(image , 0 , 0 , 100 , 100);
+    this.toICompressedImage(context , observer);
+  }
+}
 
 // Emit CompressedImage
 toICompressedImage(context : CanvasRenderingContext2D , observer : Subscriber<ICompressedImage> ) {

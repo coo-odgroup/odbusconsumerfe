@@ -150,29 +150,29 @@ export class AppComponent {
     this.metaService.addTags(metaArr);
 
     // Only manipulate DOM in browser
-    if (isPlatformBrowser(this.platformId)) {
-      if (this.common.google_analytics != '' && this.common.google_analytics != null) {
-        let chatScript = this.doc.createElement("script");
-        chatScript.type = "text/javascript";
-        chatScript.async = true;
-        chatScript.src = this.common.google_analytics;
-        chatScript.id = "google_analytics";
-        this.doc.head.appendChild(chatScript);
-      }
+    // if (isPlatformBrowser(this.platformId)) {
+    //   if (this.common.google_analytics != '' && this.common.google_analytics != null) {
+    //     let chatScript = this.doc.createElement("script");
+    //     chatScript.type = "text/javascript";
+    //     chatScript.async = true;
+    //     chatScript.src = this.common.google_analytics;
+    //     chatScript.id = "google_analytics";
+    //     this.doc.head.appendChild(chatScript);
+    //   }
 
-      if (this.common.no_script != '' && this.common.no_script != null) {
-        let chatScript = this.doc.createElement("noscript");
-        chatScript.innerHTML = this.common.no_script;
-        chatScript.id = "noscript";
-        this.doc.head.append(chatScript);
-      }
+    //   if (this.common.no_script != '' && this.common.no_script != null) {
+    //     let chatScript = this.doc.createElement("noscript");
+    //     chatScript.innerHTML = this.common.no_script;
+    //     chatScript.id = "noscript";
+    //     this.doc.head.append(chatScript);
+    //   }
 
-      if (this.isMobile == false && this.common.seo_script != '' && this.common.seo_script != null) {
-        let chatScript = this.doc.createElement("script");
-        chatScript.innerHTML = this.common.seo_script;
-        chatScript.id = "seo_script";
-        this.doc.head.append(chatScript); 
-      }
-    }
+    //   if (this.isMobile == false && this.common.seo_script != '' && this.common.seo_script != null) {
+    //     let chatScript = this.doc.createElement("script");
+    //     chatScript.innerHTML = this.common.seo_script;
+    //     chatScript.id = "seo_script";
+    //     this.doc.head.append(chatScript); 
+    //   }
+    // }
   }
 }

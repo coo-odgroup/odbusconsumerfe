@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   position = 'bottom-right';
   swapdestination: any;
   swapsource: any;
-  bannerImage = '';
+  bannerImage = '../../assets/img/bus-bg.jpg';
   source: any;
   source_id: any;
   destination: any;
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
   entdate: any;
 
   popular_routes: any = [];
-  topOperators: any;
+  topOperators: any = [];
 
   setAlert: any = '';
 
@@ -69,9 +69,9 @@ export class HomeComponent implements OnInit {
 
   active = 1;
 
-  search: any;
-  location_list: any;
-  formatter: any;
+  search: any = (text$: Observable<string>) => text$.pipe(map(() => []));  // Default empty search function
+  location_list: any = [];  // Initialize as empty array
+  formatter: any = (x: { name: string }) => x.name;  // Default formatter
 
   //Bus_Offers:any=[];
   //Festive_Offers:any=[];
@@ -87,9 +87,15 @@ export class HomeComponent implements OnInit {
   currentUrl: any;
   selectedDate: any;
 
-  masterSettingRecord: any = [];
-  master_info: any = [];
+  masterSettingRecord: any = {};  // Initialize as empty object instead of array
+  master_info: any = {};
   isMobile: boolean = false; // Default to false for SSR (desktop view)
+
+  countdown_status: number = 0;  // Initialize countdown_status
+  countdown_title: string = '';
+  countdown_enddate: string = '';
+  countdown_endtime: string = '';
+  endDate: string = '';
 
   MenuActive: boolean = false;
 
@@ -129,32 +135,6 @@ export class HomeComponent implements OnInit {
     private datePipe: DatePipe,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // Only access localStorage in browser
-    const storedData = isPlatformBrowser(this.platformId) ? localStorage.getItem('PopularInfo') : null;
-
-    if (storedData) {
-      const data = JSON.parse(storedData);
-      this.setPopularInfoData(data);
-    } else {
-      const param = {
-        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-        locationName: ""
-      };
-
-      this.commonService.PopularInfo(param).subscribe(
-        resp => {
-          console.log('API Response:', resp.data);
-          if (isPlatformBrowser(this.platformId)) {
-            localStorage.setItem('PopularInfo', JSON.stringify(resp.data));
-          }
-          this.setPopularInfoData(resp.data);
-        },
-        error => {
-          console.error('Error fetching PopularInfo:', error);
-        }
-      );
-    }
-
     this.session = new LoginChecker();
 
 
@@ -202,68 +182,156 @@ export class HomeComponent implements OnInit {
   }
 
   setPopularInfoData(resp: any) {
-    this.masterSettingRecord = resp;
-
-    this.popular_routes = resp.popularRoutes;
-    let topOperators = resp.topOperators;
-    const mapped = Object.keys(topOperators).map(key => topOperators[key]);
-    this.topOperators = mapped;
-    this.endDate = resp.common.countdown_enddate + ' ' + resp.common.countdown_endtime;
-    // console.log(this.endDate);
-    this.countdown_status = resp.common.countdown_status;
-    this.countdown_title = resp.common.countdown_title;
-
-    this.location_list = resp.locationName;
-    this.search = (text$: Observable<string>) =>
-      text$.pipe(
-        debounceTime(200),
-        map((term) =>
-          term === ''
-            ? []
-            : this.location_list
-              .filter(
-                (v) =>
-                  v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                  (v.synonym != '' && v.synonym != null && v.synonym.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              )
-              .slice(0, 10)
-        )
-      );
-
-    this.formatter = (x: { name: string }) => x.name;
-
-
-    this.Offers = resp.offers;
-    this.getOffer();
-
-
-
-    if (this.masterSettingRecord.banner_image != '' && this.masterSettingRecord.banner_image != null) {
-      this.bannerImage = this.masterSettingRecord.banner_image;
-    } else {
-      this.bannerImage = '../../assets/img/bus-bg.jpg';
+    // Defensive checks: avoid synchronous throws during SSR if resp is missing or malformed
+    if (!resp || typeof resp !== 'object' || !resp.common) {
+      console.warn('HomeComponent.setPopularInfoData: invalid PopularInfo payload', resp);
+      return;
     }
 
-    this.master_info = this.masterSettingRecord.common;
+    try {
+      this.masterSettingRecord = resp;
 
+      this.popular_routes = resp.popularRoutes || [];
+      let topOperators = resp.topOperators || {};
+      const mapped = Object.keys(topOperators).map(key => topOperators[key]);
+      this.topOperators = mapped || [];
+      this.endDate = (resp.common && (resp.common.countdown_enddate || '')) + ' ' + (resp.common && (resp.common.countdown_endtime || ''));
+      // console.log(this.endDate);
+      this.countdown_status = resp.common.countdown_status || 0;
+      this.countdown_title = resp.common.countdown_title || '';
+
+      this.location_list = resp.locationName || [];
+      this.search = (text$: Observable<string>) =>
+        text$.pipe(
+          debounceTime(200),
+          map((term) =>
+            term === ''
+              ? []
+              : this.location_list
+                .filter(
+                  (v) =>
+                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                    (v.synonym != '' && v.synonym != null && v.synonym.toLowerCase().indexOf(term.toLowerCase()) > -1)
+                )
+                .slice(0, 10)
+          )
+        );
+
+      this.formatter = (x: { name: string }) => x.name;
+
+
+      this.Offers = resp.offers;
+      this.getOffer();
+
+
+
+      if (this.masterSettingRecord.banner_image != '' && this.masterSettingRecord.banner_image != null) {
+        this.bannerImage = this.masterSettingRecord.banner_image;
+      } else {
+        this.bannerImage = '../../assets/img/bus-bg.jpg';
+      }
+
+      this.master_info = this.masterSettingRecord.common;
+
+      const current = new Date();
+      this.dtconfig.minDate = {
+        year: current.getFullYear(), month:
+          current.getMonth() + 1, day: current.getDate()
+      };
+
+      let maxDate = current.setDate(current.getDate() + resp.common.advance_days_show);
+
+      const max = new Date(maxDate);
+      this.dtconfig.maxDate = {
+        year: max.getFullYear(), month:
+          max.getMonth() + 1, day: max.getDate()
+      };
+
+      this.selectedDate = formatDate(new Date(), 'yyyy-MM-dd', 'en_US');
+    } catch (e) {
+      console.error('HomeComponent.setPopularInfoData: error applying PopularInfo', e, resp);
+      // keep component in a safe default state
+      this.popular_routes = this.popular_routes || [];
+      this.topOperators = this.topOperators || [];
+      this.location_list = this.location_list || [];
+      this.Offers = this.Offers || [];
+    }
+  }
+
+  private initializeDefaults(): void {
+    // Set safe defaults so page renders even without PopularInfo data
+    console.log('HomeComponent.initializeDefaults() called');
     const current = new Date();
     this.dtconfig.minDate = {
-      year: current.getFullYear(), month:
-        current.getMonth() + 1, day: current.getDate()
+      year: current.getFullYear(),
+      month: current.getMonth() + 1,
+      day: current.getDate()
     };
 
-    let maxDate = current.setDate(current.getDate() + resp.common.advance_days_show);
-
+    // Default max date: 30 days ahead
+    let maxDate = current.setDate(current.getDate() + 30);
     const max = new Date(maxDate);
     this.dtconfig.maxDate = {
-      year: max.getFullYear(), month:
-        max.getMonth() + 1, day: max.getDate()
+      year: max.getFullYear(),
+      month: max.getMonth() + 1,
+      day: max.getDate()
     };
 
     this.selectedDate = formatDate(new Date(), 'yyyy-MM-dd', 'en_US');
-  }
+    this.bannerImage = '../../assets/img/bus-bg.jpg';
+    this.location_list = [];
+    this.popular_routes = [];
+    this.topOperators = [];
+    this.Offers = [];
+    this.countdown_status = 0;
+    this.countdown_title = '';
+    this.endDate = '';
+    
+    // Default empty search function (will be updated if PopularInfo loads)
+    this.search = (text$: Observable<string>) => text$.pipe(map(() => []));
+    this.formatter = (x: { name: string }) => x.name;
+  }  ngOnInit() {
+    console.log('HomeComponent.ngOnInit() called');
+    
+    // Initialize with safe defaults (ensures page renders even without PopularInfo)
+    this.initializeDefaults();
 
-  ngOnInit() {
+    // Use pre-loaded PopularInfo from AppInitializer (set during app bootstrap)
+    const popularInfo = this.commonService.getPopularInfo();
+    console.log('PopularInfo from service:', popularInfo ? 'loaded' : 'NOT loaded');
+    if (popularInfo) {
+      console.log('Using pre-loaded PopularInfo');
+      this.setPopularInfoData(popularInfo);
+    } else {
+      // Fallback: if initializer didn't load it (e.g., API error), try loading from cache
+      const storedData = isPlatformBrowser(this.platformId) ? localStorage.getItem('PopularInfo') : null;
+      if (storedData) {
+        console.log('Loading PopularInfo from localStorage');
+        try {
+          const data = JSON.parse(storedData);
+          this.setPopularInfoData(data);
+        } catch (e) {
+          console.error('Error parsing cached PopularInfo:', e);
+        }
+      } else if (isPlatformBrowser(this.platformId)) {
+        // Last resort: fetch from API (browser only, don't block SSR)
+        console.log('Fetching PopularInfo from API as fallback');
+        const param = {
+          user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+          locationName: ""
+        };
+        this.commonService.PopularInfo(param).subscribe(
+          resp => {
+            const data = resp && resp.data ? resp.data : resp;
+            this.setPopularInfoData(data);
+            localStorage.setItem('PopularInfo', JSON.stringify(data));
+          },
+          error => {
+            console.error('Error fetching PopularInfo:', error);
+          }
+        );
+      }
+    }
 
     this.startCountdown();
 
@@ -402,8 +470,14 @@ export class HomeComponent implements OnInit {
 
 
   tabChange(val) {
-    document.getElementById(val).focus();
-    document.getElementById(val).click();
+    // Guard DOM access for SSR: only manipulate DOM in browser and if element exists
+    if (isPlatformBrowser(this.platformId)) {
+      const el = document.getElementById(val);
+      if (el) {
+        try { el.focus(); } catch (e) {}
+        try { el.click(); } catch (e) {}
+      }
+    }
   }
 
 
@@ -556,6 +630,13 @@ export class HomeComponent implements OnInit {
       }
 
       // let dat = this.searchForm.value.entry_date;
+      // if (isPlatformBrowser(this.platformId)) {
+      //   try {
+      //     this.router.navigateByUrl(GlobalConstants.URL + sr + '-' + ds + '-bus-services?date=' + date);
+      //   } catch (e) {
+      //     window.location.href = GlobalConstants.URL + sr + '-' + ds + '-bus-services?date=' + date;
+      //   }
+      // }
 
       window.location.href = GlobalConstants.URL + sr + '-' + ds + '-bus-services?date=' + date;
 
@@ -591,10 +672,6 @@ export class HomeComponent implements OnInit {
       this.updateCountdown();
     });
   }
-
-  endDate: string;
-  countdown_status: any;
-  countdown_title: any;
 
   private updateCountdown(): void {
     const now = new Date().getTime();
