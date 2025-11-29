@@ -2,7 +2,9 @@ import { NgModule, Injector } from '@angular/core';
 import { ServerModule } from '@angular/platform-server';
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'; 
+// import { BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
+
+
 
 // For SSR, we need to use NoopAnimationsModule instead of BrowserAnimationsModule
 // Since AppModule imports BrowserAnimationsModule, we import NoopAnimationsModule here
@@ -11,7 +13,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     imports: [
         ServerModule,
         AppModule,
-        NoopAnimationsModule
+        // BrowserAnimationsModule
     ],
     bootstrap: [AppComponent],
 })

@@ -11,7 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { PageErrorComponent } from './page-error/page-error.component';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppInitializerService } from './services/initializer.service';
 import { BookingComponent } from './booking/booking.component';
 import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
@@ -136,7 +136,7 @@ const ngWizardConfig: NgWizardConfig = {
     ReactiveFormsModule,
     RouterModule,
     AppRoutingModule,
-    // BrowserAnimationsModule,
+    BrowserAnimationsModule,
     NgbModule,
     NgWizardModule.forRoot(ngWizardConfig),
     AutocompleteLibModule,
