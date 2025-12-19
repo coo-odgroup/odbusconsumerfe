@@ -30,21 +30,29 @@ export class PaymentStatusComponent implements OnInit {
     const transaction_id = localStorage.getItem('transaction_id')
     const pp_orderId = localStorage.getItem('pp_orderId')
 
+    // if(pp_orderId != null){
+    //   window.location.href="/success";
+    //   localStorage.removeItem('transaction_id')
+    //   localStorage.getItem('pp_orderId')
+    // }else{
+    //   alert("Payment Failed");
+    //     window.location.href="/";
+    // }
+
 
     const payload = {
-      transaction_id :transaction_id,
       pp_orderId : pp_orderId
     }
     this.spinner.show();
 
     this.makepaymentService.paymentStatus(payload).subscribe((res:any)=>{
-      console.log(res.data)
+      console.log(res.data.phonepe_status)
 
-      if(res.data == "Payment Done"){
+      if(res.data.phonepe_status == "COMPLETED"){
         window.location.href="/success";
         localStorage.removeItem('transaction_id')
         localStorage.getItem('pp_orderId')
-      }else if(res.data == "Payment Failed"){
+      }else if(res.data.phonepe_status == "FAILED"){
         alert("Payment Failed");
         window.location.href="/";
       }

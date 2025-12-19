@@ -708,6 +708,7 @@ get_seatno(seat_id:any){
                 this.notify.notify(res.message,"Error");
               }else{
                 this.MakePaymnetResponse=res.data;
+                console.log(this.MakePaymnetResponse);
                 localStorage.setItem('od_success_name',this.passengerData.customerInfo.name);
                 localStorage.setItem('od_success_email',this.passengerData.customerInfo.email);
                 localStorage.setItem('od_success_phone',this.passengerData.customerInfo.phone);
@@ -722,7 +723,10 @@ get_seatno(seat_id:any){
                 // Redirect to PhonePe
                 window.location.href = redirectUrl;
                 localStorage.setItem('transaction_id',this.bookTicketResponse.transaction_id);
-                localStorage.setItem('pp_orderId',this.pp_orderId)
+                localStorage.setItem('pp_orderId',this.pp_orderId);
+
+
+                // localStorage.setItem('phonpedata',res.data);
                // this.OpenRazorpayModal();
                   // this.cashfressRedirect();
               }
