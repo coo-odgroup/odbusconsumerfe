@@ -114,7 +114,7 @@ export class AppComponent {
 
     this.common = resp.common;
 
-    console.log(this.common);
+    // console.log(this.common);
     
 
     this.meta_description = this.common.meta_description;

@@ -49,10 +49,16 @@
  </head>
 
 <body>
-   <app-root>
-      <div class="loader"></div>
-   </app-root>
+  <div class="loader" id="ssr-loader"></div>
+  <app-root></app-root>
 
 
 </body>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    var loader = document.getElementById('ssr-loader');
+    if (loader) loader.style.display = 'none';
+  });
+</script>
 </html>
