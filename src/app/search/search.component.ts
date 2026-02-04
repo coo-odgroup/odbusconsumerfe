@@ -2390,7 +2390,6 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     //add by sahil
 
-
     const raw = JSON.parse(localStorage.getItem('seoData') || '[]');
 
     let seoPages: any[] = [];
@@ -2570,42 +2569,6 @@ export class SearchComponent implements OnInit {
   }
 
 
-  // applySeo(seo: any) {
-
-  //   // ✅ TITLE
-  //   this.title.setTitle(seo.meta_title);
-
-  //   // ✅ META DESCRIPTION
-  //   this.meta.updateTag({
-  //     name: 'description',
-  //     content: seo.meta_description
-  //   });
-
-  //   // ✅ META KEYWORDS
-  //   this.meta.updateTag({
-  //     name: 'keywords',
-  //     content: seo.meta_keyword
-  //   });
-
-  //   // ✅ OG TAGS (important)
-  //   this.meta.updateTag({
-  //     property: 'og:title',
-  //     content: seo.meta_title
-  //   });
-
-  //   this.meta.updateTag({
-  //     property: 'og:description',
-  //     content: seo.meta_description
-  //   });
-
-  //   this.meta.updateTag({
-  //     property: 'og:url',
-  //     content: seo.canonical_url
-  //   });
-
-  //   // ✅ CANONICAL
-  //   this.setCanonical(seo.canonical_url);
-  // }
 
   applySeo(seo: any) {
 
@@ -2621,7 +2584,6 @@ export class SearchComponent implements OnInit {
       'name="keywords"'
     );
 
-    // ✅ OPEN GRAPH
     this.meta.updateTag(
       { content: seo.meta_title || '' },
       'property="og:title"'
