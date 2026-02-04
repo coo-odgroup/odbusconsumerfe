@@ -64,6 +64,8 @@ import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { ProfiledeleteComponent } from './profiledelete/profiledelete.component';
 import { environment } from '../environments/environment';
 import { PaymentStatusModule } from './payment-status/payment-status.module';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -129,6 +131,8 @@ const ngWizardConfig: NgWizardConfig = {
     ProfiledeleteComponent,
   ], 
   imports: [
+    // BrowserAnimationsModule,
+    NoopAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     NgSelectModule,
     FormsModule,

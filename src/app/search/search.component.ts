@@ -29,6 +29,7 @@ import { NgbDatepickerConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-
 import { time } from 'console';
 import 'lodash';
 import { exit } from 'process';
+import { Meta, Title } from '@angular/platform-browser';
 
 declare var _: any;
 
@@ -224,6 +225,8 @@ export class SearchComponent implements OnInit {
     private deviceService: DeviceDetectorService,
     private modalService: NgbModal,
     private route: ActivatedRoute,
+    private meta: Meta,
+    private title: Title,
     @Inject(PLATFORM_ID) private platformId: Object
 
   ) {
@@ -2385,6 +2388,38 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //add by sahil
+
+
+    const raw = JSON.parse(localStorage.getItem('seoData') || '[]');
+
+    let seoPages: any[] = [];
+
+    if (Array.isArray(raw)) {
+      seoPages = raw;
+    } else if (raw?.data && Array.isArray(raw.data)) {
+      seoPages = raw.data;
+    } else if (typeof raw === 'object') {
+      seoPages = Object.values(raw);
+    }
+
+    console.log('seoPages normalized:', seoPages);
+    console.log('Is array:', Array.isArray(seoPages));
+
+    const currentPath = this.router.url
+      .split('?')[0]
+      .replace('/', '');
+
+    const seoData = seoPages.find(
+      (x: any) => x?.page_url === currentPath
+    );
+
+    console.log('SEO Data:', seoData);
+
+    if (seoData) {
+      this.applySeo(seoData);
+    }
+
 
     this.locationService.currentsource.subscribe((s: any) => { this.sourceData = s });
     this.locationService.currentdestination.subscribe((d: any) => { this.destinationData = d });
@@ -2533,6 +2568,80 @@ export class SearchComponent implements OnInit {
     //   }
     // });
   }
+
+
+  // applySeo(seo: any) {
+
+  //   // ✅ TITLE
+  //   this.title.setTitle(seo.meta_title);
+
+  //   // ✅ META DESCRIPTION
+  //   this.meta.updateTag({
+  //     name: 'description',
+  //     content: seo.meta_description
+  //   });
+
+  //   // ✅ META KEYWORDS
+  //   this.meta.updateTag({
+  //     name: 'keywords',
+  //     content: seo.meta_keyword
+  //   });
+
+  //   // ✅ OG TAGS (important)
+  //   this.meta.updateTag({
+  //     property: 'og:title',
+  //     content: seo.meta_title
+  //   });
+
+  //   this.meta.updateTag({
+  //     property: 'og:description',
+  //     content: seo.meta_description
+  //   });
+
+  //   this.meta.updateTag({
+  //     property: 'og:url',
+  //     content: seo.canonical_url
+  //   });
+
+  //   // ✅ CANONICAL
+  //   this.setCanonical(seo.canonical_url);
+  // }
+
+  applySeo(seo: any) {
+
+    this.title.setTitle(seo.meta_title);
+
+    this.meta.updateTag({
+      name: 'description',
+      content: seo.meta_description
+    });
+
+    this.meta.updateTag(
+      { content: seo.meta_keyword || '' },
+      'name="keywords"'
+    );
+
+    // ✅ OPEN GRAPH
+    this.meta.updateTag(
+      { content: seo.meta_title || '' },
+      'property="og:title"'
+    );
+  }
+
+
+
+  setCanonical(url: string) {
+    let link = document.querySelector("link[rel='canonical']") as HTMLLinkElement;
+
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+
+    link.setAttribute('href', url);
+  }
+
 
   locAll(res: any, l_ar: any) {
     let source_data = {};
