@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Input, SecurityContext, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input,HostListener, SecurityContext, EventEmitter } from '@angular/core';
 import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, STEP_STATE, THEME } from 'ng-wizard';
 import { Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -720,6 +720,9 @@ get_seatno(seat_id:any){
                 const redirectUrl = this.MakePaymnetResponse.pp_resp.original.redirectUrl;
                 // console.log(redirectUrl);
 
+                // Replace history so payment page is removed
+                history.replaceState(null, '', '/');
+
                 // Redirect to PhonePe
                 window.location.href = redirectUrl;
                 localStorage.setItem('transaction_id',this.bookTicketResponse.transaction_id);
@@ -1016,6 +1019,14 @@ get_seatno(seat_id:any){
    // if(moment(this.myDate) > moment(entdt)){
      // this.router.navigate(['/']);
     //}
+    // Push dummy state so back button is trapped
+    history.pushState(null, '', location.href);
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onBrowserBack(event: any) {
+    // Always redirect to home
+    this.router.navigateByUrl('/');
   }
  
   showPreviousStep(event?: Event) {
