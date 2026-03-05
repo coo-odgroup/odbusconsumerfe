@@ -87,6 +87,7 @@
 
 .blog-list li {
   margin-bottom: 8px;
+  
 }
 
 
@@ -112,6 +113,7 @@
   justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
+  cursor: pointer;
 }
 
 /* RELATED POSTS */
@@ -148,4 +150,5 @@
   border-radius: 4px;
   margin: 4px;
   font-size: 13px;
+  cursor: pointer;
 }
