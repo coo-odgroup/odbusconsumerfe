@@ -2390,34 +2390,70 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     //add by sahil
 
-    const raw = JSON.parse(localStorage.getItem('seoData') || '[]');
+    // const raw = JSON.parse(localStorage.getItem('seoData') || '[]');
 
-    let seoPages: any[] = [];
+    // let seoPages: any[] = [];
 
-    if (Array.isArray(raw)) {
-      seoPages = raw;
-    } else if (raw?.data && Array.isArray(raw.data)) {
-      seoPages = raw.data;
-    } else if (typeof raw === 'object') {
-      seoPages = Object.values(raw);
-    }
+    // if (Array.isArray(raw)) {
+    //   seoPages = raw;
+    // } else if (raw?.data && Array.isArray(raw.data)) {
+    //   seoPages = raw.data;
+    // } else if (typeof raw === 'object') {
+    //   seoPages = Object.values(raw);
+    // }
 
-    console.log('seoPages normalized:', seoPages);
-    console.log('Is array:', Array.isArray(seoPages));
+    // console.log('seoPages normalized:', seoPages);
+    // console.log('Is array:', Array.isArray(seoPages));
+
+    // const currentPath = this.router.url
+    //   .split('?')[0]
+    //   .replace('/', '');
+
+    // const seoData = seoPages.find(
+    //   (x: any) => x?.page_url === currentPath
+    // );
+
+    // console.log('SEO Data:', seoData);
+
+    // if (seoData) {
+    //   this.applySeo(seoData);
+    // }
 
     const currentPath = this.router.url
       .split('?')[0]
       .replace('/', '');
 
-    const seoData = seoPages.find(
-      (x: any) => x?.page_url === currentPath
+    this.seo.seoList().subscribe(
+      (resp: any) => {
+
+        // Normalize response
+        let seoPages: any[] = [];
+
+        if (Array.isArray(resp)) {
+          seoPages = resp;
+        } else if (resp?.data && Array.isArray(resp.data)) {
+          seoPages = resp.data;
+        }
+
+        const seoData = seoPages.find(
+          (x: any) => x?.page_url === currentPath
+        );
+
+        if (seoData) {
+          this.applySeo(seoData);
+        }
+
+        // Store in localStorage only in browser
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('seoData', JSON.stringify(resp));
+        }
+
+      },
+      error => {
+        console.error('Error fetching SEO:', error);
+      }
     );
 
-    console.log('SEO Data:', seoData);
-
-    if (seoData) {
-      this.applySeo(seoData);
-    }
 
 
     this.locationService.currentsource.subscribe((s: any) => { this.sourceData = s });

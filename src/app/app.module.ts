@@ -66,6 +66,8 @@ import { environment } from '../environments/environment';
 import { PaymentStatusModule } from './payment-status/payment-status.module';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BlogListingComponent } from './bloglisting/bloglisting.component';
+import { BlogDetailComponent } from './blogdetails/blogdetails.component';
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -129,6 +131,8 @@ const ngWizardConfig: NgWizardConfig = {
     SuccessComponent,
     MaintenanceComponent,
     ProfiledeleteComponent,
+    BlogListingComponent,
+    BlogDetailComponent
   ], 
   imports: [
     // BrowserAnimationsModule,

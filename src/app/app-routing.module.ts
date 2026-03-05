@@ -42,6 +42,8 @@ import { SuccessComponent } from './success/success.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { ProfiledeleteComponent } from './profiledelete/profiledelete.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
+import { BlogListingComponent } from './bloglisting/bloglisting.component';
+import { BlogDetailComponent } from './blogdetails/blogdetails.component';
 
 
 export const routes: Routes = [
@@ -84,6 +86,8 @@ export const routes: Routes = [
   { path: 'myaccount', component: MyaccountComponent,canActivate: [AuthGuard]},
   { path: 'profile/delete', component: ProfiledeleteComponent},
   { path: 'payment-status',component:PaymentStatusComponent},
+  { path: 'blog-list',component:BlogListingComponent},
+  { path: 'blog-deatils',component:BlogDetailComponent},
   // { path: 'payment-failed',component:PaymentFailedComponent},
   { path: '**', component: SearchComponent}, // wildcard routes
   { path: '**/:dt', component: SearchComponent}, // wildcard routes
