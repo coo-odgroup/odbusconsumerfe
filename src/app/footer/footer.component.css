@@ -1,0 +1,69 @@
+/* BLOG CARD DESIGN */
+
+.blog {
+    padding: 50px;
+}
+
+/* BLOG CARD SECTION */
+
+.blog-cards {
+    margin-top: 30px;
+}
+
+.blog-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 30px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    cursor: pointer;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* IMAGE */
+
+.blog-img {
+    position: relative;
+}
+
+.blog-img img {
+    height: 220px;
+    object-fit: cover;
+}
+
+/* TAG */
+
+.blog-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ff4d4d;
+    color: #fff;
+    padding: 5px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+/* CONTENT */
+
+.blog-content {
+    padding: 18px;
+}
+
+.blog-meta {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.blog-title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 26px;
+    margin: 0;
+}

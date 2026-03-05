@@ -87,7 +87,7 @@ export const routes: Routes = [
   { path: 'profile/delete', component: ProfiledeleteComponent},
   { path: 'payment-status',component:PaymentStatusComponent},
   { path: 'blog-list',component:BlogListingComponent},
-  { path: 'blog-deatils',component:BlogDetailComponent},
+  { path: 'blog-details',component:BlogDetailComponent},
   // { path: 'payment-failed',component:PaymentFailedComponent},
   { path: '**', component: SearchComponent}, // wildcard routes
   { path: '**/:dt', component: SearchComponent}, // wildcard routes
