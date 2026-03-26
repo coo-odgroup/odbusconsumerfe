@@ -1,4 +1,4 @@
-<ngx-spinner  bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
   <p style="color: white">Loading...</p>
 </ngx-spinner>
 
@@ -21,16 +21,13 @@
                   <a (click)="getList(list.first_page_url)">All</a>
                 </li>
                 <li class="list-inline-item {{statusLabel == 'Completed' ? 'active' : ''}} cursor">
-                  <a (click)="getList(list.first_page_url, 'Completed')"
-                    >Completed</a>
+                  <a (click)="getList(list.first_page_url, 'Completed')">Completed</a>
                 </li>
                 <li class="list-inline-item {{statusLabel == 'Upcoming' ? 'active' : ''}} cursor">
-                  <a (click)="getList(list.first_page_url, 'Upcoming')"
-                    >Upcoming</a>
+                  <a (click)="getList(list.first_page_url, 'Upcoming')">Upcoming</a>
                 </li>
                 <li class="list-inline-item {{statusLabel == 'Cancelled' ? 'active' : ''}} cursor">
-                  <a (click)="getList(list.first_page_url, 'Cancelled')"
-                    >Cancelled</a>
+                  <a (click)="getList(list.first_page_url, 'Cancelled')">Cancelled</a>
                 </li>
               </ul>
             </div>
@@ -72,11 +69,14 @@
                 <td>
                   <a class="{{ b.booking_status }} cursor">{{
                     b.booking_status
-                  }}</a>
+                    }}</a>
                   <span class="span-cm">
                     <ul class="list-inline pt-1 mb-0 table-ul-sub">
                       <li class="list-inline-item">
                         <a class="cursor" (click)="viewTicket(b.pnr)">View Ticket</a>|
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="cursor" (click)="toggleRefund(b.pnr)">View Refund</a>|
                       </li>
 
                       <li class="list-inline-item active" *ngIf="b.cancel">
@@ -86,20 +86,49 @@
                         <a class="cursor" (click)="addReview(b.pnr, b.bus_id, review)">Review</a>|
                       </li>
                       <li class="list-inline-item">
-                        <a class="cursor"  (click)="bookAgain(b.source[0].name, b.destination[0].name)">Book again</a>
+                        <a class="cursor" (click)="bookAgain(b.source[0].name, b.destination[0].name)">Book again</a>
                       </li>
                     </ul>
                   </span>
                 </td>
               </tr>
 
-              <input type="hidden" [(ngModel)]="dtconfig.minDate"  name="todayDate" id="todayDate" ngbDatepicker (click)="d.toggle()"
-                #d="ngbDatepicker"/>
+              <!-- Refund Progress Bar -->
+              <tr>
+                <td colspan="7">
+                  <div class="refund-box">
+
+                    <div class="progress-steps complete">
+
+                      <div class="step done">
+                        <div class="circle"><i class="fa fa-question"></i></div>
+                        <span>Query</span>
+                      </div>
+
+                      <div class="step done">
+                        <div class="circle"><i class="fa fa-cogs"></i></div>
+                        <span>Process</span>
+                      </div>
+
+                      <div class="step done final">
+                        <div class="circle"><i class="fa fa-check"></i></div>
+                        <span>Refunded</span>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </td>
+              </tr>
+              <!-- end -->
+
+              <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker
+                (click)="d.toggle()" #d="ngbDatepicker" />
             </tbody>
           </table>
         </div>
       </div>
-      <div class="d-flex flex-row-reverse mb-5"  *ngIf="list.links && list.data.length > 0">
+      <div class="d-flex flex-row-reverse mb-5" *ngIf="list.links && list.data.length > 0">
         <nav class="my-1 pt-1">
           <ul class="pagination pagination-circle pg-blue mb-0">
             <li (click)="getList(list.first_page_url, statusLabel)" class="page-item {{list.current_page == 1 ? 'disabled' : ''
@@ -108,12 +137,12 @@
             </li>
 
             <li class="page-item" *ngFor="let b of list.links; let i = index">
-              <a class="page-link {{list.current_page == b.label ? 'active' : ''}}" (click)="b.url ? getList(b.url, statusLabel) : ''"
-                [innerHTML]="page(b.label)"></a>
+              <a class="page-link {{list.current_page == b.label ? 'active' : ''}}"
+                (click)="b.url ? getList(b.url, statusLabel) : ''" [innerHTML]="page(b.label)"></a>
             </li>
 
-            <li class="page-item {{list.last_page == 1 ? 'disabled' : ''}} clearfix d-none d-md-block" (click)="getList(list.last_page_url, statusLabel)"
-            >
+            <li class="page-item {{list.last_page == 1 ? 'disabled' : ''}} clearfix d-none d-md-block"
+              (click)="getList(list.last_page_url, statusLabel)">
               <a class="page-link">Last</a>
             </li>
           </ul>
@@ -122,7 +151,7 @@
     </div>
   </div>
 
- 
+
 
 </ng-container>
 
@@ -170,7 +199,7 @@
 
 
 <ng-template #review let-modal>
- 
+
 
   <div class="modal-body modal-body-m0">
 
@@ -185,8 +214,8 @@
       <div class="form-group">
         <div class="cols-sm-10 add-rev">
           <span><b>Enter Your Title (Max. 4 Words)</b></span>
-          <input  type="text"  class="form-control" formControlName="title" id="title" placeholder="Enter title" maxlength="30"
-          />
+          <input type="text" class="form-control" formControlName="title" id="title" placeholder="Enter title"
+            maxlength="30" />
 
           <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
             <div *ngIf="f.title.errors.required">Title is required</div>
@@ -195,8 +224,8 @@
 
         <div class="cols-sm-10 add-rev">
           <span><b>Enter Your Comments (Max. 500 Characters)</b></span>
-          <textarea class="form-control"rows="5" formControlName="comments" id="comments"  placeholder="Enter Comments" maxlength="500"
-          ></textarea>
+          <textarea class="form-control" rows="5" formControlName="comments" id="comments" placeholder="Enter Comments"
+            maxlength="500"></textarea>
 
           <div *ngIf="submitted && f.comments.errors" class="invalid-feedback">
             <div *ngIf="f.comments.errors.required">Comment is required</div>
@@ -249,208 +278,212 @@
 <ng-container *ngIf="isMobile && !MenuActive">
   <div class="mobile-mybooking-top">
     <div class="row">
-            <div class="col-1 pr-0 pl-2 mob-arrow-left">
-              <a routerLink="/">
-                <i class="fas fa-arrow-left"></i>
-              </a>  
-            </div>
-            <div class="col-7 pl-2 pr-2 mob-list-center">
-                <h5>My Bookings</h5>
-            </div>
-            <div class="col-4 pl-2 pr-2">
-                <div class="mobile-logo">
-                    <img src="assets/img/mob-img/logo.png" />
-                </div>
-            </div>
-        </div>  
-    </div>
-    <ng-template #content let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Cancellation Info</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross Click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="col-1 pr-0 pl-2 mob-arrow-left">
+        <a routerLink="/">
+          <i class="fas fa-arrow-left"></i>
+        </a>
       </div>
-  
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-12" style="margin: 0 auto">
-            <table width="100%" cellpadding="10">
-              <tbody>
-                <tr>
-                  <td class="st-ri">Amount Paid:</td>
-                  <td class="st-le">₹{{ cancelInfo.totalfare }}</td>
-                </tr>
-  
-                <tr>
-                  <td class="st-ri">Cancellation Fees:</td>
-                  <td class="st-le">
-                    ₹{{ cancelInfo.deductAmount }} (
-                    {{ cancelInfo.deductionPercentage }})
-                  </td>
-                </tr>
-  
-                <tr>
-                  <td class="st-ri">Refund Amount:</td>
-                  <td class="st-le">₹{{ cancelInfo.refundAmount }}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div align="center">
-              <button (click)="cancel_ticket()" class="btn btn-danger proceed btn-de">
-                Cancel Ticket
-              </button>
-            </div>
-          </div>
+      <div class="col-7 pl-2 pr-2 mob-list-center">
+        <h5>My Bookings</h5>
+      </div>
+      <div class="col-4 pl-2 pr-2">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
         </div>
       </div>
-    </ng-template>
-
-    <ng-template #review let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">
-          <strong>Add Review For (PNR : {{ pnr }}) </strong>
-        </h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross Click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-  
-      <div class="modal-body">
-        <form class="form-horizontal" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <div class="cols-sm-10 add-rev">
-              <span><b>Enter Your Title (Max. 4 Words)</b></span>
-              <input  type="text"  class="form-control" formControlName="title" id="title" placeholder="Enter title" maxlength="30"
-              />
-  
-              <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
-                <div *ngIf="f.title.errors.required">Title is required</div>
-              </div>
-            </div>
-  
-            <div class="cols-sm-10 add-rev">
-              <span><b>Enter Your Comments (Max. 500 Characters)</b></span>
-              <textarea class="form-control"rows="3" formControlName="comments" id="comments"  placeholder="Enter Comments" maxlength="500"
-              ></textarea>
-  
-              <div *ngIf="submitted && f.comments.errors" class="invalid-feedback">
-                <div *ngIf="f.comments.errors.required">Comment is required</div>
-                <!-- <div  *ngIf="f.comments.errors.pattern "> Comments  must be of 200 Characters..</div> -->
-              </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-md-4 rate">
-                <label><b>Overall : </b></label>
-                <ngb-rating [(rate)]="OverallRate" [max]="5"></ngb-rating>
-                <pre>Rate: <b>{{OverallRate}}</b></pre>
-              </div>
-  
-              <div class="col-md-4 rate">
-                <label><b>Comfort : </b></label>
-                <ngb-rating [(rate)]="ComfortRate" [max]="5"></ngb-rating>
-                <pre>Rate: <b>{{ComfortRate}}</b></pre>
-              </div>
-              <div class="col-md-4 rate">
-                <label><b>Clean : </b></label>
-                <ngb-rating [(rate)]="CleanRate" [max]="5"></ngb-rating>
-                <pre>Rate: <b>{{CleanRate}}</b></pre>
-              </div>
-            </div>
-  
-            <div class="row">
-              <div class="col-md-4 rate">
-                <label><b>Behaviour : </b></label>
-                <ngb-rating [(rate)]="BehaviourRate" [max]="5"></ngb-rating>
-                <pre>Rate: <b>{{BehaviourRate}}</b></pre>
-              </div>
-  
-              <div class="col-md-4 rate">
-                <label><b>Timing : </b></label>
-                <ngb-rating [(rate)]="TimingRate" [max]="5"></ngb-rating>
-                <pre>Rate: <b>{{TimingRate}}</b></pre>
-              </div>
-              <div class="col-md-4 rate"></div>
-            </div>
-          </div>
-  
-          <div class="form-group login-app center">
-            <button type="submit" class="btn btn-success">Submit</button>
-          </div>
-        </form>
-      </div>
-    </ng-template>
-
-<div class="mobile-mybooking-middle">
-  <div class="row">    
-    <div class="col-md-8">
-      <ul class="list-inline py-3 table-ul mb-0">
-        <li class="list-inline-item {{statusLabel == '' ? 'active' : ''}} cursor">
-          <a (click)="getList(list.first_page_url)">All</a>
-        </li>
-        <li class="list-inline-item {{statusLabel == 'Completed' ? 'active' : ''}} cursor">
-          <a (click)="getList(list.first_page_url, 'Completed')">Completed</a>
-        </li>
-        <li class="list-inline-item {{statusLabel == 'Upcoming' ? 'active' : ''}} cursor">
-          <a (click)="getList(list.first_page_url, 'Upcoming')">Upcoming</a>
-        </li>
-        <li class="list-inline-item {{statusLabel == 'Cancelled' ? 'active' : ''}} cursor">
-          <a (click)="getList(list.first_page_url, 'Cancelled')">Cancelled</a>
-        </li>
-      </ul>
     </div>
   </div>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Cancellation Info</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross Click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
 
-   <div class="mobile-ticket-box shadow" *ngFor="let b of list.data; let i=index;">      
-      <div class="row mob-tkbox-top">       
-        <div  class="col-6" *ngIf="b.status == 2">
-          <h5 class="cancel">Cancelled</h5>         
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12" style="margin: 0 auto">
+          <table width="100%" cellpadding="10">
+            <tbody>
+              <tr>
+                <td class="st-ri">Amount Paid:</td>
+                <td class="st-le">₹{{ cancelInfo.totalfare }}</td>
+              </tr>
+
+              <tr>
+                <td class="st-ri">Cancellation Fees:</td>
+                <td class="st-le">
+                  ₹{{ cancelInfo.deductAmount }} (
+                  {{ cancelInfo.deductionPercentage }})
+                </td>
+              </tr>
+
+              <tr>
+                <td class="st-ri">Refund Amount:</td>
+                <td class="st-le">₹{{ cancelInfo.refundAmount }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div align="center">
+            <button (click)="cancel_ticket()" class="btn btn-danger proceed btn-de">
+              Cancel Ticket
+            </button>
+          </div>
         </div>
-        <div  class="col-6" *ngIf="b.status == 1 && b.journey_dt > currentDate">         
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #review let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        <strong>Add Review For (PNR : {{ pnr }}) </strong>
+      </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross Click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form class="form-horizontal" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <div class="cols-sm-10 add-rev">
+            <span><b>Enter Your Title (Max. 4 Words)</b></span>
+            <input type="text" class="form-control" formControlName="title" id="title" placeholder="Enter title"
+              maxlength="30" />
+
+            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+              <div *ngIf="f.title.errors.required">Title is required</div>
+            </div>
+          </div>
+
+          <div class="cols-sm-10 add-rev">
+            <span><b>Enter Your Comments (Max. 500 Characters)</b></span>
+            <textarea class="form-control" rows="3" formControlName="comments" id="comments"
+              placeholder="Enter Comments" maxlength="500"></textarea>
+
+            <div *ngIf="submitted && f.comments.errors" class="invalid-feedback">
+              <div *ngIf="f.comments.errors.required">Comment is required</div>
+              <!-- <div  *ngIf="f.comments.errors.pattern "> Comments  must be of 200 Characters..</div> -->
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-md-4 rate">
+              <label><b>Overall : </b></label>
+              <ngb-rating [(rate)]="OverallRate" [max]="5"></ngb-rating>
+              <pre>Rate: <b>{{OverallRate}}</b></pre>
+            </div>
+
+            <div class="col-md-4 rate">
+              <label><b>Comfort : </b></label>
+              <ngb-rating [(rate)]="ComfortRate" [max]="5"></ngb-rating>
+              <pre>Rate: <b>{{ComfortRate}}</b></pre>
+            </div>
+            <div class="col-md-4 rate">
+              <label><b>Clean : </b></label>
+              <ngb-rating [(rate)]="CleanRate" [max]="5"></ngb-rating>
+              <pre>Rate: <b>{{CleanRate}}</b></pre>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 rate">
+              <label><b>Behaviour : </b></label>
+              <ngb-rating [(rate)]="BehaviourRate" [max]="5"></ngb-rating>
+              <pre>Rate: <b>{{BehaviourRate}}</b></pre>
+            </div>
+
+            <div class="col-md-4 rate">
+              <label><b>Timing : </b></label>
+              <ngb-rating [(rate)]="TimingRate" [max]="5"></ngb-rating>
+              <pre>Rate: <b>{{TimingRate}}</b></pre>
+            </div>
+            <div class="col-md-4 rate"></div>
+          </div>
+        </div>
+
+        <div class="form-group login-app center">
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <div class="mobile-mybooking-middle">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline py-3 table-ul mb-0">
+          <li class="list-inline-item {{statusLabel == '' ? 'active' : ''}} cursor">
+            <a (click)="getList(list.first_page_url)">All</a>
+          </li>
+          <li class="list-inline-item {{statusLabel == 'Completed' ? 'active' : ''}} cursor">
+            <a (click)="getList(list.first_page_url, 'Completed')">Completed</a>
+          </li>
+          <li class="list-inline-item {{statusLabel == 'Upcoming' ? 'active' : ''}} cursor">
+            <a (click)="getList(list.first_page_url, 'Upcoming')">Upcoming</a>
+          </li>
+          <li class="list-inline-item {{statusLabel == 'Cancelled' ? 'active' : ''}} cursor">
+            <a (click)="getList(list.first_page_url, 'Cancelled')">Cancelled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mobile-ticket-box shadow" *ngFor="let b of list.data; let i=index;">
+      <div class="row mob-tkbox-top">
+        <div class="col-6" *ngIf="b.status == 2">
+          <h5 class="cancel">Cancelled</h5>
+        </div>
+        <div class="col-6" *ngIf="b.status == 1 && b.journey_dt > currentDate">
           <h5 class="confirmed">Upcoming</h5>
         </div>
-        <div  class="col-6" *ngIf="b.status == 1 && b.journey_dt < currentDate">         
+        <div class="col-6" *ngIf="b.status == 1 && b.journey_dt < currentDate">
           <h5 class="expired">Completed</h5>
         </div>
         <div class="col-6 text-right"><span>PNR:</span> {{ b.pnr }}</div>
       </div>
 
       <div class="row mob-tkbox-mid">
-        <div  class="col-5 pl-3 pr-2 text-center"><h6>{{ b.source[0].name }}</h6></div>
+        <div class="col-5 pl-3 pr-2 text-center">
+          <h6>{{ b.source[0].name }}</h6>
+        </div>
         <div class="col-2 p-0 text-center"><i class="fas fa-arrow-right"></i></div>
-        <div class="col-5 pl-2 pr-3 text-center"><h6>{{ b.destination[0].name }}</h6></div>
+        <div class="col-5 pl-2 pr-3 text-center">
+          <h6>{{ b.destination[0].name }}</h6>
+        </div>
         <div class="col-12 p-0 text-center"> {{ b.journey_dt | date: "E, d MMM , yyy" }}</div>
       </div>
 
       <div class="row mob-tkbox-bot">
-        <div  class="col-6"><span>Booked On</span><br/>
+        <div class="col-6"><span>Booked On</span><br />
           {{ b.journey_dt | date: "E, d MMM , yyy" }}</div>
         <div class="col-6">
-          <span>{{ b.booking_detail.length}} Seats</span><br/>          
+          <span>{{ b.booking_detail.length}} Seats</span><br />
           <span *ngFor="let bd of b.booking_detail; let bi = index">
             <span>{{ bd.bus_seats.seats.seatText }},</span>
           </span>
         </div>
       </div>
-      <hr/>
+      <hr />
       <div class="row mob-tkbox-bot">
-        <input type="hidden" [(ngModel)]="dtconfig.minDate"  name="todayDate" id="todayDate" ngbDatepicker (click)="d.toggle()"
-        #d="ngbDatepicker"/>
-        <div  class="col-12">
+        <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker
+          (click)="d.toggle()" #d="ngbDatepicker" />
+        <div class="col-12">
           <a (click)="viewTicket(b.pnr)">View Ticket</a> |
           <span *ngIf="b.cancel">
-             <a (click)="cancelTicketTab(b.pnr, content)">Cancel</a> |
+            <a (click)="cancelTicketTab(b.pnr, content)">Cancel</a> |
           </span>
           <span *ngIf="b.review">
-            <a (click)="addReview(b.pnr, b.bus_id, review)" >Review</a> |
+            <a (click)="addReview(b.pnr, b.bus_id, review)">Review</a> |
           </span>
           <a (click)="bookAgain(b.source[0].name, b.destination[0].name)">Book Again</a>
-        </div>        
+        </div>
       </div>
-   </div>
+    </div>
 
-   <!-- <div class="mobile-ticket-box shadow">      
+    <!-- <div class="mobile-ticket-box shadow">      
       <div class="row mob-tkbox-top">
         <div  class="col-6"><h5 class="expired">Expired</h5></div>
         <div class="col-6 text-right"><span>PNR:</span> A14359588055</div>
@@ -542,7 +575,7 @@
       </div>
    </div> -->
 
-</div>
+  </div>
 </ng-container>
 
 <ng-container *ngIf="isMobile && MenuActive">
