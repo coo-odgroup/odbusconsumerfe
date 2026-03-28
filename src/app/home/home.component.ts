@@ -21,6 +21,7 @@ import { NgbDatepickerConfig, NgbModal, NgbActiveModal, NgbDateStruct } from '@n
 import * as moment from 'moment';
 import { LoginChecker } from '../helpers/loginChecker';
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -114,9 +115,13 @@ export class HomeComponent implements OnInit {
   minutes: number = 0;
   seconds: number = 0;
   public isExpired: boolean = false;
+  bloglist:any;
+
+  private apiurl = GlobalConstants.BASE_URL;
+  baseurl = GlobalConstants.PATHURL;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private _fb: FormBuilder,
     private locationService: LocationdataService,
     private dtconfig: NgbDatepickerConfig,
@@ -133,6 +138,7 @@ export class HomeComponent implements OnInit {
     private modalService: NgbModal,
     private alertConfig: NgbAlertConfig,
     private datePipe: DatePipe,
+    private http : HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.session = new LoginChecker();
@@ -286,13 +292,22 @@ export class HomeComponent implements OnInit {
     this.countdown_status = 0;
     this.countdown_title = '';
     this.endDate = '';
-    
+
     // Default empty search function (will be updated if PopularInfo loads)
     this.search = (text$: Observable<string>) => text$.pipe(map(() => []));
     this.formatter = (x: { name: string }) => x.name;
-  }  ngOnInit() {
+  } ngOnInit() {
+
+    const reddata = {
+      "limit": 3
+    }
+    this.http.post(this.apiurl + "/bloglist", reddata).subscribe((res: any) => {
+      this.bloglist = res.data.blogs
+      console.log(res.data.blogs);
+    })
+
     console.log('HomeComponent.ngOnInit() called');
-    
+
     // Initialize with safe defaults (ensures page renders even without PopularInfo)
     this.initializeDefaults();
 
@@ -474,8 +489,8 @@ export class HomeComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       const el = document.getElementById(val);
       if (el) {
-        try { el.focus(); } catch (e) {}
-        try { el.click(); } catch (e) {}
+        try { el.focus(); } catch (e) { }
+        try { el.click(); } catch (e) { }
       }
     }
   }
@@ -532,40 +547,40 @@ export class HomeComponent implements OnInit {
   // }
 
   ngAfterViewInit(): void {
-  this.CurrentDate = this.datePipe.transform(this.CurrentDate, 'yyyy-MM-dd');
+    this.CurrentDate = this.datePipe.transform(this.CurrentDate, 'yyyy-MM-dd');
 
-  const current = new Date();
-  const timestamp = current.getTime();
+    const current = new Date();
+    const timestamp = current.getTime();
 
-  // read commonData safely
-  this.popupData = this.commonService?.commonData || {};
+    // read commonData safely
+    this.popupData = this.commonService?.commonData || {};
 
-  // guard against missing common or popup properties
-  const common = this.popupData?.common;
-  if (!common) {
-    // nothing to do — safe exit
-    return;
-  }
+    // guard against missing common or popup properties
+    const common = this.popupData?.common;
+    if (!common) {
+      // nothing to do — safe exit
+      return;
+    }
 
-  if (common.popup_status == 1) {
-    // guard date fields exist before constructing Date
-    const startDateStr = (common.popup_start_date || '').trim();
-    const startTimeStr = (common.popup_start_time || '').trim();
-    const endDateStr = (common.popup_end_date || '').trim();
-    const endTimeStr = (common.popup_end_time || '').trim();
+    if (common.popup_status == 1) {
+      // guard date fields exist before constructing Date
+      const startDateStr = (common.popup_start_date || '').trim();
+      const startTimeStr = (common.popup_start_time || '').trim();
+      const endDateStr = (common.popup_end_date || '').trim();
+      const endTimeStr = (common.popup_end_time || '').trim();
 
-    if (startDateStr && startTimeStr && endDateStr && endTimeStr) {
-      const popup_s_datetime = new Date(startDateStr + ' ' + startTimeStr).getTime();
-      const popup_e_datetime = new Date(endDateStr + ' ' + endTimeStr).getTime();
+      if (startDateStr && startTimeStr && endDateStr && endTimeStr) {
+        const popup_s_datetime = new Date(startDateStr + ' ' + startTimeStr).getTime();
+        const popup_e_datetime = new Date(endDateStr + ' ' + endTimeStr).getTime();
 
-      if (!isNaN(popup_s_datetime) && !isNaN(popup_e_datetime)) {
-        if (popup_s_datetime <= timestamp && timestamp <= popup_e_datetime) {
-          this.modalService.open(this.popup);
+        if (!isNaN(popup_s_datetime) && !isNaN(popup_e_datetime)) {
+          if (popup_s_datetime <= timestamp && timestamp <= popup_e_datetime) {
+            this.modalService.open(this.popup);
+          }
         }
       }
     }
   }
-}
 
 
   getImagePath(slider_img: any) {

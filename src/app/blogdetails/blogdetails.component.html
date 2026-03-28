@@ -2,170 +2,81 @@
   <p style="color: white">Loading...</p>
 </ngx-spinner>
 
-
 <section class="blog-details">
   <div class="container">
-
     <div class="row">
-
       <!-- LEFT CONTENT -->
       <div class="col-md-9">
-
         <div class="blog-detail-card">
-
           <div class="blog-img">
-
-            <img src="assets/img/Blog_1.jpg" class="img-responsive">
-
+            <img [src]="baseurl + blogDetail?.featured_image" class="img-responsive">
           </div>
 
           <div class="blog-content">
-
             <div class="blog-meta-row">
-
-              <span class="blog-tag-inline">Bookings</span>
-
-              <span class="blog-date">
-                <i class="glyphicon glyphicon-calendar"></i> 27 Sep 2025
+              <span class="blog-tag-inline">{{ blogDetail?.category_name }}</span>
+              <span class="blog-date">{{ blogDetail?.author_name }} | {{ blogDetail?.created_at | date:'dd MMM yyyy' }}
               </span>
-
             </div>
 
             <h1 class="blog-title">
-              The Ultimate Guide to Solo Travel: Tips for First-Time Travelers
+              {{blogDetail?.title}}
             </h1>
 
-            <p>
-              Solo travel can be an incredibly empowering and enriching experience,
-              offering you the freedom to explore the world at your own pace and make
-              personal connections with different cultures.
-            </p>
-
-            <p>
-              When traveling solo, it's important to have a rough plan in place,
-              especially if it's your first time.
-            </p>
-
-            <ul class="blog-list">
-              <li>Prioritize safety by booking accommodation in advance.</li>
-              <li>Bring only essentials to move easily.</li>
-              <li>Carry a small first aid kit.</li>
-            </ul>
-            <p>
-              Solo travel is a fantastic way to grow, explore and discover new
-              aspects of yourself and the world.
-            </p>
-
+            <div [innerHTML]="blogDetail?.content"></div>
             <div class="blog-post-tags">
-
-              <span class="tag-title">Tags :</span>
-
-              <a href="#" class="post-tag">Travels</a>
-              <a href="#" class="post-tag">Tips</a>
-              <a href="#" class="post-tag">Guide</a>
-
+              <span class="tag-title" *ngIf="blogDetail?.tags != 0">Tags :</span>
+              <a class="post-tag" *ngFor="let tag of blogDetail?.tags">{{ tag?.tag_name }}</a>
             </div>
-
           </div>
-
         </div>
-
       </div>
 
 
       <!-- RIGHT SIDEBAR -->
       <div class="col-md-3 blog-sidebar">
 
-
         <!-- RELATED POSTS -->
-        <div class="sidebar-box">
-
+        <div class="sidebar-box" *ngIf="related_blogs != 0">
           <h4>Related Posts</h4>
 
-          <div class="related-post">
+          <a class="related-post" *ngFor="let relBlog of related_blogs" [routerLink]="['/blog', relBlog.slug]">
 
-            <img src="assets/img/Blog_2.jpg">
-
-            <div>
-              <p class="rp-title">How to Travel on a Budget</p>
-              <span class="rp-date">14 May 2025</span>
-            </div>
-
-          </div>
-
-
-          <div class="related-post">
-
-            <img src="assets/img/Blog_3.jpg">
+            <img [src]="baseurl + relBlog.thumb_image">
 
             <div>
-              <p class="rp-title">Solo Travel Tips</p>
-              <span class="rp-date">14 May 2025</span>
+              <p class="rp-title">{{ relBlog?.title }}</p>
+              <span class="rp-date">
+                {{ relBlog?.created_at | date:'dd MMM yyyy' }}
+              </span>
             </div>
 
-          </div>
+          </a>
 
         </div>
 
         <!-- CATEGORIES -->
         <div class="sidebar-box">
-
           <h4>Categories</h4>
-
           <ul class="category-list">
-
-            <li>
-              <span>Bookings</span>
-              <span class="cat-count">12</span>
+            <li *ngFor="let category of blogcat">
+              <a [routerLink]="['/blog/category', category.slug]"><span>{{ category.category_name }}</span></a>
+              <span class="cat-count">{{ category.total }}</span>
             </li>
-
-            <li>
-              <span>Bus Travel</span>
-              <span class="cat-count">8</span>
-            </li>
-
-            <li>
-              <span>Travel Tips</span>
-              <span class="cat-count">5</span>
-            </li>
-
-            <li>
-              <span>Routes</span>
-              <span class="cat-count">3</span>
-            </li>
-
-            <li>
-              <span>Tour Guide</span>
-              <span class="cat-count">6</span>
-            </li>
-
           </ul>
-
         </div>
-
 
         <!-- TAGS -->
-        <div class="sidebar-box">
-
+        <div class="sidebar-box" *ngIf="blogDetail?.tags?.length">
           <h4>Tags</h4>
-
           <div class="tag-list">
-
-            <span>Bus</span>
-            <span>Travel</span>
-            <span>Booking</span>
-            <span>Odisha</span>
-            <span>Routes</span>
-            <span>Tour</span>
-
+            <a *ngFor="let tag of blogDetail?.tags" [routerLink]="['/blog/tag', tag.slug]">
+              <span>{{ tag.tag_name }}</span>
+            </a>
           </div>
-
         </div>
 
-
       </div>
-
     </div>
-
   </div>
 </section>

@@ -6,7 +6,9 @@ import { Location } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { LoginChecker } from '../helpers/loginChecker';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blogdetails',
@@ -14,6 +16,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./blogdetails.component.css'],
 })
 export class BlogDetailComponent implements OnInit {
+
   pageTitle: any;
   pageContent: any;
   currentUrl: any;
@@ -22,28 +25,37 @@ export class BlogDetailComponent implements OnInit {
   session: LoginChecker;
 
   MenuActive: boolean = false;
-  activeMenu: string;
+  activeMenu: string = '';
+
+  slug: any;
+  blogDetail: any;
+  blogcat: any;
+  related_blogs: any;
+
+  private apiUrl = GlobalConstants.BASE_URL;
+  baseurl = GlobalConstants.PATHURL;
 
   constructor(
-    private pagesService: PagesService,
     private seo: SeoService,
     private location: Location,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private deviceService: DeviceDetectorService
+    private deviceService: DeviceDetectorService,
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private meta: Meta,
+    private title: Title,
   ) {
+
     this.isMobile = this.deviceService.isMobile();
     this.session = new LoginChecker();
 
-    this.currentUrl = location.path().replace('/', '');
-    console.log(this.currentUrl);
-    
     this.seo.seolist(this.currentUrl);
   }
 
   menu() {
-    this.MenuActive = (this.MenuActive==false) ? true : false;
-    this.activeMenu='';   
+    this.MenuActive = this.MenuActive ? false : true;
+    this.activeMenu = '';
   }
 
   signOut() {
@@ -52,34 +64,68 @@ export class BlogDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.route.paramMap.subscribe(params => {
+      this.slug = params.get('slug');
+      this.loadBlogs(this.slug);
+
+    });
+
+  }
+
+  loadBlogs(slug: any) {
+
     this.spinner.show();
 
-    const aboutContent = localStorage.getItem('aboutContent');
+    const reqData = { slug: slug };
 
-    if (aboutContent) {
-      const data = JSON.parse(aboutContent); 
-      this.aboutContent(data);
-    } else {
-      const param = {
-        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-        page_url: 'about-us',
-      };
+    this.http.post(this.apiUrl + "/blogdetails", reqData).subscribe(
+      (res: any) => {
 
-      this.pagesService.PageContent(param).subscribe(
-        res => {
-          localStorage.setItem('aboutContent', JSON.stringify(res.data));
-          this.aboutContent(res.data);
+        this.blogDetail = res.data.blogs;
+        this.blogcat = res.data.categories;
+        this.related_blogs = res.data.related_blogs;
+
+        console.log(this.related_blogs);
+
+        if (this.blogDetail) {
+          this.applySeo(this.blogDetail);
         }
-      );
-    }
 
-    this.spinner.hide();
+        this.spinner.hide();
+      },
+      (error) => {
+
+        console.error("API Error:", error);
+
+        this.spinner.hide();
+      }
+    );
+
   }
 
-  aboutContent(res: any) {
-    if (res.length > 0) {
-      this.pageTitle = res[0].page_name;
-      this.pageContent = res[0].page_description;
-    }
+  applySeo(seo: any) {
+    console.log(seo)
+    this.title.setTitle(seo.meta_title || '');
+
+    this.meta.updateTag({
+      name: 'description',
+      content: seo.meta_description || ''
+    });
+
+    this.meta.updateTag({
+      name: 'keywords',
+      content: seo.meta_keywords || ''
+    });
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: seo.meta_title || ''
+    });
   }
+
+  getdata() {
+    alert('working');
+  }
+
 }

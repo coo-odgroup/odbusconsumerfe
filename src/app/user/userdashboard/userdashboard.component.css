@@ -9,7 +9,28 @@ body {
     padding: 0px 10px;
 }
 
+.status {
+    width: 220px;
+}
 
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+        max-height 0.5s ease,
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+.accordion-content.open {
+    max-height: 200px;
+    /* adjust based on content */
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /*booking history table*/
 
@@ -815,28 +836,48 @@ ngb-rating.d-inline-flex {
     align-items: center;
 }
 
-/* BASE LINE */
+/* BASE LINE (GRAY) */
 .progress-steps::before {
     content: "";
     position: absolute;
     top: 30px;
-    left: calc(50% / 3);
-    right: calc(50% / 3);
+    left: calc(16.66% + 30px);
+    right: calc(16.66% + 30px);
     height: 5px;
     background: #e0e0e0;
     border-radius: 10px;
+    z-index: 0;
 }
 
-/* PROGRESS LINE */
-.progress-steps.complete::after {
+/* PROGRESS LINE (COLORED) */
+.progress-steps::after {
     content: "";
     position: absolute;
     top: 30px;
-    left: calc(50% / 3);
-    right: calc(50% / 3);
+    left: calc(16.66% + 30px);
     height: 5px;
+    width: 0%;
     background: linear-gradient(to right, #00bcd4, #28a745);
     border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+/* STEP WIDTH CONTROL */
+
+/* Only Request */
+.progress-steps.step-1::after {
+    width: 0%;
+}
+
+/* Request → Processing */
+.progress-steps.step-2::after {
+    width: 50%;
+}
+
+/* Full Complete (FIXED - no extra line) */
+.progress-steps.step-3::after {
+    width: calc(100% - (2 * (16.66% + 30px)));
 }
 
 /* STEP */
@@ -844,7 +885,7 @@ ngb-rating.d-inline-flex {
     text-align: center;
     flex: 1;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 /* CIRCLE */
@@ -860,7 +901,7 @@ ngb-rating.d-inline-flex {
     margin: auto;
     font-size: 20px;
     color: #999;
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 /* DONE (BLUE) */

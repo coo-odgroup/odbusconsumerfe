@@ -86,8 +86,10 @@ export const routes: Routes = [
   { path: 'myaccount', component: MyaccountComponent,canActivate: [AuthGuard]},
   { path: 'profile/delete', component: ProfiledeleteComponent},
   { path: 'payment-status',component:PaymentStatusComponent},
-  { path: 'blog-list',component:BlogListingComponent},
-  { path: 'blog-details',component:BlogDetailComponent},
+  { path: 'blog',component:BlogListingComponent},
+  { path: 'blog/category/:slug',component:BlogListingComponent},
+  { path: 'blog/tag/:tag_slug',component:BlogListingComponent},
+  { path: 'blog/:slug',component:BlogDetailComponent},
   // { path: 'payment-failed',component:PaymentFailedComponent},
   { path: '**', component: SearchComponent}, // wildcard routes
   { path: '**/:dt', component: SearchComponent}, // wildcard routes

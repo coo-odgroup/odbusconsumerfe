@@ -16,7 +16,27 @@
         <div class="row blog-cards">
 
           <!-- CARD -->
-          <div class="col-md-4">
+          <div class="col-md-4" *ngFor="let blog of blogData">
+            <div class="blog-card position-relative">
+
+              <div class="blog-img">
+                <img [src]="baseurl + blog.thumb_image " class="img-responsive">
+                <span class="blog-tag">{{ blog.category_name }}</span>
+              </div>
+
+              <div class="blog-content">
+                <p class="blog-meta">{{ blog.author_name }} | {{ blog.created_at | date:'dd MMM yyyy' }}</p>
+                <h4 class="blog-title">
+                  {{ blog.title }}
+                </h4>
+              </div>
+
+              <a [routerLink]="['/blog', blog.slug]" class="stretched-link"></a>
+
+            </div>
+          </div>
+
+          <!-- <div class="col-md-4">
             <div class="blog-card">
 
               <div class="blog-img">
@@ -158,25 +178,7 @@
               </div>
 
             </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="blog-card">
-
-              <div class="blog-img">
-                <img src="assets/img/Blog_1.jpg" class="img-responsive">
-                <span class="blog-tag">Bookings</span>
-              </div>
-
-              <div class="blog-content">
-                <p class="blog-meta">Merkel James | 27 Sep 2025</p>
-                <h4 class="blog-title">
-                  Top Reasons to Choose Online Bus Booking for Your Next Trip
-                </h4>
-              </div>
-
-            </div>
-          </div>
+          </div> -->
 
         </div>
 
@@ -193,29 +195,11 @@
 
           <ul class="category-list">
 
-            <li>
-              <span>Bookings</span>
-              <span class="cat-count">12</span>
-            </li>
-
-            <li>
-              <span>Bus Travel</span>
-              <span class="cat-count">8</span>
-            </li>
-
-            <li>
-              <span>Travel Tips</span>
-              <span class="cat-count">5</span>
-            </li>
-
-            <li>
-              <span>Routes</span>
-              <span class="cat-count">3</span>
-            </li>
-
-            <li>
-              <span>Tour Guide</span>
-              <span class="cat-count">6</span>
+            <li *ngFor="let category of categoryData">
+              <a [routerLink]="['/blog/category', category.slug]">
+                <span>{{ category.category_name }}</span>
+              </a>
+              <span class="cat-count">{{ category.total }}</span>
             </li>
 
           </ul>
@@ -224,7 +208,7 @@
 
 
         <!-- TAGS -->
-        <div class="blog-sidebar-box">
+        <!-- <div class="blog-sidebar-box">
 
           <h4>Tags</h4>
 
@@ -237,7 +221,7 @@
             <span>Tour</span>
           </div>
 
-        </div>
+        </div> -->
 
       </div>
 

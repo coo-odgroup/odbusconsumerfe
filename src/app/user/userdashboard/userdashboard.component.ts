@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GlobalConstants } from 'src/app/constants/global-constants';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-userdashboard',
@@ -20,10 +21,42 @@ import { DatePipe } from '@angular/common';
 })
 export class UserdashboardComponent implements OnInit {
 
-  activeRefund: string | null = null;
+  baseUrl = GlobalConstants.BASE_URL;
 
-  toggleRefund(pnr: string) {
-    this.activeRefund = this.activeRefund === pnr ? null : pnr;
+  expandedRefundRow: string | null = null;
+  refundStatus: any;
+
+  toggleRefund(pnr: string, id: any) {
+    this.expandedRefundRow =
+      this.expandedRefundRow === pnr ? null : pnr;
+
+    if (this.expandedRefundRow) {
+      this.spinner.show();
+      const data = {
+        booking_id: id
+      };
+
+      this.http.post(this.baseUrl + "/fetchRefundStatus", data).subscribe((res: any) => {
+        const booking = this.list.data.find((x: any) => x.pnr === pnr);
+        if (booking) {
+          booking.refundData = res.data;
+        }
+
+        this.spinner.hide();
+
+        console.log(booking.refundData);
+      });
+    }
+  }
+
+  getStep(b: any) {
+    const statuses = b.refundData || [];
+
+    return {
+      request: statuses.find((s: any) => s.refund_status === 0),
+      processing: statuses.find((s: any) => s.refund_status === 1),
+      refunded: statuses.find((s: any) => s.refund_status === 3),
+    };
   }
 
   list: any = [];
@@ -67,7 +100,8 @@ export class UserdashboardComponent implements OnInit {
     public activeModal: NgbActiveModal,
     public fb: FormBuilder,
     private deviceService: DeviceDetectorService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private http: HttpClient
   ) {
     this.currentDate = this.datePipe.transform((new Date), 'yyyy-MM-dd');
     //console.log(this.currentDate);
@@ -146,6 +180,7 @@ export class UserdashboardComponent implements OnInit {
 
   getList(url: any = '', status: any = '') {
 
+    this.expandedRefundRow = null;
     this.spinner.show();
 
     this.statusLabel = status;

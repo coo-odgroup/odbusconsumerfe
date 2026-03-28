@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-footer',
@@ -28,6 +29,11 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
   location_list: any = [];
   private commonDataSubscription: Subscription | null = null;
 
+  private apiurl = GlobalConstants.BASE_URL;
+  baseurl = "http://localhost:7001/ODBUS/odbusproviderbe/public/";
+
+  bloglist:any;
+
   constructor(
     private sanitizer: DomSanitizer,
     private commonService: CommonService,
@@ -36,7 +42,8 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
     private router: Router,
     private datePipe: DatePipe,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private injector: Injector // lazy-get browser-only services
+    private injector: Injector, // lazy-get browser-only services
+    private http : HttpClient
   ) {
     // Avoid any browser-only calls here. Keep constructor synchronous and safe for SSR.
     this.session = new LoginChecker();
@@ -61,6 +68,13 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
   }
 
   ngOnInit(): void {
+    const reddata = {
+      "limit" :3
+    }
+    this.http.post(this.apiurl + "/bloglist",reddata).subscribe((res:any)=>{
+      this.bloglist = res.data.blogs
+      console.log(res.data.blogs);
+    })
     // Subscribe to commonData changes
     this.commonDataSubscription = this.commonService.commonData$.subscribe(data => {
       if (data) {

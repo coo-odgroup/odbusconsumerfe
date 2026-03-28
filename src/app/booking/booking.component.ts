@@ -717,7 +717,7 @@ export class BookingComponent implements OnInit {
               this.pp_orderId = this.MakePaymnetResponse.pp_resp.original.orderId;
               // console.log(this.MakePaymnetResponse.pp_resp.original.redirectUrl)
 
-              const redirectUrl = this.MakePaymnetResponse.pp_resp.original.redirectUrl;
+              const redirectUrl = this.MakePaymnetResponse.pp_resp.original.redirectUrl + '&isChromeWV=true';
               // console.log(redirectUrl);
 
               // Replace history so payment page is removed

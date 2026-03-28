@@ -6,7 +6,8 @@ import { Location } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { LoginChecker } from '../helpers/loginChecker';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-bloglisting',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./bloglisting.component.css'],
 })
 export class BlogListingComponent implements OnInit {
+
   pageTitle: any;
   pageContent: any;
   currentUrl: any;
@@ -22,7 +24,15 @@ export class BlogListingComponent implements OnInit {
   session: LoginChecker;
 
   MenuActive: boolean = false;
-  activeMenu: string;
+  activeMenu: string = '';
+
+  blogData: any;
+  categoryData: any;
+  slug: any;
+  tag_slug: any;
+
+  private apiURL = GlobalConstants.BASE_URL;
+  baseurl = GlobalConstants.PATHURL;
 
   constructor(
     private pagesService: PagesService,
@@ -30,20 +40,23 @@ export class BlogListingComponent implements OnInit {
     private location: Location,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private deviceService: DeviceDetectorService
+    private deviceService: DeviceDetectorService,
+    private http: HttpClient,
+    private route: ActivatedRoute
   ) {
+
     this.isMobile = this.deviceService.isMobile();
     this.session = new LoginChecker();
 
     this.currentUrl = location.path().replace('/', '');
     console.log(this.currentUrl);
-    
+
     this.seo.seolist(this.currentUrl);
   }
 
   menu() {
-    this.MenuActive = (this.MenuActive==false) ? true : false;
-    this.activeMenu='';   
+    this.MenuActive = this.MenuActive ? true : false;
+    this.activeMenu = '';
   }
 
   signOut() {
@@ -52,34 +65,42 @@ export class BlogListingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.route.paramMap.subscribe(params => {
+      this.slug = params.get('slug');
+      this.tag_slug = params.get('tag_slug');
+      this.loadBlogs(this.slug, this.tag_slug);
+    });
+
+  }
+
+  loadBlogs(slug: any, tag_slug: any) {
+
     this.spinner.show();
 
-    const aboutContent = localStorage.getItem('aboutContent');
+    const reqData = {
+      cat_slug: slug,
+      tag_slug: tag_slug,
+    };
 
-    if (aboutContent) {
-      const data = JSON.parse(aboutContent); 
-      this.aboutContent(data);
-    } else {
-      const param = {
-        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-        page_url: 'about-us',
-      };
+    console.log(reqData);
 
-      this.pagesService.PageContent(param).subscribe(
-        res => {
-          localStorage.setItem('aboutContent', JSON.stringify(res.data));
-          this.aboutContent(res.data);
-        }
-      );
-    }
+    this.http.post(this.apiURL + "/bloglist", reqData).subscribe(
+      (res: any) => {
 
-    this.spinner.hide();
+        this.blogData = res.data.blogs;
+        this.categoryData = res.data.categories;
+
+        this.spinner.hide();
+      },
+      (error) => {
+
+        console.error("API Error:", error);
+
+        this.spinner.hide();
+      }
+    );
+
   }
 
-  aboutContent(res: any) {
-    if (res.length > 0) {
-      this.pageTitle = res[0].page_name;
-      this.pageContent = res[0].page_description;
-    }
-  }
 }

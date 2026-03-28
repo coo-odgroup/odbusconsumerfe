@@ -57,70 +57,127 @@
             </tbody>
 
             <tbody *ngIf="list.data">
-              <tr *ngFor="let b of list.data">
-                <th scope="row">{{ b.pnr }}</th>
-                <td>{{ b.source[0].name }} to {{ b.destination[0].name }}</td>
-                <td>{{ b.bus.name }} <span *ngIf="b.bus.bus_number!=null">({{ b.bus.bus_number }})</span></td>
-                <!-- <td></td> -->
-                <td>{{ b.created_at | date: "d MMMM , y" }}</td>
-                <td>{{ b.journey_dt | date: "d MMMM , y" }}</td>
-                <td>{{ b.boarding_time.slice(0, -3) }}</td>
-                <!-- <td>₹ {{ b.total_fare }}/-</td> -->
-                <td>
-                  <a class="{{ b.booking_status }} cursor">{{
-                    b.booking_status
-                    }}</a>
-                  <span class="span-cm">
-                    <ul class="list-inline pt-1 mb-0 table-ul-sub">
-                      <li class="list-inline-item">
-                        <a class="cursor" (click)="viewTicket(b.pnr)">View Ticket</a>|
-                      </li>
-                      <li class="list-inline-item">
-                        <a class="cursor" (click)="toggleRefund(b.pnr)">View Refund</a>|
-                      </li>
 
-                      <li class="list-inline-item active" *ngIf="b.cancel">
-                        <a class="cursor" (click)="cancelTicketTab(b.pnr, content)">Cancel</a>|
-                      </li>
-                      <li class="list-inline-item" *ngIf="b.review">
-                        <a class="cursor" (click)="addReview(b.pnr, b.bus_id, review)">Review</a>|
-                      </li>
-                      <li class="list-inline-item">
-                        <a class="cursor" (click)="bookAgain(b.source[0].name, b.destination[0].name)">Book again</a>
-                      </li>
-                    </ul>
-                  </span>
-                </td>
-              </tr>
 
-              <!-- Refund Progress Bar -->
-              <tr>
-                <td colspan="7">
-                  <div class="refund-box">
+              <ng-container *ngFor="let b of list.data">
+                <!-- MAIN ROW -->
+                <tr>
+                  <th scope="row">{{ b.pnr }}</th>
+                  <td>{{ b.source[0].name }} to {{ b.destination[0].name }}</td>
+                  <td>{{ b.bus.name }} <span *ngIf="b.bus.bus_number!=null">({{ b.bus.bus_number }})</span></td>
+                  <!-- <td></td> -->
+                  <td>{{ b.created_at | date: "d MMMM , y" }}</td>
+                  <td>{{ b.journey_dt | date: "d MMMM , y" }}</td>
+                  <td>{{ b.boarding_time.slice(0, -3) }}</td>
+                  <!-- <td>₹ {{ b.total_fare }}/-</td> -->
+                  <td class="status">
+                    <a class="{{ b.booking_status }} cursor">{{
+                      b.booking_status
+                      }}</a>
+                    <span class="span-cm">
+                      <ul class="list-inline pt-1 mb-0 table-ul-sub">
+                        <li class="list-inline-item">
+                          <a class="cursor" (click)="viewTicket(b.pnr)">View Ticket</a>|
+                        </li>
+                        <li class="list-inline-item"
+                          *ngIf="b.booking_status == 'Cancelled' && (b.created_at >= '2026-03-27')">
+                          <a class="cursor" (click)="toggleRefund(b.pnr,b.id)">View Refund</a>|
+                        </li>
 
-                    <div class="progress-steps complete">
+                        <li class="list-inline-item active" *ngIf="b.cancel">
+                          <a class="cursor" (click)="cancelTicketTab(b.pnr, content)">Cancel</a>|
+                        </li>
+                        <li class="list-inline-item" *ngIf="b.review">
+                          <a class="cursor" (click)="addReview(b.pnr, b.bus_id, review)">Review</a>|
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="cursor" (click)="bookAgain(b.source[0].name, b.destination[0].name)">Book again</a>
+                        </li>
+                      </ul>
+                    </span>
+                  </td>
+                </tr>
 
-                      <div class="step done">
-                        <div class="circle"><i class="fa fa-question"></i></div>
-                        <span>Query</span>
+                <!-- <tr>
+                  <td colspan="7" class="p-0 border-0">
+                    <div class="accordion-content" [class.open]="expandedRefundRow === b.pnr">
+                      <div class="refund-box">
+                        <div class="progress-steps complete">
+
+                          <div class="step done">
+                            <div class="circle"><i class="fa fa-question"></i></div>
+                            <span>Request</span>
+                            <span>(2026-jan-25 | 6.20am)</span>
+                          </div>
+
+                          <div class="step done">
+                            <div class="circle"><i class="fa fa-cogs"></i></div>
+                            <span>Processing</span>
+                            <span>(2026-jan-25 | 6.20am)</span>
+                          </div>
+
+                          <div class="step done final">
+                            <div class="circle"><i class="fa fa-check"></i></div>
+                            <span>Refunded</span>
+                            <span>(2026-jan-25 | 6.20am)</span>
+                          </div>
+
+                        </div>
                       </div>
-
-                      <div class="step done">
-                        <div class="circle"><i class="fa fa-cogs"></i></div>
-                        <span>Process</span>
-                      </div>
-
-                      <div class="step done final">
-                        <div class="circle"><i class="fa fa-check"></i></div>
-                        <span>Refunded</span>
-                      </div>
-
                     </div>
+                  </td>
+                </tr> -->
+                <tr>
+                  <td colspan="7" class="p-0 border-0">
+                    <div class="accordion-content" [class.open]="expandedRefundRow === b.pnr">
+                      <div class="refund-box">
 
-                  </div>
-                </td>
-              </tr>
-              <!-- end -->
+                        <div class="progress-steps" [ngClass]="{
+                            'step-1': step.request && !step.processing,
+                            'step-2': step.processing && !step.refunded,
+                            'step-3': step.refunded
+                          }" *ngIf="getStep(b) as step">
+
+                          <!-- REQUEST -->
+                          <div class="step" [ngClass]="{ 'done': step.request }">
+                            <div class="circle"><i class="fa fa-question"></i></div>
+                            <span>Request</span>
+                            <span *ngIf="step.request">
+                              {{ step.request.created_at | date:'d MMM y | h:mm a' }}
+                            </span>
+                          </div>
+
+                          <!-- PROCESS -->
+                          <div class="step" [ngClass]="{ 'done': step.processing }">
+                            <div class="circle"><i class="fa fa-cogs"></i></div>
+                            <span>Processing</span>
+                            <span>
+                              {{ step.processing
+                              ? (step.processing.created_at | date:'d MMM y | h:mm a')
+                              : '\u00A0'
+                              }}
+                            </span>
+                          </div>
+
+                          <!-- REFUNDED -->
+                          <div class="step" [ngClass]="{ 'done final': step.refunded }">
+                            <div class="circle"><i class="fa fa-check"></i></div>
+                            <span>Refunded</span>
+                            <span>
+                              {{ step.refunded
+                              ? (step.refunded.created_at | date:'d MMM y | h:mm a')
+                              : '\u00A0'
+                              }}
+                            </span>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
 
               <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker
                 (click)="d.toggle()" #d="ngbDatepicker" />

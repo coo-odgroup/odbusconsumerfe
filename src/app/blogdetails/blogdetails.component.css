@@ -12,6 +12,7 @@
   border-radius: 10px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+  position: relative;
 }
 
 .blog-detail-card .blog-img img {
@@ -35,6 +36,9 @@
   padding: 5px 12px;
   font-size: 12px;
   border-radius: 4px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
 }
 
 .blog-date {
@@ -87,7 +91,7 @@
 
 .blog-list li {
   margin-bottom: 8px;
-  
+
 }
 
 
@@ -116,11 +120,18 @@
   cursor: pointer;
 }
 
+.category-list li a{
+    text-decoration: none;
+    color: black;
+}
+
 /* RELATED POSTS */
 
 .related-post {
   display: flex;
   margin-bottom: 15px;
+  text-decoration: none;
+  color: black;
 }
 
 .related-post img {
@@ -151,4 +162,9 @@
   margin: 4px;
   font-size: 13px;
   cursor: pointer;
+}
+
+.tag-list a {
+  text-decoration: none;
+  color: black;
 }
