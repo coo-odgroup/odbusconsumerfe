@@ -30,6 +30,7 @@ export class BlogListingComponent implements OnInit {
   categoryData: any;
   slug: any;
   tag_slug: any;
+  author_slug: any;
 
   private apiURL = GlobalConstants.BASE_URL;
   baseurl = GlobalConstants.PATHURL;
@@ -69,18 +70,20 @@ export class BlogListingComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.slug = params.get('slug');
       this.tag_slug = params.get('tag_slug');
-      this.loadBlogs(this.slug, this.tag_slug);
+      this.author_slug = params.get('author_slug');
+      this.loadBlogs(this.slug, this.tag_slug,this.author_slug);
     });
 
   }
 
-  loadBlogs(slug: any, tag_slug: any) {
+  loadBlogs(slug: any, tag_slug: any, author_slug: any) {
 
     this.spinner.show();
 
     const reqData = {
       cat_slug: slug,
       tag_slug: tag_slug,
+      author_slug: author_slug
     };
 
     console.log(reqData);

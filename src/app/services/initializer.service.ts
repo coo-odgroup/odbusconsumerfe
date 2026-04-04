@@ -74,7 +74,7 @@ export class AppInitializerService {
         try {
           const data = JSON.parse(storedData);
           this.commonService.setPopularInfo(data);
-          console.log('AppInitializer: Using cached PopularInfo');
+          // console.log('AppInitializer: Using cached PopularInfo');
           return Promise.resolve(true);
         } catch (e) {
           console.error('AppInitializer: Error parsing cached PopularInfo', e);

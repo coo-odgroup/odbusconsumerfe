@@ -107,7 +107,7 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
 
     // Use pre-loaded PopularInfo from AppInitializer (handles SSR and browser)
     const popularInfo = this.commonService.getPopularInfo();
-    console.log('PopularInfo in footer:', popularInfo ? 'loaded' : 'NOT loaded');
+    // console.log('PopularInfo in footer:', popularInfo ? 'loaded' : 'NOT loaded');
     if (popularInfo) {
      // console.log('Using pre-loaded PopularInfo in footer');
       this.popularInfoGetData(popularInfo);

@@ -53,6 +53,8 @@ export class BlogDetailComponent implements OnInit {
     this.seo.seolist(this.currentUrl);
   }
 
+  breadcrumbSchema: any
+
   menu() {
     this.MenuActive = this.MenuActive ? false : true;
     this.activeMenu = '';
@@ -65,12 +67,67 @@ export class BlogDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.paramMap.subscribe(params => {
-      this.slug = params.get('slug');
-      this.loadBlogs(this.slug);
+  this.route.data.subscribe((data: any) => {
 
-    });
+    const res = data.blogData;
 
+    if (!res) {
+      console.error('No data from resolver');
+      return;
+    }
+
+    this.blogDetail = res.data.blogs;
+    this.blogcat = res.data.categories;
+    this.related_blogs = res.data.related_blogs;
+
+    if (this.blogDetail) {
+      this.applySeo(this.blogDetail);
+    }
+
+  });
+
+}
+
+  // ngOnInit(): void {
+
+  //   this.route.paramMap.subscribe(params => {
+  //     this.slug = params.get('slug');
+  //     this.loadBlogs(this.slug);
+
+  //   });
+
+  //   // if (this.blogDetail?.breadcrumb_schema) {
+  //   //   try {
+  //   //     this.breadcrumbSchema = JSON.parse(this.blogDetail.breadcrumb_schema);
+  //   //   } catch (e) {
+  //   //     console.error('Invalid JSON', e);
+  //   //   }
+  //   // }
+
+  // }
+
+  setJsonLd(schema: any) {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+
+    if (typeof schema === 'string') {
+      try {
+        const parsed = JSON.parse(schema);
+        script.text = JSON.stringify(parsed);
+      } catch (e) {
+        console.error('Invalid JSON string', e);
+        return;
+      }
+    } else {
+      script.text = JSON.stringify(schema);
+    }
+
+    document.head.appendChild(script);
+  }
+
+  removeOldJsonLd() {
+    const scripts = document.querySelectorAll('script[type="application/ld+json"]');
+    scripts.forEach(s => s.remove());
   }
 
   loadBlogs(slug: any) {
@@ -86,11 +143,10 @@ export class BlogDetailComponent implements OnInit {
         this.blogcat = res.data.categories;
         this.related_blogs = res.data.related_blogs;
 
-        console.log(this.related_blogs);
-
         if (this.blogDetail) {
           this.applySeo(this.blogDetail);
         }
+
 
         this.spinner.hide();
       },
@@ -105,7 +161,8 @@ export class BlogDetailComponent implements OnInit {
   }
 
   applySeo(seo: any) {
-    console.log(seo)
+    console.log(seo);
+
     this.title.setTitle(seo.meta_title || '');
 
     this.meta.updateTag({
@@ -122,6 +179,36 @@ export class BlogDetailComponent implements OnInit {
       property: 'og:title',
       content: seo.meta_title || ''
     });
+
+    this.removeOldJsonLd();
+
+    if (seo?.breadcrumb_schema) {
+      try {
+        const breadcrumb = JSON.parse(seo.breadcrumb_schema);
+        this.setJsonLd(breadcrumb);
+      } catch (e) {
+        console.error('Invalid breadcrumb JSON', e);
+      }
+    }
+    
+    if (seo?.faq_schema) {
+      try {
+        const faq = JSON.parse(seo.faq_schema);
+        this.setJsonLd(faq);
+      } catch (e) {
+        console.error('Invalid FAQ JSON', e);
+      }
+    }
+  
+    if (seo?.service_schema) {
+      try {
+        const service = JSON.parse(seo.service_schema);
+        this.setJsonLd(service);
+      } catch (e) {
+        console.error('Invalid service JSON', e);
+      }
+    }
+    
   }
 
   getdata() {

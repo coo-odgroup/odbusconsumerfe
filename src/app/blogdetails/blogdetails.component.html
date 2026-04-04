@@ -15,7 +15,7 @@
           <div class="blog-content">
             <div class="blog-meta-row">
               <span class="blog-tag-inline">{{ blogDetail?.category_name }}</span>
-              <span class="blog-date">{{ blogDetail?.author_name }} | {{ blogDetail?.created_at | date:'dd MMM yyyy' }}
+              <span class="blog-date"><a [routerLink]="['/blog/author', blogDetail?.author_slug]">{{ blogDetail?.author }}</a> | {{ blogDetail?.created_at | date:'dd MMM yyyy' }}
               </span>
             </div>
 

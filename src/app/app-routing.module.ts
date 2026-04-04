@@ -44,6 +44,7 @@ import { ProfiledeleteComponent } from './profiledelete/profiledelete.component'
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { BlogListingComponent } from './bloglisting/bloglisting.component';
 import { BlogDetailComponent } from './blogdetails/blogdetails.component';
+import { BlogResolver } from './blogdetails/blog.resolver';
 
 
 export const routes: Routes = [
@@ -89,7 +90,8 @@ export const routes: Routes = [
   { path: 'blog',component:BlogListingComponent},
   { path: 'blog/category/:slug',component:BlogListingComponent},
   { path: 'blog/tag/:tag_slug',component:BlogListingComponent},
-  { path: 'blog/:slug',component:BlogDetailComponent},
+  { path: 'blog/author/:author_slug',component:BlogListingComponent},
+  { path: 'blog/:slug',component:BlogDetailComponent, resolve: { blogData: BlogResolver }},
   // { path: 'payment-failed',component:PaymentFailedComponent},
   { path: '**', component: SearchComponent}, // wildcard routes
   { path: '**/:dt', component: SearchComponent}, // wildcard routes
