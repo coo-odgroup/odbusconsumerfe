@@ -50,7 +50,7 @@ export class BlogListingComponent implements OnInit {
     this.session = new LoginChecker();
 
     this.currentUrl = location.path().replace('/', '');
-    console.log(this.currentUrl);
+    // console.log(this.currentUrl);
 
     this.seo.seolist(this.currentUrl);
   }
@@ -86,7 +86,7 @@ export class BlogListingComponent implements OnInit {
       author_slug: author_slug
     };
 
-    console.log(reqData);
+    // console.log(reqData);
 
     this.http.post(this.apiURL + "/bloglist", reqData).subscribe(
       (res: any) => {

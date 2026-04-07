@@ -127,7 +127,7 @@
     </section>
 
     <!-- Offer Section -->
-
+<ng-container *ngIf="isBrowser">
     <section class="section-offer carousel-home fluid-15" *ngIf="Offers.length>0">
         <div class="container">
             <div class="row">
@@ -156,14 +156,14 @@
 
                 <div class="col-md-12 section-offer-right-tab mt-4">
 
-                    <carousel [cellsToShow]="3" [loop]="true" [autoplay]="true" [autoplayInterval]="2000"
+                    <carousel [cellsToShow]="3" [loop]="true" [autoplay]="false" [autoplayInterval]="2000"
                         [images]="offerList">
                     </carousel>
                 </div>
             </div>
         </div>
     </section>
-
+</ng-container>
     <!-- Section About -->
 
     <section class="section-about">
@@ -512,7 +512,7 @@
 
                 <div class="col-12 pl-1 pr-1 section-offer-right-tab mt-1">
 
-                    <carousel [cellsToShow]="1" [loop]="true" [autoplay]="true" [arrows]="false"
+                    <carousel [cellsToShow]="1" [loop]="true" [autoplay]="false" [arrows]="false"
                         [autoplayInterval]="2000" [images]="offerList" style="height: 160px;">
                     </carousel>
 
