@@ -2834,7 +2834,9 @@ export class SearchComponent implements OnInit {
 
   }
 
-  modify_search(modify: any) {
+  modify_search(modify: any, event?: Event) {
+    event?.preventDefault();
+    event?.stopPropagation();
     this.modalService.open(modify, { windowClass: 'mobile-modalbox' });
   }
 
