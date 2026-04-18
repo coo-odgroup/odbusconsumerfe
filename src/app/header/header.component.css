@@ -27,14 +27,13 @@ a {
     top: 0;
     width: 100%;
     z-index: 1100;
-
     background: linear-gradient(90deg, #1b2155, #2d3aa8, #f0c92f);
     color: #fff;
-
     padding: 10px 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 /* CONTENT */

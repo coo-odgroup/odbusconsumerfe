@@ -34,9 +34,14 @@ import { HttpClient } from '@angular/common/http';
   providers: [DatePipe, NgbActiveModal, NgbAlertConfig]
 })
 export class HomeComponent implements OnInit {
-
+  showAppPopup: boolean = false; // Flag to control app download popup visibility
   public searchForm: FormGroup;
   public appForm: FormGroup;
+
+  // Flag to control app download popup visibility close function
+  closeAppPopup() {
+    this.showAppPopup = false;
+  }
 
   @ViewChild('popup') popup: TemplateRef<any>;
 
@@ -115,7 +120,7 @@ export class HomeComponent implements OnInit {
   minutes: number = 0;
   seconds: number = 0;
   public isExpired: boolean = false;
-  bloglist:any;
+  bloglist: any;
 
   private apiurl = GlobalConstants.BASE_URL;
   baseurl = GlobalConstants.PATHURL;
@@ -138,7 +143,7 @@ export class HomeComponent implements OnInit {
     private modalService: NgbModal,
     private alertConfig: NgbAlertConfig,
     private datePipe: DatePipe,
-    private http : HttpClient,
+    private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.session = new LoginChecker();
@@ -293,6 +298,7 @@ export class HomeComponent implements OnInit {
     this.countdown_title = '';
     this.endDate = '';
 
+
     // Default empty search function (will be updated if PopularInfo loads)
     this.search = (text$: Observable<string>) => text$.pipe(map(() => []));
     this.formatter = (x: { name: string }) => x.name;
@@ -355,6 +361,16 @@ export class HomeComponent implements OnInit {
       destination: [null],
       entry_date: [null]
     });
+
+    // for app download popup: only show in browser and on mobile devices, with a delay
+
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        if (this.isMobile) {
+          this.showAppPopup = true;
+        }
+      }, 1000);
+    }
 
   }
 

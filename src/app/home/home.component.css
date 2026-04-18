@@ -467,3 +467,97 @@ section.section-offer .nav-tabs .nav-item .nav-link{padding:.1rem 0rem;backgroun
     line-height: 26px;
     margin: 0;
 }
+
+
+
+/* 🔥 POPUP OVERLAY */
+.app-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: 999999; /* VERY IMPORTANT */
+}
+
+/* BACKDROP */
+.popup-backdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+}
+
+/* POPUP */
+.app-popup {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+
+  animation: slideUp 0.4s ease;
+}
+
+/* HANDLE */
+.popup-handle {
+  width: 40px;
+  height: 4px;
+  background: #ccc;
+  border-radius: 10px;
+  margin: 0 auto 10px;
+}
+
+/* TEXT */
+.popup-content h4 {
+  font-weight: 700;
+  color: #1b2155;
+}
+
+.popup-content p {
+  font-size: 13px;
+  color: #666;
+}
+
+/* IMAGE */
+.popup-img {
+  width: 300px;
+  display: block;
+  margin: 10px auto;
+}
+
+/* BUTTON */
+.popup-btn {
+  display: block;
+  background: linear-gradient(90deg, #1b2155, #f0c92f);
+  color: #fff;
+  padding: 12px;
+  border-radius: 30px;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* CLOSE */
+.popup-close {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #999;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* ANIMATION */
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@media (max-width: 340px) {
+  .popup-img{
+    width: 100%;
+  }
+}

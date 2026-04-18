@@ -127,19 +127,19 @@
     </section>
 
     <!-- Offer Section -->
-<ng-container *ngIf="isBrowser">
-    <section class="section-offer carousel-home fluid-15" *ngIf="Offers.length>0">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="section-offer-left">
-                        <h2>ODBUS OFFERS</h2>
+    <ng-container *ngIf="isBrowser">
+        <section class="section-offer carousel-home fluid-15" *ngIf="Offers.length>0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="section-offer-left">
+                            <h2>ODBUS OFFERS</h2>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
+                    <div class="col-md-6">
 
-                    <ul class="nav nav-tabs " id="myTab" role="tablist">
-                        <!-- <li class="nav-item cursor" role="presentation"  (click)="getOffer('Bus Offers')">
+                        <ul class="nav nav-tabs " id="myTab" role="tablist">
+                            <!-- <li class="nav-item cursor" role="presentation"  (click)="getOffer('Bus Offers')">
                         <a class="nav-link {{ (activeTab=='Bus Offers') ? 'active' : '' }} " id="home-tab" data-toggle="tab"  role="tab"
                             aria-controls="home" aria-selected="true">Bus Offers</a>
                     </li>
@@ -147,23 +147,23 @@
                         <a class="nav-link {{ (activeTab=='Festive Offers') ? 'active' : '' }}" id="profile-tab" data-toggle="tab" role="tab"
                             aria-controls="profile" aria-selected="false">Festive Offers</a>
                     </li> -->
-                        <li class="nav-item cursor" role="presentation">
-                            <a class="nav-link" id="messages-tab" data-toggle="tab" routerLink="offers" role="tab"
-                                aria-controls="messages" aria-selected="false">View All</a>
-                        </li>
-                    </ul>
-                </div>
+                            <li class="nav-item cursor" role="presentation">
+                                <a class="nav-link" id="messages-tab" data-toggle="tab" routerLink="offers" role="tab"
+                                    aria-controls="messages" aria-selected="false">View All</a>
+                            </li>
+                        </ul>
+                    </div>
 
-                <div class="col-md-12 section-offer-right-tab mt-4">
+                    <div class="col-md-12 section-offer-right-tab mt-4">
 
-                    <carousel [cellsToShow]="3" [loop]="true" [autoplay]="false" [autoplayInterval]="2000"
-                        [images]="offerList">
-                    </carousel>
+                        <carousel [cellsToShow]="3" [loop]="true" [autoplay]="false" [autoplayInterval]="2000"
+                            [images]="offerList">
+                        </carousel>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-</ng-container>
+        </section>
+    </ng-container>
     <!-- Section About -->
 
     <section class="section-about">
@@ -585,6 +585,32 @@
 
     </ng-container>
 
+    <!-- APP DOWNLOAD POPUP -->
+    <div class="app-popup-overlay" *ngIf="showAppPopup">
+
+        <div class="popup-backdrop" (click)="closeAppPopup()"></div>
+
+        <div class="app-popup">
+            <div class="popup-handle"></div>
+
+            <div class="popup-content text-center">
+                <h4>🚀 Get Better Experience</h4>
+                <p>Download ODBUS App for faster booking & offers</p>
+
+                <img src="assets/img/booking.png" class="popup-img" />
+                <!-- <img src="assets/img/booking_2.png" class="popup-img" /> -->
+
+                <a href="https://play.google.com/store/apps/details?id=com.od.odbus&hl=en" target="_blank"
+                    class="popup-btn">
+                    Download App
+                </a>
+
+                <div class="popup-close" (click)="closeAppPopup()">Not now</div>
+            </div>
+        </div>
+
+    </div>
+<!-- APP DOWNLOAD POPUP END -->
 
     <div class="mob-mtbh"></div>
     <div class="mobile-fixed-bottom">
