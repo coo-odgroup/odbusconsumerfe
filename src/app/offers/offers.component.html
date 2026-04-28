@@ -1,29 +1,117 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
-type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+
 
 <ng-container *ngIf="!isMobile">
-<section class="top-routs offer-sec">
-  <span class="line-span"><div class="container"><h2>Offers</h2></div></span>
- <div class="textimonials-result1">
-     <div class="container">
-         <div class="main-tnc"> 
-           <div class="row">
+
+  <section class="search-section">
+
+    <!-- SEARCH -->
+    <div class="container search-overlap">
+      <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
+
+        <div class="search-box-v5">
+          <div class="row no-gutters align-items-end search-inner">
+
+            <!-- FROM -->
+            <div class="col-md-3 field from-field">
+              <label>From</label>
+              <div class="input-box">
+                <img src="assets/img/Icon-metro-location.svg" class="icon-from">
+                <input type="text" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt"
+                  [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapsource" name="source"
+                  placeholder="Enter Source" />
+                <span class="clear-icon">✖</span>
+              </div>
+            </div>
+
+            <!-- TO -->
+            <div class="col-md-3 field to-field">
+              <label>To</label>
+
+              <div class="swap-center" (click)="swap()">
+                <img src="assets/img/swap.svg">
+              </div>
+
+              <div class="input-box">
+                <img src="assets/img/Icon-metro-location.svg" class="icon-to">
+                <input type="text" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt2"
+                  [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapdestination"
+                  name="destination" placeholder="Enter Destination" />
+                <span class="clear-icon">✖</span>
+
+              </div>
+            </div>
+            <div class="col-md-4 field date-field">
+              <label>Date of Journey</label>
+
+              <div class="date-wrapper">
+
+                <!-- Journey Date Box -->
+                <div class="input-box date-box">
+                  <img src="assets/img/Icon-metro-calendar.svg" class="icon-date">
+
+                  <input type="text" class="form-control" formControlName="entry_date" ngbDatepicker #d="ngbDatepicker"
+                    (click)="d.toggle()" placeholder="Journey Date" readonly />
+                </div>
+
+                <!-- Today Box -->
+                <div class="quick-date-today" (click)="setToday()">
+                  Today
+                </div>
+
+                <!-- Tomorrow Box -->
+                <div class="quick-date-tomorrow" (click)="setTomorrow()">
+                  Tomorrow
+                </div>
+
+              </div>
+            </div>
+
+            <!-- BUTTON -->
+            <div class="col-md-2 field search-btn-wrap">
+              <button type="submit" class="btn search-btn-v5">
+                Search
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+  </section>
+
+  <section class="top-routs offer-sec">
+    <span class="line-span">
+      <div class="container">
+        <h2>Offers</h2>
+      </div>
+    </span>
+    <div class="textimonials-result1">
+      <div class="container">
+        <div class="main-tnc">
+          <div class="row">
             <div class="col-md-4" *ngFor="let o of allOffers;let i = index">
-              <div class="card">  
-              <a (click)="OfferModal(offermodal,i)" >
-                <img *ngIf="o.slider_photo && (o.slider_photo!='' && o.slider_photo!=null)" class="card-img-top" src="{{ o.slider_photo }}" />
-              </a>
+              <div class="card">
+                <a (click)="OfferModal(offermodal,i)">
+                  <img *ngIf="o.slider_photo && (o.slider_photo!='' && o.slider_photo!=null)" class="card-img-top"
+                    src="{{ o.slider_photo }}" />
+                </a>
                 <div class="card-block">
                   <!-- <h4 class="card-title">{{o.occassion}}</h4> -->
                 </div>
               </div>
             </div>
-              
-             </div>
-         </div>
-     </div>
-  </div>
- </section>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 </ng-container>
@@ -31,34 +119,35 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
 <ng-container *ngIf="isMobile && !MenuActive">
   <div class="mobile-mybooking-top">
     <div class="row">
-            <div class="col-1 pr-0 pl-2 mob-arrow-left">
-              <a routerLink="/">
-                <i class="fas fa-arrow-left"></i>
-              </a>  
-            </div>
-            <div class="col-7 pl-2 pr-2 mob-list-center">
-                <h5>Offers</h5>
-            </div>
-            <div class="col-4 pl-2 pr-2">
-                <div class="mobile-logo">
-                    <img src="assets/img/mob-img/logo.png" />
-                </div>
-            </div>
-        </div>   
+      <div class="col-1 pr-0 pl-2 mob-arrow-left">
+        <a routerLink="/">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+      </div>
+      <div class="col-7 pl-2 pr-2 mob-list-center">
+        <h5>Offers</h5>
+      </div>
+      <div class="col-4 pl-2 pr-2">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
+        </div>
+      </div>
     </div>
+  </div>
 
-<div class="mobile-offerbox-middle">
+  <div class="mobile-offerbox-middle">
     <div class="row" *ngFor="let o of allOffers;let i = index ">
-       <div class="col-12">
-         <div class="mobile-offer">
-          <a (click)="OfferModal(offermodal,i)" >
-           <img *ngIf="o.slider_photo && (o.slider_photo!='' && o.slider_photo!=null)"  src="{{ o.slider_photo }}"  alt="{{o.occassion}}" />
+      <div class="col-12">
+        <div class="mobile-offer">
+          <a (click)="OfferModal(offermodal,i)">
+            <img *ngIf="o.slider_photo && (o.slider_photo!='' && o.slider_photo!=null)" src="{{ o.slider_photo }}"
+              alt="{{o.occassion}}" />
           </a>
-           <!-- <h5>{{o.occassion}}</h5> -->
-         </div>
-       </div>
-    </div>   
-</div>
+          <!-- <h5>{{o.occassion}}</h5> -->
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </ng-container>
@@ -118,93 +207,172 @@ type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Loadin
   </div>
 </ng-container>
 
-<ng-container *ngIf="isMobile"> 
-<div class="mob-mtbh"></div>
-<div class="mobile-fixed-bottom">
-  <div class="footer-menu row m-0 mobile-bg-danger">
-    <div class="col-3 p-0 text-center">
-      <a routerLink="/" class="home">
-        <i class="fas fa-home"></i>
-        <p class="mb-0 small">Home</p>
-      </a>
-    </div>
-    <div class="col-3 p-0 text-center">
-      <a routerLink="/dashboard" class="home">
-        <i class="fas fa-ticket-alt"></i>
-        <p class="mb-0 small">My Bookings</p>
-      </a>
-    </div>
+<ng-container *ngIf="isMobile">
+  <div class="mob-mtbh"></div>
+  <div class="mobile-fixed-bottom">
+    <div class="footer-menu row m-0 mobile-bg-danger">
+      <div class="col-3 p-0 text-center">
+        <a routerLink="/" class="home">
+          <i class="fas fa-home"></i>
+          <p class="mb-0 small">Home</p>
+        </a>
+      </div>
+      <div class="col-3 p-0 text-center">
+        <a routerLink="/dashboard" class="home">
+          <i class="fas fa-ticket-alt"></i>
+          <p class="mb-0 small">My Bookings</p>
+        </a>
+      </div>
 
-    <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
-      <a routerLink="/login" class="home">
-        <i class="fas fa-user"></i>
-        <p class="mb-0 small">Login</p>
-      </a>
-    </div>
+      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
+        <a routerLink="/login" class="home">
+          <i class="fas fa-user"></i>
+          <p class="mb-0 small">Login</p>
+        </a>
+      </div>
 
-    <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
-      <a routerLink="/myaccount" class="home">
-        <i class="fas fa-user"></i>
-        <p class="mb-0 small">My Account</p>
-      </a>
-    </div>
+      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
+        <a routerLink="/myaccount" class="home">
+          <i class="fas fa-user"></i>
+          <p class="mb-0 small">My Account</p>
+        </a>
+      </div>
 
-    <div class="col-3 p-0 text-center">
-      <a (click)="menu()" class="home {{activeMenu}}">
-        <i class="fas fa-bars"></i>
-        <p class="mb-0 small">Menu</p>
-      </a>
+      <div class="col-3 p-0 text-center">
+        <a (click)="menu()" class="home {{activeMenu}}">
+          <i class="fas fa-bars"></i>
+          <p class="mb-0 small">Menu</p>
+        </a>
+      </div>
     </div>
   </div>
-</div>
 </ng-container>
 
-<ng-template #offermodal let-modal> 
-     
+<!-- CUSTOM OFFER MODAL (NO BOOTSTRAP PROPERTIES) -->
+
+<ng-template #offermodal let-modal>
+
+  <div class="offer-popup-wrap">
+
+    <!-- HEADER -->
+    <div class="offer-popup-header">
+      <h3>OFFER DETAILS</h3>
+
+      <button class="offer-close-btn" (click)="modal.dismiss('Cross Click')">
+        ×
+      </button>
+    </div>
+
+    <!-- BODY -->
+    <div class="offer-popup-body">
+
+      <!-- LEFT -->
+      <div class="offer-left-side">
+
+        <div class="offer-info-card">
+
+          <div class="offer-row">
+            <span>Coupon Code</span>
+            <strong>{{OfferData.coupon.coupon_code}}</strong>
+          </div>
+
+          <div class="offer-row">
+            <span>Applicable On</span>
+            <strong *ngIf="OfferData.coupon.valid_by==2">Booking Date</strong>
+            <strong *ngIf="OfferData.coupon.valid_by==1">Journey Date</strong>
+          </div>
+
+          <div class="offer-row">
+            <span>Discount</span>
+            <strong *ngIf="OfferData.coupon.type==2">Rs {{OfferData.coupon.amount}}/-</strong>
+            <strong *ngIf="OfferData.coupon.type==1">{{OfferData.coupon.percentage}}%</strong>
+          </div>
+
+          <div class="offer-row">
+            <span>Valid Till</span>
+            <strong>{{OfferData.coupon.to_date}}</strong>
+          </div>
+
+          <button class="copy-btn" (click)="copyCoupon(OfferData.coupon.coupon_code)">
+            Copy Coupon
+          </button>
+
+        </div>
+
+        <div class="offer-type-line">
+          <strong>Offer Type :</strong> {{OfferData.occassion}}
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="offer-right-side">
+
+        <h4>COUPON DESCRIPTION</h4>
+
+        <div class="offer-description" [innerHTML]="OfferData.coupon.full_desc">
+        </div>
+
+        <div class="slider-desc"
+          *ngIf="OfferData.slider_description != 'null' && OfferData.slider_description != null && OfferData.slider_description != ''">
+          {{OfferData.slider_description}}
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ng-template>
+
+<!-- <ng-template #offermodal let-modal>
+
   <div class="filter-mobile-modal">
 
-  <div class="modal-header mob-filterbg"> 
-    <h5>
-      OFFER DETAILS
-    </h5>      
+    <div class="modal-header mob-filterbg">
+      <h5>
+        OFFER DETAILS
+      </h5>
       <button type="button" class="close close-mob" aria-label="Close" (click)="modal.dismiss('Cross Click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-  
-  <div class="modal-body">
-  
-    <div *ngIf="OfferData.coupon">
-      <p> COUPON CODE - {{OfferData.coupon.coupon_code}}</p>
-      <p> COUPON IS APPLICABLE ON - 
-        <span *ngIf="OfferData.coupon.valid_by==2">Booking date</span>
-        <span *ngIf="OfferData.coupon.valid_by==1">Journey date</span>
-       </p>
- 
-      <p> COUPON DISCOUNT - 
-       <span *ngIf="OfferData.coupon.type==2">Rs {{OfferData.coupon.amount}}/-</span>
-       <span *ngIf="OfferData.coupon.type==1">{{OfferData.coupon.percentage}}%</span>
-      </p>
- 
-      <p> COUPON VALID FROM  - {{OfferData.coupon.from_date}} TO {{OfferData.coupon.to_date}}
-      </p>
-    </div>
-    
-    <div *ngIf="OfferData.coupon">
-      <h6 class="text-danger">COUPON DESCRIPTION - </h6>
-      <p  [innerHTML]="OfferData.coupon.full_desc">       
-     </p>
-    </div>
 
-    <div *ngIf="OfferData.length!= 0">
-      <p> OFFER TYPE : {{OfferData.occassion}}</p>
+    <div class="modal-body">
+
+      <div *ngIf="OfferData.coupon">
+        <p> COUPON CODE - {{OfferData.coupon.coupon_code}}</p>
+        <p> COUPON IS APPLICABLE ON -
+          <span *ngIf="OfferData.coupon.valid_by==2">Booking date</span>
+          <span *ngIf="OfferData.coupon.valid_by==1">Journey date</span>
+        </p>
+
+        <p> COUPON DISCOUNT -
+          <span *ngIf="OfferData.coupon.type==2">Rs {{OfferData.coupon.amount}}/-</span>
+          <span *ngIf="OfferData.coupon.type==1">{{OfferData.coupon.percentage}}%</span>
+        </p>
+
+        <p> COUPON VALID FROM - {{OfferData.coupon.from_date}} TO {{OfferData.coupon.to_date}}
+        </p>
+      </div>
+
+      <div *ngIf="OfferData.coupon">
+        <h6 class="text-danger">COUPON DESCRIPTION - </h6>
+        <p [innerHTML]="OfferData.coupon.full_desc">
+        </p>
+      </div>
+
+      <div *ngIf="OfferData.length!= 0">
+        <p> OFFER TYPE : {{OfferData.occassion}}</p>
+      </div>
+      <div
+        *ngIf="OfferData.slider_description != 'null' && OfferData.slider_description != null && OfferData.slider_description != ''">
+        <h6 class="text-warning">SLIDER DESCRIPTION - </h6>
+        <p>
+          {{OfferData.slider_description}}
+        </p>
+      </div>
     </div>
-    <div *ngIf="OfferData.slider_description != 'null' && OfferData.slider_description != null && OfferData.slider_description != ''">
-      <h6 class="text-warning">SLIDER DESCRIPTION - </h6>
-      <p>
-        {{OfferData.slider_description}}
-     </p>
-    </div>    
   </div>
-</div>      
-</ng-template>
+</ng-template> -->

@@ -23,6 +23,8 @@ import { LoginChecker } from '../helpers/loginChecker';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
+import { AfterViewInit } from '@angular/core';
+
 
 
 
@@ -33,7 +35,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./home.component.css'],
   providers: [DatePipe, NgbActiveModal, NgbAlertConfig]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   showAppPopup: boolean = false; // Flag to control app download popup visibility
   public searchForm: FormGroup;
   public appForm: FormGroup;
@@ -41,6 +43,53 @@ export class HomeComponent implements OnInit {
   // Flag to control app download popup visibility close function
   closeAppPopup() {
     this.showAppPopup = false;
+  }
+
+  /* =====================================
+ADVANTAGE CARD SLIDER WORKING BUTTONS
+===================================== */
+
+  moveSlider(direction: number) {
+
+    const slider: any = document.getElementById('cardsScroll');
+    if (!slider) return;
+
+    const scrollAmount = 420;   // card move distance
+
+    slider.scrollTo({
+      left: slider.scrollLeft + (direction * scrollAmount),
+      behavior: 'smooth'
+    });
+
+    setTimeout(() => {
+      this.updateSliderButtons();
+    }, 500);
+  }
+
+
+  /* BUTTON SHOW / HIDE */
+  updateSliderButtons() {
+
+    const slider: any = document.getElementById('cardsScroll');
+    const prevBtn: any = document.querySelector('.prev-btn');
+    const nextBtn: any = document.querySelector('.next-btn');
+
+    if (!slider || !prevBtn || !nextBtn) return;
+
+    /* LEFT BUTTON */
+    if (slider.scrollLeft <= 5) {
+      prevBtn.style.display = 'none';
+    } else {
+      prevBtn.style.display = 'flex';
+    }
+
+    /* RIGHT BUTTON */
+    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 5) {
+      nextBtn.style.display = 'none';
+    } else {
+      nextBtn.style.display = 'flex';
+    }
+
   }
 
   @ViewChild('popup') popup: TemplateRef<any>;
@@ -596,6 +645,105 @@ export class HomeComponent implements OnInit {
         }
       }
     }
+
+    /* =========================================
+   FAQ WORKING WITHOUT ID / EXTRA CLASSES
+   USE YOUR CURRENT HTML ONLY
+   REPLACE ONLY FAQ PART INSIDE ngAfterViewInit()
+========================================= */
+
+    setTimeout(() => {
+
+      const tabs = document.querySelectorAll('.faq-tabs li');
+      const panes = document.querySelectorAll('.tab-content .tab-pane');
+
+      /* DEFAULT SHOW GENERAL */
+      tabs.forEach((tab: any, i: number) => {
+        tab.classList.remove('active');
+        panes[i].classList.remove('active', 'in');
+      });
+
+      if (tabs.length > 0) tabs[0].classList.add('active');
+      if (panes.length > 0) panes[0].classList.add('active', 'in');
+
+
+      /* TAB CLICK SWITCH */
+      tabs.forEach((tab: any, index: number) => {
+
+        tab.addEventListener('click', (e: any) => {
+          e.preventDefault();
+
+          tabs.forEach((t: any, i: number) => {
+            t.classList.remove('active');
+            panes[i].classList.remove('active', 'in');
+          });
+
+          tab.classList.add('active');
+          panes[index].classList.add('active', 'in');
+        });
+
+      });
+
+
+      /* FAQ OPEN CLOSE */
+      const questions = document.querySelectorAll('.faq-question');
+
+      questions.forEach((question: any) => {
+
+        question.addEventListener('click', () => {
+
+          const item = question.closest('.faq-item');
+          const pane = question.closest('.tab-pane');
+          const answer = item.querySelector('.faq-answer');
+
+          /* close same tab others */
+          pane.querySelectorAll('.faq-item').forEach((other: any) => {
+            if (other !== item) {
+              other.classList.remove('active');
+
+              const otherAns = other.querySelector('.faq-answer');
+              if (otherAns) otherAns.style.display = 'none';
+            }
+          });
+
+          /* toggle current */
+          if (item.classList.contains('active')) {
+            item.classList.remove('active');
+            answer.style.display = 'none';
+          } else {
+            item.classList.add('active');
+            answer.style.display = 'block';
+          }
+
+        });
+
+      });
+
+    }, 300);
+
+    // ODBUS Advantage card slider: show/hide buttons on scroll (guard DOM access for SSR)
+    setTimeout(() => {
+
+      const slider: any = document.getElementById('cardsScroll');
+
+      if (slider) {
+
+        /* first load */
+        this.updateSliderButtons();
+
+        /* manual scroll */
+        slider.addEventListener('scroll', () => {
+          this.updateSliderButtons();
+        });
+
+        /* resize */
+        window.addEventListener('resize', () => {
+          this.updateSliderButtons();
+        });
+
+      }
+
+    }, 500);
   }
 
 

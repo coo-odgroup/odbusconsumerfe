@@ -22,13 +22,14 @@
     <section class="header-main fixed-top" [class.with-topbar]="showTopBar"> <!--sticky-top -->
         <div class="container-xl">
             <div class="row align-items-center">
-                <div class="col-md-2">
+                <div class="col-md-2 d-flex align-items-center">
                     <div class="logo" *ngIf="logo!=''">
                         <a routerLink="/">
                             <img src="{{ logo }}" alt="logo-ODBUS" title="" />
 
                         </a>
                     </div>
+                    <img class="trust-badge" src="assets/img/trust_badge.png" alt="logo-ODBUS" title=""/>
                 </div>
                 <div class="col-md-10 d-flex align-items-center">
                     <div class="main-navigation">
@@ -40,16 +41,16 @@
                             </button>
                             <div class="collapse navbar-collapse menu-cnt" id="navbarSupportedContent">
                                 <ul class="">
-                                    <li class="nav-item home"><a class="nav-link" routerLink="/">Home</a></li>
+                                    <!-- <li class="nav-item home"><a class="nav-link" routerLink="/">Home</a></li>
                                     <li class="nav-item about"><a class="nav-link" routerLink="about-us">About</a></li>
                                     <ng-container *ngIf="session.isLoggedIn()">
                                         <li class="nav-item"><a class="nav-link" routerLink="dashboard">Manage
                                                 Booking</a></li>
-                                    </ng-container>
-                                    <ng-container *ngIf="!session.isLoggedIn()">
+                                    </ng-container> -->
+                                    <!-- <ng-container *ngIf="!session.isLoggedIn()">
                                         <li class="nav-item"><a class="nav-link" routerLink="login">Manage Booking</a>
                                         </li>
-                                    </ng-container>
+                                    </ng-container> -->
                                     <!-- <li class="nav-item"><a class="nav-link" routerLink="support">Support</a></li> -->
                                     <!-- <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.odcar.in">Car Hire</a></li>
                                     <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.odtravels.in/">Tour Package</a></li> -->
@@ -62,13 +63,15 @@
                     <div class="col-md-4"> -->
                     <div class="login-app mt-0">
                         <ul *ngIf="! session.isLoggedIn()">
+                            <ng-container *ngIf="!session.isLoggedIn()">
+                                        <li class="nav-item"><a class="nav-link" routerLink="login">Manage Booking</a>
+                                        </li>
+                                    </ng-container>
                             <li><a routerLink="login" class="black-btn bh">Login/Signup</a></li>
-                            <!--  </ul>       
-    
-                        <ul> -->
-                            <li><a target="_blank"
+                            
+                            <!-- <li><a target="_blank"
                                     href="https://play.google.com/store/apps/details?id=com.od.odbus&hl=en"
-                                    class="download black-btn yellow-btn bh">Download App</a></li>
+                                    class="download black-btn yellow-btn bh">Download App</a></li> -->
                         </ul>
                         <nav class="navbar navbar-expand-md" *ngIf="session.isLoggedIn()">
                             <button class="navbar-toggler" type="button" aria-controls="navbarContent"
