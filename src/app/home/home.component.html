@@ -1373,3 +1373,217 @@
             </div>
         </div>
     </section>
+      <section class="top-routs fluid-15" *ngIf="popular_routes!=''">
+
+        <div class="container">
+            <div class="row align-items-center mb-3">
+                <div class="col-md-6">
+                    <h3 class="title-section">Poupular Routes</h3>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a routerLink="routes" class="btn btn-warning">All Routes</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="container">
+            <input type="hidden" [(ngModel)]="dtconfig.minDate" [min]="dtconfig.minDate" [max]="dtconfig.maxDate"
+                name="todayDate" id="todayDate" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker">
+
+            <div class="row">
+                <div class="col-md-3" *ngFor="let p of popular_routes;">
+
+                    <a class="cursor" style="text-decoration: none;"
+                        (click)="popularSearch(p.source[0].url,p.destination[0].url);">
+                        <img class="popl-routs-icon1" src="assets/img/Icon-metro-location.svg">
+                        <span>{{ p.source[0].name }} To {{ p.destination[0].name }} Bus </span>
+                    </a>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- New Desing Section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6" *ngFor="let p of popular_routes">
+
+                    <div class="route-card" (click)="popularSearch(p.source[0].url, p.destination[0].url)">
+
+
+                        <div class="route-left">
+                            <img src="assets/img/Icon-metro-location.svg" class="route-icon">
+
+                            <div class="route-text">
+                                <span class="city">{{ p.source[0].name }}</span>
+                                <span class="exchange">⇄</span>
+                                <span class="city">{{ p.destination[0].name }}</span>
+                            </div>
+                        </div>
+
+
+                        <button class="book-btn">Book Now</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- New Desing Section end-->
+
+    </section>
+
+    <!-- new link section -->
+    <!-- NEW LINK SECTION (FAQ STYLE DESIGN) -->
+    <section class="route-link-section fluid-15">
+        <div class="container">
+
+            <!-- Tabs -->
+            <ul class="route-tabs nav nav-tabs">
+                <li class="active"><a href="#">Top Bus Routes</a></li>
+                <li><a href="#">Top Bus Operators</a></li>
+                <li><a href="#">Top Bus Services</a></li>
+                <li><a href="#">Quick Links</a></li>
+            </ul>
+
+            <div class="tab-content">
+
+                <!-- TAB 1 -->
+                <div class="tab-pane fade in active">
+                    <div class="row route-grid">
+
+                        <div class="col-md-3">
+                            <a routerLink="/">Bhubaneswar to Cuttack Bus</a>
+                            <a routerLink="/">Puri to Bhubaneswar Bus</a>
+                            <a routerLink="/">Berhampur to Bhubaneswar Bus</a>
+                            <a routerLink="/">Cuttack to Sambalpur Bus</a>
+                            <a routerLink="/">Rourkela to Bhubaneswar Bus</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a routerLink="/">Balasore to Bhubaneswar Bus</a>
+                            <a routerLink="/">Jeypore to Bhubaneswar Bus</a>
+                            <a routerLink="/">Angul to Cuttack Bus</a>
+                            <a routerLink="/">Baripada to Bhubaneswar Bus</a>
+                            <a routerLink="/">Rayagada to Berhampur Bus</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a routerLink="/">Jharsuguda to Sambalpur Bus</a>
+                            <a routerLink="/">Bolangir to Bhubaneswar Bus</a>
+                            <a routerLink="/">Koraput to Bhubaneswar Bus</a>
+                            <a routerLink="/">Keonjhar to Cuttack Bus</a>
+                            <a routerLink="/">All Routes</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a routerLink="/">Jharsuguda to Sambalpur Bus</a>
+                            <a routerLink="/">Bolangir to Bhubaneswar Bus</a>
+                            <a routerLink="/">Koraput to Bhubaneswar Bus</a>
+                            <a routerLink="/">Keonjhar to Cuttack Bus</a>
+                            <a routerLink="/">All Routes</a>
+                        </div>
+                        
+
+                    </div>
+                </div>
+
+                <!-- TAB 2 -->
+                <div class="tab-pane fade">
+                    <div class="row route-grid">
+
+                        <div class="col-md-3">
+                            <a href="#">Shyamoli Travels</a>
+                            <a href="#">Dolphin Travels</a>
+                            <a href="#">Maa Tarini Bus</a>
+                            <a href="#">Sai Krishna Travels</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a href="#">Royal Cruiser</a>
+                            <a href="#">SRS Travels</a>
+                            <a href="#">Orange Tours</a>
+                            <a href="#">Mahadev Travels</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a href="#">ODBUS Partner Buses</a>
+                            <a href="#">Luxury Sleeper Buses</a>
+                            <a href="#">AC Coaches</a>
+                            <a href="#">All Operators</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- TAB 3 -->
+                <div class="tab-pane fade">
+                    <div class="row route-grid">
+
+                        <div class="col-md-3">
+                            <a href="#">Shyamoli Travels</a>
+                            <a href="#">Dolphin Travels</a>
+                            <a href="#">Maa Tarini Bus</a>
+                            <a href="#">Sai Krishna Travels</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a href="#">Royal Cruiser</a>
+                            <a href="#">SRS Travels</a>
+                            <a href="#">Orange Tours</a>
+                            <a href="#">Mahadev Travels</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a href="#">ODBUS Partner Buses</a>
+                            <a href="#">Luxury Sleeper Buses</a>
+                            <a href="#">AC Coaches</a>
+                            <a href="#">All Operators</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a href="#">ODBUS Partner Buses</a>
+                            <a href="#">Luxury Sleeper Buses</a>
+                            <a href="#">AC Coaches</a>
+                            <a href="#">All Operators</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- TAB 4 -->
+                <div class="tab-pane fade">
+                    <div class="row route-grid">
+
+                        <div class="col-md-3">
+                            <a routerLink="/">Online Bus Tickets</a>
+                            <a routerLink="/">Offers</a>
+                            <a routerLink="/">Manage Booking</a>
+                            <a target="_blank" href="https://agent.odbus.in">Agent Login</a>
+                            <a target="_blank" href="https://operator.odbus.co.in">Operator Login</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a routerLink="/">FAQ</a>
+                            <a routerLink="/">Blogs</a>
+                            <a routerLink="/">Operators</a>
+                            <a routerLink="/">Routes</a>
+                            <a routerLink="/">Info</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a routerLink="/">Terms & Conditions</a>
+                            <a routerLink="/">Privacy Policy</a>
+                            <a routerLink="/">Careers</a>
+                            <a routerLink="/">About ODBUS</a>
+                            <a routerLink="/">Contact Us</a>
+                            <a routerLink="/">Sitemap</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
