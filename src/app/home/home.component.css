@@ -1054,6 +1054,12 @@ input {
   cursor: pointer;
 }
 
+@media (max-width: 767px) {
+  .recent-search-section {
+    padding: 15px 0;
+  }
+}
+
 /* Top Operators New Desing */
 /* CARD BASE */
 .operator-card.small-card {
