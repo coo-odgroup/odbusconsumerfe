@@ -421,6 +421,30 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       }, 1000);
     }
 
+     setTimeout(() => {
+
+      const tabs = document.querySelectorAll('.route-tabs li');
+      const panes = document.querySelectorAll('.route-link-section .tab-pane');
+
+      tabs.forEach((tab: any, index: number) => {
+
+        tab.addEventListener('click', (e: any) => {
+          e.preventDefault();
+
+          tabs.forEach((t: any, i: number) => {
+            t.classList.remove('active');
+            panes[i].classList.remove('active');
+          });
+
+          tab.classList.add('active');
+          panes[index].classList.add('active');
+
+        });
+
+      });
+
+    }, 500);
+
   }
 
   menu() {
