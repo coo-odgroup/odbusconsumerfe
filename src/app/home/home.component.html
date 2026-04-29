@@ -304,18 +304,18 @@
     <!-- new recent searches ended -->
 
     <!-- Offer Section -->
-        <section class="section-offer carousel-home fluid-15" *ngIf="Offers.length>0">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="section-offer-left">
-                            <h2>ODBUS OFFERS</h2>
-                        </div>
+    <section class="section-offer carousel-home fluid-15" *ngIf="Offers.length>0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="section-offer-left">
+                        <h2>ODBUS OFFERS</h2>
                     </div>
-                    <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
 
-                        <ul class="nav nav-tabs " id="myTab" role="tablist">
-                            <!-- <li class="nav-item cursor" role="presentation"  (click)="getOffer('Bus Offers')">
+                    <ul class="nav nav-tabs " id="myTab" role="tablist">
+                        <!-- <li class="nav-item cursor" role="presentation"  (click)="getOffer('Bus Offers')">
                         <a class="nav-link {{ (activeTab=='Bus Offers') ? 'active' : '' }} " id="home-tab" data-toggle="tab"  role="tab"
                             aria-controls="home" aria-selected="true">Bus Offers</a>
                     </li>
@@ -323,22 +323,22 @@
                         <a class="nav-link {{ (activeTab=='Festive Offers') ? 'active' : '' }}" id="profile-tab" data-toggle="tab" role="tab"
                             aria-controls="profile" aria-selected="false">Festive Offers</a>
                     </li> -->
-                            <li class="nav-item cursor" role="presentation">
-                                <a class="nav-link" id="messages-tab" data-toggle="tab" routerLink="offers" role="tab"
-                                    aria-controls="messages" aria-selected="false">View All</a>
-                            </li>
-                        </ul>
-                    </div>
+                        <li class="nav-item cursor" role="presentation">
+                            <a class="nav-link" id="messages-tab" data-toggle="tab" routerLink="offers" role="tab"
+                                aria-controls="messages" aria-selected="false">View All</a>
+                        </li>
+                    </ul>
+                </div>
 
-                    <div class="col-md-12 section-offer-right-tab mt-4">
+                <div class="col-md-12 section-offer-right-tab mt-4">
 
-                        <carousel [cellsToShow]="3" [loop]="true" [autoplay]="false" [autoplayInterval]="2000"
-                            [images]="offerList">
-                        </carousel>
-                    </div>
+                    <carousel [cellsToShow]="3" [loop]="true" [autoplay]="false" [autoplayInterval]="2000"
+                        [images]="offerList">
+                    </carousel>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     <!-- Section About -->
 
     <!-- <section class="section-about">
@@ -358,7 +358,7 @@
         </div>
     </section> -->
 
-   
+
 
     <!-- The Odbus Advanteges End -->
 
@@ -455,7 +455,7 @@
 
     <!-- new download section -->
 
-  
+
 
 
 
@@ -477,7 +477,105 @@
                     </div>
                 </div>
             </div>
-            <div class="mobile-white-box shadow-sm">
+
+            <!-- new mobile Search section -->
+
+            <div class="container search-overlap">
+                <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
+
+                    <div class="search-box-v5">
+                        <div class="row no-gutters align-items-end search-inner">
+
+                            <!-- FROM -->
+                            <div class="col-md-3 field from-field">
+                                <label>From</label>
+                                <div class="input-box">
+                                    <img src="assets/img/Icon-metro-location.svg" class="icon-from">
+                                    <input type="text" class="form-control" [ngbTypeahead]="search"
+                                        [resultTemplate]="rt" [resultFormatter]="formatter" [inputFormatter]="formatter"
+                                        [(ngModel)]="swapsource" name="source" placeholder="Enter Source" />
+                                    <span class="clear-icon">✖</span>
+                                </div>
+                            </div>
+
+                            <!-- TO -->
+                            <div class="col-md-3 field to-field">
+                                <label>To</label>
+
+                                <div class="swap-center" (click)="swap()">
+                                    <img src="assets/img/swap.svg">
+                                </div>
+
+                                <div class="input-box">
+                                    <img src="assets/img/Icon-metro-location.svg" class="icon-to">
+                                    <input type="text" class="form-control" [ngbTypeahead]="search"
+                                        [resultTemplate]="rt2" [resultFormatter]="formatter"
+                                        [inputFormatter]="formatter" [(ngModel)]="swapdestination" name="destination"
+                                        placeholder="Enter Destination" />
+                                    <span class="clear-icon">✖</span>
+
+                                </div>
+                            </div>
+
+                            <!-- DATE -->
+                            <!-- <div class="col-md-4 field date-field">
+                            <label>Date of Journey</label>
+                            <div class="input-box date-box">
+                                <img src="assets/img/Icon-metro-calendar.svg" class="icon-date">
+
+                                <input type="text" class="form-control" formControlName="entry_date" ngbDatepicker
+                                    #d="ngbDatepicker" (click)="d.toggle()" placeholder="Journey Date" readonly />
+
+                                <div class="date-btns">
+                                    <span (click)="setToday()">Today</span>
+                                    <span (click)="setTomorrow()">Tomorrow</span>
+                                </div>
+                            </div>
+                        </div> -->
+
+                            <div class="col-md-4 field date-field">
+                                <label>Date of Journey</label>
+
+                                <div class="date-wrapper">
+
+                                    <!-- Journey Date Box -->
+                                    <div class="input-box date-box">
+                                        <img src="assets/img/Icon-metro-calendar.svg" class="icon-date">
+
+                                        <input type="text" class="form-control" formControlName="entry_date"
+                                            ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"
+                                            placeholder="Journey Date" readonly />
+                                    </div>
+
+                                    <!-- Today Box -->
+                                    <div class="quick-date-today" (click)="setToday()">
+                                        Today
+                                    </div>
+
+                                    <!-- Tomorrow Box -->
+                                    <div class="quick-date-tomorrow" (click)="setTomorrow()">
+                                        Tomorrow
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- BUTTON -->
+                            <div class="col-md-2 field search-btn-wrap">
+                                <button type="submit" class="btn search-btn-v5">
+                                    Search
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- new mobile search section end -->
+
+            <!-- <div class="mobile-white-box shadow-sm">
                 <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
                     <div class="row">
                         <div class="col-1 p-0">
@@ -505,10 +603,7 @@
                                     <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
                                 </ng-template>
                             </div>
-                            <!-- <div class="form-group border-bottom">
-                            <label class="mb-2">Date of Journey</label><br>
-                            <input type="text" placeholder="Journey Date" />
-                        </div> -->
+                            
                         </div>
                         <div class="col-2 p-1"><img (click)="swap();" src="assets/img/mob-img/swap.png" class="img4">
                         </div>
@@ -535,76 +630,75 @@
                         <div class="col-2 p-1"></div>
                     </div>
                 </form>
-            </div>
+            </div> -->
         </div>
 
-         <section class="recent-search-section">
-        <div class="container">
 
-            <h4 class="recent-title">
-                <span class="line"></span> Recent Searches
-            </h4>
+        <section class="recent-search-section">
+            <div class="container">
 
-            <div class="recent-wrapper">
+                <h4 class="recent-title">
+                    <span class="line"></span> Recent Searches
+                </h4>
 
-                <!-- ITEM -->
-                <div class="recent-card">
-                    <div class="recent-icon">
-                        <i class="fas fa-history"></i>
+                <div class="recent-wrapper">
+                    <div class="recent-card">
+                        <div class="recent-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="recent-text">
+                            <h5>New York → Boston</h5>
+                            <p>Mon 6 April 2026</p>
+                        </div>
                     </div>
-                    <div class="recent-text">
-                        <h5>New York → Boston</h5>
-                        <p>Mon 6 April 2026</p>
+
+                    <div class="recent-card">
+                        <div class="recent-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="recent-text">
+                            <h5>New York → Boston</h5>
+                            <p>Mon 6 April 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="recent-card">
+                        <div class="recent-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="recent-text">
+                            <h5>Bangalore → Chennai</h5>
+                            <p>Mon 8 April 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="recent-card">
+                        <div class="recent-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="recent-text">
+                            <h5>Kolkata → Bhubaneswar</h5>
+                            <p>Mon 9 April 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="recent-card">
+                        <div class="recent-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="recent-text">
+                            <h5>Bhubaneswar → Rourkela</h5>
+                            <p>Mon 9 April 2026</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="recent-card">
-                    <div class="recent-icon">
-                        <i class="fas fa-history"></i>
-                    </div>
-                    <div class="recent-text">
-                        <h5>New York → Boston</h5>
-                        <p>Mon 6 April 2026</p>
-                    </div>
-                </div>
-
-                <div class="recent-card">
-                    <div class="recent-icon">
-                        <i class="fas fa-history"></i>
-                    </div>
-                    <div class="recent-text">
-                        <h5>Bangalore → Chennai</h5>
-                        <p>Mon 8 April 2026</p>
-                    </div>
-                </div>
-
-                <div class="recent-card">
-                    <div class="recent-icon">
-                        <i class="fas fa-history"></i>
-                    </div>
-                    <div class="recent-text">
-                        <h5>Kolkata → Bhubaneswar</h5>
-                        <p>Mon 9 April 2026</p>
-                    </div>
-                </div>
-
-                <div class="recent-card">
-                    <div class="recent-icon">
-                        <i class="fas fa-history"></i>
-                    </div>
-                    <div class="recent-text">
-                        <h5>Bhubaneswar → Rourkela</h5>
-                        <p>Mon 9 April 2026</p>
-                    </div>
-                </div>
             </div>
-
-        </div>
-    </section>
+        </section>
 
 
 
-        <div class="p-3 mobile-recent-searches">
+        <!-- <div class="p-3 mobile-recent-searches">
             <h6 class="text-left" *ngIf="recentSearchFrom!=null && recentSearchTo!=null && recentSearchDt !=null"><i
                     class="fas fa-search"></i> Recent Searches</h6>
             <h6 class="text-left" *ngIf="recentSearchFrom==null && recentSearchTo==null && recentSearchDt ==null"><i
@@ -629,7 +723,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -746,7 +840,7 @@
     </div>
     <!-- APP DOWNLOAD POPUP END -->
 
-    <div class="mob-mtbh"></div>
+    <!-- <div class="mob-mtbh"></div> -->
     <div class="mobile-fixed-bottom">
         <div class="footer-menu row m-0 mobile-bg-danger">
             <div class="col-3 p-0 text-center">
@@ -788,7 +882,7 @@
 
         </div>
     </div>
-    <img src="../../assets/img/ODBUSLucky Draw_Popup_image.jpg">
+    <!-- <img src="../../assets/img/ODBUSLucky Draw_Popup_image.jpg"> -->
 
     <!--  footer END -->
 
@@ -823,159 +917,161 @@
 
 <ng-container *ngIf="isMobile; then Mobile; else Desktop">
 </ng-container>
- <!-- The Odbus Advantages -->
-    <section class="whats-new-section">
-        <div class="container">
+<!-- The Odbus Advantages -->
+<section class="whats-new-section">
+    <div class="container">
 
-            <h2 class="section-title">THE ODBUS ADVANTAGE</h2>
+        <h2 class="section-title">THE ODBUS ADVANTAGE</h2>
 
-            <div class="slider-wrapper">
+        <div class="slider-wrapper">
 
-                <!-- LEFT -->
-                <button class="slide-btn prev-btn" (click)="moveSlider(-1)">
-                    <i class="fa fa-angle-left"></i>
-                </button>
+            <!-- LEFT -->
+            <button class="slide-btn prev-btn" (click)="moveSlider(-1)">
+                <i class="fa fa-angle-left"></i>
+            </button>
 
-                <!-- Cards Row -->
-                <div class="cards-scroll" id="cardsScroll">
+            <!-- Cards Row -->
+            <div class="cards-scroll" id="cardsScroll">
 
-                    <!-- Card 1 -->
-                    <div class="news-card pink">
-                        <div class="card-left">
-                            <h3>Instant Booking</h3>
-                            <p>Book in seconds. Just 3 steps.
-                                Fast. Smooth. Hassle-free.</p>
-                            <a href="#">Know More →</a>
-                        </div>
-                        <div class="card-right">
-                            <img src="assets/img/Instant_booking.png">
-                        </div>
+                <!-- Card 1 -->
+                <div class="news-card pink">
+                    <div class="card-left">
+                        <h3>Instant Booking</h3>
+                        <p>Book in seconds. Just 3 steps.
+                            Fast. Smooth. Hassle-free.</p>
+                        <a href="#">Know More →</a>
                     </div>
-
-                    <!-- Card 2 -->
-                    <div class="news-card red">
-                        <div class="card-left">
-                            <h3>Assured Seats</h3>
-                            <p>Seats you can भरोसा on
-                                99.99% seat confirmation</p>
-                            <a href="#">Know More →</a>
-                        </div>
-                        <div class="card-right">
-                            <img src="assets/img/assured.png">
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="news-card blue">
-                        <div class="card-left">
-                            <h3>Instant Trip Details</h3>
-                            <p>No waiting. No uncertainty.
-                                Get ticket details instantly.</p>
-                            <a href="#">Know More →</a>
-                        </div>
-                        <div class="card-right">
-                            <img src="assets/img/trip_details.png">
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="news-card cream">
-                        <div class="card-left">
-                            <h3>24×7 Support</h3>
-                            <p>Always on. Always ready
-                                Call us anytime.
-                                We're here for you.</p>
-                            <a href="#">Know More →</a>
-                        </div>
-                        <div class="card-right">
-                            <img src="assets/img/support_247.png">
-                        </div>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="news-card yellow">
-                        <div class="card-left">
-                            <h3>Fast Refunds</h3>
-                            <p>Refunds initiated instantly
-                                Credited in hours to days <br>
-                                Quick. Transparent. Reliable.</p>
-                            <a href="#">Know More →</a>
-                        </div>
-                        <div class="card-right">
-                            <img src="assets/img/wallet.png">
-                        </div>
-                    </div>
-
-                    <!-- Card 6 -->
-                    <div class="news-card last">
-                        <div class="card-left">
-                            <h3>Odisha's Largest Network</h3>
-                            <p>Unmatched routes & coverage
-                                Maximum buses across Odisha
-                                Travel anywhere with ease.</p>
-                            <a href="#">Know More →</a>
-                        </div>
-                        <div class="card-right">
-                            <img src="assets/img/rout_network.png">
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- RIGHT -->
-                <button class="slide-btn next-btn" (click)="moveSlider(1)">
-                    <i class="fa fa-angle-right"></i>
-                </button>
-
-            </div>
-        </div>
-    </section>
-      <section class="download-app-new">
-        <div class="container">
-            <div class="row align-items-center">
-
-                <!-- LEFT 4 COL -->
-                <div class="col-md-4">
-                    <div class="app-image">
-                        <img src="assets/img/download_mob.png" alt="App Download">
+                    <div class="card-right">
+                        <img src="assets/img/Instant_booking.png">
                     </div>
                 </div>
 
-                <!-- CENTER 4 COL -->
-                <div class="col-md-4">
-                    <div class="app-content">
-                        <h2>
-                            Book faster.
-                            Travel smarter<br>
-                            with the <span>ODBUS APP</span>
-                        </h2>
-
-                        <ul>
-                            <li><i class="fa fa-bolt"></i> Fast Booking</li>
-                            <li><i class="fa fa-check-circle"></i> Reliable Seats</li>
-                            <li><i class="fa fa-smile-o"></i> Zero Stress</li>
-                        </ul>
+                <!-- Card 2 -->
+                <div class="news-card red">
+                    <div class="card-left">
+                        <h3>Assured Seats</h3>
+                        <p>Seats you can भरोसा on
+                            99.99% seat confirmation</p>
+                        <a href="#">Know More →</a>
+                    </div>
+                    <div class="card-right">
+                        <img src="assets/img/assured.png">
                     </div>
                 </div>
 
-                <!-- RIGHT 4 COL -->
-                <div class="col-md-4">
-                    <div class="qr-card">
-                        <h3>Download<br>Our APP</h3>
+                <!-- Card 3 -->
+                <div class="news-card blue">
+                    <div class="card-left">
+                        <h3>Instant Trip Details</h3>
+                        <p>No waiting. No uncertainty.
+                            Get ticket details instantly.</p>
+                        <a href="#">Know More →</a>
+                    </div>
+                    <div class="card-right">
+                        <img src="assets/img/trip_details.png">
+                    </div>
+                </div>
 
-                        <img src="assets/img/qrcode_download_app.png" class="qr-img" alt="QR Code">
+                <!-- Card 4 -->
+                <div class="news-card cream">
+                    <div class="card-left">
+                        <h3>24×7 Support</h3>
+                        <p>Always on. Always ready
+                            Call us anytime.
+                            We're here for you.</p>
+                        <a href="#">Know More →</a>
+                    </div>
+                    <div class="card-right">
+                        <img src="assets/img/support_247.png">
+                    </div>
+                </div>
 
-                        <img src="assets/img/app-down.png" class="play-btn" alt="Play Store">
+                <!-- Card 5 -->
+                <div class="news-card yellow">
+                    <div class="card-left">
+                        <h3>Fast Refunds</h3>
+                        <p>Refunds initiated instantly
+                            Credited in hours to days <br>
+                            Quick. Transparent. Reliable.</p>
+                        <a href="#">Know More →</a>
+                    </div>
+                    <div class="card-right">
+                        <img src="assets/img/wallet.png">
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="news-card last">
+                    <div class="card-left">
+                        <h3>Odisha's Largest Network</h3>
+                        <p>Unmatched routes & coverage
+                            Maximum buses across Odisha
+                            Travel anywhere with ease.</p>
+                        <a href="#">Know More →</a>
+                    </div>
+                    <div class="card-right">
+                        <img src="assets/img/rout_network.png">
                     </div>
                 </div>
 
             </div>
+
+            <!-- RIGHT -->
+            <button class="slide-btn next-btn" (click)="moveSlider(1)">
+                <i class="fa fa-angle-right"></i>
+            </button>
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- new download section end -->
+<!-- new app downlaod section -->
+<section class="download-app-new">
+    <div class="container">
+        <div class="row align-items-center">
 
-    <section class="why-us fluid-15">
+            <!-- LEFT 4 COL -->
+            <div class="col-md-4">
+                <div class="app-image">
+                    <img src="assets/img/download_mob.png" alt="App Download">
+                </div>
+            </div>
+
+            <!-- CENTER 4 COL -->
+            <div class="col-md-4">
+                <div class="app-content">
+                    <h2>
+                        Book faster.
+                        Travel smarter<br>
+                        with the <span>ODBUS APP</span>
+                    </h2>
+
+                    <ul>
+                        <li><i class="fa fa-bolt"></i> Fast Booking</li>
+                        <li><i class="fa fa-check-circle"></i> Reliable Seats</li>
+                        <li><i class="fa fa-smile-o"></i> Zero Stress</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RIGHT 4 COL -->
+            <div class="col-md-4">
+                <div class="qr-card">
+                    <h3>Download<br>Our APP</h3>
+
+                    <img src="assets/img/qrcode_download_app.png" class="qr-img" alt="QR Code">
+
+                    <img src="assets/img/app-down.png" class="play-btn" alt="Play Store">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- new app download section end -->
+
+<!-- <section class="why-us fluid-15">
         <div class="container">
             <h3 class="title-section">why ride with odbus?</h3>
         </div>
@@ -1015,287 +1111,287 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <!-- FAQ Section -->
+<!-- FAQ Section -->
 
-    <section class="faq-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-left">
-                    <h3 class="title-section">FAQs related to Bus Tickets Booking</h3>
-                </div>
-            </div>
-
-            <!-- Tabs -->
-            <ul class="faq-tabs nav nav-tabs" role="tablist">
-                <li class="active"><a href="#" data-toggle="tab">General</a></li>
-                <li><a href="#" data-toggle="tab">Ticket-related</a></li>
-                <li><a href="#" data-toggle="tab">Payment</a></li>
-                <li><a href="#" data-toggle="tab">Cancellation & Refund</a></li>
-            </ul>
-
-            <div class="tab-content">
-
-                <!-- General -->
-                <div class="tab-pane fade in active" id="general">
-
-                    <div class="faq-item active">
-                        <div class="faq-question">
-                            Can I track the location of my booked bus online?
-                            <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
-                        </div>
-                        <div class="faq-answer" style="display:block;">
-                            Yes, you can track your bus online by using our bus tracking app feature called
-                            "Track My Bus". This feature allows passengers and their families to track the live
-                            bus location and ensure safety.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            What are the advantages of bus ticket booking with Odbus?
-                            <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            Easy booking, secure payments, offers, and live tracking.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Why book bus tickets online on Odbus?
-                            <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            Faster booking experience with multiple operators and routes.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Do I need to create an account to book?
-                            <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            No, guest booking can also be available.
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Ticket -->
-                <div class="tab-pane fade" id="ticket">
-                    <div class="faq-item active">
-                        <div class="faq-question">
-                            How do I download my ticket?
-                            <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
-                        </div>
-                        <div class="faq-answer" style="display:block;">
-                            Ticket will be sent to your email and mobile after booking.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Payment -->
-                <div class="tab-pane fade" id="payment">
-                    <div class="faq-item active">
-                        <div class="faq-question">
-                            What payment methods are accepted?
-                            <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
-                        </div>
-                        <div class="faq-answer" style="display:block;">
-                            UPI, Debit Card, Credit Card, Net Banking and Wallets.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Refund -->
-                <div class="tab-pane fade" id="refund">
-                    <div class="faq-item active">
-                        <div class="faq-question">
-                            How long does refund take?
-                            <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
-                        </div>
-                        <div class="faq-answer" style="display:block;">
-                            Usually within 5-7 business days.
-                        </div>
-                    </div>
-                </div>
-
+<section class="faq-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                <h3 class="title-section">FAQs related to Bus Tickets Booking</h3>
             </div>
         </div>
-    </section>
 
-    <!-- FAQ Section End -->
+        <!-- Tabs -->
+        <ul class="faq-tabs nav nav-tabs" role="tablist">
+            <li class="active"><a href="#" data-toggle="tab">General</a></li>
+            <li><a href="#" data-toggle="tab">Ticket-related</a></li>
+            <li><a href="#" data-toggle="tab">Payment</a></li>
+            <li><a href="#" data-toggle="tab">Cancellation & Refund</a></li>
+        </ul>
 
-    <!-- ===============================
+        <div class="tab-content">
+
+            <!-- General -->
+            <div class="tab-pane fade in active" id="general">
+
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        Can I track the location of my booked bus online?
+                        <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
+                    </div>
+                    <div class="faq-answer" style="display:block;">
+                        Yes, you can track your bus online by using our bus tracking app feature called
+                        "Track My Bus". This feature allows passengers and their families to track the live
+                        bus location and ensure safety.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What are the advantages of bus ticket booking with Odbus?
+                        <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Easy booking, secure payments, offers, and live tracking.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Why book bus tickets online on Odbus?
+                        <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Faster booking experience with multiple operators and routes.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do I need to create an account to book?
+                        <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        No, guest booking can also be available.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Ticket -->
+            <div class="tab-pane fade" id="ticket">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        How do I download my ticket?
+                        <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
+                    </div>
+                    <div class="faq-answer" style="display:block;">
+                        Ticket will be sent to your email and mobile after booking.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment -->
+            <div class="tab-pane fade" id="payment">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        What payment methods are accepted?
+                        <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
+                    </div>
+                    <div class="faq-answer" style="display:block;">
+                        UPI, Debit Card, Credit Card, Net Banking and Wallets.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Refund -->
+            <div class="tab-pane fade" id="refund">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        How long does refund take?
+                        <span class="faq-icon"><i class="fa fa-angle-down"></i></span>
+                    </div>
+                    <div class="faq-answer" style="display:block;">
+                        Usually within 5-7 business days.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section End -->
+
+<!-- ===============================
  ODBUS CONTENT SECTION
 ================================ -->
-    <section class="odbus-info-section">
-        <div class="container">
+<section class="odbus-info-section">
+    <div class="container">
 
-            <!-- ROW 1 -->
-            <div class="row align-items-center info-row">
+        <!-- ROW 1 -->
+        <div class="row align-items-center info-row">
 
-                <!-- IMAGE LEFT 4 -->
-                <div class="col-md-4">
-                    <div class="info-img left-img">
-                        <img src="assets/img/smart_travel.png" alt="Book Bus Ticket">
-                    </div>
+            <!-- IMAGE LEFT 4 -->
+            <div class="col-md-4">
+                <div class="info-img left-img">
+                    <img src="assets/img/smart_travel.png" alt="Book Bus Ticket">
                 </div>
-
-                <!-- CONTENT RIGHT 8 -->
-                <div class="col-md-8">
-                    <div class="info-content">
-                        <h2>ODBUS: Smart Bus Ticket Booking Platform for Odisha & Beyond</h2>
-
-                        <p>
-                            ODBUS is a fast-growing online bus ticket booking platform designed to simplify travel
-                            across Odisha and nearby regions. With a wide network of private and government bus
-                            operators,
-                            ODBUS helps travellers discover the best routes, compare fares, and book tickets seamlessly.
-                        </p>
-
-                        <p>
-                            Whether you're planning a short trip between cities or a long-distance journey,
-                            ODBUS ensures a reliable and hassle-free booking experience with real-time availability,
-                            transparent pricing, and easy seat selection.
-                        </p>
-
-                        <p>
-                            With extensive route coverage and trusted operator partnerships, ODBUS is committed
-                            to making bus travel more accessible, affordable, and convenient for everyone.
-                        </p>
-                    </div>
-                </div>
-
             </div>
 
+            <!-- CONTENT RIGHT 8 -->
+            <div class="col-md-8">
+                <div class="info-content">
+                    <h2>ODBUS: Smart Bus Ticket Booking Platform for Odisha & Beyond</h2>
 
-            <!-- ROW 2 -->
-            <div class="row align-items-center info-row reverse-row">
+                    <p>
+                        ODBUS is a fast-growing online bus ticket booking platform designed to simplify travel
+                        across Odisha and nearby regions. With a wide network of private and government bus
+                        operators,
+                        ODBUS helps travellers discover the best routes, compare fares, and book tickets seamlessly.
+                    </p>
 
-                <!-- CONTENT LEFT 8 -->
-                <div class="col-md-8">
-                    <div class="info-content">
-                        <h2>Why Choose ODBUS for Bus Booking?</h2>
-                        <p>Here’s what makes ODBUS a preferred choice for bus ticket booking:</p>
+                    <p>
+                        Whether you're planning a short trip between cities or a long-distance journey,
+                        ODBUS ensures a reliable and hassle-free booking experience with real-time availability,
+                        transparent pricing, and easy seat selection.
+                    </p>
 
-                        <ul>
-                            <li><strong>Easy & Fast Booking</strong> – Book your bus tickets in just a few clicks with a
-                                simple and user-friendly interface designed for all travellers.</li>
-                            <li><strong>Wide Route Coverage</strong> – Explore hundreds of routes across Odisha and
-                                neighbouring states with multiple boarding and dropping points.
-                            </li>
-                            <li><strong>Multiple Bus Options</strong> – Choose from AC, Non-AC, Sleeper, Seater, and
-                                luxury buses based on your comfort and budget.</li>
-                            <li><strong>Best Price Assurance</strong> – Compare ticket prices across operators and book
-                                at competitive fares without hidden charges.</li>
-                            <li><strong>Secure Payments</strong> – Make safe and secure payments using UPI, debit/credit
-                                cards, net banking, and wallets.</li>
-                            <li><strong>Real-Time Availability</strong> – Get up-to-date seat availability and instant
-                                booking confirmation.</li>
-                            <li><strong>Customer Support</strong> – Access dedicated support for booking assistance,
-                                cancellations, and travel-related queries.</li>
-                        </ul>
-                    </div>
+                    <p>
+                        With extensive route coverage and trusted operator partnerships, ODBUS is committed
+                        to making bus travel more accessible, affordable, and convenient for everyone.
+                    </p>
                 </div>
-
-                <!-- IMAGE RIGHT 4 -->
-                <div class="col-md-4">
-                    <div class="info-img right-img">
-                        <img src="assets/img/badge.png" alt="Why Choose ODBUS">
-                    </div>
-                </div>
-
-            </div>
-
-
-            <!-- ROW 3 -->
-            <div class="row align-items-center info-row">
-
-                <!-- IMAGE LEFT -->
-                <div class="col-md-4">
-                    <div class="info-img left-img">
-                        <img src="assets/img/ticket.png" alt="How to Book">
-                    </div>
-                </div>
-
-                <!-- CONTENT RIGHT -->
-                <div class="col-md-8">
-                    <div class="info-content">
-                        <h2>How to Book Bus Tickets Online on ODBUS?</h2>
-                        <p>Follow these simple steps to book your bus tickets:</p>
-
-                        <ul>
-                            <li>Visit the ODBUS website or mobile app.</li>
-                            <li>Enter source and destination cities.</li>
-                            <li>Select journey date.</li>
-                            <li>Browse available buses for your route.</li>
-                            <li>Choose your preferred bus, seat, and boarding point.</li>
-                            <li>Enter passenger details.</li>
-                            <li>Complete the payment using your preferred method.</li>
-                            <li>Receive instant booking confirmation via SMS, WhatsApp or email.</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <!-- ROW 4 -->
-            <div class="row align-items-center info-row reverse-row">
-
-                <!-- CONTENT LEFT -->
-                <div class="col-md-8">
-                    <div class="info-content">
-                        <h2>Exclusive Offers & Discounts</h2>
-
-                        <p>
-                            ODBUS regularly provides special deals and seasonal offers on bus bookings. Users can:
-                        </p>
-
-                        <ul>
-                            <li>Apply coupon codes during checkout</li>
-                            <li>Avail festival & seasonal discounts</li>
-                            <li>Access limited-time promotional fares</li>
-                        </ul>
-
-                        <p>
-                            Keep checking for the latest offers to save more on your travel.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- IMAGE RIGHT -->
-                <div class="col-md-4">
-                    <div class="info-img right-img">
-                        <img src="assets/img/gift.png" alt="Offers">
-                    </div>
-                </div>
-
             </div>
 
         </div>
-    </section>
 
-    <!-- ===============================
+
+        <!-- ROW 2 -->
+        <div class="row align-items-center info-row reverse-row">
+
+            <!-- CONTENT LEFT 8 -->
+            <div class="col-md-8">
+                <div class="info-content">
+                    <h2>Why Choose ODBUS for Bus Booking?</h2>
+                    <p>Here’s what makes ODBUS a preferred choice for bus ticket booking:</p>
+
+                    <ul>
+                        <li><strong>Easy & Fast Booking</strong> – Book your bus tickets in just a few clicks with a
+                            simple and user-friendly interface designed for all travellers.</li>
+                        <li><strong>Wide Route Coverage</strong> – Explore hundreds of routes across Odisha and
+                            neighbouring states with multiple boarding and dropping points.
+                        </li>
+                        <li><strong>Multiple Bus Options</strong> – Choose from AC, Non-AC, Sleeper, Seater, and
+                            luxury buses based on your comfort and budget.</li>
+                        <li><strong>Best Price Assurance</strong> – Compare ticket prices across operators and book
+                            at competitive fares without hidden charges.</li>
+                        <li><strong>Secure Payments</strong> – Make safe and secure payments using UPI, debit/credit
+                            cards, net banking, and wallets.</li>
+                        <li><strong>Real-Time Availability</strong> – Get up-to-date seat availability and instant
+                            booking confirmation.</li>
+                        <li><strong>Customer Support</strong> – Access dedicated support for booking assistance,
+                            cancellations, and travel-related queries.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- IMAGE RIGHT 4 -->
+            <div class="col-md-4">
+                <div class="info-img right-img">
+                    <img src="assets/img/badge.png" alt="Why Choose ODBUS">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ROW 3 -->
+        <div class="row align-items-center info-row">
+
+            <!-- IMAGE LEFT -->
+            <div class="col-md-4">
+                <div class="info-img left-img">
+                    <img src="assets/img/ticket.png" alt="How to Book">
+                </div>
+            </div>
+
+            <!-- CONTENT RIGHT -->
+            <div class="col-md-8">
+                <div class="info-content">
+                    <h2>How to Book Bus Tickets Online on ODBUS?</h2>
+                    <p>Follow these simple steps to book your bus tickets:</p>
+
+                    <ul>
+                        <li>Visit the ODBUS website or mobile app.</li>
+                        <li>Enter source and destination cities.</li>
+                        <li>Select journey date.</li>
+                        <li>Browse available buses for your route.</li>
+                        <li>Choose your preferred bus, seat, and boarding point.</li>
+                        <li>Enter passenger details.</li>
+                        <li>Complete the payment using your preferred method.</li>
+                        <li>Receive instant booking confirmation via SMS, WhatsApp or email.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ROW 4 -->
+        <div class="row align-items-center info-row reverse-row">
+
+            <!-- CONTENT LEFT -->
+            <div class="col-md-8">
+                <div class="info-content">
+                    <h2>Exclusive Offers & Discounts</h2>
+
+                    <p>
+                        ODBUS regularly provides special deals and seasonal offers on bus bookings. Users can:
+                    </p>
+
+                    <ul>
+                        <li>Apply coupon codes during checkout</li>
+                        <li>Avail festival & seasonal discounts</li>
+                        <li>Access limited-time promotional fares</li>
+                    </ul>
+
+                    <p>
+                        Keep checking for the latest offers to save more on your travel.
+                    </p>
+                </div>
+            </div>
+
+            <!-- IMAGE RIGHT -->
+            <div class="col-md-4">
+                <div class="info-img right-img">
+                    <img src="assets/img/gift.png" alt="Offers">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ===============================
  ODBUS CONTENT SECTION END
 ================================ -->
 
-    <section class="top-operators fluid-15" *ngIf="topOperators && topOperators.length > 0 ">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-left">
-                    <h3 class="title-section">Top Operators</h3>
-                </div>
-                <div class="col-md-6 text-right">
-                    <a routerLink="operators" class="border-btn bh">All Operators</a>
-                </div>
+<section class="top-operators fluid-15" *ngIf="topOperators && topOperators.length > 0 ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                <h3 class="title-section">Top Operators</h3>
+            </div>
+            <div class="col-md-6 text-right">
+                <a routerLink="operators" class="border-btn bh">All Operators</a>
             </div>
         </div>
-        <!-- <div class="container">
+    </div>
+    <!-- <div class="container">
             <ul>
                 <li class="text-left" *ngFor="let t of topOperators;">
                     <a href="javascript:void(0);" (click)="operator_detail(t.operator_url);"> <img
@@ -1304,31 +1400,31 @@
 
             </ul>
         </div> -->
-        <div class="container">
-            <div class="row operator-card-row">
+    <div class="container">
+        <div class="row operator-card-row">
 
-                <div class="col-md-3" *ngFor="let t of topOperators;">
-                    <div class="operator-card small-card" (click)="operator_detail(t.operator_url)">
+            <div class="col-md-3" *ngFor="let t of topOperators;">
+                <div class="operator-card small-card" (click)="operator_detail(t.operator_url)">
 
-                        <div class="card-content">
+                    <div class="card-content">
 
-                            <div class="icon-wrap">
-                                <img src="assets/img/icon-bus-alt.svg">
-                            </div>
+                        <div class="icon-wrap">
+                            <img src="assets/img/icon-bus-alt.svg">
+                        </div>
 
-                            <div class="operator-name">
-                                {{ t.organisation_name }}
-                            </div>
-
+                        <div class="operator-name">
+                            {{ t.organisation_name }}
                         </div>
 
                     </div>
+
                 </div>
-
             </div>
-        </div>
-    </section>
 
+        </div>
+    </div>
+</section>
+<!-- 
     <section class="blog" *ngIf="bloglist != ''">
         <div class="container">
             <div class="row">
@@ -1348,7 +1444,6 @@
 
             <div class="row blog-cards">
 
-                <!-- CARD 1 -->
                 <div class="col-md-4" *ngFor="let blog of bloglist">
                     <div class="blog-card">
 
@@ -1372,21 +1467,21 @@
 
             </div>
         </div>
-    </section>
-      <section class="top-routs fluid-15" *ngIf="popular_routes!=''">
+    </section> -->
+<section class="top-routs fluid-15" *ngIf="popular_routes!=''">
 
-        <div class="container">
-            <div class="row align-items-center mb-3">
-                <div class="col-md-6">
-                    <h3 class="title-section">Poupular Routes</h3>
-                </div>
-                <div class="col-md-6 text-right">
-                    <a routerLink="routes" class="btn btn-warning">All Routes</a>
-                </div>
+    <div class="container">
+        <div class="row align-items-center mb-3">
+            <div class="col-md-6">
+                <h3 class="title-section">Poupular Routes</h3>
+            </div>
+            <div class="col-md-6 text-right">
+                <a routerLink="routes" class="btn btn-warning">All Routes</a>
             </div>
         </div>
+    </div>
 
-        <!-- <div class="container">
+    <!-- <div class="container">
             <input type="hidden" [(ngModel)]="dtconfig.minDate" [min]="dtconfig.minDate" [max]="dtconfig.maxDate"
                 name="todayDate" id="todayDate" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker">
 
@@ -1402,188 +1497,188 @@
             </div>
         </div> -->
 
-        <!-- New Desing Section -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-6" *ngFor="let p of popular_routes">
+    <!-- New Desing Section -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6" *ngFor="let p of popular_routes">
 
-                    <div class="route-card" (click)="popularSearch(p.source[0].url, p.destination[0].url)">
+                <div class="route-card" (click)="popularSearch(p.source[0].url, p.destination[0].url)">
 
 
-                        <div class="route-left">
-                            <img src="assets/img/Icon-metro-location.svg" class="route-icon">
+                    <div class="route-left">
+                        <img src="assets/img/Icon-metro-location.svg" class="route-icon">
 
-                            <div class="route-text">
-                                <span class="city">{{ p.source[0].name }}</span>
-                                <span class="exchange">⇄</span>
-                                <span class="city">{{ p.destination[0].name }}</span>
-                            </div>
+                        <div class="route-text">
+                            <span class="city">{{ p.source[0].name }}</span>
+                            <span class="exchange">⇄</span>
+                            <span class="city">{{ p.destination[0].name }}</span>
                         </div>
+                    </div>
 
 
-                        <button class="book-btn">Book Now</button>
+                    <button class="book-btn">Book Now</button>
 
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- New Desing Section end-->
+
+</section>
+
+<!-- new link section -->
+<!-- NEW LINK SECTION (FAQ STYLE DESIGN) -->
+<section class="route-link-section fluid-15">
+    <div class="container">
+
+        <!-- Tabs -->
+        <ul class="route-tabs nav nav-tab">
+            <li class="active"><a href="#">Top Bus Routes</a></li>
+            <li><a href="#">Top Bus Operators</a></li>
+            <li><a href="#">Top Bus Services</a></li>
+            <li><a href="#">Quick Links</a></li>
+        </ul>
+
+        <div class="tab-content">
+
+            <!-- TAB 1 -->
+            <div class="tab-pane fade in active">
+                <div class="row route-grid">
+
+                    <div class="col-md-3">
+                        <a routerLink="/">Bhubaneswar to Cuttack Bus</a>
+                        <a routerLink="/">Puri to Bhubaneswar Bus</a>
+                        <a routerLink="/">Berhampur to Bhubaneswar Bus</a>
+                        <a routerLink="/">Cuttack to Sambalpur Bus</a>
+                        <a routerLink="/">Rourkela to Bhubaneswar Bus</a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a routerLink="/">Balasore to Bhubaneswar Bus</a>
+                        <a routerLink="/">Jeypore to Bhubaneswar Bus</a>
+                        <a routerLink="/">Angul to Cuttack Bus</a>
+                        <a routerLink="/">Baripada to Bhubaneswar Bus</a>
+                        <a routerLink="/">Rayagada to Berhampur Bus</a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a routerLink="/">Jharsuguda to Sambalpur Bus</a>
+                        <a routerLink="/">Bolangir to Bhubaneswar Bus</a>
+                        <a routerLink="/">Koraput to Bhubaneswar Bus</a>
+                        <a routerLink="/">Keonjhar to Cuttack Bus</a>
+                        <a routerLink="/">All Routes</a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a routerLink="/">Jharsuguda to Sambalpur Bus</a>
+                        <a routerLink="/">Bolangir to Bhubaneswar Bus</a>
+                        <a routerLink="/">Koraput to Bhubaneswar Bus</a>
+                        <a routerLink="/">Keonjhar to Cuttack Bus</a>
+                        <a routerLink="/">All Routes</a>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- TAB 2 -->
+            <div class="tab-pane fade">
+                <div class="row route-grid">
+
+                    <div class="col-md-3">
+                        <a href="#">Shyamoli Travels</a>
+                        <a href="#">Dolphin Travels</a>
+                        <a href="#">Maa Tarini Bus</a>
+                        <a href="#">Sai Krishna Travels</a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="#">Royal Cruiser</a>
+                        <a href="#">SRS Travels</a>
+                        <a href="#">Orange Tours</a>
+                        <a href="#">Mahadev Travels</a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="#">ODBUS Partner Buses</a>
+                        <a href="#">Luxury Sleeper Buses</a>
+                        <a href="#">AC Coaches</a>
+                        <a href="#">All Operators</a>
                     </div>
 
                 </div>
             </div>
-        </div>
 
-        <!-- New Desing Section end-->
+            <!-- TAB 3 -->
+            <div class="tab-pane fade">
+                <div class="row route-grid">
 
-    </section>
-
-    <!-- new link section -->
-    <!-- NEW LINK SECTION (FAQ STYLE DESIGN) -->
-    <section class="route-link-section fluid-15">
-        <div class="container">
-
-            <!-- Tabs -->
-            <ul class="route-tabs nav nav-tabs">
-                <li class="active"><a href="#">Top Bus Routes</a></li>
-                <li><a href="#">Top Bus Operators</a></li>
-                <li><a href="#">Top Bus Services</a></li>
-                <li><a href="#">Quick Links</a></li>
-            </ul>
-
-            <div class="tab-content">
-
-                <!-- TAB 1 -->
-                <div class="tab-pane fade in active">
-                    <div class="row route-grid">
-
-                        <div class="col-md-3">
-                            <a routerLink="/">Bhubaneswar to Cuttack Bus</a>
-                            <a routerLink="/">Puri to Bhubaneswar Bus</a>
-                            <a routerLink="/">Berhampur to Bhubaneswar Bus</a>
-                            <a routerLink="/">Cuttack to Sambalpur Bus</a>
-                            <a routerLink="/">Rourkela to Bhubaneswar Bus</a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a routerLink="/">Balasore to Bhubaneswar Bus</a>
-                            <a routerLink="/">Jeypore to Bhubaneswar Bus</a>
-                            <a routerLink="/">Angul to Cuttack Bus</a>
-                            <a routerLink="/">Baripada to Bhubaneswar Bus</a>
-                            <a routerLink="/">Rayagada to Berhampur Bus</a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a routerLink="/">Jharsuguda to Sambalpur Bus</a>
-                            <a routerLink="/">Bolangir to Bhubaneswar Bus</a>
-                            <a routerLink="/">Koraput to Bhubaneswar Bus</a>
-                            <a routerLink="/">Keonjhar to Cuttack Bus</a>
-                            <a routerLink="/">All Routes</a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a routerLink="/">Jharsuguda to Sambalpur Bus</a>
-                            <a routerLink="/">Bolangir to Bhubaneswar Bus</a>
-                            <a routerLink="/">Koraput to Bhubaneswar Bus</a>
-                            <a routerLink="/">Keonjhar to Cuttack Bus</a>
-                            <a routerLink="/">All Routes</a>
-                        </div>
-                        
-
+                    <div class="col-md-3">
+                        <a href="#">Shyamoli Travels</a>
+                        <a href="#">Dolphin Travels</a>
+                        <a href="#">Maa Tarini Bus</a>
+                        <a href="#">Sai Krishna Travels</a>
                     </div>
-                </div>
 
-                <!-- TAB 2 -->
-                <div class="tab-pane fade">
-                    <div class="row route-grid">
-
-                        <div class="col-md-3">
-                            <a href="#">Shyamoli Travels</a>
-                            <a href="#">Dolphin Travels</a>
-                            <a href="#">Maa Tarini Bus</a>
-                            <a href="#">Sai Krishna Travels</a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a href="#">Royal Cruiser</a>
-                            <a href="#">SRS Travels</a>
-                            <a href="#">Orange Tours</a>
-                            <a href="#">Mahadev Travels</a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a href="#">ODBUS Partner Buses</a>
-                            <a href="#">Luxury Sleeper Buses</a>
-                            <a href="#">AC Coaches</a>
-                            <a href="#">All Operators</a>
-                        </div>
-
+                    <div class="col-md-3">
+                        <a href="#">Royal Cruiser</a>
+                        <a href="#">SRS Travels</a>
+                        <a href="#">Orange Tours</a>
+                        <a href="#">Mahadev Travels</a>
                     </div>
-                </div>
 
-                <!-- TAB 3 -->
-                <div class="tab-pane fade">
-                    <div class="row route-grid">
-
-                        <div class="col-md-3">
-                            <a href="#">Shyamoli Travels</a>
-                            <a href="#">Dolphin Travels</a>
-                            <a href="#">Maa Tarini Bus</a>
-                            <a href="#">Sai Krishna Travels</a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a href="#">Royal Cruiser</a>
-                            <a href="#">SRS Travels</a>
-                            <a href="#">Orange Tours</a>
-                            <a href="#">Mahadev Travels</a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a href="#">ODBUS Partner Buses</a>
-                            <a href="#">Luxury Sleeper Buses</a>
-                            <a href="#">AC Coaches</a>
-                            <a href="#">All Operators</a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a href="#">ODBUS Partner Buses</a>
-                            <a href="#">Luxury Sleeper Buses</a>
-                            <a href="#">AC Coaches</a>
-                            <a href="#">All Operators</a>
-                        </div>
-
+                    <div class="col-md-3">
+                        <a href="#">ODBUS Partner Buses</a>
+                        <a href="#">Luxury Sleeper Buses</a>
+                        <a href="#">AC Coaches</a>
+                        <a href="#">All Operators</a>
                     </div>
-                </div>
 
-                <!-- TAB 4 -->
-                <div class="tab-pane fade">
-                    <div class="row route-grid">
-
-                        <div class="col-md-3">
-                            <a routerLink="/">Online Bus Tickets</a>
-                            <a routerLink="/">Offers</a>
-                            <a routerLink="/">Manage Booking</a>
-                            <a target="_blank" href="https://agent.odbus.in">Agent Login</a>
-                            <a target="_blank" href="https://operator.odbus.co.in">Operator Login</a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a routerLink="/">FAQ</a>
-                            <a routerLink="/">Blogs</a>
-                            <a routerLink="/">Operators</a>
-                            <a routerLink="/">Routes</a>
-                            <a routerLink="/">Info</a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a routerLink="/">Terms & Conditions</a>
-                            <a routerLink="/">Privacy Policy</a>
-                            <a routerLink="/">Careers</a>
-                            <a routerLink="/">About ODBUS</a>
-                            <a routerLink="/">Contact Us</a>
-                            <a routerLink="/">Sitemap</a>
-                        </div>
-
+                    <div class="col-md-3">
+                        <a href="#">ODBUS Partner Buses</a>
+                        <a href="#">Luxury Sleeper Buses</a>
+                        <a href="#">AC Coaches</a>
+                        <a href="#">All Operators</a>
                     </div>
-                </div>
 
+                </div>
+            </div>
+
+            <!-- TAB 4 -->
+            <div class="tab-pane fade">
+                <div class="row route-grid">
+
+                    <div class="col-md-3">
+                        <a routerLink="/">Online Bus Tickets</a>
+                        <a routerLink="/">Offers</a>
+                        <a routerLink="/">Manage Booking</a>
+                        <a target="_blank" href="https://agent.odbus.in">Agent Login</a>
+                        <a target="_blank" href="https://operator.odbus.co.in">Operator Login</a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a routerLink="/">FAQ</a>
+                        <a routerLink="/">Blogs</a>
+                        <a routerLink="/">Operators</a>
+                        <a routerLink="/">Routes</a>
+                        <a routerLink="/">Info</a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a routerLink="/">Terms & Conditions</a>
+                        <a routerLink="/">Privacy Policy</a>
+                        <a routerLink="/">Careers</a>
+                        <a routerLink="/">About ODBUS</a>
+                        <a routerLink="/">Contact Us</a>
+                        <a routerLink="/">Sitemap</a>
+                    </div>
+
+                </div>
             </div>
 
         </div>
-    </section>
+
+    </div>
+</section>
