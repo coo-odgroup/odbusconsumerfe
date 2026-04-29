@@ -1,10 +1,11 @@
-.line-span{
+.line-span {
     background-color: #EFC003;
     height: 2px;
     display: block;
     position: relative;
     margin-top: 63px;
 }
+
 .line-span .linkbo {
     text-align: center;
     display: inline-block;
@@ -16,163 +17,176 @@
     padding: 10px 0px;
     font-size: 24px;
 }
-.btn-anup{    padding: 9px 20px;
+
+.btn-anup {
+    padding: 9px 20px;
     border-radius: 0;
-    background-color: #f8f8f8;}
-.active {
-  background: #EFC003;
+    background-color: #f8f8f8;
 }
-.passenger{
+
+.active {
+    background: #EFC003;
+}
+
+.passenger {
     font-size: 16px;
     font-weight: bold;
     border-radius: 3px;
-    opacity: 1;   
-    margin-top: 20px; 
+    opacity: 1;
+    margin-top: 20px;
 }
 
-.passenger-detail{
+.passenger-detail {
     font-size: 16px;
     font-weight: bold;
     background: #f8f8f8 0% 0% no-repeat padding-box;
     border: 1px solid #00000026;
     border-radius: 3px;
-    opacity: 1; 
-    padding:15px 30px 30px 30px;
+    opacity: 1;
+    padding: 15px 30px 30px 30px;
 }
 
-.padding{
+.padding {
     padding-top: 10px;
     padding-bottom: 10px;
 
 }
 
-.box-padding{
+.box-padding {
     margin-top: 30px;
 
 }
 
-.tableclass th h5 img{
-    margin-right:5px;
+.tableclass th h5 img {
+    margin-right: 5px;
 }
 
-.tableclass .od22{
-    margin-left:20px; 
+.tableclass .od22 {
+    margin-left: 20px;
 }
 
-.tableclass .od20{
-    margin-left:24px; 
+.tableclass .od20 {
+    margin-left: 24px;
 }
-.tableclass .od21{
-    margin-left:24px;
+
+.tableclass .od21 {
+    margin-left: 24px;
     font-size: 15px;
 }
 
 
- label ,p{
+label,
+p {
     padding-top: 10px;
     color: #072C6B;
     font-size: 14px;
 }
 
-h5{
+h5 {
     /* padding-top: 10px; */
     color: #072C6B;
     font-weight: bold;
     font-size: 15px;
 }
 
-.grey{
-    color:#B2ADAD;
+.grey {
+    color: #B2ADAD;
     font-size: 14px;
 }
-.terms{
-    color:#B2ADAD;
+
+.terms {
+    color: #B2ADAD;
     font-size: 12px;
 }
 
-h6{
+h6 {
     color: #072C6B;
     font-size: 13px;
     line-height: 25px;
 }
 
-label{
+label {
     text-transform: capitalize;
 }
 
-hr{
+hr {
     border: 1px solid #efc003;
 }
 
-span{
-    color:#efc003;
+span {
+    color: #efc003;
 }
 
-.font{
-    color:#efc003;
+.font {
+    color: #efc003;
     font-size: 15px;
 }
-.padding-left{
+
+.padding-left {
     left: 15px;
     padding-left: 15px;
 }
 
 
 
-.fare-detail{
+.fare-detail {
     color: #072C6B;
     font-size: 13px;
 }
-.proceed{
-    width:200px;
+
+.proceed {
+    width: 200px;
 }
-.img1{
+
+.img1 {
     margin-top: 226px;
     margin-left: 9px;
 }
 
-.img2{
+.img2 {
     margin-top: 4px;
     margin-left: 13px;
     height: 114px;
 }
 
-.img3{
+.img3 {
     margin-left: 9px;
 }
 
-.bus{
+.bus {
     height: 38px;
     background: transparent url('../../assets/img/bus.svg') 0% 0% no-repeat padding-box;
     opacity: 1;
     margin-top: 35px;
 }
-.tableclass{
-    width:100%;
+
+.tableclass {
+    width: 100%;
 }
 
 
-.tableclass2{
-    width:100%;
+.tableclass2 {
+    width: 100%;
 }
 
 
 
-thead{
+thead {
     color: #B2ADAD;
 }
 
-tbody{
+tbody {
     color: #072C6B;
     font-size: 15px;
 }
-.roboto{
+
+.roboto {
     font-size: 14px;
     font-weight: 400;
 }
 
-.make-payment{
-    
+.make-payment {
+
     width: 300px;
     height: 75px;
     background: var(--unnamed-color-efc003) 0% 0% no-repeat padding-box;
@@ -182,24 +196,25 @@ tbody{
     padding-top: 20px;
     margin-bottom: 27px;
     margin-bottom: 15px;
-    
+
 }
 
-.payment_box{
+.payment_box {
     top: 15px;
 }
 
-h4{
+h4 {
     font-size: 20px;
     font-weight: bold;
     color: #072C6B;
     text-align: left;
-   
+
 }
 
-.payment-btn{
-    padding-left:45px;
+.payment-btn {
+    padding-left: 45px;
 }
+
 .small_tag {
     font-size: 11px;
     margin-left: 6px;
@@ -207,17 +222,17 @@ h4{
     line-height: 0;
 }
 
-.option > img{
+.option>img {
 
     width: 24px;
     margin: 1px 10px 5px 10px;
 
 }
 
-.option > span{
+.option>span {
 
-   color: #072C6B;
-   font-size: 12px;
+    color: #072C6B;
+    font-size: 12px;
 
 }
 
@@ -225,434 +240,846 @@ input[type="radio"]:checked {
 
     background: transparent url('../../assets/img/Group631.svg') 0% 0% no-repeat padding-box;
 
-    
-  }
 
-  .option > label{
-      margin: 0px 34px;
-  }
+}
 
-  .input-group-append {
+.option>label {
+    margin: 0px 34px;
+}
+
+.input-group-append {
     margin-left: -20px !important;
-  }
-  .continue{
+}
+
+.continue {
     margin: 0px 12px;
     font-size: 10px;
     padding: 0px 28px;
     border-radius: 0px;
     color: #072c6b;
-  }
+}
 
-  .text-field{
+.text-field {
     width: 85px;
     padding: 3px 14px;
     color: #072c6b;
 }
 
-::placeholder{
+::placeholder {
     font-size: 12px;
-    color:#072C6B
-  }
+    color: #072C6B
+}
 
-  .grey_tag{
+.grey_tag {
 
     margin: 0px 20px;
     font-size: 11px;
     line-height: 0px;
 
-  }
-
-  .print-ticket{
-    margin: 10px 40px;
-  }
-
-  .smile{
-      width: 25px;
-      margin: 4px 7px 8px;
-  }
-
-  .print{
-      font-weight: bold;
-  }
-
-  .paragraph{
-      color:#B2ADAD;
-      font-size: 13px;
-  }
-
-.st-ri{text-align: right; color: #9A9595;}
-.st-le{text-align: left;}
-.head-section{background-color: #072C6B; width: 100%; padding: 10px 10px 1px; border-top-left-radius: 16px; border-top-right-radius: 16px;}
-.head-section h2{text-align: left; color: #fff; font-size: 16px;}
-.btn-de{    margin-top: 17px;
-    margin-bottom: 22px;}
-
-.search-result2{
-    margin-top:30px;
-    margin-bottom: 60px;
-   
 }
-.man-print{
+
+.print-ticket {
+    margin: 10px 40px;
+}
+
+.smile {
+    width: 25px;
+    margin: 4px 7px 8px;
+}
+
+.print {
+    font-weight: bold;
+}
+
+.paragraph {
+    color: #B2ADAD;
+    font-size: 13px;
+}
+
+.st-ri {
+    text-align: right;
+    color: #9A9595;
+}
+
+.st-le {
+    text-align: left;
+}
+
+.head-section {
+    background-color: #072C6B;
+    width: 100%;
+    padding: 10px 10px 1px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.head-section h2 {
+    text-align: left;
+    color: #fff;
+    font-size: 16px;
+}
+
+.btn-de {
+    margin-top: 17px;
+    margin-bottom: 22px;
+}
+
+.search-result2 {
+    margin-top: 30px;
+    margin-bottom: 60px;
+
+}
+
+.man-print {
     float: right;
 }
 
-.btn-warning:not(:disabled):not(.disabled).active{
+.btn-warning:not(:disabled):not(.disabled).active {
     color: #000000;
     background-color: #efc003;
     border-color: #efc003;
 }
 
-.mb-center{
+.mb-center {
     text-align: center !important;
 }
 
-.mb25{
+.mb25 {
     margin-bottom: 25px;
 }
-.red{
+
+.red {
     color: #ff0000;
 }
 
-.mt60{
+.mt60 {
     margin-top: 60px;
 }
 
-.st-ri{
-    width:50%;
+.st-ri {
+    width: 50%;
 }
 
-.tableclass tbody{
+.tableclass tbody {
     text-transform: uppercase;
 }
 
-.tableclass2 tbody{
+.tableclass2 tbody {
     text-transform: uppercase;
 }
 
 .container {
-    max-width:1320px !important;
-    margin:0 auto ;
+    max-width: 1320px !important;
+    margin: 0 auto;
 }
 
-.od-body{
-    border:2px solid #323232;
+.od-body {
+    border: 2px solid #323232;
     padding: 25px;
     margin-top: 20px;
     background-color: #ffffff;
 }
 
 .row {
- display: flex;
- flex-wrap: wrap;
- margin-right: -15px;
- margin-left: -15px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
 }
 
-.od-logo{
-   height: 80px;
+.od-logo {
+    height: 80px;
 }
 
-.odtext24 h3{
-   font-size:20px;
-   text-align: left;
-   line-height:26px;
-   font-weight:600;
-   color: #323232;
+.odtext24 h3 {
+    font-size: 20px;
+    text-align: left;
+    line-height: 26px;
+    font-weight: 600;
+    color: #323232;
 }
 
-.odtext32{
-   font-size:28px;
-   text-align: center;
-   line-height:34px;
-   font-weight:600;
-   padding-top: 8px;
-   color: #043c5d;
+.odtext32 {
+    font-size: 28px;
+    text-align: center;
+    line-height: 34px;
+    font-weight: 600;
+    padding-top: 8px;
+    color: #043c5d;
 }
 
-.odtext32 span{
-   font-weight: 800;
+.odtext32 span {
+    font-weight: 800;
 }
 
-.od-bktext{
-   font-size:18px;
-   text-align: center;
-   line-height: 22px;
-   color: #000000;
-   border:1px solid #c4c4c4 ;
-   padding:8px ;
-   font-weight: 600;
-}
-.od-banner{
-   width: 100%;
-}
-.od-qrcode{
-   background:#c4c4c4;
-   padding: 15px;
-   width: 100%;
-   margin-top: 34px;
-}
-.mt30{
- margin-top: 35px;
-}
-.mb25{
-   
-   margin-bottom: 35px;
+.od-bktext {
+    font-size: 18px;
+    text-align: center;
+    line-height: 22px;
+    color: #000000;
+    border: 1px solid #c4c4c4;
+    padding: 8px;
+    font-weight: 600;
 }
 
-.mb40{
-   margin-bottom: 40px;
+.od-banner {
+    width: 100%;
 }
 
-.odbox1{
- border: 1px solid #c4c4c4;
- padding:25px 15px;
+.od-qrcode {
+    background: #c4c4c4;
+    padding: 15px;
+    width: 100%;
+    margin-top: 34px;
 }
 
-.odbox1 ol{
- margin-left: -20px;
+.mt30 {
+    margin-top: 35px;
 }
 
-.odbox2{
- border: 1px solid #c4c4c4;
- padding:25px 15px;
+.mb25 {
+
+    margin-bottom: 35px;
 }
 
-.odbox2 p{
- font-size:18px;
- color: #000000;
- font-weight: 600;
- margin-bottom: 8px;
+.mb40 {
+    margin-bottom: 40px;
 }
 
-.odbox3 p{
- font-size:18px;
- color: #000000;
- font-weight: 600;
- margin-bottom: 8px;
- text-align: right;
+.odbox1 {
+    border: 1px solid #c4c4c4;
+    padding: 25px 15px;
 }
 
- /* Mobile Version Ticket Cancellation Start- */
- .mobile-mybooking-top{
+.odbox1 ol {
+    margin-left: -20px;
+}
+
+.odbox2 {
+    border: 1px solid #c4c4c4;
+    padding: 25px 15px;
+}
+
+.odbox2 p {
+    font-size: 18px;
+    color: #000000;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.odbox3 p {
+    font-size: 18px;
+    color: #000000;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: right;
+}
+
+/* Mobile Version Ticket Cancellation Start- */
+.mobile-mybooking-top {
     background-color: #efc003;
-    padding:12px 18px 80px;
+    padding: 12px 18px 80px;
     /*position: fixed;
     z-index: 99;*/
     width: 100%;
     top: 0;
     box-shadow: 0 3px 10px #0003;
-  }
-  
-  .mobile-mybooking-top .mob-arrow-left i{
-    font-size:30px;
+}
+
+.mobile-mybooking-top .mob-arrow-left i {
+    font-size: 30px;
     color: #072c6b;
-    margin-top:10px;
-  }
-  
-  .mobile-mybooking-top .mob-list-center h5{
+    margin-top: 10px;
+}
+
+.mobile-mybooking-top .mob-list-center h5 {
     color: #072c6b;
-    font-size:20px;
-    font-weight:800;
+    font-size: 20px;
+    font-weight: 800;
     text-align: left;
-    padding-top:10px;
-    padding-left:5px;
+    padding-top: 10px;
+    padding-left: 5px;
     margin-bottom: 4px;
-  
-  }
-  
-  .mobile-logo img{
-    height:42px;
-    float:right;
-  }
-  
-  .mobile-ticket-canceldt-box{
-    margin:-55px 20px 30px
-  }
-  
-  .mobile-ticket-canceldt-box{
+
+}
+
+.mobile-logo img {
+    height: 42px;
+    float: right;
+}
+
+.mobile-ticket-canceldt-box {
+    margin: -55px 20px 30px
+}
+
+.mobile-ticket-canceldt-box {
     background-color: #fff;
-    border-radius:8px;
-    padding:20px;    
-  }
-  
-  .mobile-ticket-canceldt-box .mob-tk-dt h5{
-   font-size: 17px;
-   font-weight: 600;
-   color: #072c6b;
-   text-align: center;
-  }
-  
-  .mobile-ticket-canceldt-box .mob-tk-dt img{
-   width:100%;
-   text-align: center;
-  }
-  
-  .mobile-ticket-canceldt-box .linebg{
-    height:18px;
-  }
-  
-  .mobile-ticket-canceldt-box .mob-tk-dt2 h6{
-   font-size: 15px;
-   font-weight: 600;
-   color: #072c6b;
-   line-height: 20px;
-   text-align: center !important;
-  }
-  
-  .mobile-ticket-canceldt-box .mob-tk-dt3 h6{
-   font-size: 15px;
-   font-weight: 600;
-   color: #072c6b;
-   line-height: 24px;
-  }
-  
-  .mobile-ticket-canceldt-box .mob-tk-dt3 h6 span{
-   font-size: 15px;
-   font-weight: 500;
-   color: #b5b6b8;
-  }
-  
-  .mobile-ticket-canceldt-box .mob-tk-dt4{
-   margin-top: 12px;
-  }
-  
-  .mobile-ticket-canceldt-box .mob-tk-dt4 h6{
-   font-size: 15px;
-   font-weight: 600;
-   color: #072c6b;
-   line-height: 24px;
-  }
-  
-  
-  .mobile-ticket-canceldt-box .mob-tk-dt4 h6 span{
-   font-size: 18px;
-   font-weight: 500;
-   color: #b5b6b8;
-  }
-  
-  .mobile-ticket-canceldt-box .mob-submit{
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.mobile-ticket-canceldt-box .mob-tk-dt h5 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #072c6b;
+    text-align: center;
+}
+
+.mobile-ticket-canceldt-box .mob-tk-dt img {
+    width: 100%;
+    text-align: center;
+}
+
+.mobile-ticket-canceldt-box .linebg {
+    height: 18px;
+}
+
+.mobile-ticket-canceldt-box .mob-tk-dt2 h6 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #072c6b;
+    line-height: 20px;
+    text-align: center !important;
+}
+
+.mobile-ticket-canceldt-box .mob-tk-dt3 h6 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #072c6b;
+    line-height: 24px;
+}
+
+.mobile-ticket-canceldt-box .mob-tk-dt3 h6 span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #b5b6b8;
+}
+
+.mobile-ticket-canceldt-box .mob-tk-dt4 {
+    margin-top: 12px;
+}
+
+.mobile-ticket-canceldt-box .mob-tk-dt4 h6 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #072c6b;
+    line-height: 24px;
+}
+
+
+.mobile-ticket-canceldt-box .mob-tk-dt4 h6 span {
+    font-size: 18px;
+    font-weight: 500;
+    color: #b5b6b8;
+}
+
+.mobile-ticket-canceldt-box .mob-submit {
     background: #efc003;
     color: #072c6b;
     border-radius: 5px;
     font-size: 18px;
-    text-align:center;
+    text-align: center;
     border: none;
-    padding:8px 15px;
+    padding: 8px 15px;
     text-transform: uppercase;
     font-weight: 600;
     width: 100%;
-  }  
-  .mobile-fixed-bottom {
+}
+
+.mobile-fixed-bottom {
     position: fixed;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index:99999;
-  }
-  .mobile-fixed-bottom .home{
+    z-index: 99999;
+}
+
+.mobile-fixed-bottom .home {
     color: #323232;
-  }
-  
-  .mobile-fixed-bottom .home i{
+}
+
+.mobile-fixed-bottom .home i {
     font-size: 24px;
-  }
-  
-  .mobile-fixed-bottom .active{
+}
+
+.mobile-fixed-bottom .active {
     color: #efc003;
-  }
-  
-  .mobile-fixed-bottom .active p{
+}
+
+.mobile-fixed-bottom .active p {
     color: #efc003 !important;
-  }
-  
-  .mobile-fixed-bottom .home p{
+}
+
+.mobile-fixed-bottom .home p {
     color: #323232;
-    font-size:16px;
+    font-size: 16px;
     font-weight: 600;
-  }
-  
-  .mobile-bg-danger {
-    background-color: #ffffff!important;
-    padding-top:12px;
+}
+
+.mobile-bg-danger {
+    background-color: #ffffff !important;
+    padding-top: 12px;
     padding-bottom: 8px;
-    -webkit-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
-   -moz-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
-   box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
-  }
-  
-  .mob-mtbh{
+    -webkit-box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.6);
+}
+
+.mob-mtbh {
     height: 80px;
-  }
+}
 
-   /* Mobile Menu Section */
+/* Mobile Menu Section */
 
-   .mobile-logo img{
-    height:42px;
-    float:right;
-  } 
-  
-  .mobile-myaccount-top .mob-logintx a{
-      float:right;
-      font-size:17px;
-      color: #072c6b;
-      font-weight: 600;
-      padding-top:8px ;
-  }
+.mobile-logo img {
+    height: 42px;
+    float: right;
+}
 
-  .mobile-myaccount-top{
+.mobile-myaccount-top .mob-logintx a {
+    float: right;
+    font-size: 17px;
+    color: #072c6b;
+    font-weight: 600;
+    padding-top: 8px;
+}
+
+.mobile-myaccount-top {
     background-color: #efc003;
-    padding:12px 18px 14px;
+    padding: 12px 18px 14px;
     position: fixed;
     z-index: 99;
     width: 100%;
     top: 0;
     box-shadow: 0 3px 10px #0003;
-  } 
+}
 
-  .mobile-myaccount-middle{
-       margin:88px 20px 60px
-   }
+.mobile-myaccount-middle {
+    margin: 88px 20px 60px
+}
 
-  .mobile-myaccount-middle .mobile-menu {
-    width:100%; 
+.mobile-myaccount-middle .mobile-menu {
+    width: 100%;
     list-style-type: none;
-    padding-left: 0px; 
-  }
+    padding-left: 0px;
+}
 
-  .mobile-myaccount-middle .mobile-menu a {
-      background-color: #fff;
-      display: block;   
-      color: #072c6b;
-      padding:8px 18px; 
-      text-decoration: none; 
-      font-size :17px;
-      font-weight: 600;
-      margin-bottom:10px;
-      border-radius: 4px;
-  }
+.mobile-myaccount-middle .mobile-menu a {
+    background-color: #fff;
+    display: block;
+    color: #072c6b;
+    padding: 8px 18px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
 
-  .mobile-myaccount-middle .mobile-menu a i{
+.mobile-myaccount-middle .mobile-menu a i {
     color: #efc003;
     margin-right: 8px;
-  } 
+}
 
-  .mob-tk-dt3 small{
+.mob-tk-dt3 small {
     font-size: 13px !important;
     font-weight: 600 !important;
     color: #323232 !important;
-  }
+}
 
-  .pass-mob table td, .pass-mob table th{
-    padding:4px 12px;
-  }
+.pass-mob table td,
+.pass-mob table th {
+    padding: 4px 12px;
+}
 
-  .fare-backup table td{
-    padding:3px 12px;
+.fare-backup table td {
+    padding: 3px 12px;
     color: #323232;
-  }
+}
 
-  .fare-backup table td strong{
+.fare-backup table td strong {
     font-size: 16px;
     color: #c7a003
-  }
-  
+}
+
+
+
+/* =====================================================
+   MOBILE TICKET FULL RESPONSIVE CODE
+===================================================== */
+
+@media (max-width:767px) {
+
+    .search-result2{
+        display: none;
+    }
+
+    .mobile-ticket-page {
+        background: #f4f6fb;
+        padding: 12px 10px 25px;
+    }
+
+    .mobile-ticket-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 14px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+    }
+
+    /* ===================================
+   TOP HEADER
+=================================== */
+    .ticket-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+        justify-content: space-between;
+    }
+
+    .ticket-logo {
+        height: 42px;
+    }
+
+    .ticket-head-text h3 {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 800;
+        color: #1b2155;
+    }
+
+    .ticket-head-text p {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: #666;
+    }
+
+    /* ===================================
+   STATUS
+=================================== */
+    .ticket-status {
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+
+    .confirmed {
+        background: #eafaf0;
+        color: #159447;
+    }
+
+    .cancelled {
+        background: #fff0f0;
+        color: #d21e1e;
+    }
+
+    /* ===================================
+   SECTION TITLE
+=================================== */
+    .ticket-section {
+        margin-bottom: 18px;
+    }
+
+    .ticket-section h4 {
+        font-size: 15px;
+        font-weight: 800;
+        color: #1b2155;
+        border-left: 4px solid #f0c004;
+        padding-left: 10px;
+        margin-bottom: 12px;
+    }
+
+    /* ===================================
+   FIELD
+=================================== */
+    .field-block {
+        margin-bottom: 10px;
+    }
+
+    .field-label {
+        display: block;
+        font-size: 11px;
+        color: #888;
+        margin: 0 0 6px 6px;
+    }
+
+    .field-box {
+        background: #f8f9fc;
+        border: 1px solid #e7eaf2;
+        border-radius: 12px;
+        padding: 12px;
+        min-height: 46px;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 700;
+        color: #111;
+        line-height: 20px;
+    }
+
+    /* ===================================
+   GRID 2 COLUMN
+=================================== */
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    /* ===================================
+   FROM TO
+=================================== */
+    .route-row {
+        display: grid;
+        grid-template-columns: 1fr 34px 1fr;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .route-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        height: 100%;
+        font-size: 20px;
+        color: #1b2155;
+        font-weight: 800;
+        margin-top: 18px;
+    }
+
+    /* ===================================
+   BUS DETAILS
+=================================== */
+    .bus-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .full-row {
+        grid-column: 1 / -1;
+    }
+
+    /* ===================================
+   PASSENGERS
+=================================== */
+    .passenger-row {
+        background: #f8f9fc;
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        gap: 10px;
+    }
+
+    /* ===================================
+   QR
+=================================== */
+    .qr-center {
+        text-align: center;
+    }
+
+    /* ===================================
+   TOTAL FARE NEW STYLE
+=================================== */
+    .fare-summary-card {
+        background: #ffffff;
+        border: 1px solid #ececec;
+        border-radius: 14px;
+        padding: 14px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .03);
+    }
+
+    .fare-top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+        padding-bottom: 12px;
+    }
+
+    .fare-main-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: #111;
+        line-height: 1.2;
+    }
+
+    .fare-sub-title {
+        font-size: 13px;
+        color: #555;
+        margin-top: 2px;
+    }
+
+    .fare-grand-total {
+        font-size: 20px;
+        font-weight: 800;
+        color: #1b2155;
+        white-space: nowrap;
+    }
+
+    .fare-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+        font-size: 14px;
+        color: #222;
+    }
+
+    .fare-line span {
+        color: #555;
+    }
+
+    .fare-line strong {
+        font-size: 14px;
+        color: #111;
+        white-space: nowrap;
+    }
+
+    .fare-bottom-row {
+        border-top: 1px solid #ececec;
+        margin-top: 12px;
+        padding-top: 14px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .fare-bottom-row span {
+        font-size: 18px;
+        font-weight: 800;
+        color: #111;
+        line-height: 1.3;
+    }
+
+    .fare-bottom-row strong {
+        font-size: 24px;
+        font-weight: 900;
+        color: #111;
+        white-space: nowrap;
+    }
+
+    /* ===================================
+   PRINT BUTTON
+=================================== */
+    .mobile-print-btn {
+        width: 100%;
+        height: 46px;
+        border: none;
+        border-radius: 12px;
+        background: #f0c004;
+        color: #1b2155;
+        font-size: 15px;
+        font-weight: 800;
+        margin-top: 10px;
+    }
+
+}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width:420px) {
+
+    .mobile-ticket-card {
+        padding: 12px;
+    }
+
+    .ticket-logo {
+        height: 38px;
+    }
+
+    .ticket-head-text h3 {
+        font-size: 16px;
+    }
+
+    .ticket-head-text p {
+        font-size: 11px;
+    }
+
+    /* KEEP 2 COLUMN */
+    .grid-2 {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .bus-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    /* FROM TO */
+    .route-row {
+        grid-template-columns: 1fr 26px 1fr;
+        gap: 6px;
+    }
+
+    .route-arrow {
+        font-size: 16px;
+        margin-top: 16px;
+    }
+
+    /* FIELDS */
+    .field-box {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    /* PASSENGER */
+    .passenger-row {
+        font-size: 12px;
+        padding: 9px 10px;
+    }
+
+    /* FARE */
+    .fare-summary-card {
+        padding: 12px;
+    }
+
+    .fare-main-title {
+        font-size: 16px;
+    }
+
+    .fare-sub-title {
+        font-size: 12px;
+    }
+
+    .fare-grand-total {
+        font-size: 18px;
+    }
+
+    .fare-line {
+        font-size: 13px;
+        padding: 7px 0;
+    }
+
+    .fare-line strong {
+        font-size: 13px;
+    }
+
+    .fare-bottom-row span {
+        font-size: 16px;
+    }
+
+    .fare-bottom-row strong {
+        font-size: 22px;
+    }
+
+    /* BUTTON */
+    .mobile-print-btn {
+        height: 44px;
+        font-size: 14px;
+    }
+
+}
