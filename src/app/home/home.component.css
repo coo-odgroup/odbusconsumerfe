@@ -1037,7 +1037,6 @@ input {
     width: 100%;
     height: 50px !important;
     border-radius: 12px !important;
-    border: 1px solid #e5e7ef !important;
     background: #fff !important;
     padding-left: 40px !important;
     padding-right: 34px !important;
@@ -1118,13 +1117,27 @@ input {
     padding-right: 12px !important;
   }
 
-  .quick-date-today,
-  .quick-date-tomorrow {
+  .quick-date-today {
     min-width: auto;
     height: 50px;
     border-radius: 12px;
-    border: 1px solid #e5e7ef;
-    background: #f8f9fc;
+    border: 1px solid #d8e0ff;
+    background: #fff5d4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #1b2155;
+    cursor: pointer;
+  }
+
+  .quick-date-tomorrow{
+    min-width: auto;
+    height: 50px;
+    border-radius: 12px;
+    border: 1px solid #d8e0ff;
+    background: #ddd;
     display: flex;
     align-items: center;
     justify-content: center;
