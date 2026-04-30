@@ -68,6 +68,16 @@ import { PaymentStatusModule } from './payment-status/payment-status.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlogListingComponent } from './bloglisting/bloglisting.component';
 import { BlogDetailComponent } from './blogdetails/blogdetails.component';
+import { RecentSearchComponent } from './home/recent-search/recent-search.component';
+import { AdvantageComponent } from './home/advantage/advantage.component';
+import { GrowingComponent } from './home/growing/growing.component';
+import { DownloadAppComponent } from './home/download-app/download-app.component';
+import { OdbusOffersComponent } from './home/odbus-offers/odbus-offers.component';
+import { FaqsComponent } from './home/faqs/faqs.component';
+import { InfoComponent } from './home/info/info.component';
+import { RouteLinksComponent } from './home/route-links/route-links.component';
+import { TopOperatorsComponent } from './home/top-operators/top-operators.component';
+import { TopRoutesComponent } from './home/top-routes/top-routes.component';
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -132,7 +142,17 @@ const ngWizardConfig: NgWizardConfig = {
     MaintenanceComponent,
     ProfiledeleteComponent,
     BlogListingComponent,
-    BlogDetailComponent
+    BlogDetailComponent,
+    RecentSearchComponent,
+    AdvantageComponent,
+    GrowingComponent,
+    DownloadAppComponent,
+    OdbusOffersComponent,
+    FaqsComponent,
+    InfoComponent,
+    RouteLinksComponent,
+    TopOperatorsComponent,
+    TopRoutesComponent
   ], 
   imports: [
     // BrowserAnimationsModule,
