@@ -1,0 +1,79 @@
+<ng-template #Desktop>
+  <section
+    class="section-offer carousel-home fluid-15"
+    *ngIf="Offers.length > 0"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="section-offer-left">
+            <h2>ODBUS OFFERS desktop</h2>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item cursor" role="presentation">
+              <a
+                class="nav-link"
+                id="messages-tab"
+                data-toggle="tab"
+                routerLink="offers"
+                role="tab"
+                aria-controls="messages"
+                aria-selected="false"
+                >View All</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-12 section-offer-right-tab mt-4">
+          <carousel
+            [cellsToShow]="3"
+            [loop]="true"
+            [autoplay]="false"
+            [autoplayInterval]="2000"
+            [images]="offerList"
+          >
+          </carousel>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #Mobile>
+  <div class="p-3 mobile-discount">
+    <div class="row m-0">
+      <div class="col-7 pl-1 text-left">
+        <h6 class="mb-0">ODBUS Offers mob</h6>
+      </div>
+      <div class="col-5 pr-1 off-text">
+        <a
+          class="text-right"
+          id="messages-tab-mob"
+          data-toggle="tab"
+          routerLink="offers"
+          role="tab"
+          aria-controls="messages"
+          aria-selected="false"
+          >View All Offer</a
+        >
+      </div>
+    </div>
+    <div class="row m-0">
+      <div class="col-12 pl-1 pr-1 section-offer-right-tab mt-1">
+        <carousel
+          [cellsToShow]="1"
+          [loop]="true"
+          [autoplay]="false"
+          [arrows]="false"
+          [autoplayInterval]="2000"
+          [images]="offerList"
+          style="height: 160px"
+        >
+        </carousel>
+      </div>
+    </div>
+  </div>
+</ng-template>
