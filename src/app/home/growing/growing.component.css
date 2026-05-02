@@ -1,0 +1,104 @@
+/* SECTION */
+.stats-section {
+    padding: 40px 20px;
+    background: linear-gradient(180deg, #f7f9ff, #ffffff);
+    text-align: center;
+}
+
+/* TITLE */
+.stats-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: #0d2c6c;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+/* GRID */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+/* CARD */
+.stat-card {
+    background: linear-gradient(135deg, #0f2b6c 0%, #1b4db3 100%) !important;
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 10px 20px;
+    /* border: 1px solid rgba(0, 0, 0, 0.05); */
+    transition: all 0.3s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* 🔶 ALWAYS VISIBLE TOP BAR */
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* always full */
+    height: 4px;
+    background: linear-gradient(90deg, #ffd54f, #ffb300);
+}
+
+/* OPTIONAL subtle hover lift (can remove if not needed) */
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* ICON */
+.icon-wrap {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 15px;
+    background: linear-gradient(135deg, #ffd54f, #ffb300);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-wrap img {
+    width: 30px;
+}
+
+/* COUNT */
+.stat-card h3 {
+    font-size: 30px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+/* LABEL */
+.stat-card p {
+    font-size: 14px;
+    color: #f0c004;
+    font-weight: 500;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .stat-card h3 {
+        font-size: 18px;
+    }
+
+    .stats-title{
+        font-size: 18px;
+    }
+}

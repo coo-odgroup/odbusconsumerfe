@@ -587,156 +587,297 @@ input {
 
 /* OFFER MODAL FULL DESIGN */
 
-.offer-popup-wrap{
-  width:100%;
-  max-width:1080px;
-  margin:auto;
-  background:#fff;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 20px 50px rgba(0,0,0,.18);
+
+/* ============================= */
+/* 🔥 MODAL BACKDROP + POSITION  */
+/* ============================= */
+
+.custom-offer-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.custom-offer-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+/* ============================= */
+/* 📦 MODAL WRAPPER (YOUR DESIGN) */
+/* ============================= */
+
+.offer-popup-wrap {
+  width: 100%;
+  max-width: 1080px;
+  margin: auto;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .18);
+
+  position: relative;
+  z-index: 2;
+
+  animation: popupFade 0.25s ease;
+}
+
+/* animation */
+@keyframes popupFade {
+  from {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ============================= */
 /* HEADER */
-.offer-popup-header{
-  height:60px;
-  background:#1b2155;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 24px;
+/* ============================= */
+
+.offer-popup-header {
+  height: 60px;
+  background: #1b2155;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
 }
 
-.offer-popup-header h3{
-  margin:0;
-  color:#fff;
-  font-size:20px;
-  font-weight:700;
+.offer-popup-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
 }
 
-.offer-close-btn{
-  border:none;
-  background:none;
-  color:#fff;
-  font-size:38px;
-  line-height:1;
-  cursor:pointer;
+.offer-close-btn {
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
 }
 
+/* ============================= */
 /* BODY */
-.offer-popup-body{
-  display:flex;
-  gap:24px;
-  padding:26px 24px 28px;
+/* ============================= */
+
+.offer-popup-body {
+  display: flex;
+  gap: 24px;
+  padding: 26px 24px 28px;
 }
 
+/* ============================= */
 /* LEFT */
-.offer-left-side{
-  width:32%;
+/* ============================= */
+
+.offer-left-side {
+  width: 32%;
 }
 
-.offer-info-card{
-  background:#f7f8fc;
-  border:1px solid #e5e7f0;
-  border-radius:12px;
-  padding:18px;
+.offer-info-card {
+  background: #f7f8fc;
+  border: 1px solid #e5e7f0;
+  border-radius: 12px;
+  padding: 18px;
 }
 
-.offer-row{
-  padding:0 0 16px;
-  margin-bottom:16px;
-  border-bottom:1px solid #ececec;
+.offer-row {
+  padding: 0 0 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #ececec;
 }
 
-.offer-row:last-of-type{
-  margin-bottom:0;
+.offer-row:last-of-type {
+  margin-bottom: 0;
 }
 
-.offer-row span{
-  display:block;
-  color:#8a8a8a;
-  font-size:13px;
-  margin-bottom:6px;
+.offer-row span {
+  display: block;
+  color: #8a8a8a;
+  font-size: 13px;
+  margin-bottom: 6px;
 }
 
-.offer-row strong{
-  color:#222;
-  font-size:16px;
-  font-weight:700;
+.offer-row strong {
+  color: #222;
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.copy-btn{
-  width:100%;
-  height:46px;
-  border:none;
-  border-radius:8px;
-  background:#f0c004;
-  color:#1b2155;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
-  margin-top:10px;
+.copy-btn {
+  width: 100%;
+  height: 46px;
+  border: none;
+  border-radius: 8px;
+  background: #f0c004;
+  color: #1b2155;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
 }
 
-.copy-btn:hover{
-  background:#1b2155;
-  color:#fff;
+.copy-btn:hover {
+  background: #1b2155;
+  color: #fff;
 }
 
-.offer-type-line{
-  margin-top:22px;
-  font-size:15px;
-  color:#333;
+.offer-type-line {
+  margin-top: 22px;
+  font-size: 15px;
+  color: #333;
 }
 
+/* ============================= */
 /* RIGHT */
-.offer-right-side{
-  width:68%;
+/* ============================= */
+
+.offer-right-side {
+  width: 68%;
 }
 
-.offer-right-side h4{
-  margin:0 0 14px;
-  color:#f0b400;
-  font-size:15px;
-  font-weight:700;
+.offer-right-side h4 {
+  margin: 0 0 14px;
+  color: #f0b400;
+  font-size: 15px;
+  font-weight: 700;
 }
 
-.offer-description{
-  color:#333;
-  font-size:15px;
-  line-height:2;
+.offer-description {
+  color: #333;
+  font-size: 15px;
+  line-height: 1.8;
 }
 
-.offer-description p{
-  margin:0 0 10px;
+.offer-description p {
+  margin: 0 0 10px;
 }
 
-.slider-desc{
-  margin-top:15px;
-  font-size:14px;
-  color:#555;
+.slider-desc {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
 }
 
+
+
+/* ============================= */
 /* MOBILE */
-@media(max-width:767px){
+/* ============================= */
 
-  .offer-popup-wrap{
-    max-width:100%;
-    border-radius:10px;
+@media (max-width: 767px) {
+
+  /* BODY STACK */
+  .offer-popup-body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
   }
 
-  .offer-popup-body{
-    display:block;
-    padding:16px;
-  }
-
+  /* FULL WIDTH BOTH */
   .offer-left-side,
-  .offer-right-side{
-    width:100%;
+  .offer-right-side {
+    width: 100%;
   }
 
-  .offer-right-side{
-    margin-top:18px;
+  /* REMOVE SIDE GAP ISSUE */
+  .offer-left-side {
+    max-width: 100%;
+  }
+
+  /* 🔥 CARD FIX + 2 COLUMN */
+  .offer-info-card {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+
+    display: grid;
+    /* ✅ NEW */
+    grid-template-columns: 1fr 1fr;
+    /* ✅ 2 column */
+    gap: 8px;
+  }
+
+  /* ROW COMPACT */
+  .offer-row {
+    padding: 6px 4px;
+    margin-bottom: 0;
+    border-bottom: none;
+    /* cleaner */
+  }
+
+  .offer-row span {
+    font-size: 11px;
+  }
+
+  .offer-row strong {
+    font-size: 13px;
+  }
+
+  /* 🔥 BUTTON FULL WIDTH */
+  .copy-btn {
+    height: 36px;
+    font-size: 13px;
+
+    grid-column: span 2;
+    /* ✅ full row */
+  }
+
+  /* HEADER */
+  .offer-popup-header {
+    height: 45px;
+    padding: 0 12px;
+  }
+
+  .offer-popup-header h3 {
+    font-size: 15px;
+  }
+
+  .offer-close-btn {
+    font-size: 24px;
+  }
+
+  /* OFFER TYPE */
+  .offer-type-line {
+    font-size: 12px;
+    margin-top: 6px;
+  }
+
+  /* DESCRIPTION */
+  .offer-right-side h4 {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .offer-description {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  /* REMOVE EXTRA SPACE ISSUE */
+  .offer-popup-wrap {
+    max-height: 95vh;
+    overflow: hidden;
   }
 
 }

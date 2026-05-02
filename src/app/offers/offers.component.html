@@ -97,13 +97,11 @@
           <div class="row">
             <div class="col-md-4" *ngFor="let o of allOffers;let i = index">
               <div class="card">
-                <a (click)="OfferModal(offermodal,i)">
+                <a (click)="openOffer(i)">
                   <img *ngIf="o.slider_photo && (o.slider_photo!='' && o.slider_photo!=null)" class="card-img-top"
-                    src="{{ o.slider_photo }}" />
+                    [src]="o.slider_photo" />
                 </a>
-                <div class="card-block">
-                  <!-- <h4 class="card-title">{{o.occassion}}</h4> -->
-                </div>
+                <div class="card-block"></div>
               </div>
             </div>
 
@@ -250,24 +248,24 @@
 
 <!-- CUSTOM OFFER MODAL (NO BOOTSTRAP PROPERTIES) -->
 
-<ng-template #offermodal let-modal>
+<!-- CUSTOM OFFER MODAL -->
+<div class="custom-offer-modal" *ngIf="showOfferModal">
 
+  <!-- OVERLAY -->
+  <div class="custom-offer-overlay" (click)="closeOfferModal()"></div>
   <div class="offer-popup-wrap">
 
     <!-- HEADER -->
     <div class="offer-popup-header">
       <h3>OFFER DETAILS</h3>
-
-      <button class="offer-close-btn" (click)="modal.dismiss('Cross Click')">
-        ×
-      </button>
+      <button class="offer-close-btn" (click)="closeOfferModal()">×</button>
     </div>
 
     <!-- BODY -->
     <div class="offer-popup-body">
 
       <!-- LEFT -->
-      <div class="offer-left-side">
+      <div class="offer-left-side" *ngIf="OfferData?.coupon">
 
         <div class="offer-info-card">
 
@@ -310,11 +308,9 @@
 
         <h4>COUPON DESCRIPTION</h4>
 
-        <div class="offer-description" [innerHTML]="OfferData.coupon.full_desc">
-        </div>
+        <div class="offer-description" [innerHTML]="OfferData?.coupon?.full_desc"></div>
 
-        <div class="slider-desc"
-          *ngIf="OfferData.slider_description != 'null' && OfferData.slider_description != null && OfferData.slider_description != ''">
+        <div class="slider-desc" *ngIf="OfferData?.slider_description">
           {{OfferData.slider_description}}
         </div>
 
@@ -324,7 +320,7 @@
 
   </div>
 
-</ng-template>
+</div>
 
 <!-- <ng-template #offermodal let-modal>
 

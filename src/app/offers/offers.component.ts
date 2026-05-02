@@ -8,25 +8,26 @@ import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
 import { LoginChecker } from '../helpers/loginChecker';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { NgbDatepickerConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
-  styleUrls: ['./offers.component.css'],
-  providers: [NgbActiveModal]
+  styleUrls: ['./offers.component.css']
 })
 export class OffersComponent implements OnInit {
 
-  allOffers: any = [];
+  allOffers: any[] = [];
   url_path = '';
   currentUrl: any;
 
   isMobile: boolean;
   session: LoginChecker;
   MenuActive: boolean = false;
-  OfferData: any = [];
-  activeMenu: string;
+  OfferData: any = null;
+  activeMenu: string = '';
+
+  //  CUSTOM MODAL STATE
+  showOfferModal: boolean = false;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -35,8 +36,7 @@ export class OffersComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private seo: SeoService,
     private location: Location,
-    private detectService: DeviceDetectorService,
-    private modalService: NgbModal
+    private detectService: DeviceDetectorService
   ) {
 
     this.isMobile = this.detectService.isMobile();
@@ -44,13 +44,22 @@ export class OffersComponent implements OnInit {
     this.currentUrl = location.path().replace('/', '');
     this.seo.seolist(this.currentUrl);
 
+    this.loadOffers();
+  }
+
+  ngOnInit(): void { }
+
+  loadOffers() {
     this.spinner.show();
 
     const offerData = localStorage.getItem('offerData');
 
     if (offerData) {
-      const data = JSON.parse(offerData);
-      this.allOffers = data;
+      try {
+        this.allOffers = JSON.parse(offerData) || [];
+      } catch (e) {
+        this.allOffers = [];
+      }
       this.spinner.hide();
     } else {
       const param = {
@@ -59,53 +68,59 @@ export class OffersComponent implements OnInit {
 
       this.offerService.Offers(param).subscribe(
         res => {
-          localStorage.setItem('offerData', JSON.stringify(res.data));
-          if (res.status == 1) {
+          if (res.status == 1 && res.data) {
             this.allOffers = res.data;
+            localStorage.setItem('offerData', JSON.stringify(res.data));
           }
-
+          this.spinner.hide();
+        },
+        err => {
+          console.error("Offer API error:", err);
           this.spinner.hide();
         }
       );
     }
-
-    // const data = {
-    //   user_id: GlobalConstants.MASTER_SETTING_USER_ID
-    // };
-
-    // this.offerService.Offers(data).subscribe(
-    //   res => {
-    //     if (res.status == 1) {
-    //       this.allOffers = res.data;
-    //       // console.log(this.allOffers);
-    //     }
-
-    //     this.spinner.hide();
-    //   });
   }
 
+  // 🔥 MENU
   menu() {
     this.MenuActive = true;
     this.activeMenu = 'active';
   }
 
+  // 🔥 LOGOUT
   signOut() {
     this.session.logout();
     this.router.navigate(['login']);
   }
 
-  OfferModal(modal: any, i: any) {
-    this.spinner.show();
-    this.modalService.open(modal);
+  openOffer(i: number) {
+    if (!this.allOffers || !this.allOffers[i]) return;
+
     this.OfferData = this.allOffers[i];
-    console.log(this.OfferData);
-    this.spinner.hide();
+    this.showOfferModal = true;
+  }
+
+  closeOfferModal() {
+    this.showOfferModal = false;
+    this.OfferData = null;
   }
 
   getImagePath(slider_img: any) {
+    if (!slider_img) return '';
     let objectURL = 'data:image/*;base64,' + slider_img;
     return this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
   }
 
-  ngOnInit(): void { }
+  copyCoupon(code: string) {
+    if (!code) return;
+
+    navigator.clipboard.writeText(code).then(() => {
+      console.log('Coupon copied:', code);
+      alert('Coupon copied!');
+    }).catch(err => {
+      console.error('Copy failed:', err);
+    });
+  }
+
 }
