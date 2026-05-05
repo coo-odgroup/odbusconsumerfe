@@ -831,7 +831,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       // }
 
       window.location.href =
-        GlobalConstants.URL + sr + '-' + ds + '-bus-services?date=' + date;
+        GlobalConstants.URL + 'routes/' + sr + '-' + ds + '-bus-services?date=' + date;
 
       // this.listing(this.searchForm.value.source,this.searchForm.value.destination,dat);
     }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes,CanActivate, Router, Route} from '@angular/router';
+import { RouterModule, Routes, CanActivate, Router, Route } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { PageErrorComponent } from './page-error/page-error.component';
@@ -35,7 +35,7 @@ import { UserhelpsupportComponent } from './user/userhelpsupport/userhelpsupport
 import { OperatorDetailComponent } from './operator-detail/operator-detail.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { SeoService } from './services/seo.service';
-import {LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { PopularRoutesService } from './services/popular-routes.service';
 import { PnrdetailComponent } from './pnrdetail/pnrdetail.component';
 import { SuccessComponent } from './success/success.component';
@@ -48,18 +48,18 @@ import { BlogResolver } from './blogdetails/blog.resolver';
 
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent }, 
-  { path: 'pnr', component: PageErrorComponent},   
-  { path: 'pnr/:id', component: PnrdetailComponent},   
+  { path: '', component: HomeComponent },
+  { path: 'pnr', component: PageErrorComponent },
+  { path: 'pnr/:id', component: PnrdetailComponent },
   { path: 'listing', component: SearchComponent },
   { path: 'success', component: SuccessComponent },
   { path: 'booking', component: BookingComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'manage-booking', component: ManageBookingComponent },
-  { path: 'manage-booking-detail', component: ManagebookingdetailsComponent},  
+  { path: 'manage-booking-detail', component: ManagebookingdetailsComponent },
   { path: 'support', component: SupportComponent },
-  { path: 'operators', component: OperatorsComponent },    
-  { path: 'operator/:url', component: OperatorDetailComponent},  
+  { path: 'operators', component: OperatorsComponent },
+  { path: 'operator/:url', component: OperatorDetailComponent },
   { path: 'routes', component: RoutesComponent },
   { path: 'offers', component: OffersComponent },
   { path: 'testimonials', component: TestimonialsComponent },
@@ -70,31 +70,36 @@ export const routes: Routes = [
   { path: 'terms-conditions', component: TncComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: '404', component: PageErrorComponent },
-  { path: 'thank-you', component: ThankyouComponent }, 
-  { path: 'signup', component: SignupComponent},  
-  { path: 'login', component: LoginComponent},  
-  { path: 'otp', component: OtpComponent}, 
-  { path: 'thankyou', component: ThankyouComponent}, 
-  { path: 'api-reference', component: ApiComponent}, 
-  { path: 'maintenance', component: MaintenanceComponent}, 
-  { path: 'dashboard', component: UserdashboardComponent,canActivate: [AuthGuard]},    
-  { path: 'notifications', component: UsernotificationsComponent,canActivate: [AuthGuard]},    
-  { path: 'wallet', component: UserwalletComponent,canActivate: [AuthGuard]},    
-  { path: 'invite-friend', component: UserinvitefriendsComponent,canActivate: [AuthGuard]},    
-  { path: 'rewards', component: UserrewardsComponent,canActivate: [AuthGuard]},    
-  { path: 'my-reviews', component: UserreviewsComponent,canActivate: [AuthGuard]},  
-  { path: 'helpandsupport', component: UserhelpsupportComponent,canActivate: [AuthGuard]},    
-  { path: 'myaccount', component: MyaccountComponent,canActivate: [AuthGuard]},
-  { path: 'profile/delete', component: ProfiledeleteComponent},
-  { path: 'payment-status',component:PaymentStatusComponent},
-  { path: 'blog',component:BlogListingComponent},
-  { path: 'blog/category/:slug',component:BlogListingComponent},
-  { path: 'blog/tag/:tag_slug',component:BlogListingComponent},
-  { path: 'blog/author/:author_slug',component:BlogListingComponent},
-  { path: 'blog/:slug',component:BlogDetailComponent, resolve: { blogData: BlogResolver }},
+  { path: 'thank-you', component: ThankyouComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'otp', component: OtpComponent },
+  { path: 'thankyou', component: ThankyouComponent },
+  { path: 'api-reference', component: ApiComponent },
+  { path: 'maintenance', component: MaintenanceComponent },
+  { path: 'dashboard', component: UserdashboardComponent, canActivate: [AuthGuard] },
+  { path: 'notifications', component: UsernotificationsComponent, canActivate: [AuthGuard] },
+  { path: 'wallet', component: UserwalletComponent, canActivate: [AuthGuard] },
+  { path: 'invite-friend', component: UserinvitefriendsComponent, canActivate: [AuthGuard] },
+  { path: 'rewards', component: UserrewardsComponent, canActivate: [AuthGuard] },
+  { path: 'my-reviews', component: UserreviewsComponent, canActivate: [AuthGuard] },
+  { path: 'helpandsupport', component: UserhelpsupportComponent, canActivate: [AuthGuard] },
+  { path: 'myaccount', component: MyaccountComponent, canActivate: [AuthGuard] },
+  { path: 'profile/delete', component: ProfiledeleteComponent },
+  { path: 'payment-status', component: PaymentStatusComponent },
+  { path: 'blog', component: BlogListingComponent },
+  { path: 'blog/category/:slug', component: BlogListingComponent },
+  { path: 'blog/tag/:tag_slug', component: BlogListingComponent },
+  { path: 'blog/author/:author_slug', component: BlogListingComponent },
+  { path: 'blog/:slug', component: BlogDetailComponent, resolve: { blogData: BlogResolver } },
   // { path: 'payment-failed',component:PaymentFailedComponent},
-  { path: '**', component: SearchComponent}, // wildcard routes
-  { path: '**/:dt', component: SearchComponent}, // wildcard routes
+  // { path: '**', component: SearchComponent}, // wildcard routes
+  // { path: '**/:dt', component: SearchComponent}, // wildcard routes
+
+  { path: 'routes/:slug', component: SearchComponent },
+  { path: ':slug', component: SearchComponent },
+  { path: '**', redirectTo: '' }
+
 ]
 
 @NgModule({
@@ -103,34 +108,34 @@ export const routes: Routes = [
     scrollPositionRestoration: 'enabled'
   })],
   exports: [RouterModule],
-  providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}]
+  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]
 })
 export class AppRoutingModule {
-  currentUrl: any; 
+  currentUrl: any;
 
   constructor(
-    private seo:SeoService ,private router: Router ,private popularRoutesService:PopularRoutesService  
-    ) {
+    private seo: SeoService, private router: Router, private popularRoutesService: PopularRoutesService
+  ) {
 
-      // this.popularRoutesService.allroutes().subscribe(
-      //   res=>{
-      //     if(res.status==1)
-      //     { 
+    // this.popularRoutesService.allroutes().subscribe(
+    //   res=>{
+    //     if(res.status==1)
+    //     { 
 
-      //       if(res.data.length>0){
-      //         res.data.forEach(e => {
-      //           let r: Route = {
-      //             path: e.source[0].url+'-'+e.destination[0].url+'-bus-services',
-      //             component: SearchComponent
-      //           };
-      //           routes.push(r);
-      //         });  
-      //     }  
-      //     this.router.resetConfig(routes);         
-      //   }       
-        
-      //   });
-    }
+    //       if(res.data.length>0){
+    //         res.data.forEach(e => {
+    //           let r: Route = {
+    //             path: e.source[0].url+'-'+e.destination[0].url+'-bus-services',
+    //             component: SearchComponent
+    //           };
+    //           routes.push(r);
+    //         });  
+    //     }  
+    //     this.router.resetConfig(routes);         
+    //   }       
+
+    //   });
+  }
 
 
 
