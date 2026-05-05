@@ -1,1 +1,108 @@
-<p>common-content works!</p>
+<section class="odbus-advantage-page">
+
+    <!-- HEADER -->
+    <div class="odbus-header">
+        <div class="container">
+
+            <div class="odbus-breadcrumb">
+                <a href="/">Home</a>
+                <span>›</span>
+                <a href="#">ODBUS Advantage</a>
+                <span>›</span>
+                <span>Instant Booking</span>
+            </div>
+
+            <h1>Instant Booking</h1>
+            <p>
+                Book your bus tickets in seconds with a fast, smooth and hassle-free experience.
+            </p>
+
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="container odbus-content">
+
+        <!-- ✅ COMBINED CARD -->
+        <div class="odbus-card combined-card">
+
+            <!-- WHAT IS -->
+            <div class="section-block">
+                <h3>What is Instant Booking?</h3>
+                <p>
+                    Instant Booking allows you to book your bus tickets quickly without unnecessary steps.
+                    ODBUS provides a seamless interface so you can search, select and confirm your journey within
+                    seconds.
+                </p>
+            </div>
+
+            <!-- HOW IT WORKS -->
+            <div class="section-block">
+                <h3>How it works</h3>
+
+                <div class="odbus-steps">
+
+                    <div class="step">
+                        <div class="step-icon">1</div>
+                        <div class="step-text">
+                            Enter your <strong>source & destination</strong>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-icon">2</div>
+                        <div class="step-text">
+                            Select your <strong>bus & seats</strong>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-icon">3</div>
+                        <div class="step-text">
+                            Make payment and <strong>confirm instantly</strong>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- WHY CHOOSE -->
+            <div class="section-block">
+                <h3>Why choose Instant Booking?</h3>
+                <ul class="benefits">
+                    <li>No complicated steps</li>
+                    <li>Real-time seat availability</li>
+                    <li>Secure & fast payment</li>
+                    <li>Instant ticket confirmation</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- FAQ -->
+        <div class="odbus-card faq-section">
+
+            <h3>Frequently Asked Questions</h3>
+
+            <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+
+                <div class="faq-question" (click)="toggleFaq(i)">
+                    <span class="faq-title">
+                        {{ i + 1 }}. {{ faq.question }}
+                    </span>
+
+                    <span class="faq-icon" [class.open]="faq.isOpen">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </div>
+
+                <div class="faq-answer" *ngIf="faq.isOpen">
+                    {{ faq.answer }}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

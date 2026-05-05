@@ -1,0 +1,252 @@
+/* ================= LAYOUT ================= */
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 0 16px;
+}
+
+.odbus-advantage-page {
+    font-family: "Lato", sans-serif;
+    background: #f5f7fb;
+}
+
+/* ================= HEADER ================= */
+.odbus-header {
+    background: linear-gradient(135deg, #1b3c6b, #2f5aa8);
+    color: #fff;
+    padding: 40px 0 55px;
+}
+
+.odbus-header h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 6px 0;
+}
+
+.odbus-header p {
+    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* ================= BREADCRUMB ================= */
+.odbus-breadcrumb {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.odbus-breadcrumb a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+}
+
+.odbus-breadcrumb span {
+    margin: 0 6px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ================= CONTENT ================= */
+.odbus-content {
+    margin-top: -35px;
+    padding-bottom: 40px;
+}
+
+/* ================= CARD ================= */
+.odbus-card {
+    background: #fff;
+    padding: 22px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.odbus-card h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: #072c6b;
+    font-weight: 900;
+}
+
+.odbus-card p,
+.odbus-card li {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* ================= COMBINED CARD ================= */
+.combined-card {
+    padding: 24px;
+}
+
+.section-block {
+    margin-bottom: 22px;
+}
+
+.section-block:not(:last-child) {
+    border-bottom: 1px solid #eef2f7;
+    padding-bottom: 18px;
+}
+
+.section-block h3 {
+    margin-bottom: 10px;
+}
+
+/* ================= STEPS ================= */
+.odbus-steps {
+    margin-top: 10px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.step-icon {
+    min-width: 32px;
+    height: 32px;
+    background: #072c6b;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-text {
+    font-size: 14px;
+    color: #444;
+    font-weight: 500;
+}
+
+/* ================= BENEFITS ================= */
+.benefits {
+    padding-left: 18px;
+}
+
+.benefits li {
+    margin-bottom: 8px;
+}
+
+/* ================= FAQ ================= */
+.faq-section h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: #072c6b;
+    font-weight: 900;
+}
+
+.faq-item {
+    border: 1px solid #e6ecf5;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: #fff;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.faq-item:hover {
+    border-color: #2f5aa8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+}
+
+.faq-title {
+    font-size: 16px;
+    color: #1b2155;
+    font-weight: 500;
+    line-height: 1.5;
+    flex: 1;
+    padding-right: 8px
+}
+
+.faq-icon {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    border: 1px solid #1b2155;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #1b2155;
+    font-weight: 600;
+}
+
+/* Icon inside */
+.faq-icon i {
+    font-size: 12px;
+    color: #1b2155;
+    transition: 0.3s ease;
+}
+
+/* Rotate when open */
+.faq-icon.open i {
+    transform: rotate(180deg);
+}
+
+/* Hover effect */
+.faq-question:hover .faq-icon {
+    background: #f1f5ff;
+    border-color: #2f5aa8;
+}
+
+.faq-answer {
+    font-size: 13px;
+    color: #5f6b7a;
+    padding: 16px 14px;
+    line-height: 1.6;
+    border-top: 1px solid #f1f3f7;
+    animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+    .odbus-header h1 {
+        font-size: 24px;
+    }
+
+    .odbus-card {
+        padding: 18px;
+    }
+
+    .faq-question {
+        align-items: flex-start;
+        /* important fix */
+    }
+
+    .faq-title {
+        font-size: 14px;
+    }
+
+    .faq-icon {
+        margin-top: 2px;
+        /* align with first line */
+    }
+}
