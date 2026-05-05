@@ -2667,6 +2667,7 @@ a.btn.btn-warning {
   border: 1px solid #1b2155 !important;
   text-transform: uppercase !important;
   color: #1b2155 !important;
+  padding: 0 20px !important;
 }
 
 /* LEFT */

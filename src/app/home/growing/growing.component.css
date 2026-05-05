@@ -27,9 +27,6 @@
     backdrop-filter: blur(8px);
     border-radius: 16px;
     padding: 10px 20px;
-    /* border: 1px solid rgba(0, 0, 0, 0.05); */
-    transition: all 0.3s ease;
-
     position: relative;
     overflow: hidden;
 }
@@ -46,11 +43,7 @@
     background: linear-gradient(90deg, #ffd54f, #ffb300);
 }
 
-/* OPTIONAL subtle hover lift (can remove if not needed) */
-.stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
-}
+
 
 /* ICON */
 .icon-wrap {
