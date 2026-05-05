@@ -461,17 +461,7 @@ section.section-offer .nav-tabs .nav-item .nav-link {
   padding-left: 0px;
 }
 
-.mobile-menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #f7f9ff;
-  z-index: 999999;
-  /* higher than everything */
-  overflow-y: auto;
-}
+
 
 .mobile-myaccount-middle .mobile-menu a {
   background-color: #fff;
@@ -983,7 +973,7 @@ input {
     margin: 8px 0 0;
   }
 
-  .to-field img.icon-to {
+  .to-field img.icon-to{
     margin: 0 !important;
   }
 
@@ -1142,7 +1132,7 @@ input {
     cursor: pointer;
   }
 
-  .quick-date-tomorrow {
+  .quick-date-tomorrow{
     min-width: auto;
     height: 50px;
     border-radius: 12px;
@@ -2677,6 +2667,7 @@ a.btn.btn-warning {
   border: 1px solid #1b2155 !important;
   text-transform: uppercase !important;
   color: #1b2155 !important;
+  padding: 0 20px !important;
 }
 
 /* LEFT */

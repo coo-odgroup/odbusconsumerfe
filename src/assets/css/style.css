@@ -1313,7 +1313,7 @@ ngb-datepicker.dropdown-menu.show {
 }
 
 .border-btn {
-    color: #072c6b;
+    color: #1b2155 !important;
     display: inline-block;
     border: 1px solid #072c6b;
     cursor: pointer;
@@ -1325,12 +1325,12 @@ ngb-datepicker.dropdown-menu.show {
     background-color: #fff !important;
     padding: 0 20px;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 16px;
     font-family: "robotomedium", sans-serif;
 }
 
 .border-btn:hover {
-    color: #fff;
+    color: #fff !important;
     background-color: #072c6b !important;
 }
 

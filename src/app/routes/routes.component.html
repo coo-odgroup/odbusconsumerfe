@@ -1,11 +1,14 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="small" color="#fff" type="line-scale-party" [fullScreen]="true">
-  <p style="color: white"></p></ngx-spinner>
+  <p style="color: white"></p>
+</ngx-spinner>
 
 <ng-container *ngIf="!isMobile">
   <section class="opertbg top-routs">
-    <span class="line-span"
-      ><div class="container"><h2>All Routes</h2></div></span
-    >
+    <span class="line-span">
+      <div class="container">
+        <h2>All Routes</h2>
+      </div>
+    </span>
     <div class="textimonials-result1">
       <div class="container">
         <div class="row">
@@ -19,68 +22,53 @@
               </div>
 
               <ul *ngIf="(all_routes | filter: searchText).length > 0;else noResults">
-                <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker" />
+                <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker
+                  (click)="d.toggle()" #d="ngbDatepicker" />
 
-                <li *ngFor="let p of all_routes | filter: searchText ; let i=index">
-                 <div *ngIf=" i+1 === all_routes.length" #theLastlist>
-                  <span>
-                  <a class="cursor" style="text-decoration: none" (click)="popularSearch(p.source[0].url, p.destination[0].url)">
-                    <img class="popl-routs-icon1" src="assets/img/Icon-metro-location.svg"/>
-                    <span>{{ p.source[0].name }}</span>
+                <li *ngFor="let p of all_routes | filter: searchText">
 
-                    <img class="popl-routs-icon2" src="assets/img/left-right.png"/>
-                    <span>{{ p.destination[0].name }}</span>
+                  <div class="route-card">
 
-                   
-                  </a>
-                </span>
-                  <span>
-                    <b *ngIf="p.BusList.length>0" style="font-size:11px;color:red;cursor: pointer;" (click)="ViewBus(p.BusList,buslist)">({{p.BusList.length}} Buses)</b>
-                  <!-- <b *ngIf="p.BusList.length==0" style="font-size:11px;color:orange">({{p.BusList.length}} Bus)</b> -->
-                </span>
-              </div> 
+                    <a class="route-link" (click)="popularSearch(p.source[0].url, p.destination[0].url)">
 
+                      <img class="popl-routs-icon1" src="assets/img/Icon-metro-location.svg" />
+                      <span class="route-text">{{ p.source[0].name }}</span>
 
-              <div *ngIf=" i+1 != all_routes.length">
-                <span>
-                <a class="cursor" style="text-decoration: none" (click)="popularSearch(p.source[0].url, p.destination[0].url)">
-                  <img class="popl-routs-icon1" src="assets/img/Icon-metro-location.svg"/>
-                  <span>{{ p.source[0].name }}</span>
+                      <img class="popl-routs-icon2" src="assets/img/left-right.png" />
 
-                  <img class="popl-routs-icon2" src="assets/img/left-right.png"/>
-                  <span>{{ p.destination[0].name }}</span>
+                      <span class="route-text">{{ p.destination[0].name }}</span>
 
-                 
-                </a>
-              </span>
-                <span>
-                  <b *ngIf="p.BusList.length>0" style="font-size:11px;color:red;cursor: pointer;" (click)="ViewBus(p.BusList,buslist)">({{p.BusList.length}} Buses)</b>
-                <!-- <b *ngIf="p.BusList.length==0" style="font-size:11px;color:orange">({{p.BusList.length}} Bus)</b> -->
-              </span>
-            </div>
+                    </a>
+
+                    <!-- Bus count BELOW center -->
+                    <div class="bus-count" *ngIf="p.BusList.length > 0" (click)="ViewBus(p.BusList,buslist)">
+                      ({{p.BusList.length}} Buses)
+                    </div>
+
+                  </div>
 
                 </li>
               </ul>
             </div>
 
             <ng-template #buslist let-modal>
-        
+
               <div class="cal-modal-mobile">
-                  <div class="modal-body">
+                <div class="modal-body">
 
-                    <h4>Bus List</h4>
+                  <h4>Bus List</h4>
 
-                    <div *ngFor="let b of buses;">
-                      <p>{{b.name}} - {{b.bus_number}} </p>
-                    </div>                     
+                  <div *ngFor="let b of buses;">
+                    <p>{{b.name}} - {{b.bus_number}} </p>
                   </div>
+                </div>
               </div>
-          
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-                   </div>
-      
-          </ng-template>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+              </div>
+
+            </ng-template>
 
             <ng-template #noResults>
               <p *ngIf="searchText">No results found for "{{ searchText }}".</p>
@@ -98,7 +86,7 @@
       <div class="col-1 pr-0 pl-2 mob-arrow-left">
         <a routerLink="/">
           <i class="fas fa-arrow-left"></i>
-        </a>  
+        </a>
       </div>
       <div class="col-7 pl-2 pr-2 mob-list-center">
         <h5>Popular Routes</h5>
@@ -112,8 +100,10 @@
   </div>
 
   <div class="mobile-routes-middle" *ngIf="all_routes.length > 0; else noResults">
-    <div class="mobile-routes-box shadow" *ngFor="let p of all_routes" (click)="popularSearch(p.source[0].url, p.destination[0].url)">
-      <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker" />      
+    <div class="mobile-routes-box shadow" *ngFor="let p of all_routes"
+      (click)="popularSearch(p.source[0].url, p.destination[0].url)">
+      <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker
+        (click)="d.toggle()" #d="ngbDatepicker" />
       <div class="row mob-tkbox-mid">
         <div class="col-5 pl-3 pr-2 text-center">
           <h6>{{ p.source[0].name }}</h6>
@@ -139,64 +129,64 @@
 
 
 <ng-container *ngIf="isMobile && MenuActive">
-    <div class="mobile-myaccount-top">
-      <div class="row">
-        <div class="col-5">
-          <div class="mobile-logo">
-            <img src="assets/img/mob-img/logo.png" />
-          </div>
-        </div>
-        <div class="col-7 mob-logintx">
-          <a routerLink="/login" *ngIf="!session.isLoggedIn()">
-            Login / Signup
-          </a>
-          <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
-            Dashboard
-          </a>
+  <div class="mobile-myaccount-top">
+    <div class="row">
+      <div class="col-5">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
         </div>
       </div>
+      <div class="col-7 mob-logintx">
+        <a routerLink="/login" *ngIf="!session.isLoggedIn()">
+          Login / Signup
+        </a>
+        <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
+          Dashboard
+        </a>
+      </div>
     </div>
+  </div>
 
-    <div class="mobile-myaccount-middle">
-      <ul class="mobile-menu">
-        <li>
-          <a routerLink="/manage-booking"><i class="far fa-window-restore"></i>Manage Booking</a>
-        </li>
-        <li>
-          <a routerLink="/contact-us"><i class="fas fa-envelope"></i> Contact Us</a>
-        </li> 
-        <li>
-          <a routerLink="/offers"><i class="fas fa-gifts"></i>Offers</a>
-        </li>
-        <li>
-          <a routerLink="/operators"><i class="fas fa-bus"></i>Operators</a>
-        </li>      
-        <li>
-          <a routerLink="/faq"><i class="fas fa-question"></i>FAQ's</a>
-        </li>
-        <li>
-          <a routerLink="/testimonials"><i class="fa fa-star"></i>Testimonials</a>
-        </li>
-        <li>
-          <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i>Terms & Conditions</a>
-        </li>
-        <li>
-          <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i>Privacy Policy</a>
-        </li>
-        <li>
-          <a routerLink="/about-us"><i class="fas fa-info-circle"></i>About Us</a>
-        </li>
-        <li *ngIf="session.isLoggedIn()">
-          <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
-        </li>
-        <li *ngIf="session.isLoggedIn()">
-          <a (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
-        </li>
-      </ul>
-    </div>
-  </ng-container>
+  <div class="mobile-myaccount-middle">
+    <ul class="mobile-menu">
+      <li>
+        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i>Manage Booking</a>
+      </li>
+      <li>
+        <a routerLink="/contact-us"><i class="fas fa-envelope"></i> Contact Us</a>
+      </li>
+      <li>
+        <a routerLink="/offers"><i class="fas fa-gifts"></i>Offers</a>
+      </li>
+      <li>
+        <a routerLink="/operators"><i class="fas fa-bus"></i>Operators</a>
+      </li>
+      <li>
+        <a routerLink="/faq"><i class="fas fa-question"></i>FAQ's</a>
+      </li>
+      <li>
+        <a routerLink="/testimonials"><i class="fa fa-star"></i>Testimonials</a>
+      </li>
+      <li>
+        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i>Terms & Conditions</a>
+      </li>
+      <li>
+        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i>Privacy Policy</a>
+      </li>
+      <li>
+        <a routerLink="/about-us"><i class="fas fa-info-circle"></i>About Us</a>
+      </li>
+      <li *ngIf="session.isLoggedIn()">
+        <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
+      </li>
+      <li *ngIf="session.isLoggedIn()">
+        <a (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+      </li>
+    </ul>
+  </div>
+</ng-container>
 
-  <ng-container *ngIf="isMobile">
+<ng-container *ngIf="isMobile">
   <div class="mob-mtbh"></div>
   <div class="mobile-fixed-bottom">
     <div class="footer-menu row m-0 mobile-bg-danger">
@@ -235,4 +225,4 @@
       </div>
     </div>
   </div>
-  </ng-container>
+</ng-container>
