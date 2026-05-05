@@ -1,7 +1,4 @@
-<section
-  class="top-operators fluid-15"
-  *ngIf="topOperators && topOperators.length > 0"
->
+<section class="top-operators fluid-15" *ngIf="topOperators && topOperators.length > 0">
   <div class="container">
     <div class="row">
       <div class="col-md-6 text-left">
@@ -15,10 +12,7 @@
   <div class="container">
     <div class="row operator-card-row">
       <div class="col-md-3" *ngFor="let t of topOperators">
-        <div
-          class="operator-card small-card"
-          (click)="operator_detail(t.operator_url)"
-        >
+        <div class="operator-card small-card" (click)="operator_detail(t.operator_url)">
           <div class="card-content">
             <div class="icon-wrap">
               <img src="assets/img/icon-bus-alt.svg" />

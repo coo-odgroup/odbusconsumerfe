@@ -30,6 +30,7 @@ import { time } from 'console';
 import 'lodash';
 import { exit } from 'process';
 import { Meta, Title } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 declare var _: any;
 
@@ -201,6 +202,7 @@ export class SearchComponent implements OnInit {
   referenceNumber: any = '';
   origin: any = '';
   show = 5;
+  seoContentData: any;
 
   constructor(
     private router: Router,
@@ -227,6 +229,7 @@ export class SearchComponent implements OnInit {
     private route: ActivatedRoute,
     private meta: Meta,
     private title: Title,
+    private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
 
   ) {
@@ -1395,7 +1398,7 @@ export class SearchComponent implements OnInit {
       let date = this.searchForm.value.entry_date;
 
 
-      window.location.href = GlobalConstants.URL + sr + '-' + ds + '-bus-services?date=' + date;
+      window.location.href = GlobalConstants.URL + 'routes/' + sr + '-' + ds + '-bus-services?date=' + date;
 
       // this.locationService.setSource(this.sourceData);
       // this.locationService.setDestination(this.destinationData);
@@ -2387,46 +2390,257 @@ export class SearchComponent implements OnInit {
 
   }
 
+  // ngOnInit(): void {
+  //   //add by sahil
+
+  //   // const raw = JSON.parse(localStorage.getItem('seoData') || '[]');
+
+  //   // let seoPages: any[] = [];
+
+  //   // if (Array.isArray(raw)) {
+  //   //   seoPages = raw;
+  //   // } else if (raw?.data && Array.isArray(raw.data)) {
+  //   //   seoPages = raw.data;
+  //   // } else if (typeof raw === 'object') {
+  //   //   seoPages = Object.values(raw);
+  //   // }
+
+  //   // console.log('seoPages normalized:', seoPages);
+  //   // console.log('Is array:', Array.isArray(seoPages));
+
+  //   // const currentPath = this.router.url
+  //   //   .split('?')[0]
+  //   //   .replace('/', '');
+
+  //   // const seoData = seoPages.find(
+  //   //   (x: any) => x?.page_url === currentPath
+  //   // );
+
+  //   // console.log('SEO Data:', seoData);
+
+  //   // if (seoData) {
+  //   //   this.applySeo(seoData);
+  //   // }
+
+  //   const currentPath = this.router.url
+  //     .split('?')[0]
+  //     .replace('/', '');
+
+  //     console.log('Current Path:', this.router.url);
+
+  //     currentPath
+
+  //   this.seo.seoList().subscribe(
+  //     (resp: any) => {
+
+  //       // Normalize response
+  //       let seoPages: any[] = [];
+
+  //       if (Array.isArray(resp)) {
+  //         seoPages = resp;
+  //       } else if (resp?.data && Array.isArray(resp.data)) {
+  //         seoPages = resp.data;
+  //       }
+
+  //       const seoData = seoPages.find(
+  //         (x: any) => x?.page_url === currentPath
+  //       );
+
+  //       if (seoData) {
+  //         this.applySeo(seoData);
+  //       }
+
+  //       // Store in localStorage only in browser
+  //       if (isPlatformBrowser(this.platformId)) {
+  //         localStorage.setItem('seoData', JSON.stringify(resp));
+  //       }
+
+  //     },
+  //     error => {
+  //       console.error('Error fetching SEO:', error);
+  //     }
+  //   );
+
+
+
+  //   this.locationService.currentsource.subscribe((s: any) => { this.sourceData = s });
+  //   this.locationService.currentdestination.subscribe((d: any) => { this.destinationData = d });
+  //   this.locationService.currententdate.subscribe(dat => { this.entdate = dat });
+
+  //   // this.seo.seoList().subscribe(
+  //   //   resp => {
+  //   //     localStorage.setItem('seoData', JSON.stringify(resp));
+  //   //     this.seoData(resp);
+  //   //   });
+
+  //   const storedSeoData = isPlatformBrowser(this.platformId) ? localStorage.getItem('seoData') : null;
+
+  //   if (storedSeoData) {
+  //     const data = JSON.parse(storedSeoData);
+  //     this.seoData(data);
+  //   } else {
+  //     this.seo.seoList().subscribe(
+  //       resp => {
+  //         if (isPlatformBrowser(this.platformId)) {
+  //           localStorage.setItem('seoData', JSON.stringify(resp));
+  //         }
+  //         this.seoData(resp);
+  //       },
+  //       error => {
+  //         console.error('Error fetching Data:', error);
+  //       }
+  //     );
+  //   }
+
+  //   if (this.currentUrl != 'listing') {
+
+  //     if (this.currentUrl.includes('bus-services')) {
+
+  //       let ddd = this.currentUrl.split('?');
+
+  //       let urlstr = ddd[0].replace('-bus-services', '');
+
+  //       if (this.route.snapshot.queryParams['date']) {
+  //         this.entdate = this.route.snapshot.queryParams['date'];
+  //         // this.entdate= formatDate(new Date(this.entdate),'dd-MM-yyyy','en_US');
+  //       }
+  //       else {
+  //         this.entdate = formatDate(new Date(), 'dd-MM-yyyy', 'en_US');
+  //       }
+
+  //       //console.log(ddd);
+  //       //console.log(urlstr);
+
+  //       let l_ar = urlstr.split('-');
+
+  //       const allLoc = isPlatformBrowser(this.platformId) ? localStorage.getItem('allLoc') : null;
+
+  //       if (allLoc) {
+  //         const data = JSON.parse(allLoc);
+  //         this.locAll(data, l_ar);
+  //       } else {
+  //         this.locationService.all().subscribe(
+  //           res => {
+  //             if (isPlatformBrowser(this.platformId)) {
+  //               localStorage.setItem('allLoc', JSON.stringify(res));
+  //             }
+  //             this.locAll(res, l_ar);
+  //           });
+  //       }
+
+
+  //     } else {
+  //       this.router.navigate(['/404']);
+  //     }
+
+  //   } else {
+
+
+  //     if (this.sourceData == null || this.destinationData == null || this.entdate == '' || this.entdate == null) {
+
+  //       this.router.navigate(['/']);
+  //     } else {
+
+
+  //       this.swapsource = this.sourceData;
+  //       this.swapdestination = this.destinationData;
+
+  //       this.source_id = this.sourceData.id;
+  //       this.destination_id = this.destinationData.id;
+
+  //       localStorage.setItem('source', this.sourceData.name);
+  //       localStorage.setItem('destination', this.destinationData.name);
+  //       localStorage.setItem('source_id', this.sourceData.id);
+  //       localStorage.setItem('destination_id', this.destinationData.id);
+  //       localStorage.setItem('entdate', this.entdate);
+
+  //       this.showformattedDate(this.entdate);
+
+  //       const storedData_2 = isPlatformBrowser(this.platformId) ? localStorage.getItem('commonData') : null;
+
+  //       if (storedData_2) {
+  //         const data = JSON.parse(storedData_2);
+  //         this.commonData_2(data);
+  //       } else {
+  //         const param = {
+  //           user_id: GlobalConstants.MASTER_SETTING_USER_ID
+  //         };
+
+  //         this.Common.getCommonData(param).subscribe(
+  //           resp => {
+  //             if (isPlatformBrowser(this.platformId)) {
+  //               localStorage.setItem('commonData', JSON.stringify(resp.data));
+  //             }
+  //             this.commonData_2(resp.data);
+  //           },
+  //           error => {
+  //             console.error('Error fetching Data:', error);
+  //           }
+  //         );
+  //       }
+
+  //       this.getbuslist();
+
+  //     }
+  //   }
+
+  //   const pathUrls = isPlatformBrowser(this.platformId) ? localStorage.getItem('pathUrls') : null;
+
+  //   if (pathUrls) {
+  //     const data = JSON.parse(pathUrls);
+  //     if (data.status == 1) {
+  //       this.url_path = data.data[0];
+  //     }
+  //   } else {
+  //     this.Common.getPathUrls().subscribe(
+  //       res => {
+  //         if (isPlatformBrowser(this.platformId)) {
+  //           localStorage.setItem('pathUrls', JSON.stringify(res));
+  //         }
+  //         if (res.status == 1) {
+  //           this.url_path = res.data[0];
+  //         }
+  //       }
+  //     );
+  //   }
+
+  //   // this.Common.getPathUrls().subscribe(res => {
+  //   //   if (res.status == 1) {
+  //   //     this.url_path = res.data[0];
+  //   //   }
+  //   // });
+  // }
+
+
+  seoContent() {
+    const payload = {
+      sourceId: this.source_id,
+      destinationId: this.destination_id
+    };
+    this.http.post(GlobalConstants.BASE_URL + '/seoContent', payload).subscribe((res:any)=>{
+      // console.log(res.data);
+      this.seoContentData = res.data;
+    })
+  }
+
   ngOnInit(): void {
-    //add by sahil
 
-    // const raw = JSON.parse(localStorage.getItem('seoData') || '[]');
+    // ✅ STEP 1: Clean URL (USE THIS EVERYWHERE)
+    let currentPath = this.router.url.split('?')[0];
 
-    // let seoPages: any[] = [];
+    currentPath = currentPath.replace(/^\/+/, '');
+    currentPath = currentPath.replace(/^(route|routes)\//, '');
 
-    // if (Array.isArray(raw)) {
-    //   seoPages = raw;
-    // } else if (raw?.data && Array.isArray(raw.data)) {
-    //   seoPages = raw.data;
-    // } else if (typeof raw === 'object') {
-    //   seoPages = Object.values(raw);
-    // }
+    // optional (keeps old code working)
+    this.currentUrl = currentPath;
 
-    // console.log('seoPages normalized:', seoPages);
-    // console.log('Is array:', Array.isArray(seoPages));
+    // console.log('Final Clean Path:', currentPath);
 
-    // const currentPath = this.router.url
-    //   .split('?')[0]
-    //   .replace('/', '');
 
-    // const seoData = seoPages.find(
-    //   (x: any) => x?.page_url === currentPath
-    // );
-
-    // console.log('SEO Data:', seoData);
-
-    // if (seoData) {
-    //   this.applySeo(seoData);
-    // }
-
-    const currentPath = this.router.url
-      .split('?')[0]
-      .replace('/', '');
-
+    // ================= SEO =================
     this.seo.seoList().subscribe(
       (resp: any) => {
 
-        // Normalize response
         let seoPages: any[] = [];
 
         if (Array.isArray(resp)) {
@@ -2443,7 +2657,6 @@ export class SearchComponent implements OnInit {
           this.applySeo(seoData);
         }
 
-        // Store in localStorage only in browser
         if (isPlatformBrowser(this.platformId)) {
           localStorage.setItem('seoData', JSON.stringify(resp));
         }
@@ -2455,17 +2668,13 @@ export class SearchComponent implements OnInit {
     );
 
 
-
+    // ================= LOCATION OBS =================
     this.locationService.currentsource.subscribe((s: any) => { this.sourceData = s });
     this.locationService.currentdestination.subscribe((d: any) => { this.destinationData = d });
     this.locationService.currententdate.subscribe(dat => { this.entdate = dat });
 
-    // this.seo.seoList().subscribe(
-    //   resp => {
-    //     localStorage.setItem('seoData', JSON.stringify(resp));
-    //     this.seoData(resp);
-    //   });
 
+    // ================= SEO CACHE =================
     const storedSeoData = isPlatformBrowser(this.platformId) ? localStorage.getItem('seoData') : null;
 
     if (storedSeoData) {
@@ -2485,26 +2694,28 @@ export class SearchComponent implements OnInit {
       );
     }
 
-    if (this.currentUrl != 'listing') {
 
-      if (this.currentUrl.includes('bus-services')) {
+    // ================= MAIN LOGIC =================
+    if (currentPath != 'listing') {
 
-        let ddd = this.currentUrl.split('?');
+      if (currentPath.includes('bus-services')) {
 
-        let urlstr = ddd[0].replace('-bus-services', '');
+        // ✅ FIXED URL PARSING
+        let urlstr = currentPath.replace('-bus-services', '');
 
+        console.log('URL String:', urlstr);
+
+        // date
         if (this.route.snapshot.queryParams['date']) {
           this.entdate = this.route.snapshot.queryParams['date'];
-          // this.entdate= formatDate(new Date(this.entdate),'dd-MM-yyyy','en_US');
-        }
-        else {
+        } else {
           this.entdate = formatDate(new Date(), 'dd-MM-yyyy', 'en_US');
         }
 
-        //console.log(ddd);
-        //console.log(urlstr);
-
+        // split locations
         let l_ar = urlstr.split('-');
+
+        console.log('Location Array:', l_ar);
 
         const allLoc = isPlatformBrowser(this.platformId) ? localStorage.getItem('allLoc') : null;
 
@@ -2521,19 +2732,17 @@ export class SearchComponent implements OnInit {
             });
         }
 
-
       } else {
         this.router.navigate(['/404']);
       }
 
     } else {
 
-
       if (this.sourceData == null || this.destinationData == null || this.entdate == '' || this.entdate == null) {
 
         this.router.navigate(['/']);
-      } else {
 
+      } else {
 
         this.swapsource = this.sourceData;
         this.swapdestination = this.destinationData;
@@ -2573,10 +2782,11 @@ export class SearchComponent implements OnInit {
         }
 
         this.getbuslist();
-
       }
     }
 
+
+    // ================= PATH URL =================
     const pathUrls = isPlatformBrowser(this.platformId) ? localStorage.getItem('pathUrls') : null;
 
     if (pathUrls) {
@@ -2597,11 +2807,8 @@ export class SearchComponent implements OnInit {
       );
     }
 
-    // this.Common.getPathUrls().subscribe(res => {
-    //   if (res.status == 1) {
-    //     this.url_path = res.data[0];
-    //   }
-    // });
+    this.seoContent();
+
   }
 
 
