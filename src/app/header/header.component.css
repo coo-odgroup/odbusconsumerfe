@@ -61,6 +61,7 @@ a {
     border-radius: 20px;
     font-weight: 600;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .install-btn:hover {

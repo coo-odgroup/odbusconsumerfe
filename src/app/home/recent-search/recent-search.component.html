@@ -4,53 +4,28 @@
 
     <div class="recent-wrapper">
       <!-- ITEM -->
-      <div class="recent-card">
+      <div
+        class="recent-card"
+        *ngFor="let item of recentSearches"
+        [routerLink]="[
+          '/routes',
+          item.source + '-' + item.destination + '-bus-services',
+        ]"
+        [queryParams]="{ date: item.date }"
+      >
         <div class="recent-icon">
           <i class="fas fa-history"></i>
         </div>
-        <div class="recent-text">
-          <h5>New York → Boston</h5>
-          <p>Mon 6 April 2026</p>
-        </div>
-      </div>
 
-      <div class="recent-card">
-        <div class="recent-icon">
-          <i class="fas fa-history"></i>
-        </div>
         <div class="recent-text">
-          <h5>New York → Boston</h5>
-          <p>Mon 6 April 2026</p>
-        </div>
-      </div>
+          <h5>
+            {{ item.source | titlecase }} →
+            {{ item.destination | titlecase }}
+          </h5>
 
-      <div class="recent-card">
-        <div class="recent-icon">
-          <i class="fas fa-history"></i>
-        </div>
-        <div class="recent-text">
-          <h5>Bangalore → Chennai</h5>
-          <p>Mon 8 April 2026</p>
-        </div>
-      </div>
-
-      <div class="recent-card">
-        <div class="recent-icon">
-          <i class="fas fa-history"></i>
-        </div>
-        <div class="recent-text">
-          <h5>Kolkata → Bhubaneswar</h5>
-          <p>Mon 9 April 2026</p>
-        </div>
-      </div>
-
-      <div class="recent-card">
-        <div class="recent-icon">
-          <i class="fas fa-history"></i>
-        </div>
-        <div class="recent-text">
-          <h5>Bhubaneswar → Rourkela</h5>
-          <p>Mon 9 April 2026</p>
+          <p>
+            {{ formatDate(item.date) | date:'EEE d MMM y' }}
+          </p>
         </div>
       </div>
     </div>
