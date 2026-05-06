@@ -94,8 +94,8 @@
                                     #d="ngbDatepicker" (click)="d.toggle()" placeholder="Journey Date" readonly />
 
                                 <div class="date-btns">
-                                    <span (click)="setToday()">Today</span>
-                                    <span (click)="setTomorrow()">Tomorrow</span>
+                                    <span (click)="searchToday()">Today</span>
+                                    <span (click)="searchTomorrow()">Tomorrow</span>
                                 </div>
                             </div>
                         </div> -->
@@ -172,7 +172,7 @@
                     class="icon-from"
                   />
                   <input
-                    type="text"
+                    type="search"
                     class="form-control"
                     [ngbTypeahead]="search"
                     [resultTemplate]="rt"
@@ -182,7 +182,7 @@
                     formControlName="source"
                     placeholder="Enter Source"
                   />
-                  <span class="clear-icon">✖</span>
+                  <!-- <span class="clear-icon">✖</span> -->
                 </div>
               </div>
 
@@ -200,7 +200,7 @@
                     class="icon-to"
                   />
                   <input
-                    type="text"
+                    type="search"
                     class="form-control"
                     [ngbTypeahead]="search"
                     [resultTemplate]="rt2"
@@ -210,7 +210,7 @@
                     formControlName="destination"
                     placeholder="Enter Destination"
                   />
-                  <span class="clear-icon">✖</span>
+                  <!-- <span class="clear-icon">✖</span> -->
                 </div>
               </div>
 
@@ -224,8 +224,8 @@
                                     #d="ngbDatepicker" (click)="d.toggle()" placeholder="Journey Date" readonly />
 
                                 <div class="date-btns">
-                                    <span (click)="setToday()">Today</span>
-                                    <span (click)="setTomorrow()">Tomorrow</span>
+                                    <span (click)="searchToday()">Today</span>
+                                    <span (click)="searchTomorrow()">Tomorrow</span>
                                 </div>
                             </div>
                         </div> -->
@@ -254,10 +254,10 @@
                   </div>
 
                   <!-- Today Box -->
-                  <div class="quick-date-today" (click)="setToday()">Today</div>
+                  <div class="quick-date-today" (click)="searchToday()">Today</div>
 
                   <!-- Tomorrow Box -->
-                  <div class="quick-date-tomorrow" (click)="setTomorrow()">
+                  <div class="quick-date-tomorrow" (click)="searchTomorrow()">
                     Tomorrow
                   </div>
                 </div>
@@ -494,12 +494,12 @@
 <app-recent-search></app-recent-search>
 <app-odbus-offers></app-odbus-offers>
 <app-advantage></app-advantage>
-<app-download-app></app-download-app>
-<app-faqs></app-faqs>
-<app-info></app-info>
-<app-growing></app-growing>
-<app-top-operators></app-top-operators>
 <app-top-routes></app-top-routes>
+<app-download-app></app-download-app>
+<app-top-operators></app-top-operators>
+<app-info></app-info>
+<app-faqs></app-faqs>
+<app-growing></app-growing>
 
 <!-- <section
   class="top-operators fluid-15"

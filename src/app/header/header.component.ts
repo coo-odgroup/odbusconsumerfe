@@ -33,6 +33,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   // ✅ TOP BAR CONTROL
   showTopBar: boolean = true;
+  private readonly TOP_BAR_KEY = 'topBarClosedAt';
+  private readonly HIDE_DURATION = 12 * 60 * 60 * 1000;
 
   private commonDataSubscription: Subscription;
 
@@ -81,7 +83,50 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
 
     this.updateLogoFromCommonData();
+
+    // Jagan
+    this.router.events.subscribe(() => {
+      this.checkTopBarVisibility();
+    });
+    this.checkTopBarVisibility();
+    // Jagan
   }
+
+  // Jagan
+  checkTopBarVisibility() {
+    // Only homepage
+    const isHomePage = this.router.url === '/';
+
+    if (!isHomePage) {
+      this.showTopBar = false;
+      return;
+    }
+
+    const closedAt = localStorage.getItem(this.TOP_BAR_KEY);
+
+    if (closedAt) {
+      const closedTime = Number(closedAt);
+      const now = Date.now();
+
+      // If less than 12 hours passed, keep hidden
+      if (now - closedTime < this.HIDE_DURATION) {
+        this.showTopBar = false;
+        return;
+      }
+
+      // After 12 hours, remove old data
+      localStorage.removeItem(this.TOP_BAR_KEY);
+    }
+
+    this.showTopBar = true;
+  }
+
+  closeTopBar() {
+    this.showTopBar = false;
+    // Save current timestamp
+    localStorage.setItem(this.TOP_BAR_KEY, Date.now().toString());
+  }
+  // Jagan
 
   ngOnDestroy(): void {
     if (this.commonDataSubscription) {
@@ -96,11 +141,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ✅ CLOSE BAR (only hides until refresh)
-  closeTopBar() {
-    this.showTopBar = false;
-  }
-
   scrollToDownload() {
     const element = document.getElementById('downloadappnew');
 
@@ -109,6 +149,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         behavior: 'smooth',
         block: 'start',
       });
+
+      this.closeTopBar();
     }
   }
 }

@@ -23,16 +23,16 @@ export class OfferService {
     .pipe(
       catchError(this.errorHandler)
     )
-    
+
   }
-  
+
   errorHandler(error:HttpErrorResponse) {
     let errorMessage :any;
     if(error.error instanceof HttpErrorResponse) {
       errorMessage = error.error.message;
     } else {
       errorMessage = error;
-      
+
       //`Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);

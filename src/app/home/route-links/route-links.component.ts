@@ -29,7 +29,7 @@ export class RouteLinksComponent implements OnInit {
         Array.isArray(parsedData.popularRoutes)
       ) {
         this.popularRoutesRes = parsedData.popularRoutes;
-        this.popularRoutesLinks = this.chunkArray(this.popularRoutesRes, 5);
+        this.popularRoutesLinks = this.chunkArray(this.popularRoutesRes, 7);
       }
 
       // console.log('popularRoutesLinks:', this.topOperatorLinks);

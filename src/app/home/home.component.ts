@@ -339,7 +339,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
   private initializeDefaults(): void {
     // Set safe defaults so page renders even without PopularInfo data
-    console.log('HomeComponent.initializeDefaults() called');
+    // console.log('HomeComponent.initializeDefaults() called');
     const current = new Date();
     this.dtconfig.minDate = {
       year: current.getFullYear(),
@@ -376,22 +376,22 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     };
     this.http.post(this.apiurl + '/bloglist', reddata).subscribe((res: any) => {
       this.bloglist = res.data.blogs;
-      console.log(res.data.blogs);
+      // console.log(res.data.blogs);
     });
 
-    console.log('HomeComponent.ngOnInit() called');
+    // console.log('HomeComponent.ngOnInit() called');
 
     // Initialize with safe defaults (ensures page renders even without PopularInfo)
     this.initializeDefaults();
 
     // Use pre-loaded PopularInfo from AppInitializer (set during app bootstrap)
     const popularInfo = this.commonService.getPopularInfo();
-    console.log(
-      'PopularInfo from service:',
-      popularInfo ? 'loaded' : 'NOT loaded',
-    );
+    // console.log(
+    //   'PopularInfo from service:',
+    //   popularInfo ? 'loaded' : 'NOT loaded',
+    // );
     if (popularInfo) {
-      console.log('Using pre-loaded PopularInfo');
+      // console.log('Using pre-loaded PopularInfo');
       this.setPopularInfoData(popularInfo);
     } else {
       // Fallback: if initializer didn't load it (e.g., API error), try loading from cache
@@ -399,7 +399,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
         ? localStorage.getItem('PopularInfo')
         : null;
       if (storedData) {
-        console.log('Loading PopularInfo from localStorage');
+        // console.log('Loading PopularInfo from localStorage');
         try {
           const data = JSON.parse(storedData);
           this.setPopularInfoData(data);
@@ -408,7 +408,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
         }
       } else if (isPlatformBrowser(this.platformId)) {
         // Last resort: fetch from API (browser only, don't block SSR)
-        console.log('Fetching PopularInfo from API as fallback');
+        // console.log('Fetching PopularInfo from API as fallback');
         const param = {
           user_id: GlobalConstants.MASTER_SETTING_USER_ID,
           locationName: '',

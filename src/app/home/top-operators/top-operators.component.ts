@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top-operators',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopOperatorsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   topOperators: any = [];
 
@@ -24,6 +25,12 @@ export class TopOperatorsComponent implements OnInit {
       }
     } catch (error) {
       console.error('Error parsing localStorage data', error);
+    }
+  }
+
+  operator_detail(url: any) {
+    if (url != '') {
+      this.router.navigate(['operator/' + url]);
     }
   }
 

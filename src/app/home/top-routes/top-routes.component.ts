@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top-routes',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-routes.component.css', '../home.component.css'],
 })
 export class TopRoutesComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   popular_routes: any = [];
 
@@ -24,5 +25,9 @@ export class TopRoutesComponent implements OnInit {
     } catch (error) {
       console.error('Error parsing localStorage data', error);
     }
+  }
+
+  popularSearch(sr: any, ds: any) {
+    this.router.navigate(['routes/' + sr + '-' + ds + '-bus-services']);
   }
 }
