@@ -23,7 +23,7 @@ import * as moment from 'moment';
 import { SeoService } from '../services/seo.service';
 import { Lightbox } from 'ngx-lightbox';
 import { PopularRoutesService } from '../services/popular-routes.service';
-import { Location } from '@angular/common';
+import { Location, DOCUMENT } from '@angular/common';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { NgbDatepickerConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { time } from 'console';
@@ -230,7 +230,8 @@ export class SearchComponent implements OnInit {
     private meta: Meta,
     private title: Title,
     private http: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document
 
   ) {
     // Only access localStorage in browser
@@ -450,8 +451,6 @@ export class SearchComponent implements OnInit {
         droppingPoint: this.seatForm.value.droppingPoint
       }
 
-      console.log(bookingdata);
-
       if (isPlatformBrowser(this.platformId)) {
         localStorage.setItem('bookingdata', JSON.stringify(bookingdata));
         localStorage.setItem('busRecord', JSON.stringify(this.buslistRecord));
@@ -479,9 +478,6 @@ export class SearchComponent implements OnInit {
 
 
   updateLowerberth(e: any) {
-
-    //console.log(e.target.value);
-
 
     const Lowerberth: FormArray = this.seatForm.get('Lowerberth') as FormArray;
     if (e.target.checked) {
@@ -1611,9 +1607,6 @@ export class SearchComponent implements OnInit {
     this.seatLoader = true;
     this.seatLayoutService.getSeats(params).subscribe(
       res => {
-
-        console.log(res);
-
         this.seatsLayouts[bus_id] = res.data;
         this.seatsLayoutRecord = res.data;
         this.seatsLayoutRecord.visibility = true;
@@ -2617,55 +2610,52 @@ export class SearchComponent implements OnInit {
       sourceId: this.source_id,
       destinationId: this.destination_id
     };
-    this.http.post(GlobalConstants.BASE_URL + '/seoContent', payload).subscribe((res:any)=>{
+    this.http.post(GlobalConstants.BASE_URL + '/seoContent', payload).subscribe((res: any) => {
       // console.log(res.data);
       this.seoContentData = res.data;
+
+      this.applySeo(this.seoContentData);
     })
   }
 
   ngOnInit(): void {
 
-    // ✅ STEP 1: Clean URL (USE THIS EVERYWHERE)
     let currentPath = this.router.url.split('?')[0];
 
     currentPath = currentPath.replace(/^\/+/, '');
     currentPath = currentPath.replace(/^(route|routes)\//, '');
 
-    // optional (keeps old code working)
     this.currentUrl = currentPath;
 
-    // console.log('Final Clean Path:', currentPath);
-
-
     // ================= SEO =================
-    this.seo.seoList().subscribe(
-      (resp: any) => {
+    // this.seo.seoList().subscribe(
+    //   (resp: any) => {
 
-        let seoPages: any[] = [];
+    //     let seoPages: any[] = [];
 
-        if (Array.isArray(resp)) {
-          seoPages = resp;
-        } else if (resp?.data && Array.isArray(resp.data)) {
-          seoPages = resp.data;
-        }
+    //     if (Array.isArray(resp)) {
+    //       seoPages = resp;
+    //     } else if (resp?.data && Array.isArray(resp.data)) {
+    //       seoPages = resp.data;
+    //     }
 
-        const seoData = seoPages.find(
-          (x: any) => x?.page_url === currentPath
-        );
+    //     const seoData = seoPages.find(
+    //       (x: any) => x?.page_url === currentPath
+    //     );
 
-        if (seoData) {
-          this.applySeo(seoData);
-        }
+    //     if (seoData) {
+    //       this.applySeo(seoData);
+    //     }
 
-        if (isPlatformBrowser(this.platformId)) {
-          localStorage.setItem('seoData', JSON.stringify(resp));
-        }
+    //     if (isPlatformBrowser(this.platformId)) {
+    //       localStorage.setItem('seoData', JSON.stringify(resp));
+    //     }
 
-      },
-      error => {
-        console.error('Error fetching SEO:', error);
-      }
-    );
+    //   },
+    //   error => {
+    //     console.error('Error fetching SEO:', error);
+    //   }
+    // );
 
 
     // ================= LOCATION OBS =================
@@ -2695,7 +2685,6 @@ export class SearchComponent implements OnInit {
     }
 
 
-    // ================= MAIN LOGIC =================
     if (currentPath != 'listing') {
 
       if (currentPath.includes('bus-services')) {
@@ -2703,7 +2692,6 @@ export class SearchComponent implements OnInit {
         // ✅ FIXED URL PARSING
         let urlstr = currentPath.replace('-bus-services', '');
 
-        console.log('URL String:', urlstr);
 
         // date
         if (this.route.snapshot.queryParams['date']) {
@@ -2715,7 +2703,7 @@ export class SearchComponent implements OnInit {
         // split locations
         let l_ar = urlstr.split('-');
 
-        console.log('Location Array:', l_ar);
+        // console.log('Location Array:', l_ar);
 
         const allLoc = isPlatformBrowser(this.platformId) ? localStorage.getItem('allLoc') : null;
 
@@ -2786,7 +2774,6 @@ export class SearchComponent implements OnInit {
     }
 
 
-    // ================= PATH URL =================
     const pathUrls = isPlatformBrowser(this.platformId) ? localStorage.getItem('pathUrls') : null;
 
     if (pathUrls) {
@@ -2811,26 +2798,61 @@ export class SearchComponent implements OnInit {
 
   }
 
+  removeOldJsonLd() {
+    const scripts = this.document.querySelectorAll(
+      'script[type="application/ld+json"]',
+    );
+    scripts.forEach((s) => s.remove());
+  }
 
 
-  applySeo(seo: any) {
 
-    this.title.setTitle(seo.meta_title);
+  applySeo(seodata: any) {
+
+    this.title.setTitle(seodata.meta_title || '');
 
     this.meta.updateTag({
       name: 'description',
-      content: seo.meta_description
+      content: seodata.meta_description || '',
     });
 
-    this.meta.updateTag(
-      { content: seo.meta_keyword || '' },
-      'name="keywords"'
-    );
+    this.removeOldJsonLd();
 
-    this.meta.updateTag(
-      { content: seo.meta_title || '' },
-      'property="og:title"'
-    );
+    const schemas: any[] = [];
+
+    if (seodata?.breadcrumb_schema) {
+      try {
+        const breadcrumb =
+          typeof seodata.breadcrumb_schema === 'string'
+            ? JSON.parse(seodata.breadcrumb_schema)
+            : seodata.breadcrumb_schema;
+
+        schemas.push(breadcrumb);
+      } catch (e) {
+        console.error('Invalid breadcrumb JSON', e);
+      }
+    }
+
+    if (seodata?.faq_schema) {
+      try {
+        const faq =
+          typeof seodata.faq_schema === 'string'
+            ? JSON.parse(seodata.faq_schema)
+            : seodata.faq_schema;
+
+        schemas.push(faq);
+      } catch (e) {
+        console.error('Invalid FAQ JSON', e);
+      }
+    }
+
+    // ✅ THIS PART WAS MISSING
+    schemas.forEach(schema => {
+      const script = this.document.createElement('script');
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(schema);
+      this.document.head.appendChild(script);
+    });
   }
 
 
