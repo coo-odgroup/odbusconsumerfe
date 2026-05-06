@@ -236,9 +236,9 @@ span#basic-addon2 img {
 }
 
 section.section-offer {
-    padding: 30px 0 35px;
+    padding: 20px 0;
     /*border-bottom:40px solid #e7eaeb;*/
-    background-color: #f7f8f9;
+    background-color: #ffffff;
 }
 
 .section-offer-left h2 {
@@ -256,6 +256,10 @@ section.section-offer {
     border-color: #efc003;
     border: none;
     border-bottom: 3px solid #efc003;
+}
+
+.col-md-6.text-right a{
+    color: #072c6b !important;
 }
 
 .section-offer-right .nav-tabs .nav-link {
@@ -462,13 +466,13 @@ section.app {
 }
 
 section.top-routs {
-    padding: 50px 0;
-    background-color: #fff;
+    padding: 40px 0;
+    background-color: #ffffff;
 }
 
 section.top-operators {
-    background: #f7f8f9;
-    padding: 50px 0;
+    background: #ffffff;
+    padding: 40px 0;
 }
 
 section.top-operators ul,

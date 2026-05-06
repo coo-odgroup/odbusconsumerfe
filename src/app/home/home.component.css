@@ -1238,7 +1238,7 @@ input {
 
 /* ================= RECENT SEARCH ================= */
 .recent-search-section {
-  padding: 90px 0 30px;
+  padding: 90px 0 10px;
   /* space from banner overlap */
   background: #ffffff;
 }
@@ -1610,7 +1610,7 @@ input {
 
 .faq-section {
   background: #ffffff;
-  padding: 60px 0;
+  /* padding: 40px 0; */
 }
 
 /* ===============================
@@ -2220,7 +2220,7 @@ input {
 .odbus-info-section {
   background: #ffffff;
   /* padding: 70px 0; */
-  padding: 70px 0 30px 0;
+  padding: 40px 0;
 }
 
 .info-row {
@@ -2409,8 +2409,8 @@ input {
 /* Odbus Advantages */
 
 .whats-new-section {
-  padding: 60px 0;
-  background: #f7f8f9;
+  padding: 40px 0;
+  background: #ffffff;
   overflow: hidden;
 }
 
@@ -2669,6 +2669,12 @@ a.btn.btn-warning {
   text-transform: uppercase !important;
   color: #1b2155 !important;
   padding: 0 20px !important;
+}
+
+a.btn.btn-warning:hover {
+  background: #1b2155 !important;
+  color: #fff !important;
+  border-color: #1b2155 !important;
 }
 
 /* LEFT */
@@ -2936,9 +2942,9 @@ a.btn.btn-warning {
 =================================*/
 
 .route-link-section {
-  background: #f7f8f9;
-  padding: 55px 0;
-  border-top: 1px solid #ececec;
+  background: #ffffff;
+  /* padding: 40px 0; */
+  /* border-top: 1px solid #ececec; */
 }
 
 /* container */
