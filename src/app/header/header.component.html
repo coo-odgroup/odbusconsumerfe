@@ -1,121 +1,153 @@
 <ng-template #Desktop>
+  <!-- TOP GRADIENT BAR -->
+  <div class="top-offer-bar" *ngIf="showTopBar">
+    <div class="offer-content">
+      <span class="offer-text">
+        🎁 Get 10% Discount — Use code <b>APP10</b> on ODBUS App
+      </span>
 
-    <!-- TOP GRADIENT BAR -->
-    <div class="top-offer-bar" *ngIf="showTopBar">
-
-        <div class="offer-content">
-            <span class="offer-text">
-                🎁 Get 10% Discount — Use code <b>APP10</b> on ODBUS App
-            </span>
-
-            <a href="https://play.google.com/store/apps/details?id=com.od.odbus&hl=en" target="_blank"
-                class="install-btn">
-                Install App
-            </a>
-        </div>
-
-        <span class="close-btn" (click)="closeTopBar()">✕</span>
-
+      <!-- <a href="https://play.google.com/store/apps/details?id=com.od.odbus&hl=en" target="_blank"
+            class="install-btn">
+            Install App
+        </a> -->
+      <a (click)="scrollToDownload()" class="install-btn"> Install App </a>
     </div>
-<!-- TOP GRADIENT BAR END -->
- 
-    <section class="header-main fixed-top" [class.with-topbar]="showTopBar"> <!--sticky-top -->
-        <div class="container-xl">
-            <div class="row align-items-center">
-                <div class="col-md-2 d-flex align-items-center">
-                    <div class="logo" *ngIf="logo!=''">
-                        <a routerLink="/">
-                            <img src="{{ logo }}" alt="logo-ODBUS" title="" />
 
-                        </a>
-                    </div>
-                    <img class="trust-badge" src="assets/img/trust_badge.png" alt="logo-ODBUS" title=""/>
-                </div>
-                <div class="col-md-10 d-flex align-items-center">
-                    <div class="main-navigation">
-                        <nav class="navbar navbar-expand-lg navbar-light">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse menu-cnt" id="navbarSupportedContent">
-                                <ul class="">
-                                    <!-- <li class="nav-item home"><a class="nav-link" routerLink="/">Home</a></li>
+    <span class="close-btn" (click)="closeTopBar()">✕</span>
+  </div>
+  <!-- TOP GRADIENT BAR END -->
+
+  <section class="header-main fixed-top" [class.with-topbar]="showTopBar">
+    <!--sticky-top -->
+    <div class="container-xl">
+      <div class="row align-items-center">
+        <div class="col-md-2 d-flex align-items-center">
+          <div class="logo" *ngIf="logo != ''">
+            <a routerLink="/">
+              <img src="{{ logo }}" alt="logo-ODBUS" title="" />
+            </a>
+          </div>
+          <img
+            class="trust-badge"
+            src="assets/img/trust_badge.png"
+            alt="logo-ODBUS"
+            title=""
+          />
+        </div>
+        <div class="col-md-10 d-flex align-items-center">
+          <div class="main-navigation">
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div
+                class="collapse navbar-collapse menu-cnt"
+                id="navbarSupportedContent"
+              >
+                <ul class="">
+                  <!-- <li class="nav-item home"><a class="nav-link" routerLink="/">Home</a></li>
                                     <li class="nav-item about"><a class="nav-link" routerLink="about-us">About</a></li>
                                     <ng-container *ngIf="session.isLoggedIn()">
                                         <li class="nav-item"><a class="nav-link" routerLink="dashboard">Manage
                                                 Booking</a></li>
                                     </ng-container> -->
-                                    <!-- <ng-container *ngIf="!session.isLoggedIn()">
+                  <!-- <ng-container *ngIf="!session.isLoggedIn()">
                                         <li class="nav-item"><a class="nav-link" routerLink="login">Manage Booking</a>
                                         </li>
                                     </ng-container> -->
-                                    <!-- <li class="nav-item"><a class="nav-link" routerLink="support">Support</a></li> -->
-                                    <!-- <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.odcar.in">Car Hire</a></li>
+                  <!-- <li class="nav-item"><a class="nav-link" routerLink="support">Support</a></li> -->
+                  <!-- <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.odcar.in">Car Hire</a></li>
                                     <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.odtravels.in/">Tour Package</a></li> -->
-
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                    <!--  </div>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <!--  </div>
                     <div class="col-md-4"> -->
-                    <div class="login-app mt-0">
-                        <ul *ngIf="! session.isLoggedIn()">
-                            <ng-container *ngIf="!session.isLoggedIn()">
-                                        <li class="nav-item"><a class="nav-link" routerLink="login">Manage Booking</a>
-                                        </li>
-                                    </ng-container>
-                            <li><a routerLink="login" class="black-btn bh">Login/Signup</a></li>
-                            
-                            <!-- <li><a target="_blank"
+          <div class="login-app mt-0">
+            <ul *ngIf="!session.isLoggedIn()">
+              <ng-container *ngIf="!session.isLoggedIn()">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="login">Manage Booking</a>
+                </li>
+              </ng-container>
+              <li>
+                <a routerLink="login" class="black-btn bh">Login/Signup</a>
+              </li>
+
+              <!-- <li><a target="_blank"
                                     href="https://play.google.com/store/apps/details?id=com.od.odbus&hl=en"
                                     class="download black-btn yellow-btn bh">Download App</a></li> -->
-                        </ul>
-                        <nav class="navbar navbar-expand-md" *ngIf="session.isLoggedIn()">
-                            <button class="navbar-toggler" type="button" aria-controls="navbarContent"
-                                [attr.aria-expanded]="!collapsed" aria-label="Toggle navigation"
-                                (click)="collapsed = !collapsed">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
+            </ul>
+            <nav class="navbar navbar-expand-md" *ngIf="session.isLoggedIn()">
+              <button
+                class="navbar-toggler"
+                type="button"
+                aria-controls="navbarContent"
+                [attr.aria-expanded]="!collapsed"
+                aria-label="Toggle navigation"
+                (click)="collapsed = !collapsed"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
 
-                            <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
-                                <ul class="navbar-nav ml-auto">
+              <div
+                class="navbar-collapse"
+                [class.collapse]="collapsed"
+                id="navbarContent"
+              >
+                <ul class="navbar-nav ml-auto">
+                  <li
+                    class="nav-item"
+                    ngbDropdown
+                    display="dynamic"
+                    placement="bottom-right"
+                  >
+                    <a
+                      class="nav-link"
+                      tabindex="0"
+                      ngbDropdownToggle
+                      id="navbarDropdown3"
+                      role="button"
+                      >My Account</a
+                    >
 
-                                    <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
-                                        <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3"
-                                            role="button">My Account</a>
+                    <div
+                      ngbDropdownMenu
+                      aria-labelledby="navbarDropdown3"
+                      class="dropdown-menu"
+                    >
+                      <a ngbDropdownItem class="cursor" routerLink="myaccount"
+                        >Profile Setting</a
+                      >
+                      <a ngbDropdownItem class="cursor" routerLink="dashboard"
+                        >Dashboard</a
+                      >
 
-
-                                        <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
-
-                                            <a ngbDropdownItem class="cursor" routerLink="myaccount">Profile Setting</a>
-                                            <a ngbDropdownItem class="cursor" routerLink="dashboard">Dashboard</a>
-
-                                            <a ngbDropdownItem class="cursor" (click)="signOut()">Log out</a>
-
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
-
-
+                      <a ngbDropdownItem class="cursor" (click)="signOut()"
+                        >Log out</a
+                      >
                     </div>
-                </div>
-            </div>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
         </div>
-    </section>
-   <div class="fix-top" [class.with-topbar]="showTopBar"></div>
+      </div>
+    </div>
+  </section>
+  <div class="fix-top" [class.with-topbar]="showTopBar"></div>
 </ng-template>
 
+<ng-template #Mobile> </ng-template>
 
-<ng-template #Mobile>
-
-
-
-</ng-template>
-
-<ng-container *ngIf="isMobile; then Mobile; else Desktop">
-</ng-container>
+<ng-container *ngIf="isMobile; then Mobile; else Desktop"> </ng-container>

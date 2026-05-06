@@ -772,69 +772,133 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     return this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
   }
 
+  searchToday() {
+    const today = new Date();
+
+    this.searchForm.patchValue({
+      entry_date: this.formatDate(today),
+    });
+
+    this.submitForm();
+  }
+
+  searchTomorrow() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    this.searchForm.patchValue({
+      entry_date: this.formatDate(tomorrow),
+    });
+
+    this.submitForm();
+  }
+
+  formatDate(date: Date): string {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+  }
+
   submitForm() {
     if (this.isMobile == true && this.entry_date != null) {
-      //console.log(this.searchForm.value.entry_date);
-      this.searchForm.value.entry_date = this.entry_date;
+      this.searchForm.patchValue({
+        entry_date: this.entry_date,
+      });
     }
 
-    if (
-      this.searchForm.value.source == null ||
-      this.searchForm.value.source == ''
-    ) {
+    if (!this.searchForm.value.source) {
       this.notify.notify('Enter Source !', 'Error');
-    } else if (
-      this.searchForm.value.destination == null ||
-      this.searchForm.value.destination == ''
-    ) {
-      this.notify.notify('Enter Destination !', 'Error');
-    } else if (
-      this.searchForm.value.entry_date == null ||
-      this.searchForm.value.entry_date == ''
-    ) {
-      this.notify.notify('Enter Journey Date !', 'Error');
-    } else {
-      let dt = this.searchForm.value.entry_date;
-
-      if (dt.month < 10) {
-        dt.month = '0' + dt.month;
-      }
-      if (dt.day < 10) {
-        dt.day = '0' + dt.day;
-      }
-
-      this.searchForm.value.entry_date = [dt.day, dt.month, dt.year].join('-');
-
-      let sr = this.searchForm.value.source.url;
-      let ds = this.searchForm.value.destination.url;
-      let date = this.searchForm.value.entry_date;
-
-      if (!this.searchForm.value.source.name) {
-        this.notify.notify('Select Valid Source !', 'Error');
-
-        return false;
-      }
-
-      if (!this.searchForm.value.destination.name) {
-        this.notify.notify('Select Valid Destination !', 'Error');
-
-        return false;
-      }
-
-      // let dat = this.searchForm.value.entry_date;
-      // if (isPlatformBrowser(this.platformId)) {
-      //   try {
-      //     this.router.navigateByUrl(GlobalConstants.URL + sr + '-' + ds + '-bus-services?date=' + date);
-      //   } catch (e) {
-      //     window.location.href = GlobalConstants.URL + sr + '-' + ds + '-bus-services?date=' + date;
-      //   }
-      // }
-
-      window.location.href =
-        GlobalConstants.URL + 'routes/' + sr + '-' + ds + '-bus-services?date=' + date;
-
-      // this.listing(this.searchForm.value.source,this.searchForm.value.destination,dat);
+      return;
     }
+
+    if (!this.searchForm.value.destination) {
+      this.notify.notify('Enter Destination !', 'Error');
+      return;
+    }
+
+    if (!this.searchForm.value.entry_date) {
+      this.notify.notify('Enter Journey Date !', 'Error');
+      return;
+    }
+
+    let dt = this.searchForm.value.entry_date;
+    let formattedDate = '';
+
+    // Case 1: Quick button already gives string
+    if (typeof dt === 'string') {
+      formattedDate = dt;
+    }
+
+    // Case 2: Datepicker gives object
+    else if (dt.day && dt.month && dt.year) {
+      let day = String(dt.day).padStart(2, '0');
+      let month = String(dt.month).padStart(2, '0');
+
+      formattedDate = `${day}-${month}-${dt.year}`;
+    } else {
+      this.notify.notify('Invalid Date !', 'Error');
+      return;
+    }
+
+    this.searchForm.patchValue({
+      entry_date: formattedDate,
+    });
+
+    let sr = this.searchForm.value.source.url;
+    let ds = this.searchForm.value.destination.url;
+
+    if (!this.searchForm.value.source.name) {
+      this.notify.notify('Select Valid Source !', 'Error');
+      return;
+    }
+
+    if (!this.searchForm.value.destination.name) {
+      this.notify.notify('Select Valid Destination !', 'Error');
+      return;
+    }
+
+    this.saveSearchHistory(sr, ds, formattedDate);
+
+    window.location.href =
+      GlobalConstants.URL +
+      'routes/' +
+      sr +
+      '-' +
+      ds +
+      '-bus-services?date=' +
+      formattedDate;
+  }
+
+  saveSearchHistory(sr: string, ds: string, date: string) {
+    const newSearch = {
+      source: sr,
+      destination: ds,
+      date: date,
+      url: `routes/${sr}-${ds}-bus-services?date=${date}`,
+      searchedAt: new Date().toISOString(),
+    };
+
+    let history = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+
+    // Find same source + destination
+    const existingIndex = history.findIndex(
+      (item: any) => item.source === sr && item.destination === ds,
+    );
+
+    if (existingIndex !== -1) {
+      // Remove old record
+      history.splice(existingIndex, 1);
+    }
+
+    // Add updated/new record at top
+    history.unshift(newSearch);
+
+    // Keep only latest 5
+    history = history.slice(0, 5);
+
+    localStorage.setItem('recentSearches', JSON.stringify(history));
   }
 
   getOffer() {

@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginChecker } from '../helpers/loginChecker';
 import { Title, Meta } from '@angular/platform-browser';
@@ -13,10 +20,9 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
   @Input() masterSettingRecord;
   @Input() session: LoginChecker;
 
@@ -38,9 +44,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private seo: SeoService,
     location: Location,
     private deviceService: DeviceDetectorService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {
-
     this.isMobile = isPlatformBrowser(this.platformId)
       ? this.deviceService.isMobile()
       : false;
@@ -66,12 +71,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.user = this.session.getUser();
 
-    this.commonDataSubscription = this.commonService.commonData$.subscribe(data => {
-      if (data) {
-        this.masterSettingRecord = data;
-        this.updateLogoFromCommonData();
-      }
-    });
+    this.commonDataSubscription = this.commonService.commonData$.subscribe(
+      (data) => {
+        if (data) {
+          this.masterSettingRecord = data;
+          this.updateLogoFromCommonData();
+        }
+      },
+    );
 
     this.updateLogoFromCommonData();
   }
@@ -92,5 +99,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // ✅ CLOSE BAR (only hides until refresh)
   closeTopBar() {
     this.showTopBar = false;
+  }
+
+  scrollToDownload() {
+    const element = document.getElementById('downloadappnew');
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
   }
 }
