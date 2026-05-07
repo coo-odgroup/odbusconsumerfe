@@ -87,7 +87,11 @@ export const routes: Routes = [
   { path: 'myaccount', component: MyaccountComponent, canActivate: [AuthGuard] },
   { path: 'profile/delete', component: ProfiledeleteComponent },
   { path: 'payment-status', component: PaymentStatusComponent },
-  { path: 'slug', component: CommonContentComponent },
+  // { path: 'slug', component: CommonContentComponent },
+  {
+    path: 'advantage/:slug',
+    component: CommonContentComponent
+  },
   { path: 'blog', component: BlogListingComponent },
   { path: 'blog/category/:slug', component: BlogListingComponent },
   { path: 'blog/tag/:tag_slug', component: BlogListingComponent },
@@ -123,7 +127,7 @@ export class AppRoutingModule {
     // this.popularRoutesService.allroutes().subscribe(
     //   res=>{
     //     if(res.status==1)
-    //     { 
+    //     {
 
     //       if(res.data.length>0){
     //         res.data.forEach(e => {
@@ -132,10 +136,10 @@ export class AppRoutingModule {
     //             component: SearchComponent
     //           };
     //           routes.push(r);
-    //         });  
-    //     }  
-    //     this.router.resetConfig(routes);         
-    //   }       
+    //         });
+    //     }
+    //     this.router.resetConfig(routes);
+    //   }
 
     //   });
   }
