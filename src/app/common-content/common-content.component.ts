@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { GlobalConstants } from '../constants/global-constants';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 interface FaqItem {
   question: string;
@@ -9,47 +12,50 @@ interface FaqItem {
 @Component({
   selector: 'app-common-content',
   templateUrl: './common-content.component.html',
-  styleUrls: ['./common-content.component.css']
+  styleUrls: ['./common-content.component.css'],
 })
 export class CommonContentComponent implements OnInit {
-
   faqs: FaqItem[] = [];
+  slug: string = '';
+  pageDetails: any;
 
-  constructor() { }
+  private apiURL = GlobalConstants.BASE_URL;
+
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+  ) {}
 
   ngOnInit(): void {
-    this.faqs = [
-      {
-        question: 'How do I opt-in for free cancellation for my booking?',
-        answer: 'Customers can purchase free cancellation for their booking by selecting yes on Free Cancellation section on the customer info screen.',
-        isOpen: true   // first one open by default
-      },
-      {
-        question: 'Can I cancel the free cancellation after purchasing it?',
-        answer: 'No, once purchased, free cancellation cannot be cancelled separately.',
-        isOpen: false
-      },
-      {
-        question: 'What happens to my free cancellation if I reschedule my booking?',
-        answer: 'Free cancellation may not be applicable after rescheduling depending on the policy.',
-        isOpen: false
-      },
-      {
-        question: 'Why am I still getting cancellation charges even though I have purchased free cancellation?',
-        answer: 'This may happen if cancellation is done after the allowed time window.',
-        isOpen: false
-      },
-      {
-        question: 'Will my free cancellation be refunded when I cancel my ticket?',
-        answer: 'The free cancellation charge itself is non-refundable.',
-        isOpen: false
-      },
-      {
-        question: 'Where will I get my refund on cancellation?',
-        answer: 'Refund will be credited to the original payment method used during booking.',
-        isOpen: false
-      }
-    ];
+    this.route.params.subscribe((params) => {
+      this.slug = params['slug'];
+
+      // console.log(this.slug);
+
+      this.getPageDetails();
+    });
+  }
+
+  getPageDetails() {
+    const postData = {
+      page_url: this.slug,
+    };
+
+    this.http
+      .post(this.apiURL + '/get-advantage-details', postData)
+      .subscribe((response: any) => {
+        this.pageDetails = response.page;
+        // this.faqs = response.faqs;
+
+        this.faqs = response.faqs.map((item: any, index: number) => ({
+          question: item.title,
+          answer: item.content,
+          isOpen: index === 0
+        }));
+
+        // console.log(this.pageDetails);
+        // console.log(this.faqs);
+      });
   }
 
   toggleFaq(index: number): void {
