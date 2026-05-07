@@ -258,7 +258,7 @@ section.section-offer {
     border-bottom: 3px solid #efc003;
 }
 
-.col-md-6.text-right a{
+.section-offer .col-md-6.text-right a{
     color: #072c6b !important;
 }
 
