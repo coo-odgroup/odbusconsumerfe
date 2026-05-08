@@ -7,8 +7,8 @@ export class GlobalConstants {
   // public static BASE_URL:any ='https://consumer.odbus.co.in/api';
   // public static URL:any ='https://www.odbus.in/';
 
-  public static BASE_URL: any = 'https://consumer.odbus.co.in/api';
-  // public static BASE_URL: any = 'https://testing.odbus.co.in/api';
+  // public static BASE_URL: any = 'https://consumer.odbus.co.in/api';
+  public static BASE_URL: any = 'https://testing.odbus.co.in/api';
   // public static URL:any ='https://odtestingssr.odbus.co.in/';
   public static PAYMENT_MODE:any ='production';
   // public static PATHURL: any = 'https://testingadminapi.odbus.co.in/public/uploads/';

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GlobalConstants } from '../../constants/global-constants';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-odbus-offers',
@@ -22,6 +23,11 @@ export class OdbusOffersComponent implements OnInit {
   checkScreen() {
     this.isMobile = window.innerWidth < 768;
   }
+
+  @HostListener('window:resize')
+onResize() {
+  this.checkScreen();
+}
 
   Offers: any[] = [];
   offerList: any[] = [];

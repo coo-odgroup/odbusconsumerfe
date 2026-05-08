@@ -321,14 +321,144 @@ section.section-offer .nav-tabs .nav-item .nav-link {
 }
 
 
-.mobile-discount .img-fluid {
+/* .mobile-discount .img-fluid {
   width: 100%;
 }
+
 
 .mobile-discount h6 {
   font-weight: 600;
   color: #072c6b;
+} */
+
+/* New Offer Correction */
+
+/* =========================================================
+   MOBILE OFFERS SECTION
+========================================================= */
+
+.mobile-offers-section {
+  width: 100%;
+  padding: 14px;
+  background: #ffffff;
+  box-sizing: border-box;
 }
+
+/* =========================================================
+   TOP HEADER
+========================================================= */
+
+.mobile-offers-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.mobile-offers-top h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: #072c6b;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.mobile-offers-top a {
+  font-size: 13px;
+  font-weight: 700;
+  color: #072c6b;
+  text-decoration: none;
+}
+
+/* =========================================================
+   OFFER CARD
+========================================================= */
+
+.mobile-offers-card {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+/* =========================================================
+   CAROUSEL FIX
+========================================================= */
+
+.mobile-offers-card carousel,
+.mobile-offers-card ::ng-deep .carousel,
+.mobile-offers-card ::ng-deep .carousel-cells,
+.mobile-offers-card ::ng-deep .carousel-cell {
+  width: 100%;
+  display: block;
+}
+
+/* =========================================================
+   IMAGE RESPONSIVE FIX
+========================================================= */
+
+.mobile-offers-card ::ng-deep .carousel-cell img,
+.mobile-offers-card ::ng-deep img {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  object-fit: cover !important;
+  border-radius: 18px;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE HEIGHTS
+========================================================= */
+
+/* 430px Devices */
+
+@media (max-width: 430px) {
+
+  .mobile-offers-card ::ng-deep .carousel-cell img,
+  .mobile-offers-card ::ng-deep img {
+    aspect-ratio: 16 / 7;
+  }
+}
+
+/* 390px Devices */
+
+@media (max-width: 390px) {
+
+  .mobile-offers-section {
+    padding: 12px;
+  }
+
+  .mobile-offers-top h2 {
+    font-size: 16px;
+  }
+
+  .mobile-offers-top a {
+    font-size: 12px;
+  }
+
+  .mobile-offers-card {
+    border-radius: 16px;
+  }
+
+  .mobile-offers-card ::ng-deep .carousel-cell img,
+  .mobile-offers-card ::ng-deep img {
+    aspect-ratio: 16 / 7.5;
+    border-radius: 16px;
+  }
+}
+
+/* 360px Devices */
+
+@media (max-width: 360px) {
+
+  .mobile-offers-card ::ng-deep .carousel-cell img,
+  .mobile-offers-card ::ng-deep img {
+    aspect-ratio: 16 / 8;
+  }
+}
+
+/* New Offer Correction */
 
 .mobile-recent-searches h6 {
   font-weight: 600;
@@ -973,7 +1103,7 @@ input {
     margin: 8px 0 0;
   }
 
-  .to-field img.icon-to{
+  .to-field img.icon-to {
     margin: 0 !important;
   }
 
@@ -1132,7 +1262,7 @@ input {
     cursor: pointer;
   }
 
-  .quick-date-tomorrow{
+  .quick-date-tomorrow {
     min-width: auto;
     height: 50px;
     border-radius: 12px;
