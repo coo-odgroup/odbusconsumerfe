@@ -68,6 +68,7 @@ onResize() {
     this.isMobile = window.innerWidth < 768;
 
   }
+  
 
   getOffers(): void {
 
