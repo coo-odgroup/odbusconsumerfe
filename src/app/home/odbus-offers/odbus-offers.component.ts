@@ -1,7 +1,17 @@
 // import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GlobalConstants } from '../../constants/global-constants';
-import { Component, OnInit, HostListener } from '@angular/core';
+// import { Component, OnInit, HostListener } from '@angular/core';
+
+import {
+  Component,
+  OnInit,
+  HostListener,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
+
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-odbus-offers',
