@@ -1,5 +1,12 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
-  <p style="color: white">Loading...</p></ngx-spinner>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p></ngx-spinner
+>
 
 <ng-container *ngIf="!isMobile">
   <span class="line-span"
@@ -13,19 +20,34 @@
         <div class="col-md-8 offset-md-2">
           <div class="manage-heading"><h1>Enter Ticket Details</h1></div>
           <div class="main-tnc-heading">
-            <form class="form-horizontal" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+            <form
+              class="form-horizontal"
+              [formGroup]="bookForm"
+              (ngSubmit)="onSubmit()"
+            >
               <div class="row">
                 <div class="col col-lg-6 col-md-6">
                   <div class="form-group">
                     <label for="pnr" class="cols-sm-2 control-label">
-                      <img src="../../assets/img/ticket.svg" class="star4"/>PNR Number</label>
+                      <img src="../../assets/img/ticket.svg" class="star4" />PNR
+                      Number</label
+                    >
                     <div class="cols-sm-10">
                       <div class="input-group">
                         <!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
-                        <input type="text" class="form-control modul-text" formControlName="pnr" id="pnr" placeholder="Enter PNR" autocomplete="off"
+                        <input
+                          type="text"
+                          class="form-control modul-text"
+                          formControlName="pnr"
+                          id="pnr"
+                          placeholder="Enter PNR"
+                          autocomplete="off"
                         />
 
-                        <div *ngIf="submitted && f.pnr.errors" class="invalid-feedback">
+                        <div
+                          *ngIf="submitted && f.pnr.errors"
+                          class="invalid-feedback"
+                        >
                           <div *ngIf="f.pnr.errors.required">
                             PNR is required
                           </div>
@@ -37,14 +59,29 @@
                 <div class="col col-lg-6 col-md-6">
                   <div class="form-group">
                     <label for="mobile" class="cols-sm-2 control-label">
-                      <img src="../../assets/img/call.svg" class="star4"/>Mobile Number</label>
+                      <img
+                        src="../../assets/img/call.svg"
+                        class="star4"
+                      />Mobile Number</label
+                    >
                     <div class="cols-sm-10">
                       <div class="input-group">
                         <!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
-                        <input type="text" (keydown)="onlyNumbers($event)" maxlength="10" class="form-control modul-text"                     formControlName="mobile"
-                          id="mobile" placeholder="Enter Mobile No." autocomplete="off"/>
+                        <input
+                          type="text"
+                          (keydown)="onlyNumbers($event)"
+                          maxlength="10"
+                          class="form-control modul-text"
+                          formControlName="mobile"
+                          id="mobile"
+                          placeholder="Enter Mobile No."
+                          autocomplete="off"
+                        />
 
-                        <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                        <div
+                          *ngIf="submitted && f.mobile.errors"
+                          class="invalid-feedback"
+                        >
                           <div *ngIf="f.mobile.errors.required">
                             Mobile no. is required
                           </div>
@@ -75,7 +112,10 @@
                   +91 9583918888
                 </h3>
                 <h3>
-                  <img src="../../assets/img/email.svg" class="star3" />support@odbus.in
+                  <img
+                    src="../../assets/img/email.svg"
+                    class="star3"
+                  />support@odbus.in
                 </h3>
               </div>
             </div>
@@ -90,9 +130,9 @@
   <div class="mobile-mybooking-top">
     <div class="row">
       <div class="col-1 pr-0 pl-2 mob-arrow-left">
-		  <a href="/">
-        	<i class="fas fa-arrow-left"></i>
-		  </a>	
+        <a href="/">
+          <i class="fas fa-arrow-left"></i>
+        </a>
       </div>
       <div class="col-7 pl-2 pr-2 mob-list-center">
         <h5>Manage Booking</h5>
@@ -106,12 +146,22 @@
   </div>
 
   <div class="mobile-ticket-cancel-box">
-    <form class="form-horizontal" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <form
+      class="form-horizontal"
+      [formGroup]="bookForm"
+      (ngSubmit)="onSubmit()"
+    >
       <div class="row">
         <div class="col-12">
           <div class="form-group mob-tk">
             <label class="mb-2">Enter PNR Number</label><br />
-            <input type="text"  class="form-control modul-text" formControlName="pnr" id="pnr" placeholder="Enter PNR" autocomplete="off"
+            <input
+              type="text"
+              class="form-control modul-text"
+              formControlName="pnr"
+              id="pnr"
+              placeholder="Enter PNR"
+              autocomplete="off"
             />
             <div *ngIf="submitted && f.pnr.errors" class="invalid-feedback">
               <div *ngIf="f.pnr.errors.required">PNR is required</div>
@@ -121,8 +171,16 @@
         <div class="col-12">
           <div class="form-group mob-tk">
             <label class="mb-2">Enter Mobile Number</label><br />
-            <input type="text" (keydown)="onlyNumbers($event)" maxlength="10" class="form-control modul-text" formControlName="mobile"
-              id="mobile" placeholder="Enter Mobile No." autocomplete="off" />
+            <input
+              type="text"
+              (keydown)="onlyNumbers($event)"
+              maxlength="10"
+              class="form-control modul-text"
+              formControlName="mobile"
+              id="mobile"
+              placeholder="Enter Mobile No."
+              autocomplete="off"
+            />
             <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
               <div *ngIf="f.mobile.errors.required">Mobile no. is required</div>
               <div *ngIf="f.mobile.errors.pattern">
@@ -161,10 +219,12 @@
   </div>
 
   <div class="mobile-myaccount-middle">
-    <ul class="mobile-menu">    
+    <ul class="mobile-menu">
       <li>
-        <a routerLink="/contact-us"><i class="fas fa-envelope"></i> Contact Us</a>
-      </li> 
+        <a routerLink="/contact-us"
+          ><i class="fas fa-envelope"></i> Contact Us</a
+        >
+      </li>
       <li>
         <a routerLink="/offers"><i class="fas fa-gifts"></i> Offers</a>
       </li>
@@ -181,10 +241,14 @@
         <a routerLink="/testimonials"><i class="fa fa-star"></i>Testimonials</a>
       </li>
       <li>
-        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i>Terms & Conditions</a>
+        <a routerLink="/terms-conditions"
+          ><i class="fas fa-file-image"></i>Terms & Conditions</a
+        >
       </li>
       <li>
-        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i>Privacy Policy</a>
+        <a routerLink="/privacy-policy"
+          ><i class="far fa-file-powerpoint"></i>Privacy Policy</a
+        >
       </li>
       <li>
         <a routerLink="/about-us"><i class="fas fa-info-circle"></i>About Us</a>
@@ -200,39 +264,5 @@
 </ng-container>
 
 <ng-container *ngIf="isMobile">
-  <div class="mob-mtbh"></div>
-  <div class="mobile-fixed-bottom">
-    <div class="footer-menu row m-0 mobile-bg-danger">
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/" class="home active">
-          <i class="fas fa-home"></i>
-          <p class="mb-0 small">Home</p>
-        </a>
-      </div>
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/dashboard" class="home">
-          <i class="fas fa-ticket-alt"></i>
-          <p class="mb-0 small">My Bookings</p>
-        </a>
-      </div>
-      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
-        <a routerLink="/login" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">Login</p>
-        </a>
-      </div>
-      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
-        <a routerLink="/myaccount" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">My Account</p>
-        </a>
-      </div>
-      <div class="col-3 p-0 text-center">
-        <a (click)="menu()" class="home {{activeMenu}}">
-          <i class="fas fa-bars"></i>
-          <p class="mb-0 small">Menu</p>
-        </a>
-      </div>
-    </div>
-  </div>
+  <app-footer-menu></app-footer-menu>
 </ng-container>

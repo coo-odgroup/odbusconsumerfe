@@ -79,6 +79,7 @@ import { RouteLinksComponent } from './home/route-links/route-links.component';
 import { TopOperatorsComponent } from './home/top-operators/top-operators.component';
 import { TopRoutesComponent } from './home/top-routes/top-routes.component';
 import { CommonContentComponent } from './common-content/common-content.component';
+import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -154,7 +155,8 @@ const ngWizardConfig: NgWizardConfig = {
     RouteLinksComponent,
     TopOperatorsComponent,
     TopRoutesComponent,
-    CommonContentComponent
+    CommonContentComponent,
+    FooterMenuComponent
   ], 
   imports: [
     // BrowserAnimationsModule,

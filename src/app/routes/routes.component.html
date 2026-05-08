@@ -1,4 +1,10 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="small" color="#fff" type="line-scale-party" [fullScreen]="true">
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="small"
+  color="#fff"
+  type="line-scale-party"
+  [fullScreen]="true"
+>
   <p style="color: white"></p>
 </ngx-spinner>
 
@@ -17,57 +23,88 @@
               <div class="row">
                 <div class="col-md-8"></div>
                 <div class="form-group col-md-4" align="right">
-                  <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search Route" />
+                  <input
+                    class="form-control"
+                    type="text"
+                    [(ngModel)]="searchText"
+                    placeholder="Search Route"
+                  />
                 </div>
               </div>
 
-              <ul *ngIf="(all_routes | filter: searchText).length > 0;else noResults">
-                <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker
-                  (click)="d.toggle()" #d="ngbDatepicker" />
+              <ul
+                *ngIf="
+                  (all_routes | filter: searchText).length > 0;
+                  else noResults
+                "
+              >
+                <input
+                  type="hidden"
+                  [(ngModel)]="dtconfig.minDate"
+                  name="todayDate"
+                  id="todayDate"
+                  ngbDatepicker
+                  (click)="d.toggle()"
+                  #d="ngbDatepicker"
+                />
 
                 <li *ngFor="let p of all_routes | filter: searchText">
-
                   <div class="route-card">
-
-                    <a class="route-link" (click)="popularSearch(p.source[0].url, p.destination[0].url)">
-
-                      <img class="popl-routs-icon1" src="assets/img/Icon-metro-location.svg" />
+                    <a
+                      class="route-link"
+                      (click)="
+                        popularSearch(p.source[0].url, p.destination[0].url)
+                      "
+                    >
+                      <img
+                        class="popl-routs-icon1"
+                        src="assets/img/Icon-metro-location.svg"
+                      />
                       <span class="route-text">{{ p.source[0].name }}</span>
 
-                      <img class="popl-routs-icon2" src="assets/img/left-right.png" />
+                      <img
+                        class="popl-routs-icon2"
+                        src="assets/img/left-right.png"
+                      />
 
-                      <span class="route-text">{{ p.destination[0].name }}</span>
-
+                      <span class="route-text">{{
+                        p.destination[0].name
+                      }}</span>
                     </a>
 
                     <!-- Bus count BELOW center -->
-                    <div class="bus-count" *ngIf="p.BusList.length > 0" (click)="ViewBus(p.BusList,buslist)">
-                      ({{p.BusList.length}} Buses)
+                    <div
+                      class="bus-count"
+                      *ngIf="p.BusList.length > 0"
+                      (click)="ViewBus(p.BusList, buslist)"
+                    >
+                      ({{ p.BusList.length }} Buses)
                     </div>
-
                   </div>
-
                 </li>
               </ul>
             </div>
 
             <ng-template #buslist let-modal>
-
               <div class="cal-modal-mobile">
                 <div class="modal-body">
-
                   <h4>Bus List</h4>
 
-                  <div *ngFor="let b of buses;">
-                    <p>{{b.name}} - {{b.bus_number}} </p>
+                  <div *ngFor="let b of buses">
+                    <p>{{ b.name }} - {{ b.bus_number }}</p>
                   </div>
                 </div>
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="modal.close('Close click')"
+                >
+                  Close
+                </button>
               </div>
-
             </ng-template>
 
             <ng-template #noResults>
@@ -99,11 +136,24 @@
     </div>
   </div>
 
-  <div class="mobile-routes-middle" *ngIf="all_routes.length > 0; else noResults">
-    <div class="mobile-routes-box shadow" *ngFor="let p of all_routes"
-      (click)="popularSearch(p.source[0].url, p.destination[0].url)">
-      <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker
-        (click)="d.toggle()" #d="ngbDatepicker" />
+  <div
+    class="mobile-routes-middle"
+    *ngIf="all_routes.length > 0; else noResults"
+  >
+    <div
+      class="mobile-routes-box shadow"
+      *ngFor="let p of all_routes"
+      (click)="popularSearch(p.source[0].url, p.destination[0].url)"
+    >
+      <input
+        type="hidden"
+        [(ngModel)]="dtconfig.minDate"
+        name="todayDate"
+        id="todayDate"
+        ngbDatepicker
+        (click)="d.toggle()"
+        #d="ngbDatepicker"
+      />
       <div class="row mob-tkbox-mid">
         <div class="col-5 pl-3 pr-2 text-center">
           <h6>{{ p.source[0].name }}</h6>
@@ -120,13 +170,14 @@
         <div class="col-5 pl-3 pr-2 text-center">{{ p.count }} Buses</div>
         <div class="col-2 p-0 text-center"></div>
         <div class="col-5 pl-2 pr-3 text-center">
-          <a (click)="popularSearch(p.source[0].url, p.destination[0].url)">Book Now</a>
+          <a (click)="popularSearch(p.source[0].url, p.destination[0].url)"
+            >Book Now</a
+          >
         </div>
       </div>
     </div>
   </div>
 </ng-container>
-
 
 <ng-container *ngIf="isMobile && MenuActive">
   <div class="mobile-myaccount-top">
@@ -140,9 +191,7 @@
         <a routerLink="/login" *ngIf="!session.isLoggedIn()">
           Login / Signup
         </a>
-        <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
-          Dashboard
-        </a>
+        <a routerLink="/dashboard" *ngIf="session.isLoggedIn()"> Dashboard </a>
       </div>
     </div>
   </div>
@@ -150,10 +199,14 @@
   <div class="mobile-myaccount-middle">
     <ul class="mobile-menu">
       <li>
-        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i>Manage Booking</a>
+        <a routerLink="/manage-booking"
+          ><i class="far fa-window-restore"></i>Manage Booking</a
+        >
       </li>
       <li>
-        <a routerLink="/contact-us"><i class="fas fa-envelope"></i> Contact Us</a>
+        <a routerLink="/contact-us"
+          ><i class="fas fa-envelope"></i> Contact Us</a
+        >
       </li>
       <li>
         <a routerLink="/offers"><i class="fas fa-gifts"></i>Offers</a>
@@ -168,10 +221,14 @@
         <a routerLink="/testimonials"><i class="fa fa-star"></i>Testimonials</a>
       </li>
       <li>
-        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i>Terms & Conditions</a>
+        <a routerLink="/terms-conditions"
+          ><i class="fas fa-file-image"></i>Terms & Conditions</a
+        >
       </li>
       <li>
-        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i>Privacy Policy</a>
+        <a routerLink="/privacy-policy"
+          ><i class="far fa-file-powerpoint"></i>Privacy Policy</a
+        >
       </li>
       <li>
         <a routerLink="/about-us"><i class="fas fa-info-circle"></i>About Us</a>
@@ -187,42 +244,5 @@
 </ng-container>
 
 <ng-container *ngIf="isMobile">
-  <div class="mob-mtbh"></div>
-  <div class="mobile-fixed-bottom">
-    <div class="footer-menu row m-0 mobile-bg-danger">
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/" class="home">
-          <i class="fas fa-home"></i>
-          <p class="mb-0 small">Home</p>
-        </a>
-      </div>
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/dashboard" class="home">
-          <i class="fas fa-ticket-alt"></i>
-          <p class="mb-0 small">My Bookings</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
-        <a routerLink="/login" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">Login</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
-        <a routerLink="/myaccount" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">My Account</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center">
-        <a (click)="menu()" class="home {{activeMenu}}">
-          <i class="fas fa-bars"></i>
-          <p class="mb-0 small">Menu</p>
-        </a>
-      </div>
-    </div>
-  </div>
+  <app-footer-menu></app-footer-menu>
 </ng-container>

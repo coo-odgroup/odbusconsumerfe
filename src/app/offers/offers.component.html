@@ -1,28 +1,39 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
-  <p style="color: white"> Loading... </p>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
 </ngx-spinner>
 
-
-
 <ng-container *ngIf="!isMobile">
-
   <section class="search-section">
-
     <!-- SEARCH -->
     <div class="container search-overlap">
       <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
-
         <div class="search-box-v5">
           <div class="row no-gutters align-items-end search-inner">
-
             <!-- FROM -->
             <div class="col-md-3 field from-field">
               <label>From</label>
               <div class="input-box">
-                <img src="assets/img/Icon-metro-location.svg" class="icon-from">
-                <input type="text" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt"
-                  [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapsource" name="source"
-                  placeholder="Enter Source" />
+                <img
+                  src="assets/img/Icon-metro-location.svg"
+                  class="icon-from"
+                />
+                <input
+                  type="text"
+                  class="form-control"
+                  [ngbTypeahead]="search"
+                  [resultTemplate]="rt"
+                  [resultFormatter]="formatter"
+                  [inputFormatter]="formatter"
+                  [(ngModel)]="swapsource"
+                  name="source"
+                  placeholder="Enter Source"
+                />
                 <span class="clear-icon">✖</span>
               </div>
             </div>
@@ -32,57 +43,66 @@
               <label>To</label>
 
               <div class="swap-center" (click)="swap()">
-                <img src="assets/img/swap.svg">
+                <img src="assets/img/swap.svg" />
               </div>
 
               <div class="input-box">
-                <img src="assets/img/Icon-metro-location.svg" class="icon-to">
-                <input type="text" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt2"
-                  [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapdestination"
-                  name="destination" placeholder="Enter Destination" />
+                <img src="assets/img/Icon-metro-location.svg" class="icon-to" />
+                <input
+                  type="text"
+                  class="form-control"
+                  [ngbTypeahead]="search"
+                  [resultTemplate]="rt2"
+                  [resultFormatter]="formatter"
+                  [inputFormatter]="formatter"
+                  [(ngModel)]="swapdestination"
+                  name="destination"
+                  placeholder="Enter Destination"
+                />
                 <span class="clear-icon">✖</span>
-
               </div>
             </div>
             <div class="col-md-4 field date-field">
               <label>Date of Journey</label>
 
               <div class="date-wrapper">
-
                 <!-- Journey Date Box -->
                 <div class="input-box date-box">
-                  <img src="assets/img/Icon-metro-calendar.svg" class="icon-date">
+                  <img
+                    src="assets/img/Icon-metro-calendar.svg"
+                    class="icon-date"
+                  />
 
-                  <input type="text" class="form-control" formControlName="entry_date" ngbDatepicker #d="ngbDatepicker"
-                    (click)="d.toggle()" placeholder="Journey Date" readonly />
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="entry_date"
+                    ngbDatepicker
+                    #d="ngbDatepicker"
+                    (click)="d.toggle()"
+                    placeholder="Journey Date"
+                    readonly
+                  />
                 </div>
 
                 <!-- Today Box -->
-                <div class="quick-date-today" (click)="setToday()">
-                  Today
-                </div>
+                <div class="quick-date-today" (click)="setToday()">Today</div>
 
                 <!-- Tomorrow Box -->
                 <div class="quick-date-tomorrow" (click)="setTomorrow()">
                   Tomorrow
                 </div>
-
               </div>
             </div>
 
             <!-- BUTTON -->
             <div class="col-md-2 field search-btn-wrap">
-              <button type="submit" class="btn search-btn-v5">
-                Search
-              </button>
+              <button type="submit" class="btn search-btn-v5">Search</button>
             </div>
-
           </div>
         </div>
-
       </form>
     </div>
-
   </section>
 
   <section class="top-routs offer-sec">
@@ -95,23 +115,27 @@
       <div class="container">
         <div class="main-tnc">
           <div class="row">
-            <div class="col-md-4" *ngFor="let o of allOffers;let i = index">
+            <div class="col-md-4" *ngFor="let o of allOffers; let i = index">
               <div class="card">
                 <a (click)="openOffer(i)">
-                  <img *ngIf="o.slider_photo && (o.slider_photo!='' && o.slider_photo!=null)" class="card-img-top"
-                    [src]="o.slider_photo" />
+                  <img
+                    *ngIf="
+                      o.slider_photo &&
+                      o.slider_photo != '' &&
+                      o.slider_photo != null
+                    "
+                    class="card-img-top"
+                    [src]="o.slider_photo"
+                  />
                 </a>
                 <div class="card-block"></div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
   </section>
-
-
 </ng-container>
 
 <ng-container *ngIf="isMobile && !MenuActive">
@@ -134,20 +158,23 @@
   </div>
 
   <div class="mobile-offerbox-middle">
-    <div class="row" *ngFor="let o of allOffers;let i = index ">
+    <div class="row" *ngFor="let o of allOffers; let i = index">
       <div class="col-12">
         <div class="mobile-offer">
-          <a (click)="OfferModal(offermodal,i)">
-            <img *ngIf="o.slider_photo && (o.slider_photo!='' && o.slider_photo!=null)" src="{{ o.slider_photo }}"
-              alt="{{o.occassion}}" />
+          <a (click)="OfferModal(offermodal, i)">
+            <img
+              *ngIf="
+                o.slider_photo && o.slider_photo != '' && o.slider_photo != null
+              "
+              src="{{ o.slider_photo }}"
+              alt="{{ o.occassion }}"
+            />
           </a>
           <!-- <h5>{{o.occassion}}</h5> -->
         </div>
       </div>
     </div>
   </div>
-
-
 </ng-container>
 
 <ng-container *ngIf="MenuActive">
@@ -162,9 +189,7 @@
         <a routerLink="/login" *ngIf="!session.isLoggedIn()">
           Login / Signup
         </a>
-        <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
-          Dashboard
-        </a>
+        <a routerLink="/dashboard" *ngIf="session.isLoggedIn()"> Dashboard </a>
       </div>
     </div>
   </div>
@@ -172,7 +197,9 @@
   <div class="mobile-myaccount-middle">
     <ul class="mobile-menu">
       <li>
-        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i> Manage Booking</a>
+        <a routerLink="/manage-booking"
+          ><i class="far fa-window-restore"></i> Manage Booking</a
+        >
       </li>
       <li>
         <a routerLink="/operators"><i class="fas fa-bus"></i> Operators</a>
@@ -184,16 +211,24 @@
         <a routerLink="/faq"><i class="fas fa-question"></i> FAQ's</a>
       </li>
       <li>
-        <a routerLink="/testimonials"><i class="fa fa-star"></i> Testimonials</a>
+        <a routerLink="/testimonials"
+          ><i class="fa fa-star"></i> Testimonials</a
+        >
       </li>
       <li>
-        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i> Terms & Conditions</a>
+        <a routerLink="/terms-conditions"
+          ><i class="fas fa-file-image"></i> Terms & Conditions</a
+        >
       </li>
       <li>
-        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i> Privacy Policy</a>
+        <a routerLink="/privacy-policy"
+          ><i class="far fa-file-powerpoint"></i> Privacy Policy</a
+        >
       </li>
       <li>
-        <a routerLink="/about-us"><i class="fas fa-info-circle"></i> About Us</a>
+        <a routerLink="/about-us"
+          ><i class="fas fa-info-circle"></i> About Us</a
+        >
       </li>
       <li *ngIf="session.isLoggedIn()">
         <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
@@ -206,55 +241,16 @@
 </ng-container>
 
 <ng-container *ngIf="isMobile">
-  <div class="mob-mtbh"></div>
-  <div class="mobile-fixed-bottom">
-    <div class="footer-menu row m-0 mobile-bg-danger">
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/" class="home">
-          <i class="fas fa-home"></i>
-          <p class="mb-0 small">Home</p>
-        </a>
-      </div>
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/dashboard" class="home">
-          <i class="fas fa-ticket-alt"></i>
-          <p class="mb-0 small">My Bookings</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
-        <a routerLink="/login" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">Login</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
-        <a routerLink="/myaccount" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">My Account</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center">
-        <a (click)="menu()" class="home {{activeMenu}}">
-          <i class="fas fa-bars"></i>
-          <p class="mb-0 small">Menu</p>
-        </a>
-      </div>
-    </div>
-  </div>
+  <app-footer-menu></app-footer-menu>
 </ng-container>
 
 <!-- CUSTOM OFFER MODAL (NO BOOTSTRAP PROPERTIES) -->
 
 <!-- CUSTOM OFFER MODAL -->
 <div class="custom-offer-modal" *ngIf="showOfferModal">
-
   <!-- OVERLAY -->
   <div class="custom-offer-overlay" (click)="closeOfferModal()"></div>
   <div class="offer-popup-wrap">
-
     <!-- HEADER -->
     <div class="offer-popup-header">
       <h3>OFFER DETAILS</h3>
@@ -263,63 +259,63 @@
 
     <!-- BODY -->
     <div class="offer-popup-body">
-
       <!-- LEFT -->
       <div class="offer-left-side" *ngIf="OfferData?.coupon">
-
         <div class="offer-info-card">
-
           <div class="offer-row">
             <span>Coupon Code</span>
-            <strong>{{OfferData.coupon.coupon_code}}</strong>
+            <strong>{{ OfferData.coupon.coupon_code }}</strong>
           </div>
 
           <div class="offer-row">
             <span>Applicable On</span>
-            <strong *ngIf="OfferData.coupon.valid_by==2">Booking Date</strong>
-            <strong *ngIf="OfferData.coupon.valid_by==1">Journey Date</strong>
+            <strong *ngIf="OfferData.coupon.valid_by == 2">Booking Date</strong>
+            <strong *ngIf="OfferData.coupon.valid_by == 1">Journey Date</strong>
           </div>
 
           <div class="offer-row">
             <span>Discount</span>
-            <strong *ngIf="OfferData.coupon.type==2">Rs {{OfferData.coupon.amount}}/-</strong>
-            <strong *ngIf="OfferData.coupon.type==1">{{OfferData.coupon.percentage}}%</strong>
+            <strong *ngIf="OfferData.coupon.type == 2"
+              >Rs {{ OfferData.coupon.amount }}/-</strong
+            >
+            <strong *ngIf="OfferData.coupon.type == 1"
+              >{{ OfferData.coupon.percentage }}%</strong
+            >
           </div>
 
           <div class="offer-row">
             <span>Valid Till</span>
-            <strong>{{OfferData.coupon.to_date}}</strong>
+            <strong>{{ OfferData.coupon.to_date }}</strong>
           </div>
 
-          <button class="copy-btn" (click)="copyCoupon(OfferData.coupon.coupon_code)">
+          <button
+            class="copy-btn"
+            (click)="copyCoupon(OfferData.coupon.coupon_code)"
+          >
             Copy Coupon
           </button>
-
         </div>
 
         <div class="offer-type-line">
-          <strong>Offer Type :</strong> {{OfferData.occassion}}
+          <strong>Offer Type :</strong> {{ OfferData.occassion }}
         </div>
-
       </div>
 
       <!-- RIGHT -->
       <div class="offer-right-side">
-
         <h4>COUPON DESCRIPTION</h4>
 
-        <div class="offer-description" [innerHTML]="OfferData?.coupon?.full_desc"></div>
+        <div
+          class="offer-description"
+          [innerHTML]="OfferData?.coupon?.full_desc"
+        ></div>
 
         <div class="slider-desc" *ngIf="OfferData?.slider_description">
-          {{OfferData.slider_description}}
+          {{ OfferData.slider_description }}
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </div>
 
 <!-- <ng-template #offermodal let-modal>
