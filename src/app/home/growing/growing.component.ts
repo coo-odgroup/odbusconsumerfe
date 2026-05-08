@@ -1,66 +1,145 @@
-import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  ElementRef,
+  Inject,
+  PLATFORM_ID,
+  AfterViewInit
+} from '@angular/core';
+
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-growing',
   templateUrl: './growing.component.html',
   styleUrls: ['./growing.component.css', '../home.component.css']
 })
-export class GrowingComponent implements OnInit {
+export class GrowingComponent implements OnInit, AfterViewInit {
 
   started = false;
+
+  isBrowser = false;
 
   counters = [
     { value: 0, target: 2500, suffix: '+', label: 'Routes' },
     { value: 0, target: 2200, suffix: '+', label: 'Buses' },
     { value: 0, target: 1000000, suffix: '+', label: 'Satisfied Customers' },
-    { value: 24, target: 24, suffix: '/7', label: 'Customer Service', static: true } // ✅ static
+    {
+      value: 24,
+      target: 24,
+      suffix: '/7',
+      label: 'Customer Service',
+      static: true
+    }
   ];
 
-  constructor(private el: ElementRef) { }
+  constructor(
+    private el: ElementRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    if (this.started) return;
+  ngAfterViewInit(): void {
 
-    const section = this.el.nativeElement.querySelector('.stats-section');
-    if (!section) return;
-
-    const rect = section.getBoundingClientRect();
-
-    if (rect.top < window.innerHeight - 100) {
-      this.startCounting();
-      this.started = true;
+    // Auto trigger if section already visible
+    if (this.isBrowser) {
+      setTimeout(() => {
+        this.checkAndStartCounter();
+      }, 300);
     }
   }
 
-  startCounting() {
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+
+    if (!this.isBrowser) {
+      return;
+    }
+
+    this.checkAndStartCounter();
+  }
+
+  checkAndStartCounter(): void {
+
+    if (this.started) {
+      return;
+    }
+
+    const section =
+      this.el.nativeElement.querySelector('.stats-section');
+
+    if (!section) {
+      return;
+    }
+
+    // SSR Safe
+    if (
+      typeof section.getBoundingClientRect !== 'function'
+    ) {
+      return;
+    }
+
+    const rect = section.getBoundingClientRect();
+
+    const viewportHeight =
+      window.innerHeight || 0;
+
+    if (rect.top < viewportHeight - 100) {
+
+      this.started = true;
+
+      this.startCounting();
+    }
+  }
+
+  startCounting(): void {
+
     this.counters.forEach(counter => {
 
-      if (counter.static) return; 
+      if (counter.static) {
+        return;
+      }
 
-      const step = counter.target / 100;
+      const increment =
+        counter.target / 100;
 
-      const update = () => {
+      const updateCounter = () => {
+
         if (counter.value < counter.target) {
-          counter.value += step;
-          counter.value = Math.floor(counter.value);
-          requestAnimationFrame(update);
+
+          counter.value += increment;
+
+          counter.value =
+            Math.floor(counter.value);
+
+          requestAnimationFrame(updateCounter);
+
         } else {
+
           counter.value = counter.target;
         }
       };
 
-      update();
+      updateCounter();
     });
   }
 
   getDisplay(counter: any): string {
-    if (counter.static) return '24/7';
+
+    if (counter.static) {
+      return '24/7';
+    }
 
     if (counter.target >= 100000) {
-      return (counter.value / 100000).toFixed(0) + '+ Lakhs';
+
+      return (
+        (counter.value / 100000).toFixed(0)
+        + '+ Lakhs'
+      );
     }
 
     return counter.value + counter.suffix;

@@ -254,7 +254,9 @@
                   </div>
 
                   <!-- Today Box -->
-                  <div class="quick-date-today" (click)="searchToday()">Today</div>
+                  <div class="quick-date-today" (click)="searchToday()">
+                    Today
+                  </div>
 
                   <!-- Tomorrow Box -->
                   <div class="quick-date-tomorrow" (click)="searchTomorrow()">
@@ -387,51 +389,8 @@
   </div>
   <!-- APP DOWNLOAD POPUP END -->
 
-  <!-- <div class="mob-mtbh"></div> -->
-  <div class="mobile-fixed-bottom">
-    <div class="footer-menu row m-0 mobile-bg-danger">
-      <!-- HOME -->
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/" class="home active">
-          <i class="fa-solid fa-house"></i>
-          <p class="mb-0 small">Home</p>
-        </a>
-      </div>
-
-      <!-- BOOKINGS -->
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/dashboard" class="home">
-          <i class="fa-solid fa-ticket"></i>
-          <p class="mb-0 small">My Bookings</p>
-        </a>
-      </div>
-
-      <!-- LOGIN -->
-      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
-        <a routerLink="/login" class="home">
-          <i class="fa-regular fa-user"></i>
-          <p class="mb-0 small">Login</p>
-        </a>
-      </div>
-
-      <!-- ACCOUNT -->
-      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
-        <a routerLink="/myaccount" class="home">
-          <i class="fa-regular fa-circle-user"></i>
-          <p class="mb-0 small">My Account</p>
-        </a>
-      </div>
-
-      <!-- MENU -->
-      <div class="col-3 p-0 text-center">
-        <a (click)="menu()" class="home {{ activeMenu }}">
-          <i class="fa-solid fa-bars-staggered"></i>
-          <p class="mb-0 small">Menu</p>
-        </a>
-      </div>
-    </div>
-  </div>
-  <!-- <img src="../../assets/img/ODBUSLucky Draw_Popup_image.jpg"> -->
+  <!-- Footer Menu Mobile -->
+  <app-footer-menu></app-footer-menu>
 
   <!--  footer END -->
 </ng-template>
@@ -497,9 +456,9 @@
 <app-top-routes></app-top-routes>
 <app-download-app></app-download-app>
 <app-top-operators></app-top-operators>
+<app-growing></app-growing>
 <app-info></app-info>
 <app-faqs></app-faqs>
-<app-growing></app-growing>
 
 <!-- <section
   class="top-operators fluid-15"

@@ -8,21 +8,14 @@ import { Component, OnInit, HostListener } from '@angular/core';
   templateUrl: './odbus-offers.component.html',
   styleUrls: ['./odbus-offers.component.css', '../home.component.css'],
 })
+
 export class OdbusOffersComponent implements OnInit {
+
   private apiURL = GlobalConstants.BASE_URL;
 
-  isMobile: boolean = false;
+  isBrowser = false;
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
-    this.checkScreen();
-    this.getOffers();
-  }
-
-  checkScreen() {
-    this.isMobile = window.innerWidth < 768;
-  }
+  isMobile = false;
 
   @HostListener('window:resize')
 onResize() {
@@ -30,38 +23,85 @@ onResize() {
 }
 
   Offers: any[] = [];
+
   offerList: any[] = [];
 
-  getOffers() {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private http: HttpClient
+  ) {
+
+    this.isBrowser = isPlatformBrowser(this.platformId);
+
+  }
+
+  ngOnInit(): void {
+
+    // SSR SAFE
+    if (this.isBrowser) {
+
+      this.checkScreen();
+
+    }
+
+    this.getOffers();
+
+  }
+
+  checkScreen(): void {
+
+    // SSR SAFE
+    if (!this.isBrowser) {
+      return;
+    }
+
+    this.isMobile = window.innerWidth < 768;
+
+  }
+
+  getOffers(): void {
+
     const postData = {
       user_id: 1,
     };
 
-    this.http.post<any>(this.apiURL + '/Offers', postData).subscribe(
+    this.http.post<any>(
+      this.apiURL + '/Offers',
+      postData
+    ).subscribe(
+
       (res: any) => {
-        // console.log('API Response:', res);
 
-        // If API directly returns array
         if (Array.isArray(res)) {
-          this.Offers = res;
-        }
 
-        // If API returns {data: []}
-        else if (Array.isArray(res.data)) {
+          this.Offers = res;
+
+        } else if (Array.isArray(res.data)) {
+
           this.Offers = res.data;
+
         } else {
+
           this.Offers = [];
+
         }
 
         this.offerList = this.Offers.map((item) => ({
+
           path: item.slider_photo,
+
         }));
 
-        // console.log('Carousel:', this.offerList);
       },
+
       (error) => {
+
         console.log(error);
-      },
+
+      }
+
     );
+
   }
+
 }

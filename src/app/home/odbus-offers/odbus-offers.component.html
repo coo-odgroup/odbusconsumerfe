@@ -1,9 +1,12 @@
-<ng-container *ngIf="isMobile; then Mobile; else Desktop"> </ng-container>
+<ng-container *ngIf="isMobile; then Mobile; else Desktop"></ng-container>
 
+<!-- DESKTOP -->
 <ng-template #Desktop>
   <section class="section-offer carousel-home fluid-15" *ngIf="Offers.length > 0">
     <div class="container">
+
       <div class="row">
+
         <div class="col-md-6">
           <div class="section-offer-left">
             <h2>ODBUS OFFERS</h2>
@@ -17,10 +20,15 @@
         <div class="col-md-12 mt-4">
           <carousel [images]="offerList" [cellsToShow]="3" [loop]="true" [autoplay]="true" [autoplayInterval]="2000">
           </carousel>
+
         </div>
+
       </div>
+
     </div>
+
   </section>
+
 </ng-template>
 
 <!-- <ng-template #Mobile>
@@ -36,6 +44,7 @@
         <carousel [images]="offerList" [cellsToShow]="1" [loop]="true" [arrows]="false" [autoplay]="true"
           [autoplayInterval]="2500">
         </carousel>
+
       </div>
 
     </div>

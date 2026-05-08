@@ -19,10 +19,22 @@
         <div class="col-md-4 testimonials-clean" *ngFor="let r of allReviews">
           <div class="de-angu3 border">
             <div class="review-gicon">
-              <img *ngIf="r.designation == 'google'"   src="assets/img/icon/google.png" />
-              <img *ngIf="r.designation == 'facebook'" src="assets/img/icon/facebook.png" />
-              <img *ngIf="r.designation == 'tripadvisor'" src="assets/img/icon/tripadvisor.png" />
-              <img *ngIf="r.designation == 'trustpilot'"  src="assets/img/icon/trustpilot.png" />
+              <img
+                *ngIf="r.designation == 'google'"
+                src="assets/img/icon/google.png"
+              />
+              <img
+                *ngIf="r.designation == 'facebook'"
+                src="assets/img/icon/facebook.png"
+              />
+              <img
+                *ngIf="r.designation == 'tripadvisor'"
+                src="assets/img/icon/tripadvisor.png"
+              />
+              <img
+                *ngIf="r.designation == 'trustpilot'"
+                src="assets/img/icon/trustpilot.png"
+              />
             </div>
             <h4 style="text-transform: capitalize">{{ r.posted_by }}</h4>
             <div class="box">
@@ -49,7 +61,7 @@
     <div class="row">
       <div class="col-1 pr-0 pl-2 mob-arrow-left">
         <a routerLink="/">
-          <i class="fas fa-arrow-left"></i> 
+          <i class="fas fa-arrow-left"></i>
         </a>
       </div>
       <div class="col-7 pl-2 pr-2 mob-list-center">
@@ -76,10 +88,22 @@
       <div class="col-12 mb-3 pl-2 pr-2" *ngFor="let r of allReviews">
         <div class="de-angu3 border">
           <div class="review-gicon">
-            <img *ngIf="r.designation == 'google'"   src="assets/img/icon/google.png" />
-            <img *ngIf="r.designation == 'facebook'" src="assets/img/icon/facebook.png" />
-            <img *ngIf="r.designation == 'tripadvisor'" src="assets/img/icon/tripadvisor.png" />
-            <img *ngIf="r.designation == 'trustpilot'"  src="assets/img/icon/trustpilot.png" />
+            <img
+              *ngIf="r.designation == 'google'"
+              src="assets/img/icon/google.png"
+            />
+            <img
+              *ngIf="r.designation == 'facebook'"
+              src="assets/img/icon/facebook.png"
+            />
+            <img
+              *ngIf="r.designation == 'tripadvisor'"
+              src="assets/img/icon/tripadvisor.png"
+            />
+            <img
+              *ngIf="r.designation == 'trustpilot'"
+              src="assets/img/icon/trustpilot.png"
+            />
           </div>
           <h4 style="text-transform: capitalize">{{ r.posted_by }}</h4>
           <div class="box">
@@ -102,101 +126,70 @@
   </div>
 </ng-container>
 
-  <ng-container *ngIf="isMobile &&  MenuActive">
-    <div class="mobile-myaccount-top">
-      <div class="row">
-        <div class="col-5">
-          <div class="mobile-logo">
-            <img src="assets/img/mob-img/logo.png" />
-          </div>
-        </div>
-        <div class="col-7 mob-logintx">
-          <a routerLink="/login" *ngIf="!session.isLoggedIn()">
-            Login / Signup
-          </a>
-          <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
-            Dashboard
-          </a>
+<ng-container *ngIf="isMobile && MenuActive">
+  <div class="mobile-myaccount-top">
+    <div class="row">
+      <div class="col-5">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
         </div>
       </div>
-    </div>
-
-    <div class="mobile-myaccount-middle">
-      <ul class="mobile-menu">
-        <li>
-          <a routerLink="/manage-booking"><i class="far fa-window-restore"></i>Manage Booking</a>
-        </li>
-        <li>
-          <a routerLink="/contact-us"><i class="fas fa-envelope"></i>Contact Us</a>
-        </li>
-        <li>
-          <a routerLink="/offers"><i class="fas fa-gifts"></i>Offers</a>
-        </li>
-        <li>
-          <a routerLink="/operators"><i class="fas fa-bus"></i>Operators</a>
-        </li>
-        <li>
-          <a routerLink="/routes"><i class="fas fa-map-marker-alt"></i>Routes</a>
-        </li>
-        <li>
-          <a routerLink="/faq"><i class="fas fa-question"></i>FAQ's</a>
-        </li>        
-        <li>
-          <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i>Terms & Conditions</a>
-        </li>
-        <li>
-          <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i>Privacy Policy</a>
-        </li>
-        <li>
-          <a routerLink="/about-us"><i class="fas fa-info-circle"></i>About Us</a>
-        </li>
-        <li *ngIf="session.isLoggedIn()">
-          <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
-        </li>
-        <li *ngIf="session.isLoggedIn()">
-          <a (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
-        </li>
-      </ul>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="isMobile">
-  <div class="mob-mtbh"></div>
-  <div class="mobile-fixed-bottom">
-    <div class="footer-menu row m-0 mobile-bg-danger">
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/" class="home">
-          <i class="fas fa-home"></i>
-          <p class="mb-0 small">Home</p>
+      <div class="col-7 mob-logintx">
+        <a routerLink="/login" *ngIf="!session.isLoggedIn()">
+          Login / Signup
         </a>
-      </div>
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/dashboard" class="home">
-          <i class="fas fa-ticket-alt"></i>
-          <p class="mb-0 small">My Bookings</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
-        <a routerLink="/login" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">Login</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
-        <a routerLink="/myaccount" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">My Account</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center">
-        <a (click)="menu()" class="home {{activeMenu}}">
-          <i class="fas fa-bars"></i>
-          <p class="mb-0 small">Menu</p>
-        </a>
+        <a routerLink="/dashboard" *ngIf="session.isLoggedIn()"> Dashboard </a>
       </div>
     </div>
   </div>
+
+  <div class="mobile-myaccount-middle">
+    <ul class="mobile-menu">
+      <li>
+        <a routerLink="/manage-booking"
+          ><i class="far fa-window-restore"></i>Manage Booking</a
+        >
+      </li>
+      <li>
+        <a routerLink="/contact-us"
+          ><i class="fas fa-envelope"></i>Contact Us</a
+        >
+      </li>
+      <li>
+        <a routerLink="/offers"><i class="fas fa-gifts"></i>Offers</a>
+      </li>
+      <li>
+        <a routerLink="/operators"><i class="fas fa-bus"></i>Operators</a>
+      </li>
+      <li>
+        <a routerLink="/routes"><i class="fas fa-map-marker-alt"></i>Routes</a>
+      </li>
+      <li>
+        <a routerLink="/faq"><i class="fas fa-question"></i>FAQ's</a>
+      </li>
+      <li>
+        <a routerLink="/terms-conditions"
+          ><i class="fas fa-file-image"></i>Terms & Conditions</a
+        >
+      </li>
+      <li>
+        <a routerLink="/privacy-policy"
+          ><i class="far fa-file-powerpoint"></i>Privacy Policy</a
+        >
+      </li>
+      <li>
+        <a routerLink="/about-us"><i class="fas fa-info-circle"></i>About Us</a>
+      </li>
+      <li *ngIf="session.isLoggedIn()">
+        <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
+      </li>
+      <li *ngIf="session.isLoggedIn()">
+        <a (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+      </li>
+    </ul>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isMobile">
+  <app-footer-menu></app-footer-menu>
 </ng-container>

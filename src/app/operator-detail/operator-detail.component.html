@@ -55,10 +55,10 @@
     </div>
   </section>
 
-  <section class="operators-result" style="background-color: #E7EAEB;">
-  <div class="container">
-    <h1 class="ma-heading">Popular Routes</h1>
-    <table class="table">
+  <section class="operators-result" style="background-color: #e7eaeb">
+    <div class="container">
+      <h1 class="ma-heading">Popular Routes</h1>
+      <table class="table">
         <thead>
           <tr>
             <th>From</th>
@@ -68,14 +68,27 @@
           </tr>
         </thead>
         <tbody *ngIf="routes.length > 0">
-          <tr *ngFor="let t of routes;">
+          <tr *ngFor="let t of routes">
             <td>{{ t.sourceName }}</td>
             <td>{{ t.destinationName }}</td>
-            <td>{{ t. depTime}}</td>
-            <td><a class="cursor" (click)="popularSearch(t.sourceName,t.destinationName);">Book Now</a></td>
+            <td>{{ t.depTime }}</td>
+            <td>
+              <a
+                class="cursor"
+                (click)="popularSearch(t.sourceName, t.destinationName)"
+                >Book Now</a
+              >
+            </td>
           </tr>
-          <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker">
-
+          <input
+            type="hidden"
+            [(ngModel)]="dtconfig.minDate"
+            name="todayDate"
+            id="todayDate"
+            ngbDatepicker
+            (click)="d.toggle()"
+            #d="ngbDatepicker"
+          />
         </tbody>
       </table>
       <!-- <div class="box-footer clearfix">
@@ -120,7 +133,6 @@
                 src="{{ am.amenities.amenities_image }}"
                 height="100"
               />
-           
             </div>
             <div>
               <p class="ami-para">{{ am.amenities.name }}</p>
@@ -203,7 +215,6 @@
   </section>
 </ng-container>
 
-
 <ng-container *ngIf="isMobile && !MenuActive">
   <div class="mobile-mybooking-top">
     <div class="row">
@@ -274,12 +285,31 @@
     <div class="row">
       <div class="col-12 pl-2 pr-2"><h4>Amenities</h4></div>
     </div>
-    <div class="row justify-content-center" >
-      <div class="col-4 mb-3 pl-2 pr-2" *ngFor="let am of OperatorData.amenities">
+    <div class="row justify-content-center">
+      <div
+        class="col-4 mb-3 pl-2 pr-2"
+        *ngFor="let am of OperatorData.amenities"
+      >
         <div class="de-angu">
-          <img *ngIf="am.amenities &&  (am.amenities.amenities_image == '' || am.amenities.amenities_image == null)" class="iconsize" src="../../../assets/img/noImage.png"
-            height="100" />
-          <img *ngIf="am.amenities && am.amenities.amenities_image != '' && am.amenities.amenities_image != null" class="iconsize" src="{{ am.amenities.amenities_image }}"           height="100"
+          <img
+            *ngIf="
+              am.amenities &&
+              (am.amenities.amenities_image == '' ||
+                am.amenities.amenities_image == null)
+            "
+            class="iconsize"
+            src="../../../assets/img/noImage.png"
+            height="100"
+          />
+          <img
+            *ngIf="
+              am.amenities &&
+              am.amenities.amenities_image != '' &&
+              am.amenities.amenities_image != null
+            "
+            class="iconsize"
+            src="{{ am.amenities.amenities_image }}"
+            height="100"
           />
           <p class="safety_span">{{ am.amenities.name }}</p>
         </div>
@@ -311,50 +341,49 @@
             <div class="col-3">
               <!-- <h6 class="font-weight-normal">Review</h6> -->
               <p class="mb-0">
-                <span class="h4 mb-0">{{ OperatorData.total_rating }}</span><span class="h6">/5</span>
+                <span class="h4 mb-0">{{ OperatorData.total_rating }}</span
+                ><span class="h6">/5</span>
               </p>
               <!-- <span class="f-10">Punctuality</span> -->
             </div>
             <ngb-rating
-            [rate]="total_rating"
-            [max]="5"
-            [readonly]="true"
-          ></ngb-rating>
-          
+              [rate]="total_rating"
+              [max]="5"
+              [readonly]="true"
+            ></ngb-rating>
           </div>
-          
-         <div *ngIf="OperatorData.reviews">
-          <div class="comments mt-3"  *ngFor="let rv of OperatorData.reviews">
-            
-            <div class="reviews bg-white p-3 shadow-sm rounded-1 mb-3">
-              <div class="d-flex align-items-center mb-2">
-                <img
-                  src="assets/img/mob-img/r1.jpg"
-                  class="img-fluid rounded-pill"
-                />
-                <div class="ml-2">
-                  <p class="mb-0 small font-weight-bold">Mike Jhon</p>
-                  <div class="start-rating2 d-flex align-items-center f-8">
-                    <i class="fas fa-star text-danger"></i>
-                    <i class="fas fa-star text-danger"></i>
-                    <i class="fas fa-star text-danger"></i>
-                    <i class="fas fa-star text-danger"></i>
-                    <i class="fas fa-star text-muted"></i>
+
+          <div *ngIf="OperatorData.reviews">
+            <div class="comments mt-3" *ngFor="let rv of OperatorData.reviews">
+              <div class="reviews bg-white p-3 shadow-sm rounded-1 mb-3">
+                <div class="d-flex align-items-center mb-2">
+                  <img
+                    src="assets/img/mob-img/r1.jpg"
+                    class="img-fluid rounded-pill"
+                  />
+                  <div class="ml-2">
+                    <p class="mb-0 small font-weight-bold">Mike Jhon</p>
+                    <div class="start-rating2 d-flex align-items-center f-8">
+                      <i class="fas fa-star text-danger"></i>
+                      <i class="fas fa-star text-danger"></i>
+                      <i class="fas fa-star text-danger"></i>
+                      <i class="fas fa-star text-danger"></i>
+                      <i class="fas fa-star text-muted"></i>
+                    </div>
+                  </div>
+                  <div class="date ml-auto mb-auto small">
+                    <small class="f-10">24/03/2021</small>
                   </div>
                 </div>
-                <div class="date ml-auto mb-auto small">
-                  <small class="f-10">24/03/2021</small>
-                </div>
+                <p class="small text-muted mb-0">
+                  Dummy comment Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                  et dolore magna aliqua.
+                </p>
               </div>
-              <p class="small text-muted mb-0">
-                Dummy comment Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.
-              </p>
-            </div>
-            <div class="reviews bg-white p-3 shadow-sm rounded-1 mb-3">
-              <div class="d-flex align-items-center mb-2">
-                <img
+              <div class="reviews bg-white p-3 shadow-sm rounded-1 mb-3">
+                <div class="d-flex align-items-center mb-2">
+                  <img
                     *ngIf="rv.profile_image == '' || rv.profile_image == null"
                     class="img-fluid rounded-pill"
                     src="assets/img/mob-img/r1.jpg"
@@ -363,132 +392,100 @@
                     *ngIf="rv.profile_image != '' && rv.profile_image != null"
                     class="profile"
                     src="{{ rv.profile_image }}"
-                  />               
-                <div class="ml-2">
-                  <p class="mb-0 small font-weight-bold">{{ rv.title }}</p>
-                  <div class="start-rating2 d-flex align-items-center f-8">
-                    <i class="fas fa-star text-danger"></i>
-                    <i class="fas fa-star text-danger"></i>
-                    <i class="fas fa-star text-muted"></i>
-                    <i class="fas fa-star text-muted"></i>
-                    <i class="fas fa-star text-muted"></i>
+                  />
+                  <div class="ml-2">
+                    <p class="mb-0 small font-weight-bold">{{ rv.title }}</p>
+                    <div class="start-rating2 d-flex align-items-center f-8">
+                      <i class="fas fa-star text-danger"></i>
+                      <i class="fas fa-star text-danger"></i>
+                      <i class="fas fa-star text-muted"></i>
+                      <i class="fas fa-star text-muted"></i>
+                      <i class="fas fa-star text-muted"></i>
+                    </div>
+                  </div>
+                  <div class="date ml-auto mb-auto small">
+                    <small class="f-10">24/03/2020</small>
                   </div>
                 </div>
-                <div class="date ml-auto mb-auto small">
-                  <small class="f-10">24/03/2020</small>
-                </div>
+                <p class="small text-muted mb-0">
+                  {{ rv.comments }}
+                </p>
               </div>
-              <p class="small text-muted mb-0">
-                {{ rv.comments }}
-              </p>
             </div>
           </div>
-        </div>  
         </div>
       </div>
     </div>
   </div>
-  </ng-container>
+</ng-container>
 
-  <ng-container *ngIf="MenuActive">
-    <div class="mobile-myaccount-top">
-      <div class="row">
-        <div class="col-5">
-          <div class="mobile-logo">
-            <img src="assets/img/mob-img/logo.png" />
-          </div>
-        </div>
-        <div class="col-7 mob-logintx">
-          <a routerLink="/login" *ngIf="!session.isLoggedIn()">
-            Login / Signup
-          </a>
-          <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
-            Dashboard
-          </a>
+<ng-container *ngIf="MenuActive">
+  <div class="mobile-myaccount-top">
+    <div class="row">
+      <div class="col-5">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
         </div>
       </div>
-    </div>
-
-    <div class="mobile-myaccount-middle">
-      <ul class="mobile-menu">
-        <li>
-          <a routerLink="/manage-booking"><i class="far fa-window-restore"></i>Manage Booking</a>
-        </li>
-        <li>
-          <a routerLink="/contact-us"><i class="fas fa-envelope"></i>Contact Us</a>
-        </li>
-        <li>
-          <a routerLink="/offers"><i class="fas fa-gifts"></i>Offers</a>
-        </li>
-        <li>
-          <a routerLink="/operators"><i class="fas fa-bus"></i>Operators</a>
-        </li>
-        <li>
-          <a routerLink="/routes"><i class="fas fa-map-marker-alt"></i>Routes</a>
-        </li>
-        <li>
-          <a routerLink="/faq"><i class="fas fa-question"></i>FAQ's</a>
-        </li>
-        <li>
-          <a routerLink="/testimonials"><i class="fa fa-star"></i>Testimonials</a>
-        </li>
-        <li>
-          <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i>Terms & Conditions</a>
-        </li>
-        <li>
-          <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i>Privacy Policy</a>
-        </li>
-        <li>
-          <a routerLink="/about-us"><i class="fas fa-info-circle"></i>About Us</a>
-        </li>
-        <li *ngIf="session.isLoggedIn()">
-          <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
-        </li>
-        <li *ngIf="session.isLoggedIn()">
-          <a (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
-        </li>
-      </ul>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="isMobile"> 
-
-  <div class="mob-mtbh"></div>
-  <div class="mobile-fixed-bottom">
-    <div class="footer-menu row m-0 mobile-bg-danger">
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/" class="home active">
-          <i class="fas fa-home"></i>
-          <p class="mb-0 small">Home</p>
+      <div class="col-7 mob-logintx">
+        <a routerLink="/login" *ngIf="!session.isLoggedIn()">
+          Login / Signup
         </a>
-      </div>
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/dashboard" class="home">
-          <i class="fas fa-ticket-alt"></i>
-          <p class="mb-0 small">My Bookings</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
-        <a routerLink="/login" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">Login</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
-        <a routerLink="/myaccount" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">My Account</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center">
-        <a (click)="menu()" class="home {{activeMenu}}">
-          <i class="fas fa-bars"></i>
-          <p class="mb-0 small">Menu</p>
-        </a>
+        <a routerLink="/dashboard" *ngIf="session.isLoggedIn()"> Dashboard </a>
       </div>
     </div>
   </div>
+
+  <div class="mobile-myaccount-middle">
+    <ul class="mobile-menu">
+      <li>
+        <a routerLink="/manage-booking"
+          ><i class="far fa-window-restore"></i>Manage Booking</a
+        >
+      </li>
+      <li>
+        <a routerLink="/contact-us"
+          ><i class="fas fa-envelope"></i>Contact Us</a
+        >
+      </li>
+      <li>
+        <a routerLink="/offers"><i class="fas fa-gifts"></i>Offers</a>
+      </li>
+      <li>
+        <a routerLink="/operators"><i class="fas fa-bus"></i>Operators</a>
+      </li>
+      <li>
+        <a routerLink="/routes"><i class="fas fa-map-marker-alt"></i>Routes</a>
+      </li>
+      <li>
+        <a routerLink="/faq"><i class="fas fa-question"></i>FAQ's</a>
+      </li>
+      <li>
+        <a routerLink="/testimonials"><i class="fa fa-star"></i>Testimonials</a>
+      </li>
+      <li>
+        <a routerLink="/terms-conditions"
+          ><i class="fas fa-file-image"></i>Terms & Conditions</a
+        >
+      </li>
+      <li>
+        <a routerLink="/privacy-policy"
+          ><i class="far fa-file-powerpoint"></i>Privacy Policy</a
+        >
+      </li>
+      <li>
+        <a routerLink="/about-us"><i class="fas fa-info-circle"></i>About Us</a>
+      </li>
+      <li *ngIf="session.isLoggedIn()">
+        <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
+      </li>
+      <li *ngIf="session.isLoggedIn()">
+        <a (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+      </li>
+    </ul>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isMobile">
+  <app-footer-menu></app-footer-menu>
 </ng-container>

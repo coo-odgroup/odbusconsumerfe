@@ -1,4 +1,10 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+>
   <p style="color: white">Loading...</p>
 </ngx-spinner>
 <ng-container *ngIf="!isMobile">
@@ -21,22 +27,47 @@
 
         <div class="row">
           <div class="col-md-6">
-            <form class="form-horizontal" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <form
+              class="form-horizontal"
+              [formGroup]="contactForm"
+              (ngSubmit)="onSubmit()"
+            >
               <div class="row form-group">
                 <div class="col-md-6">
-                  <label class="text-inverse" for="validationCustom02">Your Name <span class="red">*</span></label>
-                  <input type="text" class="form-control" formControlName="name" placeholder="Your Name Please"
-                    required />
-                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <label class="text-inverse" for="validationCustom02"
+                    >Your Name <span class="red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    placeholder="Your Name Please"
+                    required
+                  />
+                  <div
+                    *ngIf="submitted && f.name.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.name.errors.required">Name is required</div>
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <label class="text-inverse" for="validationCustom02">Your Mobile No <span class="red">*</span></label>
-                  <input type="text" class="form-control" (keydown)="onlyNumbers($event)" formControlName="phone"
-                    placeholder="Your Mobile No Please" required />
-                  <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                  <label class="text-inverse" for="validationCustom02"
+                    >Your Mobile No <span class="red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    (keydown)="onlyNumbers($event)"
+                    formControlName="phone"
+                    placeholder="Your Mobile No Please"
+                    required
+                  />
+                  <div
+                    *ngIf="submitted && f.phone.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.phone.errors.required">
                       Mobile no. is required
                     </div>
@@ -48,10 +79,20 @@
               </div>
               <div class="row form-group">
                 <div class="col-md-6">
-                  <label class="text-inverse" for="validationCustom02">Your Email <span class="red">*</span></label>
-                  <input type="text" class="form-control" formControlName="email" placeholder="Your Email Id Please"
-                    required />
-                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <label class="text-inverse" for="validationCustom02"
+                    >Your Email <span class="red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="email"
+                    placeholder="Your Email Id Please"
+                    required
+                  />
+                  <div
+                    *ngIf="submitted && f.email.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.email.errors.required">
                       Email ID is required
                     </div>
@@ -62,8 +103,13 @@
                 </div>
 
                 <div class="col-md-6">
-                  <label class="text-inverse" for="select-menu">Select Your Purpose</label>
-                  <select class="custom-select d-block form-control" formControlName="service">
+                  <label class="text-inverse" for="select-menu"
+                    >Select Your Purpose</label
+                  >
+                  <select
+                    class="custom-select d-block form-control"
+                    formControlName="service"
+                  >
                     <option value="">Select Service</option>
                     <option value="Feedback">Feedback</option>
                     <option value="Complaints">Complaints</option>
@@ -72,7 +118,10 @@
                     <option value="Solutions Enquiry">Solutions Enquiry</option>
                   </select>
 
-                  <div *ngIf="submitted && f.service.errors" class="invalid-feedback">
+                  <div
+                    *ngIf="submitted && f.service.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.service.errors.required">
                       Please selected any option.
                     </div>
@@ -81,9 +130,18 @@
               </div>
 
               <div class="form-group">
-                <label class="text-inverse" for="validationCustom02">Your Message</label>
-                <textarea formControlName="message" class="form-control" rows="10"></textarea>
-                <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                <label class="text-inverse" for="validationCustom02"
+                  >Your Message</label
+                >
+                <textarea
+                  formControlName="message"
+                  class="form-control"
+                  rows="10"
+                ></textarea>
+                <div
+                  *ngIf="submitted && f.message.errors"
+                  class="invalid-feedback"
+                >
                   <div *ngIf="f.message.errors.required">
                     Please write your message.
                   </div>
@@ -110,15 +168,17 @@
             <div class="r1">
               <h4 class="contact-he1">OD Tours and Travels</h4>
               <p>
-                {{masterSettingRecord.common.office_address}}
+                {{ masterSettingRecord.common.office_address }}
               </p>
-
-
 
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14971.630111852712!2d85.82619155541994!3d20.26266950000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a74bc1f281dd%3A0xc9a33bee54ab9c9c!2sHotel%20Rajdhani!5e0!3m2!1sen!2sin!4v1711173374685!5m2!1sen!2sin"
-                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-
+                width="100%"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -152,20 +212,40 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <form class="form-horizontal" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <form
+          class="form-horizontal"
+          [formGroup]="contactForm"
+          (ngSubmit)="onSubmit()"
+        >
           <div class="row form-group">
             <div class="col-12">
-              <label class="text-inverse" for="validationCustom02">Your Name <span class="red">*</span></label>
-              <input type="text" class="form-control" formControlName="name" placeholder="Your Name Please" required />
+              <label class="text-inverse" for="validationCustom02"
+                >Your Name <span class="red">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name"
+                placeholder="Your Name Please"
+                required
+              />
               <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                 <div *ngIf="f.name.errors.required">Name is required</div>
               </div>
             </div>
 
             <div class="col-12">
-              <label class="text-inverse" for="validationCustom02">Your Mobile No <span class="red">*</span></label>
-              <input type="text" class="form-control" (keydown)="onlyNumbers($event)" formControlName="phone"
-                placeholder="Your Mobile No Please" required />
+              <label class="text-inverse" for="validationCustom02"
+                >Your Mobile No <span class="red">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                (keydown)="onlyNumbers($event)"
+                formControlName="phone"
+                placeholder="Your Mobile No Please"
+                required
+              />
               <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
                 <div *ngIf="f.phone.errors.required">
                   Mobile no. is required
@@ -178,9 +258,16 @@
           </div>
           <div class="row form-group">
             <div class="col-12">
-              <label class="text-inverse" for="validationCustom02">Your Email <span class="red">*</span></label>
-              <input type="text" class="form-control" formControlName="email" placeholder="Your Email Id Please"
-                required />
+              <label class="text-inverse" for="validationCustom02"
+                >Your Email <span class="red">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                formControlName="email"
+                placeholder="Your Email Id Please"
+                required
+              />
               <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                 <div *ngIf="f.email.errors.required">Email ID is required</div>
                 <div *ngIf="f.email.errors.email">
@@ -190,8 +277,13 @@
             </div>
 
             <div class="col-12">
-              <label class="text-inverse" for="select-menu">Select Your Purpose</label>
-              <select class="custom-select d-block form-control" formControlName="service">
+              <label class="text-inverse" for="select-menu"
+                >Select Your Purpose</label
+              >
+              <select
+                class="custom-select d-block form-control"
+                formControlName="service"
+              >
                 <option value="">Select Service</option>
                 <option value="Feedback">Feedback</option>
                 <option value="Complaints">Complaints</option>
@@ -200,26 +292,32 @@
                 <option value="Solutions Enquiry">Solutions Enquiry</option>
               </select>
 
-              <div *ngIf="submitted && f.service.errors" class="invalid-feedback">
+              <div
+                *ngIf="submitted && f.service.errors"
+                class="invalid-feedback"
+              >
                 <div *ngIf="f.service.errors.required">
                   Please selected any option.
                 </div>
               </div>
             </div>
           </div>
-          
 
           <div class="form-group">
-            <label class="text-inverse" for="validationCustom02">Your Message</label>
-            <textarea formControlName="message" class="form-control" rows="10"></textarea>
+            <label class="text-inverse" for="validationCustom02"
+              >Your Message</label
+            >
+            <textarea
+              formControlName="message"
+              class="form-control"
+              rows="10"
+            ></textarea>
             <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
               <div *ngIf="f.message.errors.required">
                 Please write your message.
               </div>
             </div>
           </div>
-
-
 
           <div class="form-group login-app sub-but">
             <button type="submit" class="log-in">Submit</button>
@@ -230,15 +328,18 @@
         <h3 class="contact-he">Head Office</h3>
         <h4 class="text-left">OD Tours and Travels</h4>
         <div class="r1">
-
           <p>
-            {{masterSettingRecord.common.office_address}}
+            {{ masterSettingRecord.common.office_address }}
           </p>
-
 
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14971.630111852712!2d85.82619155541994!3d20.26266950000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a74bc1f281dd%3A0xc9a33bee54ab9c9c!2sHotel%20Rajdhani!5e0!3m2!1sen!2sin!4v1711173374685!5m2!1sen!2sin"
-            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            width="100%"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
         </div>
       </div>
     </div>
@@ -265,10 +366,14 @@
   <div class="mobile-myaccount-middle">
     <ul class="mobile-menu">
       <li>
-        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i>Manage Booking</a>
+        <a routerLink="/manage-booking"
+          ><i class="far fa-window-restore"></i>Manage Booking</a
+        >
       </li>
       <li>
-        <a routerLink="/contact-us"><i class="fas fa-address-book"></i>Contact us</a>
+        <a routerLink="/contact-us"
+          ><i class="fas fa-address-book"></i>Contact us</a
+        >
       </li>
       <li>
         <a routerLink="/offers"><i class="fas fa-gifts"></i>Offers</a>
@@ -283,13 +388,19 @@
         <a routerLink="/faq"><i class="fas fa-question"></i> FAQ's</a>
       </li>
       <li>
-        <a routerLink="/testimonials"><i class="fa fa-star"></i> Testimonials</a>
+        <a routerLink="/testimonials"
+          ><i class="fa fa-star"></i> Testimonials</a
+        >
       </li>
       <li>
-        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i> Terms & Conditions</a>
+        <a routerLink="/terms-conditions"
+          ><i class="fas fa-file-image"></i> Terms & Conditions</a
+        >
       </li>
       <li>
-        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i> Privacy Policy</a>
+        <a routerLink="/privacy-policy"
+          ><i class="far fa-file-powerpoint"></i> Privacy Policy</a
+        >
       </li>
       <li *ngIf="session.isLoggedIn()">
         <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
@@ -302,39 +413,5 @@
 </ng-container>
 
 <ng-container *ngIf="isMobile">
-  <div class="mob-mtbh"></div>
-  <div class="mobile-fixed-bottom">
-    <div class="footer-menu row m-0 mobile-bg-danger">
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/" class="home">
-          <i class="fas fa-home"></i>
-          <p class="mb-0 small">Home</p>
-        </a>
-      </div>
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/dashboard" class="home">
-          <i class="fas fa-ticket-alt"></i>
-          <p class="mb-0 small">My Bookings</p>
-        </a>
-      </div>
-      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
-        <a routerLink="/login" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">Login</p>
-        </a>
-      </div>
-      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
-        <a routerLink="/myaccount" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">My Account</p>
-        </a>
-      </div>
-      <div class="col-3 p-0 text-center">
-        <a (click)="menu()" class="home {{activeMenu}}">
-          <i class="fas fa-bars"></i>
-          <p class="mb-0 small">Menu</p>
-        </a>
-      </div>
-    </div>
-  </div>
+  <app-footer-menu></app-footer-menu>
 </ng-container>

@@ -1,8 +1,14 @@
-  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff"  type="ball-clip-rotate" [fullScreen]="true">
-    <p style="color: white">Loading...</p>
-  </ngx-spinner>
- 
-<ng-container *ngIf="!isMobile"> 
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+
+<ng-container *ngIf="!isMobile">
   <section class="signupbg">
     <div class="container">
       <div class="row justify-content-center">
@@ -10,7 +16,11 @@
           <div class="card">
             <div class="card-header center">SIGNUP</div>
             <div class="card-body">
-              <form class="form-horizontal" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+              <form
+                class="form-horizontal"
+                [formGroup]="signupForm"
+                (ngSubmit)="onSubmit()"
+              >
                 <!-- <div class="row form-group">
                   <div class="col-md-6">
                     <label for="via1" class="cursor">
@@ -31,9 +41,18 @@
                       <span class="input-group-addon"
                         ><i class="fa fa-user fa" aria-hidden="true"></i
                       ></span>
-                      <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter Name"/>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="name"
+                        id="name"
+                        placeholder="Enter Name"
+                      />
 
-                      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div
+                        *ngIf="submitted && f.name.errors"
+                        class="invalid-feedback"
+                      >
                         <div *ngIf="f.name.errors.required">
                           Name is required
                         </div>
@@ -120,14 +139,13 @@
   </section>
 </ng-container>
 
-
 <ng-container *ngIf="isMobile && !MenuActive">
   <div class="mobile-mybooking-top">
     <div class="row">
       <div class="col-1 pr-0 pl-2 mob-arrow-left">
         <a routerLink="/">
-            <i class="fas fa-arrow-left"></i>
-        </a>    
+          <i class="fas fa-arrow-left"></i>
+        </a>
       </div>
       <div class="col-7 pl-2 pr-2 mob-list-center">
         <h5>Signup</h5>
@@ -287,7 +305,9 @@
   <div class="mobile-myaccount-middle">
     <ul class="mobile-menu">
       <li>
-        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i> Manage Booking</a>
+        <a routerLink="/manage-booking"
+          ><i class="far fa-window-restore"></i> Manage Booking</a
+        >
       </li>
       <li>
         <a routerLink="/offers"><i class="fas fa-gifts"></i> Offers</a>
@@ -302,19 +322,23 @@
         <a routerLink="/faq"><i class="fas fa-question"></i> FAQ's</a>
       </li>
       <li>
-        <a routerLink="/testimonials"><i class="fa fa-star"></i> Testimonials</a
+        <a routerLink="/testimonials"
+          ><i class="fa fa-star"></i> Testimonials</a
         >
       </li>
       <li>
-        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i> Terms & Conditions</a
+        <a routerLink="/terms-conditions"
+          ><i class="fas fa-file-image"></i> Terms & Conditions</a
         >
       </li>
       <li>
-        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i> Privacy Policy</a
+        <a routerLink="/privacy-policy"
+          ><i class="far fa-file-powerpoint"></i> Privacy Policy</a
         >
       </li>
       <li>
-        <a routerLink="/about-us"><i class="fas fa-info-circle"></i> About Us</a
+        <a routerLink="/about-us"
+          ><i class="fas fa-info-circle"></i> About Us</a
         >
       </li>
     </ul>
@@ -322,42 +346,5 @@
 </ng-container>
 
 <ng-container *ngIf="isMobile">
-  <div class="mob-mtbh"></div>
-  <div class="mobile-fixed-bottom">
-    <div class="footer-menu row m-0 mobile-bg-danger">
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/" class="home">
-          <i class="fas fa-home"></i>
-          <p class="mb-0 small">Home</p>
-        </a>
-      </div>
-      <div class="col-3 p-0 text-center">
-        <a routerLink="/dashboard" class="home">
-          <i class="fas fa-ticket-alt"></i>
-          <p class="mb-0 small">My Bookings</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
-        <a routerLink="/login" class="home active">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">Login</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
-        <a routerLink="/myaccount" class="home">
-          <i class="fas fa-user"></i>
-          <p class="mb-0 small">My Account</p>
-        </a>
-      </div>
-
-      <div class="col-3 p-0 text-center">
-        <a (click)="menu()" class="home {{activeMenu}}">
-          <i class="fas fa-bars"></i>
-          <p class="mb-0 small">Menu</p>
-        </a>
-      </div>
-    </div>
-  </div>
+  <app-footer-menu></app-footer-menu>
 </ng-container>

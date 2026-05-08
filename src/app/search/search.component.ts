@@ -2614,7 +2614,7 @@ export class SearchComponent implements OnInit {
       // console.log(res.data);
       this.seoContentData = res.data;
 
-      this.applySeo(this.seoContentData);
+      // this.applySeo(this.seoContentData);
     })
   }
 
@@ -2807,53 +2807,53 @@ export class SearchComponent implements OnInit {
 
 
 
-  applySeo(seodata: any) {
+  // applySeo(seodata: any) {
 
-    this.title.setTitle(seodata.meta_title || '');
+  //   this.title.setTitle(seodata.meta_title || '');
 
-    this.meta.updateTag({
-      name: 'description',
-      content: seodata.meta_description || '',
-    });
+  //   this.meta.updateTag({
+  //     name: 'description',
+  //     content: seodata.meta_description || '',
+  //   });
 
-    this.removeOldJsonLd();
+  //   this.removeOldJsonLd();
 
-    const schemas: any[] = [];
+  //   const schemas: any[] = [];
 
-    if (seodata?.breadcrumb_schema) {
-      try {
-        const breadcrumb =
-          typeof seodata.breadcrumb_schema === 'string'
-            ? JSON.parse(seodata.breadcrumb_schema)
-            : seodata.breadcrumb_schema;
+  //   if (seodata?.breadcrumb_schema) {
+  //     try {
+  //       const breadcrumb =
+  //         typeof seodata.breadcrumb_schema === 'string'
+  //           ? JSON.parse(seodata.breadcrumb_schema)
+  //           : seodata.breadcrumb_schema;
 
-        schemas.push(breadcrumb);
-      } catch (e) {
-        console.error('Invalid breadcrumb JSON', e);
-      }
-    }
+  //       schemas.push(breadcrumb);
+  //     } catch (e) {
+  //       console.error('Invalid breadcrumb JSON', e);
+  //     }
+  //   }
 
-    if (seodata?.faq_schema) {
-      try {
-        const faq =
-          typeof seodata.faq_schema === 'string'
-            ? JSON.parse(seodata.faq_schema)
-            : seodata.faq_schema;
+  //   if (seodata?.faq_schema) {
+  //     try {
+  //       const faq =
+  //         typeof seodata.faq_schema === 'string'
+  //           ? JSON.parse(seodata.faq_schema)
+  //           : seodata.faq_schema;
 
-        schemas.push(faq);
-      } catch (e) {
-        console.error('Invalid FAQ JSON', e);
-      }
-    }
+  //       schemas.push(faq);
+  //     } catch (e) {
+  //       console.error('Invalid FAQ JSON', e);
+  //     }
+  //   }
 
-    // ✅ THIS PART WAS MISSING
-    schemas.forEach(schema => {
-      const script = this.document.createElement('script');
-      script.type = 'application/ld+json';
-      script.text = JSON.stringify(schema);
-      this.document.head.appendChild(script);
-    });
-  }
+  //   // ✅ THIS PART WAS MISSING
+  //   schemas.forEach(schema => {
+  //     const script = this.document.createElement('script');
+  //     script.type = 'application/ld+json';
+  //     script.text = JSON.stringify(schema);
+  //     this.document.head.appendChild(script);
+  //   });
+  // }
 
 
 

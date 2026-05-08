@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, CanActivate, Router, Route } from '@angular/router';
+import {
+  RouterModule,
+  Routes,
+  CanActivate,
+  Router,
+  Route,
+} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { PageErrorComponent } from './page-error/page-error.component';
@@ -77,35 +83,66 @@ export const routes: Routes = [
   { path: 'thankyou', component: ThankyouComponent },
   { path: 'api-reference', component: ApiComponent },
   { path: 'maintenance', component: MaintenanceComponent },
-  { path: 'dashboard', component: UserdashboardComponent, canActivate: [AuthGuard] },
-  { path: 'notifications', component: UsernotificationsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'dashboard',
+    component: UserdashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'notifications',
+    component: UsernotificationsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'wallet', component: UserwalletComponent, canActivate: [AuthGuard] },
-  { path: 'invite-friend', component: UserinvitefriendsComponent, canActivate: [AuthGuard] },
-  { path: 'rewards', component: UserrewardsComponent, canActivate: [AuthGuard] },
-  { path: 'my-reviews', component: UserreviewsComponent, canActivate: [AuthGuard] },
-  { path: 'helpandsupport', component: UserhelpsupportComponent, canActivate: [AuthGuard] },
-  { path: 'myaccount', component: MyaccountComponent, canActivate: [AuthGuard] },
+  {
+    path: 'invite-friend',
+    component: UserinvitefriendsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'rewards',
+    component: UserrewardsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'my-reviews',
+    component: UserreviewsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'helpandsupport',
+    component: UserhelpsupportComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'myaccount',
+    component: MyaccountComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'profile/delete', component: ProfiledeleteComponent },
   { path: 'payment-status', component: PaymentStatusComponent },
   // { path: 'slug', component: CommonContentComponent },
   {
     path: 'advantage/:slug',
-    component: CommonContentComponent
+    component: CommonContentComponent,
   },
   { path: 'blog', component: BlogListingComponent },
   { path: 'blog/category/:slug', component: BlogListingComponent },
   { path: 'blog/tag/:tag_slug', component: BlogListingComponent },
   { path: 'blog/author/:author_slug', component: BlogListingComponent },
-  { path: 'blog/:slug', component: BlogDetailComponent, resolve: { blogData: BlogResolver } },
+  {
+    path: 'blog/:slug',
+    component: BlogDetailComponent,
+    resolve: { blogData: BlogResolver },
+  },
   // { path: 'payment-failed',component:PaymentFailedComponent},
   // { path: '**', component: SearchComponent}, // wildcard routes
   // { path: '**/:dt', component: SearchComponent}, // wildcard routes
 
   { path: 'routes/:slug', component: SearchComponent },
   { path: ':slug', component: SearchComponent },
-  { path: '**', redirectTo: '' }
-
-]
+  { path: '**', redirectTo: '' },
+];
 
 @NgModule({
   imports: [
@@ -115,20 +152,20 @@ export const routes: Routes = [
     }),
   ],
   exports: [RouterModule],
-  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]
+  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }],
 })
 export class AppRoutingModule {
   currentUrl: any;
 
   constructor(
-    private seo: SeoService, private router: Router, private popularRoutesService: PopularRoutesService
+    private seo: SeoService,
+    private router: Router,
+    private popularRoutesService: PopularRoutesService,
   ) {
-
     // this.popularRoutesService.allroutes().subscribe(
     //   res=>{
     //     if(res.status==1)
     //     {
-
     //       if(res.data.length>0){
     //         res.data.forEach(e => {
     //           let r: Route = {
@@ -140,10 +177,6 @@ export class AppRoutingModule {
     //     }
     //     this.router.resetConfig(routes);
     //   }
-
     //   });
   }
-
-
-
 }
