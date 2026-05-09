@@ -455,223 +455,512 @@
     <div class="mobile-ticket-card">
 
       <!-- TOP HEADER -->
+
       <div class="ticket-top">
 
-        <img src="../../assets/img/email-logo.png" class="ticket-logo">
+        <img src="../../assets/img/email-logo.png" class="ticket-logo" />
 
         <div class="ticket-head-text">
+
           <h3>ODBUS E-Ticket</h3>
+
           <p>Electronic Reservation Slip</p>
+
         </div>
 
       </div>
 
       <!-- STATUS -->
+
       <div class="ticket-status confirmed" *ngIf="bookingDetails.status==1">
-        CONFIRMED
+
+        BOOKING CONFIRMED
+
       </div>
 
       <div class="ticket-status cancelled" *ngIf="bookingDetails.status==2">
-        CANCELLED
+
+        BOOKING CANCELLED
+
       </div>
 
-      <!-- =========================
+      <!-- ===================================================
          JOURNEY DETAILS
-    ========================== -->
-      <div class="ticket-section">
+    ==================================================== -->
 
-        <h4>Journey Details</h4>
+      <div class="ticket-box">
 
-        <!-- PNR -->
-        <div class="field-block">
-          <span class="field-label">PNR Number</span>
-          <div class="field-box">
-            {{ bookingDetails.booking[0].pnr }}
-          </div>
-        </div>
+        <div class="section-title">
 
-        <!-- DATE -->
-        <div class="field-block">
-          <span class="field-label">Journey Date</span>
-          <div class="field-box">
-            {{ bookingDetails.booking[0].journey_dt | date:'EEEE, d MMM y' }}
-          </div>
+          <span></span>
+
+          <h4>Journey Details</h4>
+
         </div>
 
         <!-- FROM TO -->
-        <div class="route-row">
 
-          <div class="field-block">
-            <span class="field-label">From</span>
-            <div class="field-box">
+        <div class="route-main">
+
+          <div class="route-city">
+
+            <small>From</small>
+
+            <h2>
               {{ bookingDetails.booking[0].source[0].name }}
-            </div>
+            </h2>
+
           </div>
 
-          <div class="route-arrow">➜</div>
+          <div class="route-arrow">
 
-          <div class="field-block">
-            <span class="field-label">To</span>
-            <div class="field-box">
+            <i class="fas fa-arrow-right"></i>
+
+          </div>
+
+          <div class="route-city text-right">
+
+            <small>To</small>
+
+            <h2>
               {{ bookingDetails.booking[0].destination[0].name }}
-            </div>
+            </h2>
+
           </div>
 
         </div>
 
-        <!-- TIME -->
-        <div class="grid-2">
+        <!-- ROW -->
 
-          <div class="field-block">
-            <span class="field-label">Departure</span>
-            <div class="field-box">
+        <div class="ticket-grid">
+
+          <div class="ticket-info">
+
+            <small>PNR Number</small>
+
+            <h5>
+              {{ bookingDetails.booking[0].pnr }}
+            </h5>
+
+          </div>
+
+          <div class="ticket-info text-right">
+
+            <small>Booking Date & Time</small>
+
+            <h5>
+              {{
+              bookingDetails.booking[0].created_at
+              | date:'dd MMM y'
+              }}
+            </h5>
+
+          </div>
+
+        </div>
+
+        <!-- ROW -->
+
+        <div class="ticket-grid">
+
+          <div class="ticket-info">
+
+            <small>Boarding Point</small>
+
+            <h5>
+              {{ bookingDetails.booking[0].boarding_point }}
+            </h5>
+
+            <p>
+              {{
+              bookingDetails.booking[0].journey_dt
+              | date:'dd MMM y'
+              }}
+              |
               {{ brdtime }}
-            </div>
+            </p>
+
           </div>
 
-          <div class="field-block">
-            <span class="field-label">Arrival</span>
-            <div class="field-box">
+          <div class="ticket-info text-right">
+
+            <small>Dropping Point</small>
+
+            <h5>
+              {{ bookingDetails.booking[0].dropping_point }}
+            </h5>
+
+            <p>
+              {{
+              bookingDetails.booking[0].journey_dt
+              | date:'dd MMM y'
+              }}
+              |
               {{ drptime }}
-            </div>
+            </p>
+
           </div>
 
         </div>
 
+        <!-- ROW -->
+
+        <div class="ticket-grid">
+
+          <div class="ticket-info">
+
+            <small>Journey Date</small>
+
+            <h5>
+              {{
+              bookingDetails.booking[0].journey_dt
+              | date:'EEEE, d MMM y'
+              }}
+            </h5>
+
+          </div>
+
+          <div class="ticket-info text-right">
+
+            <small>GST Invoice</small>
+
+            <h5>
+
+              {{
+              bookingDetails.booking[0].customer_gst_status==1
+              ? 'YES'
+              : 'NO'
+              }}
+
+            </h5>
+
+          </div>
+
+        </div>
+
+        <!-- GST -->
+
+
       </div>
 
-      <!-- =========================
+      <!-- ===================================================
          BUS DETAILS
-    ========================== -->
-      <div class="ticket-section">
+    ==================================================== -->
 
-        <h4>Bus Details</h4>
+      <div class="ticket-box">
 
-        <div class="bus-grid">
+        <div class="section-title">
 
-          <!-- BUS NAME -->
-          <div class="field-block full-row">
-            <span class="field-label">Bus Name / Number</span>
-            <div class="field-box">
+          <span></span>
+
+          <h4>Bus Details</h4>
+
+        </div>
+
+        <div class="ticket-grid">
+
+          <div class="ticket-info">
+
+            <small>Bus Name</small>
+
+            <h5>
               {{ bookingDetails.booking[0].bus.name }}
-              -
+            </h5>
+
+          </div>
+
+          <div class="ticket-info text-right">
+
+            <small>Bus Number</small>
+
+            <h5>
               {{ bookingDetails.booking[0].bus.bus_number }}
-            </div>
+            </h5>
+
           </div>
 
-          <!-- SEAT -->
-          <div class="field-block">
-            <span class="field-label">Seat(s)</span>
-            <div class="field-box">
-              {{ seats }}
-            </div>
+        </div>
+
+        <div class="ticket-grid">
+
+          <div class="ticket-info">
+
+            <small>Bus Type</small>
+
+            <h5>
+
+              {{
+              bookingDetails.booking[0].bus.bus_sitting.name
+              }}
+              ,
+              {{
+              bookingDetails.booking[0].bus.bus_type.name
+              }}
+
+            </h5>
+
           </div>
 
-          <!-- PHONE -->
-          <div class="field-block">
-            <span class="field-label">Conductor</span>
-            <div class="field-box">
-              +91 {{ bookingDetails.booking[0].bus.bus_contacts.phone }}
-            </div>
+          <div class="ticket-info text-right">
+
+            <small>Conductor Number</small>
+
+            <h5>
+
+              +91
+              {{
+              bookingDetails.booking[0].bus.bus_contacts.phone
+              }}
+
+            </h5>
+
+          </div>
+
+        </div>
+
+        <div class="ticket-grid">
+
+          <div class="ticket-info">
+
+            <small>Seat(s)</small>
+
+            <h5>
+              Seat({{ totalseats }}) - {{ seats }}
+            </h5>
+
           </div>
 
         </div>
 
       </div>
 
-      <!-- =========================
-         PASSENGERS
-    ========================== -->
-      <div class="ticket-section">
+      <!-- ===================================================
+         PASSENGER DETAILS
+    ==================================================== -->
 
-        <h4>Passenger Details</h4>
+      <div class="ticket-box">
 
-        <div class="passenger-row" *ngFor="let dt of bookingDetails.booking[0].booking_detail; let i=index">
+        <div class="section-title">
 
-          <div>
-            {{ i+1 }}. {{ dt.passenger_name }}
+          <span></span>
+
+          <h4>Passenger Details</h4>
+
+        </div>
+
+        <!-- HEAD -->
+
+        <div class="passenger-head">
+
+          <div>Name</div>
+
+          <div class="text-center">
+            Age
           </div>
 
-          <div>
-            {{ dt.passenger_age }} / {{ dt.passenger_gender }}
+          <div class="text-right">
+            Seat
           </div>
 
         </div>
-        <div class="passenger-row" *ngFor="let dt of bookingDetails.booking[0].booking_detail; let i=index">
 
-          <div>
-            {{ i+1 }}. {{ dt.passenger_name }}
+        <!-- BODY -->
+
+        <div class="passenger-row" *ngFor="
+          let dt of bookingDetails.booking[0].booking_detail;
+          let i=index
+        ">
+
+          <div class="passenger-name">
+
+            <i class="fas fa-user-circle"></i>
+
+            <span>
+              {{ dt.passenger_name }} ({{ dt.passenger_gender }})
+            </span>
+
           </div>
 
-          <div>
-            {{ dt.passenger_age }} / {{ dt.passenger_gender }}
+          <div class="text-center">
+
+            {{ dt.passenger_age }}
+
+          </div>
+
+          <div class="text-right">
+
+            {{ seats[i] }}
+
+          </div>
+
+        </div>
+        <div class="passenger-row" *ngFor="
+          let dt of bookingDetails.booking[0].booking_detail;
+          let i=index
+        ">
+
+          <div class="passenger-name">
+
+            <i class="fas fa-user-circle"></i>
+
+            <span>
+              {{ dt.passenger_name }} ({{ dt.passenger_gender }})
+            </span>
+
+          </div>
+
+          <div class="text-center">
+
+            {{ dt.passenger_age }}
+
+          </div>
+
+          <div class="text-right">
+
+            {{ seats[i] }}
+
           </div>
 
         </div>
 
       </div>
 
-      <!-- =========================
+      <!-- ===================================================
          QR CODE
-    ========================== -->
-      <div class="ticket-section qr-center">
+    ==================================================== -->
 
-        <h4>Scan Ticket</h4>
+      <div class="ticket-box qr-box">
 
-        <qr-code [value]="qrCode" size="180" level="M">
-        </qr-code>
+        <div class="section-title">
+
+          <span></span>
+
+          <h4>Scan Ticket</h4>
+
+        </div>
+
+        <div class="qr-wrapper">
+
+          <qr-code [value]="qrCode" size="210" level="M">
+          </qr-code>
+
+        </div>
 
       </div>
 
-      <!-- =========================
-         TOTAL FARE
-    ========================== -->
+      <!-- ===================================================
+         FARE
+    ==================================================== -->
 
-      <div class="ticket-section">
+      <div class="ticket-box">
 
-        <h4>Total Fare</h4>
+        <div class="section-title">
 
-        <div class="fare-summary-card">
+          <span></span>
 
-          <!-- HEADER -->
-          <div class="fare-top-row">
+          <h4>Total Fare</h4>
+
+        </div>
+
+        <div class="fare-card">
+
+          <div class="fare-top">
+
             <div>
-              <div class="fare-main-title">Fare Details</div>
-              <div class="fare-sub-title">Total Fare (inclusive)</div>
+
+              <h3>Fare Details</h3>
+
+              <p>Total Fare (Inclusive)</p>
+
             </div>
 
-            <div class="fare-grand-total">
-              ₹{{ bookingDetails.booking[0].payable_amount + bookingDetails.booking[0].customer_comission }}
-            </div>
+            <h2>
+
+              ₹{{
+              bookingDetails.booking[0].payable_amount +
+              bookingDetails.booking[0].customer_comission
+              }}
+
+            </h2>
+
           </div>
 
-          <!-- LIST -->
           <div class="fare-line">
+
             <span>Base Fare</span>
-            <strong>₹{{ bookingDetails.booking[0].payable_amount }}</strong>
+
+            <strong>
+
+              ₹{{
+              bookingDetails.booking[0].owner_fare +
+              bookingDetails.booking[0].odbus_charges +
+              bookingDetails.booking[0].customer_comission
+              }}
+
+            </strong>
+
           </div>
 
-          <div class="fare-line">
-            <span>GST(5%)</span>
-            <strong>₹{{ bookingDetails.booking[0].customer_comission }}</strong>
+          <div class="fare-line" *ngIf="bookingDetails.booking[0].coupon_discount > 0">
+
+            <span>Coupon Discount</span>
+
+            <strong>
+
+              - ₹{{
+              bookingDetails.booking[0].coupon_discount
+              }}
+
+            </strong>
+
           </div>
 
-          <!-- FOOTER -->
-          <div class="fare-bottom-row">
+          <div class="fare-line" *ngIf="bookingDetails.booking[0].customer_gst_status == 1">
+
+            <span>
+
+              GST
+              ({{
+              bookingDetails.booking[0].customer_gst_percent
+              }}%)
+
+            </span>
+
+            <strong>
+
+              + ₹{{
+              bookingDetails.booking[0].customer_gst_amount
+              }}
+
+            </strong>
+
+          </div>
+
+          <div class="fare-total">
+
             <span>Total Fare</span>
 
             <strong>
-              ₹{{ bookingDetails.booking[0].payable_amount + bookingDetails.booking[0].customer_comission }}
+
+              ₹{{
+              bookingDetails.booking[0].payable_amount +
+              bookingDetails.booking[0].customer_comission
+              }}
+
             </strong>
+
           </div>
 
         </div>
 
       </div>
 
-      <!-- PRINT BUTTON -->
+      <!-- BUTTON -->
+
       <button class="mobile-print-btn" (click)="print()">
+
         SAVE / PRINT TICKET
+
       </button>
 
     </div>
