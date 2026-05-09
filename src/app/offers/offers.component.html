@@ -310,7 +310,7 @@
           [innerHTML]="OfferData?.coupon?.full_desc"
         ></div>
 
-        <div class="slider-desc" *ngIf="OfferData?.slider_description">
+        <div class="slider-desc" *ngIf="OfferData?.slider_description != 'null' && OfferData?.slider_description !== ''">
           {{ OfferData.slider_description }}
         </div>
       </div>

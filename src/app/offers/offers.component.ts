@@ -37,7 +37,7 @@ export class OffersComponent implements OnInit {
     private seo: SeoService,
     private location: Location,
     private detectService: DeviceDetectorService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
     this.isMobile = this.detectService.isMobile();
     this.session = new LoginChecker();
@@ -48,11 +48,15 @@ export class OffersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      const offerIndex = params['offer'];
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment && this.allOffers?.length) {
+        const index = this.allOffers.findIndex(
+          (offer: any) => offer.coupon.coupon_code === fragment,
+        );
 
-      if (offerIndex !== undefined) {
-        this.openOffer(+offerIndex);
+        if (index !== -1) {
+          this.openOffer(index);
+        }
       }
     });
   }
@@ -60,16 +64,16 @@ export class OffersComponent implements OnInit {
   loadOffers() {
     this.spinner.show();
 
-    const offerData = localStorage.getItem('offerData');
+    // const offerData = localStorage.getItem('offerData');
 
-    if (offerData) {
-      try {
-        this.allOffers = JSON.parse(offerData) || [];
-      } catch (e) {
-        this.allOffers = [];
-      }
-      this.spinner.hide();
-    } else {
+    // if (offerData) {
+    //   try {
+    //     this.allOffers = JSON.parse(offerData) || [];
+    //   } catch (e) {
+    //     this.allOffers = [];
+    //   }
+    //   this.spinner.hide();
+    // } else {
       const param = {
         user_id: GlobalConstants.MASTER_SETTING_USER_ID,
       };
@@ -87,16 +91,14 @@ export class OffersComponent implements OnInit {
           this.spinner.hide();
         },
       );
-    }
+    // }
   }
 
-  // 🔥 MENU
   menu() {
     this.MenuActive = true;
     this.activeMenu = 'active';
   }
 
-  // 🔥 LOGOUT
   signOut() {
     this.session.logout();
     this.router.navigate(['login']);
@@ -106,6 +108,7 @@ export class OffersComponent implements OnInit {
     if (!this.allOffers || !this.allOffers[i]) return;
 
     this.OfferData = this.allOffers[i];
+
     this.showOfferModal = true;
   }
 

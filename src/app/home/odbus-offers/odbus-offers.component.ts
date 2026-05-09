@@ -63,9 +63,12 @@ export class OdbusOffersComponent implements OnInit {
     setTimeout(() => {
       const cells = document.querySelectorAll('.carousel-cell');
 
+      console.log(cells);
+
       cells.forEach((cell, index) => {
         cell.addEventListener('click', () => {
-          this.goToOffers(index);
+          // alert(this.Offers[0]?.coupon.coupon_code);
+          this.goToOffers(this.Offers[index]?.coupon.coupon_code);
         });
       });
     }, 500);
@@ -90,7 +93,7 @@ export class OdbusOffersComponent implements OnInit {
           path: item.slider_photo,
         }));
 
-        // console.log(this.offerList);
+        // console.log(this.Offers);
       },
 
       (error) => {
@@ -103,11 +106,17 @@ export class OdbusOffersComponent implements OnInit {
   //   this.router.navigate(['/offers']);
   // }
 
-  goToOffers(index: number) {
+  // goToOffers(index: number) {
+  //   this.router.navigate(['/offers'], {
+  //     queryParams: {
+  //       offer: index,
+  //     },
+  //   });
+  // }
+
+  goToOffers(couponCode: string) {
     this.router.navigate(['/offers'], {
-      queryParams: {
-        offer: index,
-      },
+      fragment: couponCode,
     });
   }
 }
