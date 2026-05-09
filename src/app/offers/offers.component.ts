@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { OfferService } from '../services/offer.service';
 import { GlobalConstants } from '../constants/global-constants';
 import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
 import { LoginChecker } from '../helpers/loginChecker';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
-  styleUrls: ['./offers.component.css']
+  styleUrls: ['./offers.component.css'],
 })
 export class OffersComponent implements OnInit {
-
   allOffers: any[] = [];
   url_path = '';
   currentUrl: any;
@@ -36,9 +36,9 @@ export class OffersComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private seo: SeoService,
     private location: Location,
-    private detectService: DeviceDetectorService
+    private detectService: DeviceDetectorService,
+    private route: ActivatedRoute
   ) {
-
     this.isMobile = this.detectService.isMobile();
     this.session = new LoginChecker();
     this.currentUrl = location.path().replace('/', '');
@@ -47,7 +47,15 @@ export class OffersComponent implements OnInit {
     this.loadOffers();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const offerIndex = params['offer'];
+
+      if (offerIndex !== undefined) {
+        this.openOffer(+offerIndex);
+      }
+    });
+  }
 
   loadOffers() {
     this.spinner.show();
@@ -63,21 +71,21 @@ export class OffersComponent implements OnInit {
       this.spinner.hide();
     } else {
       const param = {
-        user_id: GlobalConstants.MASTER_SETTING_USER_ID
+        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
       };
 
       this.offerService.Offers(param).subscribe(
-        res => {
+        (res) => {
           if (res.status == 1 && res.data) {
             this.allOffers = res.data;
             localStorage.setItem('offerData', JSON.stringify(res.data));
           }
           this.spinner.hide();
         },
-        err => {
-          console.error("Offer API error:", err);
+        (err) => {
+          console.error('Offer API error:', err);
           this.spinner.hide();
-        }
+        },
       );
     }
   }
@@ -115,12 +123,14 @@ export class OffersComponent implements OnInit {
   copyCoupon(code: string) {
     if (!code) return;
 
-    navigator.clipboard.writeText(code).then(() => {
-      console.log('Coupon copied:', code);
-      alert('Coupon copied!');
-    }).catch(err => {
-      console.error('Copy failed:', err);
-    });
+    navigator.clipboard
+      .writeText(code)
+      .then(() => {
+        console.log('Coupon copied:', code);
+        alert('Coupon copied!');
+      })
+      .catch((err) => {
+        console.error('Copy failed:', err);
+      });
   }
-
 }

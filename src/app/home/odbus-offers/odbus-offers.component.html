@@ -2,11 +2,12 @@
 
 <!-- DESKTOP -->
 <ng-template #Desktop>
-  <section class="section-offer carousel-home fluid-15" *ngIf="Offers.length > 0">
+  <section
+    class="section-offer carousel-home fluid-15"
+    *ngIf="Offers.length > 0"
+  >
     <div class="container">
-
       <div class="row">
-
         <div class="col-md-6">
           <div class="section-offer-left">
             <h2>ODBUS OFFERS</h2>
@@ -18,17 +19,12 @@
         </div>
 
         <div class="col-md-12 mt-4">
-          <carousel [images]="offerList" [cellsToShow]="3" [loop]="true" [autoplay]="true" [autoplayInterval]="2000">
+          <carousel [images]="offerList" [cellsToShow]="3" [loop]="true" [autoplay]="true" [autoplayInterval]="3000">
           </carousel>
-
         </div>
-
       </div>
-
     </div>
-
   </section>
-
 </ng-template>
 
 <!-- <ng-template #Mobile>
@@ -52,32 +48,28 @@
   </section>
 </ng-template> -->
 
-
 <!-- ================= MOBILE OFFER SECTION ================= -->
 
-
-
 <ng-template #Mobile>
-<section class="mobile-offers-section" *ngIf="Offers.length > 0">
+  <section class="mobile-offers-section" *ngIf="Offers.length > 0">
+    <!-- HEADER -->
+    <div class="mobile-offers-top">
+      <h2>ODBUS OFFERS</h2>
 
-  <!-- HEADER -->
-  <div class="mobile-offers-top">
+      <a routerLink="/offers">View All</a>
+    </div>
 
-    <h2>ODBUS OFFERS</h2>
-
-    <a routerLink="/offers">View All</a>
-
-  </div>
-
-  <!-- OFFER SLIDER -->
-  <div class="mobile-offers-card">
-
-    <carousel [images]="offerList" [cellsToShow]="1" [loop]="true" [autoplay]="true" [autoplayInterval]="2500"
-      [arrows]="false">
-
-    </carousel>
-
-  </div>
-
-</section>
+    <!-- OFFER SLIDER -->
+    <div class="mobile-offers-card">
+      <carousel
+        [images]="offerList"
+        [cellsToShow]="1"
+        [loop]="true"
+        [autoplay]="true"
+        [autoplayInterval]="2500"
+        [arrows]="false"
+      >
+      </carousel>
+    </div>
+  </section>
 </ng-template>
