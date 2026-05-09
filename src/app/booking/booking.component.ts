@@ -679,69 +679,72 @@ export class BookingComponent implements OnInit {
       // console.log(JSON.stringify(paymentParam));
       //return;
 
-      // this.makepaymentService.getOrderid(paymentParam).subscribe(
-      //   res=>{
-
-      //     if(res.status==1){
-      //       if(res.data=='SEAT UN-AVAIL'){
-      //         this.notify.notify(res.message,"Error");
-      //       }else{
-      //         this.MakePaymnetResponse=res.data;          
-      //        // this.OpenRazorpayModal();
-      //           this.cashfressRedirect();
-      //       }
-
-      //     }else{
-      //       this.notify.notify(res.message,"Error");
-      //     } 
-
-      //     this.spinner.hide();  
-
-      // });
-
+      // For Razorpay Payment Gateway
 
       this.makepaymentService.getOrderid(paymentParam).subscribe(
-        res => {
+        res=>{
 
-          if (res.status == 1) {
-            if (res.data == 'SEAT UN-AVAIL') {
-              this.notify.notify(res.message, "Error");
-            } else {
-              this.MakePaymnetResponse = res.data;
-              console.log(this.MakePaymnetResponse);
-              localStorage.setItem('od_success_name', this.passengerData.customerInfo.name);
-              localStorage.setItem('od_success_email', this.passengerData.customerInfo.email);
-              localStorage.setItem('od_success_phone', this.passengerData.customerInfo.phone);
-              localStorage.setItem('od_razor_id', this.pp_orderId);
-              // console.log(res)  
-              this.pp_orderId = this.MakePaymnetResponse.pp_resp.original.orderId;
-              // console.log(this.MakePaymnetResponse.pp_resp.original.redirectUrl)
-
-              const redirectUrl = this.MakePaymnetResponse.pp_resp.original.redirectUrl + '&isChromeWV=true';
-              // console.log(redirectUrl);
-
-              // Replace history so payment page is removed
-              // history.replaceState(null, '', '/');
-              localStorage.setItem('payment_in_progress', 'true');
-
-              // Redirect to PhonePe
-              window.location.replace(redirectUrl);
-              localStorage.setItem('transaction_id', this.bookTicketResponse.transaction_id);
-              localStorage.setItem('pp_orderId', this.pp_orderId);
-
-
-              // localStorage.setItem('phonpedata',res.data);
-              // this.OpenRazorpayModal();
-              // this.cashfressRedirect();
+          if(res.status==1){
+            if(res.data=='SEAT UN-AVAIL'){
+              this.notify.notify(res.message,"Error");
+            }else{
+              this.MakePaymnetResponse=res.data;          
+             // this.OpenRazorpayModal();
+                this.cashfressRedirect();
             }
 
-          } else {
-            this.notify.notify(res.message, "Error");
-          }
+          }else{
+            this.notify.notify(res.message,"Error");
+          } 
 
-          this.spinner.hide();
+          this.spinner.hide();  
 
-        });
+      });
+
+
+      // For PhonePe Payment Gateway
+      // this.makepaymentService.getOrderid(paymentParam).subscribe(
+      //   res => {
+
+      //     if (res.status == 1) {
+      //       if (res.data == 'SEAT UN-AVAIL') {
+      //         this.notify.notify(res.message, "Error");
+      //       } else {
+      //         this.MakePaymnetResponse = res.data;
+      //         console.log(this.MakePaymnetResponse);
+      //         localStorage.setItem('od_success_name', this.passengerData.customerInfo.name);
+      //         localStorage.setItem('od_success_email', this.passengerData.customerInfo.email);
+      //         localStorage.setItem('od_success_phone', this.passengerData.customerInfo.phone);
+      //         localStorage.setItem('od_razor_id', this.pp_orderId);
+      //         // console.log(res)  
+      //         this.pp_orderId = this.MakePaymnetResponse.pp_resp.original.orderId;
+      //         // console.log(this.MakePaymnetResponse.pp_resp.original.redirectUrl)
+
+      //         const redirectUrl = this.MakePaymnetResponse.pp_resp.original.redirectUrl + '&isChromeWV=true';
+      //         // console.log(redirectUrl);
+
+      //         // Replace history so payment page is removed
+      //         // history.replaceState(null, '', '/');
+      //         localStorage.setItem('payment_in_progress', 'true');
+
+      //         // Redirect to PhonePe
+      //         window.location.replace(redirectUrl);
+      //         localStorage.setItem('transaction_id', this.bookTicketResponse.transaction_id);
+      //         localStorage.setItem('pp_orderId', this.pp_orderId);
+
+
+      //         // localStorage.setItem('phonpedata',res.data);
+      //         // this.OpenRazorpayModal();
+      //         // this.cashfressRedirect();
+      //       }
+
+      //     } else {
+      //       this.notify.notify(res.message, "Error");
+      //     }
+
+      //     this.spinner.hide();
+
+      //   });
 
     }
 
@@ -1098,7 +1101,7 @@ export class BookingComponent implements OnInit {
   }
 
   async cashfressRedirect() {
-    //console.log(this.MakePaymnetResponse);
+    console.log(this.MakePaymnetResponse);
     //console.log(this.MakePaymnetResponse.razorpay_order_id.payment_session_id);
     //console.log(this.MakePaymnetResponse.razorpay_order_id.receipt_id);
     const cashfree = await load({
