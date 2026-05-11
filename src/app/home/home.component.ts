@@ -374,10 +374,9 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     const reddata = {
       limit: 3,
     };
-    this.http.post(this.apiurl + '/bloglist', reddata).subscribe((res: any) => {
-      this.bloglist = res.data.blogs;
-      // console.log(res.data.blogs);
-    });
+    // this.http.post(this.apiurl + '/bloglist', reddata).subscribe((res: any) => {
+    //   this.bloglist = res.data.blogs;
+    // });
 
     // console.log('HomeComponent.ngOnInit() called');
 

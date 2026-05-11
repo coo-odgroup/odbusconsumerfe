@@ -80,6 +80,7 @@ import { TopOperatorsComponent } from './home/top-operators/top-operators.compon
 import { TopRoutesComponent } from './home/top-routes/top-routes.component';
 import { CommonContentComponent } from './common-content/common-content.component';
 import { FooterMenuComponent } from './footer-menu/footer-menu.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -156,7 +157,8 @@ const ngWizardConfig: NgWizardConfig = {
     TopOperatorsComponent,
     TopRoutesComponent,
     CommonContentComponent,
-    FooterMenuComponent
+    FooterMenuComponent,
+    SearchBoxComponent
   ], 
   imports: [
     // BrowserAnimationsModule,
