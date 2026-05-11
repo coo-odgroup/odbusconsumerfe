@@ -18,7 +18,7 @@
           <a routerLink="/offers">View All</a>
         </div>
 
-        <div class="col-md-12 mt-4">
+        <div class="col-md-12 mt-4" *ngIf="isBrowser">
           <carousel [images]="offerList" [cellsToShow]="3" [loop]="true" [autoplay]="true" [autoplayInterval]="3000">
           </carousel>
         </div>
@@ -60,7 +60,7 @@
     </div>
 
     <!-- OFFER SLIDER -->
-    <div class="mobile-offers-card">
+    <div class="mobile-offers-card" *ngIf="isBrowser">
       <carousel
         [images]="offerList"
         [cellsToShow]="1"

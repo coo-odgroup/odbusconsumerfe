@@ -71,39 +71,71 @@ export class BlogListingComponent implements OnInit {
       this.slug = params.get('slug');
       this.tag_slug = params.get('tag_slug');
       this.author_slug = params.get('author_slug');
-      this.loadBlogs(this.slug, this.tag_slug,this.author_slug);
+      this.loadBlogs(this.slug, this.tag_slug, this.author_slug);
     });
 
   }
+
+  // loadBlogs(slug: any, tag_slug: any, author_slug: any) {
+
+  //   this.spinner.show();
+
+  //   const reqData = {
+  //     cat_slug: slug,
+  //     tag_slug: tag_slug,
+  //     author_slug: author_slug
+  //   };
+
+  //   // console.log(reqData);
+
+  //   this.http.post(this.apiURL + "/bloglist", reqData).subscribe(
+  //     (res: any) => {
+
+  //       this.blogData = res.data.blogs;
+  //       this.categoryData = res.data.categories;
+
+  //       this.spinner.hide();
+  //     },
+  //     (error) => {
+
+  //       console.error("API Error:", error);
+
+  //       this.spinner.hide();
+  //     }
+  //   );
+
+  // }
 
   loadBlogs(slug: any, tag_slug: any, author_slug: any) {
 
     this.spinner.show();
 
-    const reqData = {
-      cat_slug: slug,
-      tag_slug: tag_slug,
-      author_slug: author_slug
-    };
+    const formData = new FormData();
 
-    // console.log(reqData);
+    formData.append('cat_slug', slug || '');
+    formData.append('tag_slug', tag_slug || '');
+    formData.append('author_slug', author_slug || '');
 
-    this.http.post(this.apiURL + "/bloglist", reqData).subscribe(
-      (res: any) => {
+    this.http.post(this.apiURL + "/bloglist", formData)
+      .subscribe(
 
-        this.blogData = res.data.blogs;
-        this.categoryData = res.data.categories;
+        (res: any) => {
 
-        this.spinner.hide();
-      },
-      (error) => {
+          this.blogData = res.data.blogs;
+          this.categoryData = res.data.categories;
 
-        console.error("API Error:", error);
+          this.spinner.hide();
 
-        this.spinner.hide();
-      }
-    );
+        },
 
+        (error) => {
+
+          console.error("API Error:", error);
+
+          this.spinner.hide();
+
+        }
+
+      );
   }
-
 }
