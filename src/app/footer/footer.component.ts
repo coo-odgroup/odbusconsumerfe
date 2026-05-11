@@ -71,10 +71,9 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
     const reddata = {
       "limit": 3
     }
-    this.http.post(this.apiurl + "/bloglist", reddata).subscribe((res: any) => {
-      this.bloglist = res.data.blogs
-      console.log(res.data.blogs);
-    })
+    // this.http.post(this.apiurl + "/bloglist", reddata).subscribe((res: any) => {
+    //   this.bloglist = res.data.blogs;
+    // });
     // Subscribe to commonData changes
     this.commonDataSubscription = this.commonService.commonData$.subscribe(data => {
       if (data) {
