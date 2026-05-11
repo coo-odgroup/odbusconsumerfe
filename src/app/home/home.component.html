@@ -20,7 +20,7 @@
               class="trust-badge"
               src="assets/img/trust_badge.png"
               alt="logo-ODBUS"
-              title=""
+              title="Logo ODBUS"
             />
             <h1>
               Odisha’s No. 1 Online,<br />
@@ -42,7 +42,7 @@
               <div class="input-box">
                 <img
                   src="assets/img/Icon-metro-location.svg"
-                  class="icon-from"
+                  class="icon-from" alt="From Location" loading="lazy"
                 />
                 <input
                   type="search"
@@ -55,7 +55,6 @@
                   formControlName="source"
                   placeholder="Enter Source"
                 />
-                <!-- <span class="clear-icon">✖</span> -->
               </div>
             </div>
 
@@ -64,11 +63,11 @@
               <label>To</label>
 
               <div class="swap-center" (click)="swap()">
-                <img src="assets/img/swap.svg" />
+                <img src="assets/img/swap.svg" alt="Swap Locations" loading="lazy" />
               </div>
 
               <div class="input-box">
-                <img src="assets/img/Icon-metro-location.svg" class="icon-to" />
+                <img src="assets/img/Icon-metro-location.svg" class="icon-to" alt="To Location" loading="lazy" />
                 <input
                   type="search"
                   class="form-control"
@@ -80,25 +79,8 @@
                   formControlName="destination"
                   placeholder="Enter Destination"
                 />
-                <!-- <span class="clear-icon">✖</span> -->
               </div>
             </div>
-
-            <!-- DATE -->
-            <!-- <div class="col-md-4 field date-field">
-                            <label>Date of Journey</label>
-                            <div class="input-box date-box">
-                                <img src="assets/img/Icon-metro-calendar.svg" class="icon-date">
-
-                                <input type="text" class="form-control" formControlName="entry_date" ngbDatepicker
-                                    #d="ngbDatepicker" (click)="d.toggle()" placeholder="Journey Date" readonly />
-
-                                <div class="date-btns">
-                                    <span (click)="searchToday()">Today</span>
-                                    <span (click)="searchTomorrow()">Tomorrow</span>
-                                </div>
-                            </div>
-                        </div> -->
 
             <div class="col-md-4 field date-field">
               <label>Date of Journey</label>
@@ -108,7 +90,7 @@
                 <div class="input-box date-box">
                   <img
                     src="assets/img/Icon-metro-calendar.svg"
-                    class="icon-date"
+                    class="icon-date" alt="calender" loading="lazy"
                   />
 
                   <input
@@ -155,7 +137,7 @@
         </div>
         <div class="col-5">
           <div class="mobile-logo">
-            <img src="assets/img/mob-img/logo.png" />
+            <img src="assets/img/mob-img/logo.png" alt="Mobile Logo" loading="lazy" />
           </div>
         </div>
       </div>
@@ -169,7 +151,7 @@
                 <div class="input-box">
                   <img
                     src="assets/img/Icon-metro-location.svg"
-                    class="icon-from"
+                    class="icon-from" alt="Icon-metro-location" loading="lazy"
                   />
                   <input
                     type="search"
@@ -182,7 +164,6 @@
                     formControlName="source"
                     placeholder="Enter Source"
                   />
-                  <!-- <span class="clear-icon">✖</span> -->
                 </div>
               </div>
 
@@ -191,13 +172,13 @@
                 <label>To</label>
 
                 <div class="swap-center" (click)="swap()">
-                  <img src="assets/img/swap.svg" />
+                  <img src="assets/img/swap.svg" alt="Swap Locations" loading="lazy" />
                 </div>
 
                 <div class="input-box">
                   <img
                     src="assets/img/Icon-metro-location.svg"
-                    class="icon-to"
+                    class="icon-to" alt="To Location" loading="lazy"
                   />
                   <input
                     type="search"
@@ -210,25 +191,8 @@
                     formControlName="destination"
                     placeholder="Enter Destination"
                   />
-                  <!-- <span class="clear-icon">✖</span> -->
                 </div>
               </div>
-
-              <!-- DATE -->
-              <!-- <div class="col-md-4 field date-field">
-                            <label>Date of Journey</label>
-                            <div class="input-box date-box">
-                                <img src="assets/img/Icon-metro-calendar.svg" class="icon-date">
-
-                                <input type="text" class="form-control" formControlName="entry_date" ngbDatepicker
-                                    #d="ngbDatepicker" (click)="d.toggle()" placeholder="Journey Date" readonly />
-
-                                <div class="date-btns">
-                                    <span (click)="searchToday()">Today</span>
-                                    <span (click)="searchTomorrow()">Tomorrow</span>
-                                </div>
-                            </div>
-                        </div> -->
 
               <div class="col-md-4 field date-field">
                 <label>Date of Journey</label>
@@ -236,7 +200,7 @@
                 <div class="date-wrapper">
                   <!-- Journey Date Box -->
                   <div class="input-box date-box">
-                    <img src="assets/img/Icon-metro-calendar.svg"  class="icon-date" loading="lazy" alt="calender" />
+                    <img src="assets/img/Icon-metro-calendar.svg"  class="icon-date" loading="lazy" alt="Calendar" />
 
                     <input
                       type="text"
@@ -302,7 +266,7 @@
       <div class="row">
         <div class="col-5">
           <div class="mobile-logo">
-            <img src="assets/img/mob-img/logo.png" />
+            <img src="assets/img/mob-img/logo.png" alt="Mobile Logo" loading="lazy" />
           </div>
         </div>
         <div class="col-7 mob-logintx">
@@ -369,8 +333,7 @@
         <h4>🚀 Get Better Experience</h4>
         <p>Download ODBUS App for faster booking & offers</p>
 
-        <img src="assets/img/booking.png" class="popup-img" />
-        <!-- <img src="assets/img/booking_2.png" class="popup-img" /> -->
+        <img src="assets/img/booking.png" class="popup-img" alt="Booking" loading="lazy" />
 
         <a
           href="https://play.google.com/store/apps/details?id=com.od.odbus&hl=en"
@@ -420,6 +383,8 @@
         "
         src="{{ popupData.common.popup_image }}"
         width="100%"
+        alt="Popup"
+        loading="lazy"
       />
 
       <p
@@ -456,76 +421,3 @@
 <app-growing></app-growing>
 <app-info></app-info>
 <app-faqs></app-faqs>
-
-<!-- <section
-  class="top-operators fluid-15"
-  *ngIf="topOperators && topOperators.length > 0"
->
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 text-left">
-        <h3 class="title-section">Top Operators</h3>
-      </div>
-      <div class="col-md-6 text-right">
-        <a routerLink="operators" class="border-btn bh">All Operators</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row operator-card-row">
-      <div class="col-md-3" *ngFor="let t of topOperators">
-        <div
-          class="operator-card small-card"
-          (click)="operator_detail(t.operator_url)"
-        >
-          <div class="card-content">
-            <div class="icon-wrap">
-              <img src="assets/img/icon-bus-alt.svg" />
-            </div>
-
-            <div class="operator-name">
-              {{ t.organisation_name }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="top-routs fluid-15" *ngIf="popular_routes != ''">
-  <div class="container">
-    <div class="row align-items-center mb-3">
-      <div class="col-md-6">
-        <h3 class="title-section">Poupular Routes</h3>
-      </div>
-      <div class="col-md-6 text-right">
-        <a routerLink="routes" class="btn btn-warning">All Routes</a>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 col-sm-6" *ngFor="let p of popular_routes">
-        <div
-          class="route-card"
-          (click)="popularSearch(p.source[0].url, p.destination[0].url)"
-        >
-          <div class="route-left">
-            <img src="assets/img/Icon-metro-location.svg" class="route-icon" />
-
-            <div class="route-text">
-              <span class="city">{{ p.source[0].name }}</span>
-              <span class="exchange">⇄</span>
-              <span class="city">{{ p.destination[0].name }}</span>
-            </div>
-          </div>
-
-          <button class="book-btn">Book Now</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- <app-route-links></app-route-links> -->

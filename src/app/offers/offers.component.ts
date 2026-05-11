@@ -48,11 +48,20 @@ export class OffersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadRouteParam();
+  }
+
+  loadRouteParam() {
+    console.log('Current URL:', this.route.fragment);
     this.route.fragment.subscribe((fragment) => {
       if (fragment && this.allOffers?.length) {
         const index = this.allOffers.findIndex(
           (offer: any) => offer.coupon.coupon_code === fragment,
         );
+
+        console.log('Offers loaded:', this.allOffers);
+        console.log('Fragment:', fragment, 'Index found:', index);
+        console.log('Hello hi namaskar ss');
 
         if (index !== -1) {
           this.openOffer(index);
