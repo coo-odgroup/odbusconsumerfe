@@ -77,13 +77,12 @@ export class GrowingComponent implements OnInit, AfterViewInit {
     }
 
     // SSR Safe
-    if (
-      typeof section.getBoundingClientRect !== 'function'
-    ) {
-      return;
-    }
 
-    const rect = section.getBoundingClientRect();
+    if ( !isPlatformBrowser(this.platformId) || !section || typeof section.getBoundingClientRect !== 'function' ) { return; }
+
+    const rect = section.getBoundingClientRect(); console.log(rect);
+
+
 
     const viewportHeight =
       window.innerHeight || 0;

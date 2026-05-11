@@ -35,7 +35,10 @@
               "src/assets/css/style.css",
               "src/assets/css/customwizard.css",
               "src/assets/css/bootstarp.min.css",
-              "node_modules/ngx-lightbox/lightbox.css"
+              "node_modules/ngx-lightbox/lightbox.css",
+              "src/assets/css/all.min.css",
+              "src/assets/css/font-awesome.min.css",
+              "src/assets/css/bootstrap-icons.css"
             ],
             "scripts": []
           },
@@ -76,7 +79,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "consumerfenew:build:production"
+              "browserTarget": "consumerfenew:build:production",      
+              "optimization": true             
             }
           }
         },
@@ -125,7 +129,14 @@
           },
           "configurations": {
             "production": {
-              "devServerTarget": "consumerfenew:serve:production"
+              "devServerTarget": "consumerfenew:serve:production",
+              "optimization": true, 
+              "outputHashing": "all", 
+              "sourceMap": false, 
+              "namedChunks": false, 
+              "extractLicenses": true, 
+              "vendorChunk": false, 
+              "buildOptimizer": true
             }
           }
         },
