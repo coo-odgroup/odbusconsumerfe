@@ -82,6 +82,7 @@ import { CommonContentComponent } from './common-content/common-content.componen
 import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 
+
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
 }
