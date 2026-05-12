@@ -102,6 +102,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
       return;
     }
 
+    if (!isPlatformBrowser(this.platformId)) {
+      this.showTopBar = true;
+      return;
+    }
+
     const closedAt = localStorage.getItem(this.TOP_BAR_KEY);
 
     if (closedAt) {
@@ -124,7 +129,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   closeTopBar() {
     this.showTopBar = false;
     // Save current timestamp
-    localStorage.setItem(this.TOP_BAR_KEY, Date.now().toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(this.TOP_BAR_KEY, Date.now().toString());
+    }
   }
   // Jagan
 
@@ -142,6 +149,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   scrollToDownload() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     const element = document.getElementById('downloadappnew');
 
     if (element) {

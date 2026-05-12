@@ -46,9 +46,7 @@ export class OdbusOffersComponent implements OnInit {
     if (this.isBrowser) {
       this.checkScreen();
     }
-    setTimeout(() => {
-      this.getOffers();
-    }, 1000);
+    this.getOffers();
     
   }
 
@@ -62,10 +60,12 @@ export class OdbusOffersComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    if (!this.isBrowser) {
+      return;
+    }
+
     setTimeout(() => {
       const cells = document.querySelectorAll('.carousel-cell');
-
-      console.log(cells);
 
       cells.forEach((cell, index) => {
         cell.addEventListener('click', () => {

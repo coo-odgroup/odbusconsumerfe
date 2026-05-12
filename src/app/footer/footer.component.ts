@@ -151,29 +151,31 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
       }
     }
 
-    setTimeout(() => {
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
 
-      const tabs = document.querySelectorAll('.route-tabs li');
-      const panes = document.querySelectorAll('.route-link-section .tab-pane');
+        const tabs = document.querySelectorAll('.route-tabs li');
+        const panes = document.querySelectorAll('.route-link-section .tab-pane');
 
-      tabs.forEach((tab: any, index: number) => {
+        tabs.forEach((tab: any, index: number) => {
 
-        tab.addEventListener('click', (e: any) => {
-          e.preventDefault();
+          tab.addEventListener('click', (e: any) => {
+            e.preventDefault();
 
-          tabs.forEach((t: any, i: number) => {
-            t.classList.remove('active');
-            panes[i].classList.remove('active');
+            tabs.forEach((t: any, i: number) => {
+              t.classList.remove('active');
+              panes[i].classList.remove('active');
+            });
+
+            tab.classList.add('active');
+            panes[index].classList.add('active');
+
           });
-
-          tab.classList.add('active');
-          panes[index].classList.add('active');
 
         });
 
-      });
-
-    }, 500);
+      }, 500);
+    }
   }
 
   ngOnDestroy(): void {

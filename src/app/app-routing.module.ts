@@ -76,7 +76,11 @@ export const routes: Routes = [
       .then(m => m.TestimonialsModule) 
   },
   { path: 'news', component: NewsComponent },
-  { path: 'careers', component: CareersComponent },
+  { path: 'careers', 
+    loadChildren: () => 
+      import('./careers/careers.module') 
+      .then(m => m.CareersModule) 
+  },
   { path: 'contact-us', 
     loadChildren: () => 
       import('./contact-us/contact-us.module') 

@@ -23,7 +23,6 @@ import { FaqComponent } from './faq/faq.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { NewsComponent } from './news/news.component';
-import { CareersComponent } from './careers/careers.component';
 import { RoutesComponent } from './routes/routes.component';
 import { OffersComponent } from './offers/offers.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
@@ -118,7 +117,6 @@ const ngWizardConfig: NgWizardConfig = {
     ThankyouComponent,
     AboutUsComponent,
     NewsComponent,
-    CareersComponent,
     RoutesComponent,
     OffersComponent,
     ManagebookingdetailsComponent,
