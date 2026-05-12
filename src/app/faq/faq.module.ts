@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CareersRoutingModule } from './careers-routing.module';
-import { CareersComponent } from './careers.component';
+import { FaqRoutingModule } from './faq-routing.module';
+import { FaqComponent } from './faq.component';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    CareersComponent
+    FaqComponent
   ],
   imports: [
     CommonModule,
-    CareersRoutingModule,
+    FaqRoutingModule,
     NgbAccordionModule
   ]
 })
-export class CareersModule {}
+export class FaqModule {}

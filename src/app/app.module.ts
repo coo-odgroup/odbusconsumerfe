@@ -19,7 +19,7 @@ import { TncComponent } from './tnc/tnc.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { SupportComponent } from './support/support.component';
-import { FaqComponent } from './faq/faq.component';
+// import { FaqComponent } from './faq/faq.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { NewsComponent } from './news/news.component';
@@ -113,7 +113,7 @@ const ngWizardConfig: NgWizardConfig = {
     PrivacyPolicyComponent,
     ManageBookingComponent,
     SupportComponent,
-    FaqComponent,
+    // FaqComponent,
     ThankyouComponent,
     AboutUsComponent,
     NewsComponent,

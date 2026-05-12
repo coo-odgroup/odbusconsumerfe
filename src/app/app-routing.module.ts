@@ -86,7 +86,11 @@ export const routes: Routes = [
       import('./contact-us/contact-us.module') 
       .then(m => m.ContactUsModule) 
   },
-  { path: 'faq', component: FaqComponent },
+  { path: 'faq', 
+    loadChildren: () => 
+      import('./faq/faq.module') 
+      .then(m => m.FaqModule) 
+  },
   { path: 'terms-conditions', component: TncComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: '404', component: PageErrorComponent },
