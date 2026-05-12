@@ -68,7 +68,13 @@ export const routes: Routes = [
   { path: 'operator/:url', component: OperatorDetailComponent },
   { path: 'routes', component: RoutesComponent },
   { path: 'offers', component: OffersComponent },
-  { path: 'testimonials', component: TestimonialsComponent },
+  // { path: 'testimonials', component: TestimonialsComponent },
+  { 
+    path: 'testimonials', 
+    loadChildren: () => 
+      import('./testimonials/testimonials.module') 
+      .then(m => m.TestimonialsModule) 
+  },
   { path: 'news', component: NewsComponent },
   { path: 'careers', component: CareersComponent },
   { path: 'contact-us', component: ContactUsComponent },

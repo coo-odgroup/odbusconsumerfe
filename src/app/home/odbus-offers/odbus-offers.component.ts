@@ -46,8 +46,10 @@ export class OdbusOffersComponent implements OnInit {
     if (this.isBrowser) {
       this.checkScreen();
     }
-
-    this.getOffers();
+    setTimeout(() => {
+      this.getOffers();
+    }, 1000);
+    
   }
 
   checkScreen(): void {

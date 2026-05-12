@@ -14,7 +14,7 @@ import { PageErrorComponent } from './page-error/page-error.component';
 import { AppInitializerService } from './services/initializer.service';
 import { BookingComponent } from './booking/booking.component';
 import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
-import { TestimonialsComponent } from './testimonials/testimonials.component';
+// import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { OperatorsComponent } from './operators/operators.component';
 import { TncComponent } from './tnc/tnc.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
@@ -111,7 +111,7 @@ const ngWizardConfig: NgWizardConfig = {
     SearchComponent,
     PageErrorComponent,
     BookingComponent,
-    TestimonialsComponent,
+    // TestimonialsComponent,
     OperatorsComponent,
     TncComponent,
     PrivacyPolicyComponent,
