@@ -6,6 +6,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Router } from '@angular/router';
 import { LoginChecker } from '../helpers/loginChecker';
+import { GlobalConstants } from '../constants/global-constants';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-faq',
@@ -22,13 +24,21 @@ export class FaqComponent implements OnInit {
   MenuActive: boolean = false;
   activeMenu: string = '';
 
+  // Jagan
+  private apiurl = GlobalConstants.BASE_URL;
+  faqs: any[] = [];
+  activeTab: number = 0;
+  openIndex: number[] = [];
+  // Jagan
+
   constructor(
     private seo: SeoService,
     private location: Location,
     private pageService: PagesService,
     private spinner: NgxSpinnerService,
     private detectService: DeviceDetectorService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {
     this.isMobile = this.detectService.isMobile();
     this.session = new LoginChecker();
@@ -39,7 +49,7 @@ export class FaqComponent implements OnInit {
 
   menu() {
     this.MenuActive = (this.MenuActive==false) ? true : false;
-    this.activeMenu='';   
+    this.activeMenu='';
   }
 
   signOut() {
@@ -47,5 +57,20 @@ export class FaqComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  ngOnInit(): void {}
+  // Jagan
+  ngOnInit(): void {
+    this.spinner.show();
+    this.fetchFaqs();
+  }
+
+  private fetchFaqs(): void {
+    const payload = {};
+
+    this.http.post(this.apiurl + '/getfaqs', payload).subscribe((res: any) => {
+      this.faqs = res.data;
+      this.openIndex = this.faqs.map(() => 0);
+      this.spinner.hide();
+    });
+  }
+  // Jagan
 }

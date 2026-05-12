@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FaqRoutingModule } from './faq-routing.module';
 import { FaqComponent } from './faq.component';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     FaqRoutingModule,
-    NgbAccordionModule
+    NgbAccordionModule,
+    NgxSpinnerModule
   ]
 })
 export class FaqModule {}

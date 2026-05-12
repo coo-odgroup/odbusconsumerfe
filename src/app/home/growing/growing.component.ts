@@ -80,9 +80,7 @@ export class GrowingComponent implements OnInit, AfterViewInit {
 
     if ( !isPlatformBrowser(this.platformId) || !section || typeof section.getBoundingClientRect !== 'function' ) { return; }
 
-    const rect = section.getBoundingClientRect(); console.log(rect);
-
-
+    const rect = section.getBoundingClientRect();
 
     const viewportHeight =
       window.innerHeight || 0;
