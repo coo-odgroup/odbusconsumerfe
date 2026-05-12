@@ -23,7 +23,6 @@ import { FaqComponent } from './faq/faq.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { NewsComponent } from './news/news.component';
 import { CareersComponent } from './careers/careers.component';
 import { RoutesComponent } from './routes/routes.component';
 import { OffersComponent } from './offers/offers.component';
@@ -75,7 +74,6 @@ export const routes: Routes = [
       import('./testimonials/testimonials.module') 
       .then(m => m.TestimonialsModule) 
   },
-  { path: 'news', component: NewsComponent },
   { path: 'careers', 
     loadChildren: () => 
       import('./careers/careers.module') 
@@ -90,6 +88,11 @@ export const routes: Routes = [
     loadChildren: () => 
       import('./faq/faq.module') 
       .then(m => m.FaqModule) 
+  },
+  { path: 'terms-conditions', 
+    loadChildren: () => 
+      import('./tnc/tnc.module') 
+      .then(m => m.TncModule) 
   },
   { path: 'terms-conditions', component: TncComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },

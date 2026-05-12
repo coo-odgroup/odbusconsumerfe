@@ -15,11 +15,9 @@ import { AppInitializerService } from './services/initializer.service';
 import { BookingComponent } from './booking/booking.component';
 import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
 import { OperatorsComponent } from './operators/operators.component';
-import { TncComponent } from './tnc/tnc.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { SupportComponent } from './support/support.component';
-// import { FaqComponent } from './faq/faq.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { NewsComponent } from './news/news.component';
@@ -109,11 +107,9 @@ const ngWizardConfig: NgWizardConfig = {
     PageErrorComponent,
     BookingComponent,
     OperatorsComponent,
-    TncComponent,
     PrivacyPolicyComponent,
     ManageBookingComponent,
     SupportComponent,
-    // FaqComponent,
     ThankyouComponent,
     AboutUsComponent,
     NewsComponent,

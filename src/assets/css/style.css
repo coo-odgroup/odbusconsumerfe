@@ -124,7 +124,7 @@ section.header-main {
 }
 
 .hero-banner {
-    background: url(../img/bus-bg.jpg);
+    background: url(../../assets/img/bus-bg.jpg);
     padding: 150px 0 100px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -332,11 +332,11 @@ section.section-offer {
 }
 
 .section-offer-right-tab .carousel-control-prev-icon {
-    background-image: url(../img/left-arrow.png);
+    background-image: url(../../assets/img/left-arrow.png);
 }
 
 .section-offer-right-tab .carousel-control-next-icon {
-    background-image: url(../img/right-arrow.png);
+    background-image: url(../../assets/img/right-arrow.png);
 }
 
 .offer-slide img {
@@ -628,7 +628,7 @@ section.app button.btn {
 }
 
 .why-us-box {
-    background-image: url(../img/hexagon-bg.svg);
+    background-image: url(../../assets/img/hexagon-bg.svg);
     background-size: cover;
     background-repeat: no-repeat;
     padding: 0 20px 24%;
@@ -1128,7 +1128,7 @@ li.bs-dtl-start-pont {
     width: 8.5px;
     left: 0;
     top: 30%;
-    background-image: url(../img/icon-rectangle.svg);
+    background-image: url(../../assets/img/icon-rectangle.svg);
 }
 
 .bus-dtl-btm-panel-right ul li:last-child a:after {
@@ -1138,7 +1138,7 @@ li.bs-dtl-start-pont {
     width: 8.5px;
     right: -15px;
     top: 30%;
-    background-image: url(../img/icon-rectangle.svg);
+    background-image: url(../../assets/img/icon-rectangle.svg);
 }
 
 .bus-dtl-btm-panel-right ul li a:hover {
