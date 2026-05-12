@@ -77,7 +77,11 @@ export const routes: Routes = [
   },
   { path: 'news', component: NewsComponent },
   { path: 'careers', component: CareersComponent },
-  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'contact-us', 
+    loadChildren: () => 
+      import('./contact-us/contact-us.module') 
+      .then(m => m.ContactUsModule) 
+  },
   { path: 'faq', component: FaqComponent },
   { path: 'terms-conditions', component: TncComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },

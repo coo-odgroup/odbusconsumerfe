@@ -100,15 +100,12 @@ export class AppInitializerService {
               localStorage.setItem('PopularInfo', JSON.stringify(data));
             }
             
-            console.log('AppInitializer: PopularInfo fetched successfully');
             resolve(true);
           } catch (e) {
-            console.error('AppInitializer: Error processing PopularInfo', e);
             resolve(true); // Don't block app bootstrap
           }
         },
         (err) => {
-          console.error('AppInitializer: failed to fetch PopularInfo', err);
           resolve(true); // Don't block app bootstrap if PopularInfo fetch fails
         }
       );

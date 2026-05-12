@@ -20,7 +20,7 @@ export class FaqComponent implements OnInit {
   isMobile: boolean;
   session: LoginChecker;
   MenuActive: boolean = false;
-  activeMenu: string;
+  activeMenu: string = '';
 
   constructor(
     private seo: SeoService,
