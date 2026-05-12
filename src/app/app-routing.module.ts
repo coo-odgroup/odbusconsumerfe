@@ -47,9 +47,6 @@ import { SuccessComponent } from './success/success.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { ProfiledeleteComponent } from './profiledelete/profiledelete.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
-import { BlogListingComponent } from './bloglisting/bloglisting.component';
-import { BlogDetailComponent } from './blogdetails/blogdetails.component';
-import { BlogResolver } from './blogdetails/blog.resolver';
 import { CommonContentComponent } from './common-content/common-content.component';
 
 export const routes: Routes = [
@@ -65,9 +62,18 @@ export const routes: Routes = [
   { path: 'support', component: SupportComponent },
   { path: 'operators', component: OperatorsComponent },
   { path: 'operator/:url', component: OperatorDetailComponent },
-  { path: 'routes', component: RoutesComponent },
+  { path: 'routes', 
+    loadChildren: () => 
+      import('./routes/routes.module') 
+        .then(m => m.RoutesModule) 
+  },
   { path: 'offers', component: OffersComponent },
   // { path: 'testimonials', component: TestimonialsComponent },
+  // { path: 'offers', 
+  //     loadChildren: () => 
+  //       import('./offers/offers.module') 
+  //     .then(m => m.OffersModule) 
+  // },
   { 
     path: 'testimonials', 
     loadChildren: () => 
@@ -150,15 +156,12 @@ export const routes: Routes = [
     path: 'advantage/:slug',
     component: CommonContentComponent,
   },
-  { path: 'blog', component: BlogListingComponent },
-  { path: 'blog/category/:slug', component: BlogListingComponent },
-  { path: 'blog/tag/:tag_slug', component: BlogListingComponent },
-  { path: 'blog/author/:author_slug', component: BlogListingComponent },
-  {
-    path: 'blog/:slug',
-    component: BlogDetailComponent,
-    resolve: { blogData: BlogResolver },
+  { path: 'blog', 
+      loadChildren: () => 
+        import('./bloglisting/blog.module') 
+      .then(m => m.BlogModule) 
   },
+
   // { path: 'payment-failed',component:PaymentFailedComponent},
   // { path: '**', component: SearchComponent}, // wildcard routes
   // { path: '**/:dt', component: SearchComponent}, // wildcard routes

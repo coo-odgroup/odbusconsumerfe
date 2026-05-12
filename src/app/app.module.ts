@@ -20,7 +20,7 @@ import { SupportComponent } from './support/support.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { NewsComponent } from './news/news.component';
-import { RoutesComponent } from './routes/routes.component';
+// import { RoutesComponent } from './routes/routes.component';
 import { OffersComponent } from './offers/offers.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { ManagebookingdetailsComponent } from './managebookingdetails/managebookingdetails.component';
@@ -60,8 +60,6 @@ import { environment } from '../environments/environment';
 import { PaymentStatusModule } from './payment-status/payment-status.module';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlogListingComponent } from './bloglisting/bloglisting.component';
-import { BlogDetailComponent } from './blogdetails/blogdetails.component';
 import { RecentSearchComponent } from './home/recent-search/recent-search.component';
 import { AdvantageComponent } from './home/advantage/advantage.component';
 import { GrowingComponent } from './home/growing/growing.component';
@@ -111,7 +109,7 @@ const ngWizardConfig: NgWizardConfig = {
     ThankyouComponent,
     AboutUsComponent,
     NewsComponent,
-    RoutesComponent,
+    // RoutesComponent,
     OffersComponent,
     ManagebookingdetailsComponent,
     SignupComponent,
@@ -133,8 +131,6 @@ const ngWizardConfig: NgWizardConfig = {
     SuccessComponent,
     MaintenanceComponent,
     ProfiledeleteComponent,
-    BlogListingComponent,
-    BlogDetailComponent,
     RecentSearchComponent,
     AdvantageComponent,
     GrowingComponent,

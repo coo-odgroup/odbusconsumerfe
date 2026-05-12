@@ -1,71 +1,52 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
-  <p style="color: white">Loading...</p>
-</ngx-spinner>
-
-
-
 <section class="blog-listing">
-
   <div class="container">
-
     <div class="row">
-
       <!-- LEFT : BLOG CARDS -->
       <div class="col-md-9">
-
         <div class="row blog-cards">
-
           <!-- CARD -->
           <div class="col-md-4" *ngFor="let blog of blogData">
             <div class="blog-card position-relative">
-
               <div class="blog-img">
-                <img [src]="baseurl + blog.thumb_image " class="img-responsive">
+                <img
+                  [src]="baseurl + blog.thumb_image"
+                  class="img-responsive" loading="lazy" alt=" {{ blog.title }}"
+                />
                 <span class="blog-tag">{{ blog.category_name }}</span>
               </div>
 
               <div class="blog-content">
-                <p class="blog-meta">{{ blog.author }} | {{ blog.created_at | date:'dd MMM yyyy' }}</p>
+                <p class="blog-meta">
+                  {{ blog.author }} |
+                  {{ blog.created_at | date: "dd MMM yyyy" }}
+                </p>
                 <h4 class="blog-title">
                   {{ blog.title }}
                 </h4>
               </div>
 
               <a [routerLink]="['/blog', blog.slug]" class="stretched-link"></a>
-
             </div>
           </div>
-
         </div>
-
       </div>
-
 
       <!-- RIGHT SIDEBAR -->
       <div class="col-md-3">
-
         <!-- CATEGORY -->
         <div class="blog-sidebar-box">
-
           <h4>Categories</h4>
 
           <ul class="category-list">
-
             <li *ngFor="let category of categoryData">
               <a [routerLink]="['/blog/category', category.slug]">
                 <span>{{ category.category_name }}</span>
               </a>
               <span class="cat-count">{{ category.total }}</span>
             </li>
-
           </ul>
-
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </section>
