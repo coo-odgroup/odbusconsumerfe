@@ -18,7 +18,7 @@ import { OperatorsComponent } from './operators/operators.component';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { SupportComponent } from './support/support.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
-import { AboutUsComponent } from './about-us/about-us.component';
+// import { AboutUsComponent } from './about-us/about-us.component';
 import { NewsComponent } from './news/news.component';
 // import { RoutesComponent } from './routes/routes.component';
 import { OffersComponent } from './offers/offers.component';
@@ -107,7 +107,7 @@ const ngWizardConfig: NgWizardConfig = {
     ManageBookingComponent,
     SupportComponent,
     ThankyouComponent,
-    AboutUsComponent,
+    // AboutUsComponent,
     NewsComponent,
     // RoutesComponent,
     OffersComponent,

@@ -56,7 +56,12 @@ export const routes: Routes = [
   { path: 'listing', component: SearchComponent },
   { path: 'success', component: SuccessComponent },
   { path: 'booking', component: BookingComponent },
-  { path: 'about-us', component: AboutUsComponent },
+  // { path: 'about-us', component: AboutUsComponent },
+  { path: 'about-us', 
+      loadChildren: () => 
+        import('./about-us/about-us.module') 
+      .then(m => m.AboutUsModule) 
+  },
   { path: 'manage-booking', component: ManageBookingComponent },
   { path: 'manage-booking-detail', component: ManagebookingdetailsComponent },
   { path: 'support', component: SupportComponent },
