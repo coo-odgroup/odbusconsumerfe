@@ -3,6 +3,21 @@
 <app-footer *ngIf="!router.url.includes('pnr')"></app-footer> -->
 
 
-<app-header *ngIf="!router.url.includes('pnr') && !router.url.includes('payment-status')"></app-header>
+<!-- <app-header *ngIf="!router.url.includes('pnr') && !router.url.includes('payment-status')"></app-header>
 <router-outlet></router-outlet>
-<app-footer *ngIf="!router.url.includes('pnr') && !router.url.includes('payment-status')"></app-footer>
+<app-footer *ngIf="!router.url.includes('pnr') && !router.url.includes('payment-status')"></app-footer> -->
+
+
+<ng-container *ngIf="isBrowser">
+
+  <app-header
+    *ngIf="!router.url.includes('pnr') && !router.url.includes('payment-status')">
+  </app-header>
+
+  <router-outlet></router-outlet>
+
+  <app-footer
+    *ngIf="!router.url.includes('pnr') && !router.url.includes('payment-status')">
+  </app-footer>
+
+</ng-container>

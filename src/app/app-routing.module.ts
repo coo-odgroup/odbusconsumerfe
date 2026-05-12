@@ -141,7 +141,8 @@ export const routes: Routes = [
 
   { path: 'routes/:slug', component: SearchComponent },
   { path: ':slug', component: SearchComponent },
-  { path: '**', redirectTo: '' },
+  // { path: '**', redirectTo: '' },
+  { path: '**', component: PageErrorComponent },
 ];
 
 @NgModule({
@@ -149,6 +150,7 @@ export const routes: Routes = [
     RouterModule.forRoot(routes, {
       onSameUrlNavigation: 'reload',
       scrollPositionRestoration: 'enabled',
+      initialNavigation: 'enabledBlocking'
     }),
   ],
   exports: [RouterModule],
