@@ -25,7 +25,7 @@
                 <div class="form-group col-md-4" align="right">
                   <input
                     class="form-control"
-                    type="text"
+                    type="search"
                     [(ngModel)]="searchText"
                     placeholder="Search Route"
                   />
@@ -52,63 +52,46 @@
                   <div class="route-card">
                     <a
                       class="route-link"
-                      (click)="
-                        popularSearch(p.source[0].url, p.destination[0].url)
-                      "
+                      (click)="popularSearch(p.source_slug, p.destination_slug)"
                     >
                       <img
                         class="popl-routs-icon1"
                         src="assets/img/Icon-metro-location.svg"
+                        alt="Source Location"
+                        loading="lazy"
                       />
-                      <span class="route-text">{{ p.source[0].name }}</span>
+                      <span class="route-text">{{ p.source_name }}</span>
 
                       <img
                         class="popl-routs-icon2"
                         src="assets/img/left-right.png"
+                        alt="Direction"
+                        loading="lazy"
                       />
 
-                      <span class="route-text">{{
-                        p.destination[0].name
-                      }}</span>
+                      <span class="route-text">{{ p.destination_name }}</span>
                     </a>
-
-                    <!-- Bus count BELOW center -->
-                    <div
-                      class="bus-count"
-                      *ngIf="p.BusList.length > 0"
-                      (click)="ViewBus(p.BusList, buslist)"
-                    >
-                      ({{ p.BusList.length }} Buses)
-                    </div>
                   </div>
                 </li>
               </ul>
-            </div>
 
-            <ng-template #buslist let-modal>
-              <div class="cal-modal-mobile">
-                <div class="modal-body">
-                  <h4>Bus List</h4>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <button *ngIf="hasMore && !loading && !searchText" (click)="allRoutes()" class="border-btn bh">
+                    Load More
+                  </button>
 
-                  <div *ngFor="let b of buses">
-                    <p>{{ b.name }} - {{ b.bus_number }}</p>
-                  </div>
+                  <div *ngIf="loading">Loading...</div>
+
+                  <div *ngIf="!hasMore">No more records</div>
                 </div>
               </div>
-
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-light"
-                  (click)="modal.close('Close click')"
-                >
-                  Close
-                </button>
-              </div>
-            </ng-template>
+            </div>
 
             <ng-template #noResults>
-              <p *ngIf="searchText">No results found for "{{ searchText }}".</p>
+              <p *ngIf="searchText" class="text-center">
+                No results found for "{{ searchText }}".
+              </p>
             </ng-template>
           </div>
         </div>
@@ -130,7 +113,11 @@
       </div>
       <div class="col-4 pl-2 pr-2">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img
+            src="assets/img/mob-img/logo.png"
+            alt="Mobile Logo"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>
@@ -143,40 +130,51 @@
     <div
       class="mobile-routes-box shadow"
       *ngFor="let p of all_routes"
-      (click)="popularSearch(p.source[0].url, p.destination[0].url)"
+      (click)="popularSearch(p.source_slug, p.destination_slug)"
     >
       <input
         type="hidden"
         [(ngModel)]="dtconfig.minDate"
         name="todayDate"
-        id="todayDate"
+        id="todayDate2"
         ngbDatepicker
         (click)="d.toggle()"
         #d="ngbDatepicker"
       />
       <div class="row mob-tkbox-mid">
         <div class="col-5 pl-3 pr-2 text-center">
-          <h6>{{ p.source[0].name }}</h6>
+          <h6>{{ p.source_name }}</h6>
         </div>
         <div class="col-2 p-0 text-center">
           <i class="fas fa-exchange-alt"></i>
         </div>
         <div class="col-5 pl-2 pr-3 text-center">
-          <h6>{{ p.destination[0].name }}</h6>
+          <h6>{{ p.destination_name }}</h6>
         </div>
       </div>
 
       <div class="row mob-tkbox-bot">
-        <div class="col-5 pl-3 pr-2 text-center">{{ p.count }} Buses</div>
+        <!-- <div class="col-5 pl-3 pr-2 text-center">0 Buses</div> -->
         <div class="col-2 p-0 text-center"></div>
         <div class="col-5 pl-2 pr-3 text-center">
-          <a (click)="popularSearch(p.source[0].url, p.destination[0].url)"
+          <a (click)="popularSearch(p.source_slug, p.destination_slug)"
             >Book Now</a
           >
         </div>
       </div>
     </div>
   </div>
+
+  <div *ngFor="let route of routeList">
+    {{ route.source_name }} ⇄ {{ route.destination_name }}
+  </div>
+
+  <button *ngIf="hasMore && !loading && !searchText" (click)="allRoutes()" class="border-btn bh">
+    Load More
+  </button>
+
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="!hasMore">No more records</div>
 </ng-container>
 
 <ng-container *ngIf="isMobile && MenuActive">
@@ -184,7 +182,11 @@
     <div class="row">
       <div class="col-5">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img
+            src="assets/img/mob-img/logo.png"
+            alt="Mobile Logo"
+            loading="lazy"
+          />
         </div>
       </div>
       <div class="col-7 mob-logintx">

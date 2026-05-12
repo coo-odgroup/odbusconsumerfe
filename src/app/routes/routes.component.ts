@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  HostListener
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocationdataService } from '../services/locationdata.service';
 import { PopularRoutesService } from '../services/popular-routes.service';
@@ -8,21 +17,24 @@ import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
 import { LoginChecker } from '../helpers/loginChecker';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { NgbDatepickerConfig,NgbModal,NgbActiveModal, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-
+import {
+  NgbDatepickerConfig,
+  NgbModal,
+  NgbActiveModal,
+  NgbDateStruct,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-routes',
   templateUrl: './routes.component.html',
   styleUrls: ['./routes.component.css'],
-  providers:[NgbActiveModal]
+  providers: [NgbActiveModal],
 })
 export class RoutesComponent implements OnInit, AfterViewInit {
+  @ViewChildren('theLastlist', { read: ElementRef })
+  theLastlist: QueryList<ElementRef>;
 
-  @ViewChildren('theLastlist',{ read: ElementRef })
-  theLastlist:QueryList<ElementRef>
-
-  observer:any;
+  observer: any;
 
   all_routes: any = [];
 
@@ -35,9 +47,9 @@ export class RoutesComponent implements OnInit, AfterViewInit {
   session: LoginChecker;
   MenuActive: boolean = false;
   activeMenu: string;
-  per_page:number=100;
-  page_no:number=1;
-  totalPage:number;
+  per_page: number = 30;
+  page_no: number = 1;
+  totalPage: number;
 
   constructor(
     private router: Router,
@@ -48,8 +60,8 @@ export class RoutesComponent implements OnInit, AfterViewInit {
     private seo: SeoService,
     private location: Location,
     private popularRoutesService: PopularRoutesService,
-      private modalService: NgbModal,
-      private detectService: DeviceDetectorService
+    private modalService: NgbModal,
+    private detectService: DeviceDetectorService,
   ) {
     this.isMobile = this.detectService.isMobile();
     this.session = new LoginChecker();
@@ -64,17 +76,17 @@ export class RoutesComponent implements OnInit, AfterViewInit {
     };
   }
   ngAfterViewInit() {
-   console.log(this.theLastlist);
-   this.theLastlist.changes.subscribe((d) => {
-    if(d.last) {
-      this.observer.observe(d.last.nativeElement);
-    }
-   });
+    console.log(this.theLastlist);
+    this.theLastlist.changes.subscribe((d) => {
+      if (d.last) {
+        this.observer.observe(d.last.nativeElement);
+      }
+    });
   }
 
   menu() {
-    this.MenuActive = (this.MenuActive==false) ? true : false;
-    this.activeMenu='';   
+    this.MenuActive = this.MenuActive == false ? true : false;
+    this.activeMenu = '';
   }
 
   signOut() {
@@ -82,27 +94,76 @@ export class RoutesComponent implements OnInit, AfterViewInit {
     this.router.navigate(['login']);
   }
 
-  allRoutes(){
+  // allRoutes() {
+  //   this.spinner.show();
+  //   this.popularRoutesService
+  //     .allroutes(this.per_page, this.page_no)
+  //     .subscribe((res) => {
+  //       //console.log(res);
+
+  //       if (res.status == 1) {
+  //         this.totalPage = res.data.total;
+
+  //         let result = res.data.data;
+  //         if (typeof result === 'object') {
+  //           result = Object.values(result);
+  //         }
+  //         result.forEach((element) => {
+  //           this.all_routes.push(element);
+  //         });
+  //       }
+  //       this.spinner.hide();
+  //     });
+  // }
+
+  loading = false;
+  hasMore = true;
+
+  allRoutes() {
+    // stop duplicate API calls
+    if (this.loading || !this.hasMore) {
+      return;
+    }
+
+    this.loading = true;
     this.spinner.show();
-    this.popularRoutesService.allroutes(this.per_page,this.page_no).subscribe((res) => {
 
-      //console.log(res);
+    this.popularRoutesService
+      .getallroutes(this.per_page, this.page_no) // POST API
+      .subscribe({
+        next: (res: any) => {
+          if (res.status == 1) {
+            let result = res?.data?.data || [];
 
-      if (res.status == 1) {
+            // if object convert to array
+            if (!Array.isArray(result) && typeof result === 'object') {
+              result = Object.values(result);
+            }
 
-        this.totalPage=res.data.total;
+            // append new records
+            this.all_routes.push(...result);
 
-        let result=res.data.data;
-        if(typeof result === 'object'){
-           result= Object.values(result);
-        }
-        result.forEach(element => {
-          this.all_routes.push(element);
-        });
-       
-      }
-      this.spinner.hide();
-    });
+            // no more data
+            if (result.length < this.per_page) {
+              this.hasMore = false;
+            } else {
+              this.page_no++;
+            }
+          } else {
+            this.hasMore = false;
+          }
+
+          this.loading = false;
+          this.spinner.hide();
+        },
+
+        error: (err) => {
+          console.log(err);
+
+          this.loading = false;
+          this.spinner.hide();
+        },
+      });
   }
 
   sourceData: any;
@@ -111,8 +172,7 @@ export class RoutesComponent implements OnInit, AfterViewInit {
   popularSearch(sr: any, ds: any) {
     this.spinner.show();
 
-    this.locationService.all().subscribe((res) => {    
-
+    this.locationService.all().subscribe((res) => {
       if (res.status == 1) {
         res.data.filter((itm) => {
           if (sr === itm.url) {
@@ -124,22 +184,21 @@ export class RoutesComponent implements OnInit, AfterViewInit {
           }
         });
 
-        let dt = (<HTMLInputElement>document.getElementById('todayDate')).value;
+        // let dt = (<HTMLInputElement>document.getElementById('todayDate')).value;
         //this.listing(this.sourceData,this.destinationData,dt);
-        this.router.navigate([sr + '-' + ds + '-bus-services']);
+        this.router.navigate(['routes/' + sr + '-' + ds + '-bus-services']);
       }
     });
 
     this.spinner.hide();
   }
 
-  buses:any[];
+  buses: any[];
 
-  ViewBus(buses:any,buslist){
+  ViewBus(buses: any, buslist) {
+    this.buses = buses;
 
-    this.buses=buses;
-
-      this.modalService.open(buslist, { centered: true });
+    this.modalService.open(buslist, { centered: true });
   }
 
   listing(s: any, d: any, dt: any) {
@@ -149,20 +208,19 @@ export class RoutesComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/listing']);
   }
 
-  IntersectionObserver(){
+  IntersectionObserver() {
     let options = {
       root: null,
-      rootMargin: "0px",
+      rootMargin: '0px',
       threshold: 0.5,
     };
-    
-    this.observer = new IntersectionObserver((e) => {
 
-      if(e[0].isIntersecting){
-         if(this.page_no < this.totalPage){
+    this.observer = new IntersectionObserver((e) => {
+      if (e[0].isIntersecting) {
+        if (this.page_no < this.totalPage) {
           this.page_no++;
           this.allRoutes();
-         }
+        }
       }
     }, options);
   }

@@ -186,7 +186,7 @@ section.top-routs ul li a {
 }
 
 /* SMALL LINE DIVIDER (optional premium look) */
-.route-card::after {
+/* .route-card::after {
   content: "";
   display: block;
   width: 40px;
@@ -194,7 +194,7 @@ section.top-routs ul li a {
   background: #e9c036;
   margin: 10px auto 0;
   border-radius: 2px;
-}
+} */
 
 /* RESPONSIVE */
 @media (max-width: 992px) {
