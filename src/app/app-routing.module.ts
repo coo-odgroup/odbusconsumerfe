@@ -94,8 +94,11 @@ export const routes: Routes = [
       import('./tnc/tnc.module') 
       .then(m => m.TncModule) 
   },
-  { path: 'terms-conditions', component: TncComponent },
-  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'privacy-policy', 
+    loadChildren: () => 
+      import('./privacy-policy/privacy-policy.module') 
+       .then(m => m.PrivacyPolicyModule) 
+  },
   { path: '404', component: PageErrorComponent },
   { path: 'thank-you', component: ThankyouComponent },
   { path: 'signup', component: SignupComponent },
