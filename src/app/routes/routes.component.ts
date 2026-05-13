@@ -6,7 +6,9 @@ import {
   QueryList,
   ViewChild,
   ViewChildren,
-  HostListener
+  HostListener,  
+  PLATFORM_ID,
+  Inject
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocationdataService } from '../services/locationdata.service';
@@ -14,7 +16,7 @@ import { PopularRoutesService } from '../services/popular-routes.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SeoService } from '../services/seo.service';
-import { Location } from '@angular/common';
+import { Location,isPlatformBrowser  } from '@angular/common';
 import { LoginChecker } from '../helpers/loginChecker';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import {
@@ -52,6 +54,7 @@ export class RoutesComponent implements OnInit, AfterViewInit {
   totalPage: number;
 
   constructor(
+    
     private router: Router,
     private _fb: FormBuilder,
     private locationService: LocationdataService,
@@ -62,6 +65,7 @@ export class RoutesComponent implements OnInit, AfterViewInit {
     private popularRoutesService: PopularRoutesService,
     private modalService: NgbModal,
     private detectService: DeviceDetectorService,
+     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.isMobile = this.detectService.isMobile();
     this.session = new LoginChecker();
@@ -76,7 +80,6 @@ export class RoutesComponent implements OnInit, AfterViewInit {
     };
   }
   ngAfterViewInit() {
-    console.log(this.theLastlist);
     this.theLastlist.changes.subscribe((d) => {
       if (d.last) {
         this.observer.observe(d.last.nativeElement);
@@ -209,6 +212,15 @@ export class RoutesComponent implements OnInit, AfterViewInit {
   }
 
   IntersectionObserver() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+   }
+
+  // Optional extra safety
+    if (!('IntersectionObserver' in window)) {
+      return;
+    }
+    
     let options = {
       root: null,
       rootMargin: '0px',
