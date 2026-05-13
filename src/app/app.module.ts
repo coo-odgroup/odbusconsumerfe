@@ -115,7 +115,7 @@ const ngWizardConfig: NgWizardConfig = {
     UserrewardsComponent,
     UserreviewsComponent,
     UserhelpsupportComponent,
-    FilterPipe,
+    // FilterPipe,
     PnrdetailComponent,
     ApiComponent,
     SuccessComponent,
