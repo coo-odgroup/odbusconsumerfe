@@ -24,9 +24,9 @@ export class OperatorsComponent implements OnInit {
 
   per_page = 400;
 
-  searchText: string;
+  searchText: string = '';
   alphabets: any = [];
-  activeMenu: string;
+  activeMenu: string = '';
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -63,7 +63,7 @@ export class OperatorsComponent implements OnInit {
 
   operator_detail(url: any) {
     if (url != '') {
-      this.router.navigate(['operator/' + url]);
+      this.router.navigate(['operators/' + url]);
     }
   }
 
@@ -79,7 +79,7 @@ export class OperatorsComponent implements OnInit {
         if (res.status == 1) {
           this.allOperators = res.data.data;
           let arr = [];
-          this.allOperators.data.forEach(e => {
+          this.allOperators.data.forEach((e: { operator_url: any; }) => {
             arr.push(e.operator_url)
           });
         }

@@ -1,12 +1,3 @@
-<ngx-spinner
-  bdColor="rgba(0, 0, 0, 0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-clip-rotate"
-  [fullScreen]="true"
->
-  <p style="color: white">Loading...</p>
-</ngx-spinner>
 <ng-container *ngIf="!isMobile">
   <section class="operators-result">
     <div class="container">
@@ -18,7 +9,7 @@
         <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
           <div class="icon-box">
             <div class="icon">
-              <img src="../../assets/img/Group 632.svg" class="opo-img" />
+              <img src="../../assets/img/Group 632.svg" class="opo-img" loading="lazy" alt="total routes" />
             </div>
             <h4>{{ routes.length }}</h4>
             <p class="oper-para">Routes</p>
@@ -27,7 +18,7 @@
         <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
           <div class="icon-box">
             <div class="icon">
-              <img src="../../assets/img/Group 633.svg" class="opo-img" />
+              <img src="../../assets/img/Group 633.svg" class="opo-img"  loading="lazy" alt="total buses" />
             </div>
             <h4>{{ buses.length }}</h4>
             <p class="oper-para">Buses</p>
@@ -36,7 +27,7 @@
         <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
           <div class="icon-box">
             <div class="icon">
-              <img src="../../assets/img/ratings.svg" class="opo-img" />
+              <img src="../../assets/img/ratings.svg" class="opo-img"  loading="lazy" alt="rating" />
             </div>
             <h4>{{ OperatorData.total_rating }}</h4>
             <p class="oper-para">Ratings</p>
@@ -45,7 +36,7 @@
         <div class="col-lg-3 col-md-3 d-flex align-items-stretch">
           <div class="icon-box">
             <div class="icon">
-              <img src="../../assets/img/Group 635.svg" class="opo-img" />
+              <img src="../../assets/img/Group 635.svg" class="opo-img"  loading="lazy" alt="customer friendly" />
             </div>
             <h4>Customer</h4>
             <p class="oper-para">Friendly</p>
@@ -90,22 +81,12 @@
             #d="ngbDatepicker"
           />
         </tbody>
-      </table>
-      <!-- <div class="box-footer clearfix">
-         <ul class="pagination pagination-sm no-margin">
-             <li><a href="#" data-abc="true">1</a></li>
-             <li><a href="#" data-abc="true">2</a></li>
-             <li><a href="#" data-abc="true">3</a></li>
-             <li><a href="#" data-abc="true">»</a></li>
-             <li><a href="#" data-abc="true">«</a></li>
-         </ul>
-     </div> -->
+      </table>      
     </div>
   </section>
   <section class="operators-aminitis">
     <div class="container">
       <h1 class="ma-heading">Amenities</h1>
-      <!-- <div class="row" *ngIf="OperatorData.amenities"> -->
       <div class="row justify-content-md-center">
         <div
           class="col-lg-2 col-md-2 align-items-stretch"
@@ -122,6 +103,8 @@
                 class="profile"
                 src="../../../assets/img/noImage.png"
                 height="100"
+                alt="no amenities"
+                loading="lazy"
               />
               <img
                 *ngIf="
@@ -132,6 +115,8 @@
                 class="profile"
                 src="{{ am.amenities.amenities_image }}"
                 height="100"
+                loading="lazy"
+                alt=""
               />
             </div>
             <div>
@@ -184,11 +169,15 @@
                     *ngIf="rv.profile_image == '' || rv.profile_image == null"
                     class="profile"
                     src="../../assets/img/user.png"
+                    loading="lazy"
+                    alt="user"
                   />
                   <img
                     *ngIf="rv.profile_image != '' && rv.profile_image != null"
                     class="profile"
                     src="{{ rv.profile_image }}"
+                    loading="lazy"
+                    alt="profile"
                   />
 
                   <h5 class="name">{{ rv.name }}</h5>
@@ -228,7 +217,7 @@
       </div>
       <div class="col-4 pl-2 pr-2">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img src="assets/img/mob-img/logo.png"  loading="lazy" alt="logo"/>
         </div>
       </div>
     </div>
@@ -245,7 +234,7 @@
       <div class="col-3 pl-2 pr-2">
         <div class="icon-box">
           <div class="icon">
-            <img src="assets/img/mob-img/Group 632.svg" class="opo-img" />
+            <img src="assets/img/mob-img/Group 632.svg" class="opo-img" loading="lazy" alt="total routes" />
           </div>
           <h4>{{ routes.length }}</h4>
           <p class="oper-para">Routes</p>
@@ -254,7 +243,7 @@
       <div class="col-3 pl-2 pr-2">
         <div class="icon-box">
           <div class="icon">
-            <img src="assets/img/mob-img/Group 633.svg" class="opo-img" />
+            <img src="assets/img/mob-img/Group 633.svg" class="opo-img" loading="lazy" alt="total buses" />
           </div>
           <h4>{{ buses.length }}</h4>
           <p class="oper-para">Buses</p>
@@ -263,7 +252,7 @@
       <div class="col-3 pl-2 pr-2">
         <div class="icon-box">
           <div class="icon">
-            <img src="assets/img/mob-img/ratings.svg" class="opo-img" />
+            <img src="assets/img/mob-img/ratings.svg" class="opo-img" loading="lazy" alt="rating" />
           </div>
           <h4>{{ OperatorData.total_rating }}</h4>
           <p class="oper-para">Ratings</p>
@@ -272,7 +261,7 @@
       <div class="col-3 pl-2 pr-2">
         <div class="icon-box">
           <div class="icon">
-            <img src="assets/img/mob-img/Group 635.svg" class="opo-img" />
+            <img src="assets/img/mob-img/Group 635.svg" class="opo-img" loading="lazy" alt="customer friendly" />
           </div>
           <h4>Customer</h4>
           <p class="oper-para">Friendly</p>
@@ -300,6 +289,8 @@
             class="iconsize"
             src="../../../assets/img/noImage.png"
             height="100"
+            loading="lazy"
+            alt="no amenities"
           />
           <img
             *ngIf="
@@ -310,6 +301,8 @@
             class="iconsize"
             src="{{ am.amenities.amenities_image }}"
             height="100"
+            loading="lazy"
+            alt="amenities"
           />
           <p class="safety_span">{{ am.amenities.name }}</p>
         </div>
@@ -339,12 +332,10 @@
         <div class="review" id="review">
           <div class="row mb-2">
             <div class="col-3">
-              <!-- <h6 class="font-weight-normal">Review</h6> -->
               <p class="mb-0">
                 <span class="h4 mb-0">{{ OperatorData.total_rating }}</span
                 ><span class="h6">/5</span>
               </p>
-              <!-- <span class="f-10">Punctuality</span> -->
             </div>
             <ngb-rating
               [rate]="total_rating"
@@ -360,6 +351,8 @@
                   <img
                     src="assets/img/mob-img/r1.jpg"
                     class="img-fluid rounded-pill"
+                    loading="lazy"
+                    alt="reviews"
                   />
                   <div class="ml-2">
                     <p class="mb-0 small font-weight-bold">Mike Jhon</p>
@@ -387,11 +380,15 @@
                     *ngIf="rv.profile_image == '' || rv.profile_image == null"
                     class="img-fluid rounded-pill"
                     src="assets/img/mob-img/r1.jpg"
+                    loading="lazy"
+                    alt="reviews"
                   />
                   <img
                     *ngIf="rv.profile_image != '' && rv.profile_image != null"
                     class="profile"
                     src="{{ rv.profile_image }}"
+                    alt="profile"
+                    loading="lazy"
                   />
                   <div class="ml-2">
                     <p class="mb-0 small font-weight-bold">{{ rv.title }}</p>
@@ -424,7 +421,7 @@
     <div class="row">
       <div class="col-5">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img src="assets/img/mob-img/logo.png" loading="lazy" alt="logo" />
         </div>
       </div>
       <div class="col-7 mob-logintx">

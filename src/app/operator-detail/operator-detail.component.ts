@@ -23,7 +23,7 @@ export class OperatorDetailComponent implements OnInit {
   routes:any=0;
   buses:any=0;
   popular_routes:any=[];
-  total_rating:number;
+  total_rating:number | undefined;
   operator_url:any='';
   url_path : any;
   currentUrl: any;
@@ -31,7 +31,7 @@ export class OperatorDetailComponent implements OnInit {
   isMobile:boolean;
   session: LoginChecker;
   MenuActive: boolean = false;
-  activeMenu: string;
+  activeMenu: string = '';
   
   constructor(
     private spinner: NgxSpinnerService,
@@ -105,6 +105,7 @@ export class OperatorDetailComponent implements OnInit {
           { 
             this.OperatorData =res.data;
             this.routes=this.OperatorData.routes;
+            
             this.buses=this.OperatorData.buses;
             this.popular_routes=this.OperatorData.popularRoutes;
             this.total_rating=this.OperatorData.total_rating;
@@ -129,7 +130,7 @@ export class OperatorDetailComponent implements OnInit {
         res=>{
           if(res.status==1)
           { 
-            res.data.filter((itm) =>{
+            res.data.filter((itm: { name: any; }) =>{
               if(sr===itm.name){
                this.sourceData=itm;
               }
@@ -150,40 +151,45 @@ export class OperatorDetailComponent implements OnInit {
         });  
     }
 
-    listing(s:any,d:any,dt: any){
-  
+    listing(s: any, d: any, dt: any) {
       this.locationService.setSource(s);
       this.locationService.setDestination(d);
-      this.locationService.setDate(dt);    
-      this.router.navigate(['/listing']);
+      this.locationService.setDate(dt);     
+
+      const source = s.name.toLowerCase().replace(/\s+/g, '-');
+      const destination = d.name.toLowerCase().replace(/\s+/g, '-');
+
+      this.router.navigate([
+        `/routes/${source}-${destination}-bus-services`
+      ]);
     }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-    // this.Common.getPathUrls().subscribe( res=>{          
-    //   if(res.status==1){  
-    //     this.url_path=res.data[0];
-    //   }    
-    // });
+      // this.Common.getPathUrls().subscribe( res=>{          
+      //   if(res.status==1){  
+      //     this.url_path=res.data[0];
+      //   }    
+      // });
 
-    const pathUrls = localStorage.getItem('pathUrls');
+      const pathUrls = localStorage.getItem('pathUrls');
 
-    if (pathUrls) {
-      const data = JSON.parse(pathUrls);
-      if (data.status == 1) {
-        this.url_path = data.data[0];
-      }
-    } else {
-      this.Common.getPathUrls().subscribe(
-        res => {
-          localStorage.setItem('pathUrls', JSON.stringify(res));
-          if (res.status == 1) {
-            this.url_path = res.data[0];
-          }
+      if (pathUrls) {
+        const data = JSON.parse(pathUrls);
+        if (data.status == 1) {
+          this.url_path = data.data[0];
         }
-      );
+      } else {
+        this.Common.getPathUrls().subscribe(
+          res => {
+            localStorage.setItem('pathUrls', JSON.stringify(res));
+            if (res.status == 1) {
+              this.url_path = res.data[0];
+            }
+          }
+        );
+      }
+    
     }
-   
-  }
 
 }

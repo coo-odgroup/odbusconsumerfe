@@ -56,7 +56,6 @@ export const routes: Routes = [
   { path: 'listing', component: SearchComponent },
   { path: 'success', component: SuccessComponent },
   { path: 'booking', component: BookingComponent },
-  // { path: 'about-us', component: AboutUsComponent },
   { path: 'about-us', 
       loadChildren: () => 
         import('./about-us/about-us.module') 
@@ -65,8 +64,13 @@ export const routes: Routes = [
   { path: 'manage-booking', component: ManageBookingComponent },
   { path: 'manage-booking-detail', component: ManagebookingdetailsComponent },
   { path: 'support', component: SupportComponent },
-  { path: 'operators', component: OperatorsComponent },
-  { path: 'operator/:url', component: OperatorDetailComponent },
+  // { path: 'operators', component: OperatorsComponent },
+  // { path: 'operator/:url', component: OperatorDetailComponent },
+  { path: 'operators', 
+    loadChildren: () => 
+      import('./operators/operators.module') 
+      .then(m => m.OperatorsModule) 
+  },
   { path: 'routes', 
     loadChildren: () => 
       import('./routes/routes.module') 
