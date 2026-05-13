@@ -14,17 +14,13 @@ import { PageErrorComponent } from './page-error/page-error.component';
 import { AppInitializerService } from './services/initializer.service';
 import { BookingComponent } from './booking/booking.component';
 import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
-import { OperatorsComponent } from './operators/operators.component';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { SupportComponent } from './support/support.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
-// import { AboutUsComponent } from './about-us/about-us.component';
 import { NewsComponent } from './news/news.component';
-// import { RoutesComponent } from './routes/routes.component';
 import { OffersComponent } from './offers/offers.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { ManagebookingdetailsComponent } from './managebookingdetails/managebookingdetails.component';
-import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import {ToastrModule} from 'ngx-toastr';
 import { OtpComponent } from './otp/otp.component'
@@ -42,7 +38,6 @@ import { UserinvitefriendsComponent } from './user/userinvitefriends/userinvitef
 import { UserrewardsComponent } from './user/userrewards/userrewards.component';
 import { UserreviewsComponent } from './user/userreviews/userreviews.component';
 import { UserhelpsupportComponent } from './user/userhelpsupport/userhelpsupport.component';
-import { OperatorDetailComponent } from './operator-detail/operator-detail.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { CountdownModule } from 'ngx-countdown';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
@@ -103,16 +98,12 @@ const ngWizardConfig: NgWizardConfig = {
     SearchComponent,
     PageErrorComponent,
     BookingComponent,
-    // OperatorsComponent,
     ManageBookingComponent,
     SupportComponent,
     ThankyouComponent,
-    // AboutUsComponent,
     NewsComponent,
-    // RoutesComponent,
     OffersComponent,
     ManagebookingdetailsComponent,
-    SignupComponent,
     LoginComponent,
     OtpComponent,
     MyaccountComponent,
@@ -124,7 +115,6 @@ const ngWizardConfig: NgWizardConfig = {
     UserrewardsComponent,
     UserreviewsComponent,
     UserhelpsupportComponent,
-    // OperatorDetailComponent,
     FilterPipe,
     PnrdetailComponent,
     ApiComponent,

@@ -12,19 +12,9 @@ import { PageErrorComponent } from './page-error/page-error.component';
 import { SearchComponent } from './search/search.component';
 import { BookingComponent } from './booking/booking.component';
 import { ApiComponent } from './api/api.component';
-import { TestimonialsComponent } from './testimonials/testimonials.component';
-import { OperatorsComponent } from './operators/operators.component';
-import { TncComponent } from './tnc/tnc.component';
-import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { ManagebookingdetailsComponent } from './managebookingdetails/managebookingdetails.component';
-import { SupportComponent } from './support/support.component';
-import { FaqComponent } from './faq/faq.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { CareersComponent } from './careers/careers.component';
-import { RoutesComponent } from './routes/routes.component';
 import { OffersComponent } from './offers/offers.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
@@ -37,7 +27,6 @@ import { UserinvitefriendsComponent } from './user/userinvitefriends/userinvitef
 import { UserrewardsComponent } from './user/userrewards/userrewards.component';
 import { UserreviewsComponent } from './user/userreviews/userreviews.component';
 import { UserhelpsupportComponent } from './user/userhelpsupport/userhelpsupport.component';
-import { OperatorDetailComponent } from './operator-detail/operator-detail.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { SeoService } from './services/seo.service';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
@@ -63,9 +52,6 @@ export const routes: Routes = [
   },
   { path: 'manage-booking', component: ManageBookingComponent },
   { path: 'manage-booking-detail', component: ManagebookingdetailsComponent },
-  { path: 'support', component: SupportComponent },
-  // { path: 'operators', component: OperatorsComponent },
-  // { path: 'operator/:url', component: OperatorDetailComponent },
   { path: 'operators', 
     loadChildren: () => 
       import('./operators/operators.module') 
@@ -76,13 +62,7 @@ export const routes: Routes = [
       import('./routes/routes.module') 
         .then(m => m.RoutesModule) 
   },
-  { path: 'offers', component: OffersComponent },
-  // { path: 'testimonials', component: TestimonialsComponent },
-  // { path: 'offers', 
-  //     loadChildren: () => 
-  //       import('./offers/offers.module') 
-  //     .then(m => m.OffersModule) 
-  // },
+  { path: 'offers', component: OffersComponent }, 
   { 
     path: 'testimonials', 
     loadChildren: () => 
@@ -116,7 +96,12 @@ export const routes: Routes = [
   },
   { path: '404', component: PageErrorComponent },
   { path: 'thank-you', component: ThankyouComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'signup', 
+    loadChildren: () => 
+      import('./signup/signup.module') 
+      .then(m => m.SignupModule) 
+  },
+  // { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'otp', component: OtpComponent },
   { path: 'thankyou', component: ThankyouComponent },
