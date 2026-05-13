@@ -174,7 +174,7 @@ export class RoutesComponent implements OnInit, AfterViewInit {
 
     this.locationService.all().subscribe((res) => {
       if (res.status == 1) {
-        res.data.filter((itm) => {
+        res.data.filter((itm: { url: any; }) => {
           if (sr === itm.url) {
             this.sourceData = itm;
           }
