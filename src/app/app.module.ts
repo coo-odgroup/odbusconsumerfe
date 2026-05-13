@@ -16,14 +16,11 @@ import { BookingComponent } from './booking/booking.component';
 import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { SupportComponent } from './support/support.component';
-import { ThankyouComponent } from './thankyou/thankyou.component';
 import { NewsComponent } from './news/news.component';
 import { OffersComponent } from './offers/offers.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { ManagebookingdetailsComponent } from './managebookingdetails/managebookingdetails.component';
-import { LoginComponent } from './login/login.component';
 import {ToastrModule} from 'ngx-toastr';
-import { OtpComponent } from './otp/otp.component'
 import { NgbDate, NgbDateParserFormatter, NgbModule,NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomdateformatService } from "./services/customdateformat.service";
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -47,9 +44,7 @@ import { LightboxModule } from 'ngx-lightbox';
 import { FilterPipe } from './filter.pipe';
 import { QRCodeModule } from 'angular2-qrcode';
 import { PnrdetailComponent } from './pnrdetail/pnrdetail.component';
-import { ApiComponent } from './api/api.component';
 import { SuccessComponent } from './success/success.component';
-import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { ProfiledeleteComponent } from './profiledelete/profiledelete.component';
 import { environment } from '../environments/environment';
 import { PaymentStatusModule } from './payment-status/payment-status.module';
@@ -100,12 +95,9 @@ const ngWizardConfig: NgWizardConfig = {
     BookingComponent,
     ManageBookingComponent,
     SupportComponent,
-    ThankyouComponent,
     NewsComponent,
     OffersComponent,
     ManagebookingdetailsComponent,
-    LoginComponent,
-    OtpComponent,
     MyaccountComponent,
     UserdashboardComponent,
     UsernavbarComponent,
@@ -117,9 +109,7 @@ const ngWizardConfig: NgWizardConfig = {
     UserhelpsupportComponent,
     FilterPipe,
     PnrdetailComponent,
-    ApiComponent,
     SuccessComponent,
-    MaintenanceComponent,
     ProfiledeleteComponent,
     RecentSearchComponent,
     AdvantageComponent,

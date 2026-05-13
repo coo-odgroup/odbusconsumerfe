@@ -95,18 +95,38 @@ export const routes: Routes = [
        .then(m => m.PrivacyPolicyModule) 
   },
   { path: '404', component: PageErrorComponent },
-  { path: 'thank-you', component: ThankyouComponent },
+  { path: 'thank-you', loadChildren: () => 
+        import('./thankyou/thankyou.module') 
+      .then(m => m.ThankyouModule) 
+  },
   { path: 'signup', 
     loadChildren: () => 
       import('./signup/signup.module') 
       .then(m => m.SignupModule) 
   },
   // { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'otp', component: OtpComponent },
-  { path: 'thankyou', component: ThankyouComponent },
-  { path: 'api-reference', component: ApiComponent },
-  { path: 'maintenance', component: MaintenanceComponent },
+  { path: 'login', loadChildren: () => 
+        import('./login/login.module') 
+      .then(m => m.LoginModule) 
+  },
+  { path: 'otp', loadChildren: () => 
+        import('./otp/otp.module') 
+      .then(m => m.OtpModule) 
+  },
+  { 
+    path: 'thankyou',
+    component: ThankyouComponent 
+  },
+
+  { path: 'api-reference', loadChildren: () => 
+        import('./api/api.module') 
+      .then(m => m.ApiModule) 
+  },
+
+  { path: 'maintenance', loadChildren: () => 
+        import('./maintenance/maintenance.module') 
+      .then(m => m.MaintenanceModule)  
+  },
   {
     path: 'dashboard',
     component: UserdashboardComponent,

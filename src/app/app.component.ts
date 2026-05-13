@@ -5,8 +5,10 @@ import { SeoService } from './services/seo.service';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { GlobalConstants } from './constants/global-constants';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { Router } from '@angular/router';
+import { Router,NavigationEnd  } from '@angular/router';
 import { CommonService } from './services/common.service';
+import { filter } from 'rxjs/operators';
+
 
 
 @Component({
@@ -32,10 +34,10 @@ export class AppComponent {
     private auth: AuthService,
     private titleService: Title,
     private metaService: Meta,
-    private seo: SeoService,
     private commonService: CommonService,
     private deviceService: DeviceDetectorService,
-    public router: Router
+    public router: Router,
+    private seoService: SeoService
   ) {
 
     // Only access localStorage in browser
@@ -58,6 +60,14 @@ export class AppComponent {
     //     );
     //   }
     // }
+    this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((event: any) => {
+
+      this.seoService
+        .seolist(event.urlAfterRedirects)
+        .subscribe();
+    });
   }
 
   // ngOnInit() {

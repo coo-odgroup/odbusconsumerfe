@@ -7,6 +7,8 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { element } from 'protractor';
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +23,15 @@ export class SeoService {
     })
   }
 
+  private seoCache: any = {};
+
+  private seoRoutes = [
+    '/blog/',
+    '/routes/',
+    '/about-us',
+    '/contact-us'
+  ];
+
   private link!: HTMLLinkElement;
 
   constructor(@Inject(DOCUMENT) private doc: Document, private httpClient: HttpClient, private title: Title, private meta: Meta) { }
@@ -33,15 +44,55 @@ export class SeoService {
   //   );
   // }
 
-  seolist(current_url: any) {
-    this.httpClient.post(this.apiURL + '/allseolist', { current_url }, this.httpOptions).subscribe(
-      (resp: any) => {
-        // console.log(resp);
-        // this.setMeta(resp['data'], current_url);
+  // seolist(current_url: any) {
+  //   this.httpClient.post(this.apiURL + '/allseolist', { current_url }, this.httpOptions).subscribe(
+  //     (resp: any) => {
+  //       // console.log(resp);
+  //       // this.setMeta(resp['data'], current_url);
+  //       if (resp.status == 1) {
+  //         this.setMeta(resp.data);
+  //       }
+  //     }
+  //   );
+  // }
+
+  shouldLoadSeo(url: string): boolean {
+
+    return this.seoRoutes.some(route =>
+      url.includes(route)
+    );
+  }
+
+  seolist(current_url: string): Observable<any> {
+
+    // Route check
+    if (!this.shouldLoadSeo(current_url)) {
+      return of(null);
+    }
+
+    // Cache check
+    if (this.seoCache[current_url]) {
+
+      this.setMeta(this.seoCache[current_url]);
+
+      return of(this.seoCache[current_url]);
+    }
+
+    // API Call
+    return this.httpClient.post<any>(
+      this.apiURL + '/allseolist',
+      { current_url },
+      this.httpOptions
+    ).pipe(
+      tap((resp: any) => {
+
         if (resp.status == 1) {
+
+          this.seoCache[current_url] = resp.data;
+
           this.setMeta(resp.data);
         }
-      }
+      })
     );
   }
 
