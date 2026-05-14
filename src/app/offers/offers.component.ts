@@ -28,6 +28,7 @@ export class OffersComponent implements OnInit {
 
   //  CUSTOM MODAL STATE
   showOfferModal: boolean = false;
+  fragmentValue: string | null = null;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -43,64 +44,63 @@ export class OffersComponent implements OnInit {
     this.session = new LoginChecker();
     this.currentUrl = location.path().replace('/', '');
     this.seo.seolist(this.currentUrl);
-
-    this.loadOffers();
   }
 
   ngOnInit(): void {
-    this.loadRouteParam();
+    // Subscribe only once
+    this.route.fragment.subscribe((fragment) => {
+      this.fragmentValue = fragment;
+      this.checkAndOpenOffer();
+    });
+
+    // Load offers
+    this.loadOffers();
   }
 
-  loadRouteParam() {
-    console.log('Current URL:', this.route.fragment);
-    this.route.fragment.subscribe((fragment) => {
-      if (fragment && this.allOffers?.length) {
-        const index = this.allOffers.findIndex(
-          (offer: any) => offer.coupon.coupon_code === fragment,
-        );
+  checkAndOpenOffer() {
+    if (!this.fragmentValue || !this.allOffers?.length) {
+      return;
+    }
 
-        console.log('Offers loaded:', this.allOffers);
-        console.log('Fragment:', fragment, 'Index found:', index);
-        console.log('Hello hi namaskar ss');
+    const index = this.allOffers.findIndex(
+      (offer: any) =>
+        offer.coupon?.coupon_code === this.fragmentValue ||
+        offer.unique_id === this.fragmentValue
+    );
 
-        if (index !== -1) {
-          this.openOffer(index);
-        }
-      }
-    });
+    if (index !== -1) {
+      this.openOffer(index);
+    }
   }
 
   loadOffers() {
     this.spinner.show();
 
-    // const offerData = localStorage.getItem('offerData');
+    const param = {
+      user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+    };
 
-    // if (offerData) {
-    //   try {
-    //     this.allOffers = JSON.parse(offerData) || [];
-    //   } catch (e) {
-    //     this.allOffers = [];
-    //   }
-    //   this.spinner.hide();
-    // } else {
-      const param = {
-        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-      };
+    this.offerService.Offers(param).subscribe(
+      (res) => {
+        if (res.status == 1 && res.data) {
+          this.allOffers = res.data;
 
-      this.offerService.Offers(param).subscribe(
-        (res) => {
-          if (res.status == 1 && res.data) {
-            this.allOffers = res.data;
-            localStorage.setItem('offerData', JSON.stringify(res.data));
-          }
-          this.spinner.hide();
-        },
-        (err) => {
-          console.error('Offer API error:', err);
-          this.spinner.hide();
-        },
-      );
-    // }
+          localStorage.setItem(
+            'offerData',
+            JSON.stringify(res.data)
+          );
+
+          // Check fragment after offers loaded
+          this.checkAndOpenOffer();
+        }
+
+        this.spinner.hide();
+      },
+      (err) => {
+        console.error('Offer API error:', err);
+        this.spinner.hide();
+      }
+    );
   }
 
   menu() {
