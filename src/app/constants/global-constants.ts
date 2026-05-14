@@ -17,16 +17,17 @@ export class GlobalConstants {
   // public static PATHURL: any = 'https://testingadminapi.odbus.co.in/public/uploads/';
 
   // Testing
-  // public static BASE_URL: any = 'https://testing.odbus.co.in/api';
+  public static BASE_URL: any = 'https://testing.odbus.co.in/api';
   // public static URL: any = 'https://odtesting.odbus.co.in/';
-  // public static PAYMENT_MODE: any = 'sandbox';
-  // public static PATHURL: any = 'https://testingadminapi.odbus.co.in/public/uploads/';
-
-  // Local
-  public static BASE_URL: any = 'http://localhost:7001/ODBUS/odbusconsumerbe/api';
   public static URL: any = 'http://localhost:4200/';
   public static PAYMENT_MODE: any = 'sandbox';
-  public static PATHURL:any = 'http://localhost:7001/ODBUS/odbusproviderbe/public/uploads/';
+  public static PATHURL: any = 'https://testingadminapi.odbus.co.in/public/uploads/';
+
+  // Local
+  // public static BASE_URL: any = 'http://localhost:7001/ODBUS/odbusconsumerbe/api';
+  // public static URL: any = 'http://localhost:4200/';
+  // public static PAYMENT_MODE: any = 'sandbox';
+  // public static PATHURL:any = 'http://localhost:7001/ODBUS/odbusproviderbe/public/uploads/';
 
 
   public static USER_ID: any = '';

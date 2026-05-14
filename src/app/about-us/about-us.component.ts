@@ -22,7 +22,7 @@ export class AboutUsComponent implements OnInit {
   session: LoginChecker;
 
   MenuActive: boolean = false;
-  activeMenu: string;
+  activeMenu?: string;
 
   constructor(
     private pagesService: PagesService,

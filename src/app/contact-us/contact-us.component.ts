@@ -25,7 +25,7 @@ export class ContactUsComponent implements OnInit {
   isMobile: boolean;
   MenuActive: boolean = false;
   session: LoginChecker;
-  activeMenu: string;
+  activeMenu?: string;
   @Input() masterSettingRecord;
   constructor( public router: Router,
     public fb: FormBuilder,

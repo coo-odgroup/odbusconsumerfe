@@ -125,7 +125,7 @@ export class BookingComponent implements OnInit {
 
   masterSettingRecord: any = [];
 
-  activeMenu: string;
+  activeMenu?: string;
   constructor(private ngWizardService: NgWizardService, private fb: FormBuilder,
     private router: Router, private bookticketService: BookticketService,
     private razorpayService: ExternalLibraryService,
