@@ -127,42 +127,17 @@ export const routes: Routes = [
         import('./maintenance/maintenance.module') 
       .then(m => m.MaintenanceModule)  
   },
+
+
   {
-    path: 'dashboard',
-    component: UserdashboardComponent,
-    canActivate: [AuthGuard],
+    path: '',
+    loadChildren: () =>
+      import('./user/user.module')
+        .then(m => m.UserModule),
+    canActivate: [AuthGuard]
   },
-  {
-    path: 'notifications',
-    component: UsernotificationsComponent,
-    canActivate: [AuthGuard],
-  },
-  { path: 'wallet', component: UserwalletComponent, canActivate: [AuthGuard] },
-  {
-    path: 'invite-friend',
-    component: UserinvitefriendsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'rewards',
-    component: UserrewardsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'my-reviews',
-    component: UserreviewsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'helpandsupport',
-    component: UserhelpsupportComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'myaccount',
-    component: MyaccountComponent,
-    canActivate: [AuthGuard],
-  },
+
+
   { path: 'profile/delete', component: ProfiledeleteComponent },
   { path: 'payment-status', component: PaymentStatusComponent },
   // { path: 'slug', component: CommonContentComponent },
@@ -170,7 +145,8 @@ export const routes: Routes = [
     path: 'advantage/:slug',
     component: CommonContentComponent,
   },
-  { path: 'blog', 
+  { 
+    path: 'blog', 
       loadChildren: () => 
         import('./bloglisting/blog.module') 
       .then(m => m.BlogModule) 

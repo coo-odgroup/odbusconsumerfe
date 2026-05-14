@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-userhelpsupport',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserhelpsupportComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  isMobile: boolean;
+    constructor(private deviceService: DeviceDetectorService) {
+      this.isMobile = this.deviceService.isMobile();
+    }
+  
+    ngOnInit(): void {
+    }
 
 }
