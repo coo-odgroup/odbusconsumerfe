@@ -413,17 +413,28 @@ section.section-offer .nav-tabs .nav-item .nav-link {
 
 /* 430px Devices */
 
+
 @media (max-width: 430px) {
+
+  .mobile-offers-top{
+    padding-bottom: 25px !important;
+  }
 
   .mobile-offers-card ::ng-deep .carousel-cell img,
   .mobile-offers-card ::ng-deep img {
-    aspect-ratio: 16 / 7;
+    aspect-ratio: 15 / 7;
   }
 }
+
+
 
 /* 390px Devices */
 
 @media (max-width: 390px) {
+   .mobile-offers-top{
+    padding-bottom: 25px !important;
+  }
+
 
   .mobile-offers-section {
     padding: 12px;
@@ -443,7 +454,7 @@ section.section-offer .nav-tabs .nav-item .nav-link {
 
   .mobile-offers-card ::ng-deep .carousel-cell img,
   .mobile-offers-card ::ng-deep img {
-    aspect-ratio: 16 / 7.5;
+    aspect-ratio: 15 / 7;
     border-radius: 16px;
   }
 }
@@ -451,10 +462,14 @@ section.section-offer .nav-tabs .nav-item .nav-link {
 /* 360px Devices */
 
 @media (max-width: 360px) {
+   .mobile-offers-top{
+    padding-bottom: 25px !important;
+  }
+
 
   .mobile-offers-card ::ng-deep .carousel-cell img,
   .mobile-offers-card ::ng-deep img {
-    aspect-ratio: 16 / 8;
+    aspect-ratio: 17 / 8;
   }
 }
 
@@ -1086,7 +1101,67 @@ input {
    MOBILE ONLY
 ========================================== */
 
-@media (max-width: 767px) {
+@media (min-width: 575px) and (max-width: 768px) {
+
+  .mobile-search-box {
+    padding: 14px 14px 20px !important;
+  }
+
+  .search-overlap {
+    margin-top: 14px !important;
+  }
+
+  .search-box-v5 {
+    padding: 14px !important;
+    border-radius: 18px !important;
+  }
+
+  .search-inner {
+    display: block !important;
+  }
+
+  .field {
+    width: 100% !important;
+    margin-bottom: 12px !important;
+  }
+
+  .form-control {
+    height: 50px !important;
+    font-size: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .swap-center {
+    width: 34px !important;
+    height: 34px !important;
+    top: -12px !important;
+    right: 10px !important;
+  }
+
+  .date-wrapper {
+    display: grid !important;
+    grid-template-columns: 1fr 72px 88px !important;
+    gap: 8px !important;
+  }
+
+  .quick-date-today,
+  .quick-date-tomorrow {
+    height: 50px !important;
+    font-size: 11px !important;
+    border-radius: 12px !important;
+  }
+
+  .search-btn-v5 {
+    height: 52px !important;
+    font-size: 16px !important;
+    border-radius: 12px !important;
+  }
+
+}
+
+
+
+@media (max-width: 768px) {
 
   /* TOP YELLOW AREA */
   .mobile-search-box {
@@ -1314,6 +1389,43 @@ input {
     padding-right: 0 !important;
   }
 
+   .search-inner,
+  .search-overlap .row,
+  .search-overlap .col-md-12,
+  .search-overlap .col-lg-12,
+  .search-overlap .col-sm-12 {
+    display: block !important;
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
+  .field,
+  .input-box,
+  .date-wrapper,
+  .search-btn-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .field {
+    display: block !important;
+    margin-bottom: 14px !important;
+  }
+
+  .form-control {
+    width: 100% !important;
+  }
+
+  .date-wrapper {
+    grid-template-columns: 1fr 72px 88px !important;
+  }
+
+  .search-btn-v5 {
+    width: 100% !important;
+    display: block !important;
+  }
+
 }
 
 /* ==========================================
@@ -1464,6 +1576,12 @@ input {
   font-size: 13px;
   color: #999;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .recent-search-section {
+    padding: 0;
+  }
 }
 
 @media (max-width: 767px) {
@@ -2539,7 +2657,7 @@ input {
 /* Odbus Advantages */
 
 .whats-new-section {
-  padding: 40px 0;
+  padding: 30px 0;
   background: #ffffff;
   overflow: hidden;
 }
@@ -2747,6 +2865,9 @@ input {
 
 /* TABLET */
 @media (max-width: 991px) {
+  .whats-new-section {
+    padding: 0;
+  }
   .news-card {
     min-width: calc(50% - 10px) !important;
     width: calc(50% - 10px) !important;
@@ -2758,6 +2879,9 @@ input {
 
 /* MOBILE */
 @media (max-width: 767px) {
+  .whats-new-section {
+    padding: 0;
+  }
   .news-card {
     min-width: 100% !important;
     width: 100% !important;

@@ -299,6 +299,7 @@ section.top-routs ul li a {
   font-size: 13px;
   font-weight: 600;
   margin-top: 6px;
+  
 }
 
 /* BUS COUNT (RED) */
@@ -312,7 +313,7 @@ section.top-routs ul li a {
     font-weight: 700;
     text-decoration: none;
     background: #efc003;
-    padding: 5px;
+    padding: 10px 100px;
     border-radius: 5px;
 }
 
