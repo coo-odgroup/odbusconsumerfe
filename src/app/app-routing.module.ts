@@ -45,87 +45,101 @@ export const routes: Routes = [
   { path: 'listing', component: SearchComponent },
   { path: 'success', component: SuccessComponent },
   { path: 'booking', component: BookingComponent },
-  { path: 'about-us', 
-      loadChildren: () => 
-        import('./about-us/about-us.module') 
-      .then(m => m.AboutUsModule) 
+  {
+    path: 'about-us',
+    loadChildren: () =>
+      import('./about-us/about-us.module')
+        .then(m => m.AboutUsModule)
   },
   { path: 'manage-booking', component: ManageBookingComponent },
   { path: 'manage-booking-detail', component: ManagebookingdetailsComponent },
-  { path: 'operators', 
-    loadChildren: () => 
-      import('./operators/operators.module') 
-      .then(m => m.OperatorsModule) 
+  {
+    path: 'operators',
+    loadChildren: () =>
+      import('./operators/operators.module')
+        .then(m => m.OperatorsModule)
   },
-  { path: 'routes', 
-    loadChildren: () => 
-      import('./routes/routes.module') 
-        .then(m => m.RoutesModule) 
+  {
+    path: 'routes',
+    loadChildren: () =>
+      import('./routes/routes.module')
+        .then(m => m.RoutesModule)
   },
-  { path: 'offers', component: OffersComponent }, 
-  { 
-    path: 'testimonials', 
-    loadChildren: () => 
-      import('./testimonials/testimonials.module') 
-      .then(m => m.TestimonialsModule) 
+  { path: 'offers', component: OffersComponent },
+  {
+    path: 'testimonials',
+    loadChildren: () =>
+      import('./testimonials/testimonials.module')
+        .then(m => m.TestimonialsModule)
   },
-  { path: 'careers', 
-    loadChildren: () => 
-      import('./careers/careers.module') 
-      .then(m => m.CareersModule) 
+  {
+    path: 'careers',
+    loadChildren: () =>
+      import('./careers/careers.module')
+        .then(m => m.CareersModule)
   },
-  { path: 'contact-us', 
-    loadChildren: () => 
-      import('./contact-us/contact-us.module') 
-      .then(m => m.ContactUsModule) 
+  {
+    path: 'contact-us',
+    loadChildren: () =>
+      import('./contact-us/contact-us.module')
+        .then(m => m.ContactUsModule)
   },
-  { path: 'faq', 
-    loadChildren: () => 
-      import('./faq/faq.module') 
-      .then(m => m.FaqModule) 
+  {
+    path: 'faq',
+    loadChildren: () =>
+      import('./faq/faq.module')
+        .then(m => m.FaqModule)
   },
-  { path: 'terms-conditions', 
-    loadChildren: () => 
-      import('./tnc/tnc.module') 
-      .then(m => m.TncModule) 
+  {
+    path: 'terms-conditions',
+    loadChildren: () =>
+      import('./tnc/tnc.module')
+        .then(m => m.TncModule)
   },
-  { path: 'privacy-policy', 
-    loadChildren: () => 
-      import('./privacy-policy/privacy-policy.module') 
-       .then(m => m.PrivacyPolicyModule) 
+  {
+    path: 'privacy-policy',
+    loadChildren: () =>
+      import('./privacy-policy/privacy-policy.module')
+        .then(m => m.PrivacyPolicyModule)
   },
   { path: '404', component: PageErrorComponent },
-  { path: 'thank-you', loadChildren: () => 
-        import('./thankyou/thankyou.module') 
-      .then(m => m.ThankyouModule) 
+  {
+    path: 'thank-you', loadChildren: () =>
+      import('./thankyou/thankyou.module')
+        .then(m => m.ThankyouModule)
   },
-  { path: 'signup', 
-    loadChildren: () => 
-      import('./signup/signup.module') 
-      .then(m => m.SignupModule) 
+  {
+    path: 'signup',
+    loadChildren: () =>
+      import('./signup/signup.module')
+        .then(m => m.SignupModule)
   },
   // { path: 'signup', component: SignupComponent },
-  { path: 'login', loadChildren: () => 
-        import('./login/login.module') 
-      .then(m => m.LoginModule) 
+  {
+    path: 'login', loadChildren: () =>
+      import('./login/login.module')
+        .then(m => m.LoginModule)
   },
-  { path: 'otp', loadChildren: () => 
-        import('./otp/otp.module') 
-      .then(m => m.OtpModule) 
+  {
+    path: 'otp', loadChildren: () =>
+      import('./otp/otp.module')
+        .then(m => m.OtpModule)
   },
-  { 
+  {
     path: 'thankyou',
-    component: ThankyouComponent 
+    component: ThankyouComponent
   },
 
-  { path: 'api-reference', loadChildren: () => 
-        import('./api/api.module') 
-      .then(m => m.ApiModule) 
+  {
+    path: 'api-reference', loadChildren: () =>
+      import('./api/api.module')
+        .then(m => m.ApiModule)
   },
 
-  { path: 'maintenance', loadChildren: () => 
-        import('./maintenance/maintenance.module') 
-      .then(m => m.MaintenanceModule)  
+  {
+    path: 'maintenance', loadChildren: () =>
+      import('./maintenance/maintenance.module')
+        .then(m => m.MaintenanceModule)
   },
 
 
@@ -145,11 +159,11 @@ export const routes: Routes = [
     path: 'advantage/:slug',
     component: CommonContentComponent,
   },
-  { 
-    path: 'blog', 
-      loadChildren: () => 
-        import('./bloglisting/blog.module') 
-      .then(m => m.BlogModule) 
+  {
+    path: 'blog',
+    loadChildren: () =>
+      import('./bloglisting/blog.module')
+        .then(m => m.BlogModule)
   },
 
   // { path: 'payment-failed',component:PaymentFailedComponent},
