@@ -1,4 +1,4 @@
-.operators-result {
+/* .operators-result {
     background-color: #e7eaeb;
     padding: 4rem 0;
 }
@@ -167,7 +167,6 @@ thead {
     vertical-align: top;
     position: relative;
     margin-bottom: 37px;
-    /* max-height: 350px; */
     min-height: 350px;
     border: 1px solid #bebebe !important;
     border-radius: 4px;
@@ -215,7 +214,6 @@ thead {
 .heading-ser-tes {
     color: #072C6B;
     margin-bottom: 20px !important;
-    /* padding-top: 25px !important; */
     font-size: 20px;
     font-weight: 600 !important;
     text-align: center;
@@ -326,7 +324,6 @@ span.ng-star-inserted {
     background: #efc003;
     border-radius: 50%;
     padding: 20px;
-    /* padding-bottom: 4px; */
 }
 
 .icon-box-am .icon1 {
@@ -346,7 +343,6 @@ span.ng-star-inserted {
 }
 
 
-/* Mobile Version Support Start- */
 .mobile-mybooking-top {
     background-color: #efc003;
     padding: 12px 18px 14px;
@@ -418,7 +414,6 @@ span.ng-star-inserted {
 }
 
 .mobile-amenities-middle {
-    /* background: #ffffff; */
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 30px;
@@ -540,7 +535,6 @@ span.ng-star-inserted {
     height: 80px;
 }
 
-/* Mobile Menu Section */
 
 .mobile-logo img {
     height: 42px;
@@ -590,4 +584,623 @@ span.ng-star-inserted {
 .mobile-myaccount-middle .mobile-menu a i {
     color: #efc003;
     margin-right: 8px;
+} */
+
+
+body {
+    background: #f4f6fb;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1280px;
+}
+
+/* =====================================================
+TOP SECTION
+===================================================== */
+
+.operator-top-section {
+    padding: 60px 0 30px;
+}
+
+.top-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.operator-left-card,
+.operator-right-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, .05);
+}
+
+/* =====================================================
+HEADER
+===================================================== */
+
+.operator-header-box {
+    margin-bottom: 24px;
+}
+
+.operator-header-box h1,
+.operator-header-box h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 10px;
+}
+
+.operator-header-box p {
+    color: #667085;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* =====================================================
+STATS
+===================================================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.stat-card {
+    background: #f8fafc;
+    border-radius: 18px;
+    padding: 18px 10px;
+    text-align: center;
+}
+
+.stat-icon {
+    width: 62px;
+    height: 62px;
+    background: #fff4c5;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto auto 12px;
+}
+
+.stat-icon img {
+    width: 30px;
+}
+
+.stat-card h4 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 4px;
+}
+
+.stat-card span {
+    font-size: 13px;
+    color: #667085;
+}
+
+/* =====================================================
+AMENITIES
+===================================================== */
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.amenity-card {
+    background: #f8fafc;
+    border-radius: 18px;
+    padding: 18px 10px;
+    text-align: center;
+}
+
+.amenity-icon {
+    width: 62px;
+    height: 62px;
+    background: #efc003;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto auto 12px;
+}
+
+.amenity-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.amenity-card span {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #072c6b;
+}
+
+/* =====================================================
+ROUTES
+===================================================== */
+
+.routes-section {
+    padding: 20px 0 70px;
+}
+
+.section-heading {
+    font-size: 32px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 26px;
+}
+
+.modern-route-table {
+    background: #ffffff;
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, .05);
+}
+
+.route-table-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 180px 180px;
+    background: #efc003;
+    padding: 18px 26px;
+    align-items: center;
+}
+
+.route-table-header div {
+    font-size: 16px;
+    font-weight: 700;
+    color: #072c6b;
+}
+
+.route-table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 180px 180px;
+    align-items: center;
+    padding: 22px 26px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.route-table-row:last-child {
+    border-bottom: none;
+}
+
+.route-table-row:hover {
+    background: #fafcff;
+}
+
+.route-col span {
+    display: none;
+}
+
+.route-col h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #072c6b;
+    margin: 0;
+}
+
+.route-col h5 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #072c6b;
+    margin: 0;
+}
+
+.route-btn-box {
+    text-align: right;
+}
+
+.route-book-btn {
+    border: none;
+    background: #efc003;
+    color: #072c6b;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* =====================================================
+MOBILE HEADER
+===================================================== */
+
+.mobile-top-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    background: #efc003;
+    padding: 12px 14px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .08);
+}
+
+.mobile-head-left {
+    display: flex;
+    align-items: center;
+}
+
+.mobile-head-left i {
+    font-size: 22px;
+    color: #072c6b;
+    margin-right: 10px;
+}
+
+.mobile-head-left h5 {
+    margin-bottom: 0;
+    color: #072c6b;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.mobile-logo-box {
+    text-align: right;
+}
+
+.mobile-logo-box img {
+    height: 38px;
+}
+
+/* =====================================================
+MOBILE MAIN
+===================================================== */
+
+.mobile-main-section {
+    padding: 82px 14px 100px;
+}
+
+/* =====================================================
+NEW MOBILE BUS CARD
+===================================================== */
+
+.mobile-bus-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 20px 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
+}
+
+.mobile-bus-name h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 18px;
+}
+
+/* =====================================================
+NEW MOBILE STATS
+===================================================== */
+
+.mobile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.mobile-stat-card {
+    background: #f8fafc;
+    border-radius: 18px;
+    padding: 18px 10px;
+    text-align: center;
+}
+
+.mobile-stat-icon {
+    width: 62px;
+    height: 62px;
+    background: #fff4c5;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto auto 14px;
+}
+
+.mobile-stat-icon img {
+    width: 35px;
+}
+
+.mobile-stat-card h4 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 4px;
+}
+
+.mobile-stat-card span {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #667085;
+}
+
+/* =====================================================
+MOBILE SECTION TITLE
+===================================================== */
+
+.mobile-section-heading {
+    font-size: 22px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 14px;
+}
+
+/* =====================================================
+NEW MOBILE AMENITIES DESIGN
+===================================================== */
+
+.mobile-amenities-main {
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 22px 18px;
+    margin-bottom: 26px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
+}
+
+/* TITLE */
+
+.mobile-section-heading {
+    font-size: 24px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 6px;
+}
+
+/* SUBTITLE */
+
+.mobile-amenities-subtitle {
+    font-size: 13px;
+    color: #667085;
+    margin-bottom: 22px;
+    line-height: 1.5;
+}
+
+/* GRID */
+
+.mobile-amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+/* CARD */
+
+.mobile-amenity-card {
+    background: #f8fafc;
+    border-radius: 22px;
+    padding: 18px 12px;
+    min-height: 132px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+/* ICON */
+
+.mobile-amenity-icon {
+    width: 62px;
+    height: 62px;
+    background: #efc003;
+    border-radius: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+}
+
+.mobile-amenity-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* TEXT */
+
+.mobile-amenity-card span {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #072c6b;
+    line-height: 1.4;
+}
+
+/* =====================================================
+NEW MOBILE ROUTES DESIGN
+===================================================== */
+
+.mobile-routes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.mobile-route-card {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 18px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
+}
+
+/* FROM */
+
+.mobile-route-place {
+    margin-bottom: 14px;
+}
+
+.mobile-route-place-right {
+    margin-bottom: 0;
+}
+
+.mobile-route-place span {
+    display: block;
+    font-size: 11px;
+    color: #98a2b3;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.mobile-route-place h4 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 800;
+    color: #072c6b;
+    line-height: 1.4;
+}
+
+/* ARROW */
+
+.mobile-route-center {
+    margin: 10px 0 14px;
+}
+
+.mobile-route-line {
+    display: none;
+}
+
+.mobile-route-arrow {
+    position: relative;
+    width: auto;
+    height: auto;
+    background: transparent;
+    color: #072c6b;
+    font-size: 22px;
+}
+
+/* BOTTOM */
+
+.mobile-route-bottom {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #edf0f5;
+}
+
+.mobile-route-time-box {
+    margin-bottom: 14px;
+}
+
+.mobile-route-time-box span {
+    display: block;
+    font-size: 11px;
+    color: #98a2b3;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.mobile-route-time-box h5 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: #072c6b;
+}
+
+.mobile-book-btn {
+    width: 100%;
+    border: none;
+    background: #efc003;
+    color: #072c6b;
+    padding: 13px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:991px) {
+
+    .top-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media(max-width:767px) {
+
+    .modern-route-table {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .route-table-header {
+        display: none;
+    }
+
+    .route-table-row {
+        grid-template-columns: 1fr;
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 18px;
+        margin-bottom: 14px;
+        border: none;
+        box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
+    }
+
+    .route-col {
+        margin-bottom: 14px;
+    }
+
+    .route-col span {
+        display: block;
+        font-size: 11px;
+        color: #98a2b3;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .route-btn-box {
+        text-align: left;
+    }
+
+    .route-book-btn {
+        width: 100%;
+        padding: 12px;
+    }
+
+}
+
+@media(max-width:420px) {
+
+    .mobile-stat-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .mobile-stat-icon img {
+        width: 35px;
+    }
+
+    .mobile-route-place h4 {
+        font-size: 15px;
+    }
+
 }

@@ -185,6 +185,9 @@ section.top-routs ul li a {
   color: #ff3b3b;
 }
 
+
+
+
 /* SMALL LINE DIVIDER (optional premium look) */
 /* .route-card::after {
   content: "";
@@ -198,12 +201,24 @@ section.top-routs ul li a {
 
 /* RESPONSIVE */
 @media (max-width: 992px) {
+  .border-btn{
+    margin: 0 auto;
+    display: table;
+    width: 90%;
+    height: 50px;
+}
   .route-list li {
     width: calc(50% - 10px);
   }
 }
 
 @media (max-width: 576px) {
+  .border-btn{
+    margin: 0 auto;
+    display: table;
+    width: 90%;
+    height: 50px;
+}
   .route-list li {
     width: 100%;
   }
