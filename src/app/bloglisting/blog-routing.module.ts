@@ -27,7 +27,7 @@ const routes: Routes = [
   },
 
   {
-    path: ':slug',
+    path: ':category_slug/:slug',
     component: BlogDetailComponent,
     resolve: {
       blogData: BlogResolver
@@ -40,5 +40,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class BlogRoutingModule {}
+export class BlogRoutingModule { }
 

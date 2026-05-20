@@ -25,12 +25,51 @@ export class SeoService {
 
   private seoCache: any = {};
 
-  private seoRoutes = [
-    '/blog/',
-    '/routes/',
-    '/about-us',
-    '/contact-us'
-  ];
+  // private seoRoutes = [
+  //   '/blog/',
+  //   '/routes/',
+  //   '/about-us',
+  //   '/contact-us'
+  // ];
+
+  shouldLoadSeo(url: string): boolean {
+
+    // REMOVE QUERY PARAMS
+    const cleanUrl = url.split('?')[0];
+
+    // STATIC PAGES
+    if (
+      cleanUrl === '/about-us' ||
+      cleanUrl === '/contact-us'
+    ) {
+      return true;
+    }
+
+    // ROUTE SEO
+    if (cleanUrl.includes('/routes/')) {
+      return true;
+    }
+
+    // EXCLUDE BLOG LISTING PAGES
+    if (
+      cleanUrl.startsWith('/blog/category/') ||
+      cleanUrl.startsWith('/blog/tag/') ||
+      cleanUrl.startsWith('/blog/author/')
+    ) {
+      return false;
+    }
+
+    // BLOG DETAIL PAGE ONLY
+    const segments = cleanUrl.split('/').filter(Boolean);
+    if (
+      segments.length === 3 &&
+      segments[0] === 'blog'
+    ) {
+      return true;
+    }
+
+    return false;
+  }
 
   private link!: HTMLLinkElement;
 
@@ -56,12 +95,12 @@ export class SeoService {
   //   );
   // }
 
-  shouldLoadSeo(url: string): boolean {
+  // shouldLoadSeo(url: string): boolean {
 
-    return this.seoRoutes.some(route =>
-      url.includes(route)
-    );
-  }
+  //   return this.seoRoutes.some(route =>
+  //     url.includes(route)
+  //   );
+  // }
 
   seolist(current_url: string): Observable<any> {
 
