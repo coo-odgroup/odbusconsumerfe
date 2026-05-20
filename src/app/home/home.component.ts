@@ -53,6 +53,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   // Flag to control app download popup visibility close function
   closeAppPopup() {
     this.showAppPopup = false;
+    const expiryTime = new Date().getTime() + (12 * 60 * 60 * 1000);
+    localStorage.setItem('appPopupClosedUntil', expiryTime.toString());
   }
 
   /* =====================================
@@ -276,15 +278,15 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
             term === ''
               ? []
               : this.location_list
-                  .filter(
-                    (v) =>
-                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                      (v.synonym != '' &&
-                        v.synonym != null &&
-                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
-                          -1),
-                  )
-                  .slice(0, 10),
+                .filter(
+                  (v) =>
+                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                    (v.synonym != '' &&
+                      v.synonym != null &&
+                      v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                      -1),
+                )
+                .slice(0, 10),
           ),
         );
 
@@ -438,7 +440,13 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
         if (this.isMobile) {
-          this.showAppPopup = true;
+          const closedUntil = localStorage.getItem('appPopupClosedUntil');
+
+          if (closedUntil && new Date().getTime() < Number(closedUntil)) {
+            this.showAppPopup = false;
+          } else {
+            this.showAppPopup = true;
+          }
         }
       }, 1000);
     }
@@ -591,10 +599,10 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       if (el) {
         try {
           el.focus();
-        } catch (e) {}
+        } catch (e) { }
         try {
           el.click();
-        } catch (e) {}
+        } catch (e) { }
       }
     }
   }
