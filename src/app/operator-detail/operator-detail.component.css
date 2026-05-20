@@ -629,7 +629,7 @@ HEADER
 
 .operator-header-box h1,
 .operator-header-box h2 {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 800;
     color: #072c6b;
     margin-bottom: 10px;
@@ -671,7 +671,7 @@ STATS
 }
 
 .stat-icon img {
-    width: 30px;
+    width: 35px;
 }
 
 .stat-card h4 {
@@ -735,81 +735,159 @@ ROUTES
     padding: 20px 0 70px;
 }
 
+/* =====================================================
+NEW DESKTOP ROUTES GRID
+===================================================== */
+
+.desktop-routes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+/* CARD */
+.desktop-route-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 12px 20px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e8eaf2;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, .05);
+    transition: .25s ease;
+}
+
+/* HOVER */
+.desktop-route-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, .10);
+}
+
+/* LEFT YELLOW LINE */
+.desktop-route-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    background: #efc003;
+}
+
+/* TOP */
+.desktop-route-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* COLUMN */
+/* .desktop-route-col {
+    flex: 1;
+    min-width: 0;
+} */
+
+/* LABEL */
+.desktop-route-col span,
+.desktop-route-time span {
+    display: block;
+    font-size: 13px;
+    color: #667085;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* TITLE */
+.desktop-route-col h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 800;
+    color: #072c6b;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+/* TIME */
+.desktop-route-time {
+    align-items: center;
+    text-align: center;
+}
+
+.desktop-route-time h5 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 900;
+    color: #072c6b;
+}
+
+/* ARROW */
+.desktop-route-arrow {
+    width: 30px;
+    height: 30px;
+    background: #fff4c5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.desktop-route-arrow i {
+    color: #072c6b;
+    font-size: 14px;
+}
+
+/* DIVIDER */
+.desktop-route-divider {
+    height: 1px;
+    background: #e7eaf2;
+    margin: 18px 0;
+}
+
+/* BUTTON */
+.desktop-book-btn {
+      width: 70%;
+    height: 35px;
+    border: none;
+    background: #efc003;
+    color: #072c6b;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 900;
+    display: block;
+    margin: auto;
+    letter-spacing: .5px;
+    transition: .2s ease;
+}
+
+.desktop-book-btn:hover {
+    transform: scale(1.02);
+}
+
+/* RESPONSIVE */
+@media(max-width:1200px) {
+
+    .desktop-routes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media(max-width:767px) {
+
+    .desktop-routes-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
 .section-heading {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 800;
     color: #072c6b;
     margin-bottom: 26px;
 }
 
-.modern-route-table {
-    background: #ffffff;
-    border-radius: 26px;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, .05);
-}
-
-.route-table-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 180px 180px;
-    background: #efc003;
-    padding: 18px 26px;
-    align-items: center;
-}
-
-.route-table-header div {
-    font-size: 16px;
-    font-weight: 700;
-    color: #072c6b;
-}
-
-.route-table-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 180px 180px;
-    align-items: center;
-    padding: 22px 26px;
-    border-bottom: 1px solid #edf0f5;
-}
-
-.route-table-row:last-child {
-    border-bottom: none;
-}
-
-.route-table-row:hover {
-    background: #fafcff;
-}
-
-.route-col span {
-    display: none;
-}
-
-.route-col h4 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #072c6b;
-    margin: 0;
-}
-
-.route-col h5 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #072c6b;
-    margin: 0;
-}
-
-.route-btn-box {
-    text-align: right;
-}
-
-.route-book-btn {
-    border: none;
-    background: #efc003;
-    color: #072c6b;
-    padding: 12px 22px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 700;
-}
 
 /* =====================================================
 MOBILE HEADER
@@ -866,15 +944,15 @@ NEW MOBILE BUS CARD
 
 .mobile-bus-card {
     background: #ffffff;
-    border-radius: 24px;
+    border-radius: 14px;
     padding: 20px 16px;
     margin-bottom: 24px;
     box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
 }
 
 .mobile-bus-name h2 {
-    font-size: 24px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 900;
     color: #072c6b;
     margin-bottom: 18px;
 }
@@ -885,14 +963,14 @@ NEW MOBILE STATS
 
 .mobile-stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 14px;
 }
 
 .mobile-stat-card {
-    background: #f8fafc;
+    /* background: #f8fafc;
     border-radius: 18px;
-    padding: 18px 10px;
+    padding: 18px 10px; */
     text-align: center;
 }
 
@@ -930,8 +1008,8 @@ MOBILE SECTION TITLE
 ===================================================== */
 
 .mobile-section-heading {
-    font-size: 22px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 900;
     color: #072c6b;
     margin-bottom: 14px;
 }
@@ -942,7 +1020,7 @@ NEW MOBILE AMENITIES DESIGN
 
 .mobile-amenities-main {
     background: #ffffff;
-    border-radius: 28px;
+    border-radius: 14px;
     padding: 22px 18px;
     margin-bottom: 26px;
     box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
@@ -970,34 +1048,24 @@ NEW MOBILE AMENITIES DESIGN
 
 .mobile-amenities-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
 }
 
 /* CARD */
 
 .mobile-amenity-card {
-    background: #f8fafc;
-    border-radius: 22px;
-    padding: 18px 12px;
-    min-height: 132px;
-
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-
     text-align: center;
 }
 
 /* ICON */
 
 .mobile-amenity-icon {
-    width: 62px;
-    height: 62px;
+    width: 56px;
+    height: 56px;
     background: #efc003;
     border-radius: 18px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1031,49 +1099,117 @@ NEW MOBILE ROUTES DESIGN
     gap: 16px;
 }
 
+
+/* CARD */
 .mobile-route-card {
-    background: #ffffff;
-    border-radius: 22px;
-    padding: 18px;
-    box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 16px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e8eaf2;
+    box-shadow: 0 8px 24px rgba(195, 213, 255, 0.05);
 }
 
-/* FROM */
-
-.mobile-route-place {
-    margin-bottom: 14px;
+/* LEFT YELLOW LINE */
+.mobile-route-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    background: #efc003;
 }
 
-.mobile-route-place-right {
-    margin-bottom: 0;
+/* TOP */
+.mobile-route-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
-.mobile-route-place span {
+/* COLUMN */
+/* .mobile-route-col {
+    flex: 1;
+    min-width: 0;
+} */
+
+.mobile-route-col span,
+.mobile-route-time span {
     display: block;
-    font-size: 11px;
-    color: #98a2b3;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    font-weight: 700;
+    font-size: 12px;
+    color: #667085;
+    margin-bottom: 6px;
+    font-weight: 600;
 }
 
-.mobile-route-place h4 {
+/* TITLE */
+.mobile-route-col h4 {
     margin: 0;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 800;
     color: #072c6b;
-    line-height: 1.4;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+/* TIME */
+.mobile-route-time {
+    text-align: center;
+}
+
+.mobile-route-time h5 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 900;
+    color: #072c6b;
+}
+
+/* ARROW WRAP */
+.mobile-route-arrow-wrap {
+    flex-shrink: 0;
 }
 
 /* ARROW */
-
-.mobile-route-center {
-    margin: 10px 0 14px;
+.mobile-route-arrow {
+    width: 46px;
+    height: 46px;
+    background: #fff4c5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.mobile-route-line {
-    display: none;
+.mobile-route-arrow i {
+    color: #072c6b;
+    font-size: 18px;
 }
+
+/* DIVIDER */
+.mobile-route-divider {
+    height: 1px;
+    background: #e7eaf2;
+    margin: 18px 0;
+}
+
+/* BUTTON */
+.mobile-book-btn {
+    width: 70%;
+    height: 30px;
+    background: #efc003;
+    color: #072c6b;
+    font-size: 14px;
+    font-weight: 900;
+    display: block;
+    margin: auto;
+    letter-spacing: .5px;
+    border: none;
+    border-radius: 14px;
+}
+
 
 .mobile-route-arrow {
     position: relative;
@@ -1084,44 +1220,6 @@ NEW MOBILE ROUTES DESIGN
     font-size: 22px;
 }
 
-/* BOTTOM */
-
-.mobile-route-bottom {
-    margin-top: 16px;
-    padding-top: 14px;
-    border-top: 1px solid #edf0f5;
-}
-
-.mobile-route-time-box {
-    margin-bottom: 14px;
-}
-
-.mobile-route-time-box span {
-    display: block;
-    font-size: 11px;
-    color: #98a2b3;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-.mobile-route-time-box h5 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: 800;
-    color: #072c6b;
-}
-
-.mobile-book-btn {
-    width: 100%;
-    border: none;
-    background: #efc003;
-    color: #072c6b;
-    padding: 13px;
-    border-radius: 14px;
-    font-size: 14px;
-    font-weight: 700;
-}
 
 /* =====================================================
 RESPONSIVE

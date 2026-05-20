@@ -615,59 +615,65 @@ DESKTOP VIEW
         Popular Routes
       </div>
 
-      <div class="modern-route-table">
+      <div class="desktop-routes-grid">
 
-        <!-- HEADER -->
-        <div class="route-table-header">
+        <!-- CARD -->
+        <div class="desktop-route-card" *ngFor="let t of routes">
 
-          <div>From</div>
+          <!-- TOP -->
+          <div class="desktop-route-top">
 
-          <div>To</div>
+            <!-- FROM -->
+            <div class="desktop-route-col">
 
-          <div>Departure</div>
+              <span>From</span>
 
-          <div></div>
+              <h4>
+                {{ t.sourceName }}
+              </h4>
 
-        </div>
+            </div>
 
-        <!-- BODY -->
-        <div class="route-table-row" *ngFor="let t of routes">
+            <!-- ARROW -->
+            <div class="desktop-route-arrow-wrap">
 
-          <!-- FROM -->
-          <div class="route-col">
+              <div class="desktop-route-arrow">
+                <i class="fas fa-arrow-right"></i>
+              </div>
 
-            <span>From</span>
+            </div>
 
-            <h4>{{ t.sourceName }}</h4>
+            <!-- TO -->
+            <div class="desktop-route-col">
+
+              <span>To</span>
+
+              <h4>
+                {{ t.destinationName }}
+              </h4>
+
+            </div>
+
+            <!-- TIME -->
+            <div class="desktop-route-time">
+
+              <span>Departure</span>
+
+              <h5>
+                {{ t.depTime }}
+              </h5>
+
+            </div>
 
           </div>
 
-          <!-- TO -->
-          <div class="route-col">
-
-            <span>To</span>
-
-            <h4>{{ t.destinationName }}</h4>
-
-          </div>
-
-          <!-- TIME -->
-          <div class="route-col">
-
-            <span>Departure</span>
-
-            <h5>{{ t.depTime }}</h5>
-
-          </div>
+          <!-- LINE -->
+          <div class="desktop-route-divider"></div>
 
           <!-- BUTTON -->
-          <div class="route-btn-box">
-
-            <button class="route-book-btn" (click)="popularSearch(t.sourceName, t.destinationName)">
-              Book Now
-            </button>
-
-          </div>
+          <button class="desktop-book-btn" (click)="popularSearch(t.sourceName, t.destinationName)">
+            BOOK NOW
+          </button>
 
         </div>
 
@@ -683,9 +689,6 @@ DESKTOP VIEW
 
 
 
-<!-- =====================================================
-MOBILE VIEW
-===================================================== -->
 <!-- =====================================================
 MOBILE VIEW
 ===================================================== -->
@@ -875,57 +878,52 @@ AMENITIES
       <!-- CARD -->
       <div class="mobile-route-card" *ngFor="let t of routes">
 
-        <!-- FROM -->
-        <div class="mobile-route-place">
+        <!-- TOP -->
+        <div class="mobile-route-top">
 
-          <span>From</span>
+          <!-- FROM -->
+          <div class="mobile-route-col">
+            <span>From</span>
 
-          <h4>
-            {{ t.sourceName }}
-          </h4>
-
-        </div>
-
-        <!-- ARROW -->
-        <div class="mobile-route-center">
-
-          <div class="mobile-route-arrow">
-            <i class="fas fa-arrow-right"></i>
+            <h4>
+              {{ t.sourceName }}
+            </h4>
           </div>
 
-        </div>
+          <!-- ARROW -->
+          <div class="mobile-route-arrow-wrap">
+            <div class="mobile-route-arrow">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
 
-        <!-- TO -->
-        <div class="mobile-route-place mobile-route-place-right">
+          <!-- TO -->
+          <div class="mobile-route-col">
+            <span>To</span>
 
-          <span>To</span>
-
-          <h4>
-            {{ t.destinationName }}
-          </h4>
-
-        </div>
-
-        <!-- BOTTOM -->
-        <div class="mobile-route-bottom">
+            <h4>
+              {{ t.destinationName }}
+            </h4>
+          </div>
 
           <!-- TIME -->
-          <div class="mobile-route-time-box">
-
+          <div class="mobile-route-time">
             <span>Departure</span>
 
             <h5>
               {{ t.depTime }}
             </h5>
-
           </div>
 
-          <!-- BUTTON -->
-          <button class="mobile-book-btn" (click)="popularSearch(t.sourceName, t.destinationName)">
-            Book Now
-          </button>
-
         </div>
+
+        <!-- LINE -->
+        <div class="mobile-route-divider"></div>
+
+        <!-- BUTTON -->
+        <button class="mobile-book-btn" (click)="popularSearch(t.sourceName, t.destinationName)">
+          BOOK NOW
+        </button>
 
       </div>
 

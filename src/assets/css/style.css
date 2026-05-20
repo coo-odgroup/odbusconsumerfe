@@ -525,17 +525,17 @@ section.top-routs ul li a {
     line-height: 19px;
     display: inline-block;
     font-weight: 500;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 section.top-operators ul li a {
     font-size: 13.4px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 section.top-routs ul li a {
     font-size: 13px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .top-operators-img {
