@@ -57,7 +57,7 @@
     <div class="row" *ngFor="let o of allOffers; let i = index">
       <div class="col-12">
         <div class="mobile-offer">
-          <a (click)="OfferModal(offermodal, i)">
+          <a (click)="openOffer(i)">
             <img
               *ngIf="
                 o.slider_photo && o.slider_photo != '' && o.slider_photo != null

@@ -30,7 +30,7 @@ export class TopOperatorsComponent implements OnInit {
 
   operator_detail(url: any) {
     if (url != '') {
-      this.router.navigate(['operator/' + url]);
+      this.router.navigate(['operators/' + url]);
     }
   }
 
