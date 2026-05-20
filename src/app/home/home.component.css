@@ -3218,6 +3218,7 @@ a.btn.btn-warning:hover {
   padding: 0;
   margin: 0 0 28px;
   border-bottom: 1px solid #e8e8e8;
+  cursor: pointer;
 }
 
 .route-tabs li {

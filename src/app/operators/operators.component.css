@@ -118,6 +118,12 @@ section.top-routs ul li a {
     overflow: hidden;
     height: 60px;
     margin: 0 !important;
+    transition: .25s ease;
+}
+
+section.top-routs ul li a:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, .10);
 }
 
 /* YELLOW LEFT STRIP */
