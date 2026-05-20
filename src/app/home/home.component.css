@@ -416,7 +416,7 @@ section.section-offer .nav-tabs .nav-item .nav-link {
 
 @media (max-width: 430px) {
 
-  .mobile-offers-top{
+  .mobile-offers-top {
     padding-bottom: 25px !important;
   }
 
@@ -431,7 +431,7 @@ section.section-offer .nav-tabs .nav-item .nav-link {
 /* 390px Devices */
 
 @media (max-width: 390px) {
-   .mobile-offers-top{
+  .mobile-offers-top {
     padding-bottom: 25px !important;
   }
 
@@ -462,7 +462,7 @@ section.section-offer .nav-tabs .nav-item .nav-link {
 /* 360px Devices */
 
 @media (max-width: 360px) {
-   .mobile-offers-top{
+  .mobile-offers-top {
     padding-bottom: 25px !important;
   }
 
@@ -1389,7 +1389,7 @@ input {
     padding-right: 0 !important;
   }
 
-   .search-inner,
+  .search-inner,
   .search-overlap .row,
   .search-overlap .col-md-12,
   .search-overlap .col-lg-12,
@@ -1884,7 +1884,7 @@ input {
 
 .faq-section .faq-tabs li a {
   display: block;
-  padding: 0 0 14px;
+  padding: 10px;
   color: #333 !important;
   font-size: 15px;
   font-weight: 500;
@@ -1897,6 +1897,8 @@ input {
   color: #1b2155 !important;
   font-weight: 700;
   border-bottom: 3px solid #f0c92f !important;
+  border-radius: 3px;
+  background: #f5f5f5 !important;
 }
 
 
@@ -2868,6 +2870,7 @@ input {
   .whats-new-section {
     padding: 0;
   }
+
   .news-card {
     min-width: calc(50% - 10px) !important;
     width: calc(50% - 10px) !important;
@@ -2882,6 +2885,7 @@ input {
   .whats-new-section {
     padding: 0;
   }
+
   .news-card {
     min-width: 100% !important;
     width: 100% !important;
@@ -3233,6 +3237,7 @@ a.btn.btn-warning:hover {
   font-weight: 500;
   text-decoration: none !important;
   transition: .25s ease;
+  padding: 10px;
 }
 
 .route-tabs li a:hover {
@@ -3243,6 +3248,9 @@ a.btn.btn-warning:hover {
   color: #1b2155;
   font-weight: 700;
   border-bottom: 3px solid #f0c92f;
+  background: #f5f5f5;
+  border-radius: 3px;
+  
 }
 
 /* ===============================
