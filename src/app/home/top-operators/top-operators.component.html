@@ -11,11 +11,11 @@
   </div>
   <div class="container">
     <div class="row operator-card-row">
-      <div class="col-md-3" *ngFor="let t of topOperators">
+      <div class="col-md-3" *ngFor="let t of displayedOperators">
         <div class="operator-card small-card" (click)="operator_detail(t.operator_url)">
           <div class="card-content">
             <div class="icon-wrap">
-              <img src="assets/img/icon-bus-alt.svg" />
+              <img src="assets/img/icon-bus-alt.svg" alt="Bus Icon" />
             </div>
 
             <div class="operator-name">
@@ -23,6 +23,13 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="col-md-12 text-center">
+        <button *ngIf="isMobile && !showAllOperators && topOperators.length > 5" (click)="viewAllOperators()"
+          class="border-btn bh mt-3">
+          View All
+        </button>
       </div>
     </div>
   </div>

@@ -143,7 +143,7 @@
     <!-- MENU LIST -->
     <div class="mobile-menu-list">
 
-      <a routerLink="manage-booking">
+      <a routerLink="/manage-booking">
         <div class="menu-icon">
           <i class="far fa-window-restore"></i>
         </div>
@@ -153,7 +153,7 @@
         <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
-      <a routerLink="offers">
+      <a routerLink="/offers">
         <div class="menu-icon">
           <i class="fas fa-gifts"></i>
         </div>
@@ -163,7 +163,7 @@
         <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
-      <a routerLink="operators">
+      <a routerLink="/operators">
         <div class="menu-icon">
           <i class="fas fa-bus"></i>
         </div>
@@ -173,7 +173,7 @@
         <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
-      <a routerLink="routes">
+      <a routerLink="/routes">
         <div class="menu-icon">
           <i class="fas fa-map-marker-alt"></i>
         </div>
@@ -183,7 +183,7 @@
         <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
-      <a routerLink="faq">
+      <a routerLink="/faq">
         <div class="menu-icon">
           <i class="fas fa-question-circle"></i>
         </div>
@@ -213,7 +213,7 @@
         <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
-      <a routerLink="privacy-policy">
+      <a routerLink="/privacy-policy">
         <div class="menu-icon">
           <i class="fas fa-shield-alt"></i>
         </div>
@@ -223,7 +223,7 @@
         <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
-      <a routerLink="about-us">
+      <a routerLink="/about-us">
         <div class="menu-icon">
           <i class="fas fa-info-circle"></i>
         </div>
@@ -233,7 +233,7 @@
         <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
-       <a routerLink="logout" *ngIf="session.isLoggedIn()">
+       <a routerLink="/logout" *ngIf="session.isLoggedIn()">
         <div class="menu-icon">
           <i class="fas fa-sign-out-alt"></i>
         </div>
@@ -248,11 +248,11 @@
     <!-- BOTTOM -->
     <div class="menu-bottom">
 
-      <a routerLink="login" *ngIf="!session.isLoggedIn()">
+      <a routerLink="/login" *ngIf="!session.isLoggedIn()">
         Login / Signup
       </a>
 
-      <a routerLink="dashboard" *ngIf="session.isLoggedIn()">
+      <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
         Go To Dashboard
       </a>
 
