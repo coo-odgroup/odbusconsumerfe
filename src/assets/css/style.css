@@ -275,6 +275,10 @@ section.section-offer {
 
 .section-offer .col-md-6.text-right a{
     color: #072c6b !important;
+    border: 1px solid #1b2155 !important;
+    padding: 5px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
 }
 
 .section-offer-right .nav-tabs .nav-link {
