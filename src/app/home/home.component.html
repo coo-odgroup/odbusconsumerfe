@@ -1,27 +1,13 @@
 <ng-template #Desktop>
-  <ngx-spinner
-    bdColor="rgba(0, 0, 0, 0.8)"
-    size="medium"
-    color="#fff"
-    type="ball-clip-rotate"
-    [fullScreen]="true"
-  >
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
     <p style="color: white">Loading...</p>
   </ngx-spinner>
-  <section
-    class="hero-banner-v5"
-    style="background-image: url(&quot;assets/img/new_banner2.jpg&quot;)"
-  >
+  <section class="hero-banner-v5" style="background-image: url(&quot;assets/img/new_banner2.jpg&quot;)">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
           <div class="banner-left">
-            <img
-              class="trust-badge"
-              src="assets/img/trust_badge.png"
-              alt="logo-ODBUS"
-              title="Logo ODBUS"
-            />
+            <img class="trust-badge" src="assets/img/trust_badge.png" alt="logo-ODBUS" title="Logo ODBUS" />
             <h1>
               Odisha’s No. 1 Online,<br />
               Bus Ticket Booking Platform
@@ -40,21 +26,10 @@
             <div class="col-md-3 field from-field">
               <label>From</label>
               <div class="input-box">
-                <img
-                  src="assets/img/Icon-metro-location.svg"
-                  class="icon-from" alt="From Location" loading="lazy"
-                />
-                <input
-                  type="search"
-                  class="form-control"
-                  [ngbTypeahead]="search"
-                  [resultTemplate]="rt"
-                  [resultFormatter]="formatter"
-                  [inputFormatter]="formatter"
-                  [(ngModel)]="swapsource"
-                  formControlName="source"
-                  placeholder="Enter Source"
-                />
+                <img src="assets/img/Icon-metro-location.svg" class="icon-from" alt="From Location" loading="lazy" />
+                <input type="search" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt"
+                  [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapsource"
+                  formControlName="source" placeholder="Enter Source" id="from" (selectItem)="tabChange('to')" />
               </div>
             </div>
 
@@ -68,17 +43,9 @@
 
               <div class="input-box">
                 <img src="assets/img/Icon-metro-location.svg" class="icon-to" alt="To Location" loading="lazy" />
-                <input
-                  type="search"
-                  class="form-control"
-                  [ngbTypeahead]="search"
-                  [resultTemplate]="rt2"
-                  [resultFormatter]="formatter"
-                  [inputFormatter]="formatter"
-                  [(ngModel)]="swapdestination"
-                  formControlName="destination"
-                  placeholder="Enter Destination"
-                />
+                <input type="search" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt2"
+                  [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapdestination"
+                  formControlName="destination" placeholder="Enter Destination" id="to" (selectItem)="tabChange('entryDate')" />
               </div>
             </div>
 
@@ -88,21 +55,10 @@
               <div class="date-wrapper">
                 <!-- Journey Date Box -->
                 <div class="input-box date-box">
-                  <img
-                    src="assets/img/Icon-metro-calendar.svg"
-                    class="icon-date" alt="calender" loading="lazy"
-                  />
+                  <img src="assets/img/Icon-metro-calendar.svg" class="icon-date" alt="calender" loading="lazy" />
 
-                  <input
-                    type="text"
-                    class="form-control"
-                    formControlName="entry_date"
-                    ngbDatepicker
-                    #d="ngbDatepicker"
-                    (click)="d.toggle()"
-                    placeholder="Journey Date"
-                    readonly
-                  />
+                  <input type="text" class="form-control" formControlName="entry_date" ngbDatepicker #d="ngbDatepicker"
+                    (click)="d.toggle()" placeholder="Journey Date" readonly id="entryDate" />
                 </div>
 
                 <!-- Today -->
@@ -149,21 +105,11 @@
               <div class="col-md-3 field from-field">
                 <label>From</label>
                 <div class="input-box">
-                  <img
-                    src="assets/img/Icon-metro-location.svg"
-                    class="icon-from" alt="Icon-metro-location" loading="lazy"
-                  />
-                  <input
-                    type="search"
-                    class="form-control"
-                    [ngbTypeahead]="search"
-                    [resultTemplate]="rt"
-                    [resultFormatter]="formatter"
-                    [inputFormatter]="formatter"
-                    [(ngModel)]="swapsource"
-                    formControlName="source"
-                    placeholder="Enter Source"
-                  />
+                  <img src="assets/img/Icon-metro-location.svg" class="icon-from" alt="Icon-metro-location"
+                    loading="lazy" />
+                  <input type="search" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt"
+                    [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapsource"
+                    formControlName="source" placeholder="Enter Source" id="fromMob" (selectItem)="tabChange('toMob')" />
                 </div>
               </div>
 
@@ -176,21 +122,10 @@
                 </div>
 
                 <div class="input-box">
-                  <img
-                    src="assets/img/Icon-metro-location.svg"
-                    class="icon-to" alt="To Location" loading="lazy"
-                  />
-                  <input
-                    type="search"
-                    class="form-control"
-                    [ngbTypeahead]="search"
-                    [resultTemplate]="rt2"
-                    [resultFormatter]="formatter"
-                    [inputFormatter]="formatter"
-                    [(ngModel)]="swapdestination"
-                    formControlName="destination"
-                    placeholder="Enter Destination"
-                  />
+                  <img src="assets/img/Icon-metro-location.svg" class="icon-to" alt="To Location" loading="lazy" />
+                  <input type="search" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt2"
+                    [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapdestination"
+                    formControlName="destination" placeholder="Enter Destination" id="toMob" (selectItem)="tabChange('entryDateMob')" />
                 </div>
               </div>
 
@@ -200,18 +135,10 @@
                 <div class="date-wrapper">
                   <!-- Journey Date Box -->
                   <div class="input-box date-box">
-                    <img src="assets/img/Icon-metro-calendar.svg"  class="icon-date" loading="lazy" alt="Calendar" />
+                    <img src="assets/img/Icon-metro-calendar.svg" class="icon-date" loading="lazy" alt="Calendar" />
 
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="entry_date"
-                      ngbDatepicker
-                      #d="ngbDatepicker"
-                      (click)="d.toggle()"
-                      placeholder="Journey Date"
-                      readonly
-                    />
+                    <input type="text" class="form-control" formControlName="entry_date" ngbDatepicker
+                      #d="ngbDatepicker" (click)="d.toggle()" placeholder="Journey Date" readonly id="entryDateMob" />
                   </div>
 
                   <!-- Today Box -->
@@ -240,22 +167,13 @@
   <ng-template #calendar let-modal>
     <div class="cal-modal-mobile">
       <div class="modal-body">
-        <ngb-datepicker
-          #dp
-          [(ngModel)]="model"
-          [min]="dtconfig.minDate"
-          [max]="dtconfig.maxDate"
-          (dateSelect)="onDateSelect($event)"
-        ></ngb-datepicker>
+        <ngb-datepicker #dp [(ngModel)]="model" [min]="dtconfig.minDate" [max]="dtconfig.maxDate"
+          (dateSelect)="onDateSelect($event)"></ngb-datepicker>
       </div>
     </div>
 
     <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-light"
-        (click)="modal.close('Close click')"
-      >
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
         Close
       </button>
     </div>
@@ -281,9 +199,7 @@
     <div class="mobile-myaccount-middle">
       <ul class="mobile-menu">
         <li>
-          <a routerLink="manage-booking"
-            ><i class="far fa-window-restore"></i> Manage Booking</a
-          >
+          <a routerLink="manage-booking"><i class="far fa-window-restore"></i> Manage Booking</a>
         </li>
         <li>
           <a routerLink="offers"><i class="fas fa-gifts"></i> Offers</a>
@@ -292,32 +208,22 @@
           <a routerLink="operators"><i class="fas fa-bus"></i> Operators</a>
         </li>
         <li>
-          <a routerLink="routes"
-            ><i class="fas fa-map-marker-alt"></i> Routes</a
-          >
+          <a routerLink="routes"><i class="fas fa-map-marker-alt"></i> Routes</a>
         </li>
         <li>
           <a routerLink="faq"><i class="fas fa-question"></i> FAQ's</a>
         </li>
         <li>
-          <a routerLink="testimonials"
-            ><i class="fa fa-star"></i> Testimonials</a
-          >
+          <a routerLink="testimonials"><i class="fa fa-star"></i> Testimonials</a>
         </li>
         <li>
-          <a routerLink="terms-conditions"
-            ><i class="fas fa-file-image"></i> Terms & Conditions</a
-          >
+          <a routerLink="terms-conditions"><i class="fas fa-file-image"></i> Terms & Conditions</a>
         </li>
         <li>
-          <a routerLink="privacy-policy"
-            ><i class="far fa-file-powerpoint"></i> Privacy Policy</a
-          >
+          <a routerLink="privacy-policy"><i class="far fa-file-powerpoint"></i> Privacy Policy</a>
         </li>
         <li>
-          <a routerLink="about-us"
-            ><i class="fas fa-info-circle"></i> About Us</a
-          >
+          <a routerLink="about-us"><i class="fas fa-info-circle"></i> About Us</a>
         </li>
       </ul>
     </div>
@@ -335,11 +241,7 @@
 
         <img src="assets/img/booking.png" class="popup-img" alt="Booking" loading="lazy" />
 
-        <a
-          href="https://play.google.com/store/apps/details?id=com.od.odbus&hl=en"
-          target="_blank"
-          class="popup-btn"
-        >
+        <a href="https://play.google.com/store/apps/details?id=com.od.odbus&hl=en" target="_blank" class="popup-btn">
           Download App
         </a>
 
@@ -358,54 +260,31 @@
 <ng-template #popup let-modal>
   <div class="filter-mobile-modal">
     <div class="modal-body">
-      <button
-        type="button"
-        class="close close-mob"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross Click')"
-      >
+      <button type="button" class="close close-mob" aria-label="Close" (click)="modal.dismiss('Cross Click')">
         <span aria-hidden="true">&times;</span>
       </button>
 
-      <p
-        *ngIf="
+      <p *ngIf="
           popupData.common.popup_heading &&
           popupData.common.popup_heading != 'null'
-        "
-        style="font-weight: bold; color: red"
-      >
+        " style="font-weight: bold; color: red">
         {{ popupData.common.popup_heading }}
       </p>
 
-      <img
-        *ngIf="
+      <img *ngIf="
           popupData.common.popup_image && popupData.common.popup_image != 'null'
-        "
-        src="{{ popupData.common.popup_image }}"
-        width="100%"
-        alt="Popup"
-        loading="lazy"
-      />
+        " src="{{ popupData.common.popup_image }}" width="100%" alt="Popup" loading="lazy" />
 
-      <p
-        *ngIf="
+      <p *ngIf="
           popupData.common.popup_description &&
           popupData.common.popup_description != 'null'
-        "
-      >
+        ">
         {{ popupData.common.popup_description }}
       </p>
 
-      <a
-        style="text-align: right"
-        target="_blank"
-        *ngIf="
+      <a style="text-align: right" target="_blank" *ngIf="
           popupData.common.popup_url && popupData.common.popup_url != 'null'
-        "
-        class="btn btn-primary"
-        href="{{ popupData.common.popup_url }}"
-        >Click Here</a
-      >
+        " class="btn btn-primary" href="{{ popupData.common.popup_url }}">Click Here</a>
     </div>
   </div>
 </ng-template>

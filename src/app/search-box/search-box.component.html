@@ -8,7 +8,7 @@
           <div class="col-md-3 field from-field">
             <label>From</label>
             <div class="input-box">
-              <img src="assets/img/Icon-metro-location.svg" class="icon-from" />
+              <img src="assets/img/Icon-metro-location.svg" class="icon-from" alt="Location" />
               <input
                 type="search"
                 class="form-control"
@@ -19,8 +19,9 @@
                 [(ngModel)]="swapsource"
                 formControlName="source"
                 placeholder="Enter Source"
+                id="from"
+                (selectItem)="tabChange('to')"
               />
-              <!-- <span class="clear-icon">✖</span> -->
             </div>
           </div>
 
@@ -29,11 +30,11 @@
             <label>To</label>
 
             <div class="swap-center" (click)="swap()">
-              <img src="assets/img/swap.svg" />
+              <img src="assets/img/swap.svg" alt="Swap" />
             </div>
 
             <div class="input-box">
-              <img src="assets/img/Icon-metro-location.svg" class="icon-to" />
+              <img src="assets/img/Icon-metro-location.svg" class="icon-to" alt="Location" />
               <input
                 type="search"
                 class="form-control"
@@ -44,8 +45,9 @@
                 [(ngModel)]="swapdestination"
                 formControlName="destination"
                 placeholder="Enter Destination"
+                id="to"
+                (selectItem)="tabChange('entryDate')"
               />
-              <!-- <span class="clear-icon">✖</span> -->
             </div>
           </div>
           <div class="col-md-4 field date-field">
@@ -65,6 +67,7 @@
                   (click)="d.toggle()"
                   placeholder="Journey Date"
                   readonly
+                  id="entryDate"
                 />
               </div>
 
