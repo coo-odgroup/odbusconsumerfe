@@ -1875,7 +1875,7 @@ input {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 28px;
+  gap: 10px;
   padding: 0;
   margin-top: 20px;
   list-style: none;
@@ -2968,7 +2968,7 @@ a.btn.btn-warning:hover {
 
 /* CITY */
 .city {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: #1b2155;
   word-break: break-word;
@@ -3138,7 +3138,8 @@ a.btn.btn-warning:hover {
   }
 
   .city {
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: 600;
   }
 
   .exchange {
@@ -3182,9 +3183,9 @@ a.btn.btn-warning:hover {
     margin-bottom: 8px;
   }
 
-  .city {
+  /* .city {
     font-size: 12px;
-  }
+  } */
 
   .exchange {
     font-size: 11px;
@@ -3224,7 +3225,7 @@ a.btn.btn-warning:hover {
 .route-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 34px;
+  gap: 10px;
   list-style: none;
   padding: 0;
   margin: 0 0 28px;
@@ -3356,6 +3357,7 @@ a.btn.btn-warning:hover {
     background: #1b2155 !important;
     color: #fff !important;
     border: none !important;
+    border-radius: 22px;
   }
 
   /* GRID 2 COLUMN */

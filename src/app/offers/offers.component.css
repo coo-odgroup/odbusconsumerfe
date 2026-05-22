@@ -878,6 +878,7 @@ input {
   .offer-popup-wrap {
     max-height: 95vh;
     overflow: hidden;
+    width: 90%;
   }
 
 }
