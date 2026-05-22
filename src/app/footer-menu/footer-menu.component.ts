@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginChecker } from '../helpers/loginChecker';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer-menu',
@@ -13,7 +14,7 @@ export class FooterMenuComponent implements OnInit {
   MenuActive: boolean = false;
   activeMenu: any;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal, private router: Router) {
     this.session = new LoginChecker();
   }
 
@@ -23,5 +24,12 @@ export class FooterMenuComponent implements OnInit {
     this.MenuActive = this.MenuActive == false ? true : false;
     this.activeMenu = '';
     this.modalService.dismissAll();
+  }
+
+  signOut() {
+    if (this.session.isLoggedIn()) {
+      this.session.logout();
+      this.router.navigate(['login']);
+    }
   }
 }

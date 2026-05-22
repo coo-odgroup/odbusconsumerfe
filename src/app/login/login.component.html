@@ -6,42 +6,19 @@
           <div class="card">
             <div class="card-header center">LOGIN</div>
             <div class="card-body">
-              <form
-                class="form-horizontal"
-                [formGroup]="loginForm"
-                (ngSubmit)="onSubmit()"
-              >
+              <form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="row form-group">
                   <div class="col-md-1"></div>
                   <div class="col-md-5">
                     <label for="via1" class="cursor">
-                      <input
-                        type="radio"
-                        name="via"
-                        id="via1"
-                        value="phone"
-                        (click)="getLogin($event)"
-                        checked
-                      />
-                      <span class="via_login"
-                        >&nbsp; &nbsp;Via Phone</span
-                      ></label
-                    >
+                      <input type="radio" name="via" id="via1" value="phone" (click)="getLogin($event)" checked />
+                      <span class="via_login">&nbsp; &nbsp;Via Phone</span></label>
                   </div>
 
                   <div class="col-md-6">
                     <label for="via2" class="cursor">
-                      <input
-                        type="radio"
-                        name="via"
-                        value="email"
-                        id="via2"
-                        (click)="getLogin($event)"
-                      />
-                      <span class="via_login"
-                        >&nbsp; &nbsp;Via Email</span
-                      ></label
-                    >
+                      <input type="radio" name="via" value="email" id="via2" (click)="getLogin($event)" />
+                      <span class="via_login">&nbsp; &nbsp;Via Email</span></label>
                   </div>
                 </div>
 
@@ -51,21 +28,10 @@
                       <span class="input-group-addon">
                         <i class="fa fa-phone fa" aria-hidden="true"></i>
                       </span>
-                      <input
-                        type="text"
-                        (keydown)="onlyNumbers($event)"
-                        maxlength="10"
-                        class="form-control"
-                        formControlName="phone"
-                        id="phone"
-                        placeholder="Enter Mobile No."
-                        autocomplete="off"
-                      />
+                      <input type="text" (keydown)="onlyNumbers($event)" maxlength="10" class="form-control"
+                        formControlName="phone" id="phone" placeholder="Enter Mobile No." autocomplete="off" />
 
-                      <div
-                        *ngIf="submitted && f.phone.errors"
-                        class="invalid-feedback"
-                      >
+                      <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
                         <div class="log-left" *ngIf="f.phone.errors.required">
                           Mobile no. is required
                         </div>
@@ -83,19 +49,10 @@
                       <span class="input-group-addon">
                         <i class="fa fa-envelope fa" aria-hidden="true"></i>
                       </span>
-                      <input
-                        type="text"
-                        class="form-control"
-                        formControlName="email"
-                        id="email"
-                        placeholder="Enter Your Email"
-                        autocomplete="off"
-                      />
+                      <input type="text" class="form-control" formControlName="email" id="email"
+                        placeholder="Enter Your Email" autocomplete="off" />
 
-                      <div
-                        *ngIf="submitted && f.email.errors"
-                        class="invalid-feedback"
-                      >
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                         <div class="log-left" *ngIf="f.email.errors.required">
                           Email ID is required
                         </div>
@@ -136,7 +93,7 @@
       </div>
       <div class="col-4 pl-2 pr-2">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img src="assets/img/mob-img/logo.png" alt="Mobile Logo" />
         </div>
       </div>
     </div>
@@ -147,34 +104,17 @@
       <div class="card">
         <div class="card-header center">LOGIN</div>
         <div class="card-body">
-          <form
-            class="form-horizontal"
-            [formGroup]="loginForm"
-            (ngSubmit)="onSubmit()"
-          >
+          <form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group row">
               <div class="col-6">
                 <label for="via1" class="cursor">
-                  <input
-                    type="radio"
-                    name="via"
-                    id="via1"
-                    value="phone"
-                    (click)="getLogin($event)"
-                    checked
-                  />
+                  <input type="radio" name="via" id="via1" value="phone" (click)="getLogin($event)" checked />
                   <span class="via_login">&nbsp; &nbsp;Via Phone</span>
                 </label>
               </div>
               <div class="col-6">
                 <label for="via2" class="cursor">
-                  <input
-                    type="radio"
-                    name="via"
-                    value="email"
-                    id="via2"
-                    (click)="getLogin($event)"
-                  />
+                  <input type="radio" name="via" value="email" id="via2" (click)="getLogin($event)" />
                   <span class="via_login">&nbsp; &nbsp;Via Email</span>
                 </label>
               </div>
@@ -183,21 +123,10 @@
             <div class="form-group row" *ngIf="viaphone">
               <div class="col-12">
                 <div class="input-group">
-                  <input
-                    type="text"
-                    (keydown)="onlyNumbers($event)"
-                    maxlength="10"
-                    class="form-control"
-                    formControlName="phone"
-                    id="phone"
-                    placeholder="Enter Mobile No."
-                    autocomplete="off"
-                  />
+                  <input type="text" (keydown)="onlyNumbers($event)" maxlength="10" class="form-control"
+                    formControlName="phone" id="phone" placeholder="Enter Mobile No." autocomplete="off" />
 
-                  <div
-                    *ngIf="submitted && f.phone.errors"
-                    class="invalid-feedback"
-                  >
+                  <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
                     <div class="log-left" *ngIf="f.phone.errors.required">
                       Mobile no. is required
                     </div>
@@ -212,19 +141,10 @@
             <div class="form-group row" *ngIf="viaemail">
               <div class="col-12">
                 <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    formControlName="email"
-                    id="email"
-                    placeholder="Enter Your Email"
-                    autocomplete="off"
-                  />
+                  <input type="text" class="form-control" formControlName="email" id="email"
+                    placeholder="Enter Your Email" autocomplete="off" />
 
-                  <div
-                    *ngIf="submitted && f.email.errors"
-                    class="invalid-feedback"
-                  >
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                     <div class="log-left" *ngIf="f.email.errors.required">
                       Email ID is required
                     </div>
@@ -269,9 +189,7 @@
   <div class="mobile-myaccount-middle">
     <ul class="mobile-menu">
       <li>
-        <a routerLink="/manage-booking"
-          ><i class="far fa-window-restore"></i> Manage Booking</a
-        >
+        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i> Manage Booking</a>
       </li>
       <li>
         <a routerLink="/offers"><i class="fas fa-gifts"></i> Offers</a>
@@ -286,24 +204,16 @@
         <a routerLink="/faq"><i class="fas fa-question"></i> FAQ's</a>
       </li>
       <li>
-        <a routerLink="/testimonials"
-          ><i class="fa fa-star"></i> Testimonials</a
-        >
+        <a routerLink="/testimonials"><i class="fa fa-star"></i> Testimonials</a>
       </li>
       <li>
-        <a routerLink="/terms-conditions"
-          ><i class="fas fa-file-image"></i> Terms & Conditions</a
-        >
+        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i> Terms & Conditions</a>
       </li>
       <li>
-        <a routerLink="/privacy-policy"
-          ><i class="far fa-file-powerpoint"></i> Privacy Policy</a
-        >
+        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i> Privacy Policy</a>
       </li>
       <li>
-        <a routerLink="/about-us"
-          ><i class="fas fa-info-circle"></i> About Us</a
-        >
+        <a routerLink="/about-us"><i class="fas fa-info-circle"></i> About Us</a>
       </li>
     </ul>
   </div>
