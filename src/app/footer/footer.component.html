@@ -89,6 +89,8 @@
   </section>
 </ng-template>
 
-<ng-template #Mobile> </ng-template>
+<ng-template #Mobile>
+  <app-route-links></app-route-links>
+</ng-template>
 
 <ng-container *ngIf="isMobile; then Mobile; else Desktop"> </ng-container>
