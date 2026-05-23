@@ -19,7 +19,6 @@
                 [(ngModel)]="swapsource"
                 formControlName="source"
                 placeholder="Enter Source"
-                id="from"
                 (selectItem)="tabChange('to')"
               />
             </div>
@@ -46,7 +45,6 @@
                 formControlName="destination"
                 placeholder="Enter Destination"
                 id="to"
-                (selectItem)="tabChange('entryDate')"
               />
             </div>
           </div>
@@ -67,7 +65,6 @@
                   (click)="d.toggle()"
                   placeholder="Journey Date"
                   readonly
-                  id="entryDate"
                 />
               </div>
 

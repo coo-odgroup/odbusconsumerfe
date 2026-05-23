@@ -21,7 +21,7 @@
                                 loading="lazy" />
                             <input type="search" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt"
                                 [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapsource"
-                                formControlName="source" placeholder="Enter Source" id="from" (selectItem)="tabChange('to')" />
+                                formControlName="source" placeholder="Enter Source" (selectItem)="tabChange('to')" />
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@
                                 loading="lazy" />
                             <input type="search" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt2"
                                 [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapdestination"
-                                formControlName="destination" placeholder="Enter Destination" id="to" (selectItem)="tabChange('entryDate')" />
+                                formControlName="destination" placeholder="Enter Destination" id="to" />
                         </div>
                     </div>
 
@@ -52,7 +52,7 @@
                                     alt="Calendar" />
 
                                 <input type="text" class="form-control" formControlName="entry_date" ngbDatepicker
-                                    #d="ngbDatepicker" (click)="d.toggle()" placeholder="Journey Date" readonly id="entryDate" />
+                                    #d="ngbDatepicker" (click)="d.toggle()" placeholder="Journey Date" readonly />
                             </div>
 
                             <!-- Today Box -->
