@@ -57,6 +57,8 @@ import { CommonContentComponent } from './common-content/common-content.componen
 import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SearchBoxMComponent } from './search-box-m/search-box-m.component';
+import { MobileAppDownloadComponent } from './home/mobile-app-download/mobile-app-download.component';
+
 
 
 export function appInit(appInitializerService: AppInitializerService) {
@@ -109,7 +111,8 @@ const ngWizardConfig: NgWizardConfig = {
     CommonContentComponent,
     FooterMenuComponent,
     SearchBoxComponent,
-    SearchBoxMComponent
+    SearchBoxMComponent,
+    MobileAppDownloadComponent
   ], 
   imports: [
     // BrowserAnimationsModule,
