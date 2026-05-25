@@ -10,19 +10,26 @@
     <div class="textimonials-result1">
       <div class="container">
         <div class="main-tnc">
+          <p class="offer-top-text">
+
+            Find the best online bus ticket offers across Odisha on
+            <span>ODBUS</span>.
+
+            <br>
+
+            Book faster, save more, and travel smarter with exclusive
+            discounts and coupon codes on every journey.
+
+          </p>
           <div class="row">
             <div class="col-md-4" *ngFor="let o of allOffers; let i = index">
               <div class="card">
                 <a (click)="openOffer(i)">
-                  <img
-                    *ngIf="
+                  <img *ngIf="
                       o.slider_photo &&
                       o.slider_photo != '' &&
                       o.slider_photo != null
-                    "
-                    class="card-img-top"
-                    [src]="o.slider_photo"
-                  />
+                    " class="card-img-top" [src]="o.slider_photo" />
                 </a>
                 <div class="card-block"></div>
               </div>
@@ -56,17 +63,24 @@
   <app-search-box-m></app-search-box-m>
 
   <div class="mobile-offerbox-middle">
+     <p class="offer-top-text">
+
+            Find the best online bus ticket offers across Odisha on
+            <span>ODBUS</span>.
+
+            <br>
+
+            Book faster, save more, and travel smarter with exclusive
+            discounts and coupon codes on every journey.
+
+          </p>
     <div class="row" *ngFor="let o of allOffers; let i = index">
       <div class="col-12">
         <div class="mobile-offer">
           <a (click)="openOffer(i)">
-            <img
-              *ngIf="
+            <img *ngIf="
                 o.slider_photo && o.slider_photo != '' && o.slider_photo != null
-              "
-              src="{{ o.slider_photo }}"
-              alt="{{ o.occassion }}"
-            />
+              " src="{{ o.slider_photo }}" alt="{{ o.occassion }}" />
           </a>
           <!-- <h5>{{o.occassion}}</h5> -->
         </div>
@@ -95,9 +109,7 @@
   <div class="mobile-myaccount-middle">
     <ul class="mobile-menu">
       <li>
-        <a routerLink="/manage-booking"
-          ><i class="far fa-window-restore"></i> Manage Booking</a
-        >
+        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i> Manage Booking</a>
       </li>
       <li>
         <a routerLink="/operators"><i class="fas fa-bus"></i> Operators</a>
@@ -109,24 +121,16 @@
         <a routerLink="/faq"><i class="fas fa-question"></i> FAQ's</a>
       </li>
       <li>
-        <a routerLink="/testimonials"
-          ><i class="fa fa-star"></i> Testimonials</a
-        >
+        <a routerLink="/testimonials"><i class="fa fa-star"></i> Testimonials</a>
       </li>
       <li>
-        <a routerLink="/terms-conditions"
-          ><i class="fas fa-file-image"></i> Terms & Conditions</a
-        >
+        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i> Terms & Conditions</a>
       </li>
       <li>
-        <a routerLink="/privacy-policy"
-          ><i class="far fa-file-powerpoint"></i> Privacy Policy</a
-        >
+        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i> Privacy Policy</a>
       </li>
       <li>
-        <a routerLink="/about-us"
-          ><i class="fas fa-info-circle"></i> About Us</a
-        >
+        <a routerLink="/about-us"><i class="fas fa-info-circle"></i> About Us</a>
       </li>
       <li *ngIf="session.isLoggedIn()">
         <a routerLink="/my-reviews"><i class="fas fa-comments"></i>My Review</a>
@@ -173,12 +177,8 @@
 
           <div class="offer-row">
             <span>Discount</span>
-            <strong *ngIf="OfferData.coupon.type == 2"
-              >Rs {{ OfferData.coupon.amount }}/-</strong
-            >
-            <strong *ngIf="OfferData.coupon.type == 1"
-              >{{ OfferData.coupon.percentage }}%</strong
-            >
+            <strong *ngIf="OfferData.coupon.type == 2">Rs {{ OfferData.coupon.amount }}/-</strong>
+            <strong *ngIf="OfferData.coupon.type == 1">{{ OfferData.coupon.percentage }}%</strong>
           </div>
 
           <div class="offer-row">
@@ -186,10 +186,7 @@
             <strong>{{ OfferData.coupon.to_date }}</strong>
           </div>
 
-          <button
-            class="copy-btn"
-            (click)="copyCoupon(OfferData.coupon.coupon_code)"
-          >
+          <button class="copy-btn" (click)="copyCoupon(OfferData.coupon.coupon_code)">
             Copy Coupon
           </button>
         </div>
@@ -203,12 +200,10 @@
       <div class="offer-right-side">
         <h4>COUPON DESCRIPTION</h4>
 
-        <div
-          class="offer-description"
-          [innerHTML]="OfferData?.coupon?.full_desc"
-        ></div>
+        <div class="offer-description" [innerHTML]="OfferData?.coupon?.full_desc"></div>
 
-        <div class="slider-desc" *ngIf="OfferData?.slider_description != 'null' && OfferData?.slider_description !== ''">
+        <div class="slider-desc"
+          *ngIf="OfferData?.slider_description != 'null' && OfferData?.slider_description !== ''">
           {{ OfferData.slider_description }}
         </div>
       </div>
