@@ -16,7 +16,7 @@
       text-transform: capitalize;
     }
   </style>
-  <app-route-links></app-route-links>
+  <app-route-links *ngIf="showRouteLinks"></app-route-links>
   <section class="imp_links">
     <div class="container">
 
@@ -89,6 +89,8 @@
   </section>
 </ng-template>
 
-<ng-template #Mobile> </ng-template>
+<ng-template #Mobile>
+  <app-route-links *ngIf="showRouteLinks"></app-route-links>
+</ng-template>
 
 <ng-container *ngIf="isMobile; then Mobile; else Desktop"> </ng-container>

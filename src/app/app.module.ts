@@ -56,6 +56,9 @@ import { TopRoutesComponent } from './home/top-routes/top-routes.component';
 import { CommonContentComponent } from './common-content/common-content.component';
 import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
+import { SearchBoxMComponent } from './search-box-m/search-box-m.component';
+import { MobileAppDownloadComponent } from './home/mobile-app-download/mobile-app-download.component';
+
 
 
 export function appInit(appInitializerService: AppInitializerService) {
@@ -107,7 +110,9 @@ const ngWizardConfig: NgWizardConfig = {
     TopRoutesComponent,
     CommonContentComponent,
     FooterMenuComponent,
-    SearchBoxComponent
+    SearchBoxComponent,
+    SearchBoxMComponent,
+    MobileAppDownloadComponent
   ], 
   imports: [
     // BrowserAnimationsModule,

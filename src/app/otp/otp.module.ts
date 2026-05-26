@@ -5,7 +5,7 @@ import { OtpRoutingModule } from './otp-routing.module';
 import { OtpComponent } from './otp.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
     OtpRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbAlertModule
+    NgbAlertModule,
+    CountdownModule
   ],
    bootstrap: [OtpComponent],
 })

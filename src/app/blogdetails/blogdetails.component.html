@@ -1,18 +1,39 @@
 <section class="blog-details">
+  <!-- BREADCRUMB -->
+  <section class="blog-breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-wrap">
+
+        <a routerLink="/">Home</a>
+
+        <span>/</span>
+
+        <a routerLink="/blog">Blog</a>
+
+        <span>/</span>
+
+        <span class="active-breadcrumb">
+          {{ blogDetail?.title }}
+        </span>
+
+      </div>
+    </div>
+  </section>
   <div class="container">
     <div class="row">
       <!-- LEFT CONTENT -->
       <div class="col-md-9">
         <div class="blog-detail-card">
           <div class="blog-img">
-            <img [src]="baseurl + blogDetail?.featured_image" class="img-responsive" loading="lazy" alt="{{blogDetail?.title}}">
+            <img [src]="baseurl + blogDetail?.featured_image" class="img-responsive" loading="lazy"
+              alt="{{blogDetail?.title}}">
           </div>
 
           <div class="blog-content">
             <div class="blog-meta-row">
               <span class="blog-tag-inline">{{ blogDetail?.category_name }}</span>
               <span class="blog-date"><a [routerLink]="['/blog/author', blogDetail?.author_slug]">
-                {{ blogDetail?.author }}</a> | {{ blogDetail?.created_at | date:'dd MMM yyyy' }}
+                  {{ blogDetail?.author }}</a> | {{ blogDetail?.created_at | date:'dd MMM yyyy' }}
               </span>
             </div>
 

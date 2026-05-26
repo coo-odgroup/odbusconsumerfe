@@ -11,13 +11,34 @@ export class GlobalConstants {
   // public static PAYMENT_MODE: any = 'production';
 
   // SSR Build
-  // public static BASE_URL: any = 'https://testing.odbus.co.in/api';
+  public static BASE_URL: any = 'https://testing.odbus.co.in/api';
   // public static URL:any ='https://odtestingssr.odbus.co.in/';
   // public static PAYMENT_MODE: any = 'sandbox';
   // public static PATHURL: any = 'https://testingadminapi.odbus.co.in/public/uploads/';
 
+<<<<<<< HEAD
+  // public static BASE_URL:any ='https://testing.odbus.co.in/api';
+  // public static URL:any ='http://localhost:4200/';
+  // public static PAYMENT_MODE:any ='sandbox';
+
+  //    public static BASE_URL:any ='https://testing.odbus.co.in/api';
+  //    public static URL:any ='https://odtestingssr.odbus.co.in/';
+  //    public static PAYMENT_MODE:any ='sandbox';
+
+  // public static BASE_URL:any ='https://localhost/api';
+  //  public static URL:any ='http://localhost:4200/';
+  //    public static BASE_URL:any ='http://localhost:7001/ODBUS/odbusconsumerbe/api';
+  //     public static URL:any ='http://localhost:4200/';
+  //     public static PAYMENT_MODE:any ='sandbox';
+
+  public static BASE_URL: any =
+    'http://localhost:7001/ODBUS/odbusconsumerbe/api';
+  public static URL: any = 'http://localhost:4200/';
+  public static PAYMENT_MODE: any = 'sandbox';
+    
+=======
   // Testing
-  public static BASE_URL: any = 'https://testing.odbus.co.in/api';
+  // public static BASE_URL: any = 'https://testing.odbus.co.in/api';
   // public static URL: any = 'https://odtesting.odbus.co.in/';
   public static URL: any = 'http://localhost:4200/';
   public static PAYMENT_MODE: any = 'sandbox';
@@ -30,6 +51,7 @@ export class GlobalConstants {
   // public static PATHURL:any = 'http://localhost:7001/ODBUS/odbusproviderbe/public/uploads/';
 
 
+>>>>>>> 86fbb47a0bdfcb727882cec31341eac2f759a7b6
   public static USER_ID: any = '';
   public static MASTER_SETTING_USER_ID: any = '1';
 }

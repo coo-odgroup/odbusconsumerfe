@@ -369,6 +369,9 @@ section.section-offer .nav-tabs .nav-item .nav-link {
   font-weight: 700;
   color: #072c6b;
   text-decoration: none;
+  border: 1px solid #1b2155;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 /* =========================================================
@@ -1094,6 +1097,7 @@ section.section-offer .nav-tabs .nav-item .nav-link {
 
 input {
   background-color: #fff !important;
+  font-size: 14px !important;
 }
 
 
@@ -1871,7 +1875,7 @@ input {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 28px;
+  gap: 10px;
   padding: 0;
   margin-top: 20px;
   list-style: none;
@@ -1885,8 +1889,8 @@ input {
 .faq-section .faq-tabs li a {
   display: block;
   padding: 10px;
-  color: #333 !important;
-  font-size: 15px;
+  color: #000000 !important;
+  font-size: 16px;
   font-weight: 500;
   text-decoration: none !important;
   border: none !important;
@@ -1931,7 +1935,7 @@ input {
 .faq-question {
   position: relative;
   padding: 18px 34px 18px 0;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.45;
   color: #111;
@@ -1947,10 +1951,11 @@ input {
 .faq-answer {
   display: none;
   padding: 0 0 18px;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.75;
   color: #666;
   max-width: 95%;
+  font-weight: 500;
 }
 
 /* active answer */
@@ -2000,7 +2005,7 @@ input {
   }
 
   .faq-question {
-    font-size: 17px;
+    font-size: 16px;
     padding: 18px 40px 18px 40px;
 
   }
@@ -2064,6 +2069,7 @@ input {
     border-bottom: none !important;
     background: #1b2155 !important;
     color: #fff !important;
+    border-radius: 22px;
   }
 
   .faq-question {
@@ -2505,8 +2511,8 @@ input {
 }
 
 .info-content p {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   color: #000000;
   line-height: 1.8;
   margin-bottom: 18px;
@@ -2518,8 +2524,8 @@ input {
 }
 
 .info-content ul li {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   color: #000000;
   line-height: 1.8;
   margin-bottom: 8px;
@@ -2732,9 +2738,10 @@ input {
 }
 
 .card-left p {
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.6;
   margin: 0 0 18px;
+  font-weight: 500;
 }
 
 .card-left a {
@@ -2961,7 +2968,7 @@ a.btn.btn-warning:hover {
 
 /* CITY */
 .city {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: #1b2155;
   word-break: break-word;
@@ -3131,7 +3138,8 @@ a.btn.btn-warning:hover {
   }
 
   .city {
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: 600;
   }
 
   .exchange {
@@ -3175,9 +3183,9 @@ a.btn.btn-warning:hover {
     margin-bottom: 8px;
   }
 
-  .city {
+  /* .city {
     font-size: 12px;
-  }
+  } */
 
   .exchange {
     font-size: 11px;
@@ -3217,7 +3225,7 @@ a.btn.btn-warning:hover {
 .route-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 34px;
+  gap: 10px;
   list-style: none;
   padding: 0;
   margin: 0 0 28px;
@@ -3232,7 +3240,7 @@ a.btn.btn-warning:hover {
 .route-tabs li a {
   display: block;
   padding: 0 0 14px;
-  color: #333;
+  color: #000000;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none !important;
@@ -3250,7 +3258,7 @@ a.btn.btn-warning:hover {
   border-bottom: 3px solid #f0c92f;
   background: #f5f5f5;
   border-radius: 3px;
-  
+
 }
 
 /* ===============================
@@ -3290,9 +3298,9 @@ a.btn.btn-warning:hover {
 =================================*/
 .route-grid a {
   display: block;
-  font-size: 16px;
-  font-weight: 400;
-  color: #444;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1c1c1c;
   margin-bottom: 14px;
   line-height: 1.45;
   text-decoration: none !important;
@@ -3349,6 +3357,7 @@ a.btn.btn-warning:hover {
     background: #1b2155 !important;
     color: #fff !important;
     border: none !important;
+    border-radius: 22px;
   }
 
   /* GRID 2 COLUMN */

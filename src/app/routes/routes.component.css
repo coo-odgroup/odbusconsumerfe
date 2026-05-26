@@ -152,7 +152,7 @@ section.top-routs ul li a {
 
 /* TEXT */
 .route-text {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: #1d2b53;
   white-space: normal;
@@ -345,8 +345,8 @@ section.top-routs ul li a {
 
 /* ROUTE TEXT */
 .mobile-route-name {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   color: #1d2b53;
   line-height: 20px;
   word-break: break-word;

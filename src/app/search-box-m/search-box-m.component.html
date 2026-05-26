@@ -1,0 +1,78 @@
+<div class="mobile-search-box">
+    <div class="row">
+        <div class="col-7">
+            <h3>Book Bus Tickets</h3>
+        </div>
+        <div class="col-5">
+            <div class="mobile-logo">
+                <img src="assets/img/mob-img/logo.png" alt="Mobile Logo" loading="lazy" />
+            </div>
+        </div>
+    </div>
+    <div class="container search-overlap">
+        <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
+            <div class="search-box-v5 mt-5">
+                <div class="row no-gutters align-items-end search-inner">
+                    <!-- FROM -->
+                    <div class="col-md-3 field from-field">
+                        <label>From</label>
+                        <div class="input-box">
+                            <img src="assets/img/Icon-metro-location.svg" class="icon-from" alt="Icon-metro-location"
+                                loading="lazy" />
+                            <input type="search" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt"
+                                [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapsource"
+                                formControlName="source" placeholder="Enter Source" (selectItem)="tabChange('to')" />
+                        </div>
+                    </div>
+
+                    <!-- TO -->
+                    <div class="col-md-3 field to-field">
+                        <label>To</label>
+
+                        <div class="swap-center" (click)="swap()">
+                            <img src="assets/img/swap.svg" alt="Swap Locations" loading="lazy" />
+                        </div>
+
+                        <div class="input-box">
+                            <img src="assets/img/Icon-metro-location.svg" class="icon-to" alt="To Location"
+                                loading="lazy" />
+                            <input type="search" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt2"
+                                [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapdestination"
+                                formControlName="destination" placeholder="Enter Destination" id="to" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 field date-field">
+                        <label>Date of Journey</label>
+
+                        <div class="date-wrapper">
+                            <!-- Journey Date Box -->
+                            <div class="input-box date-box">
+                                <img src="assets/img/Icon-metro-calendar.svg" class="icon-date" loading="lazy"
+                                    alt="Calendar" />
+
+                                <input type="text" class="form-control" formControlName="entry_date" ngbDatepicker
+                                    #d="ngbDatepicker" (click)="d.toggle()" placeholder="Journey Date" readonly />
+                            </div>
+
+                            <!-- Today Box -->
+                            <div class="quick-date-today" (click)="searchToday()">
+                                Today
+                            </div>
+
+                            <!-- Tomorrow Box -->
+                            <div class="quick-date-tomorrow" (click)="searchTomorrow()">
+                                Tomorrow
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <div class="col-md-2 field search-btn-wrap">
+                        <button type="submit" class="btn search-btn-v5">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

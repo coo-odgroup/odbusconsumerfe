@@ -5,12 +5,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { CommonService } from '../services/common.service';
 import { NgbDatepickerConfig, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from "ngx-spinner";
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-footer',
@@ -30,7 +31,7 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
   private commonDataSubscription: Subscription | null = null;
 
   private apiurl = GlobalConstants.BASE_URL;
-  baseurl = "http://localhost:7001/ODBUS/odbusproviderbe/public/";
+  // baseurl = "http://localhost:7001/ODBUS/odbusproviderbe/public/";
 
   bloglist: any;
 
@@ -50,6 +51,25 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
 
     // Initialize from current commonData if available (safe sync read from service)
     this.updateCommonData();
+    this.checkRouteLinksVisibility();
+  }
+
+  showRouteLinks = true;
+
+  checkRouteLinksVisibility() {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+
+        const url = this.router.url;
+
+        if (url.includes('/booking') || url.includes('/routes/')) {
+          this.showRouteLinks = false;
+        } else {
+          this.showRouteLinks = true;
+        }
+
+      });
   }
 
   getImagePath(image: any) {
