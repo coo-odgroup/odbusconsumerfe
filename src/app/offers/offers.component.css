@@ -61,6 +61,7 @@
 
 .card {
   margin-bottom: 20px;
+  border: none !important;
 }
 
 .main-tnc {
@@ -139,26 +140,27 @@ section.top-routs {
 
 
 .mobile-offerbox-middle {
-  margin: 88px 20px 60px
+  /* margin: 88px 20px 60px */
 }
 
 .mobile-offerbox-middle {
   background-color: #fff;
   border-radius: 5px;
-  padding: 20px;
-  border: 1px solid #adadad;
+  margin: 10px;
+  padding: 10px;
+  /* border: 1px solid #adadad; */
 }
 
 
 .mobile-offerbox-middle .mobile-offer {
-  border: 1px solid #adadad;
-  position: 10px;
+  /* border: 1px solid #adadad; */
+  /* position: 10px; */
   margin-bottom: 15px;
 }
 
 .mobile-offerbox-middle .mobile-offer img {
   width: 100%;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
 }
 
 .mobile-offerbox-middle .mobile-offer h5 {
@@ -878,6 +880,38 @@ input {
   .offer-popup-wrap {
     max-height: 95vh;
     overflow: hidden;
+    width: 90%;
+  }
+
+}
+
+
+.offer-top-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #1b2155;
+  font-weight: 500;
+  margin-bottom: 28px;
+  letter-spacing: 0.2px;
+  text-align: center;
+  background: #fff4c9;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.offer-top-text span {
+  color: #0042db;
+  font-weight: 700;
+}
+
+/* MOBILE */
+
+@media(max-width:768px) {
+
+  .offer-top-text {
+    font-size: 11px;
+    line-height: 1.7;
+    margin-bottom: 20px;
   }
 
 }

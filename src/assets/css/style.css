@@ -35,7 +35,7 @@ section.header-main {
 }
 
 .menu-cnt ul {
-    text-align: center;
+    text-align: right;
     width: 100%;
     list-style: none;
     margin: 0;
@@ -48,10 +48,10 @@ section.header-main {
 
 .menu-cnt ul li a {
     display: inline-block;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-size: 15px;
     line-height: 24px;
-    color: #070f24;
+    color: #1b2155;
     font-weight: 600;
     position: relative;
     padding: 0;
@@ -115,12 +115,12 @@ section.header-main {
 
 .main-navigation {
     /*margin-top:6px*/
-    flex: 0 0 63%;
+    flex: 0 0 86%;
 }
 
 .login-app {
     margin-top: 15px;
-    flex: 0 0 37%;
+    flex: 10% 0 14%;
 }
 
 .hero-banner {
@@ -1753,6 +1753,10 @@ ngb-datepicker-navigation {
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
+
+    .border-btn {
+        font-size: 12px;
+    }
 
   .seo-main-title {
     font-size: 18px;

@@ -10,11 +10,12 @@ import { GlobalConstants } from '../constants/global-constants';
 import { NotificationService } from '../services/notification.service';
 
 @Component({
-  selector: 'app-search-box',
-  templateUrl: './search-box.component.html',
-  styleUrls: ['./search-box.component.css'],
+  selector: 'app-search-box-m',
+  templateUrl: './search-box-m.component.html',
+  styleUrls: ['./search-box-m.component.css']
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxMComponent implements OnInit {
+
   searchForm!: FormGroup;
 
   location_list: any = [];

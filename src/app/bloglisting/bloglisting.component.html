@@ -1,4 +1,20 @@
 <section class="blog-listing">
+  <!-- BLOG BREADCRUMB -->
+  <section class="blog-breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-wrap">
+
+        <a routerLink="/">Home</a>
+
+        <span>/</span>
+
+        <span class="active-breadcrumb">
+          Blog
+        </span>
+
+      </div>
+    </div>
+  </section>
   <div class="container">
     <div class="row">
       <!-- LEFT : BLOG CARDS -->
@@ -8,10 +24,7 @@
           <div class="col-md-4" *ngFor="let blog of blogData">
             <div class="blog-card position-relative">
               <div class="blog-img">
-                <img
-                  [src]="baseurl + blog.thumb_image"
-                  class="img-responsive" loading="lazy" alt=" {{ blog.title }}"
-                />
+                <img [src]="baseurl + blog.thumb_image" class="img-responsive" loading="lazy" alt=" {{ blog.title }}" />
                 <span class="blog-tag">{{ blog.category_name }}</span>
               </div>
 

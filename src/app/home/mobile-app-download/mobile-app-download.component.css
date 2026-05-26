@@ -1,0 +1,275 @@
+/* =========================================
+   DOWNLOAD APP SECTION
+========================================= */
+
+.download-app-mobile {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #f5f5f5;
+    border-radius: 0;
+
+    /* RESPONSIVE HEIGHT */
+    aspect-ratio: 375 / 280;
+}
+
+/* =========================================
+   BACKGROUND IMAGE
+========================================= */
+
+.bg-download {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* =========================================
+   CONTENT OVERLAY
+========================================= */
+
+.download-overlay {
+    position: absolute;
+    top: 14%;
+    right: 5%;
+    width: 42%;
+    z-index: 2;
+}
+
+/* =========================================
+   TITLE
+========================================= */
+
+.download-title {
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    color: #121858;
+    letter-spacing: -0.5px;
+}
+
+.download-title span {
+    color: #004dbd;
+}
+
+/* =========================================
+   YELLOW LINE
+========================================= */
+
+.yellow-line {
+    width: 52px;
+    height: 6px;
+    background: #f2c51f;
+    border-radius: 50px;
+    margin-bottom: 14px;
+}
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+.download-subtitle {
+    font-size: clamp(12px, 1.8vw, 16px);
+    line-height: 1.35;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 16px;
+}
+
+/* =========================================
+   PLAY STORE BUTTON
+========================================= */
+
+.playstore-btn {
+    display: inline-block;
+}
+
+.playstore-btn img {
+    width: clamp(95px, 12vw, 145px);
+    object-fit: contain;
+    display: block;
+    transition: 0.3s ease;
+}
+
+/* =========================================
+   TRUST BOX
+========================================= */
+
+.trust-box {
+    position: absolute;
+    right: 4%;
+    bottom: 6%;
+    background: #dcebff;
+    padding: 10px 16px;
+    border-radius: 40px;
+    font-size: clamp(10px, 1.5vw, 14px);
+    font-weight: 700;
+    color: #000;
+    line-height: 1.35;
+    max-width: 46%;
+    z-index: 2;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================
+   TABLET VIEW
+========================================= */
+
+@media(min-width:768px) and (max-width:1024px) {
+
+    .download-app-mobile {
+        aspect-ratio: 380 / 280;
+    }
+
+    .download-overlay {
+        top: 50%;
+        right: 15%;
+        width: 35%;
+        transform: translateY(-50%);
+    }
+
+    .download-title {
+        font-size: 48px;
+        line-height: 1.3;
+        margin-bottom: 18px;
+    }
+
+    .yellow-line {
+        width: 70px;
+        height: 8px;
+        margin-bottom: 20px;
+    }
+
+    .download-subtitle {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+
+    .playstore-btn img {
+        width: 210px;
+    }
+
+    .trust-box {
+        right: 5%;
+        bottom: 7%;
+        padding: 16px 24px;
+        font-size: 18px;
+        border-radius: 50px;
+        max-width: 320px;
+    }
+
+}
+
+/* =========================================
+   MOBILE VIEW
+========================================= */
+
+@media(max-width:767px) {
+
+    .download-app-mobile {
+        aspect-ratio: 375 / 280;
+    }
+
+    .download-overlay {
+        top: 13%;
+        right: 15%;
+        width: 43%;
+    }
+
+    .download-title {
+        font-size: 28px;
+    }
+
+    .download-subtitle {
+        font-size: 15px;
+    }
+
+    .playstore-btn img {
+        width: 125px;
+    }
+
+    .trust-box {
+        right: 3%;
+        bottom: 5%;
+        font-size: 12px;
+        padding: 10px 14px;
+        max-width: 48%;
+    }
+
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media(max-width:480px) {
+
+    .download-overlay {
+        top: 20%;
+        right: 5%;
+        width: 44%;
+    }
+
+    .download-title {
+        font-size: 24px;
+    }
+
+    .yellow-line {
+        width: 40px;
+        height: 5px;
+    }
+
+    .download-subtitle {
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .playstore-btn img {
+        width: 105px;
+    }
+
+    .trust-box {
+        font-size: 10px;
+        padding: 8px 12px;
+        max-width: 50%;
+    }
+
+}
+
+/* =========================================
+   EXTRA SMALL MOBILE
+========================================= */
+
+@media(max-width:360px) {
+
+    .download-app-mobile {
+        aspect-ratio: 375 / 280;
+    }
+
+    .download-overlay {
+        top: 20%;
+        right: 5%;
+        width: 45%;
+    }
+
+    .download-title {
+        font-size: 21px;
+    }
+
+    .download-subtitle {
+        font-size: 11px;
+        line-height: 1.3;
+    }
+
+    .playstore-btn img {
+        width: 92px;
+    }
+
+    .trust-box {
+        font-size: 8.5px;
+        padding: 7px 10px;
+        max-width: 52%;
+    }
+
+}
