@@ -37,7 +37,7 @@
         <div class="sidebar-box" *ngIf="related_blogs != 0">
           <h4>Related Posts</h4>
 
-          <a class="related-post" *ngFor="let relBlog of related_blogs" [routerLink]="['/blog', relBlog.slug]">
+          <a class="related-post" *ngFor="let relBlog of related_blogs" [routerLink]="['/blog',blogDetail.cat_slug, relBlog.slug]">
 
             <img [src]="baseurl + relBlog.thumb_image" loading="lazy" alt="{{ relBlog?.title }}">
             <div>

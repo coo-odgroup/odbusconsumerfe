@@ -3040,7 +3040,7 @@ input[type=radio] {
 
 /* ================= TITLE ================= */
 .seo-main-title {
-  font-size: 22px;   
+  font-size: 22px;
   font-weight: 700;
   color: #0b2c6b;
   margin-bottom: 10px;
@@ -3049,7 +3049,7 @@ input[type=radio] {
 
 /* ================= INTRO ================= */
 .seo-intro {
-  font-size: 14.5px;  
+  font-size: 14.5px;
   color: #333;
   margin-bottom: 18px;
   line-height: 1.8;
@@ -3057,7 +3057,7 @@ input[type=radio] {
 
 /* ================= HEADINGS ================= */
 .seo-full h2 {
-  font-size: 18px;   
+  font-size: 18px;
   font-weight: 600;
   color: #0b2c6b;
   margin-top: 26px;
@@ -3068,8 +3068,8 @@ input[type=radio] {
 
 /* ================= TEXT ================= */
 .seo-full p {
-  font-size: 14px;   
-  line-height: 1.85; 
+  font-size: 14px;
+  line-height: 1.85;
   color: #333;
   margin-bottom: 12px;
 }
@@ -3086,6 +3086,23 @@ input[type=radio] {
   margin-bottom: 6px;
 }
 
+.op-list {
+  column-count: 3;
+  /* number of columns */
+  column-gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.op-list li {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 6px;
+  break-inside: avoid;
+  list-style: none;
+  margin-bottom: 8px;
+}
+
 /* ================= STRONG ================= */
 .seo-full strong {
   font-weight: 600;
@@ -3093,14 +3110,14 @@ input[type=radio] {
 }
 
 /* ================= SPACING FIX ================= */
-.seo-full h2 + p {
+.seo-full h2+p {
   margin-top: 4px;
 }
 
-.seo-full h1{
+.seo-full h1 {
   font-size: 22px;
-    color: #1b2155;
-    font-weight: 600;
+  color: #1b2155;
+  font-weight: 600;
 }
 
 /* ================= MOBILE ================= */
@@ -3119,7 +3136,7 @@ input[type=radio] {
     font-size: 13px;
   }
 
-  .seo-full{
+  .seo-full {
     margin-bottom: 50px !important;
   }
 }
