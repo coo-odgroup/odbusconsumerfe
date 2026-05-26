@@ -1,0 +1,33 @@
+<section class="faq-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-left">
+        <h3 class="title-section">FAQs related to Bus Tickets Booking</h3>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <ul class="faq-tabs nav nav-tabs" role="tablist">
+      <li *ngFor="let cat of faqs; let i = index" [class.active]="activeTab === i">
+        <a href="#" (click)="activeTab = i; $event.preventDefault()">
+          {{ cat.category_name }}
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div *ngFor="let faq of faqs[activeTab]?.faqs; let j = index" class="faq-item"
+        [class.active]="openIndex[activeTab] === j">
+        <div class="faq-question" (click)="openIndex[activeTab] = openIndex[activeTab] === j ? -1 : j">
+          {{ faq.title }}
+          <span class="faq-icon">
+            <i class="fa fa-angle-down"></i>
+          </span>
+        </div>
+
+        <div class="faq-answer" [style.display]="openIndex[activeTab] === j ? 'block' : 'none'"
+          [innerHTML]="faq.content"></div>
+      </div>
+    </div>
+  </div>
+</section>

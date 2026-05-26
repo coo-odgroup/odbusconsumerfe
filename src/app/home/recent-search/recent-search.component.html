@@ -1,0 +1,33 @@
+<section class="recent-search-section">
+  <div class="container" *ngIf="recentSearches.length > 0">
+    <h4 class="recent-title"><span class="line"></span> Recent Searches</h4>
+
+    <div class="recent-wrapper">
+      <!-- ITEM -->
+      <div
+        class="recent-card"
+        *ngFor="let item of recentSearches"
+        [routerLink]="[
+          '/routes',
+          item.source + '-' + item.destination + '-bus-services',
+        ]"
+        [queryParams]="{ date: item.date }"
+      >
+        <div class="recent-icon">
+          <i class="fas fa-history"></i>
+        </div>
+
+        <div class="recent-text">
+          <h5>
+            {{ item.source | titlecase }} →
+            {{ item.destination | titlecase }}
+          </h5>
+
+          <p>
+            {{ formatDate(item.date) | date:'EEE d MMM y' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

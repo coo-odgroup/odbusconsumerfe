@@ -1,0 +1,56 @@
+<section class="odbus-advantage-page">
+
+    <!-- HEADER -->
+    <div class="odbus-header">
+        <div class="container">
+
+            <div class="odbus-breadcrumb">
+                <a href="/">Home</a>
+                <span>›</span>
+                <a href="#">ODBUS Advantage</a>
+                <span>›</span>
+                <span>{{pageDetails.page_name}}</span>
+            </div>
+
+            <h1>{{pageDetails.page_name}}</h1>
+            <p>
+                Book your bus tickets in seconds with a fast, smooth and hassle-free experience.
+            </p>
+
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="container odbus-content">
+
+        <div class="odbus-card combined-card">
+
+            <div class="section-block" *ngIf="pageDetails"  [innerHTML]="pageDetails.page_description">
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="odbus-card faq-section">
+
+            <h3>Frequently Asked Questions</h3>
+
+            <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+
+                <div class="faq-question" (click)="toggleFaq(i)">
+                    <span class="faq-title">
+                        {{ i + 1 }}. {{ faq.question }}
+                    </span>
+
+                    <span class="faq-icon" [class.open]="faq.isOpen">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </div>
+
+                <div class="faq-answer" *ngIf="faq.isOpen" [innerHTML]="faq.answer"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

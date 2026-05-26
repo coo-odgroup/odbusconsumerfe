@@ -7,18 +7,15 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { element } from 'protractor';
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class SeoService {
 
   private apiURL = GlobalConstants.BASE_URL;
-
   private MASTER_SETTING_USER_ID = GlobalConstants.MASTER_SETTING_USER_ID;
-
-  // private meta_title = new  BehaviorSubject('ODBUS - Book Bus Tickets Online at Lowest Fare across Odisha');
-  // private meta_keyword = new  BehaviorSubject('Online bus ticket booking, bus ticket booking Odisha, volvo ac bus booking, bus ticket booking, bus tickets');
-  // private meta_description = new  BehaviorSubject("Book bus tickets online from ODBUS, Odisha's First and Largest Online Bus Ticket Booking Platform with over 1000 bus operators to all routes in Odisha and surrounding States.");
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -26,78 +23,283 @@ export class SeoService {
     })
   }
 
-  private link: HTMLLinkElement;
+  private seoCache: any = {};
 
-  constructor(@Inject(DOCUMENT) private doc, private httpClient: HttpClient, private title: Title, private meta: Meta) {}
+  // private seoRoutes = [
+  //   '/blog/',
+  //   '/routes/',
+  //   '/about-us',
+  //   '/contact-us'
+  // ];
 
-  // deafultmeta_title = this.meta_title.asObservable(); 
-  // deafultmeta_keyword = this.meta_keyword.asObservable();
-  // deafultmeta_description = this.meta_description.asObservable();
+  shouldLoadSeo(url: string): boolean {
 
-  seolist(current_url: any) {
-    this.httpClient.get(this.apiURL + '/seolist?user_id=' + this.MASTER_SETTING_USER_ID, this.httpOptions).subscribe(
-      resp => {
-        this.setMeta(resp['data'], current_url);
-      }
+    // REMOVE QUERY PARAMS
+    const cleanUrl = url.split('?')[0];
+
+    // STATIC PAGES
+    if (
+      cleanUrl === '/about-us' ||
+      cleanUrl === '/contact-us'
+    ) {
+      return true;
+    }
+
+    // ROUTE SEO
+    if (cleanUrl.includes('/routes/')) {
+      return true;
+    }
+
+    // EXCLUDE BLOG LISTING PAGES
+    if (
+      cleanUrl.startsWith('/blog/category/') ||
+      cleanUrl.startsWith('/blog/tag/') ||
+      cleanUrl.startsWith('/blog/author/')
+    ) {
+      return false;
+    }
+
+    // BLOG DETAIL PAGE ONLY
+    const segments = cleanUrl.split('/').filter(Boolean);
+    if (
+      segments.length === 3 &&
+      segments[0] === 'blog'
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private link!: HTMLLinkElement;
+
+  constructor(@Inject(DOCUMENT) private doc: Document, private httpClient: HttpClient, private title: Title, private meta: Meta) { }
+
+  // seolist(current_url: any) {
+  //   this.httpClient.get(this.apiURL + '/seolist?user_id=' + this.MASTER_SETTING_USER_ID, this.httpOptions).subscribe(
+  //     (resp: any) => {
+  //       this.setMeta(resp['data'], current_url);
+  //     }
+  //   );
+  // }
+
+  // seolist(current_url: any) {
+  //   this.httpClient.post(this.apiURL + '/allseolist', { current_url }, this.httpOptions).subscribe(
+  //     (resp: any) => {
+  //       // console.log(resp);
+  //       // this.setMeta(resp['data'], current_url);
+  //       if (resp.status == 1) {
+  //         this.setMeta(resp.data);
+  //       }
+  //     }
+  //   );
+  // }
+
+  // shouldLoadSeo(url: string): boolean {
+
+  //   return this.seoRoutes.some(route =>
+  //     url.includes(route)
+  //   );
+  // }
+
+  seolist(current_url: string): Observable<any> {
+
+    // Route check
+    if (!this.shouldLoadSeo(current_url)) {
+      return of(null);
+    }
+
+    // Cache check
+    if (this.seoCache[current_url]) {
+
+      this.setMeta(this.seoCache[current_url]);
+
+      return of(this.seoCache[current_url]);
+    }
+
+    // API Call
+    return this.httpClient.post<any>(
+      this.apiURL + '/allseolist',
+      { current_url },
+      this.httpOptions
+    ).pipe(
+      tap((resp: any) => {
+
+        if (resp.status == 1) {
+
+          this.seoCache[current_url] = resp.data;
+
+          this.setMeta(resp.data);
+        }
+      })
     );
   }
 
-  setMeta(res: any, current_url: any) {
+  setMeta(c: any) {
 
+    // Canonical URL
     if (this.link === undefined) {
       this.link = this.doc.createElement('link');
       this.link.setAttribute('rel', 'canonical');
       this.doc.head.appendChild(this.link);
     }
+
     this.link.setAttribute('href', this.doc.URL.split('?')[0]);
-    this.meta.updateTag({ name: 'og:url', content: this.doc.URL });
 
-    let flag = false;
+    // Meta Tags
+    this.title.setTitle(c.meta_title || '');
 
-    if (res) {
+    this.meta.updateTag({
+      name: 'description',
+      content: c.meta_description || ''
+    });
 
-      res.forEach((c) => {
-        if (c.page_url == current_url) {
+    this.meta.updateTag({
+      name: 'keywords',
+      content: c.meta_keyword || ''
+    });
 
-          flag = true;
+    this.meta.updateTag({
+      property: 'og:title',
+      content: c.meta_title || ''
+    });
 
-          this.title.setTitle(c.meta_title);
-          this.meta.updateTag({ name: 'description', content: c.meta_description });
-          this.meta.updateTag({ name: 'keywords', content: c.meta_keyword });
-          this.meta.updateTag({ name: 'og:title', content: c.meta_title });
-          this.meta.updateTag({ name: 'og:description', content: c.meta_description });
+    this.meta.updateTag({
+      property: 'og:description',
+      content: c.meta_description || ''
+    });
 
-          if (c.extra_meta != null) {
-            const script = document.createElement('script');
-            script.innerHTML = c.extra_meta;
-            script.id = "extra_meta";
-            this.doc.head.append(script);
-          }
-        }
-      });
+    this.meta.updateTag({
+      property: 'og:url',
+      content: this.doc.URL
+    });
+
+    // Remove old schema
+    this.removeJsonLd();
+
+    // FAQ Schema
+    if (c.faq_schema) {
+
+      const faqScript = this.doc.createElement('script');
+
+      faqScript.type = 'application/ld+json';
+
+      faqScript.text = c.faq_schema;
+
+      faqScript.id = 'faq-schema';
+
+      this.doc.head.appendChild(faqScript);
     }
 
-    if (flag == false) {
-      // this.deafultmeta_description.subscribe((s:any) => { 
-      //   this.meta.updateTag({ name: 'description', content: s });
-      //  this.meta.updateTag({ name: 'og:description', content: s }) ; 
-      //});
-      //this.deafultmeta_title.subscribe((s:any) => { 
-      //  this.title.setTitle(s);
-      // this.meta.updateTag({ name: 'og:title', content: s }) ;
+    // Breadcrumb Schema
+    if (c.breadcrumb_schema) {
 
-      //});
-      //this.deafultmeta_keyword.subscribe((s:any) => { 
-      // this.meta.updateTag({ name: 'keywords', content: s }) ;
+      const breadcrumbScript = this.doc.createElement('script');
 
-      // });
+      breadcrumbScript.type = 'application/ld+json';
 
-      let scripts = document.getElementById('extra_meta');
-      if (scripts) {
-        scripts.parentNode.removeChild(scripts);
-      }
+      breadcrumbScript.text = c.breadcrumb_schema;
+
+      breadcrumbScript.id = 'breadcrumb-schema';
+
+      this.doc.head.appendChild(breadcrumbScript);
+    }
+
+    // Service Schema
+    if (c.service_schema) {
+
+      const serviceScript = this.doc.createElement('script');
+
+      serviceScript.type = 'application/ld+json';
+
+      serviceScript.text = c.service_schema;
+
+      serviceScript.id = 'service-schema';
+
+      this.doc.head.appendChild(serviceScript);
+    }
+
+    // Extra Meta
+    if (c.extra_meta) {
+
+      const script = this.doc.createElement('script');
+
+      script.innerHTML = c.extra_meta;
+
+      script.id = 'extra_meta';
+
+      this.doc.head.appendChild(script);
     }
   }
+
+  removeJsonLd() {
+
+    const faq = this.doc.getElementById('faq-schema');
+    if (faq) faq.remove();
+
+    const breadcrumb = this.doc.getElementById('breadcrumb-schema');
+    if (breadcrumb) breadcrumb.remove();
+
+    const extra = this.doc.getElementById('extra_meta');
+    if (extra) extra.remove();
+  }
+
+  // setMeta(res: any, current_url: any) {
+
+  //   if (this.link === undefined) {
+  //     this.link = this.doc.createElement('link');
+  //     this.link.setAttribute('rel', 'canonical');
+  //     this.doc.head.appendChild(this.link);
+  //   }
+  //   this.link.setAttribute('href', this.doc.URL.split('?')[0]);
+  //   this.meta.updateTag({ name: 'og:url', content: this.doc.URL });
+
+  //   let flag = false;
+
+  //   if (res) {
+
+  //     res.forEach((c: any) => {
+  //       if (c.page_url == current_url) {
+
+  //         flag = true;
+
+  //         this.title.setTitle(c.meta_title);
+  //         this.meta.updateTag({ name: 'description', content: c.meta_description });
+  //         this.meta.updateTag({ name: 'keywords', content: c.meta_keyword });
+  //         this.meta.updateTag({ name: 'og:title', content: c.meta_title });
+  //         this.meta.updateTag({ name: 'og:description', content: c.meta_description });
+
+  //         if (c.extra_meta != null) {
+  //           const script = document.createElement('script');
+  //           script.innerHTML = c.extra_meta;
+  //           script.id = "extra_meta";
+  //           this.doc.head.append(script);
+  //         }
+  //       }
+  //     });
+  //   }
+
+  //   if (flag == false) {
+  //     // this.deafultmeta_description.subscribe((s:any) => { 
+  //     //   this.meta.updateTag({ name: 'description', content: s });
+  //     //  this.meta.updateTag({ name: 'og:description', content: s }) ; 
+  //     //});
+  //     //this.deafultmeta_title.subscribe((s:any) => { 
+  //     //  this.title.setTitle(s);
+  //     // this.meta.updateTag({ name: 'og:title', content: s }) ;
+
+  //     //});
+  //     //this.deafultmeta_keyword.subscribe((s:any) => { 
+  //     // this.meta.updateTag({ name: 'keywords', content: s }) ;
+
+  //     // });
+
+  //     let scripts = document.getElementById('extra_meta');
+  //     if (scripts?.parentNode) {
+  //       scripts.parentNode.removeChild(scripts);
+  //     }
+  //   }
+  // }
 
   seoList() {
     return this.httpClient.get<any>(this.apiURL + '/seolist?user_id=' + this.MASTER_SETTING_USER_ID, this.httpOptions)

@@ -1,0 +1,263 @@
+<div class="mobile-fixed-bottom">
+  <div class="footer-menu row m-0 mobile-bg-danger">
+    <!-- HOME -->
+    <div class="col-3 p-0 text-center">
+      <a routerLink="/" class="home active">
+        <i class="fa-solid fa-house"></i>
+        <p class="mb-0 small">Home</p>
+      </a>
+    </div>
+
+    <!-- BOOKINGS -->
+    <div class="col-3 p-0 text-center">
+      <a routerLink="/dashboard" class="home">
+        <i class="fa-solid fa-ticket"></i>
+        <p class="mb-0 small">My Bookings</p>
+      </a>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
+      <a routerLink="/login" class="home">
+        <i class="fa-regular fa-user"></i>
+        <p class="mb-0 small">Login</p>
+      </a>
+    </div>
+
+    <!-- ACCOUNT -->
+    <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
+      <a routerLink="/myaccount" class="home">
+        <i class="fa-regular fa-circle-user"></i>
+        <p class="mb-0 small">My Account</p>
+      </a>
+    </div>
+
+    <!-- MENU -->
+    <div class="col-3 p-0 text-center">
+      <a (click)="menu()" class="home {{ activeMenu }}">
+        <i class="fa-solid fa-bars-staggered"></i>
+        <p class="mb-0 small">Menu</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- <ng-container *ngIf="MenuActive">
+  <div class="mobile-myaccount-top">
+    <div class="row">
+      <div class="col-5">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" />
+        </div>
+      </div>
+      <div class="col-7 mob-logintx">
+        <a routerLink="login" *ngIf="!session.isLoggedIn()"> Login / Signup </a>
+        <a routerLink="dashboard" *ngIf="session.isLoggedIn()"> Dashboard </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-myaccount-middle">
+    <ul class="mobile-menu">
+      <li>
+        <a routerLink="manage-booking"
+          ><i class="far fa-window-restore"></i> Manage Booking</a
+        >
+      </li>
+      <li>
+        <a routerLink="offers"><i class="fas fa-gifts"></i> Offers</a>
+      </li>
+      <li>
+        <a routerLink="operators"><i class="fas fa-bus"></i> Operators</a>
+      </li>
+      <li>
+        <a routerLink="routes"><i class="fas fa-map-marker-alt"></i> Routes</a>
+      </li>
+      <li>
+        <a routerLink="faq"><i class="fas fa-question"></i> FAQ's</a>
+      </li>
+      <li>
+        <a routerLink="testimonials"><i class="fa fa-star"></i> Testimonials</a>
+      </li>
+      <li>
+        <a routerLink="terms-conditions"
+          ><i class="fas fa-file-image"></i> Terms & Conditions</a
+        >
+      </li>
+      <li>
+        <a routerLink="privacy-policy"
+          ><i class="far fa-file-powerpoint"></i> Privacy Policy</a
+        >
+      </li>
+      <li>
+        <a routerLink="about-us"><i class="fas fa-info-circle"></i> About Us</a>
+      </li>
+    </ul>
+  </div>
+</ng-container> -->
+
+<!-- MOBILE FULL SCREEN MENU -->
+
+<ng-container *ngIf="MenuActive">
+
+  <!-- OVERLAY -->
+  <div class="mobile-menu-overlay">
+
+    <!-- TOP -->
+    <div class="mobile-menu-header">
+
+      <div class="menu-logo">
+        <img src="assets/img/mob-img/logo.png" alt="Footer Logo" />
+      </div>
+
+      <div class="menu-close" (click)="MenuActive=false">
+        <i class="fas fa-times"></i>
+      </div>
+
+    </div>
+
+    <!-- USER -->
+    <div class="menu-user-box">
+
+      <div class="user-icon">
+        <i class="fas fa-user"></i>
+      </div>
+
+      <div class="user-content">
+
+        <h4 *ngIf="!session.isLoggedIn()">Welcome Guest</h4>
+        <h4 *ngIf="session.isLoggedIn()">Welcome Back</h4>
+
+        <p *ngIf="!session.isLoggedIn()">
+          Login to manage your bookings
+        </p>
+
+        <p *ngIf="session.isLoggedIn()">
+          Manage your account & bookings
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- MENU LIST -->
+    <div class="mobile-menu-list">
+
+      <a routerLink="/manage-booking">
+        <div class="menu-icon">
+          <i class="far fa-window-restore"></i>
+        </div>
+
+        <span>Manage Booking</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a>
+
+      <a routerLink="/offers">
+        <div class="menu-icon">
+          <i class="fas fa-gifts"></i>
+        </div>
+
+        <span>Offers</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a>
+
+      <a routerLink="/operators">
+        <div class="menu-icon">
+          <i class="fas fa-bus"></i>
+        </div>
+
+        <span>Operators</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a>
+
+      <a routerLink="/routes">
+        <div class="menu-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+
+        <span>Routes</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a>
+
+      <a routerLink="/faq">
+        <div class="menu-icon">
+          <i class="fas fa-question-circle"></i>
+        </div>
+
+        <span>FAQ's</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a>
+
+      <!-- <a routerLink="testimonials">
+        <div class="menu-icon">
+          <i class="fas fa-star"></i>
+        </div>
+
+        <span>Testimonials</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a> -->
+
+      <a routerLink="terms-conditions">
+        <div class="menu-icon">
+          <i class="fas fa-file-alt"></i>
+        </div>
+
+        <span>Terms & Conditions</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a>
+
+      <a routerLink="/privacy-policy">
+        <div class="menu-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+
+        <span>Privacy Policy</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a>
+
+      <a routerLink="/about-us">
+        <div class="menu-icon">
+          <i class="fas fa-info-circle"></i>
+        </div>
+
+        <span>About Us</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a>
+
+      <a *ngIf="session.isLoggedIn()" (click)="signOut()">
+        <div class="menu-icon">
+          <i class="fas fa-sign-out-alt"></i>
+        </div>
+
+        <span>Logout</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="menu-bottom">
+
+      <a routerLink="/login" *ngIf="!session.isLoggedIn()">
+        Login / Signup
+      </a>
+
+      <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
+        Go To Dashboard
+      </a>
+
+    </div>
+
+  </div>
+
+</ng-container>

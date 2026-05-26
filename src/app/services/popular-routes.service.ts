@@ -1,54 +1,73 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import {  BehaviorSubject, Observable, ReplaySubject, throwError } from 'rxjs';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { BehaviorSubject, Observable, ReplaySubject, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import{ GlobalConstants } from '../constants/global-constants';
+import { GlobalConstants } from '../constants/global-constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PopularRoutesService {
-
   private apiURL = GlobalConstants.BASE_URL;
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
+      'Content-Type': 'application/json',
+    }),
+  };
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  
   all(): Observable<any> {
-    return this.httpClient.get<any>(this.apiURL + '/PopularRoutes',  this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
+    return this.httpClient
+      .get<any>(this.apiURL + '/PopularRoutes', this.httpOptions)
+      .pipe(catchError(this.errorHandler));
   }
 
-  allroutes(per_page,page_no): Observable<any> {
-    return this.httpClient.get<any>(this.apiURL + '/AllRoutes?per_page='+per_page+'&page_no='+page_no,  this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
+  allroutes(per_page, page_no): Observable<any> {
+    return this.httpClient
+      .get<any>(
+        this.apiURL + '/AllRoutes?per_page=' + per_page + '&page_no=' + page_no,
+        this.httpOptions,
+      )
+      .pipe(catchError(this.errorHandler));
+  }
+
+  getallroutes(per_page: any, page_no: any): Observable<any> {
+    return this.httpClient
+      .post<any>(
+        this.apiURL + '/getallroutes',
+        {
+          per_page,
+          page_no,
+        },
+        this.httpOptions,
+      )
+      .pipe(catchError(this.errorHandler));
   }
 
   downloadApp(params): Observable<any> {
-    return this.httpClient.post<any>(this.apiURL + '/downloadapp', JSON.stringify(params), this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
+    return this.httpClient
+      .post<any>(
+        this.apiURL + '/downloadapp',
+        JSON.stringify(params),
+        this.httpOptions,
+      )
+      .pipe(catchError(this.errorHandler));
   }
 
-  errorHandler(error:HttpErrorResponse) {
-    let errorMessage :any;
-    if(error.error instanceof HttpErrorResponse) {
+  errorHandler(error: HttpErrorResponse) {
+    let errorMessage: any;
+    if (error.error instanceof HttpErrorResponse) {
       errorMessage = error.error.message;
     } else {
       errorMessage = error;
-      
+
       //`Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
- }
+  }
 }

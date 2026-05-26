@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-usernotifications',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsernotificationsComponent implements OnInit {
 
-  constructor() { }
+  isMobile: boolean
+  constructor(private deviceService: DeviceDetectorService,) {
+    this.isMobile = this.deviceService.isMobile();
+   }
 
   ngOnInit(): void {
   }

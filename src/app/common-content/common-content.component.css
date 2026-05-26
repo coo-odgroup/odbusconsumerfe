@@ -1,0 +1,441 @@
+/* ================= LAYOUT ================= */
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 0 16px;
+}
+
+.odbus-advantage-page {
+    font-family: "Lato", sans-serif;
+    background: #f5f7fb;
+}
+
+/* ================= HEADER ================= */
+
+.odbus-header {
+    background: linear-gradient(135deg, #1b3c6b, #2f5aa8);
+    color: #fff;
+    padding: 40px 0 55px;
+}
+
+.odbus-header h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 6px 0;
+}
+
+.odbus-header p {
+    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* ================= BREADCRUMB ================= */
+
+.odbus-breadcrumb {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.odbus-breadcrumb a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+}
+
+.odbus-breadcrumb span {
+    margin: 0 6px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ================= CONTENT ================= */
+
+.odbus-content {
+    margin-top: -35px;
+    padding-bottom: 40px;
+}
+
+/* ================= CARD ================= */
+
+::ng-deep .odbus-card {
+    background: #ffffff;
+    padding: 26px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* ================= COMBINED CARD ================= */
+
+::ng-deep .combined-card {
+    padding: 28px;
+}
+
+/* ================= SECTION BLOCK ================= */
+
+::ng-deep .section-block {
+    position: relative;
+}
+
+::ng-deep .section-block:not(:last-child) {
+    border-bottom: 1px solid #eef2f7;
+    padding-bottom: 22px;
+    margin-bottom: 22px;
+}
+
+/* =========================================================
+   INNER HTML CONTENT DESIGN
+========================================================= */
+
+/* ================= HEADINGS ================= */
+
+::ng-deep .section-block h1,
+::ng-deep .section-block h2,
+::ng-deep .section-block h3,
+::ng-deep .section-block h4,
+::ng-deep .section-block h5,
+::ng-deep .section-block h6 {
+    color: #072c6b !important;
+    font-weight: 800 !important;
+    line-height: 1.3;
+    margin-top: 0;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+    font-size: 22px !important;
+}
+
+/* Heading Sizes */
+
+::ng-deep .section-block h1,h2,h3,h4,h5,h6 {
+    font-size: 22px !important;
+}
+
+
+
+/* ================= PARAGRAPH ================= */
+
+::ng-deep .section-block p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #4d5b6b;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* ================= STRONG / BOLD ================= */
+
+::ng-deep .section-block b,
+::ng-deep .section-block strong {
+    color: #072c6b;
+    font-weight: 700;
+}
+
+/* ================= ORDERED LIST ================= */
+
+::ng-deep .section-block ol {
+    list-style: none;
+    padding-left: 0;
+    margin: 24px 0;
+    counter-reset: custom-counter;
+}
+
+::ng-deep .section-block ol li {
+    position: relative;
+    counter-increment: custom-counter;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 30px;
+
+    padding-left: 48px;
+    margin-bottom: 18px;
+
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.7;
+    color: #3d4b5c;
+}
+
+::ng-deep .section-block ol li::before {
+    content: counter(custom-counter);
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    background: #072c6b;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    box-shadow: 0 3px 10px rgba(7, 44, 107, 0.18);
+}
+/* ================= UNORDERED LIST ================= */
+
+::ng-deep .section-block ul {
+    padding-left: 20px;
+    margin-bottom: 24px;
+}
+
+::ng-deep .section-block ul li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #4d5b6b;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* ================= SPACING BETWEEN HEADINGS ================= */
+
+::ng-deep .section-block h1+h1,
+::ng-deep .section-block h1+h2,
+::ng-deep .section-block h1+h3,
+::ng-deep .section-block h1+h4,
+::ng-deep .section-block h1+h5,
+::ng-deep .section-block h1+h6,
+
+::ng-deep .section-block h2+h1,
+::ng-deep .section-block h2+h2,
+::ng-deep .section-block h2+h3,
+::ng-deep .section-block h2+h4,
+::ng-deep .section-block h2+h5,
+::ng-deep .section-block h2+h6,
+
+::ng-deep .section-block h3+h1,
+::ng-deep .section-block h3+h2,
+::ng-deep .section-block h3+h3,
+::ng-deep .section-block h3+h4,
+::ng-deep .section-block h3+h5,
+::ng-deep .section-block h3+h6,
+
+::ng-deep .section-block h4+h1,
+::ng-deep .section-block h4+h2,
+::ng-deep .section-block h4+h3,
+::ng-deep .section-block h4+h4,
+::ng-deep .section-block h4+h5,
+::ng-deep .section-block h4+h6 {
+    margin-top: 28px;
+}
+
+/* ================= LAST ELEMENT ================= */
+
+::ng-deep .section-block>*:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* ================= STEPS ================= */
+
+::ng-deep .odbus-steps {
+    margin-top: 10px;
+}
+
+::ng-deep .step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+::ng-deep .step-icon {
+    min-width: 34px;
+    height: 34px;
+    background: #072c6b;
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+::ng-deep .step-text {
+    font-size: 15px;
+    color: #4d5b6b;
+    font-weight: 500;
+}
+
+/* ================= BENEFITS ================= */
+
+::ng-deep .benefits {
+    padding-left: 18px;
+}
+
+::ng-deep .benefits li {
+    margin-bottom: 8px;
+}
+
+/* ================= FAQ ================= */
+
+.faq-section h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: #072c6b;
+    font-weight: 900;
+}
+
+.faq-item {
+    border: 1px solid #e6ecf5;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: #ffffff;
+    overflow: hidden;
+    transition: 0.25s ease;
+}
+
+.faq-item:hover {
+    border-color: #2f5aa8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+}
+
+.faq-title {
+    font-size: 16px;
+    color: #1b2155;
+    font-weight: 600;
+    line-height: 1.5;
+    flex: 1;
+    padding-right: 8px;
+}
+
+.faq-icon {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    border: 1px solid #1b2155;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #1b2155;
+    font-weight: 600;
+}
+
+.faq-icon i {
+    font-size: 12px;
+    color: #1b2155;
+    transition: 0.3s ease;
+}
+
+.faq-icon.open i {
+    transform: rotate(180deg);
+}
+
+.faq-question:hover .faq-icon {
+    background: #f1f5ff;
+    border-color: #2f5aa8;
+}
+
+.faq-answer {
+    font-size: 14px;
+    color: #5f6b7a;
+    padding: 16px;
+    line-height: 1.8;
+    border-top: 1px solid #f1f3f7;
+    animation: fadeIn 0.25s ease;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+    .odbus-header {
+        padding: 34px 0 50px;
+    }
+
+    .odbus-header h1 {
+        font-size: 20px;
+    }
+
+    .odbus-header p {
+        font-size: 14px;
+    }
+
+    .odbus-content {
+        margin-top: -28px;
+    }
+
+    ::ng-deep .odbus-card {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    ::ng-deep .combined-card {
+        padding: 20px;
+    }
+
+    /* Headings */
+
+    ::ng-deep .section-block h1,h2,h3,h4,h5,h6 {
+        font-size: 20px !important;
+    }
+
+
+    /* Text */
+
+    ::ng-deep .section-block p,
+    ::ng-deep .section-block ul li,
+    ::ng-deep .section-block ol li {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+     ::ng-deep .section-block ol li {
+        font-size: 14px;
+        padding-left: 48px;
+        margin-bottom: 16px;
+    }
+
+    ::ng-deep .section-block ol li::before {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    .faq-question {
+        align-items: flex-start;
+    }
+
+    .faq-title {
+        font-size: 14px;
+    }
+
+    .faq-icon {
+        margin-top: 2px;
+    }
+}

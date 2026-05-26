@@ -1,0 +1,76 @@
+<section class="blog-details">
+  <div class="container">
+    <div class="row">
+      <!-- LEFT CONTENT -->
+      <div class="col-md-9">
+        <div class="blog-detail-card">
+          <div class="blog-img">
+            <img [src]="baseurl + blogDetail?.featured_image" class="img-responsive" loading="lazy" alt="{{blogDetail?.title}}">
+          </div>
+
+          <div class="blog-content">
+            <div class="blog-meta-row">
+              <span class="blog-tag-inline">{{ blogDetail?.category_name }}</span>
+              <span class="blog-date"><a [routerLink]="['/blog/author', blogDetail?.author_slug]">
+                {{ blogDetail?.author }}</a> | {{ blogDetail?.created_at | date:'dd MMM yyyy' }}
+              </span>
+            </div>
+
+            <h1 class="blog-title">
+              {{blogDetail?.title}}
+            </h1>
+
+            <div [innerHTML]="blogDetail?.content"></div>
+            <div class="blog-post-tags">
+              <span class="tag-title" *ngIf="blogDetail?.tags != 0">Tags :</span>
+              <a class="post-tag" *ngFor="let tag of blogDetail?.tags">{{ tag?.tag_name }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- RIGHT SIDEBAR -->
+      <div class="col-md-3 blog-sidebar">
+
+        <!-- RELATED POSTS -->
+        <div class="sidebar-box" *ngIf="related_blogs != 0">
+          <h4>Related Posts</h4>
+
+          <a class="related-post" *ngFor="let relBlog of related_blogs" [routerLink]="['/blog', relBlog.slug]">
+
+            <img [src]="baseurl + relBlog.thumb_image" loading="lazy" alt="{{ relBlog?.title }}">
+            <div>
+              <p class="rp-title">{{ relBlog?.title }}</p>
+              <span class="rp-date">
+                {{ relBlog?.created_at | date:'dd MMM yyyy' }}
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="sidebar-box">
+          <h4>Categories</h4>
+          <ul class="category-list">
+            <li *ngFor="let category of blogcat">
+              <a [routerLink]="['/blog/category', category.slug]"><span>{{ category.category_name }}</span></a>
+              <span class="cat-count">{{ category.total }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- TAGS -->
+        <div class="sidebar-box" *ngIf="blogDetail?.tags?.length">
+          <h4>Tags</h4>
+          <div class="tag-list">
+            <a *ngFor="let tag of blogDetail?.tags" [routerLink]="['/blog/tag', tag.slug]">
+              <span>{{ tag.tag_name }}</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

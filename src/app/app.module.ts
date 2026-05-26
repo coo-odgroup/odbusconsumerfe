@@ -14,41 +14,20 @@ import { PageErrorComponent } from './page-error/page-error.component';
 import { AppInitializerService } from './services/initializer.service';
 import { BookingComponent } from './booking/booking.component';
 import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
-import { TestimonialsComponent } from './testimonials/testimonials.component';
-import { OperatorsComponent } from './operators/operators.component';
-import { TncComponent } from './tnc/tnc.component';
-import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { SupportComponent } from './support/support.component';
-import { FaqComponent } from './faq/faq.component';
-import { ThankyouComponent } from './thankyou/thankyou.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { AboutUsComponent } from './about-us/about-us.component';
 import { NewsComponent } from './news/news.component';
-import { CareersComponent } from './careers/careers.component';
-import { RoutesComponent } from './routes/routes.component';
 import { OffersComponent } from './offers/offers.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { ManagebookingdetailsComponent } from './managebookingdetails/managebookingdetails.component';
-import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './login/login.component';
 import {ToastrModule} from 'ngx-toastr';
-import { OtpComponent } from './otp/otp.component'
 import { NgbDate, NgbDateParserFormatter, NgbModule,NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomdateformatService } from "./services/customdateformat.service";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { MyaccountComponent } from './user/myaccount/myaccount.component';
-import { UserdashboardComponent } from './user/userdashboard/userdashboard.component';
-import { UsernavbarComponent } from './user/usernavbar/usernavbar.component';
+// import { UsernavbarComponent } from './user/usernavbar/usernavbar.component';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
-import { UsernotificationsComponent } from './user/usernotifications/usernotifications.component';
-import { UserwalletComponent } from './user/userwallet/userwallet.component';
-import { UserinvitefriendsComponent } from './user/userinvitefriends/userinvitefriends.component';
-import { UserrewardsComponent } from './user/userrewards/userrewards.component';
-import { UserreviewsComponent } from './user/userreviews/userreviews.component';
-import { UserhelpsupportComponent } from './user/userhelpsupport/userhelpsupport.component';
-import { OperatorDetailComponent } from './operator-detail/operator-detail.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { CountdownModule } from 'ngx-countdown';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
@@ -58,12 +37,26 @@ import { LightboxModule } from 'ngx-lightbox';
 import { FilterPipe } from './filter.pipe';
 import { QRCodeModule } from 'angular2-qrcode';
 import { PnrdetailComponent } from './pnrdetail/pnrdetail.component';
-import { ApiComponent } from './api/api.component';
 import { SuccessComponent } from './success/success.component';
-import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { ProfiledeleteComponent } from './profiledelete/profiledelete.component';
 import { environment } from '../environments/environment';
 import { PaymentStatusModule } from './payment-status/payment-status.module';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RecentSearchComponent } from './home/recent-search/recent-search.component';
+import { AdvantageComponent } from './home/advantage/advantage.component';
+import { GrowingComponent } from './home/growing/growing.component';
+import { DownloadAppComponent } from './home/download-app/download-app.component';
+import { OdbusOffersComponent } from './home/odbus-offers/odbus-offers.component';
+import { FaqsComponent } from './home/faqs/faqs.component';
+import { InfoComponent } from './home/info/info.component';
+import { RouteLinksComponent } from './home/route-links/route-links.component';
+import { TopOperatorsComponent } from './home/top-operators/top-operators.component';
+import { TopRoutesComponent } from './home/top-routes/top-routes.component';
+import { CommonContentComponent } from './common-content/common-content.component';
+import { FooterMenuComponent } from './footer-menu/footer-menu.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
+
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -93,42 +86,32 @@ const ngWizardConfig: NgWizardConfig = {
     SearchComponent,
     PageErrorComponent,
     BookingComponent,
-    TestimonialsComponent,
-    OperatorsComponent,
-    TncComponent,
-    PrivacyPolicyComponent,
     ManageBookingComponent,
     SupportComponent,
-    FaqComponent,
-    ThankyouComponent,
-    ContactUsComponent,
-    AboutUsComponent,
     NewsComponent,
-    CareersComponent,
-    RoutesComponent,
     OffersComponent,
     ManagebookingdetailsComponent,
-    SignupComponent,
-    LoginComponent,
-    OtpComponent,
-    MyaccountComponent,
-    UserdashboardComponent,
-    UsernavbarComponent,
-    UsernotificationsComponent,
-    UserwalletComponent,
-    UserinvitefriendsComponent,
-    UserrewardsComponent,
-    UserreviewsComponent,
-    UserhelpsupportComponent,
-    OperatorDetailComponent,
-    FilterPipe,
+    // FilterPipe,
     PnrdetailComponent,
-    ApiComponent,
     SuccessComponent,
-    MaintenanceComponent,
     ProfiledeleteComponent,
+    RecentSearchComponent,
+    AdvantageComponent,
+    GrowingComponent,
+    DownloadAppComponent,
+    OdbusOffersComponent,
+    FaqsComponent,
+    InfoComponent,
+    RouteLinksComponent,
+    TopOperatorsComponent,
+    TopRoutesComponent,
+    CommonContentComponent,
+    FooterMenuComponent,
+    SearchBoxComponent
   ], 
   imports: [
+    // BrowserAnimationsModule,
+    NoopAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     NgSelectModule,
     FormsModule,

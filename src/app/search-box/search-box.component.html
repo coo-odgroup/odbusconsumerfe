@@ -1,0 +1,89 @@
+<section class="search-section">
+  <!-- SEARCH -->
+  <div class="container search-overlap">
+    <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
+      <div class="search-box-v5">
+        <div class="row no-gutters align-items-end search-inner">
+          <!-- FROM -->
+          <div class="col-md-3 field from-field">
+            <label>From</label>
+            <div class="input-box">
+              <img src="assets/img/Icon-metro-location.svg" class="icon-from" />
+              <input
+                type="search"
+                class="form-control"
+                [ngbTypeahead]="search"
+                [resultTemplate]="rt"
+                [resultFormatter]="formatter"
+                [inputFormatter]="formatter"
+                [(ngModel)]="swapsource"
+                formControlName="source"
+                placeholder="Enter Source"
+              />
+              <!-- <span class="clear-icon">✖</span> -->
+            </div>
+          </div>
+
+          <!-- TO -->
+          <div class="col-md-3 field to-field">
+            <label>To</label>
+
+            <div class="swap-center" (click)="swap()">
+              <img src="assets/img/swap.svg" />
+            </div>
+
+            <div class="input-box">
+              <img src="assets/img/Icon-metro-location.svg" class="icon-to" />
+              <input
+                type="search"
+                class="form-control"
+                [ngbTypeahead]="search"
+                [resultTemplate]="rt2"
+                [resultFormatter]="formatter"
+                [inputFormatter]="formatter"
+                [(ngModel)]="swapdestination"
+                formControlName="destination"
+                placeholder="Enter Destination"
+              />
+              <!-- <span class="clear-icon">✖</span> -->
+            </div>
+          </div>
+          <div class="col-md-4 field date-field">
+            <label>Date of Journey</label>
+
+            <div class="date-wrapper">
+              <!-- Journey Date Box -->
+              <div class="input-box date-box">
+                <img src="assets/img/Icon-metro-calendar.svg" loading="lazy" alt="calender" class="icon-date" />
+
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="entry_date"
+                  ngbDatepicker
+                  #d="ngbDatepicker"
+                  (click)="d.toggle()"
+                  placeholder="Journey Date"
+                  readonly
+                />
+              </div>
+
+              <!-- Today Box -->
+              <div class="quick-date-today" (click)="searchToday()">Today</div>
+
+              <!-- Tomorrow Box -->
+              <div class="quick-date-tomorrow" (click)="searchTomorrow()">
+                Tomorrow
+              </div>
+            </div>
+          </div>
+
+          <!-- BUTTON -->
+          <div class="col-md-2 field search-btn-wrap">
+            <button type="submit" class="btn search-btn-v5">Search</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

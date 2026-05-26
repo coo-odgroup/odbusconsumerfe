@@ -1,7 +1,8 @@
 .dropdown-menu {
     background-color: #f8f8f8;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
@@ -14,6 +15,113 @@ a{
     color: #072c6b;
 }
 
-.fix-top{
-    margin-top:75px !important;
+.fix-top {
+    margin-top: 75px !important;
+}
+
+.login-app a.nav-link{
+    text-decoration: none !important;
+    color: #1b2155 !important;
+}
+
+/* added by siraz */
+
+/* TOP BAR */
+.top-offer-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1100;
+    background: linear-gradient(90deg, #1b2155, #2d3aa8, #f0c92f);
+    color: #fff;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* CONTENT */
+.offer-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.offer-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* BUTTON */
+.install-btn {
+    background: #fff;
+    color: #1b2155;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.install-btn:hover {
+    background: #f0c92f;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+    position: absolute;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+/* 🔥 HOVER EFFECT */
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    color: #1b2155;
+}
+
+/* 🔥 CLICK EFFECT */
+.close-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* 🔥 NAVBAR FIX */
+.header-main {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: top 0.3s ease;
+}
+
+/* WHEN BAR VISIBLE */
+.header-main.with-topbar {
+    top: 50px;
+}
+
+/* 🔥 SPACING FIX */
+.fix-top {
+    /* height: 70px; */
+    transition: height 0.3s ease;
+}
+
+/* WHEN BAR VISIBLE */
+/* .fix-top.with-topbar {
+    height: 120px;
+} */
+
+.trust-badge{
+    width: 78px;
+    height: auto;
+    margin-left: 20px;
 }

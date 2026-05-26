@@ -1,32 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { OfferService } from '../services/offer.service';
 import { GlobalConstants } from '../constants/global-constants';
 import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
 import { LoginChecker } from '../helpers/loginChecker';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { NgbDatepickerConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.css'],
-  providers: [NgbActiveModal]
 })
 export class OffersComponent implements OnInit {
-
-  allOffers: any = [];
+  allOffers: any[] = [];
   url_path = '';
   currentUrl: any;
 
   isMobile: boolean;
   session: LoginChecker;
   MenuActive: boolean = false;
-  OfferData: any = [];
-  activeMenu: string;
+  OfferData: any = null;
+  activeMenu: string = '';
+
+  //  CUSTOM MODAL STATE
+  showOfferModal: boolean = false;
+  fragmentValue: string | null = null;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -36,52 +38,69 @@ export class OffersComponent implements OnInit {
     private seo: SeoService,
     private location: Location,
     private detectService: DeviceDetectorService,
-    private modalService: NgbModal
+    private route: ActivatedRoute,
   ) {
-
     this.isMobile = this.detectService.isMobile();
     this.session = new LoginChecker();
     this.currentUrl = location.path().replace('/', '');
     this.seo.seolist(this.currentUrl);
+  }
 
-    this.spinner.show();
+  ngOnInit(): void {
+    // Subscribe only once
+    this.route.fragment.subscribe((fragment) => {
+      this.fragmentValue = fragment;
+      this.checkAndOpenOffer();
+    });
 
-    const offerData = localStorage.getItem('offerData');
+    // Load offers
+    this.loadOffers();
+  }
 
-    if (offerData) {
-      const data = JSON.parse(offerData);
-      this.allOffers = data;
-      this.spinner.hide();
-    } else {
-      const param = {
-        user_id: GlobalConstants.MASTER_SETTING_USER_ID
-      };
-
-      this.offerService.Offers(param).subscribe(
-        res => {
-          localStorage.setItem('offerData', JSON.stringify(res.data));
-          if (res.status == 1) {
-            this.allOffers = res.data;
-          }
-
-          this.spinner.hide();
-        }
-      );
+  checkAndOpenOffer() {
+    if (!this.fragmentValue || !this.allOffers?.length) {
+      return;
     }
 
-    // const data = {
-    //   user_id: GlobalConstants.MASTER_SETTING_USER_ID
-    // };
+    const index = this.allOffers.findIndex(
+      (offer: any) =>
+        offer.coupon?.coupon_code === this.fragmentValue ||
+        offer.unique_id === this.fragmentValue
+    );
 
-    // this.offerService.Offers(data).subscribe(
-    //   res => {
-    //     if (res.status == 1) {
-    //       this.allOffers = res.data;
-    //       // console.log(this.allOffers);
-    //     }
+    if (index !== -1) {
+      this.openOffer(index);
+    }
+  }
 
-    //     this.spinner.hide();
-    //   });
+  loadOffers() {
+    this.spinner.show();
+
+    const param = {
+      user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+    };
+
+    this.offerService.Offers(param).subscribe(
+      (res) => {
+        if (res.status == 1 && res.data) {
+          this.allOffers = res.data;
+
+          localStorage.setItem(
+            'offerData',
+            JSON.stringify(res.data)
+          );
+
+          // Check fragment after offers loaded
+          this.checkAndOpenOffer();
+        }
+
+        this.spinner.hide();
+      },
+      (err) => {
+        console.error('Offer API error:', err);
+        this.spinner.hide();
+      }
+    );
   }
 
   menu() {
@@ -94,18 +113,36 @@ export class OffersComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  OfferModal(modal: any, i: any) {
-    this.spinner.show();
-    this.modalService.open(modal);
+  openOffer(i: number) {
+    if (!this.allOffers || !this.allOffers[i]) return;
+
     this.OfferData = this.allOffers[i];
-    console.log(this.OfferData);
-    this.spinner.hide();
+
+    this.showOfferModal = true;
+  }
+
+  closeOfferModal() {
+    this.showOfferModal = false;
+    this.OfferData = null;
   }
 
   getImagePath(slider_img: any) {
+    if (!slider_img) return '';
     let objectURL = 'data:image/*;base64,' + slider_img;
     return this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
   }
 
-  ngOnInit(): void { }
+  copyCoupon(code: string) {
+    if (!code) return;
+
+    navigator.clipboard
+      .writeText(code)
+      .then(() => {
+        console.log('Coupon copied:', code);
+        alert('Coupon copied!');
+      })
+      .catch((err) => {
+        console.error('Copy failed:', err);
+      });
+  }
 }

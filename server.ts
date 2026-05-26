@@ -57,11 +57,28 @@ export function app(): express.Express {
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
   server.get('*.*', express.static(distFolder, {
-    maxAge: '1y'
+    maxAge: '1y',
+    immutable: true,
   }));
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
+
+    // =========================================
+    // PREVENT SSR HTML PAGE CACHING
+    // =========================================
+    res.setHeader(
+      'Cache-Control',
+      'no-store, no-cache, must-revalidate, proxy-revalidate'
+    );
+
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.setHeader('Surrogate-Control', 'no-store');
+
+    // Optional security headers
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+
     res.render(indexHtml, { 
       req, 
       providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] 

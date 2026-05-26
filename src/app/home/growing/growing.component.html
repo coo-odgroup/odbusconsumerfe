@@ -1,0 +1,33 @@
+<ng-container *ngIf="isBrowser">
+<section class="stats-section">
+  <div class="container">
+
+    <h2 class="stats-title">THE NUMBERS ARE GROWING</h2>
+
+    <div class="stats-grid">
+
+      <div class="stat-card" *ngFor="let counter of counters; let i = index">
+
+        <!-- ICON -->
+        <div class="icon-wrap">
+          <img *ngIf="i === 0" src="assets/img/routs.png" loading="lazy" alt="routes">
+          <img *ngIf="i === 1" src="assets/img/buses.png" loading="lazy" alt="buses">
+          <img *ngIf="i === 2" src="assets/img/sat-cust.png" loading="lazy" alt="satisfied customers">
+          <img *ngIf="i === 3" src="assets/img/support.png" loading="lazy" alt="support">
+        </div>
+
+        <!-- COUNT -->
+        <h3 class="count">
+          {{ getDisplay(counter) }}
+        </h3>
+
+        <!-- LABEL -->
+        <p>{{ counter.label }}</p>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+</ng-container>

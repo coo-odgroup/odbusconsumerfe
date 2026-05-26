@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-footer',
@@ -28,6 +29,11 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
   location_list: any = [];
   private commonDataSubscription: Subscription | null = null;
 
+  private apiurl = GlobalConstants.BASE_URL;
+  // baseurl = "http://localhost:7001/ODBUS/odbusproviderbe/public/";
+
+  bloglist: any;
+
   constructor(
     private sanitizer: DomSanitizer,
     private commonService: CommonService,
@@ -36,7 +42,8 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
     private router: Router,
     private datePipe: DatePipe,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private injector: Injector // lazy-get browser-only services
+    private injector: Injector, // lazy-get browser-only services
+    private http: HttpClient
   ) {
     // Avoid any browser-only calls here. Keep constructor synchronous and safe for SSR.
     this.session = new LoginChecker();
@@ -61,6 +68,12 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
   }
 
   ngOnInit(): void {
+    const reddata = {
+      "limit": 3
+    }
+    // this.http.post(this.apiurl + "/bloglist", reddata).subscribe((res: any) => {
+    //   this.bloglist = res.data.blogs;
+    // });
     // Subscribe to commonData changes
     this.commonDataSubscription = this.commonService.commonData$.subscribe(data => {
       if (data) {
@@ -93,16 +106,16 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
 
     // Use pre-loaded PopularInfo from AppInitializer (handles SSR and browser)
     const popularInfo = this.commonService.getPopularInfo();
-    console.log('PopularInfo in footer:', popularInfo ? 'loaded' : 'NOT loaded');
+    // console.log('PopularInfo in footer:', popularInfo ? 'loaded' : 'NOT loaded');
     if (popularInfo) {
-     // console.log('Using pre-loaded PopularInfo in footer');
+      // console.log('Using pre-loaded PopularInfo in footer');
       this.popularInfoGetData(popularInfo);
     } else {
       // Fallback: check localStorage (browser only)
       if (isPlatformBrowser(this.platformId)) {
         const storedData = localStorage.getItem('PopularInfo');
-          if (storedData) {
-        //  console.log('Loading PopularInfo from localStorage in footer');
+        if (storedData) {
+          //  console.log('Loading PopularInfo from localStorage in footer');
           try {
             const data = JSON.parse(storedData);
             this.popularInfoGetData(data);
@@ -113,7 +126,7 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
         }
 
         // Last resort: fetch from API (browser only, not SSR blocking)
-    //    console.log('Fetching PopularInfo from API as fallback in footer');
+        //    console.log('Fetching PopularInfo from API as fallback in footer');
         const param = {
           user_id: GlobalConstants.MASTER_SETTING_USER_ID,
           locationName: ""
@@ -136,6 +149,32 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
       } else {
         // On server: do nothing (SSR should be using preloaded data)
       }
+    }
+
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+
+        const tabs = document.querySelectorAll('.route-tabs li');
+        const panes = document.querySelectorAll('.route-link-section .tab-pane');
+
+        tabs.forEach((tab: any, index: number) => {
+
+          tab.addEventListener('click', (e: any) => {
+            e.preventDefault();
+
+            tabs.forEach((t: any, i: number) => {
+              t.classList.remove('active');
+              panes[i].classList.remove('active');
+            });
+
+            tab.classList.add('active');
+            panes[index].classList.add('active');
+
+          });
+
+        });
+
+      }, 500);
     }
   }
 

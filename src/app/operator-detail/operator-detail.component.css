@@ -1,94 +1,132 @@
-.operators-result{background-color: #e7eaeb; padding: 4rem 0;}
-.opo-img{    width: 32%;
+/* .operators-result {
+    background-color: #e7eaeb;
+    padding: 4rem 0;
+}
+
+.opo-img {
+    width: 32%;
     display: block;
-    margin: auto;}
-.icon-box h4{     font-weight: 400;
+    margin: auto;
+}
+
+.icon-box h4 {
+    font-weight: 400;
     margin-bottom: 2px;
     font-size: 22px;
     text-align: center;
     margin-top: 20px;
-    color: #323232;}
-    .icon-box p{     font-weight: 700;
+    color: #323232;
+}
+
+.icon-box p {
+    font-weight: 700;
     margin-bottom: 0px;
     font-size: 20px;
     text-align: center;
     color: #072C6B;
     margin-top: 0;
-    color: #072c6b;}
-.oper-heading{font-size:52px;
+    color: #072c6b;
+}
+
+.oper-heading {
+    font-size: 52px;
     text-align: center;
     text-transform: uppercase;
     color: #072c6b;
-    font-weight: 800;}
-.oper-para{    font-weight: 400;
+    font-weight: 800;
+}
+
+.oper-para {
+    font-weight: 400;
     margin-bottom: 52px;
     font-size: 16px;
     text-align: center;
     margin-top: 40px;
-    color: #515b6b;}
-    thead{background-color: #EFC003; color: #072C6B;}
-    .ma-heading{font-size:42px;
+    color: #515b6b;
+}
+
+thead {
+    background-color: #EFC003;
+    color: #072C6B;
+}
+
+.ma-heading {
+    font-size: 42px;
     text-align: center;
     color: #072C6B;
     font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: 40px;}
-    .table{background-color: #ffffff; border:none; color: #072C6B;}
-    .table tr td{ border: none;
-    padding: 10px 15px;}
-    .table tr td a{background-color: #efc003;
+    margin-bottom: 40px;
+}
+
+.table {
+    background-color: #ffffff;
+    border: none;
+    color: #072C6B;
+}
+
+.table tr td {
+    border: none;
+    padding: 10px 15px;
+}
+
+.table tr td a {
+    background-color: #efc003;
     color: #072c6b;
     font-weight: 600;
     padding: 6px 13px;
     text-decoration: none;
-    text-align: left;}
-     .box-footer {
-     border-top-left-radius: 0;
-     border-top-right-radius: 0;
-     border-bottom-right-radius: 3px;
-     border-bottom-left-radius: 3px;
-     border-top: 1px solid #f4f4f4;
-     padding: 10px;
-     background-color: #fff
- }
+    text-align: left;
+    border-radius: 8px;
+}
 
- .pull-right {
-     float: right !important
- }
+.box-footer {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top: 1px solid #f4f4f4;
+    padding: 10px;
+    background-color: #fff
+}
 
- .pagination>li {
-     display: inline
- }
+.pull-right {
+    float: right !important
+}
 
- .pagination-sm>li:first-child>a,
- .pagination-sm>li:first-child>span {
-     border-top-left-radius: 3px;
-     border-bottom-left-radius: 3px
- }
+.pagination>li {
+    display: inline
+}
 
- .pagination>li:first-child>a,
- .pagination>li:first-child>span {
-     margin-left: 0;
-     border-top-left-radius: 4px;
-     border-bottom-left-radius: 4px
- }
+.pagination-sm>li:first-child>a,
+.pagination-sm>li:first-child>span {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px
+}
 
- .pagination>li>a {
-     background: #fafafa;
-     color: #666
- }
+.pagination>li:first-child>a,
+.pagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px
+}
 
- .pagination-sm>li>a,
- .pagination-sm>li>span {
-     padding: 5px 10px;
-     font-size: 16px;
+.pagination>li>a {
+    background: #fafafa;
+    color: #666
+}
+
+.pagination-sm>li>a,
+.pagination-sm>li>span {
+    padding: 5px 10px;
+    font-size: 16px;
     font-weight: 600;
-     line-height: 1.5
- }
+    line-height: 1.5
+}
 
- .pagination>li>a,
- .pagination>li>span {
-         position: relative;
+.pagination>li>a,
+.pagination>li>span {
+    position: relative;
     float: left;
     padding: 6px 14px;
     margin-left: -1px;
@@ -98,40 +136,42 @@
     background-color: #fff;
     border: 1px solid #072c6b;
     margin: 0 5px;
- }
+}
 
 
 .textimonials-result {
     margin: 50px 0;
     padding: 0 20px 0 5px;
 }
+
 .textimoni-h2 {
     text-align: center;
     color: #072C6B;
     margin-bottom: 0px;
     font: normal 900 32px Cooper;
 }
+
 .textimoni-h1 {
     text-align: center;
     color: #072C6B;
     font: normal 900 52px Cooper;
 }
 
-.de-angu3{
+.de-angu3 {
     width: 100%;
     background: #ffffff 0% 0% no-repeat padding-box;
-    padding:20px;
+    padding: 20px;
     opacity: 1;
     border: 0 !important;
     display: inline-block;
     vertical-align: top;
     position: relative;
     margin-bottom: 37px;
-    /* max-height: 350px; */
     min-height: 350px;
-    border:1px solid #bebebe !important;
-    border-radius:4px;
+    border: 1px solid #bebebe !important;
+    border-radius: 4px;
 }
+
 .testimonials-clean .item {
     margin-bottom: 8px;
     display: inline-block;
@@ -142,12 +182,14 @@
     font-size: 20px;
     margin-bottom: 0;
 }
+
 .testimonials-clean .item img {
     max-width: 40px;
     float: left;
     margin-right: 12px;
     margin-top: 0px;
 }
+
 .testimonials-clean .item .star1 {
     max-width: 39px;
     float: left;
@@ -163,24 +205,27 @@
     height: 40px;
     border-radius: 100%;
 }
+
 .star1 {
     width: 12px;
     opacity: 1;
 }
+
 .heading-ser-tes {
     color: #072C6B;
-    margin-bottom:20px !important;
-    /* padding-top: 25px !important; */
+    margin-bottom: 20px !important;
     font-size: 20px;
     font-weight: 600 !important;
     text-align: center;
     text-transform: capitalize;
 }
+
 .description {
     color: #323232;
     font-size: 17px;
 }
-.testimonial-link{
+
+.testimonial-link {
     background-color: #EFC003;
     font-size: 16px;
     display: block;
@@ -192,326 +237,1068 @@
     border-radius: 5px;
     width: 15%;
 }
-.testi-padding-bottom{
+
+.testi-padding-bottom {
     margin-top: 20px;
 }
-.re-name{
+
+.re-name {
     text-align: center;
     color: #072C6B;
-    font-size:20px;
-margin-bottom: 0;}
-.name{
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.name {
     color: #072C6B;
     font-size: 17px;
     text-transform: uppercase;
     font-weight: 600;
 }
-.place{
+
+.place {
     color: #072C6B;
     font-size: 16px;
     text-transform: capitalize !important;
 }
-    .box{margin-bottom: 40px;}
+
+.box {
+    margin-bottom: 40px;
+}
+
 .star2 {
     width: 21px;
     margin-left: 2px;
     opacity: 1;
 }
-.rv_img1{    margin-top: -11px;
+
+.rv_img1 {
+    margin-top: -11px;
     margin: 0 auto;
-    display: table;}
-    .re-name1 {
-        text-align: center;
+    display: table;
+}
+
+.re-name1 {
+    text-align: center;
     color: #072C6B;
     font-size: 36px;
     font-weight: 800;
 }
-.rati{font-size: 25px; font-weight: 600;}
- .aminitis-img{width: 50%; display: block; margin: auto;}
- .ami-para{font-size: 16px !important; }
- 
- .operators-aminitis{
+
+.rati {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.aminitis-img {
+    width: 50%;
+    display: block;
+    margin: auto;
+}
+
+.ami-para {
+    font-size: 16px !important;
+}
+
+.operators-aminitis {
     background-color: #ffffff;
     padding: 4rem 0;
 }
-ul{margin-bottom: 0;
+
+ul {
+    margin-bottom: 0;
     margin: 0 auto;
     display: table;
 }
+
 ngb-rating.d-inline-flex {
     color: #efc317 !important;
-    font-size:26px;
-  }
-  span.ng-star-inserted {
+    font-size: 26px;
+}
+
+span.ng-star-inserted {
     font-size: 21px !important;
-  }
+}
 
-  .icon-box-am{
-      background: #efc003;
-      border-radius: 4px;
-      padding: 12px;
-      padding-bottom: 4px;
-  }
+.icon-box-am {
+    background: #efc003;
+    border-radius: 50%;
+    padding: 20px;
+}
 
-  .icon-box-am .icon1{
-      text-align: center;
-      margin-bottom: 10px;
-  }
+.icon-box-am .icon1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
 
-  .icon-box-am .ami-para{
+.icon-box-am .ami-para {
     font-size: 16px !important;
     color: #ffffff;
     text-align: center;
     font-weight: 600;
-  }
+}
 
-  .stars{
-      width: 160px;
-  }
+.stars {
+    width: 160px;
+}
 
 
-   /* Mobile Version Support Start- */
-    .mobile-mybooking-top{
-        background-color: #efc003;
-        padding:12px 18px 14px;
-        position: fixed;
-        z-index: 99;
-        width: 100%;
-        top: 0;
-        box-shadow: 0 3px 10px #0003;
+.mobile-mybooking-top {
+    background-color: #efc003;
+    padding: 12px 18px 14px;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    top: 0;
+    box-shadow: 0 3px 10px #0003;
+}
+
+.mobile-mybooking-top .mob-arrow-left i {
+    font-size: 30px;
+    color: #072c6b;
+    margin-top: 10px;
+}
+
+.mobile-mybooking-top .mob-list-center h5 {
+    color: #072c6b;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 5px;
+    margin-bottom: 4px;
+
+}
+
+.mobile-logo img {
+    height: 42px;
+    float: right;
+}
+
+.mobile-operators-busd-middle {
+    margin: 88px 20px 30px
+}
+
+.mobile-operators-busd-middle h4 {
+    font-size: 22px;
+    text-align: center;
+    font-weight: 600;
+    color: #072c6b;
+    text-transform: uppercase;
+}
+
+.mobile-operators-busd-middle .opo-img {
+    width: 75%;
+    display: block;
+    margin: auto;
+}
+
+.mobile-operators-busd-middle .icon-box {
+    text-align: center;
+}
+
+.mobile-operators-busd-middle .icon-box h4 {
+    font-weight: 400;
+    margin-bottom: 2px;
+    font-size: 16px !important;
+    text-align: center;
+    margin-top: 10px;
+    color: #323232;
+    text-transform: capitalize !important;
+}
+
+.mobile-operators-busd-middle .icon-box p .oper-heading {
+    text-align: center;
+    color: #072c6b;
+    font-size: 16px;
+}
+
+.mobile-amenities-middle {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 30px;
+}
+
+.mobile-amenities-middle h4 {
+    font-size: 20px;
+    olor: #072c6b;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.mobile-amenities-middle .de-angu {
+    border: 0;
+    padding: 8px;
+    background: #efc003;
+    text-align: center;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.mobile-amenities-middle .de-angu .iconsize {
+    height: 60px;
+}
+
+.mobile-amenities-middle .de-angu .safety_span {
+    font-size: 10px;
+    position: absolute;
+    font-size: 14px;
+    color: #fff;
+    position: relative;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.mobile-amenities-middle .mob-photo {
+    width: 100%;
+    height: 100px;
+}
+
+.mobile-amenities-middle .pt-44 {
+    padding-top: 38px !important;
+}
+
+.mobile-amenities-middle .progress {
+    height: 10px;
+    background-color: #072c6b;
+}
+
+.mobile-amenities-middle .small {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.mobile-amenities-middle .bg-danger {
+    background-color: #efc003 !important;
+}
+
+.mobile-amenities-middle .text-danger {
+    color: #efc003 !important;
+}
+
+.mobile-amenities-middle .start-rating i {
+    font-size: 20px;
+    margin-right: 1.2px;
+}
+
+.mobile-amenities-middle .start-rating2 {
+    margin-top: 2px;
+}
+
+.mobile-amenities-middle .start-rating2 i {
+    font-size: 12px;
+    margin-right: 1.2px;
+}
+
+.mobile-fixed-bottom {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99999;
+}
+
+.mobile-fixed-bottom .home {
+    color: #323232;
+}
+
+.mobile-fixed-bottom .home i {
+    font-size: 24px;
+}
+
+.mobile-fixed-bottom .active {
+    color: #efc003;
+}
+
+.mobile-fixed-bottom .active p {
+    color: #efc003 !important;
+}
+
+.mobile-fixed-bottom .home p {
+    color: #323232;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mobile-bg-danger {
+    background-color: #ffffff !important;
+    padding-top: 12px;
+    padding-bottom: 8px;
+    -webkit-box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.6);
+}
+
+.mob-mtbh {
+    height: 80px;
+}
+
+
+.mobile-logo img {
+    height: 42px;
+    float: right;
+}
+
+.mobile-myaccount-top .mob-logintx a {
+    float: right;
+    font-size: 17px;
+    color: #072c6b;
+    font-weight: 600;
+    padding-top: 8px;
+}
+
+.mobile-myaccount-top {
+    background-color: #efc003;
+    padding: 12px 18px 14px;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    top: 0;
+    box-shadow: 0 3px 10px #0003;
+}
+
+.mobile-myaccount-middle {
+    margin: 88px 20px 60px
+}
+
+.mobile-myaccount-middle .mobile-menu {
+    width: 100%;
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.mobile-myaccount-middle .mobile-menu a {
+    background-color: #fff;
+    display: block;
+    color: #072c6b;
+    padding: 8px 18px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.mobile-myaccount-middle .mobile-menu a i {
+    color: #efc003;
+    margin-right: 8px;
+} */
+
+
+body {
+    background: #f4f6fb;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1280px;
+}
+
+/* =====================================================
+TOP SECTION
+===================================================== */
+
+.operator-top-section {
+    padding: 60px 0 30px;
+}
+
+.top-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.operator-left-card,
+.operator-right-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, .05);
+}
+
+/* =====================================================
+HEADER
+===================================================== */
+
+.operator-header-box {
+    margin-bottom: 24px;
+}
+
+.operator-header-box h1,
+.operator-header-box h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 10px;
+}
+
+.operator-header-box p {
+    color: #667085;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* =====================================================
+STATS
+===================================================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.stat-card {
+    background: #f8fafc;
+    border-radius: 18px;
+    padding: 18px 10px;
+    text-align: center;
+}
+
+.stat-icon {
+    width: 62px;
+    height: 62px;
+    background: #fff4c5;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto auto 12px;
+}
+
+.stat-icon img {
+    width: 35px;
+}
+
+.stat-card h4 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 4px;
+}
+
+.stat-card span {
+    font-size: 13px;
+    color: #667085;
+}
+
+/* =====================================================
+AMENITIES
+===================================================== */
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.amenity-card {
+    background: #f8fafc;
+    border-radius: 18px;
+    padding: 18px 10px;
+    text-align: center;
+}
+
+.amenity-icon {
+    width: 62px;
+    height: 62px;
+    background: #efc003;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto auto 12px;
+}
+
+.amenity-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.amenity-card span {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #072c6b;
+}
+
+/* =====================================================
+ROUTES
+===================================================== */
+
+.routes-section {
+    padding: 20px 0 70px;
+}
+
+/* =====================================================
+NEW DESKTOP ROUTES GRID
+===================================================== */
+
+.desktop-routes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+/* CARD */
+.desktop-route-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 12px 20px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e8eaf2;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, .05);
+    transition: .25s ease;
+}
+
+/* HOVER */
+.desktop-route-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, .10);
+}
+
+/* LEFT YELLOW LINE */
+.desktop-route-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    background: #efc003;
+}
+
+/* TOP */
+.desktop-route-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* COLUMN */
+/* .desktop-route-col {
+    flex: 1;
+    min-width: 0;
+} */
+
+/* LABEL */
+.desktop-route-col span,
+.desktop-route-time span {
+    display: block;
+    font-size: 13px;
+    color: #667085;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* TITLE */
+.desktop-route-col h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 800;
+    color: #072c6b;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+/* TIME */
+.desktop-route-time {
+    align-items: center;
+    text-align: center;
+}
+
+.desktop-route-time h5 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 900;
+    color: #072c6b;
+}
+
+/* ARROW */
+.desktop-route-arrow {
+    width: 30px;
+    height: 30px;
+    background: #fff4c5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.desktop-route-arrow i {
+    color: #072c6b;
+    font-size: 14px;
+}
+
+/* DIVIDER */
+.desktop-route-divider {
+    height: 1px;
+    background: #e7eaf2;
+    margin: 18px 0;
+}
+
+/* BUTTON */
+.desktop-book-btn {
+      width: 70%;
+    height: 35px;
+    border: none;
+    background: #efc003;
+    color: #072c6b;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 900;
+    display: block;
+    margin: auto;
+    letter-spacing: .5px;
+    transition: .2s ease;
+}
+
+.desktop-book-btn:hover {
+    transform: scale(1.02);
+}
+
+/* RESPONSIVE */
+@media(max-width:1200px) {
+
+    .desktop-routes-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
-    
-    .mobile-mybooking-top .mob-arrow-left i{
-        font-size:30px;
-        color: #072c6b;
-        margin-top:10px;
+
+}
+
+@media(max-width:767px) {
+
+    .desktop-routes-grid {
+        grid-template-columns: 1fr;
     }
-    
-    .mobile-mybooking-top .mob-list-center h5{
-        color: #072c6b;
-        font-size:20px;
-        font-weight:800;
-        text-align: left;
-        padding-top:10px;
-        padding-left:5px;
-        margin-bottom: 4px;
-    
+
+}
+
+.section-heading {
+    font-size: 24px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 26px;
+}
+
+
+/* =====================================================
+MOBILE HEADER
+===================================================== */
+
+.mobile-top-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    background: #efc003;
+    padding: 12px 14px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .08);
+}
+
+.mobile-head-left {
+    display: flex;
+    align-items: center;
+}
+
+.mobile-head-left i {
+    font-size: 22px;
+    color: #072c6b;
+    margin-right: 10px;
+}
+
+.mobile-head-left h5 {
+    margin-bottom: 0;
+    color: #072c6b;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.mobile-logo-box {
+    text-align: right;
+}
+
+.mobile-logo-box img {
+    height: 38px;
+}
+
+/* =====================================================
+MOBILE MAIN
+===================================================== */
+
+.mobile-main-section {
+    padding: 82px 14px 100px;
+}
+
+/* =====================================================
+NEW MOBILE BUS CARD
+===================================================== */
+
+.mobile-bus-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
+}
+
+.mobile-bus-name h2 {
+    font-size: 18px;
+    font-weight: 900;
+    color: #072c6b;
+    margin-bottom: 18px;
+}
+
+/* =====================================================
+NEW MOBILE STATS
+===================================================== */
+
+.mobile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.mobile-stat-card {
+    /* background: #f8fafc;
+    border-radius: 18px;
+    padding: 18px 10px; */
+    text-align: center;
+}
+
+.mobile-stat-icon {
+    width: 62px;
+    height: 62px;
+    background: #fff4c5;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto auto 14px;
+}
+
+.mobile-stat-icon img {
+    width: 35px;
+}
+
+.mobile-stat-card h4 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 4px;
+}
+
+.mobile-stat-card span {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #667085;
+}
+
+/* =====================================================
+MOBILE SECTION TITLE
+===================================================== */
+
+.mobile-section-heading {
+    font-size: 18px;
+    font-weight: 900;
+    color: #072c6b;
+    margin-bottom: 14px;
+}
+
+/* =====================================================
+NEW MOBILE AMENITIES DESIGN
+===================================================== */
+
+.mobile-amenities-main {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 22px 18px;
+    margin-bottom: 26px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
+}
+
+/* TITLE */
+
+.mobile-section-heading {
+    font-size: 24px;
+    font-weight: 800;
+    color: #072c6b;
+    margin-bottom: 6px;
+}
+
+/* SUBTITLE */
+
+.mobile-amenities-subtitle {
+    font-size: 13px;
+    color: #667085;
+    margin-bottom: 22px;
+    line-height: 1.5;
+}
+
+/* GRID */
+
+.mobile-amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+/* CARD */
+
+.mobile-amenity-card {
+    align-items: center;
+    text-align: center;
+}
+
+/* ICON */
+
+.mobile-amenity-icon {
+    width: 56px;
+    height: 56px;
+    background: #efc003;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+}
+
+.mobile-amenity-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* TEXT */
+
+.mobile-amenity-card span {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #072c6b;
+    line-height: 1.4;
+}
+
+/* =====================================================
+NEW MOBILE ROUTES DESIGN
+===================================================== */
+
+.mobile-routes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+/* CARD */
+.mobile-route-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 16px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e8eaf2;
+    box-shadow: 0 8px 24px rgba(195, 213, 255, 0.05);
+}
+
+/* LEFT YELLOW LINE */
+.mobile-route-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    background: #efc003;
+}
+
+/* TOP */
+.mobile-route-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* COLUMN */
+/* .mobile-route-col {
+    flex: 1;
+    min-width: 0;
+} */
+
+.mobile-route-col span,
+.mobile-route-time span {
+    display: block;
+    font-size: 12px;
+    color: #667085;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+/* TITLE */
+.mobile-route-col h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 800;
+    color: #072c6b;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+/* TIME */
+.mobile-route-time {
+    text-align: center;
+}
+
+.mobile-route-time h5 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 900;
+    color: #072c6b;
+}
+
+/* ARROW WRAP */
+.mobile-route-arrow-wrap {
+    flex-shrink: 0;
+}
+
+/* ARROW */
+.mobile-route-arrow {
+    width: 46px;
+    height: 46px;
+    background: #fff4c5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-route-arrow i {
+    color: #072c6b;
+    font-size: 18px;
+}
+
+/* DIVIDER */
+.mobile-route-divider {
+    height: 1px;
+    background: #e7eaf2;
+    margin: 18px 0;
+}
+
+/* BUTTON */
+.mobile-book-btn {
+    width: 70%;
+    height: 30px;
+    background: #efc003;
+    color: #072c6b;
+    font-size: 14px;
+    font-weight: 900;
+    display: block;
+    margin: auto;
+    letter-spacing: .5px;
+    border: none;
+    border-radius: 14px;
+}
+
+
+.mobile-route-arrow {
+    position: relative;
+    width: auto;
+    height: auto;
+    background: transparent;
+    color: #072c6b;
+    font-size: 22px;
+}
+
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:991px) {
+
+    .top-layout {
+        grid-template-columns: 1fr;
     }
-    
-    .mobile-logo img{
-        height:42px;
-        float:right;
-    }   
-    
-    .mobile-operators-busd-middle{
-        margin:88px 20px 30px
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
-    
-    .mobile-operators-busd-middle h4{
-        font-size: 22px;
-        text-align: center;
-        font-weight: 600;
-        color: #072c6b;
-        text-transform: uppercase;
+
+    .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
-    
-    .mobile-operators-busd-middle .opo-img{
-        width:75%;
+
+}
+
+@media(max-width:767px) {
+
+    .modern-route-table {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .route-table-header {
+        display: none;
+    }
+
+    .route-table-row {
+        grid-template-columns: 1fr;
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 18px;
+        margin-bottom: 14px;
+        border: none;
+        box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
+    }
+
+    .route-col {
+        margin-bottom: 14px;
+    }
+
+    .route-col span {
         display: block;
-        margin: auto;
-    }
-    
-    .mobile-operators-busd-middle .icon-box {
-        text-align: center;
-    }
-    
-    .mobile-operators-busd-middle .icon-box h4{
-        font-weight: 400;
-        margin-bottom: 2px;
-        font-size:16px!important ;
-        text-align: center;
-        margin-top:10px;
-        color: #323232;
-        text-transform: capitalize !important ;
-    }
-    
-    .mobile-operators-busd-middle .icon-box p .oper-heading{
-        text-align: center;
-        color: #072c6b;
-        font-size: 16px;
-    }
-    
-    .mobile-amenities-middle{
-        /* background: #ffffff; */
-        margin-left:20px;
-        margin-right: 20px;
-        margin-top:30px;
-    }
-    
-    .mobile-amenities-middle h4{
-        font-size: 20px;
-        olor: #072c6b;
+        font-size: 11px;
+        color: #98a2b3;
+        margin-bottom: 4px;
+        text-transform: uppercase;
         font-weight: 600;
-        margin-bottom: 12px;
     }
-    
-    .mobile-amenities-middle .de-angu{
-        border: 0;
-        padding:8px;
-        background: #efc003;
-        text-align: center;
+
+    .route-btn-box {
+        text-align: left;
+    }
+
+    .route-book-btn {
         width: 100%;
-        border-radius:4px;
-    }
-    
-    .mobile-amenities-middle .de-angu .iconsize{
-        height: 60px;
-    }
-    
-    .mobile-amenities-middle .de-angu .safety_span{
-        font-size: 10px;
-        position: absolute;
-        font-size: 14px;
-        color: #fff;
-        position: relative;
-        font-weight:500;
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 0;
-    }
-    
-    .mobile-amenities-middle .mob-photo{
-        width: 100%;
-        height: 100px;
-    }
-    
-    .mobile-amenities-middle .pt-44{
-        padding-top:38px!important;
-    }
-    
-    .mobile-amenities-middle .progress {
-        height:10px;
-        background-color: #072c6b;
-    }
-    
-    .mobile-amenities-middle .small{
-        font-size: 14px;
-        font-weight: 300;
-    }
-    
-    .mobile-amenities-middle .bg-danger {
-        background-color: #efc003!important;
-    }
-    
-    .mobile-amenities-middle .text-danger {
-        color: #efc003!important;
-    }
-    
-    .mobile-amenities-middle .start-rating i{
-        font-size:20px;
-        margin-right:1.2px; 
-    }
-    
-    .mobile-amenities-middle .start-rating2{
-        margin-top:2px; 
-    }
-    
-    .mobile-amenities-middle .start-rating2 i{
-        font-size:12px;
-        margin-right:1.2px; 
-    }   
-    
-    .mobile-fixed-bottom {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index:99999;
-    }
-    .mobile-fixed-bottom .home{
-        color: #323232;
-    }
-    
-    .mobile-fixed-bottom .home i{
-        font-size: 24px;
-    }
-    
-    .mobile-fixed-bottom .active{
-        color: #efc003;
-    }
-    
-    .mobile-fixed-bottom .active p{
-        color: #efc003 !important;
-    }
-    
-    .mobile-fixed-bottom .home p{
-        color: #323232;
-        font-size:16px;
-        font-weight: 600;
-    }
-    
-    .mobile-bg-danger {
-        background-color: #ffffff!important;
-        padding-top:12px;
-        padding-bottom: 8px;
-        -webkit-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
-    -moz-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
-    box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
-    }
-    
-    .mob-mtbh{
-        height: 80px;
+        padding: 12px;
     }
 
-    /* Mobile Menu Section */
+}
 
-   .mobile-logo img{
-        height:42px;
-        float:right;
-    } 
-    
-    .mobile-myaccount-top .mob-logintx a{
-        float:right;
-        font-size:17px;
-        color: #072c6b;
-        font-weight: 600;
-        padding-top:8px ;
+@media(max-width:420px) {
+
+    .mobile-stat-icon {
+        width: 56px;
+        height: 56px;
     }
 
-    .mobile-myaccount-top{
-        background-color: #efc003;
-        padding:12px 18px 14px;
-        position: fixed;
-        z-index: 99;
-        width: 100%;
-        top: 0;
-        box-shadow: 0 3px 10px #0003;
-    } 
-
-    .mobile-myaccount-middle{
-        margin:88px 20px 60px
+    .mobile-stat-icon img {
+        width: 35px;
     }
 
-    .mobile-myaccount-middle .mobile-menu {
-        width:100%; 
-        list-style-type: none;
-        padding-left: 0px; 
+    .mobile-route-place h4 {
+        font-size: 15px;
     }
 
-    .mobile-myaccount-middle .mobile-menu a {
-        background-color: #fff;
-        display: block;   
-        color: #072c6b;
-        padding:8px 18px; 
-        text-decoration: none; 
-        font-size :17px;
-        font-weight: 600;
-        margin-bottom:10px;
-        border-radius: 4px;
-    }
-
-    .mobile-myaccount-middle .mobile-menu a i{
-        color: #efc003;
-        margin-right: 8px;
-    }  
-
+}

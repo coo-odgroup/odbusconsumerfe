@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MakepaymentService } from '../services/makepayment.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment-status',
@@ -9,7 +10,7 @@ import { MakepaymentService } from '../services/makepayment.service';
 })
 export class PaymentStatusComponent implements OnInit {
 
-  constructor(private spinner:NgxSpinnerService,private makepaymentService:MakepaymentService) { }
+  constructor(private spinner: NgxSpinnerService, private makepaymentService: MakepaymentService) { }
 
 
   // checkPayment(){
@@ -41,20 +42,41 @@ export class PaymentStatusComponent implements OnInit {
 
 
     const payload = {
-      pp_orderId : pp_orderId
+      pp_orderId: pp_orderId
     }
     this.spinner.show();
 
-    this.makepaymentService.paymentStatus(payload).subscribe((res:any)=>{
+    this.makepaymentService.paymentStatus(payload).subscribe((res: any) => {
       console.log(res.data.phonepe_status)
 
-      if(res.data.phonepe_status == "COMPLETED"){
-        window.location.href="/success";
+      if (res.data.phonepe_status == "COMPLETED") {
+        window.location.href = "/success";
         localStorage.removeItem('transaction_id')
         localStorage.getItem('pp_orderId')
-      }else if(res.data.phonepe_status == "FAILED"){
-        alert("Payment Failed");
-        window.location.href="/";
+      } else if (res.data.phonepe_status == "FAILED") {
+        this.spinner.hide();
+        Swal.fire({
+          icon: 'error',
+          title: 'Payment Failed',
+          text: 'Your payment was not successful. Please try again.',
+          confirmButtonText: 'Go Home',
+          allowOutsideClick: false,
+          confirmButtonColor: '#d33'
+        }).then(() => {
+          window.location.href = "/";
+        });
+      } else {
+        this.spinner.hide();
+        Swal.fire({
+          icon: 'error',
+          title: 'Payment Failed',
+          text: 'Your payment was not successful. Please try again.',
+          confirmButtonText: 'Go Home',
+          allowOutsideClick: false,
+          confirmButtonColor: '#d33'
+        }).then(() => {
+          window.location.href = "/";
+        });
       }
     });
 

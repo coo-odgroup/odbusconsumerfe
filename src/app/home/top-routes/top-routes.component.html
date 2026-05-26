@@ -1,0 +1,38 @@
+<section class="top-routs fluid-15" *ngIf="popular_routes != ''">
+  <div class="container">
+    <div class="row align-items-center mb-3">
+      <div class="col-md-6">
+        <h3 class="title-section">Popular Routes</h3>
+      </div>
+      <div class="col-md-6 text-right">
+        <a routerLink="routes" class="btn btn-warning">All Routes</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6" *ngFor="let p of displayedRoutes">
+        <div class="route-card" (click)="popularSearch(p.source[0].url, p.destination[0].url)">
+          <div class="route-left">
+            <img src="assets/img/Icon-metro-location.svg" class="route-icon" alt="Location" loading="lazy" />
+
+            <div class="route-text">
+              <span class="city">{{ p.source[0].name }}</span>
+              <span class="exchange">⇄</span>
+              <span class="city">{{ p.destination[0].name }}</span>
+            </div>
+          </div>
+
+          <button class="book-btn">Book Now</button>
+        </div>
+      </div>
+
+      <div class="col-md-12 text-center">
+        <button *ngIf="isMobile && !showAllRoutes && popular_routes.length > 5" (click)="viewAllRoutes()"
+          class="border-btn bh mt-3">
+          View All
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
