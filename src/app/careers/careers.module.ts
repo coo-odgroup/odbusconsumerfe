@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CareersRoutingModule } from './careers-routing.module';
 import { CareersComponent } from './careers.component';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     CareersRoutingModule,
-    NgbAccordionModule
+    NgbAccordionModule,
+    SharedModule
   ]
 })
 export class CareersModule {}

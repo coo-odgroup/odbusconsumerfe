@@ -30,20 +30,20 @@ export class AboutUsComponent implements OnInit {
     private location: Location,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private deviceService: DeviceDetectorService
+    private deviceService: DeviceDetectorService,
   ) {
     this.isMobile = this.deviceService.isMobile();
     this.session = new LoginChecker();
 
     this.currentUrl = location.path().replace('/', '');
     console.log(this.currentUrl);
-    
+
     this.seo.seolist(this.currentUrl);
   }
 
   menu() {
-    this.MenuActive = (this.MenuActive==false) ? true : false;
-    this.activeMenu='';   
+    this.MenuActive = this.MenuActive == false ? true : false;
+    this.activeMenu = '';
   }
 
   signOut() {
@@ -57,7 +57,7 @@ export class AboutUsComponent implements OnInit {
     const aboutContent = localStorage.getItem('aboutContent');
 
     if (aboutContent) {
-      const data = JSON.parse(aboutContent); 
+      const data = JSON.parse(aboutContent);
       this.aboutContent(data);
     } else {
       const param = {
@@ -65,12 +65,10 @@ export class AboutUsComponent implements OnInit {
         page_url: 'about-us',
       };
 
-      this.pagesService.PageContent(param).subscribe(
-        res => {
-          localStorage.setItem('aboutContent', JSON.stringify(res.data));
-          this.aboutContent(res.data);
-        }
-      );
+      this.pagesService.PageContent(param).subscribe((res) => {
+        localStorage.setItem('aboutContent', JSON.stringify(res.data));
+        this.aboutContent(res.data);
+      });
     }
 
     this.spinner.hide();

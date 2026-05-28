@@ -99,50 +99,37 @@
 <!-- MOBILE FULL SCREEN MENU -->
 
 <ng-container *ngIf="MenuActive">
-
   <!-- OVERLAY -->
   <div class="mobile-menu-overlay">
-
     <!-- TOP -->
     <div class="mobile-menu-header">
-
       <div class="menu-logo">
         <img src="assets/img/mob-img/logo.png" alt="Footer Logo" />
       </div>
 
-      <div class="menu-close" (click)="MenuActive=false">
+      <div class="menu-close" (click)="MenuActive = false">
         <i class="fas fa-times"></i>
       </div>
-
     </div>
 
     <!-- USER -->
     <div class="menu-user-box">
-
       <div class="user-icon">
         <i class="fas fa-user"></i>
       </div>
 
       <div class="user-content">
-
         <h4 *ngIf="!session.isLoggedIn()">Welcome Guest</h4>
         <h4 *ngIf="session.isLoggedIn()">Welcome Back</h4>
 
-        <p *ngIf="!session.isLoggedIn()">
-          Login to manage your bookings
-        </p>
+        <p *ngIf="!session.isLoggedIn()">Login to manage your bookings</p>
 
-        <p *ngIf="session.isLoggedIn()">
-          Manage your account & bookings
-        </p>
-
+        <p *ngIf="session.isLoggedIn()">Manage your account & bookings</p>
       </div>
-
     </div>
 
     <!-- MENU LIST -->
     <div class="mobile-menu-list">
-
       <a routerLink="/manage-booking">
         <div class="menu-icon">
           <i class="far fa-window-restore"></i>
@@ -203,7 +190,7 @@
         <i class="fas fa-chevron-right right-arrow"></i>
       </a> -->
 
-      <a routerLink="terms-conditions">
+      <a routerLink="/terms-conditions">
         <div class="menu-icon">
           <i class="fas fa-file-alt"></i>
         </div>
@@ -233,6 +220,16 @@
         <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
+      <a routerLink="/blog">
+        <div class="menu-icon">
+          <i class="fas fa-info-circle"></i>
+        </div>
+
+        <span>Blogs</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a>
+
       <a *ngIf="session.isLoggedIn()" (click)="signOut()">
         <div class="menu-icon">
           <i class="fas fa-sign-out-alt"></i>
@@ -242,22 +239,15 @@
 
         <i class="fas fa-chevron-right right-arrow"></i>
       </a>
-
     </div>
 
     <!-- BOTTOM -->
     <div class="menu-bottom">
-
-      <a routerLink="/login" *ngIf="!session.isLoggedIn()">
-        Login / Signup
-      </a>
+      <a routerLink="/login" *ngIf="!session.isLoggedIn()"> Login / Signup </a>
 
       <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
         Go To Dashboard
       </a>
-
     </div>
-
   </div>
-
 </ng-container>

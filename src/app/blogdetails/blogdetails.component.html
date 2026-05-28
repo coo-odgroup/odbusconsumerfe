@@ -1,3 +1,24 @@
+
+<ng-container *ngIf="isMobile && !MenuActive">
+  <div class="mobile-mybooking-top">
+    <div class="row">
+      <div class="col-1 pr-0 pl-2 mob-arrow-left">
+        <a routerLink="/">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+      </div>
+      <div class="col-7 pl-2 pr-2 mob-list-center">
+        <h5>{{ pageTitle }}</h5>
+      </div>
+      <div class="col-4 pl-2 pr-2">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" loading="lazy" alt="logo" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-breadcrumb-box"></div>
+</ng-container>
 <section class="blog-details">
   <!-- BREADCRUMB -->
   <section class="blog-breadcrumb">
@@ -95,3 +116,7 @@
     </div>
   </div>
 </section>
+
+<ng-container *ngIf="isMobile">
+  <app-footer-menu></app-footer-menu>
+</ng-container>

@@ -34,8 +34,7 @@
 
 /* MOBILE */
 
-@media(max-width:768px) {
-
+@media (max-width: 768px) {
   .blog-breadcrumb {
     padding: 10px 0;
   }
@@ -44,7 +43,6 @@
     font-size: 12px;
     line-height: 20px;
   }
-
 }
 
 /* BLOG DETAIL PAGE */
@@ -140,9 +138,7 @@
 
 .blog-list li {
   margin-bottom: 8px;
-
 }
-
 
 /* SIDEBAR */
 
@@ -216,4 +212,40 @@
 .tag-list a {
   text-decoration: none;
   color: black;
+}
+
+.mobile-mybooking-top {
+  background-color: #efc003;
+  padding: 12px 18px 14px;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  top: 0;
+  box-shadow: 0 3px 10px #0003;
+}
+
+.mobile-mybooking-top .mob-arrow-left i {
+  font-size: 30px;
+  color: #072c6b;
+  margin-top: 10px;
+}
+
+.mobile-mybooking-top .mob-list-center h5 {
+  color: #072c6b;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 5px;
+  margin-bottom: 4px;
+}
+
+.mobile-logo img {
+  height: 42px;
+  float: right;
+}
+
+.mobile-breadcrumb-box {
+  padding: 35px 0px;
+  background: #f7f7f7;
 }

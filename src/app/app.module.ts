@@ -58,8 +58,7 @@ import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SearchBoxMComponent } from './search-box-m/search-box-m.component';
 import { MobileAppDownloadComponent } from './home/mobile-app-download/mobile-app-download.component';
-
-
+import { SharedModule } from './shared/shared.module';
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -109,11 +108,11 @@ const ngWizardConfig: NgWizardConfig = {
     TopOperatorsComponent,
     TopRoutesComponent,
     CommonContentComponent,
-    FooterMenuComponent,
+    // FooterMenuComponent,
     SearchBoxComponent,
     SearchBoxMComponent,
     MobileAppDownloadComponent
-  ], 
+  ],
   imports: [
     // BrowserAnimationsModule,
     NoopAnimationsModule,
@@ -142,7 +141,8 @@ const ngWizardConfig: NgWizardConfig = {
     }),
     ImageCropperModule,
     LightboxModule,
-    QRCodeModule
+    QRCodeModule,
+    SharedModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
   providers: [AppInitializerService,
@@ -159,7 +159,7 @@ const ngWizardConfig: NgWizardConfig = {
       multi: true
     },
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    
+
     JwtHelperService,
     AuthGuard
   ],

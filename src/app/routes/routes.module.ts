@@ -5,10 +5,7 @@ import { RoutesComponent } from './routes.component';
 import { FilterPipe } from '../filter.pipe';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-
-
-
-
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     RoutesComponent,
@@ -18,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     RoutesRoutingModule,
     NgbDatepickerModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 

@@ -49,16 +49,24 @@
                 id="navbarSupportedContent"
               >
                 <ul class="">
-                  <li class="nav-item home"><a class="nav-link" routerLink="/">Need Support</a></li>
-                                    <li class="nav-item about"><a class="nav-link" routerLink="about-us">FAQ</a></li>
-                                    <ng-container *ngIf="session.isLoggedIn()">
-                                        <li class="nav-item"><a class="nav-link" routerLink="dashboard">Manage
-                                                Booking</a></li>
-                                    </ng-container>
+                  <li class="nav-item home">
+                    <a class="nav-link" routerLink="/contact-us">Need Support</a>
+                  </li>
+                  <li class="nav-item about">
+                    <a class="nav-link" routerLink="/faq">FAQ</a>
+                  </li>
+                  <ng-container *ngIf="session.isLoggedIn()">
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="/dashboard"
+                        >Manage Booking</a
+                      >
+                    </li>
+                  </ng-container>
                   <ng-container *ngIf="!session.isLoggedIn()">
-                                        <li class="nav-item"><a class="nav-link" routerLink="login">Manage Booking</a>
-                                        </li>
-                                    </ng-container>
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="/login">Manage Booking</a>
+                    </li>
+                  </ng-container>
                   <!-- <li class="nav-item"><a class="nav-link" routerLink="support">Support</a></li>
                   <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.odcar.in">Car Hire</a></li>
                                     <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.odtravels.in/">Tour Package</a></li> -->

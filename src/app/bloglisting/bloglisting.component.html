@@ -1,20 +1,35 @@
+<ng-container *ngIf="isMobile && !MenuActive">
+  <div class="mobile-mybooking-top">
+    <div class="row">
+      <div class="col-1 pr-0 pl-2 mob-arrow-left">
+        <a routerLink="/">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+      </div>
+      <div class="col-7 pl-2 pr-2 mob-list-center">
+        <h5>{{ pageTitle }}</h5>
+      </div>
+      <div class="col-4 pl-2 pr-2">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" loading="lazy" alt="logo" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-breadcrumb-box"></div>
+</ng-container>
 <section class="blog-listing">
-  <!-- BLOG BREADCRUMB -->
-  <section class="blog-breadcrumb">
+  <div class="blog-breadcrumb">
     <div class="container">
       <div class="breadcrumb-wrap">
-
         <a routerLink="/">Home</a>
 
         <span>/</span>
 
-        <span class="active-breadcrumb">
-          Blog
-        </span>
-
+        <span class="active-breadcrumb"> Blog </span>
       </div>
     </div>
-  </section>
+  </div>
   <div class="container">
     <div class="row">
       <!-- LEFT : BLOG CARDS -->
@@ -24,7 +39,12 @@
           <div class="col-md-4" *ngFor="let blog of blogData">
             <div class="blog-card position-relative">
               <div class="blog-img">
-                <img [src]="baseurl + blog.thumb_image" class="img-responsive" loading="lazy" alt=" {{ blog.title }}" />
+                <img
+                  [src]="baseurl + blog.thumb_image"
+                  class="img-responsive"
+                  loading="lazy"
+                  alt=" {{ blog.title }}"
+                />
                 <span class="blog-tag">{{ blog.category_name }}</span>
               </div>
 
@@ -38,7 +58,10 @@
                 </h4>
               </div>
 
-              <a [routerLink]="['/blog',blog.blog_cat_slug, blog.slug]" class="stretched-link"></a>
+              <a
+                [routerLink]="['/blog', blog.blog_cat_slug, blog.slug]"
+                class="stretched-link"
+              ></a>
             </div>
           </div>
         </div>
@@ -63,3 +86,7 @@
     </div>
   </div>
 </section>
+
+<ng-container *ngIf="isMobile">
+  <app-footer-menu></app-footer-menu>
+</ng-container>
