@@ -153,53 +153,57 @@ export class OperatorDetailComponent implements OnInit {
   sourceData: any;
   destinationData: any;
 
+  // popularSearch(sr: any, ds: any) {
+
+  //   this.spinner.show();
+
+  //   this.locationService.all().subscribe(
+  //     res => {
+  //       if (res.status == 1) {
+  //         res.data.filter((itm: { name: any; }) => {
+  //           if (sr === itm.name) {
+  //             this.sourceData = itm;
+  //           }
+
+  //           if (ds === itm.name) {
+  //             this.destinationData = itm;
+  //           }
+
+  //         });
+
+  //         this.spinner.hide();
+
+  //         let dt = (<HTMLInputElement>document.getElementById("todayDate")).value;
+
+  //         this.listing(this.sourceData, this.destinationData, dt);
+
+  //       }
+  //     });
+  // }
+
+  // listing(s: any, d: any, dt: any) {
+  //   this.locationService.setSource(s);
+  //   this.locationService.setDestination(d);
+  //   this.locationService.setDate(dt);
+
+  //   const source = s.name.toLowerCase().replace(/\s+/g, '-');
+  //   const destination = d.name.toLowerCase().replace(/\s+/g, '-');
+
+  //   this.router.navigate([
+  //     `/routes/${source}-${destination}-bus-services`
+  //   ]);
+  // }
+
   popularSearch(sr: any, ds: any) {
-
-    this.spinner.show();
-
-    this.locationService.all().subscribe(
-      res => {
-        if (res.status == 1) {
-          res.data.filter((itm: { name: any; }) => {
-            if (sr === itm.name) {
-              this.sourceData = itm;
-            }
-
-            if (ds === itm.name) {
-              this.destinationData = itm;
-            }
-
-          });
-
-          this.spinner.hide();
-
-          let dt = (<HTMLInputElement>document.getElementById("todayDate")).value;
-
-          this.listing(this.sourceData, this.destinationData, dt);
-
-        }
-      });
-  }
-
-  listing(s: any, d: any, dt: any) {
-    this.locationService.setSource(s);
-    this.locationService.setDestination(d);
-    this.locationService.setDate(dt);
-
-    const source = s.name.toLowerCase().replace(/\s+/g, '-');
-    const destination = d.name.toLowerCase().replace(/\s+/g, '-');
-
-    this.router.navigate([
-      `/routes/${source}-${destination}-bus-services`
-    ]);
+    this.router.navigate(['routes/' + sr + '-' + ds + '-bus-services']);
   }
 
   ngOnInit(): void {
 
-    // this.Common.getPathUrls().subscribe( res=>{          
-    //   if(res.status==1){  
+    // this.Common.getPathUrls().subscribe( res=>{
+    //   if(res.status==1){
     //     this.url_path=res.data[0];
-    //   }    
+    //   }
     // });
 
     const pathUrls = localStorage.getItem('pathUrls');
