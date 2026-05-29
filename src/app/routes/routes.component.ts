@@ -6,7 +6,7 @@ import {
   QueryList,
   ViewChild,
   ViewChildren,
-  HostListener,  
+  HostListener,
   PLATFORM_ID,
   Inject
 } from '@angular/core';
@@ -54,7 +54,7 @@ export class RoutesComponent implements OnInit, AfterViewInit {
   totalPage: number;
 
   constructor(
-    
+
     private router: Router,
     private _fb: FormBuilder,
     private locationService: LocationdataService,
@@ -220,7 +220,7 @@ export class RoutesComponent implements OnInit, AfterViewInit {
     if (!('IntersectionObserver' in window)) {
       return;
     }
-    
+
     let options = {
       root: null,
       rootMargin: '0px',
