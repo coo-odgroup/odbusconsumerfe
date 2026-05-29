@@ -5,6 +5,7 @@ import { OperatorsComponent } from './operators.component';
 import { OperatorDetailComponent } from '../operator-detail/operator-detail.component';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     OperatorsRoutingModule,
     NgbDatepickerModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class OperatorsModule {}

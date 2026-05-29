@@ -23,7 +23,8 @@
                     <p *ngIf="searchText">No results found for "{{searchText}}".</p>
                   </ng-template> -->
 
-              <span style="padding: 2px">
+              <!-- Coment by Jagan -->
+              <!-- <span style="padding: 2px">
                 <a
                   class="btn btn-warning cursor"
                   (click)="getList(allOperators.first_page_url, '')"
@@ -37,10 +38,26 @@
                   (click)="getList(allOperators.first_page_url, a)"
                   >{{ a }}</a
                 >
-              </span>
+              </span> -->
+              <!-- Comment by Jagan -->
+
+              <div class="row">
+                <div class="col-md-8"></div>
+                <div class="form-group col-md-4" align="right">
+                  <input
+                    type="search"
+                    class="form-control"
+                    placeholder="Search operator..."
+                    [(ngModel)]="searchText"
+                    (input)="onSearchChange()"
+                  />
+                </div>
+              </div>
 
               <ng-template #noResults>
-                <p *ngIf="allOperators">No operators found</p>
+                <p *ngIf="allOperators" class="text-center">
+                  No operators found
+                </p>
               </ng-template>
 
               <div class="pt-3 pb-2">
@@ -130,7 +147,7 @@
       </div>
       <div class="col-4 pl-2 pr-2">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png"  loading="lazy" alt="logo"/>
+          <img src="assets/img/mob-img/logo.png" loading="lazy" alt="logo" />
         </div>
       </div>
     </div>
@@ -138,8 +155,18 @@
 
   <div class="mobile-operators-middle">
     <div class="row mb-3">
+      <div class="col-md-8"></div>
+      <div class="form-group col-md-4" align="right">
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search operator..."
+          [(ngModel)]="searchText"
+          (input)="onSearchChange()"
+        />
+      </div>
       <div class="col-12 pl-2 pr-2">
-        <span style="padding: 2px">
+        <!-- <span style="padding: 2px">
           <a
             class="btn btn-warning cursor"
             (click)="getList(allOperators.first_page_url, '')"
@@ -153,10 +180,12 @@
             (click)="getList(allOperators.first_page_url, a)"
             >{{ a }}</a
           >
-        </span>
+        </span> -->
 
         <ng-template #noResults>
-          <p *ngIf="allOperators">No operators found</p>
+          <p *ngIf="allOperators" class="text-center">
+            No operators found
+          </p>
         </ng-template>
       </div>
     </div>

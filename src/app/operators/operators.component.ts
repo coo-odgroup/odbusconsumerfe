@@ -1,26 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { TopOperatorsService } from '../services/top-operators.service';
 import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { LoginChecker } from '../helpers/loginChecker';
 
-
 @Component({
   selector: 'app-operators',
   templateUrl: './operators.component.html',
-  styleUrls: ['./operators.component.css']
+  styleUrls: ['./operators.component.css'],
 })
 export class OperatorsComponent implements OnInit {
-
   allOperators: any;
   currentUrl: any;
   isMobile: boolean;
   session: LoginChecker;
   MenuActive: boolean = false;
-
 
   per_page = 400;
 
@@ -34,10 +31,8 @@ export class OperatorsComponent implements OnInit {
     private router: Router,
     private seo: SeoService,
     private location: Location,
-    private detectService: DeviceDetectorService
-
+    private detectService: DeviceDetectorService,
   ) {
-
     this.getList();
 
     for (let i = 65; i <= 90; i++) {
@@ -48,11 +43,10 @@ export class OperatorsComponent implements OnInit {
     this.session = new LoginChecker();
     this.currentUrl = location.path().replace('/', '');
     this.seo.seolist(this.currentUrl);
-
   }
 
   menu() {
-    this.MenuActive = (this.MenuActive == false) ? true : false;
+    this.MenuActive = this.MenuActive == false ? true : false;
     this.activeMenu = '';
   }
 
@@ -67,30 +61,68 @@ export class OperatorsComponent implements OnInit {
     }
   }
 
+  // getList(url: any = '', filter: any = '') {
+  //   this.spinner.show();
+  //   const param = {
+  //     paginate: this.per_page,
+  //     filter: filter,
+  //   };
+
+  //   this.topOperatorsService.allOperator(url, param).subscribe((res) => {
+  //     if (res.status == 1) {
+  //       this.allOperators = res.data.data;
+  //       let arr = [];
+  //       this.allOperators.data.forEach((e: { operator_url: any }) => {
+  //         arr.push(e.operator_url);
+  //       });
+  //     }
+  //     this.spinner.hide();
+  //   });
+  // }
+
   getList(url: any = '', filter: any = '') {
-    this.spinner.show();
     const param = {
-      "paginate": this.per_page,
-      "filter": filter,
+      paginate: this.per_page,
+      filter: filter,
     };
 
     this.topOperatorsService.allOperator(url, param).subscribe(
-      res => {
+      (res) => {
         if (res.status == 1) {
           this.allOperators = res.data.data;
-          let arr = [];
-          this.allOperators.data.forEach((e: { operator_url: any; }) => {
-            arr.push(e.operator_url)
+
+          let arr: any[] = [];
+
+          this.allOperators.data.forEach((e: { operator_url: any }) => {
+            arr.push(e.operator_url);
           });
         }
+
         this.spinner.hide();
-      });
+      },
+      () => {
+        this.spinner.hide();
+      },
+    );
   }
 
   page(label: any) {
     return label;
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onSearchChange() {
+    const value = this.searchText.trim();
+
+    // only call when 3+ letters
+    if (value.length >= 3) {
+      this.getList(this.allOperators.first_page_url, value);
+    }
+
+    // optional: load default data when cleared
+    else if (value.length === 0) {
+      this.getList(this.allOperators.first_page_url, '');
+    }
   }
 }
