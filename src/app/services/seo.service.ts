@@ -50,6 +50,11 @@ export class SeoService {
       return true;
     }
 
+    // ROUTE SEO FOR ADVANTAGE PAGES
+    if (cleanUrl.includes('/advantage/')) {
+      return true;
+    }
+
     // EXCLUDE BLOG LISTING PAGES
     if (
       cleanUrl.startsWith('/blog/category/') ||
@@ -280,16 +285,16 @@ export class SeoService {
   //   }
 
   //   if (flag == false) {
-  //     // this.deafultmeta_description.subscribe((s:any) => { 
+  //     // this.deafultmeta_description.subscribe((s:any) => {
   //     //   this.meta.updateTag({ name: 'description', content: s });
-  //     //  this.meta.updateTag({ name: 'og:description', content: s }) ; 
+  //     //  this.meta.updateTag({ name: 'og:description', content: s }) ;
   //     //});
-  //     //this.deafultmeta_title.subscribe((s:any) => { 
+  //     //this.deafultmeta_title.subscribe((s:any) => {
   //     //  this.title.setTitle(s);
   //     // this.meta.updateTag({ name: 'og:title', content: s }) ;
 
   //     //});
-  //     //this.deafultmeta_keyword.subscribe((s:any) => { 
+  //     //this.deafultmeta_keyword.subscribe((s:any) => {
   //     // this.meta.updateTag({ name: 'keywords', content: s }) ;
 
   //     // });

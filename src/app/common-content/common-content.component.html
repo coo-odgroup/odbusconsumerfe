@@ -13,9 +13,7 @@
             </div>
 
             <h1>{{pageDetails.page_name}}</h1>
-            <p>
-                Book your bus tickets in seconds with a fast, smooth and hassle-free experience.
-            </p>
+            <p *ngIf="pageDetails.page_short_desc" [innerHTML]="pageDetails.page_short_desc"></p>
 
         </div>
     </div>
