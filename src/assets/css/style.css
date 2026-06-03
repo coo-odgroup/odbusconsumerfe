@@ -1773,14 +1773,21 @@ ngb-datepicker-navigation {
     font-weight: 600;
 }
 
+.blog img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 6px;
+}
+
+
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-<<<<<<< HEAD
     .seo-main-title {
         font-size: 18px;
     }
-=======
     .border-btn {
         font-size: 12px;
     }
@@ -1788,7 +1795,6 @@ ngb-datepicker-navigation {
   .seo-main-title {
     font-size: 18px;
   }
->>>>>>> 06708615149e46179ed41772cff5cd4a4bf39b6f
 
     .seo-full h2 {
         font-size: 16px;

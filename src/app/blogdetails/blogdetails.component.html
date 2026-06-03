@@ -62,7 +62,7 @@
               {{blogDetail?.title}}
             </h1>
 
-            <div [innerHTML]="blogDetail?.content"></div>
+            <div [innerHTML]="blogDetail?.content" class="blog"></div>
             <div class="blog-post-tags">
               <span class="tag-title" *ngIf="blogDetail?.tags != 0">Tags :</span>
               <a class="post-tag" *ngFor="let tag of blogDetail?.tags">{{ tag?.tag_name }}</a>
