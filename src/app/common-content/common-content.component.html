@@ -9,11 +9,11 @@
                 <span>›</span>
                 <a href="#">ODBUS Advantage</a>
                 <span>›</span>
-                <span>{{pageDetails.page_name}}</span>
+                <span>{{pageDetails?.page_name}}</span>
             </div>
 
-            <h1>{{pageDetails.page_name}}</h1>
-            <p *ngIf="pageDetails.page_short_desc" [innerHTML]="pageDetails.page_short_desc"></p>
+            <h1>{{pageDetails?.page_name}}</h1>
+            <p *ngIf="pageDetails?.page_short_desc" [innerHTML]="pageDetails?.page_short_desc"></p>
 
         </div>
     </div>
@@ -23,7 +23,7 @@
 
         <div class="odbus-card combined-card">
 
-            <div class="section-block" *ngIf="pageDetails"  [innerHTML]="pageDetails.page_description">
+            <div class="section-block" *ngIf="pageDetails" [innerHTML]="pageDetails?.page_description">
             </div>
         </div>
 
