@@ -37,6 +37,11 @@ export class SeoService {
     // REMOVE QUERY PARAMS
     const cleanUrl = url.split('?')[0];
 
+    // HOME PAGE
+    if (cleanUrl === '/') {
+      return true;
+    }
+
     // STATIC PAGES
     if (
       cleanUrl === '/about-us' ||
@@ -222,6 +227,22 @@ export class SeoService {
       serviceScript.id = 'service-schema';
 
       this.doc.head.appendChild(serviceScript);
+    }
+
+    console.log(c.organization_schema);
+
+    // Organization Schema
+    if (c.organization_schema) {
+
+      const organizationScript = this.doc.createElement('script');
+
+      organizationScript.type = 'application/ld+json';
+
+      organizationScript.text = c.organization_schema;
+
+      organizationScript.id = 'organization-schema';
+
+      this.doc.head.appendChild(organizationScript);
     }
 
     // Extra Meta
