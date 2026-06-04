@@ -8,7 +8,7 @@ import {
   ViewChildren,
   HostListener,
   PLATFORM_ID,
-  Inject
+  Inject,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocationdataService } from '../services/locationdata.service';
@@ -16,7 +16,7 @@ import { PopularRoutesService } from '../services/popular-routes.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SeoService } from '../services/seo.service';
-import { Location,isPlatformBrowser  } from '@angular/common';
+import { Location, isPlatformBrowser } from '@angular/common';
 import { LoginChecker } from '../helpers/loginChecker';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import {
@@ -54,7 +54,6 @@ export class RoutesComponent implements OnInit, AfterViewInit {
   totalPage: number;
 
   constructor(
-
     private router: Router,
     private _fb: FormBuilder,
     private locationService: LocationdataService,
@@ -65,7 +64,7 @@ export class RoutesComponent implements OnInit, AfterViewInit {
     private popularRoutesService: PopularRoutesService,
     private modalService: NgbModal,
     private detectService: DeviceDetectorService,
-     @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {
     this.isMobile = this.detectService.isMobile();
     this.session = new LoginChecker();
@@ -122,51 +121,49 @@ export class RoutesComponent implements OnInit, AfterViewInit {
   loading = false;
   hasMore = true;
 
-  allRoutes() {
-    // stop duplicate API calls
+  allRoutes(search: string = '') {
     if (this.loading || !this.hasMore) {
       return;
     }
 
     this.loading = true;
-    this.spinner.show();
 
     this.popularRoutesService
-      .getallroutes(this.per_page, this.page_no) // POST API
+      .getallroutes(this.per_page, this.page_no, search)
       .subscribe({
         next: (res: any) => {
-          if (res.status == 1) {
-            let result = res?.data?.data || [];
+          let result = res?.data?.data || [];
 
-            // if object convert to array
-            if (!Array.isArray(result) && typeof result === 'object') {
-              result = Object.values(result);
-            }
-
-            // append new records
-            this.all_routes.push(...result);
-
-            // no more data
-            if (result.length < this.per_page) {
-              this.hasMore = false;
-            } else {
-              this.page_no++;
-            }
+          if (this.page_no === 1) {
+            this.all_routes = result; // first page
           } else {
+            this.all_routes.push(...result); // load more
+          }
+
+          if (result.length < this.per_page) {
             this.hasMore = false;
+          } else {
+            this.page_no++;
           }
 
           this.loading = false;
-          this.spinner.hide();
         },
-
-        error: (err) => {
-          console.log(err);
-
+        error: () => {
           this.loading = false;
-          this.spinner.hide();
         },
       });
+  }
+
+  searchRoutes() {
+    const search = this.searchText?.trim() || '';
+
+    if (search.length < 3 && search.length > 0) {
+      return;
+    }
+
+    this.page_no = 1;
+    this.hasMore = true;
+    this.allRoutes(search);
   }
 
   sourceData: any;
@@ -177,7 +174,7 @@ export class RoutesComponent implements OnInit, AfterViewInit {
 
     this.locationService.all().subscribe((res) => {
       if (res.status == 1) {
-        res.data.filter((itm: { url: any; }) => {
+        res.data.filter((itm: { url: any }) => {
           if (sr === itm.url) {
             this.sourceData = itm;
           }
@@ -214,9 +211,9 @@ export class RoutesComponent implements OnInit, AfterViewInit {
   IntersectionObserver() {
     if (!isPlatformBrowser(this.platformId)) {
       return;
-   }
+    }
 
-  // Optional extra safety
+    // Optional extra safety
     if (!('IntersectionObserver' in window)) {
       return;
     }

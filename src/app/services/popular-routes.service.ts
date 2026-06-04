@@ -36,13 +36,31 @@ export class PopularRoutesService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getallroutes(per_page: any, page_no: any): Observable<any> {
+  // getallroutes(per_page: any, page_no: any): Observable<any> {
+  //   return this.httpClient
+  //     .post<any>(
+  //       this.apiURL + '/getallroutes',
+  //       {
+  //         per_page,
+  //         page_no,
+  //       },
+  //       this.httpOptions,
+  //     )
+  //     .pipe(catchError(this.errorHandler));
+  // }
+
+  getallroutes(
+    per_page: any,
+    page_no: any,
+    search: string = '',
+  ): Observable<any> {
     return this.httpClient
       .post<any>(
         this.apiURL + '/getallroutes',
         {
           per_page,
           page_no,
+          search,
         },
         this.httpOptions,
       )

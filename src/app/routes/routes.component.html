@@ -13,52 +13,90 @@
               <div class="row">
                 <div class="col-md-8"></div>
                 <div class="form-group col-md-4" align="right">
-                  <input class="form-control" type="search" [(ngModel)]="searchText" placeholder="Search Route" />
+                  <!-- <input
+                    class="form-control"
+                    type="search"
+                    [(ngModel)]="searchText"
+                    placeholder="Search Route"
+                  /> -->
+                  <input
+                    class="form-control"
+                    type="search"
+                    [(ngModel)]="searchText"
+                    (ngModelChange)="searchRoutes()"
+                    placeholder="Search Route"
+                  />
                 </div>
               </div>
 
-              <ul *ngIf="
+              <ul
+                *ngIf="
                   (all_routes | filter: searchText).length > 0;
                   else noResults
-                ">
-                <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker
-                  (click)="d.toggle()" #d="ngbDatepicker" />
+                "
+              >
+                <input
+                  type="hidden"
+                  [(ngModel)]="dtconfig.minDate"
+                  name="todayDate"
+                  id="todayDate"
+                  ngbDatepicker
+                  (click)="d.toggle()"
+                  #d="ngbDatepicker"
+                />
 
                 <li *ngFor="let p of all_routes | filter: searchText">
                   <div class="route-card">
-                    <a class="route-link" (click)="popularSearch(p.source_slug, p.destination_slug)">
+                    <a
+                      class="route-link"
+                      (click)="popularSearch(p.source_slug, p.destination_slug)"
+                    >
                       <div class="route-left">
-                        <img class="popl-routs-icon1" src="assets/img/Icon-metro-location.svg" alt="Source Location"
-                          loading="lazy" />
+                        <img
+                          class="popl-routs-icon1"
+                          src="assets/img/Icon-metro-location.svg"
+                          alt="Source Location"
+                          loading="lazy"
+                        />
 
                         <div class="route-info">
                           <span class="route-text">{{ p.source_name }}</span>
 
-                          <img class="popl-routs-icon2" src="assets/img/Group 1.png" alt="Direction" loading="lazy" />
+                          <img
+                            class="popl-routs-icon2"
+                            src="assets/img/Group 1.png"
+                            alt="Direction"
+                            loading="lazy"
+                          />
 
-                          <span class="route-text">{{ p.destination_name }}</span>
+                          <span class="route-text">{{
+                            p.destination_name
+                          }}</span>
                         </div>
                       </div>
 
-                      <button class="book-btn">
-                        Book Now
-                      </button>
+                      <button class="book-btn">Book Now</button>
                     </a>
                   </div>
                 </li>
               </ul>
 
-
-            </div>
-            <div class="row mb-5">
-              <div class="col-md-12 text-center">
-                <button *ngIf="hasMore && !loading && !searchText" (click)="allRoutes()" class="border-btn bh">
+              <div class="text-center">
+                <button
+                  *ngIf="hasMore && !loading && !searchText"
+                  (click)="allRoutes(searchText)"
+                  class="border-btn bh"
+                >
                   Load More
                 </button>
 
-                <div *ngIf="loading">Loading...</div>
+                <div *ngIf="loading && page_no > 1" class="text-center">
+                  Loading...
+                </div>
 
-                <div *ngIf="!hasMore">No more records</div>
+                <div *ngIf="!hasMore && !searchText" class="text-center">
+                  No more records
+                </div>
               </div>
             </div>
 
@@ -87,33 +125,57 @@
       </div>
       <div class="col-4 pl-2 pr-2">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" alt="Mobile Logo" loading="lazy" />
+          <img
+            src="assets/img/mob-img/logo.png"
+            alt="Mobile Logo"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>
   </div>
 
   <div class="mobile-search-box">
-    <input type="search" class="mobile-route-search" [(ngModel)]="searchText" placeholder="Search Route" />
+    <input
+      type="search"
+      class="mobile-route-search"
+      [(ngModel)]="searchText"
+      placeholder="Search Route"
+      (ngModelChange)="searchRoutes()"
+    />
   </div>
 
-  <div class="mobile-routes-middle" *ngIf="all_routes.length > 0; else noResults">
-    <div class="mobile-routes-box" *ngFor="let p of all_routes | filter: searchText"
-      (click)="popularSearch(p.source_slug, p.destination_slug)">
-      <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate2" ngbDatepicker
-        (click)="d.toggle()" #d="ngbDatepicker" />
+  <div
+    class="mobile-routes-middle"
+    *ngIf="all_routes.length > 0; else noResults"
+  >
+    <div
+      class="mobile-routes-box"
+      *ngFor="let p of all_routes | filter: searchText"
+      (click)="popularSearch(p.source_slug, p.destination_slug)"
+    >
+      <input
+        type="hidden"
+        [(ngModel)]="dtconfig.minDate"
+        name="todayDate"
+        id="todayDate2"
+        ngbDatepicker
+        (click)="d.toggle()"
+        #d="ngbDatepicker"
+      />
       <div class="mobile-route-row">
-
         <div class="mobile-route-left">
-
-          <img class="mobile-location-icon" src="assets/img/Icon-metro-location.svg" alt="" />
+          <img
+            class="mobile-location-icon"
+            src="assets/img/Icon-metro-location.svg"
+            alt=""
+          />
 
           <div class="mobile-route-name">
             {{ p.source_name }}
             <span>→</span>
             {{ p.destination_name }}
           </div>
-
         </div>
 
         <!-- <div class="mobile-route-btn">
@@ -121,9 +183,7 @@
             Book Now
           </a>
         </div> -->
-
       </div>
-
     </div>
   </div>
 
@@ -131,12 +191,20 @@
     {{ route.source_name }} ⇄ {{ route.destination_name }}
   </div>
 
-  <button *ngIf="hasMore && !loading && !searchText" (click)="allRoutes()" class="border-btn bh">
+  <button
+    *ngIf="hasMore && !loading && !searchText"
+    (click)="allRoutes(searchText)"
+    class="border-btn bh mb-3"
+  >
     Load More
   </button>
 
-  <div *ngIf="loading">Loading...</div>
-  <div *ngIf="!hasMore">No more records</div>
+  <div *ngIf="loading && page_no > 1" class="text-center">
+    Loading...
+  </div>
+  <div *ngIf="!hasMore && !searchText" class="text-center">
+    No more records
+  </div>
 </ng-container>
 
 <ng-container *ngIf="isMobile && MenuActive">
@@ -144,7 +212,11 @@
     <div class="row">
       <div class="col-5">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" alt="Mobile Logo" loading="lazy" />
+          <img
+            src="assets/img/mob-img/logo.png"
+            alt="Mobile Logo"
+            loading="lazy"
+          />
         </div>
       </div>
       <div class="col-7 mob-logintx">
@@ -159,10 +231,14 @@
   <div class="mobile-myaccount-middle">
     <ul class="mobile-menu">
       <li>
-        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i>Manage Booking</a>
+        <a routerLink="/manage-booking"
+          ><i class="far fa-window-restore"></i>Manage Booking</a
+        >
       </li>
       <li>
-        <a routerLink="/contact-us"><i class="fas fa-envelope"></i> Contact Us</a>
+        <a routerLink="/contact-us"
+          ><i class="fas fa-envelope"></i> Contact Us</a
+        >
       </li>
       <li>
         <a routerLink="/offers"><i class="fas fa-gifts"></i>Offers</a>
@@ -177,10 +253,14 @@
         <a routerLink="/testimonials"><i class="fa fa-star"></i>Testimonials</a>
       </li>
       <li>
-        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i>Terms & Conditions</a>
+        <a routerLink="/terms-conditions"
+          ><i class="fas fa-file-image"></i>Terms & Conditions</a
+        >
       </li>
       <li>
-        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i>Privacy Policy</a>
+        <a routerLink="/privacy-policy"
+          ><i class="far fa-file-powerpoint"></i>Privacy Policy</a
+        >
       </li>
       <li>
         <a routerLink="/about-us"><i class="fas fa-info-circle"></i>About Us</a>
