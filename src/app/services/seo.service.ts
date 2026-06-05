@@ -229,7 +229,7 @@ export class SeoService {
       this.doc.head.appendChild(serviceScript);
     }
 
-    console.log(c.organization_schema);
+    // console.log(c.organization_schema);
 
     // Organization Schema
     if (c.organization_schema) {
