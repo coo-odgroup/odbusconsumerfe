@@ -2111,6 +2111,7 @@ input {
     background: #1b2155;
     color: #fff;
     border: 1px solid #1b2155;
+    border-radius: 20px;
   }
 
 
@@ -3444,9 +3445,10 @@ a.btn.btn-warning:hover {
   }
 
   .route-tab.active {
-    background: #1b2155;
+    background: #1b2155 !important;
     color: #fff;
     border: 1px solid #1b2155;
+    border-radius: 20px !important;
   }
 
   /* GRID 2 COLUMN */
