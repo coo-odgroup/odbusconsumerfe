@@ -1781,6 +1781,15 @@ ngb-datepicker-navigation {
     border-radius: 6px;
 }
 
+/* .blog img {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    height: 630px;
+    margin: 20px auto;
+    border-radius: 6px;
+} */
+
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {

@@ -250,7 +250,7 @@
                                   <td class="text-left">Base Fare</td>
                                   <td class="text-right"><b>₹{{bookingDetails.booking[0].owner_fare +
                                       bookingDetails.booking[0].odbus_charges +
-                                      bookingDetails.booking[0].customer_comission}}</b></td>
+                                      bookingDetails.booking[0].customer_comission | number:'1.2-2'}}</b></td>
                                 </tr>
                                 <tr *ngIf="bookingDetails.booking[0].coupon_discount > 0">
                                   <td class="text-left">Coupon Discount</td>
@@ -258,7 +258,8 @@
                                 </tr>
                                 <tr *ngIf="bookingDetails.booking[0].customer_gst_status == 1">
                                   <td class="text-left">GST ({{bookingDetails.booking[0].customer_gst_percent}}%)</td>
-                                  <td class="text-right"><b>+ ₹{{bookingDetails.booking[0].customer_gst_amount}}</b>
+                                  <td class="text-right"><b>+ ₹{{bookingDetails.booking[0].customer_gst_amount |
+                                      number:'1.2-2'}}</b>
                                   </td>
                                 </tr>
 
@@ -266,7 +267,7 @@
                                   *ngIf="bookingDetails.booking[0].additional_festival_fare > 0 || bookingDetails.booking[0].additional_special_fare > 0">
                                   <td class="text-left">Convenience Fee </td>
                                   <td class="text-right"><b>+ ₹{{bookingDetails.booking[0].additional_festival_fare +
-                                      bookingDetails.booking[0].additional_special_fare }}</b></td>
+                                      bookingDetails.booking[0].additional_special_fare | number:'1.2-2'}}</b></td>
                                 </tr>
                                 <tr>
 
@@ -285,7 +286,7 @@
                                 <tr>
                                   <td class="text-left"><strong>Total Fare</strong></td>
                                   <td class="text-right"><strong>₹{{bookingDetails.booking[0].payable_amount +
-                                      bookingDetails.booking[0].customer_comission}}</strong></td>
+                                      bookingDetails.booking[0].customer_comission | number:'1.2-2'}}</strong></td>
                                 </tr>
                               </tbody>
 
@@ -451,21 +452,15 @@
   <!-- MOBILE TICKET PAGE -->
 
   <div class="mobile-ticket-page" *ngIf="bookingDetails">
-
     <div class="mobile-ticket-card">
 
       <!-- TOP HEADER -->
 
       <div class="ticket-top">
-
         <img src="../../assets/img/email-logo.png" class="ticket-logo" alt="logo" />
-
         <div class="ticket-head-text">
-
           <h3>ODBUS E-Ticket</h3>
-
           <p>Electronic Reservation Slip</p>
-
         </div>
 
       </div>
@@ -473,15 +468,10 @@
       <!-- STATUS -->
 
       <div class="ticket-status confirmed" *ngIf="bookingDetails.status==1">
-
         BOOKING CONFIRMED
-
       </div>
-
       <div class="ticket-status cancelled" *ngIf="bookingDetails.status==2">
-
         BOOKING CANCELLED
-
       </div>
 
       <!-- ===================================================
@@ -489,88 +479,60 @@
     ==================================================== -->
 
       <div class="ticket-box">
-
         <div class="section-title">
-
           <span></span>
-
           <h4>Journey Details</h4>
-
         </div>
 
         <!-- FROM TO -->
-
         <div class="route-main">
-
           <div class="route-city">
-
             <small>From</small>
-
             <h2>
               {{ bookingDetails.booking[0].source[0].name }}
             </h2>
-
           </div>
 
           <div class="route-arrow">
-
             <i class="fas fa-arrow-right"></i>
-
           </div>
 
           <div class="route-city text-right">
-
             <small>To</small>
-
             <h2>
               {{ bookingDetails.booking[0].destination[0].name }}
             </h2>
-
           </div>
-
         </div>
 
         <!-- ROW -->
 
         <div class="ticket-grid">
-
           <div class="ticket-info">
-
             <small>PNR Number</small>
-
             <h5>
               {{ bookingDetails.booking[0].pnr }}
             </h5>
-
           </div>
-
           <div class="ticket-info text-right">
-
             <small>Booking Date & Time</small>
-
             <h5>
               {{
               bookingDetails.booking[0].created_at
               | date:'dd MMM y'
               }}
             </h5>
-
           </div>
-
         </div>
 
         <!-- ROW -->
 
         <div class="ticket-grid">
-
           <div class="ticket-info">
-
             <small>Boarding Point</small>
-
             <h5>
               {{ bookingDetails.booking[0].boarding_point }}
             </h5>
-
             <p>
               {{
               bookingDetails.booking[0].journey_dt
@@ -579,17 +541,13 @@
               |
               {{ brdtime }}
             </p>
-
           </div>
 
           <div class="ticket-info text-right">
-
             <small>Dropping Point</small>
-
             <h5>
               {{ bookingDetails.booking[0].dropping_point }}
             </h5>
-
             <p>
               {{
               bookingDetails.booking[0].journey_dt
@@ -598,7 +556,6 @@
               |
               {{ drptime }}
             </p>
-
           </div>
 
         </div>
@@ -606,36 +563,26 @@
         <!-- ROW -->
 
         <div class="ticket-grid">
-
           <div class="ticket-info">
-
             <small>Journey Date</small>
-
             <h5>
               {{
               bookingDetails.booking[0].journey_dt
               | date:'EEEE, d MMM y'
               }}
             </h5>
-
           </div>
 
           <div class="ticket-info text-right">
-
             <small>GST Invoice</small>
-
             <h5>
-
               {{
               bookingDetails.booking[0].customer_gst_status==1
               ? 'YES'
               : 'NO'
               }}
-
             </h5>
-
           </div>
-
         </div>
 
         <!-- GST -->
@@ -648,47 +595,29 @@
     ==================================================== -->
 
       <div class="ticket-box">
-
         <div class="section-title">
-
           <span></span>
-
           <h4>Bus Details</h4>
-
         </div>
 
         <div class="ticket-grid">
-
           <div class="ticket-info">
-
             <small>Bus Name</small>
-
-            <h5>
-              {{ bookingDetails.booking[0].bus.name }}
-            </h5>
-
+            <h5>{{ bookingDetails.booking[0].bus.name }}</h5>
           </div>
 
           <div class="ticket-info text-right">
-
             <small>Bus Number</small>
-
             <h5>
               {{ bookingDetails.booking[0].bus.bus_number }}
             </h5>
-
           </div>
-
         </div>
 
         <div class="ticket-grid">
-
           <div class="ticket-info">
-
             <small>Bus Type</small>
-
             <h5>
-
               {{
               bookingDetails.booking[0].bus.bus_sitting.name
               }}
@@ -696,42 +625,21 @@
               {{
               bookingDetails.booking[0].bus.bus_type.name
               }}
-
             </h5>
-
           </div>
 
           <div class="ticket-info text-right">
-
             <small>Conductor Number</small>
-
-            <h5>
-
-              +91
-              {{
-              bookingDetails.booking[0].bus.bus_contacts.phone
-              }}
-
-            </h5>
-
+            <h5>+91{{bookingDetails.booking[0].bus.bus_contacts.phone}}</h5>
           </div>
-
         </div>
 
         <div class="ticket-grid">
-
           <div class="ticket-info">
-
             <small>Seat(s)</small>
-
-            <h5>
-              Seat({{ totalseats }}) - {{ seats }}
-            </h5>
-
+            <h5>Seat({{ totalseats }}) - {{ seats }}</h5>
           </div>
-
         </div>
-
       </div>
 
       <!-- ===================================================
@@ -739,29 +647,16 @@
     ==================================================== -->
 
       <div class="ticket-box">
-
         <div class="section-title">
-
           <span></span>
-
           <h4>Passenger Details</h4>
-
         </div>
 
         <!-- HEAD -->
-
         <div class="passenger-head">
-
           <div>Name</div>
-
-          <div class="text-center">
-            Age
-          </div>
-
-          <div class="text-right">
-            Seat
-          </div>
-
+          <div class="text-center">Age</div>
+          <div class="text-right">Seat</div>
         </div>
 
         <!-- BODY -->
@@ -770,55 +665,17 @@
           let dt of bookingDetails.booking[0].booking_detail;
           let i=index
         ">
-
           <div class="passenger-name">
-
             <i class="fas fa-user-circle"></i>
-
             <span>
               {{ dt.passenger_name }} ({{ dt.passenger_gender }})
             </span>
-
           </div>
-
           <div class="text-center">
-
             {{ dt.passenger_age }}
-
           </div>
-
           <div class="text-right">
-
             {{ seats[i] }}
-
-          </div>
-
-        </div>
-        <div class="passenger-row" *ngFor="
-          let dt of bookingDetails.booking[0].booking_detail;
-          let i=index
-        ">
-
-          <div class="passenger-name">
-
-            <i class="fas fa-user-circle"></i>
-
-            <span>
-              {{ dt.passenger_name }} ({{ dt.passenger_gender }})
-            </span>
-
-          </div>
-
-          <div class="text-center">
-
-            {{ dt.passenger_age }}
-
-          </div>
-
-          <div class="text-right">
-
-            {{ seats[i] }}
-
           </div>
 
         </div>
@@ -830,22 +687,14 @@
     ==================================================== -->
 
       <div class="ticket-box qr-box">
-
         <div class="section-title">
-
           <span></span>
-
           <h4>Scan Ticket</h4>
-
         </div>
-
         <div class="qr-wrapper">
-
           <qr-code [value]="qrCode" size="210" level="M">
           </qr-code>
-
         </div>
-
       </div>
 
       <!-- ===================================================
@@ -853,117 +702,70 @@
     ==================================================== -->
 
       <div class="ticket-box">
-
         <div class="section-title">
-
           <span></span>
-
           <h4>Total Fare</h4>
-
         </div>
 
         <div class="fare-card">
-
           <div class="fare-top">
-
             <div>
-
               <h3>Fare Details</h3>
-
               <p>Total Fare (Inclusive)</p>
-
             </div>
-
             <h2>
-
               ₹{{
               bookingDetails.booking[0].payable_amount +
-              bookingDetails.booking[0].customer_comission
+              bookingDetails.booking[0].customer_comission | number:'1.2-2'
               }}
-
             </h2>
-
           </div>
 
           <div class="fare-line">
-
             <span>Base Fare</span>
-
             <strong>
-
               ₹{{
               bookingDetails.booking[0].owner_fare +
               bookingDetails.booking[0].odbus_charges +
-              bookingDetails.booking[0].customer_comission
+              bookingDetails.booking[0].customer_comission | number:'1.2-2'
               }}
 
             </strong>
-
           </div>
 
           <div class="fare-line" *ngIf="bookingDetails.booking[0].coupon_discount > 0">
-
             <span>Coupon Discount</span>
-
             <strong>
-
-              - ₹{{
-              bookingDetails.booking[0].coupon_discount
-              }}
-
+              - ₹{{bookingDetails.booking[0].coupon_discount | number:'1.2-2'}}
             </strong>
-
           </div>
 
           <div class="fare-line" *ngIf="bookingDetails.booking[0].customer_gst_status == 1">
-
             <span>
-
-              GST
-              ({{
-              bookingDetails.booking[0].customer_gst_percent
-              }}%)
-
+              GST({{bookingDetails.booking[0].customer_gst_percent}}%)
             </span>
 
             <strong>
-
-              + ₹{{
-              bookingDetails.booking[0].customer_gst_amount
-              }}
-
+              + ₹{{bookingDetails.booking[0].customer_gst_amount | number:'1.2-2'}}
             </strong>
-
           </div>
 
           <div class="fare-total">
-
             <span>Total Fare</span>
-
             <strong>
-
               ₹{{
               bookingDetails.booking[0].payable_amount +
-              bookingDetails.booking[0].customer_comission
+              bookingDetails.booking[0].customer_comission | number:'1.2-2'
               }}
-
             </strong>
-
           </div>
-
         </div>
-
       </div>
 
       <!-- BUTTON -->
-
       <button class="mobile-print-btn" (click)="print()">
-
         SAVE / PRINT TICKET
-
       </button>
-
     </div>
-
   </div>
 </ng-container>

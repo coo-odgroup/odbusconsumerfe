@@ -114,7 +114,8 @@ hr {
 }
 
 span {
-    color: #efc003;
+    /* color: #efc003; */
+    color: #072C6B;
 }
 
 .font {
@@ -951,6 +952,7 @@ input[type="radio"]:checked {
 .fare-total span {
     font-size: 18px;
     font-weight: 800;
+    color: #1b2155;
 }
 
 .fare-total strong {
