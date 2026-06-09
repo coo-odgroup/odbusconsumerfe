@@ -63,7 +63,7 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
 
         const url = this.router.url;
 
-        if (url.includes('/booking') || url.includes('/routes/')) {
+        if (url.includes('/booking')) {
           this.showRouteLinks = false;
         } else {
           this.showRouteLinks = true;
