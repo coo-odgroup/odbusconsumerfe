@@ -1,7 +1,7 @@
 <section class="route-link-section fluid-15">
   <div class="container">
     <!-- Tabs -->
-    <ul class="route-tabs nav nav-tab">
+    <!-- <ul class="route-tabs nav nav-tab">
       <li [class.active]="activeTab === 1">
         <a (click)="activeTab = 1">Top Bus Routes</a>
       </li>
@@ -17,7 +17,25 @@
       <li [class.active]="activeTab === 4">
         <a (click)="activeTab = 4">Info</a>
       </li>
-    </ul>
+    </ul> -->
+
+    <div class="route-tabs">
+      <span class="route-tab" [class.active]="activeTab === 1" (click)="activeTab = 1">
+        Top Bus Routes
+      </span>
+
+      <span class="route-tab" [class.active]="activeTab === 2" (click)="activeTab = 2">
+        Top Bus Operators
+      </span>
+
+      <span class="route-tab" [class.active]="activeTab === 3" (click)="activeTab = 3">
+        Quick Links
+      </span>
+
+      <span class="route-tab" [class.active]="activeTab === 4" (click)="activeTab = 4">
+        Info
+      </span>
+    </div>
 
     <div class="tab-content">
       <!-- TAB 1 -->

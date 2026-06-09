@@ -7,13 +7,20 @@
     </div>
 
     <!-- Tabs -->
-    <ul class="faq-tabs nav nav-tabs" role="tablist">
+    <!-- <ul class="faq-tabs nav nav-tabs" role="tablist">
       <li *ngFor="let cat of faqs; let i = index" [class.active]="activeTab === i">
         <a href="#" (click)="activeTab = i; $event.preventDefault()">
           {{ cat.category_name }}
         </a>
       </li>
-    </ul>
+    </ul> -->
+
+    <div class="faq-tabs">
+      <span *ngFor="let cat of faqs; let i = index" class="faq-tab" [class.active]="activeTab === i"
+        (click)="activeTab = i">
+        {{ cat.category_name }}
+      </span>
+    </div>
 
     <div class="tab-content">
       <div *ngFor="let faq of faqs[activeTab]?.faqs; let j = index" class="faq-item"
