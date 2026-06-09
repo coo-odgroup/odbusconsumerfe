@@ -98,6 +98,7 @@ export class OdbusOffersComponent implements OnInit {
 
         this.offerList = this.Offers.map((item) => ({
           path: item.slider_photo,
+          alt: item.alt_tag
         }));
 
         // console.log(this.Offers);
