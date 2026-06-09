@@ -5,6 +5,8 @@ import {
   CanActivate,
   Router,
   Route,
+  UrlMatchResult,
+  UrlSegment,
 } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
@@ -38,8 +40,27 @@ import { ProfiledeleteComponent } from './profiledelete/profiledelete.component'
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { CommonContentComponent } from './common-content/common-content.component';
 
+const userRoutePaths = [
+  'wallet',
+  'dashboard',
+  'notifications',
+  'invite-friend',
+  'rewards',
+  'my-reviews',
+  'helpandsupport',
+  'myaccount',
+];
+
+export function userRouteMatcher(segments: UrlSegment[]): UrlMatchResult | null {
+  if (segments.length > 0 && userRoutePaths.includes(segments[0].path)) {
+    return { consumed: [] };
+  }
+
+  return null;
+}
+
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'pnr', component: PageErrorComponent },
   { path: 'pnr/:id', component: PnrdetailComponent },
   { path: 'listing', component: SearchComponent },
@@ -144,7 +165,7 @@ export const routes: Routes = [
 
 
   {
-    path: '',
+    matcher: userRouteMatcher,
     loadChildren: () =>
       import('./user/user.module')
         .then(m => m.UserModule),

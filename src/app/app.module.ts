@@ -59,6 +59,7 @@ import { SearchBoxComponent } from './search-box/search-box.component';
 import { SearchBoxMComponent } from './search-box-m/search-box-m.component';
 import { MobileAppDownloadComponent } from './home/mobile-app-download/mobile-app-download.component';
 import { SharedModule } from './shared/shared.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -142,7 +143,13 @@ const ngWizardConfig: NgWizardConfig = {
     ImageCropperModule,
     LightboxModule,
     QRCodeModule,
-    SharedModule
+    SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
   providers: [AppInitializerService,
