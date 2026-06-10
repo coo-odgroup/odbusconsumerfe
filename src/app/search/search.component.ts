@@ -1,5 +1,20 @@
-import { Component, forwardRef, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormBuilder, FormGroup, FormArray, FormControl, Validators, AbstractControl } from '@angular/forms';
+import {
+  Component,
+  forwardRef,
+  OnInit,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  FormControl,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 import { NgbNavConfig, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { LocationdataService } from '../services/locationdata.service';
 import { ListingService } from '../services/listing.service';
@@ -12,7 +27,7 @@ import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { SeatsLayout } from '../model/seatslayout';
 import { Buslist } from '../model/buslist';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from '../services/notification.service';
 import { DatePipe, formatDate, isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -25,7 +40,11 @@ import { Lightbox } from 'ngx-lightbox';
 import { PopularRoutesService } from '../services/popular-routes.service';
 import { Location, DOCUMENT } from '@angular/common';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { NgbDatepickerConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbDatepickerConfig,
+  NgbModal,
+  NgbActiveModal,
+} from '@ng-bootstrap/ng-bootstrap';
 import { time } from 'console';
 import 'lodash';
 import { exit } from 'process';
@@ -34,24 +53,19 @@ import { HttpClient } from '@angular/common/http';
 
 declare var _: any;
 
-
 export const DATEPICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => SearchComponent),
-  multi: true
+  multi: true,
 };
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  providers: [DatePipe, NgbActiveModal]
+  providers: [DatePipe, NgbActiveModal],
 })
-
-
-
 export class SearchComponent implements OnInit {
-
   selectedDate: any;
   disabled = false;
   isMobile: boolean;
@@ -62,18 +76,18 @@ export class SearchComponent implements OnInit {
 
   _albums = [];
   // Function to call when the date changes.
-  onChange = (date?: Date) => { };
+  onChange = (date?: Date) => {};
 
   // Function to call when the date picker is touched
-  onTouched = () => { };
+  onTouched = () => {};
 
   writeValue(value: Date) {
     if (!value) return;
     this.selectedDate = {
       year: value.getFullYear(),
       month: value.getMonth(),
-      day: value.getDate()
-    }
+      day: value.getDate(),
+    };
   }
 
   registerOnChange(fn: (date: Date) => void): void {
@@ -121,7 +135,7 @@ export class SearchComponent implements OnInit {
   public filterForm: FormGroup;
   public MobilefilterForm: FormGroup;
 
-  keyword = 'name'
+  keyword = 'name';
   public searchForm: FormGroup;
   public seatForm: FormGroup;
 
@@ -157,7 +171,6 @@ export class SearchComponent implements OnInit {
   selectedUB: any = [];
   PriceArray: any = [];
 
-
   maxSeat: number = 0;
   checkedIndex: any = 0;
 
@@ -182,7 +195,6 @@ export class SearchComponent implements OnInit {
 
   seatLoader: boolean = false;
 
-
   isAscendingSort: any = '';
   columnName: any = '';
   arrowStatus: any = '';
@@ -191,7 +203,6 @@ export class SearchComponent implements OnInit {
   location_list: any;
   formatter: any;
   currentUrl: any;
-
 
   myDate: any = new Date();
   sourceData: any;
@@ -211,7 +222,8 @@ export class SearchComponent implements OnInit {
     private locationService: LocationdataService,
     private listingService: ListingService,
     private filterOptionsService: FilterOptionsService,
-    private sanitizer: DomSanitizer, private filterService: FilterService,
+    private sanitizer: DomSanitizer,
+    private filterService: FilterService,
     private seatLayoutService: SeatLayoutService,
     private getSeatPriceService: GetSeatPriceService,
     private boardingDropingPointService: BoardingDropingPointService,
@@ -231,27 +243,29 @@ export class SearchComponent implements OnInit {
     private title: Title,
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(DOCUMENT) private document: Document
-
+    @Inject(DOCUMENT) private document: Document,
   ) {
     // Only access localStorage in browser
-    const allLocData = isPlatformBrowser(this.platformId) ? localStorage.getItem('allLoc') : null;
+    const allLocData = isPlatformBrowser(this.platformId)
+      ? localStorage.getItem('allLoc')
+      : null;
     // console.log('storage- ',allLocData);
     if (allLocData) {
       const data = JSON.parse(allLocData);
       this.locationList(data);
     } else {
-      this.locationService.all().subscribe(
-        res => {
-          if (isPlatformBrowser(this.platformId)) {
-            localStorage.setItem('allLoc', JSON.stringify(res));
-          }
-          this.locationList(res);
-        });
+      this.locationService.all().subscribe((res) => {
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('allLoc', JSON.stringify(res));
+        }
+        this.locationList(res);
+      });
     }
 
     // Only detect device in browser, default to false (desktop) for SSR
-    this.isMobile = isPlatformBrowser(this.platformId) ? this.deviceService.isMobile() : false;
+    this.isMobile = isPlatformBrowser(this.platformId)
+      ? this.deviceService.isMobile()
+      : false;
 
     this.currentUrl = location.path().replace('/', '');
     this.seo.seolist(this.currentUrl);
@@ -280,8 +294,7 @@ export class SearchComponent implements OnInit {
       dropingingPointId: this.fb.array([]),
       operatorId: this.fb.array([]),
       amenityId: this.fb.array([]),
-    })
-
+    });
 
     this.MobilefilterForm = this.fb.group({
       price: [0],
@@ -291,17 +304,14 @@ export class SearchComponent implements OnInit {
       dropingingPointId: this.fb.array([]),
       operatorId: this.fb.array([]),
       amenityId: this.fb.array([]),
-    })
-
+    });
 
     this.seatForm = this.fb.group({
       boardingPoint: [null, Validators.compose([Validators.required])],
       droppingPoint: [null, Validators.compose([Validators.required])],
       Lowerberth: this.fb.array([]),
-      Upperberth: this.fb.array([])
+      Upperberth: this.fb.array([]),
     });
-
-
   }
 
   locationList(res: any) {
@@ -316,18 +326,20 @@ export class SearchComponent implements OnInit {
             term === ''
               ? []
               : this.location_list
-                .filter(
-                  (v) =>
-                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                    (v.synonym != '' && v.synonym != null && v.synonym.toLowerCase().indexOf(term.toLowerCase()) > -1)
-                )
-                .slice(0, 10)
-          )
+                  .filter(
+                    (v) =>
+                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                      (v.synonym != '' &&
+                        v.synonym != null &&
+                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                          -1),
+                  )
+                  .slice(0, 10),
+          ),
         );
       this.formatter = (x: { name: string }) => x.name;
-    }
-    else {
-      this.notify.notify(res.message, "Error");
+    } else {
+      this.notify.notify(res.message, 'Error');
     }
   }
 
@@ -341,19 +353,17 @@ export class SearchComponent implements OnInit {
     this._lightbox.close();
   }
 
-
   lastPanelId: string = null;
-  defaultPanelId: string = "price";
+  defaultPanelId: string = 'price';
 
   panelShadow($event: NgbPanelChangeEvent, shadow) {
-
     const { nextState } = $event;
 
     const activePanelId = $event.panelId;
     const activePanelElem = document.getElementById(activePanelId);
 
     if (!shadow.isExpanded(activePanelId)) {
-      activePanelElem.parentElement.classList.add("open");
+      activePanelElem.parentElement.classList.add('open');
     }
 
     if (!this.lastPanelId) this.lastPanelId = this.defaultPanelId;
@@ -362,11 +372,10 @@ export class SearchComponent implements OnInit {
       const lastPanelElem = document.getElementById(this.lastPanelId);
 
       if (this.lastPanelId === activePanelId && nextState === false)
-        activePanelElem.parentElement.classList.remove("open");
+        activePanelElem.parentElement.classList.remove('open');
       else if (this.lastPanelId !== activePanelId && nextState === true) {
-        lastPanelElem.parentElement.classList.remove("open");
+        lastPanelElem.parentElement.classList.remove('open');
       }
-
     }
 
     this.lastPanelId = $event.panelId;
@@ -375,17 +384,15 @@ export class SearchComponent implements OnInit {
   swapStatus: boolean = false;
 
   swap() {
-
     this.swapStatus = true;
 
     if (this.searchForm.value.source) {
-      this.swapdestination = this.searchForm.value.source
+      this.swapdestination = this.searchForm.value.source;
     }
 
     if (this.searchForm.value.destination) {
       this.swapsource = this.searchForm.value.destination;
     }
-
   }
 
   tabChange(val) {
@@ -393,37 +400,29 @@ export class SearchComponent implements OnInit {
     document.getElementById(val).click();
   }
 
-
   submitSeat() {
     if (this.seatForm.valid) {
       let Lowerberth = this.seatForm.value.Lowerberth;
       let Upperberth = this.seatForm.value.Upperberth;
 
       if (Lowerberth.length == 0 && Upperberth.length == 0) {
-
-        this.notify.notify("Select Seat", "Error");
+        this.notify.notify('Select Seat', 'Error');
         return;
-
       }
 
       this.modalService.dismissAll();
 
-
       Lowerberth.forEach((item, index) => {
-        if (index !== Lowerberth.findIndex(i => i == item) || item == null) {
-
+        if (index !== Lowerberth.findIndex((i) => i == item) || item == null) {
           Lowerberth.splice(index, 1);
         }
-
       });
 
       Upperberth.forEach((item, index) => {
-        if (index !== Upperberth.findIndex(i => i == item) || item == null) {
+        if (index !== Upperberth.findIndex((i) => i == item) || item == null) {
           Upperberth.splice(index, 1);
         }
-
       });
-
 
       //  this.selectedLB.forEach((item, index) => {
       //   if (index !== this.selectedLB.findIndex(i => i == item))
@@ -448,8 +447,8 @@ export class SearchComponent implements OnInit {
         boardingPoint: this.seatForm.value.boardingPoint,
         busId: this.busId,
         PriceArray: this.PriceArray,
-        droppingPoint: this.seatForm.value.droppingPoint
-      }
+        droppingPoint: this.seatForm.value.droppingPoint,
+      };
 
       if (isPlatformBrowser(this.platformId)) {
         localStorage.setItem('bookingdata', JSON.stringify(bookingdata));
@@ -457,28 +456,28 @@ export class SearchComponent implements OnInit {
       }
       this.router.navigate(['booking']);
     } else {
-
-      if (this.seatForm.value.boardingPoint == null || this.searchForm.value.boardingPoint == '') {
-
-        this.notify.notify("Select Boarding Point !", "Error");
+      if (
+        this.seatForm.value.boardingPoint == null ||
+        this.searchForm.value.boardingPoint == ''
+      ) {
+        this.notify.notify('Select Boarding Point !', 'Error');
+      } else if (
+        this.seatForm.value.droppingPoint == null ||
+        this.searchForm.value.droppingPoint == ''
+      ) {
+        this.notify.notify('Select Dropping Point !', 'Error');
+      } else if (
+        this.seatForm.value.Lowerberth == null ||
+        this.searchForm.value.Lowerberth == '' ||
+        this.seatForm.value.Upperberth == null ||
+        this.searchForm.value.Upperberth == ''
+      ) {
+        this.notify.notify('Select Seat !', 'Error');
       }
-
-      else if (this.seatForm.value.droppingPoint == null || this.searchForm.value.droppingPoint == '') {
-        this.notify.notify("Select Dropping Point !", "Error");
-      }
-
-      else if (this.seatForm.value.Lowerberth == null || this.searchForm.value.Lowerberth == '' || this.seatForm.value.Upperberth == null || this.searchForm.value.Upperberth == '') {
-        this.notify.notify("Select Seat !", "Error");
-      }
-
-
     }
   }
 
-
-
   updateLowerberth(e: any) {
-
     const Lowerberth: FormArray = this.seatForm.get('Lowerberth') as FormArray;
     if (e.target.checked) {
       if (this.maxSeat != 0 && this.checkedIndex < this.maxSeat) {
@@ -487,7 +486,6 @@ export class SearchComponent implements OnInit {
       } else {
         e.target.checked = false;
       }
-
     } else {
       let i: number = 0;
       Lowerberth.controls.forEach((item: AbstractControl) => {
@@ -505,23 +503,20 @@ export class SearchComponent implements OnInit {
     this.getPriceOnSeatSelect();
   }
 
-
   dualsleeper_warning: any = '';
   double_sleeper_restrict: any = [];
 
   getPriceOnSeatSelect() {
-
     this.dualsleeper_warning = '';
     this.double_sleeper_restrict = [];
-
 
     const SeatPriceParams = {
       seater: this.seatForm.value.Lowerberth,
       sleeper: this.seatForm.value.Upperberth,
       destinationId: this.destination_id,
       sourceId: this.source_id,
-      busId: this.busId
-    }
+      busId: this.busId,
+    };
 
     let seaterparam = [];
     let sleeperparam = [];
@@ -531,14 +526,13 @@ export class SearchComponent implements OnInit {
     let ubnames = [];
     let lbnames = [];
 
-    SeatPriceParams.seater.forEach(e => {
+    SeatPriceParams.seater.forEach((e) => {
       let ar = e.split('-');
       lbIds.push(ar[0]);
       lbnames.push(ar[1]);
     });
 
-
-    SeatPriceParams.sleeper.forEach(e => {
+    SeatPriceParams.sleeper.forEach((e) => {
       let ar = e.split('-');
       ubIds.push(ar[0]);
       ubnames.push(ar[1]);
@@ -546,141 +540,136 @@ export class SearchComponent implements OnInit {
 
     let genderRestrictSeatarray: any = [];
 
-
-
     if (this.seatsLayoutRecord.lower_berth) {
+      this.selectedLB = this.seatsLayoutRecord.lower_berth
+        .filter((itm) => {
+          if (lbIds.indexOf(itm.id.toString()) > -1) {
+            //seaterparam +='&seater[]='+itm.id;
+            seaterparam.push(itm.id);
 
+            ///////// logic for seat select gender restriction
 
-      this.selectedLB = this.seatsLayoutRecord.lower_berth.filter((itm) => {
+            let prevGender = null;
 
-        if (lbIds.indexOf(itm.id.toString()) > -1) {
-          //seaterparam +='&seater[]='+itm.id;
-          seaterparam.push(itm.id);
+            this.seatsLayoutRecord.lower_berth.filter((at) => {
+              if (
+                itm.colNumber == at.colNumber &&
+                (itm.rowNumber - at.rowNumber == -1 ||
+                  itm.rowNumber - at.rowNumber == 1) &&
+                at.seatText != '' &&
+                itm.seatText != at.seatText &&
+                at.Gender &&
+                at.Gender != ''
+              ) {
+                if (prevGender != null) {
+                  if (prevGender != at.Gender) {
+                    let indexNum = genderRestrictSeatarray.findIndex((i) => {
+                      return i.seat_name == itm.id;
+                    });
 
-          ///////// logic for seat select gender restriction
+                    genderRestrictSeatarray.splice(indexNum, 1);
 
-          let prevGender = null;
-
-          this.seatsLayoutRecord.lower_berth.filter((at) => {
-            if (itm.colNumber == at.colNumber &&
-              (itm.rowNumber - at.rowNumber == -1 || itm.rowNumber - at.rowNumber == 1)
-              && at.seatText != '' && itm.seatText != at.seatText && at.Gender && at.Gender != '') {
-
-              if (prevGender != null) {
-                if (prevGender != at.Gender) {
-                  let indexNum = genderRestrictSeatarray.findIndex((i) => {
-                    return (i.seat_name == itm.id);
-                  });
-
-                  genderRestrictSeatarray.splice(indexNum, 1);
-
-                  const sst = {
-                    "seat_name": itm.id,
-                    "canSelect": 'none'
-                  };
-                  genderRestrictSeatarray.push(sst);
-
+                    const sst = {
+                      seat_name: itm.id,
+                      canSelect: 'none',
+                    };
+                    genderRestrictSeatarray.push(sst);
+                  }
+                } else {
+                  if (at.Gender == 'F' || at.Gender == 'M') {
+                    const sst = {
+                      seat_name: itm.id,
+                      canSelect: at.Gender,
+                    };
+                    genderRestrictSeatarray.push(sst);
+                  }
                 }
-              } else {
-                if (at.Gender == 'F' || at.Gender == 'M') {
-                  const sst = {
-                    "seat_name": itm.id,
-                    "canSelect": at.Gender
-                  };
-                  genderRestrictSeatarray.push(sst);
-                }
+
+                prevGender = at.Gender;
               }
-
-              prevGender = at.Gender;
-
-            }
-          });
-
-
-        }
-        return lbIds.indexOf(itm.id.toString()) > -1;
-
-      }).map(itm => itm.seatText);
-
+            });
+          }
+          return lbIds.indexOf(itm.id.toString()) > -1;
+        })
+        .map((itm) => itm.seatText);
     }
 
-
-
     if (this.seatsLayoutRecord.upper_berth) {
+      this.selectedUB = this.seatsLayoutRecord.upper_berth
+        .filter((t) => {
+          if (ubIds.indexOf(t.id.toString()) > -1) {
+            sleeperparam.push(t.id);
+            ///////// logic for seat select gender restriction
 
-      this.selectedUB = this.seatsLayoutRecord.upper_berth.filter((t) => {
-        if (ubIds.indexOf(t.id.toString()) > -1) {
-          sleeperparam.push(t.id);
-          ///////// logic for seat select gender restriction
+            let prevSleepGender = null;
 
-          let prevSleepGender = null;
+            this.seatsLayoutRecord.upper_berth.filter((at) => {
+              if (
+                t.colNumber == at.colNumber &&
+                (t.rowNumber - at.rowNumber == -1 ||
+                  t.rowNumber - at.rowNumber == 1) &&
+                at.seatText != '' &&
+                t.seatText != at.seatText &&
+                at.Gender &&
+                at.Gender != ''
+              ) {
+                if (prevSleepGender != null) {
+                  if (prevSleepGender != at.Gender) {
+                    let indexNum = genderRestrictSeatarray.findIndex((i) => {
+                      return i.seat_name == t.id;
+                    });
 
-          this.seatsLayoutRecord.upper_berth.filter((at) => {
-            if (t.colNumber == at.colNumber &&
-              (t.rowNumber - at.rowNumber == -1 || t.rowNumber - at.rowNumber == 1)
-              && at.seatText != '' && t.seatText != at.seatText && at.Gender && at.Gender != '') {
+                    genderRestrictSeatarray.splice(indexNum, 1);
 
-              if (prevSleepGender != null) {
-
-                if (prevSleepGender != at.Gender) {
-                  let indexNum = genderRestrictSeatarray.findIndex((i) => {
-                    return (i.seat_name == t.id);
-                  });
-
-                  genderRestrictSeatarray.splice(indexNum, 1);
-
-                  const sst = {
-                    "seat_name": t.id,
-                    "canSelect": 'none'
-                  };
-                  genderRestrictSeatarray.push(sst);
-
+                    const sst = {
+                      seat_name: t.id,
+                      canSelect: 'none',
+                    };
+                    genderRestrictSeatarray.push(sst);
+                  }
+                } else {
+                  if (at.Gender == 'F' || at.Gender == 'M') {
+                    const sst = {
+                      seat_name: t.id,
+                      canSelect: at.Gender,
+                    };
+                    genderRestrictSeatarray.push(sst);
+                  }
                 }
-              } else {
-                if (at.Gender == 'F' || at.Gender == 'M') {
-                  const sst = {
-                    "seat_name": t.id,
-                    "canSelect": at.Gender
-                  };
-                  genderRestrictSeatarray.push(sst);
+
+                prevSleepGender = at.Gender;
+              }
+            });
+
+            /////////// logic for double sleeper single booking restrict /////////
+
+            this.seatsLayoutRecord.upper_berth.filter((at) => {
+              if (
+                t.colNumber == at.colNumber &&
+                (t.rowNumber - at.rowNumber == -1 ||
+                  t.rowNumber - at.rowNumber == 1) &&
+                at.seatText != '' &&
+                t.seatText != at.seatText &&
+                at.bus_seats
+              ) {
+                if (ubnames.indexOf(at.seatText) === -1) {
+                  this.dualsleeper_warning =
+                    'Double sleeper auto-selected as Single booking not allowed. Continue or pick a different seat/sleeper or Bus.';
                 }
+                at['linkedseat'] = t;
+                this.double_sleeper_restrict.push(at);
               }
+            });
 
-
-              prevSleepGender = at.Gender;
-
-
-            }
-          });
-
-
-          /////////// logic for double sleeper single booking restrict /////////
-
-
-          this.seatsLayoutRecord.upper_berth.filter((at) => {
-            if (t.colNumber == at.colNumber &&
-              (t.rowNumber - at.rowNumber == -1 || t.rowNumber - at.rowNumber == 1)
-              && at.seatText != '' && t.seatText != at.seatText && at.bus_seats) {
-
-              if (ubnames.indexOf(at.seatText) === -1) {
-                this.dualsleeper_warning = 'Double sleeper auto-selected as Single booking not allowed. Continue or pick a different seat/sleeper or Bus.';
-
-              }
-              at['linkedseat'] = t;
-              this.double_sleeper_restrict.push(at);
-            }
-          });
-
-          ////////////////////////////////////////////////////
-
-        }
-        return ubIds.indexOf(t.id.toString()) > -1;
-      }).map(t => t.seatText);
-
+            ////////////////////////////////////////////////////
+          }
+          return ubIds.indexOf(t.id.toString()) > -1;
+        })
+        .map((t) => t.seatText);
     }
 
     if (this.double_sleeper_restrict) {
-      this.double_sleeper_restrict.forEach(e => {
+      this.double_sleeper_restrict.forEach((e) => {
         if (!sleeperparam.includes(e.id)) {
           sleeperparam.push(e.id);
         }
@@ -689,73 +678,62 @@ export class SearchComponent implements OnInit {
           this.selectedUB.push(e.seatText);
         }
 
-        let otherId = (this.isMobile) ? 'upper_mo' + e.id : 'upper' + e.id;
+        let otherId = this.isMobile ? 'upper_mo' + e.id : 'upper' + e.id;
         let otherElement = document.getElementById(otherId) as HTMLInputElement;
         otherElement.checked = true;
 
-        const Upperberth: FormArray = this.seatForm.get('Upperberth') as FormArray;
+        const Upperberth: FormArray = this.seatForm.get(
+          'Upperberth',
+        ) as FormArray;
         const newValue = otherElement.value;
-        const exists = Upperberth.controls.some(control => control.value === newValue);
+        const exists = Upperberth.controls.some(
+          (control) => control.value === newValue,
+        );
 
         if (!exists) {
           Upperberth.push(new FormControl(newValue));
         }
-
       });
     }
 
-
-
-
-
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('genderRestrictSeats', JSON.stringify(genderRestrictSeatarray));
+      localStorage.setItem(
+        'genderRestrictSeats',
+        JSON.stringify(genderRestrictSeatarray),
+      );
     }
 
     this.spinner.show();
 
     if (this.selectedLB.length != 0 || this.selectedUB.length != 0) {
-
-
       let params = {
-        "entry_date": this.entdate,
-        "sourceId": SeatPriceParams.sourceId,
-        "destinationId": SeatPriceParams.destinationId,
-        "busId": SeatPriceParams.busId,
-        "sleeper": sleeperparam,
-        "seater": seaterparam,
-        "ReferenceNumber": this.referenceNumber,
-        "origin": this.origin
-      }
+        entry_date: this.entdate,
+        sourceId: SeatPriceParams.sourceId,
+        destinationId: SeatPriceParams.destinationId,
+        busId: SeatPriceParams.busId,
+        sleeper: sleeperparam,
+        seater: seaterparam,
+        ReferenceNumber: this.referenceNumber,
+        origin: this.origin,
+      };
 
-      this.getSeatPriceService.getprice(params).subscribe(
-        res => {
-          this.PriceArray = res.data[0];
-          //console.log(this.PriceArray) ;
-          this.spinner.hide();
+      this.getSeatPriceService.getprice(params).subscribe((res) => {
+        this.PriceArray = res.data[0];
+        //console.log(this.PriceArray) ;
+        this.spinner.hide();
 
-          if (this.checkedIndex == this.maxSeat && this.isMobile == true) {
-            // this.notify.notify("You have selected maximum no of seats !","Error");
-            alert("You have selected maximum no of seats !");
-          }
-
-
-        });
-
+        if (this.checkedIndex == this.maxSeat && this.isMobile == true) {
+          // this.notify.notify("You have selected maximum no of seats !","Error");
+          alert('You have selected maximum no of seats !');
+        }
+      });
     } else {
-
       this.spinner.hide();
       this.PriceArray = [];
     }
-
-
-
   }
 
-
-
   updateUpperberth(e: any) {
-
     const Upperberth: FormArray = this.seatForm.get('Upperberth') as FormArray;
     if (e.target.checked) {
       if (this.maxSeat != 0 && this.checkedIndex < this.maxSeat) {
@@ -766,7 +744,6 @@ export class SearchComponent implements OnInit {
       }
 
       //  console.log(Upperberth);
-
     } else {
       let vl = e.target.value.split('-');
       let i: number = 0;
@@ -776,27 +753,30 @@ export class SearchComponent implements OnInit {
           Upperberth.removeAt(i);
 
           if (this.double_sleeper_restrict) {
-            this.double_sleeper_restrict.forEach(e => {
-
+            this.double_sleeper_restrict.forEach((e) => {
               if (e.linkedseat.id == vl[0] && e.linkedseat.seatText == vl[1]) {
-
                 const index = this.selectedUB.indexOf(e.seatText);
                 if (index !== -1) {
                   this.selectedUB.splice(index, 1);
                 }
-                let otherId = (this.isMobile) ? 'upper_mo' + e.id : 'upper' + e.id;
-                let otherElement = document.getElementById(otherId) as HTMLInputElement;
+                let otherId = this.isMobile
+                  ? 'upper_mo' + e.id
+                  : 'upper' + e.id;
+                let otherElement = document.getElementById(
+                  otherId,
+                ) as HTMLInputElement;
                 otherElement.checked = false;
                 const valueToRemove = otherElement.value;
 
-                const idx = Upperberth.controls.findIndex(control => control.value === valueToRemove);
+                const idx = Upperberth.controls.findIndex(
+                  (control) => control.value === valueToRemove,
+                );
 
                 if (idx !== -1) {
                   Upperberth.removeAt(idx);
                 }
               }
             });
-
           }
           return;
         }
@@ -804,13 +784,8 @@ export class SearchComponent implements OnInit {
       });
     }
 
-
     this.getPriceOnSeatSelect();
-
   }
-
-
-
 
   ///////////////////////////////////////////////////////////
   updateBusType(e: any, typ: any) {
@@ -830,7 +805,6 @@ export class SearchComponent implements OnInit {
     }
 
     this.submitFilterForm(typ);
-
   }
 
   nonacFilter: boolean = false;
@@ -839,11 +813,8 @@ export class SearchComponent implements OnInit {
   sleeperFilter: boolean = false;
 
   FilterMobile(e: any, type: any, active: any = '') {
-
-
     if (type == 'seat_type') {
       const seatType: FormArray = this.filterForm.get('seatType') as FormArray;
-
 
       let i: number = 0;
 
@@ -853,7 +824,7 @@ export class SearchComponent implements OnInit {
         if (item.value == e.target.value) {
           seatType.removeAt(i);
           match = true;
-          return
+          return;
         }
         i++;
       });
@@ -864,7 +835,6 @@ export class SearchComponent implements OnInit {
       }
 
       if (e.target.value == 2) {
-
         if (this.sleeperFilter == false) {
           this.sleeperFilter = true;
         } else {
@@ -872,11 +842,9 @@ export class SearchComponent implements OnInit {
         }
 
         this.seaterFilter = false;
-
       }
 
       if (e.target.value == 1) {
-
         if (this.seaterFilter == false) {
           this.seaterFilter = true;
         } else {
@@ -884,9 +852,7 @@ export class SearchComponent implements OnInit {
         }
 
         this.sleeperFilter = false;
-
       }
-
     }
 
     if (type == 'bus_type') {
@@ -895,11 +861,10 @@ export class SearchComponent implements OnInit {
       let i: number = 0;
       let match = false;
       busType.controls.forEach((item: AbstractControl) => {
-
         if (item.value == e.target.value) {
           busType.removeAt(i);
           match = true;
-          return
+          return;
         }
         i++;
       });
@@ -910,18 +875,15 @@ export class SearchComponent implements OnInit {
       }
 
       if (e.target.value == 2) {
-
         if (this.nonacFilter == false) {
           this.nonacFilter = true;
         } else {
           this.nonacFilter = false;
         }
         this.acFilter = false;
-
       }
 
       if (e.target.value == 1) {
-
         if (this.acFilter == false) {
           this.acFilter = true;
         } else {
@@ -929,16 +891,10 @@ export class SearchComponent implements OnInit {
         }
 
         this.nonacFilter = false;
-
       }
-
-
     }
 
-
-
     this.submitFilterForm();
-
   }
   updateSeatType(e: any, typ: any) {
     const seatType: FormArray = this.filterForm.get('seatType') as FormArray;
@@ -959,28 +915,25 @@ export class SearchComponent implements OnInit {
     this.submitFilterForm(typ);
   }
 
-
   updateBoarding(e: any, typ: any) {
-
     // console.log(this.filterForm.value);
 
-    const boardingPointId: FormArray = this.filterForm.get('boardingPointId') as FormArray;
+    const boardingPointId: FormArray = this.filterForm.get(
+      'boardingPointId',
+    ) as FormArray;
 
     if (e.target.checked) {
-
       let match = false;
       boardingPointId.controls.forEach((item: AbstractControl) => {
         if (item.value == e.target.value) {
           match = true;
-          return
+          return;
         }
       });
 
       if (match == false) {
         boardingPointId.push(new FormControl(e.target.value));
       }
-
-
     } else {
       let i: number = 0;
       boardingPointId.controls.forEach((item: AbstractControl) => {
@@ -995,23 +948,22 @@ export class SearchComponent implements OnInit {
   }
 
   updateDropping(e: any, typ: any) {
-    const dropingingPointId: FormArray = this.filterForm.get('dropingingPointId') as FormArray;
+    const dropingingPointId: FormArray = this.filterForm.get(
+      'dropingingPointId',
+    ) as FormArray;
 
     if (e.target.checked) {
-
       let match = false;
       dropingingPointId.controls.forEach((item: AbstractControl) => {
         if (item.value == e.target.value) {
           match = true;
-          return
+          return;
         }
       });
 
       if (match == false) {
         dropingingPointId.push(new FormControl(e.target.value));
       }
-
-
     } else {
       let i: number = 0;
       dropingingPointId.controls.forEach((item: AbstractControl) => {
@@ -1026,22 +978,22 @@ export class SearchComponent implements OnInit {
   }
 
   updateOperator(e: any, typ: any) {
-    const operatorId: FormArray = this.filterForm.get('operatorId') as FormArray;
+    const operatorId: FormArray = this.filterForm.get(
+      'operatorId',
+    ) as FormArray;
 
     if (e.target.checked) {
       let match = false;
       operatorId.controls.forEach((item: AbstractControl) => {
         if (item.value == e.target.value) {
           match = true;
-          return
+          return;
         }
       });
 
       if (match == false) {
         operatorId.push(new FormControl(e.target.value));
       }
-
-
     } else {
       let i: number = 0;
       operatorId.controls.forEach((item: AbstractControl) => {
@@ -1056,24 +1008,20 @@ export class SearchComponent implements OnInit {
   }
 
   updateAmenity(e: any, typ: any) {
-
     const amenityId: FormArray = this.filterForm.get('amenityId') as FormArray;
 
     if (e.target.checked) {
-
       let match = false;
       amenityId.controls.forEach((item: AbstractControl) => {
         if (item.value == e.target.value) {
           match = true;
-          return
+          return;
         }
       });
 
       if (match == false) {
         amenityId.push(new FormControl(e.target.value));
       }
-
-
     } else {
       let i: number = 0;
       amenityId.controls.forEach((item: AbstractControl) => {
@@ -1086,23 +1034,18 @@ export class SearchComponent implements OnInit {
     }
 
     this.submitFilterForm(typ);
-
   }
 
   updatePrice(e: any, typ: any) {
-
-
     let price = this.filterForm.get('price') as FormControl;
 
     if (e.target.checked) {
       price.patchValue(e.target.value);
-
     } else {
       price.patchValue(0);
     }
 
     this.submitFilterForm(typ);
-
   }
 
   resetFilterForm() {
@@ -1120,9 +1063,7 @@ export class SearchComponent implements OnInit {
   }
 
   getCheckedStatus(id, typ) {
-
     if (typ == 'boarding') {
-
       let val = this.filterForm.value.boardingPointId.indexOf(id.toString());
 
       if (val < 0) {
@@ -1130,11 +1071,9 @@ export class SearchComponent implements OnInit {
       } else {
         return true;
       }
-
     }
 
     if (typ == 'droping') {
-
       let val = this.filterForm.value.dropingingPointId.indexOf(id.toString());
 
       if (val < 0) {
@@ -1145,7 +1084,6 @@ export class SearchComponent implements OnInit {
     }
 
     if (typ == 'operator') {
-
       let val = this.filterForm.value.operatorId.indexOf(id.toString());
 
       if (val < 0) {
@@ -1156,7 +1094,6 @@ export class SearchComponent implements OnInit {
     }
 
     if (typ == 'amenity') {
-
       let val = this.filterForm.value.amenityId.indexOf(id.toString());
 
       if (val < 0) {
@@ -1165,20 +1102,12 @@ export class SearchComponent implements OnInit {
         return true;
       }
     }
-
-
-
   }
 
-
   submitFilterForm(typ: any = null) {
-
     if (typ == 'desktop' || typ == null) {
-
       this.spinner.show();
-
     }
-
 
     this.seatsLayoutRecord.visibility = false;
     this.checkedIndex = 0;
@@ -1188,167 +1117,137 @@ export class SearchComponent implements OnInit {
     this.reviewShow = '';
     this.policyShow = '';
 
-
     let et = this.entdate;
 
     // let filterparam ='price='+this.filterForm.value.price+'&sourceID='+this.source_id+
     // '&destinationID='+this.destination_id+
     // '&entry_date='+et;
 
-
     let filterparam = {
-      "price": this.filterForm.value.price,
-      "sourceID": this.source_id,
-      "destinationID": this.destination_id,
-      "user_id": GlobalConstants.USER_ID,
-      "entry_date": et
-    }
+      price: this.filterForm.value.price,
+      sourceID: this.source_id,
+      destinationID: this.destination_id,
+      user_id: GlobalConstants.USER_ID,
+      entry_date: et,
+    };
 
     if (this.filterForm.value.busType.length > 0) {
-
       // this.filterForm.value.busType.forEach((e: any) => {
 
       //   filterparam +='&busType[]='+e;
       // });
 
-      filterparam["busType"] = this.filterForm.value.busType;
-
+      filterparam['busType'] = this.filterForm.value.busType;
     }
 
     if (this.filterForm.value.seatType.length > 0) {
-
       // this.filterForm.value.seatType.forEach((e: any) => {
 
       //   filterparam +='&seatType[]='+e;
       // });
 
-      filterparam["seatType"] = this.filterForm.value.seatType;
-
+      filterparam['seatType'] = this.filterForm.value.seatType;
     }
 
     if (this.filterForm.value.boardingPointId.length > 0) {
-
       // this.filterForm.value.boardingPointId.forEach((e: any) => {
 
       //   filterparam +='&boardingPointId[]='+e;
       // });
 
-      filterparam["boardingPointId"] = this.filterForm.value.boardingPointId;
-
+      filterparam['boardingPointId'] = this.filterForm.value.boardingPointId;
     }
 
     if (this.filterForm.value.dropingingPointId.length > 0) {
-
       // this.filterForm.value.dropingingPointId.forEach((e: any) => {
 
       //   filterparam +='&dropingingPointId[]='+e;
       // });
 
-      filterparam["dropingingPointId"] = this.filterForm.value.dropingingPointId;
-
+      filterparam['dropingingPointId'] =
+        this.filterForm.value.dropingingPointId;
     }
 
     if (this.filterForm.value.operatorId.length > 0) {
-
       // this.filterForm.value.operatorId.forEach((e: any) => {
 
       //   filterparam +='&operatorId[]='+e;
       // });
 
-      filterparam["operatorId"] = this.filterForm.value.operatorId;
-
+      filterparam['operatorId'] = this.filterForm.value.operatorId;
     }
 
     if (this.filterForm.value.amenityId.length > 0) {
-
       // this.filterForm.value.amenityId.forEach((e: any) => {
 
       //   filterparam +='&amenityId[]='+e;
       // });
 
-      filterparam["amenityId"] = this.filterForm.value.amenityId;
-
+      filterparam['amenityId'] = this.filterForm.value.amenityId;
     }
 
     this.submitFilter(filterparam);
-
   }
 
-
   submitFilter(filterparam: any) {
-
     //console.log(filterparam);
 
-    this.filterService.getlist(filterparam).subscribe(
-      res => {
+    this.filterService.getlist(filterparam).subscribe((res) => {
+      // console.log(res);
 
-        // console.log(res);
+      if (res.data) {
+        this.buslist = res.data;
 
-        if (res.data) {
-
-          this.buslist = res.data;
-
-          if (this.commonData.common.bus_list_sequence == 1) {
-
-            this.columnName = "startingFromPrice";
-            this.isAscendingSort = 'desc';
-            this.arrowStatus = 'up';
-          }
-
-          if (this.commonData.common.bus_list_sequence == 2) {
-            this.columnName = "departureTime";
-            this.isAscendingSort = 'desc';
-            this.arrowStatus = 'up';
-          }
-
-          if (this.commonData.common.bus_list_sequence == 3) {
-            this.columnName = "totalSeats";
-            this.isAscendingSort = 'asc';
-            this.arrowStatus = 'down';
-          }
-
-          if (this.filterForm.value.price == 1) {
-
-            this.columnName = "startingFromPrice";
-            this.isAscendingSort = 'asc';
-            this.arrowStatus = 'down';
-          }
-
-          if (this.filterForm.value.price == 0) {
-
-            this.columnName = "startingFromPrice";
-            this.isAscendingSort = 'desc';
-            this.arrowStatus = 'up';
-          }
-
-
-          this.totalfound = res.data.length;
-
-        } else {
-          this.totalfound = 0;
+        if (this.commonData.common.bus_list_sequence == 1) {
+          this.columnName = 'startingFromPrice';
+          this.isAscendingSort = 'desc';
+          this.arrowStatus = 'up';
         }
 
+        if (this.commonData.common.bus_list_sequence == 2) {
+          this.columnName = 'departureTime';
+          this.isAscendingSort = 'desc';
+          this.arrowStatus = 'up';
+        }
 
-        this.spinner.hide();
-      });
+        if (this.commonData.common.bus_list_sequence == 3) {
+          this.columnName = 'totalSeats';
+          this.isAscendingSort = 'asc';
+          this.arrowStatus = 'down';
+        }
 
+        if (this.filterForm.value.price == 1) {
+          this.columnName = 'startingFromPrice';
+          this.isAscendingSort = 'asc';
+          this.arrowStatus = 'down';
+        }
+
+        if (this.filterForm.value.price == 0) {
+          this.columnName = 'startingFromPrice';
+          this.isAscendingSort = 'desc';
+          this.arrowStatus = 'up';
+        }
+
+        this.totalfound = res.data.length;
+      } else {
+        this.totalfound = 0;
+      }
+
+      this.spinner.hide();
+    });
   }
 
   moreFilter(moreFilter: any) {
-
     this.modalService.open(moreFilter, { windowClass: 'mobile-modalbox' });
-
   }
 
   closeFilter() {
-
     this.filterForm.reset();
 
     this.modalService.dismissAll();
   }
 
   submitForm() {
-
     this.seatsLayoutRecord.visibility = false;
     this.seatlayoutShow = '';
     this.safetyshow = '';
@@ -1360,27 +1259,37 @@ export class SearchComponent implements OnInit {
     this.buslist = [];
 
     if (this.searchForm.valid) {
-
       if (!this.searchForm.value.source.name) {
-        this.notify.notify("Select Valid Source !", "Error");
+        this.notify.notify('Select Valid Source !', 'Error');
 
         return false;
       }
 
       if (!this.searchForm.value.destination.name) {
-        this.notify.notify("Select Valid Destination !", "Error");
+        this.notify.notify('Select Valid Destination !', 'Error');
 
+        return false;
+      }
+
+      if (
+        this.searchForm.value.source?.name.trim().toLowerCase() ===
+        this.searchForm.value.destination?.name.trim().toLowerCase()
+      ) {
+        this.notify.notify(
+          'Source and Destination cannot be the same !',
+          'Error',
+        );
         return false;
       }
 
       let dt = this.searchForm.value.entry_date;
       if (dt.month < 10) {
-        dt.month = "0" + dt.month;
+        dt.month = '0' + dt.month;
       }
       if (dt.day < 10) {
-        dt.day = "0" + dt.day;
+        dt.day = '0' + dt.day;
       }
-      this.searchForm.value.entry_date = [dt.day, dt.month, dt.year].join("-");
+      this.searchForm.value.entry_date = [dt.day, dt.month, dt.year].join('-');
 
       this.sourceData = this.searchForm.value.source;
       this.destinationData = this.searchForm.value.destination;
@@ -1393,8 +1302,14 @@ export class SearchComponent implements OnInit {
       let ds = this.searchForm.value.destination.url;
       let date = this.searchForm.value.entry_date;
 
-
-      window.location.href = GlobalConstants.URL + 'routes/' + sr + '-' + ds + '-bus-services?date=' + date;
+      window.location.href =
+        GlobalConstants.URL +
+        'routes/' +
+        sr +
+        '-' +
+        ds +
+        '-bus-services?date=' +
+        date;
 
       // this.locationService.setSource(this.sourceData);
       // this.locationService.setDestination(this.destinationData);
@@ -1407,49 +1322,51 @@ export class SearchComponent implements OnInit {
       // this.setPrevNextDate(this.entdate);
 
       // this.getbuslist();
-
-
-    }
-    else {
-
-      if (this.searchForm.value.source == null || this.searchForm.value.source == '') {
-
-        this.notify.notify("Select Source !", "Error");
-      }
-
-      else if (this.searchForm.value.destination == null || this.searchForm.value.destination == "") {
-        this.notify.notify("Select Destination !", "Error");
-      }
-
-      else if (this.searchForm.value.entry_date == null || this.searchForm.value.entry_date == "") {
-        this.notify.notify("Select Journey Date !", "Error");
+    } else {
+      if (
+        this.searchForm.value.source == null ||
+        this.searchForm.value.source == ''
+      ) {
+        this.notify.notify('Select Source !', 'Error');
+      } else if (
+        this.searchForm.value.destination == null ||
+        this.searchForm.value.destination == ''
+      ) {
+        this.notify.notify('Select Destination !', 'Error');
+      } else if (
+        this.searchForm.value.entry_date == null ||
+        this.searchForm.value.entry_date == ''
+      ) {
+        this.notify.notify('Select Journey Date !', 'Error');
+      } else if (
+        this.searchForm.value.source?.name.trim().toLowerCase() ===
+        this.searchForm.value.destination?.name.trim().toLowerCase()
+      ) {
+        this.notify.notify(
+          'Source and Destination cannot be the same !',
+          'Error',
+        );
       }
     }
   }
 
   coupon_detail(i, modal) {
-
     this.couponDetail = [];
     this.couponDetail = this.buslist[i]['couponDetails'];
     //console.log(this.couponDetail);
     this.modalService.open(modal);
-
   }
 
   sort(coulmn: any) {
-
     let order = '';
 
     this.columnName = coulmn;
-
 
     if (this.isAscendingSort == 'desc') {
       this.isAscendingSort = 'asc';
       order = 'asc';
       this.arrowStatus = 'up';
-    }
-
-    else if (this.isAscendingSort == 'asc') {
+    } else if (this.isAscendingSort == 'asc') {
       this.isAscendingSort = 'desc';
       order = 'desc';
       this.arrowStatus = 'down';
@@ -1457,49 +1374,42 @@ export class SearchComponent implements OnInit {
 
     //console.log(this.isAscendingSort,coulmn,order,this.arrowStatus)
 
-
     if (coulmn == 'totalSeats') {
-
-      this.buslist = _.orderBy(this.buslist, (item: any) => item.totalSeats, [order]);
-
+      this.buslist = _.orderBy(this.buslist, (item: any) => item.totalSeats, [
+        order,
+      ]);
     } else if (coulmn == 'departureTime') {
-
-      this.buslist = _.orderBy(this.buslist, (item: any) => item.departureTime, [order]);
-
+      this.buslist = _.orderBy(
+        this.buslist,
+        (item: any) => item.departureTime,
+        [order],
+      );
     } else if (coulmn == 'startingFromPrice') {
-
-      this.buslist = _.orderBy(this.buslist, (item: any) => item.startingFromPrice, [order]);
-
+      this.buslist = _.orderBy(
+        this.buslist,
+        (item: any) => item.startingFromPrice,
+        [order],
+      );
+    } else if (coulmn == 'totalJourneyTime') {
+      this.buslist = _.orderBy(
+        this.buslist,
+        (item: any) => item.totalJourneyTime,
+        [order],
+      );
+    } else if (coulmn == 'arrivalTime') {
+      this.buslist = _.orderBy(this.buslist, (item: any) => item.arrivalTime, [
+        order,
+      ]);
+    } else if (coulmn == 'busName') {
+      this.buslist = _.orderBy(this.buslist, (item: any) => item.busName, [
+        order,
+      ]);
     }
-
-    else if (coulmn == 'totalJourneyTime') {
-
-      this.buslist = _.orderBy(this.buslist, (item: any) => item.totalJourneyTime, [order]);
-
-    }
-
-    else if (coulmn == 'arrivalTime') {
-
-      this.buslist = _.orderBy(this.buslist, (item: any) => item.arrivalTime, [order]);
-
-    }
-
-
-    else if (coulmn == 'busName') {
-
-      this.buslist = _.orderBy(this.buslist, (item: any) => item.busName, [order]);
-
-    }
-
-
-
   }
 
   bussearching: boolean = false;
 
-
   getbuslist() {
-
     this.busIds = [];
     this.bussearching = true;
     this.spinner.show();
@@ -1508,9 +1418,9 @@ export class SearchComponent implements OnInit {
     this.seaterFilter = false;
     this.sleeperFilter = false;
 
-    this.listingService.getlist(this.sourceData.name, this.destinationData.name, this.entdate).subscribe(
-      res => {
-
+    this.listingService
+      .getlist(this.sourceData.name, this.destinationData.name, this.entdate)
+      .subscribe((res) => {
         this.bussearching = false;
 
         if (isPlatformBrowser(this.platformId)) {
@@ -1521,58 +1431,39 @@ export class SearchComponent implements OnInit {
           localStorage.setItem('entdate', this.entdate);
         }
 
-
-
         if (res.data) {
-
           this.buslist = res.data;
           //console.log(this.commonData);
 
           if (this.commonData.common.bus_list_sequence == 1) {
-
-            this.columnName = "startingFromPrice";
+            this.columnName = 'startingFromPrice';
             this.isAscendingSort = 'asc';
             this.arrowStatus = 'up';
-
-
           }
 
           if (this.commonData.common.bus_list_sequence == 2) {
-
-            this.columnName = "departureTime";
+            this.columnName = 'departureTime';
             this.isAscendingSort = 'asc';
             this.arrowStatus = 'up';
-
-
           }
 
           if (this.commonData.common.bus_list_sequence == 3) {
-            this.columnName = "totalSeats";
+            this.columnName = 'totalSeats';
             this.isAscendingSort = 'desc';
             this.arrowStatus = 'down';
-
           }
 
           this.totalfound = res.data.length;
-
-        }
-
-        else {
-
+        } else {
           this.totalfound = 0;
-
         }
         if (this.totalfound > 0) {
-
           this.buslist.forEach((a) => {
             this.busIds.push(a.busId);
           });
 
-
-
           ///////// get filter options after getting bus list
           this.filteroptions();
-
         }
 
         this.swapdestination = this.destinationData;
@@ -1581,9 +1472,7 @@ export class SearchComponent implements OnInit {
         this.spinner.hide();
 
         this.modalService.dismissAll();
-
-      }
-    );
+      });
   }
 
   getseatlayout() {
@@ -1592,60 +1481,50 @@ export class SearchComponent implements OnInit {
     //console.log(this.referenceNumber,this.origin);
 
     let params = {
-      "entry_date": this.entdate,
-      "busId": bus_id,
-      "sourceId": this.source_id,
-      "destinationId": this.destination_id,
-      "ReferenceNumber": this.referenceNumber,
-      "origin": this.origin,
+      entry_date: this.entdate,
+      busId: bus_id,
+      sourceId: this.source_id,
+      destinationId: this.destination_id,
+      ReferenceNumber: this.referenceNumber,
+      origin: this.origin,
     };
 
     //console.log(params);
 
-
     //this.entdate,bus_id,this.source_id,this.destination_id,this.referenceNumber,this.origin
     this.seatLoader = true;
     this.seatLayoutService.getSeats(params).subscribe(
-      res => {
+      (res) => {
         this.seatsLayouts[bus_id] = res.data;
         this.seatsLayoutRecord = res.data;
         this.seatsLayoutRecord.visibility = true;
         this.createberth();
 
         //console.log(this.seatsLayoutRecord);
-
       },
-      error => {
-
+      (error) => {
         //console.log(error);
 
-
         this.spinner.hide();
-        this.notify.notify(error.error.message, "Error");
-
-      });
+        this.notify.notify(error.error.message, 'Error');
+      },
+    );
   }
 
   blankSeatcount: any = 0;
   MobileblankSeatcount: any = 0;
 
   createberth() {
-
     this.UpperberthMobileArr = [];
     this.LowerberthMobileArr = [];
 
     if (this.seatsLayoutRecord.upper_berth) {
-
       let upper_berth = this.seatsLayoutRecord.upper_berth;
       let row = this.seatsLayoutRecord.upperBerth_totalRows;
       let col = this.seatsLayoutRecord.upperBerth_totalColumns;
 
-
       if (upper_berth.length) {
-
-
         if (this.origin == 'MANTIS') {
-
           for (let k = col; k >= 0; k--) {
             this.colarr = [];
             for (let i = 0; i < row; i++) {
@@ -1656,13 +1535,9 @@ export class SearchComponent implements OnInit {
               });
             }
 
-
             this.UpperberthArr[k] = this.colarr;
           }
-
-
         } else {
-
           for (let i = 0; i < row; i++) {
             this.colarr = [];
             for (let k = 0; k < col; k++) {
@@ -1679,7 +1554,6 @@ export class SearchComponent implements OnInit {
         //console.log(this.UpperberthArr);
 
         if (this.origin == 'MANTIS') {
-
           for (let i = 0; i < row; i++) {
             this.mobilecolarr = [];
             for (let k = 0; k < col; k++) {
@@ -1691,10 +1565,7 @@ export class SearchComponent implements OnInit {
             }
             this.UpperberthMobileArr[i] = this.mobilecolarr;
           }
-
-
         } else {
-
           for (let k = 0; k < col; k++) {
             this.mobilecolarr = [];
             for (let i = row; i >= 0; i--) {
@@ -1706,17 +1577,11 @@ export class SearchComponent implements OnInit {
             }
             this.UpperberthMobileArr[k] = this.mobilecolarr;
           }
-
         }
-
       }
-
     }
 
     if (this.seatsLayoutRecord.lower_berth) {
-
-
-
       let row2 = this.seatsLayoutRecord.lowerBerth_totalRows;
       let col2 = this.seatsLayoutRecord.lowerBerth_totalColumns;
       let lower_berth = this.seatsLayoutRecord.lower_berth;
@@ -1725,7 +1590,6 @@ export class SearchComponent implements OnInit {
         //////// for web view
 
         if (this.origin == 'MANTIS') {
-
           for (let k = col2; k >= 0; k--) {
             this.colarr = [];
 
@@ -1748,10 +1612,7 @@ export class SearchComponent implements OnInit {
 
             this.LowerberthArr[k] = this.colarr;
           }
-
-
         } else {
-
           for (let i = 0; i < row2; i++) {
             this.colarr = [];
 
@@ -1772,17 +1633,11 @@ export class SearchComponent implements OnInit {
             }
             this.LowerberthArr[i] = this.colarr;
           }
-
         }
-
-
-
-
 
         //////// for mobile view
 
         if (this.origin == 'MANTIS') {
-
           for (let i = 0; i < row2; i++) {
             this.mobilecolarr = [];
 
@@ -1803,12 +1658,7 @@ export class SearchComponent implements OnInit {
             }
             this.LowerberthMobileArr[i] = this.mobilecolarr;
           }
-
-        }
-        else {
-
-
-
+        } else {
           for (let k = 0; k < col2; k++) {
             this.mobilecolarr = [];
 
@@ -1832,21 +1682,17 @@ export class SearchComponent implements OnInit {
             this.LowerberthMobileArr[k] = this.mobilecolarr;
           }
         }
-
       }
     }
 
     this.seatLoader = false;
-
   }
 
   lower_tab: any = 'active';
   upper_tab: any = '';
 
   displayBerth(type: any) {
-
     if (type == 'lower') {
-
       this.lower_tab = 'active';
       this.upper_tab = '';
 
@@ -1855,36 +1701,26 @@ export class SearchComponent implements OnInit {
       document.getElementById('lowerBerth').style.display = 'block';
       document.getElementById('Board').style.display = 'none';
       document.getElementById('Drop').style.display = 'none';
-
-
-
     }
 
     if (type == 'upper') {
-
       document.getElementById('SeatLayout').style.display = 'block';
       document.getElementById('upperBerth').style.display = 'block';
       document.getElementById('lowerBerth').style.display = 'none';
       document.getElementById('Board').style.display = 'none';
       document.getElementById('Drop').style.display = 'none';
 
-
       this.lower_tab = '';
       this.upper_tab = 'active';
-
     }
-
   }
 
   Continue(type: any) {
     if (type == 'board') {
-
       document.getElementById('SeatLayout').style.display = 'none';
       document.getElementById('Board').style.display = 'block';
       document.getElementById('Drop').style.display = 'none';
-
     }
-
 
     if (type == 'drop') {
       document.getElementById('SeatLayout').style.display = 'none';
@@ -1894,72 +1730,67 @@ export class SearchComponent implements OnInit {
   }
 
   backTo(type: any) {
-
     if (type == 'seat') {
-
       document.getElementById('SeatLayout').style.display = 'block';
       document.getElementById('Board').style.display = 'none';
       document.getElementById('Drop').style.display = 'none';
-
     }
-
 
     if (type == 'board') {
       document.getElementById('SeatLayout').style.display = 'none';
       document.getElementById('Board').style.display = 'block';
       document.getElementById('Drop').style.display = 'none';
     }
-
   }
 
-
   getBoardingDroppingPoints() {
-
     let bus_id = this.busId;
 
     let bdparam = {
-      "busId": this.busId,
-      "sourceId": this.source_id,
-      "destinationId": this.destination_id,
-      "journey_date": this.entdate,
-      "origin": this.origin,
-      "ReferenceNumber": this.referenceNumber
+      busId: this.busId,
+      sourceId: this.source_id,
+      destinationId: this.destination_id,
+      journey_date: this.entdate,
+      origin: this.origin,
+      ReferenceNumber: this.referenceNumber,
     };
 
-    this.boardingDropingPointService.getdata(bdparam).subscribe(
-      res => {
+    this.boardingDropingPointService.getdata(bdparam).subscribe((res) => {
+      this.boardingPointArr = res.data[0].boardingPoints;
+      this.droppingPointArr = res.data[0].droppingPoints;
 
-        this.boardingPointArr = res.data[0].boardingPoints;
-        this.droppingPointArr = res.data[0].droppingPoints;
-
-
-
-        this.boardingPointArr.map((i: any) => { i.boardTime = i.boardingPoints + ' | ' + i.boardingTimes; return i; });
-        this.droppingPointArr.map((i: any) => { i.dropTime = i.droppingPoints + ' | ' + i.droppingTimes; return i; });
-
-        //  this.selectedBoard= this.boardingPointArr[0].boardTime;
-        //  this.selectedDrop= this.droppingPointArr[0].dropTime;
-
-        this.seatForm.controls['boardingPoint'].setValue(this.boardingPointArr[0]);
-        this.seatForm.controls['droppingPoint'].setValue(this.droppingPointArr[0]);
-
-        this.spinner.hide();
+      this.boardingPointArr.map((i: any) => {
+        i.boardTime = i.boardingPoints + ' | ' + i.boardingTimes;
+        return i;
+      });
+      this.droppingPointArr.map((i: any) => {
+        i.dropTime = i.droppingPoints + ' | ' + i.droppingTimes;
+        return i;
       });
 
+      //  this.selectedBoard= this.boardingPointArr[0].boardTime;
+      //  this.selectedDrop= this.droppingPointArr[0].dropTime;
+
+      this.seatForm.controls['boardingPoint'].setValue(
+        this.boardingPointArr[0],
+      );
+      this.seatForm.controls['droppingPoint'].setValue(
+        this.droppingPointArr[0],
+      );
+
+      this.spinner.hide();
+    });
   }
 
   ShowLayout(id: any) {
-
-
     this.LowerberthArr = [];
     this.UpperberthArr = [];
-
 
     this.seatForm = this.fb.group({
       boardingPoint: [null, Validators.compose([Validators.required])],
       droppingPoint: [null, Validators.compose([Validators.required])],
       Lowerberth: this.fb.array([]),
-      Upperberth: this.fb.array([])
+      Upperberth: this.fb.array([]),
     });
 
     this.buslistRecord = this.buslist[id];
@@ -1984,29 +1815,24 @@ export class SearchComponent implements OnInit {
 
     if (this.seatsLayoutRecord.visibility == true) {
       if (currentBusId != this.busId) {
-
         this.buslist.forEach((item, index) => {
-
           if (id != index) {
             if (document.getElementById('showbtn' + index) != null) {
-              document.getElementById('showbtn' + index).innerHTML = 'View Seat';
+              document.getElementById('showbtn' + index).innerHTML =
+                'View Seat';
             }
-
           }
         });
 
         this.seatsLayoutRecord.visibility = true;
         this.seatlayoutShow = id;
-      }
-      else if (currentBusId == this.busId && showbtn == 'View Seat') {
+      } else if (currentBusId == this.busId && showbtn == 'View Seat') {
         this.seatsLayoutRecord.visibility = true;
         this.seatlayoutShow = id;
-      }
-      else if (currentBusId == this.busId && showbtn == 'Hide Seat') {
+      } else if (currentBusId == this.busId && showbtn == 'Hide Seat') {
         this.seatsLayoutRecord.visibility = false;
         this.seatlayoutShow = '';
       }
-
     } else if (this.seatsLayoutRecord.visibility == false) {
       this.seatsLayoutRecord.visibility = true;
       this.seatlayoutShow = id;
@@ -2029,25 +1855,20 @@ export class SearchComponent implements OnInit {
 
     if (currentBusId == this.busId) {
     } else {
-
       this.seatForm = this.fb.group({
         boardingPoint: [null, Validators.compose([Validators.required])],
         droppingPoint: [null, Validators.compose([Validators.required])],
         Lowerberth: this.fb.array([]),
-        Upperberth: this.fb.array([])
+        Upperberth: this.fb.array([]),
       });
-
     }
 
     this.getseatlayout();
     this.getBoardingDroppingPoints();
-
   }
 
   showAllAmenity(id: any) {
-
     this.currentSeatlayoutIndex = false;
-
 
     this.seatsLayoutRecord.visibility = false;
     this.checkedIndex = 0;
@@ -2058,10 +1879,7 @@ export class SearchComponent implements OnInit {
     this.policyShow = '';
     this.amenityShow = id;
 
-
     this.checkSeatHTML(id);
-
-
   }
 
   closeTab(id: any) {
@@ -2074,13 +1892,10 @@ export class SearchComponent implements OnInit {
     this.policyShow = '';
     this.amenityShow = '';
     this.checkSeatHTML(id);
-
   }
 
   checkSeatHTML(id: any) {
-
     if (this.currentSeatlayoutIndex == true) {
-
       let showbtn = document.getElementById('showbtn' + id).innerHTML;
 
       if (showbtn == 'View Seat') {
@@ -2089,19 +1904,13 @@ export class SearchComponent implements OnInit {
       if (showbtn == 'Hide Seat') {
         document.getElementById('showbtn' + id).innerHTML = 'View Seat';
       }
-
     } else {
       for (var i = 0; i < this.totalfound; i++) {
-
         if (document.getElementById('showbtn' + i) != null) {
           document.getElementById('showbtn' + i).innerHTML = 'View Seat';
         }
-
       }
-
-
     }
-
   }
 
   safety(id: any) {
@@ -2115,11 +1924,9 @@ export class SearchComponent implements OnInit {
     this.policyShow = '';
     this.amenityShow = '';
     this.checkSeatHTML(id);
-
   }
 
   bus_pic(id: any) {
-
     this.currentSeatlayoutIndex = false;
 
     this._albums = [];
@@ -2134,82 +1941,67 @@ export class SearchComponent implements OnInit {
     let busRecord = this.buslist[id];
 
     if (busRecord.busPhotos.length > 0) {
-
       busRecord.busPhotos.forEach((sf) => {
-
         if (sf.bus_image_1 != '' && sf.bus_image_1 != null) {
-
           const src = sf.bus_image_1;
           const caption = '';
           const thumb = sf.bus_image_1;
           const album = {
             src: src,
             caption: caption,
-            thumb: thumb
+            thumb: thumb,
           };
           this._albums.push(album);
-
         }
 
         if (sf.bus_image_2 != '' && sf.bus_image_2 != null) {
-
           const src = sf.bus_image_2;
           const caption = '';
           const thumb = sf.bus_image_2;
           const album = {
             src: src,
             caption: caption,
-            thumb: thumb
+            thumb: thumb,
           };
           this._albums.push(album);
-
         }
 
         if (sf.bus_image_3 != '' && sf.bus_image_3 != null) {
-
           const src = sf.bus_image_3;
           const caption = '';
           const thumb = sf.bus_image_3;
           const album = {
             src: src,
             caption: caption,
-            thumb: thumb
+            thumb: thumb,
           };
           this._albums.push(album);
-
         }
 
         if (sf.bus_image_4 != '' && sf.bus_image_4 != null) {
-
           const src = sf.bus_image_4;
           const caption = '';
           const thumb = sf.bus_image_4;
           const album = {
             src: src,
             caption: caption,
-            thumb: thumb
+            thumb: thumb,
           };
           this._albums.push(album);
-
         }
 
         if (sf.bus_image_5 != '' && sf.bus_image_5 != null) {
-
           const src = sf.bus_image_5;
           const caption = '';
           const thumb = sf.bus_image_5;
           const album = {
             src: src,
             caption: caption,
-            thumb: thumb
+            thumb: thumb,
           };
           this._albums.push(album);
-
         }
-
-
       });
-
     }
 
     this.reviewShow = '';
@@ -2217,11 +2009,9 @@ export class SearchComponent implements OnInit {
     this.policyShow = '';
 
     this.checkSeatHTML(id);
-
   }
 
   reviews(id: any) {
-
     this.currentSeatlayoutIndex = false;
 
     this.seatsLayoutRecord.visibility = false;
@@ -2234,12 +2024,9 @@ export class SearchComponent implements OnInit {
     this.policyShow = '';
 
     this.checkSeatHTML(id);
-
   }
 
-
   booking_policy(id: any) {
-
     this.currentSeatlayoutIndex = false;
 
     this.seatsLayoutRecord.visibility = false;
@@ -2269,49 +2056,40 @@ export class SearchComponent implements OnInit {
 
   filteroptions() {
     let param = {
-      "sourceID": this.source_id,
-      "destinationID": this.destination_id,
-      "busIDs": this.busIds,
-      "entry_date": this.entdate
+      sourceID: this.source_id,
+      destinationID: this.destination_id,
+      busIDs: this.busIds,
+      entry_date: this.entdate,
     };
 
+    this.filterOptionsService.getoptions(param).subscribe((res) => {
+      // console.log(res);
+      if (res.data.length > 0) {
+        this.busTypes = res.data[0].busTypes;
+        this.seatTypes = res.data[0].seatTypes;
+        this.boardingPoints = res.data[0].boardingPoints;
 
-    this.filterOptionsService.getoptions(param).subscribe(
-      res => {
-        // console.log(res);
-        if (res.data.length > 0) {
+        this.droppingPoints = res.data[0].dropingPoints;
 
-          this.busTypes = res.data[0].busTypes;
-          this.seatTypes = res.data[0].seatTypes;
-          this.boardingPoints = res.data[0].boardingPoints;
-
-          this.droppingPoints = res.data[0].dropingPoints;
-
-          this.busOperators = res.data[0].busOperator;
-          this.amenities = res.data[0].amenities;
-
-        }
-
-
-      });
-
+        this.busOperators = res.data[0].busOperator;
+        this.amenities = res.data[0].amenities;
+      }
+    });
   }
 
   toggleShow() {
-
     this.isShown = !this.isShown;
   }
 
   formattedDate(entdate) {
-    let dt = entdate.split("-");
+    let dt = entdate.split('-');
 
     return dt[2] + '-' + dt[1] + '-' + dt[0];
   }
 
-
   showformattedDate(date: any) {
     if (date) {
-      let dt = date.split("-");
+      let dt = date.split('-');
       let dd = new Date(dt[2] + '-' + dt[1] + '-' + dt[0]);
 
       this.journey_date = dt[2] + '-' + dt[1] + '-' + dt[0];
@@ -2319,15 +2097,12 @@ export class SearchComponent implements OnInit {
       this.jrnyDt = {
         year: dd.getFullYear(),
         month: dd.getMonth() + 1,
-        day: dd.getDate()
-      }
-
-
+        day: dd.getDate(),
+      };
     }
   }
 
   search_prev() {
-
     this.currentSeatlayoutIndex = false;
     this.seatsLayoutRecord.visibility = false;
     this.seatlayoutShow = '';
@@ -2344,7 +2119,6 @@ export class SearchComponent implements OnInit {
     this.isShown = false;
     this.setPrevNextDate(this.entdate);
     this.showformattedDate(this.entdate);
-
   }
 
   search_next() {
@@ -2364,8 +2138,6 @@ export class SearchComponent implements OnInit {
     this.isShown = false;
     this.setPrevNextDate(this.entdate);
     this.showformattedDate(this.entdate);
-
-
   }
 
   seoSource: any = '';
@@ -2373,14 +2145,11 @@ export class SearchComponent implements OnInit {
   pageContent: any = '';
 
   getLocation(url: any) {
-    this.location_list.forEach(e => {
-
+    this.location_list.forEach((e) => {
       if (e.url == url) {
         return e;
       }
-
     });
-
   }
 
   // ngOnInit(): void {
@@ -2454,8 +2223,6 @@ export class SearchComponent implements OnInit {
   //     }
   //   );
 
-
-
   //   this.locationService.currentsource.subscribe((s: any) => { this.sourceData = s });
   //   this.locationService.currentdestination.subscribe((d: any) => { this.destinationData = d });
   //   this.locationService.currententdate.subscribe(dat => { this.entdate = dat });
@@ -2521,19 +2288,16 @@ export class SearchComponent implements OnInit {
   //           });
   //       }
 
-
   //     } else {
   //       this.router.navigate(['/404']);
   //     }
 
   //   } else {
 
-
   //     if (this.sourceData == null || this.destinationData == null || this.entdate == '' || this.entdate == null) {
 
   //       this.router.navigate(['/']);
   //     } else {
-
 
   //       this.swapsource = this.sourceData;
   //       this.swapdestination = this.destinationData;
@@ -2604,22 +2368,22 @@ export class SearchComponent implements OnInit {
   //   // });
   // }
 
-
   seoContent() {
     const payload = {
       sourceId: this.source_id,
-      destinationId: this.destination_id
+      destinationId: this.destination_id,
     };
-    this.http.post(GlobalConstants.BASE_URL + '/seoContent', payload).subscribe((res: any) => {
-      // console.log(res.data);
-      this.seoContentData = res.data;
+    this.http
+      .post(GlobalConstants.BASE_URL + '/seoContent', payload)
+      .subscribe((res: any) => {
+        // console.log(res.data);
+        this.seoContentData = res.data;
 
-      // this.applySeo(this.seoContentData);
-    })
+        // this.applySeo(this.seoContentData);
+      });
   }
 
   ngOnInit(): void {
-
     let currentPath = this.router.url.split('?')[0];
 
     currentPath = currentPath.replace(/^\/+/, '');
@@ -2657,41 +2421,43 @@ export class SearchComponent implements OnInit {
     //   }
     // );
 
-
     // ================= LOCATION OBS =================
-    this.locationService.currentsource.subscribe((s: any) => { this.sourceData = s });
-    this.locationService.currentdestination.subscribe((d: any) => { this.destinationData = d });
-    this.locationService.currententdate.subscribe(dat => { this.entdate = dat });
-
+    this.locationService.currentsource.subscribe((s: any) => {
+      this.sourceData = s;
+    });
+    this.locationService.currentdestination.subscribe((d: any) => {
+      this.destinationData = d;
+    });
+    this.locationService.currententdate.subscribe((dat) => {
+      this.entdate = dat;
+    });
 
     // ================= SEO CACHE =================
-    const storedSeoData = isPlatformBrowser(this.platformId) ? localStorage.getItem('seoData') : null;
+    const storedSeoData = isPlatformBrowser(this.platformId)
+      ? localStorage.getItem('seoData')
+      : null;
 
     if (storedSeoData) {
       const data = JSON.parse(storedSeoData);
       this.seoData(data);
     } else {
       this.seo.seoList().subscribe(
-        resp => {
+        (resp) => {
           if (isPlatformBrowser(this.platformId)) {
             localStorage.setItem('seoData', JSON.stringify(resp));
           }
           this.seoData(resp);
         },
-        error => {
+        (error) => {
           console.error('Error fetching Data:', error);
-        }
+        },
       );
     }
 
-
     if (currentPath != 'listing') {
-
       if (currentPath.includes('bus-services')) {
-
         // ✅ FIXED URL PARSING
         let urlstr = currentPath.replace('-bus-services', '');
-
 
         // date
         if (this.route.snapshot.queryParams['date']) {
@@ -2705,34 +2471,34 @@ export class SearchComponent implements OnInit {
 
         // console.log('Location Array:', l_ar);
 
-        const allLoc = isPlatformBrowser(this.platformId) ? localStorage.getItem('allLoc') : null;
+        const allLoc = isPlatformBrowser(this.platformId)
+          ? localStorage.getItem('allLoc')
+          : null;
 
         if (allLoc) {
           const data = JSON.parse(allLoc);
           this.locAll(data, l_ar);
         } else {
-          this.locationService.all().subscribe(
-            res => {
-              if (isPlatformBrowser(this.platformId)) {
-                localStorage.setItem('allLoc', JSON.stringify(res));
-              }
-              this.locAll(res, l_ar);
-            });
+          this.locationService.all().subscribe((res) => {
+            if (isPlatformBrowser(this.platformId)) {
+              localStorage.setItem('allLoc', JSON.stringify(res));
+            }
+            this.locAll(res, l_ar);
+          });
         }
-
       }
       // else {
       //   this.router.navigate(['/404']);
       // }
-
     } else {
-
-      if (this.sourceData == null || this.destinationData == null || this.entdate == '' || this.entdate == null) {
-
+      if (
+        this.sourceData == null ||
+        this.destinationData == null ||
+        this.entdate == '' ||
+        this.entdate == null
+      ) {
         this.router.navigate(['/']);
-
       } else {
-
         this.swapsource = this.sourceData;
         this.swapdestination = this.destinationData;
 
@@ -2747,26 +2513,28 @@ export class SearchComponent implements OnInit {
 
         this.showformattedDate(this.entdate);
 
-        const storedData_2 = isPlatformBrowser(this.platformId) ? localStorage.getItem('commonData') : null;
+        const storedData_2 = isPlatformBrowser(this.platformId)
+          ? localStorage.getItem('commonData')
+          : null;
 
         if (storedData_2) {
           const data = JSON.parse(storedData_2);
           this.commonData_2(data);
         } else {
           const param = {
-            user_id: GlobalConstants.MASTER_SETTING_USER_ID
+            user_id: GlobalConstants.MASTER_SETTING_USER_ID,
           };
 
           this.Common.getCommonData(param).subscribe(
-            resp => {
+            (resp) => {
               if (isPlatformBrowser(this.platformId)) {
                 localStorage.setItem('commonData', JSON.stringify(resp.data));
               }
               this.commonData_2(resp.data);
             },
-            error => {
+            (error) => {
               console.error('Error fetching Data:', error);
-            }
+            },
           );
         }
 
@@ -2774,8 +2542,9 @@ export class SearchComponent implements OnInit {
       }
     }
 
-
-    const pathUrls = isPlatformBrowser(this.platformId) ? localStorage.getItem('pathUrls') : null;
+    const pathUrls = isPlatformBrowser(this.platformId)
+      ? localStorage.getItem('pathUrls')
+      : null;
 
     if (pathUrls) {
       const data = JSON.parse(pathUrls);
@@ -2783,20 +2552,17 @@ export class SearchComponent implements OnInit {
         this.url_path = data.data[0];
       }
     } else {
-      this.Common.getPathUrls().subscribe(
-        res => {
-          if (isPlatformBrowser(this.platformId)) {
-            localStorage.setItem('pathUrls', JSON.stringify(res));
-          }
-          if (res.status == 1) {
-            this.url_path = res.data[0];
-          }
+      this.Common.getPathUrls().subscribe((res) => {
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('pathUrls', JSON.stringify(res));
         }
-      );
+        if (res.status == 1) {
+          this.url_path = res.data[0];
+        }
+      });
     }
 
     this.seoContent();
-
   }
 
   removeOldJsonLd() {
@@ -2805,8 +2571,6 @@ export class SearchComponent implements OnInit {
     );
     scripts.forEach((s) => s.remove());
   }
-
-
 
   // applySeo(seodata: any) {
 
@@ -2856,10 +2620,10 @@ export class SearchComponent implements OnInit {
   //   });
   // }
 
-
-
   setCanonical(url: string) {
-    let link = document.querySelector("link[rel='canonical']") as HTMLLinkElement;
+    let link = document.querySelector(
+      "link[rel='canonical']",
+    ) as HTMLLinkElement;
 
     if (!link) {
       link = document.createElement('link');
@@ -2870,30 +2634,27 @@ export class SearchComponent implements OnInit {
     link.setAttribute('href', url);
   }
 
-
   locAll(res: any, l_ar: any) {
     let source_data = {};
     let dest_data = {};
     if (res.status == 1) {
-      res.data.forEach(e => {
+      res.data.forEach((e) => {
         if (l_ar[0] == e.url) {
           // console.log(l_ar[0]+"=="+e.url);
           source_data = {
-            "id": e.id,
-            "name": e.name,
-            "url": e.url,
-          }
+            id: e.id,
+            name: e.name,
+            url: e.url,
+          };
         }
 
         if (l_ar[1] == e.url) {
-
           dest_data = {
-            "id": e.id,
-            "name": e.name,
-            "url": e.url,
-          }
+            id: e.id,
+            name: e.name,
+            url: e.url,
+          };
         }
-
       });
 
       this.sourceData = this.swapsource = source_data;
@@ -2910,7 +2671,6 @@ export class SearchComponent implements OnInit {
 
       this.showformattedDate(this.entdate);
 
-
       // const data = {
       //   user_id: GlobalConstants.MASTER_SETTING_USER_ID
       // };
@@ -2923,38 +2683,39 @@ export class SearchComponent implements OnInit {
 
       //   });
 
-      const storedData = isPlatformBrowser(this.platformId) ? localStorage.getItem('commonData') : null;
+      const storedData = isPlatformBrowser(this.platformId)
+        ? localStorage.getItem('commonData')
+        : null;
 
       if (storedData) {
         const data = JSON.parse(storedData);
         this.commonData_1(data);
       } else {
         const param = {
-          user_id: GlobalConstants.MASTER_SETTING_USER_ID
+          user_id: GlobalConstants.MASTER_SETTING_USER_ID,
         };
 
         this.Common.getCommonData(param).subscribe(
-          resp => {
+          (resp) => {
             if (isPlatformBrowser(this.platformId)) {
               localStorage.setItem('commonData', JSON.stringify(resp.data));
             }
             this.commonData_1(resp.data);
           },
-          error => {
+          (error) => {
             console.error('Error fetching Data:', error);
-          }
+          },
         );
       }
 
       this.getbuslist();
-
     }
   }
 
   seoData(res: any) {
     if (res.status == 1) {
       if (res.data.length > 0) {
-        res.data.forEach(e => {
+        res.data.forEach((e) => {
           if (e.page_url == this.currentUrl) {
             this.pageContent = e.url_description;
           }
@@ -2968,20 +2729,30 @@ export class SearchComponent implements OnInit {
 
     const current = new Date();
     this.dtconfig.minDate = {
-      year: current.getFullYear(), month:
-        current.getMonth() + 1, day: current.getDate()
+      year: current.getFullYear(),
+      month: current.getMonth() + 1,
+      day: current.getDate(),
     };
 
-    let maxDate = current.setDate(current.getDate() + res.common.advance_days_show);
+    let maxDate = current.setDate(
+      current.getDate() + res.common.advance_days_show,
+    );
 
     const max = new Date(maxDate);
     this.dtconfig.maxDate = {
-      year: max.getFullYear(), month:
-        max.getMonth() + 1, day: max.getDate()
+      year: max.getFullYear(),
+      month: max.getMonth() + 1,
+      day: max.getDate(),
     };
 
-    this.maxAllowedDate = this.maxAllowedDate.setDate(this.maxAllowedDate.getDate() + res.common.advance_days_show);
-    this.maxAllowedDate = formatDate(this.maxAllowedDate, 'dd-MM-yyyy', 'en_US');
+    this.maxAllowedDate = this.maxAllowedDate.setDate(
+      this.maxAllowedDate.getDate() + res.common.advance_days_show,
+    );
+    this.maxAllowedDate = formatDate(
+      this.maxAllowedDate,
+      'dd-MM-yyyy',
+      'en_US',
+    );
 
     this.setPrevNextDate(this.entdate);
   }
@@ -2991,35 +2762,40 @@ export class SearchComponent implements OnInit {
 
     const current = new Date();
     this.dtconfig.minDate = {
-      year: current.getFullYear(), month:
-        current.getMonth() + 1, day: current.getDate()
+      year: current.getFullYear(),
+      month: current.getMonth() + 1,
+      day: current.getDate(),
     };
 
-    let maxDate = current.setDate(current.getDate() + res.common.advance_days_show);
+    let maxDate = current.setDate(
+      current.getDate() + res.common.advance_days_show,
+    );
 
     const max = new Date(maxDate);
     this.dtconfig.maxDate = {
-      year: max.getFullYear(), month:
-        max.getMonth() + 1, day: max.getDate()
+      year: max.getFullYear(),
+      month: max.getMonth() + 1,
+      day: max.getDate(),
     };
 
-    this.maxAllowedDate = this.maxAllowedDate.setDate(this.maxAllowedDate.getDate() + res.common.advance_days_show);
-    this.maxAllowedDate = formatDate(this.maxAllowedDate, 'dd-MM-yyyy', 'en_US');
+    this.maxAllowedDate = this.maxAllowedDate.setDate(
+      this.maxAllowedDate.getDate() + res.common.advance_days_show,
+    );
+    this.maxAllowedDate = formatDate(
+      this.maxAllowedDate,
+      'dd-MM-yyyy',
+      'en_US',
+    );
 
     this.setPrevNextDate(this.entdate);
   }
 
   view_seatlayout(seat_layout: any, i: any, display: any, totalSeat: any) {
-
     this.LowerberthMobileArr = [];
     this.UpperberthMobileArr = [];
 
-
-
     if (display == 'hide' || totalSeat == 0) {
-
       return;
-
     }
 
     this.lower_tab = 'active';
@@ -3033,14 +2809,13 @@ export class SearchComponent implements OnInit {
     this.blankSeatcount = 0;
     this.MobileblankSeatcount = 0;
 
-
     this.spinner.show();
 
     this.seatForm = this.fb.group({
       boardingPoint: [null, Validators.compose([Validators.required])],
       droppingPoint: [null, Validators.compose([Validators.required])],
       Lowerberth: this.fb.array([]),
-      Upperberth: this.fb.array([])
+      Upperberth: this.fb.array([]),
     });
 
     this.buslistRecord = this.buslist[i];
@@ -3052,16 +2827,10 @@ export class SearchComponent implements OnInit {
     this.referenceNumber = this.buslistRecord.ReferenceNumber;
     this.origin = this.buslistRecord.origin;
 
-
     this.getseatlayout();
     this.getBoardingDroppingPoints();
 
     this.modalService.open(seat_layout, { windowClass: 'mobile-modalbox' });
-
-
-
-
-
   }
 
   modify_search(modify: any, event?: Event) {
@@ -3069,8 +2838,6 @@ export class SearchComponent implements OnInit {
     event?.stopPropagation();
     this.modalService.open(modify, { windowClass: 'mobile-modalbox' });
   }
-
-
 
   viewamenity(viewamenity: any) {
     this.modalService.open(viewamenity, { windowClass: 'mobile-modalbox' });
@@ -3080,11 +2847,9 @@ export class SearchComponent implements OnInit {
     this.modalService.open(viewsafety, { windowClass: 'mobile-modalbox' });
   }
 
-
   viewphotos(viewphotos: any) {
     this.modalService.open(viewphotos, { windowClass: 'mobile-modalbox' });
   }
-
 
   viewreview(viewreview: any) {
     this.modalService.open(viewreview, { windowClass: 'mobile-modalbox' });
@@ -3095,7 +2860,7 @@ export class SearchComponent implements OnInit {
   }
 
   setPrevNextDate(entDate: any) {
-    let dt = entDate.split("-");
+    let dt = entDate.split('-');
     let dd = dt[2] + '-' + dt[1] + '-' + dt[0];
     let entdate = dd;
 
@@ -3108,24 +2873,17 @@ export class SearchComponent implements OnInit {
       this.nextDate = '';
       this.prevDate = fentdate.setDate(fentdate.getDate() - 1);
       this.prevDate = formatDate(this.prevDate, 'dd-MM-yyyy', 'en_US');
-    }
-
-
-    else if (currentDate == entrdate) {
+    } else if (currentDate == entrdate) {
       this.nextDate = fentdate.setDate(fentdate.getDate() + 1);
       this.nextDate = formatDate(this.nextDate, 'dd-MM-yyyy', 'en_US');
       this.prevDate = '';
-    }
-
-    else if (currentDate < entrdate) {
+    } else if (currentDate < entrdate) {
       this.nextDate = fentdate.setDate(fentdate.getDate() + 1);
       this.nextDate = formatDate(this.nextDate, 'dd-MM-yyyy', 'en_US');
 
       this.prevDate = fentdate.setDate(fentdate.getDate() - 2);
       this.prevDate = formatDate(this.prevDate, 'dd-MM-yyyy', 'en_US');
-
     }
-
   }
 
   ngOnDestroy() {

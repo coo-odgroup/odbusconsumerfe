@@ -101,6 +101,17 @@ export class SearchBoxMComponent implements OnInit {
       return;
     }
 
+    if (
+      this.searchForm.value.source?.name.trim().toLowerCase() ===
+      this.searchForm.value.destination?.name.trim().toLowerCase()
+    ) {
+      this.notify.notify(
+        'Source and Destination cannot be the same !',
+        'Error',
+      );
+      return false;
+    }
+
     let dt = this.searchForm.value.entry_date;
     let formattedDate = '';
 

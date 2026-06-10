@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   // Flag to control app download popup visibility close function
   closeAppPopup() {
     this.showAppPopup = false;
-    const expiryTime = new Date().getTime() + (12 * 60 * 60 * 1000);
+    const expiryTime = new Date().getTime() + 12 * 60 * 60 * 1000;
     localStorage.setItem('appPopupClosedUntil', expiryTime.toString());
   }
 
@@ -278,15 +278,15 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
             term === ''
               ? []
               : this.location_list
-                .filter(
-                  (v) =>
-                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                    (v.synonym != '' &&
-                      v.synonym != null &&
-                      v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
-                      -1),
-                )
-                .slice(0, 10),
+                  .filter(
+                    (v) =>
+                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                      (v.synonym != '' &&
+                        v.synonym != null &&
+                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                          -1),
+                  )
+                  .slice(0, 10),
           ),
         );
 
@@ -454,7 +454,9 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
         const tabs = document.querySelectorAll('.route-tabs li');
-        const panes = document.querySelectorAll('.route-link-section .tab-pane');
+        const panes = document.querySelectorAll(
+          '.route-link-section .tab-pane',
+        );
 
         tabs.forEach((tab: any, index: number) => {
           tab.addEventListener('click', (e: any) => {
@@ -599,10 +601,10 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       if (el) {
         try {
           el.focus();
-        } catch (e) { }
+        } catch (e) {}
         try {
           el.click();
-        } catch (e) { }
+        } catch (e) {}
       }
     }
   }
@@ -834,6 +836,17 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     if (!this.searchForm.value.entry_date) {
       this.notify.notify('Enter Journey Date !', 'Error');
       return;
+    }
+
+    if (
+      this.searchForm.value.source?.name.trim().toLowerCase() ===
+      this.searchForm.value.destination?.name.trim().toLowerCase()
+    ) {
+      this.notify.notify(
+        'Source and Destination cannot be the same !',
+        'Error',
+      );
+      return false;
     }
 
     let dt = this.searchForm.value.entry_date;
