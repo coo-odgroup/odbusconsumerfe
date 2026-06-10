@@ -1,10 +1,22 @@
-import { Component, OnInit, OnDestroy, Input, Inject, PLATFORM_ID, Injector, AfterContentChecked } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  Inject,
+  PLATFORM_ID,
+  Injector,
+  AfterContentChecked,
+} from '@angular/core';
 import { GlobalConstants } from '../constants/global-constants';
 import { LoginChecker } from '../helpers/loginChecker';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonService } from '../services/common.service';
-import { NgbDatepickerConfig, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgxSpinnerService } from "ngx-spinner";
+import {
+  NgbDatepickerConfig,
+  NgbActiveModal,
+} from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, NavigationEnd } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
@@ -17,7 +29,7 @@ import { filter } from 'rxjs/operators';
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css'],
-  providers: [DatePipe, NgbActiveModal]
+  providers: [DatePipe, NgbActiveModal],
 })
 export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
   url_path = '';
@@ -44,7 +56,7 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
     private datePipe: DatePipe,
     @Inject(PLATFORM_ID) private platformId: Object,
     private injector: Injector, // lazy-get browser-only services
-    private http: HttpClient
+    private http: HttpClient,
   ) {
     // Avoid any browser-only calls here. Keep constructor synchronous and safe for SSR.
     this.session = new LoginChecker();
@@ -58,17 +70,18 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
 
   checkRouteLinksVisibility() {
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-
         const url = this.router.url;
 
+        // Hide on booking pages
         if (url.includes('/booking')) {
+          this.showRouteLinks = false;
+        } else if (this.isMobile && url.includes('/routes/')) {
           this.showRouteLinks = false;
         } else {
           this.showRouteLinks = true;
         }
-
       });
   }
 
@@ -89,17 +102,19 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
 
   ngOnInit(): void {
     const reddata = {
-      "limit": 3
-    }
+      limit: 3,
+    };
     // this.http.post(this.apiurl + "/bloglist", reddata).subscribe((res: any) => {
     //   this.bloglist = res.data.blogs;
     // });
     // Subscribe to commonData changes
-    this.commonDataSubscription = this.commonService.commonData$.subscribe(data => {
-      if (data) {
-        this.updateCommonData();
-      }
-    });
+    this.commonDataSubscription = this.commonService.commonData$.subscribe(
+      (data) => {
+        if (data) {
+          this.updateCommonData();
+        }
+      },
+    );
 
     // Immediately ensure local values are up to date
     this.updateCommonData();
@@ -117,7 +132,9 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
         }
       } catch (e) {
         // Fallback if DeviceDetectorService is unavailable
-        this.isMobile = /Mobi|Android/i.test((typeof navigator !== 'undefined' && navigator.userAgent) || '');
+        this.isMobile = /Mobi|Android/i.test(
+          (typeof navigator !== 'undefined' && navigator.userAgent) || '',
+        );
       }
     } else {
       // On server leave isMobile default (false)
@@ -149,11 +166,11 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
         //    console.log('Fetching PopularInfo from API as fallback in footer');
         const param = {
           user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-          locationName: ""
+          locationName: '',
         };
 
         this.commonService.PopularInfo(param).subscribe(
-          resp => {
+          (resp) => {
             const data = resp && resp.data ? resp.data : resp;
             this.popularInfoGetData(data);
             try {
@@ -162,9 +179,9 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
               console.warn('Unable to write PopularInfo to localStorage', e);
             }
           },
-          error => {
+          (error) => {
             console.error('Error fetching PopularInfo in footer:', error);
-          }
+          },
         );
       } else {
         // On server: do nothing (SSR should be using preloaded data)
@@ -173,12 +190,12 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
 
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
-
         const tabs = document.querySelectorAll('.route-tabs li');
-        const panes = document.querySelectorAll('.route-link-section .tab-pane');
+        const panes = document.querySelectorAll(
+          '.route-link-section .tab-pane',
+        );
 
         tabs.forEach((tab: any, index: number) => {
-
           tab.addEventListener('click', (e: any) => {
             e.preventDefault();
 
@@ -189,11 +206,8 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
 
             tab.classList.add('active');
             panes[index].classList.add('active');
-
           });
-
         });
-
       }, 500);
     }
   }
@@ -208,23 +222,41 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
   popularInfoGetData(resp: any) {
     // Defensive checks
     if (!resp || typeof resp !== 'object') {
-      console.warn('FooterComponent.popularInfoGetData: invalid PopularInfo payload', resp);
+      console.warn(
+        'FooterComponent.popularInfoGetData: invalid PopularInfo payload',
+        resp,
+      );
       return;
     }
 
     try {
       const current = new Date();
-      this.dtconfig.minDate = { year: current.getFullYear(), month: current.getMonth() + 1, day: current.getDate() };
+      this.dtconfig.minDate = {
+        year: current.getFullYear(),
+        month: current.getMonth() + 1,
+        day: current.getDate(),
+      };
 
       this.popular_routes = resp.popularRoutes || [];
       this.location_list = resp.locationName || [];
 
-      const advanceDays = resp.common && resp.common.advance_days_show ? resp.common.advance_days_show : 30;
+      const advanceDays =
+        resp.common && resp.common.advance_days_show
+          ? resp.common.advance_days_show
+          : 30;
       const tmp = new Date();
       tmp.setDate(tmp.getDate() + advanceDays);
-      this.dtconfig.maxDate = { year: tmp.getFullYear(), month: tmp.getMonth() + 1, day: tmp.getDate() };
+      this.dtconfig.maxDate = {
+        year: tmp.getFullYear(),
+        month: tmp.getMonth() + 1,
+        day: tmp.getDate(),
+      };
     } catch (e) {
-      console.error('FooterComponent.popularInfoGetData: error applying PopularInfo', e, resp);
+      console.error(
+        'FooterComponent.popularInfoGetData: error applying PopularInfo',
+        e,
+        resp,
+      );
       this.popular_routes = this.popular_routes || [];
       this.location_list = this.location_list || [];
     }
@@ -237,14 +269,24 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
 
     if (isPlatformBrowser(this.platformId)) {
       try {
-        window.location.href = GlobalConstants.URL + sr + '-' + ds + '-bus-services?date=' + this.CurrentDate;
+        window.location.href =
+          GlobalConstants.URL +
+          sr +
+          '-' +
+          ds +
+          '-bus-services?date=' +
+          this.CurrentDate;
       } catch (e) {
         console.warn('Window navigation failed', e);
-        this.router.navigate([sr + '-' + ds + '-bus-services'], { queryParams: { date: this.CurrentDate } });
+        this.router.navigate([sr + '-' + ds + '-bus-services'], {
+          queryParams: { date: this.CurrentDate },
+        });
       }
     } else {
       // SSR: use router navigate (server will not perform client navigation)
-      this.router.navigate([sr + '-' + ds + '-bus-services'], { queryParams: { date: this.CurrentDate } });
+      this.router.navigate([sr + '-' + ds + '-bus-services'], {
+        queryParams: { date: this.CurrentDate },
+      });
     }
   }
 }

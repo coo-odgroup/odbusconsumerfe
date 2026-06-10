@@ -45,7 +45,7 @@
                   #d="ngbDatepicker"
                 />
 
-                <li *ngFor="let p of all_routes | filter: searchText">
+                <li *ngFor="let p of all_routes">
                   <div class="route-card">
                     <a
                       class="route-link"
@@ -151,7 +151,7 @@
   >
     <div
       class="mobile-routes-box"
-      *ngFor="let p of all_routes | filter: searchText"
+      *ngFor="let p of all_routes"
       (click)="popularSearch(p.source_slug, p.destination_slug)"
     >
       <input
