@@ -484,6 +484,8 @@
       </div>
     </div>
 
+    <!-- // Mobile section -->
+
     <div class="mobile-ticket-box shadow" *ngFor="let b of list.data; let i=index;">
       <div class="row mob-tkbox-top">
         <div class="col-6" *ngIf="b.status == 2">
@@ -534,6 +536,9 @@
           <a (click)="bookAgain(b.source[0].name, b.destination[0].name)">Book Again</a>
         </div>
       </div>
+    </div>
+    <div class="mobile-ticket-box shadow" *ngIf="list.data && list.data.length == 0">
+      <p>No tickets found.</p>
     </div>
 
     <!-- <div class="mobile-ticket-box shadow">
