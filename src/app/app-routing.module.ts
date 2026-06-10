@@ -2,40 +2,21 @@ import { NgModule } from '@angular/core';
 import {
   RouterModule,
   Routes,
-  CanActivate,
-  Router,
-  Route,
   UrlMatchResult,
   UrlSegment,
 } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { PageErrorComponent } from './page-error/page-error.component';
 import { SearchComponent } from './search/search.component';
 import { BookingComponent } from './booking/booking.component';
-import { ApiComponent } from './api/api.component';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { ManagebookingdetailsComponent } from './managebookingdetails/managebookingdetails.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { OffersComponent } from './offers/offers.component';
-import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './login/login.component';
-import { OtpComponent } from './otp/otp.component';
-import { MyaccountComponent } from './user/myaccount/myaccount.component';
-import { UserdashboardComponent } from './user/userdashboard/userdashboard.component';
-import { UsernotificationsComponent } from './user/usernotifications/usernotifications.component';
-import { UserwalletComponent } from './user/userwallet/userwallet.component';
-import { UserinvitefriendsComponent } from './user/userinvitefriends/userinvitefriends.component';
-import { UserrewardsComponent } from './user/userrewards/userrewards.component';
-import { UserreviewsComponent } from './user/userreviews/userreviews.component';
-import { UserhelpsupportComponent } from './user/userhelpsupport/userhelpsupport.component';
 import { AuthGuard } from './helpers/auth.guard';
-import { SeoService } from './services/seo.service';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { PopularRoutesService } from './services/popular-routes.service';
 import { PnrdetailComponent } from './pnrdetail/pnrdetail.component';
 import { SuccessComponent } from './success/success.component';
-import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { ProfiledeleteComponent } from './profiledelete/profiledelete.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { CommonContentComponent } from './common-content/common-content.component';
@@ -61,7 +42,7 @@ export function userRouteMatcher(segments: UrlSegment[]): UrlMatchResult | null 
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'pnr', component: PageErrorComponent },
+  // { path: 'pnr', component: Page404Component },
   { path: 'pnr/:id', component: PnrdetailComponent },
   { path: 'listing', component: SearchComponent },
   { path: 'success', component: SuccessComponent },
@@ -135,7 +116,6 @@ export const routes: Routes = [
       import('./signup/signup.module')
         .then(m => m.SignupModule)
   },
-  // { path: 'signup', component: SignupComponent },
   {
     path: 'login', loadChildren: () =>
       import('./login/login.module')
@@ -156,13 +136,11 @@ export const routes: Routes = [
       import('./api/api.module')
         .then(m => m.ApiModule)
   },
-
   {
     path: 'maintenance', loadChildren: () =>
       import('./maintenance/maintenance.module')
         .then(m => m.MaintenanceModule)
   },
-
 
   {
     matcher: userRouteMatcher,
@@ -171,11 +149,8 @@ export const routes: Routes = [
         .then(m => m.UserModule),
     canActivate: [AuthGuard]
   },
-
-
   { path: 'profile/delete', component: ProfiledeleteComponent },
   { path: 'payment-status', component: PaymentStatusComponent },
-  // { path: 'slug', component: CommonContentComponent },
   {
     path: 'advantage/:slug',
     component: CommonContentComponent,
@@ -186,14 +161,8 @@ export const routes: Routes = [
       import('./bloglisting/blog.module')
         .then(m => m.BlogModule)
   },
-
   // { path: 'payment-failed',component:PaymentFailedComponent},
-  // { path: '**', component: SearchComponent}, // wildcard routes
-  // { path: '**/:dt', component: SearchComponent}, // wildcard routes
-
   { path: 'routes/:slug', component: SearchComponent },
-  { path: ':slug', component: SearchComponent },
-  // { path: '**', redirectTo: '' },
   { path: '**', component: PageErrorComponent },
 ];
 
@@ -211,26 +180,5 @@ export const routes: Routes = [
 export class AppRoutingModule {
   currentUrl: any;
 
-  constructor(
-    private seo: SeoService,
-    private router: Router,
-    private popularRoutesService: PopularRoutesService,
-  ) {
-    // this.popularRoutesService.allroutes().subscribe(
-    //   res=>{
-    //     if(res.status==1)
-    //     {
-    //       if(res.data.length>0){
-    //         res.data.forEach(e => {
-    //           let r: Route = {
-    //             path: e.source[0].url+'-'+e.destination[0].url+'-bus-services',
-    //             component: SearchComponent
-    //           };
-    //           routes.push(r);
-    //         });
-    //     }
-    //     this.router.resetConfig(routes);
-    //   }
-    //   });
-  }
+  constructor() {}
 }

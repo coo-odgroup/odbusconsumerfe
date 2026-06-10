@@ -426,7 +426,7 @@ export class SearchComponent implements OnInit {
 
 
       //  this.selectedLB.forEach((item, index) => {
-      //   if (index !== this.selectedLB.findIndex(i => i == item)) 
+      //   if (index !== this.selectedLB.findIndex(i => i == item))
       //   {
       //     this.selectedLB.splice(index, 1);
       //   }
@@ -434,7 +434,7 @@ export class SearchComponent implements OnInit {
       //  });
 
       //  this.selectedUB.forEach((item, index) => {
-      //   if (index !== this.selectedUB.findIndex(i => i == item)) 
+      //   if (index !== this.selectedUB.findIndex(i => i == item))
       //   {
       //     this.selectedUB.splice(index, 1);
       //   }
@@ -1208,7 +1208,7 @@ export class SearchComponent implements OnInit {
 
       // this.filterForm.value.busType.forEach((e: any) => {
 
-      //   filterparam +='&busType[]='+e;   
+      //   filterparam +='&busType[]='+e;
       // });
 
       filterparam["busType"] = this.filterForm.value.busType;
@@ -1219,7 +1219,7 @@ export class SearchComponent implements OnInit {
 
       // this.filterForm.value.seatType.forEach((e: any) => {
 
-      //   filterparam +='&seatType[]='+e;   
+      //   filterparam +='&seatType[]='+e;
       // });
 
       filterparam["seatType"] = this.filterForm.value.seatType;
@@ -1230,7 +1230,7 @@ export class SearchComponent implements OnInit {
 
       // this.filterForm.value.boardingPointId.forEach((e: any) => {
 
-      //   filterparam +='&boardingPointId[]='+e;   
+      //   filterparam +='&boardingPointId[]='+e;
       // });
 
       filterparam["boardingPointId"] = this.filterForm.value.boardingPointId;
@@ -1241,7 +1241,7 @@ export class SearchComponent implements OnInit {
 
       // this.filterForm.value.dropingingPointId.forEach((e: any) => {
 
-      //   filterparam +='&dropingingPointId[]='+e;   
+      //   filterparam +='&dropingingPointId[]='+e;
       // });
 
       filterparam["dropingingPointId"] = this.filterForm.value.dropingingPointId;
@@ -1252,7 +1252,7 @@ export class SearchComponent implements OnInit {
 
       // this.filterForm.value.operatorId.forEach((e: any) => {
 
-      //   filterparam +='&operatorId[]='+e;   
+      //   filterparam +='&operatorId[]='+e;
       // });
 
       filterparam["operatorId"] = this.filterForm.value.operatorId;
@@ -1263,7 +1263,7 @@ export class SearchComponent implements OnInit {
 
       // this.filterForm.value.amenityId.forEach((e: any) => {
 
-      //   filterparam +='&amenityId[]='+e;   
+      //   filterparam +='&amenityId[]='+e;
       // });
 
       filterparam["amenityId"] = this.filterForm.value.amenityId;
@@ -1400,7 +1400,7 @@ export class SearchComponent implements OnInit {
       // this.locationService.setDestination(this.destinationData);
       // this.locationService.setDate(this.searchForm.value.entry_date);
 
-      // this.isShown = false ; 
+      // this.isShown = false ;
       // this.showformattedDate(this.searchForm.value.entry_date);
 
       // this.setPrevNextDate(this.entdate);
@@ -1570,7 +1570,7 @@ export class SearchComponent implements OnInit {
 
 
 
-          ///////// get filter options after getting bus list          
+          ///////// get filter options after getting bus list
           this.filteroptions();
 
         }
@@ -1612,7 +1612,7 @@ export class SearchComponent implements OnInit {
         this.seatsLayoutRecord.visibility = true;
         this.createberth();
 
-        //console.log(this.seatsLayoutRecord); 
+        //console.log(this.seatsLayoutRecord);
 
       },
       error => {
@@ -2278,7 +2278,7 @@ export class SearchComponent implements OnInit {
 
     this.filterOptionsService.getoptions(param).subscribe(
       res => {
-        // console.log(res); 
+        // console.log(res);
         if (res.data.length > 0) {
 
           this.busTypes = res.data[0].busTypes;
@@ -2720,9 +2720,10 @@ export class SearchComponent implements OnInit {
             });
         }
 
-      } else {
-        this.router.navigate(['/404']);
       }
+      // else {
+      //   this.router.navigate(['/404']);
+      // }
 
     } else {
 
