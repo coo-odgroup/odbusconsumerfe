@@ -147,7 +147,8 @@ export class UserdashboardComponent implements OnInit {
       res => {
         if (res.status == 1) {
           localStorage.setItem('bookingDetails', JSON.stringify(res.data[0]));
-          this.router.navigate(['manage-booking-detail']);
+          // this.router.navigate(['manage-booking-detail']);
+          this.router.navigate(['pnr', pnr]);
         }
         if (res.status == 0) {
           this.notify.notify(res.message, "Error");
