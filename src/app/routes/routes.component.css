@@ -81,6 +81,7 @@ section.top-routs ul li a {
   margin: 10px 0;
   line-height: 19px;
   font-weight: 500;
+  cursor: pointer;
   /* text-transform: uppercase; */
 }
 

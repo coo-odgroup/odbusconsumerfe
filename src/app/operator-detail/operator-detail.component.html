@@ -2,7 +2,7 @@
 DESKTOP VIEW
 ===================================================== -->
 
-<ng-container *ngIf="!isMobile">
+<ng-container *ngIf="!isMobile && visibleRoutes?.length > 0">
 
   <section class="operator-top-section">
 
@@ -222,7 +222,7 @@ DESKTOP VIEW
 MOBILE VIEW
 ===================================================== -->
 
-<ng-container *ngIf="isMobile && !MenuActive">
+<ng-container *ngIf="isMobile && !MenuActive && visibleRoutes?.length > 0">
 
   <!-- MOBILE HEADER -->
   <div class="mobile-top-header">
