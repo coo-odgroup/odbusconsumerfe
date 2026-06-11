@@ -55,15 +55,24 @@ export function app(): express.Express {
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
+  server.use((req, _res, next) => {
+    if (req.path === '/index.php' || req.path === '/index.html') {
+      req.url = req.url.replace(/^\/index\.(php|html)/, '/') || '/';
+    }
+
+    next();
+  });
+
   // Serve static files from /browser
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y',
     immutable: true,
-  }));
+  }), (req, res) => {
+    res.status(404).send(`Asset not found: ${req.url}`);
+  });
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-
     // =========================================
     // PREVENT SSR HTML PAGE CACHING
     // =========================================
@@ -79,9 +88,9 @@ export function app(): express.Express {
     // Optional security headers
     res.setHeader('X-Content-Type-Options', 'nosniff');
 
-    res.render(indexHtml, { 
-      req, 
-      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] 
+    res.render(indexHtml, {
+      req,
+      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl || '/' }]
     }, (err: Error, html: string) => {
       if (err) {
         console.error('========================================');

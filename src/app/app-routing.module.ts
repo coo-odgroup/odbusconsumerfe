@@ -42,6 +42,8 @@ export function userRouteMatcher(segments: UrlSegment[]): UrlMatchResult | null 
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'index.php', redirectTo: '', pathMatch: 'full' },
+  { path: 'index.html', redirectTo: '', pathMatch: 'full' },
   // { path: 'pnr', component: Page404Component },
   { path: 'pnr/:id', component: PnrdetailComponent },
   { path: 'listing', component: SearchComponent },
@@ -60,6 +62,10 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./operators/operators.module')
         .then(m => m.OperatorsModule)
+  },
+  {
+    path: 'routes/:slug',
+    component: SearchComponent,
   },
   {
     path: 'routes',
@@ -162,7 +168,6 @@ export const routes: Routes = [
         .then(m => m.BlogModule)
   },
   // { path: 'payment-failed',component:PaymentFailedComponent},
-  { path: 'routes/:slug', component: SearchComponent },
   { path: '**', component: PageErrorComponent },
 ];
 
