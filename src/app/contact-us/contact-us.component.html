@@ -18,7 +18,7 @@
 
         <div class="row">
           <div class="col-md-6">
-            <form class="form-horizontal" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <form class="form-horizontal" [formGroup]="contactForm">
               <div class="row form-group">
                 <div class="col-md-6">
                   <label class="text-inverse" for="validationCustom02">Your Name <span class="red">*</span></label>
@@ -31,12 +31,24 @@
 
                 <div class="col-md-6">
                   <label class="text-inverse" for="validationCustom02">Your Mobile No <span class="red">*</span></label>
-                  <input type="text" class="form-control" (keydown)="onlyNumbers($event)" formControlName="phone"
+                  <!-- <input type="text" class="form-control" (keydown)="onlyNumbers($event)" formControlName="phone"
                     placeholder="Your Mobile No Please" required />
                   <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
                     <div *ngIf="f.phone.errors.required">
                       Mobile no. is required
                     </div>
+                    <div *ngIf="f.phone.errors.pattern">
+                      Enter 10 digit Mobile Number
+                    </div>
+                  </div> -->
+                  <input type="text" class="form-control" formControlName="phone" maxlength="10"
+                    (keydown)="onlyNumbers($event)" placeholder="Your Mobile No Please">
+
+                  <div *ngIf="submitted && f.phone.errors" class="text-danger mt-1">
+                    <div *ngIf="f.phone.errors.required">
+                      Mobile no. is required
+                    </div>
+
                     <div *ngIf="f.phone.errors.pattern">
                       Enter 10 digit Mobile Number
                     </div>
@@ -103,7 +115,8 @@
                   <label>
                     Enter Captcha <span class="red">*</span>
                   </label>
-                  <input type="text" class="form-control" [(ngModel)]="userCaptcha" placeholder="Enter captcha">
+                  <!-- <input type="text" class="form-control" [(ngModel)]="userCaptcha" placeholder="Enter captcha"> -->
+                  <input type="text" class="form-control" formControlName="captcha" placeholder="Enter captcha">
                 </div>
 
                 <div class="col-md-3">
@@ -120,7 +133,7 @@
               </div>
 
               <div class="form-group login-app sub-but">
-                <button type="submit" class="log-in">Submit</button>
+                <button type="button" class="log-in" (click)="formSubmit()">Submit</button>
               </div>
             </form>
           </div>
@@ -170,7 +183,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <form class="form-horizontal" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <!-- <form class="form-horizontal" [formGroup]="contactForm">
           <div class="row form-group">
             <div class="col-12">
               <label class="text-inverse" for="validationCustom02">Your Name <span class="red">*</span></label>
@@ -237,8 +250,133 @@
           </div>
 
           <div class="form-group login-app sub-but">
-            <button type="submit" class="log-in">Submit</button>
+            <button class="log-in">Submit</button>
           </div>
+        </form> -->
+        <form class="form-horizontal" [formGroup]="contactForm">
+
+          <!-- Name -->
+          <div class="form-group">
+            <label>Your Name <span class="red">*</span></label>
+
+            <input type="text" class="form-control" formControlName="name" placeholder="Your Name Please">
+
+            <div *ngIf="submitted && f.name.errors" class="text-danger mt-1">
+              <div *ngIf="f.name.errors.required">
+                Name is required
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile -->
+          <div class="form-group">
+            <label>Your Mobile No <span class="red">*</span></label>
+
+            <input type="text" class="form-control" formControlName="phone" maxlength="10"
+              (keydown)="onlyNumbers($event)" placeholder="Your Mobile No Please">
+
+            <div *ngIf="submitted && f.phone.errors" class="text-danger mt-1">
+              <div *ngIf="f.phone.errors.required">
+                Mobile no. is required
+              </div>
+
+              <div *ngIf="f.phone.errors.pattern">
+                Enter 10 digit Mobile Number
+              </div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label>Your Email <span class="red">*</span></label>
+
+            <input type="text" class="form-control" formControlName="email" placeholder="Your Email Id Please">
+
+            <div *ngIf="submitted && f.email.errors" class="text-danger mt-1">
+              <div *ngIf="f.email.errors.required">
+                Email ID is required
+              </div>
+
+              <div *ngIf="f.email.errors.email">
+                Email must be a valid email address
+              </div>
+            </div>
+          </div>
+
+          <!-- Service -->
+          <div class="form-group">
+            <label>Select Your Purpose <span class="red">*</span></label>
+
+            <select class="custom-select d-block form-control" formControlName="service">
+
+              <option value="">Select Service</option>
+              <option value="Feedback">Feedback</option>
+              <option value="Complaints">Complaints</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Agency Enquiry">Agency Enquiry</option>
+              <option value="Solutions Enquiry">Solutions Enquiry</option>
+            </select>
+
+            <div *ngIf="submitted && f.service.errors" class="text-danger mt-1">
+              <div *ngIf="f.service.errors.required">
+                Please select any option.
+              </div>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="form-group">
+            <label>Your Message <span class="red">*</span></label>
+
+            <textarea formControlName="message" class="form-control" rows="5"
+              placeholder="Write your message"></textarea>
+
+            <div *ngIf="submitted && f.message.errors" class="text-danger mt-1">
+              <div *ngIf="f.message.errors.required">
+                Please write your message.
+              </div>
+            </div>
+          </div>
+
+          <!-- Captcha -->
+          <div class="form-group">
+            <label>
+              Enter Captcha <span class="red">*</span>
+            </label>
+
+            <input type="text" class="form-control" formControlName="captcha" placeholder="Enter captcha">
+
+            <div *ngIf="submitted && f.captcha.errors" class="text-danger mt-1">
+              <div *ngIf="f.captcha.errors.required">
+                Please enter captcha.
+              </div>
+            </div>
+          </div>
+
+          <!-- Captcha Box -->
+          <div class="form-group">
+            <div class="d-flex align-items-center">
+
+              <div class="captcha-box flex-grow-1">
+                {{ captchaText }}
+              </div>
+
+              <button type="button" class="btn btn-primary ml-2" (click)="generateCaptcha()">
+
+                <i class="fa fa-refresh"></i>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-group login-app sub-but">
+            <button type="button" class="log-in" (click)="formSubmit()">
+
+              Submit
+            </button>
+          </div>
+
         </form>
       </div>
       <div class="col-12">

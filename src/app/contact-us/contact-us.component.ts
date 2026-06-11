@@ -55,8 +55,53 @@ export class ContactUsComponent implements OnInit {
       phone: ['', [Validators.required, Validators.pattern("^[0-9]{10}$")]],
       service: ['', Validators.required],
       message: ['', Validators.required],
-      user_id: [GlobalConstants.MASTER_SETTING_USER_ID]
+      user_id: [GlobalConstants.MASTER_SETTING_USER_ID],
+      captcha: ['', Validators.required],
     })
+
+    // this.contactForm = this.fb.group({
+    //   name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[A-Za-z ]+$/)]],
+
+    //   email: ['',[
+    //       Validators.required,
+    //       Validators.email
+    //     ]
+    //   ],
+
+    //   phone: [
+    //     '',
+    //     [
+    //       Validators.required,
+    //       Validators.pattern(/^[6-9][0-9]{9}$/)
+    //     ]
+    //   ],
+
+    //   service: [
+    //     '',
+    //     Validators.required
+    //   ],
+
+    //   message: [
+    //     '',
+    //     [
+    //       Validators.required,
+    //       Validators.minLength(10),
+    //       Validators.maxLength(500),
+    //       Validators.pattern(/^[^<>]*$/)
+    //     ]
+    //   ],
+
+    //   captcha: [
+    //     '',
+    //     [
+    //       Validators.required,
+    //       Validators.minLength(6),
+    //       Validators.maxLength(6)
+    //     ]
+    //   ],
+
+    //   user_id: [GlobalConstants.MASTER_SETTING_USER_ID]
+    // });
   }
 
   menu() {
@@ -82,33 +127,95 @@ export class ContactUsComponent implements OnInit {
     return false;
   }
 
-  onSubmit() {
+  // formSubmit() {
+  //   // alert('Form submitted successfully!');
+  //   console.log(this.contactForm.value);
+
+  //   this.submitted = true;
+
+  //   // stop here if form is invalid
+  //   if (this.contactForm.invalid) {
+  //     return;
+  //   } else {
+  //     this.spinner.show();
+  //     this.contactService.save(this.contactForm.value).subscribe(
+  //       res => {
+  //         this.spinner.hide();
+  //         if (res.status == 1) {
+  //           this.router.navigate(['thankyou']);
+  //         }
+  //         else if (res.status == 0) {
+  //           this.notify.notify(res.message, "Error");
+  //         }
+  //         this.spinner.hide();
+  //       },
+  //       error => {
+  //         this.spinner.hide();
+  //         this.notify.notify(error.error.message, "Error");
+  //       }
+  //     );
+  //   }
+
+  // }
+
+  formSubmit() {
 
     this.submitted = true;
 
-    // stop here if form is invalid
+    // Form validation
     if (this.contactForm.invalid) {
       return;
-    } else {
-      this.spinner.show();
-      this.contactService.save(this.contactForm.value).subscribe(
-        res => {
-          this.spinner.hide();
-          if (res.status == 1) {
-            this.router.navigate(['thankyou']);
-          }
-          else if (res.status == 0) {
-            this.notify.notify(res.message, "Error");
-          }
-          this.spinner.hide();
-        },
-        error => {
-          this.spinner.hide();
-          this.notify.notify(error.error.message, "Error");
-        }
-      );
     }
 
+    // Captcha validation
+    if (!this.contactForm.value.captcha) {
+      this.notify.notify('Please enter captcha', 'Error');
+      return;
+    }
+
+    if (this.contactForm.value.captcha.trim() !== this.captchaText) {
+      this.notify.notify('Invalid captcha', 'Error');
+      this.generateCaptcha();
+      this.contactForm.patchValue({ captcha: '' });
+      return;
+    }
+
+    this.spinner.show();
+
+    this.contactService.save(this.contactForm.value).subscribe(
+      res => {
+
+        this.spinner.hide();
+
+        if (res.status == 1) {
+
+          this.contactForm.reset();
+
+          this.contactForm.patchValue({
+            user_id: GlobalConstants.MASTER_SETTING_USER_ID
+          });
+
+          this.generateCaptcha();
+
+          this.router.navigate(['thankyou']);
+
+        } else {
+
+          this.notify.notify(res.message, 'Error');
+
+        }
+      },
+      error => {
+
+        this.spinner.hide();
+
+        this.notify.notify(
+          error?.error?.message || 'Something went wrong',
+          'Error'
+        );
+
+      }
+    );
   }
 
 
