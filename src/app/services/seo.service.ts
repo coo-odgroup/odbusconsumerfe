@@ -45,7 +45,8 @@ export class SeoService {
     // STATIC PAGES
     if (
       cleanUrl === '/about-us' ||
-      cleanUrl === '/contact-us'
+      cleanUrl === '/contact-us' ||
+      cleanUrl === '/blog'
     ) {
       return true;
     }
@@ -62,11 +63,16 @@ export class SeoService {
 
     // EXCLUDE BLOG LISTING PAGES
     if (
-      cleanUrl.startsWith('/blog/category/') ||
-      cleanUrl.startsWith('/blog/tag/') ||
-      cleanUrl.startsWith('/blog/author/')
+      cleanUrl.startsWith('/blog/tag/')
     ) {
       return false;
+    }
+
+    if (
+      cleanUrl.startsWith('/blog/category/') ||
+      cleanUrl.startsWith('/blog/author/')
+    ) {
+      return true;
     }
 
     // BLOG DETAIL PAGE ONLY
@@ -213,6 +219,16 @@ export class SeoService {
       breadcrumbScript.id = 'breadcrumb-schema';
 
       this.doc.head.appendChild(breadcrumbScript);
+    }
+
+    if (c.person_schema) {
+
+      const personScript = this.doc.createElement('script');
+      personScript.type = 'application/ld+json';
+      personScript.text = c.person_schema;
+      personScript.id = 'person-schema';
+
+      this.doc.head.appendChild(personScript);
     }
 
     // Service Schema
