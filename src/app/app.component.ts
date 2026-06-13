@@ -5,20 +5,24 @@ import { SeoService } from './services/seo.service';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { GlobalConstants } from './constants/global-constants';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { Router,NavigationEnd  } from '@angular/router';
+import {
+  Router,
+  NavigationEnd,
+  NavigationStart,
+  NavigationCancel,
+  NavigationError,
+} from '@angular/router';
 import { CommonService } from './services/common.service';
 import { filter } from 'rxjs/operators';
-
-
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   authReady: boolean = false;
-   isBrowser: boolean = false;
+  isBrowser: boolean = false;
 
   meta_title: any;
   meta_keyword: any;
@@ -28,8 +32,10 @@ export class AppComponent {
   common: any = [];
 
   isMobile: boolean = false;
+  showLoader = true;
 
-  constructor(@Inject(DOCUMENT) private doc,
+  constructor(
+    @Inject(DOCUMENT) private doc,
     @Inject(PLATFORM_ID) private platformId: Object,
     private auth: AuthService,
     private titleService: Title,
@@ -37,9 +43,8 @@ export class AppComponent {
     private commonService: CommonService,
     private deviceService: DeviceDetectorService,
     public router: Router,
-    private seoService: SeoService
+    private seoService: SeoService,
   ) {
-
     // Only access localStorage in browser
     // if (isPlatformBrowser(this.platformId)) {
     //   // this.auth.getToken().subscribe(
@@ -61,13 +66,10 @@ export class AppComponent {
     //   }
     // }
     this.router.events
-    .pipe(filter(event => event instanceof NavigationEnd))
-    .subscribe((event: any) => {
-
-      this.seoService
-        .seolist(event.urlAfterRedirects)
-        .subscribe();
-    });
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.seoService.seolist(event.urlAfterRedirects).subscribe();
+      });
   }
 
   // ngOnInit() {
@@ -117,7 +119,28 @@ export class AppComponent {
   //   }
   // }
 
+  ngAfterViewInit() {
+    const loader = document.getElementById('bus-loader');
+
+    if (loader) {
+      loader.style.display = 'none';
+    }
+  }
+
   ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.showLoader = true;
+      }
+
+      if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError
+      ) {
+        this.showLoader = false;
+      }
+    });
 
     this.isBrowser = isPlatformBrowser(this.platformId);
     // =========================
@@ -125,23 +148,17 @@ export class AppComponent {
     // =========================
 
     if (isPlatformBrowser(this.platformId)) {
-
       const AuthAccessToken = localStorage.getItem('AuthAccessToken');
 
       if (AuthAccessToken) {
-
         // token already exists
         this.authReady = true;
 
         this.loadCommonData();
-
       } else {
-
         // token not found -> generate token
         this.auth.getToken().subscribe({
-
           next: (res: any) => {
-
             localStorage.setItem('AuthAccessToken', res.data);
 
             // token ready
@@ -152,73 +169,60 @@ export class AppComponent {
           },
 
           error: (err) => {
-
             console.log('Token Error:', err);
 
             // prevent infinite loader
             this.authReady = true;
-          }
+          },
         });
       }
-
     } else {
-
       // SSR SIDE
 
       this.authReady = true;
 
       const param = {
         user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-        locationName: ""
+        locationName: '',
       };
 
       this.commonService.getCommonData(param).subscribe(
-
         (resp: any) => {
-
           this.getCommonInfo(resp.data);
         },
 
         (error: any) => {
-
           console.error('Error fetching Data:', error);
-        }
+        },
       );
     }
   }
 
   loadCommonData() {
-
     const storedData = localStorage.getItem('commonData');
 
     if (storedData) {
-
       const data = JSON.parse(storedData);
 
       this.getCommonInfo(data);
-
     } else {
-
       this.isMobile = this.deviceService.isMobile();
 
       const param = {
         user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-        locationName: ""
+        locationName: '',
       };
 
       this.commonService.getCommonData(param).subscribe(
-
         (resp: any) => {
-
           localStorage.setItem('commonData', JSON.stringify(resp.data));
 
           this.getCommonInfo(resp.data);
         },
 
         (error: any) => {
-
           console.error('Error fetching Data:', error);
-        }
+        },
       );
     }
   }
@@ -234,7 +238,6 @@ export class AppComponent {
 
     // console.log(this.common);
 
-
     this.meta_description = this.common.meta_description;
     this.meta_title = this.common.meta_title;
     this.meta_keyword = this.common.meta_keyword;
@@ -244,25 +247,43 @@ export class AppComponent {
       { name: 'keywords', content: this.meta_keyword },
       { name: 'description', content: this.meta_description },
       { name: 'og:url', content: this.doc.URL },
-      { name: 'og:type', content: "website" },
+      { name: 'og:type', content: 'website' },
       { name: 'og:title', content: this.meta_title },
-      { name: 'og:description', content: this.meta_description }
+      { name: 'og:description', content: this.meta_description },
     ];
 
     if (this.og_image != '' && this.og_image != null) {
       metaArr.push({ name: 'og:image', content: this.og_image });
     }
 
-    if (this.common.google_verification_code != '' && this.common.google_verification_code != null) {
-      metaArr.push({ name: 'google-site-verification', content: this.common.google_verification_code });
+    if (
+      this.common.google_verification_code != '' &&
+      this.common.google_verification_code != null
+    ) {
+      metaArr.push({
+        name: 'google-site-verification',
+        content: this.common.google_verification_code,
+      });
     }
 
-    if (this.common.bing_verification_code != '' && this.common.bing_verification_code != null) {
-      metaArr.push({ name: 'msvalidate.01', content: this.common.bing_verification_code });
+    if (
+      this.common.bing_verification_code != '' &&
+      this.common.bing_verification_code != null
+    ) {
+      metaArr.push({
+        name: 'msvalidate.01',
+        content: this.common.bing_verification_code,
+      });
     }
 
-    if (this.common.pintrest_verification_code != '' && this.common.pintrest_verification_code != null) {
-      metaArr.push({ name: 'p:domain_verify', content: this.common.pintrest_verification_code });
+    if (
+      this.common.pintrest_verification_code != '' &&
+      this.common.pintrest_verification_code != null
+    ) {
+      metaArr.push({
+        name: 'p:domain_verify',
+        content: this.common.pintrest_verification_code,
+      });
     }
 
     this.metaService.addTags(metaArr);
@@ -289,7 +310,7 @@ export class AppComponent {
     //     let chatScript = this.doc.createElement("script");
     //     chatScript.innerHTML = this.common.seo_script;
     //     chatScript.id = "seo_script";
-    //     this.doc.head.append(chatScript); 
+    //     this.doc.head.append(chatScript);
     //   }
     // }
   }

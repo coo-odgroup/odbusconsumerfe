@@ -152,7 +152,10 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
   masterSettingRecord: any = {}; // Initialize as empty object instead of array
   master_info: any = {};
-  isMobile: boolean = false; // Default to false for SSR (desktop view)
+  // isMobile: boolean | null = null; // Default to false for SSR (desktop view)
+
+  isMobile: boolean = false;
+  deviceReady: boolean = false;
 
   countdown_status: number = 0; // Initialize countdown_status
   countdown_title: string = '';
@@ -373,6 +376,22 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     this.formatter = (x: { name: string }) => x.name;
   }
   ngOnInit() {
+
+    if (isPlatformBrowser(this.platformId)) {
+
+      this.spinner.show();
+
+      setTimeout(() => {
+
+        this.isMobile = this.deviceService.isMobile();
+
+        this.deviceReady = true;
+
+        this.spinner.hide();
+
+      }, 500);
+   }
+    
     const reddata = {
       limit: 3,
     };

@@ -1468,6 +1468,7 @@ export class SearchComponent implements OnInit {
 
         this.swapdestination = this.destinationData;
         this.swapsource = this.sourceData;
+        this.seoContent();
 
         this.spinner.hide();
 
@@ -2368,18 +2369,44 @@ export class SearchComponent implements OnInit {
   //   // });
   // }
 
+  // seoContent() {
+  //   const payload = {
+  //     sourceId: this.source_id,
+  //     destinationId: this.destination_id,
+  //   };
+  //   if (isPlatformBrowser(this.platformId)) {
+  //     this.http
+  //       .post(GlobalConstants.BASE_URL + '/seoContent', payload)
+  //       .subscribe((res: any) => {
+  //         // console.log(res.data);
+  //         this.seoContentData = res.data;
+
+  //         // this.applySeo(this.seoContentData);
+  //       });
+  //     }
+  // }
+
   seoContent() {
+
     const payload = {
       sourceId: this.source_id,
-      destinationId: this.destination_id,
+      destinationId: this.destination_id
     };
+
     this.http
       .post(GlobalConstants.BASE_URL + '/seoContent', payload)
-      .subscribe((res: any) => {
-        // console.log(res.data);
-        this.seoContentData = res.data;
+      .subscribe({
+        next: (res: any) => {
 
-        // this.applySeo(this.seoContentData);
+          this.seoContentData = res?.data;
+
+          console.log(this.seoContentData);
+          
+
+        },
+        error: (err) => {
+          console.error('SEO Content Error', err);        
+        }
       });
   }
 
@@ -2562,7 +2589,7 @@ export class SearchComponent implements OnInit {
       });
     }
 
-    this.seoContent();
+    // this.seoContent();
   }
 
   removeOldJsonLd() {

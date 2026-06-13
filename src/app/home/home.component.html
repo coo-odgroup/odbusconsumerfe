@@ -1,7 +1,4 @@
 <ng-template #Desktop>
-  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
-    <p style="color: white">Loading...</p>
-  </ngx-spinner>
   <section class="hero-banner-v5" style="background-image: url(&quot;assets/img/new_banner2.jpg&quot;)">
     <div class="container">
       <div class="row">
@@ -289,13 +286,18 @@
   </div>
 </ng-template>
 
-<ng-container *ngIf="isMobile; then Mobile; else Desktop"> </ng-container>
+<ng-container *ngIf="isMobile !== null">
+
+  <ng-container *ngIf="isMobile; then Mobile; else Desktop">
+  </ng-container>
+
+</ng-container>
 
 <app-recent-search></app-recent-search>
-<app-mobile-app-download *ngIf="isMobile"></app-mobile-app-download>
 <app-odbus-offers></app-odbus-offers>
 <app-advantage></app-advantage>
 <app-top-routes></app-top-routes>
+<app-mobile-app-download *ngIf="isMobile"></app-mobile-app-download>
 <app-download-app></app-download-app>
 <app-top-operators></app-top-operators>
 <app-growing></app-growing>
