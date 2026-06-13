@@ -14,6 +14,7 @@ import {
 } from '@angular/router';
 import { CommonService } from './services/common.service';
 import { filter } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -44,6 +45,7 @@ export class AppComponent {
     private deviceService: DeviceDetectorService,
     public router: Router,
     private seoService: SeoService,
+    private spinner: NgxSpinnerService,
   ) {
     // Only access localStorage in browser
     // if (isPlatformBrowser(this.platformId)) {
@@ -119,28 +121,8 @@ export class AppComponent {
   //   }
   // }
 
-  ngAfterViewInit() {
-    const loader = document.getElementById('bus-loader');
-
-    if (loader) {
-      loader.style.display = 'none';
-    }
-  }
-
   ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        this.showLoader = true;
-      }
 
-      if (
-        event instanceof NavigationEnd ||
-        event instanceof NavigationCancel ||
-        event instanceof NavigationError
-      ) {
-        this.showLoader = false;
-      }
-    });
 
     this.isBrowser = isPlatformBrowser(this.platformId);
     // =========================

@@ -1,10 +1,14 @@
-<div class="page-loader" id="page-loader">
-  <div class="bus-loader">
-    <div class="loader-ring"></div>
-    <i class="fas fa-bus bus-icon"></i>
+<ngx-spinner
+  bdColor="rgba(255,255,255,0.3)"
+  [fullScreen]="true"
+  type="none">
+   <div class="custom-spinner">
+    <div class="bus-loader">
+      <div class="loader-ring"></div>
+      <i class="fas fa-bus bus-icon"></i>
+    </div>
   </div>
-</div>
-
+</ngx-spinner>
 <app-header *ngIf="!router.url.includes('pnr') && !router.url.includes('payment-status')">
 </app-header>
 

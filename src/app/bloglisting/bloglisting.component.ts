@@ -15,7 +15,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./bloglisting.component.css'],
 })
 export class BlogListingComponent implements OnInit {
-
   pageTitle: any;
   pageContent: any;
   currentUrl: any;
@@ -43,9 +42,8 @@ export class BlogListingComponent implements OnInit {
     private router: Router,
     private deviceService: DeviceDetectorService,
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
-
     this.isMobile = this.deviceService.isMobile();
     this.session = new LoginChecker();
 
@@ -66,48 +64,15 @@ export class BlogListingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       this.slug = params.get('slug');
       this.tag_slug = params.get('tag_slug');
       this.author_slug = params.get('author_slug');
       this.loadBlogs(this.slug, this.tag_slug, this.author_slug);
     });
-
   }
 
-  // loadBlogs(slug: any, tag_slug: any, author_slug: any) {
-
-  //   this.spinner.show();
-
-  //   const reqData = {
-  //     cat_slug: slug,
-  //     tag_slug: tag_slug,
-  //     author_slug: author_slug
-  //   };
-
-  //   // console.log(reqData);
-
-  //   this.http.post(this.apiURL + "/bloglist", reqData).subscribe(
-  //     (res: any) => {
-
-  //       this.blogData = res.data.blogs;
-  //       this.categoryData = res.data.categories;
-
-  //       this.spinner.hide();
-  //     },
-  //     (error) => {
-
-  //       console.error("API Error:", error);
-
-  //       this.spinner.hide();
-  //     }
-  //   );
-
-  // }
-
   loadBlogs(slug: any, tag_slug: any, author_slug: any) {
-
     this.spinner.show();
 
     const formData = new FormData();
@@ -116,26 +81,16 @@ export class BlogListingComponent implements OnInit {
     formData.append('tag_slug', tag_slug || '');
     formData.append('author_slug', author_slug || '');
 
-    this.http.post(this.apiURL + "/bloglist", formData)
-      .subscribe(
-
-        (res: any) => {
-
-          this.blogData = res.data.blogs;
-          this.categoryData = res.data.categories;
-
-          this.spinner.hide();
-
-        },
-
-        (error) => {
-
-          console.error("API Error:", error);
-
-          this.spinner.hide();
-
-        }
-
-      );
+    this.http.post(this.apiURL + '/bloglist', formData).subscribe(
+      (res: any) => {
+        this.blogData = res.data.blogs;
+        this.categoryData = res.data.categories;
+        this.spinner.hide();
+      },
+      (error) => {
+        console.error('API Error:', error);
+        this.spinner.hide();
+      },
+    );
   }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GlobalConstants } from '../constants/global-constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { NgxSpinner } from 'ngx-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 interface FaqItem {
   question: string;
@@ -24,6 +26,7 @@ export class CommonContentComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
+    private spinner: NgxSpinnerService,
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +40,7 @@ export class CommonContentComponent implements OnInit {
   }
 
   getPageDetails() {
+    this.spinner.show();
     const postData = {
       page_url: this.slug,
     };
@@ -52,6 +56,7 @@ export class CommonContentComponent implements OnInit {
           answer: item.content,
           isOpen: index === 0
         }));
+        this.spinner.hide();
 
         // console.log(this.pageDetails);
         // console.log(this.faqs);

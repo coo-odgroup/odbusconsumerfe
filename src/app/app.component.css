@@ -1,17 +1,16 @@
-.page-loader {
-    position: fixed;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.95);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999999;
+.custom-spinner{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height:100%;
 }
+
 
 .bus-loader {
     position: relative;
-    width: 90px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
 }
 
 .loader-ring {
@@ -38,7 +37,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 34px;
+    font-size: 20px;
     color: #0b1040;
 }
 

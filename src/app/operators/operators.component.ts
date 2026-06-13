@@ -81,6 +81,7 @@ export class OperatorsComponent implements OnInit {
   // }
 
   getList(url: any = '', filter: any = '') {
+    this.spinner.show();
     const param = {
       paginate: this.per_page,
       filter: filter,
