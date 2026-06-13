@@ -906,7 +906,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
     this.saveSearchHistory(sr, ds, formattedDate);
 
-    window.location.href =
+    const url =
       GlobalConstants.URL +
       'routes/' +
       sr +
@@ -914,6 +914,8 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       ds +
       '-bus-services?date=' +
       formattedDate;
+
+    window.location.replace(url);   
   }
 
   saveSearchHistory(sr: string, ds: string, date: string) {

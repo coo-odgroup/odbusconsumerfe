@@ -1302,14 +1302,18 @@ export class SearchComponent implements OnInit {
       let ds = this.searchForm.value.destination.url;
       let date = this.searchForm.value.entry_date;
 
-      window.location.href =
-        GlobalConstants.URL +
-        'routes/' +
-        sr +
-        '-' +
-        ds +
-        '-bus-services?date=' +
-        date;
+      // window.location.href =
+      //   GlobalConstants.URL +
+      //   'routes/' +
+      //   sr +
+      //   '-' +
+      //   ds +
+      //   '-bus-services?date=' +
+      //   date;
+
+       const url = GlobalConstants.URL + 'routes/' + sr + '-' + ds + '-bus-services?date=' + date;
+
+       window.location.replace(url);   
 
       // this.locationService.setSource(this.sourceData);
       // this.locationService.setDestination(this.destinationData);
