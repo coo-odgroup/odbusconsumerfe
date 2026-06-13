@@ -127,6 +127,7 @@ export class RoutesComponent implements OnInit, AfterViewInit {
     }
 
     this.loading = true;
+    this.spinner.show();
 
     this.popularRoutesService
       .getallroutes(this.per_page, this.page_no, search)
@@ -147,9 +148,11 @@ export class RoutesComponent implements OnInit, AfterViewInit {
           }
 
           this.loading = false;
+          this.spinner.hide();
         },
         error: () => {
           this.loading = false;
+          this.spinner.hide();
         },
       });
   }

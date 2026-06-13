@@ -2397,12 +2397,7 @@ export class SearchComponent implements OnInit {
       .post(GlobalConstants.BASE_URL + '/seoContent', payload)
       .subscribe({
         next: (res: any) => {
-
           this.seoContentData = res?.data;
-
-          console.log(this.seoContentData);
-          
-
         },
         error: (err) => {
           console.error('SEO Content Error', err);        

@@ -1,27 +1,20 @@
 <ngx-spinner
   bdColor="rgba(255,255,255,0.3)"
-  size="default"
-  color="#0000CD"
-  type="ball-spin-fade">
-</ngx-spinner>
-
-<div class="bus-loader" id="bus-loader">
-        <div class="loader-ring"></div>
-
-        <i class="fas fa-bus bus-icon"></i>
+  [fullScreen]="true"
+  type="none">
+   <div class="custom-spinner">
+    <div class="bus-loader">
+      <div class="loader-ring"></div>
+      <i class="fas fa-bus bus-icon"></i>
     </div>
-<app-header
-  *ngIf="!router.url.includes('pnr') && !router.url.includes('payment-status')">
+  </div>
+</ngx-spinner>
+<app-header *ngIf="!router.url.includes('pnr') && !router.url.includes('payment-status')">
 </app-header>
-<main role="main">
-<!-- <div class="bus-loader" id="bus-loader">
-        <div class="loader-ring"></div>
 
-        <i class="fas fa-bus bus-icon"></i>
-    </div> -->
-     <router-outlet></router-outlet>
+<main role="main">
+  <router-outlet></router-outlet>
 </main>
 
-<app-footer
-  *ngIf="!router.url.includes('pnr') && !router.url.includes('payment-status')">
+<app-footer *ngIf="!router.url.includes('pnr') && !router.url.includes('payment-status')">
 </app-footer>
