@@ -25,12 +25,25 @@ export class SeoService {
 
   private seoCache: any = {};
 
-  // private seoRoutes = [
-  //   '/blog/',
-  //   '/routes/',
-  //   '/about-us',
-  //   '/contact-us'
-  // ];
+  getOrganizationSchema() {
+    return this.httpClient.post<any>(this.apiURL + '/organization_schema','');
+  }
+
+  addOrganizationSchema(schema: any): void {
+
+    const existing = document.getElementById('organization-schema');
+
+    if (existing) {
+      existing.remove();
+    }
+
+    const script = document.createElement('script');
+    script.id = 'organization-schema';
+    script.type = 'application/ld+json';
+    script.text = schema;
+
+    document.head.appendChild(script);
+  }
 
   shouldLoadSeo(url: string): boolean {
 

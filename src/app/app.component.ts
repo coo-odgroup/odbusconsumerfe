@@ -128,6 +128,10 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    this.seoService.getOrganizationSchema().subscribe((res: any) => {
+      this.seoService.addOrganizationSchema(res.organization_schema);
+    });
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.showLoader = true;
