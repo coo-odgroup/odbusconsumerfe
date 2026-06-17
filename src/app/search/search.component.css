@@ -106,7 +106,7 @@ a {
 }
 
 /* .safety_box{
-  display: flex; 
+  display: flex;
 } */
 
 .policy-h1 {
@@ -2906,17 +2906,6 @@ input[type=radio] {
   display: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .mob-mtbh-8 {
   height: 50px;
 }
@@ -3142,3 +3131,7 @@ input[type=radio] {
 }
 
 /* Seo Listing Style Section end */
+
+.form-control {
+  padding-right: 22px;
+}

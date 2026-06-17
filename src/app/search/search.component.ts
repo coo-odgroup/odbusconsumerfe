@@ -1247,7 +1247,7 @@ export class SearchComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  submitForm() {
+  submitForm_bk() {
     this.seatsLayoutRecord.visibility = false;
     this.seatlayoutShow = '';
     this.safetyshow = '';
@@ -1311,9 +1311,16 @@ export class SearchComponent implements OnInit {
       //   '-bus-services?date=' +
       //   date;
 
-       const url = GlobalConstants.URL + 'routes/' + sr + '-' + ds + '-bus-services?date=' + date;
+      const url =
+        GlobalConstants.URL +
+        'routes/' +
+        sr +
+        '-' +
+        ds +
+        '-bus-services?date=' +
+        date;
 
-       window.location.replace(url);   
+      window.location.replace(url);
 
       // this.locationService.setSource(this.sourceData);
       // this.locationService.setDestination(this.destinationData);
@@ -1352,6 +1359,85 @@ export class SearchComponent implements OnInit {
         );
       }
     }
+  }
+
+  submitForm() {
+    this.seatsLayoutRecord.visibility = false;
+    this.seatlayoutShow = '';
+    this.safetyshow = '';
+    this.busPhotoshow = '';
+    this.reviewShow = '';
+    this.policyShow = '';
+    this.checkedIndex = 0;
+
+    const source = this.searchForm.value.source;
+    const destination = this.searchForm.value.destination;
+    const entryDateObj = this.searchForm.value.entry_date;
+
+    if (!this.searchForm.valid) {
+      if (!source) {
+        this.notify.notify('Select Source !', 'Error');
+      } else if (!destination) {
+        this.notify.notify('Select Destination !', 'Error');
+      } else if (!entryDateObj) {
+        this.notify.notify('Select Journey Date !', 'Error');
+      }
+      return false;
+    }
+
+    if (!source?.name) {
+      this.notify.notify('Select Valid Source !', 'Error');
+      return false;
+    }
+
+    if (!destination?.name) {
+      this.notify.notify('Select Valid Destination !', 'Error');
+      return false;
+    }
+
+    if (
+      source.name.trim().toLowerCase() === destination.name.trim().toLowerCase()
+    ) {
+      this.notify.notify(
+        'Source and Destination cannot be the same !',
+        'Error',
+      );
+      return false;
+    }
+
+    // Format date
+    const day = String(entryDateObj.day).padStart(2, '0');
+    const month = String(entryDateObj.month).padStart(2, '0');
+    const date = `${day}-${month}-${entryDateObj.year}`;
+
+    // Same search check
+    if (
+      this.sourceData?.url === source.url &&
+      this.destinationData?.url === destination.url &&
+      this.entdate === date
+    ) {
+      this.notify.notify('Same Search Already Exists!', 'Error');
+      this.toggleShow();
+      return false;
+    }
+
+    this.sourceData = source;
+    this.destinationData = destination;
+    this.entdate = date;
+
+    this.source_id = source.id;
+    this.destination_id = destination.id;
+
+    const url =
+      GlobalConstants.URL +
+      'routes/' +
+      source.url +
+      '-' +
+      destination.url +
+      '-bus-services?date=' +
+      date;
+
+    window.location.replace(url);
   }
 
   coupon_detail(i, modal) {
@@ -2391,10 +2477,9 @@ export class SearchComponent implements OnInit {
   // }
 
   seoContent() {
-
     const payload = {
       sourceId: this.source_id,
-      destinationId: this.destination_id
+      destinationId: this.destination_id,
     };
 
     this.http
@@ -2404,8 +2489,8 @@ export class SearchComponent implements OnInit {
           this.seoContentData = res?.data;
         },
         error: (err) => {
-          console.error('SEO Content Error', err);        
-        }
+          console.error('SEO Content Error', err);
+        },
       });
   }
 

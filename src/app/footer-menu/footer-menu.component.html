@@ -2,7 +2,12 @@
   <div class="footer-menu row m-0 mobile-bg-danger">
     <!-- HOME -->
     <div class="col-3 p-0 text-center">
-      <a routerLink="/" class="home active">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="home"
+      >
         <i class="fa-solid fa-house"></i>
         <p class="mb-0 small">Home</p>
       </a>
@@ -10,7 +15,7 @@
 
     <!-- BOOKINGS -->
     <div class="col-3 p-0 text-center">
-      <a routerLink="/dashboard" class="home">
+      <a routerLink="/dashboard" routerLinkActive="active" class="home">
         <i class="fa-solid fa-ticket"></i>
         <p class="mb-0 small">Bookings</p>
       </a>
@@ -18,7 +23,7 @@
 
     <!-- LOGIN -->
     <div class="col-3 p-0 text-center" *ngIf="!session.isLoggedIn()">
-      <a routerLink="/login" class="home">
+      <a routerLink="/login" routerLinkActive="active" class="home">
         <i class="fa-regular fa-user"></i>
         <p class="mb-0 small">Login</p>
       </a>
@@ -26,7 +31,7 @@
 
     <!-- ACCOUNT -->
     <div class="col-3 p-0 text-center" *ngIf="session.isLoggedIn()">
-      <a routerLink="/myaccount" class="home">
+      <a routerLink="/myaccount" routerLinkActive="active" class="home">
         <i class="fa-regular fa-circle-user"></i>
         <p class="mb-0 small">Account</p>
       </a>
@@ -34,7 +39,7 @@
 
     <!-- MENU -->
     <div class="col-3 p-0 text-center">
-      <a (click)="menu()" class="home {{ activeMenu }}">
+      <a (click)="menu()" class="home" [ngClass]="{ active: activeMenu }">
         <i class="fa-solid fa-bars-staggered"></i>
         <p class="mb-0 small">Menu</p>
       </a>
