@@ -26,23 +26,42 @@ export class SeoService {
   private seoCache: any = {};
 
   getOrganizationSchema() {
-    return this.httpClient.post<any>(this.apiURL + '/organization_schema','');
+    return this.httpClient.post<any>(this.apiURL + '/organization_schema', '');
   }
 
-  addOrganizationSchema(schema: any): void {
+  // addOrganizationSchema(schema: any): void {
 
-    const existing = document.getElementById('organization-schema');
+  //   const existing = document.getElementById('organization-schema');
+
+  //   if (existing) {
+  //     existing.remove();
+  //   }
+
+  //   const script = document.createElement('script');
+  //   script.id = 'organization-schema';
+  //   script.type = 'application/ld+json';
+  //   script.text = schema;
+
+  //   document.head.appendChild(script);
+
+
+  // }
+
+  addOrganizationSchema(schema: string): void {
+
+    const existing = this.doc.getElementById('organization-schema');
 
     if (existing) {
       existing.remove();
     }
 
-    const script = document.createElement('script');
-    script.id = 'organization-schema';
+    const script = this.doc.createElement('script');
+
     script.type = 'application/ld+json';
+    script.id = 'organization-schema';
     script.text = schema;
 
-    document.head.appendChild(script);
+    this.doc.head.appendChild(script);
   }
 
   shouldLoadSeo(url: string): boolean {
@@ -59,7 +78,10 @@ export class SeoService {
     if (
       cleanUrl === '/about-us' ||
       cleanUrl === '/contact-us' ||
-      cleanUrl === '/blog'
+      cleanUrl === '/blog' ||
+      cleanUrl === '/privacy-policy' ||
+      cleanUrl === '/instant-booking' ||
+      cleanUrl === '/terms-conditions'
     ) {
       return true;
     }
@@ -277,13 +299,13 @@ export class SeoService {
     // Extra Meta
     if (c.extra_meta) {
 
-      const script = this.doc.createElement('script');
+      const temp = this.doc.createElement('div');
+      temp.innerHTML = c.extra_meta;
 
-      script.innerHTML = c.extra_meta;
+      Array.from(temp.children).forEach((node: any) => {
+        this.doc.head.appendChild(node.cloneNode(true));
+      });
 
-      script.id = 'extra_meta';
-
-      this.doc.head.appendChild(script);
     }
   }
 

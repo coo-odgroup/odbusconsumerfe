@@ -75,6 +75,7 @@ export class BlogDetailComponent implements OnInit {
       }
 
       this.blogDetail = res.data.blogs;
+      console.log(this.blogDetail);
       this.blogcat = res.data.categories;
       this.related_blogs = res.data.related_blogs;
 

@@ -7,13 +7,15 @@
                 <div class="col-md-6">
                     <div class="modify-section-left">
                         <ul class="btn-show-modify" style="cursor: pointer;">
-                            <li><img class="icn-wh" src="assets/img/Icon-metro-location-white.svg" alt="source">{{ sourceData.name }}
+                            <li><img class="icn-wh" src="assets/img/Icon-metro-location-white.svg" alt="source">{{
+                                sourceData.name }}
                             </li>
                             <li><img src="assets/img/long-arw-white.svg" alt="arraow"></li>
                             <li><img class="icn-wh" src="assets/img/Icon-metro-location-white.svg" alt="destination">{{
                                 destinationData.name }}</li>
                             <li *ngIf="prevDate!=''" (click)="search_prev();"> <i class="fa fa-angle-left"></i> </li>
-                            <li><img class="icn-wh" src="assets/img/Icon-metro-calendar-white.svg" alt="caleder">{{ entdate }} </li>
+                            <li><img class="icn-wh" src="assets/img/Icon-metro-calendar-white.svg" alt="caleder">{{
+                                entdate }} </li>
                             <li *ngIf="nextDate!=''" (click)="search_next();"> <i class="fa fa-angle-right"></i> </li>
                         </ul>
                     </div>
@@ -88,11 +90,11 @@
                                                 <p>Date of Journey</p>
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text calendar" id="basic-addon3" (click)="d.toggle()">
-                                                            <img
-                                                                src="assets/img/Icon-metro-calendar.svg"
+                                                        <span class="input-group-text calendar" id="basic-addon3"
+                                                            (click)="d.toggle()">
+                                                            <img src="assets/img/Icon-metro-calendar.svg"
                                                                 alt="Icon-metro-location" loading="lazy">
-                                                            </span>
+                                                        </span>
                                                     </div>
                                                     <input type="text" id="entryDate" autocomplete="off"
                                                         class="form-control calendar" formControlName="entry_date"
@@ -1160,7 +1162,8 @@
 
 
             <hr>
-            <div *ngIf="!bussearching && seoContentData?.content" class="row" style="background-color: #ffff;padding:3%">
+            <div *ngIf="!bussearching && seoContentData?.content" class="row"
+                style="background-color: #ffff;padding:3%">
                 <!-- <div class="col-xl-9 col-lg-9 col-md-9">
                     <p [innerHTML]="pageContent"></p>
                 </div> -->
@@ -1245,7 +1248,6 @@
             </div>
 
             <div class="row" *ngIf="totalfound != 0">
-
                 <div class="col-12" *ngFor="let bus of buslist; let i=index; ">
                     <div class="cursor" (click)="coupon_detail(i,CouponDetail)"
                         *ngIf="bus.couponDetails && bus.couponDetails.length>0">
@@ -1310,7 +1312,21 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                <div *ngIf="!bussearching && seoContentData?.content" class="row"
+                        style="background-color: #ffff;padding:3%">
+                        <!-- <div class="col-xl-9 col-lg-9 col-md-9">
+                    <p [innerHTML]="pageContent"></p>
+                </div> -->
+                        <!-- Seo Listing Start -->
+                        <ng-container>
+                            <div [innerHTML]="seoContentData?.content"></div>
+                        </ng-container>
+
+                        <!-- Seo Listing end  -->
+
+                    </div>
             </div>
         </div>
 
