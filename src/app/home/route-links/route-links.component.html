@@ -1,38 +1,43 @@
 <section class="route-link-section fluid-15">
   <div class="container">
-    <!-- Tabs -->
-    <!-- <ul class="route-tabs nav nav-tab">
-      <li [class.active]="activeTab === 1">
-        <a (click)="activeTab = 1">Top Bus Routes</a>
-      </li>
-
-      <li [class.active]="activeTab === 2">
-        <a (click)="activeTab = 2">Top Bus Operators</a>
-      </li>
-
-      <li [class.active]="activeTab === 3">
-        <a (click)="activeTab = 3">Quick Links</a>
-      </li>
-
-      <li [class.active]="activeTab === 4">
-        <a (click)="activeTab = 4">Info</a>
-      </li>
-    </ul> -->
-
     <div class="route-tabs">
-      <span class="route-tab" [class.active]="activeTab === 1" (click)="activeTab = 1">
+      <span
+        class="route-tab"
+        [class.active]="activeTab === 1"
+        (click)="activeTab = 1"
+        (keydown.enter)="activeTab = 1"
+        (keydown.space)="activeTab = 1"
+      >
         Top Bus Routes
       </span>
 
-      <span class="route-tab" [class.active]="activeTab === 2" (click)="activeTab = 2">
+      <span
+        class="route-tab"
+        [class.active]="activeTab === 2"
+        (click)="activeTab = 2"
+        (keydown.enter)="activeTab = 2"
+        (keydown.space)="activeTab = 2"
+      >
         Top Bus Operators
       </span>
 
-      <span class="route-tab" [class.active]="activeTab === 3" (click)="activeTab = 3">
+      <span
+        class="route-tab"
+        [class.active]="activeTab === 3"
+        (click)="activeTab = 3"
+        (keydown.enter)="activeTab = 3"
+        (keydown.space)="activeTab = 3"
+      >
         Quick Links
       </span>
 
-      <span class="route-tab" [class.active]="activeTab === 4" (click)="activeTab = 4">
+      <span
+        class="route-tab"
+        [class.active]="activeTab === 4"
+        (click)="activeTab = 4"
+        (keydown.enter)="activeTab = 4"
+        (keydown.space)="activeTab = 4"
+      >
         Info
       </span>
     </div>
@@ -42,13 +47,16 @@
       <div class="tab-pane fade" [class.active]="activeTab === 1">
         <div class="row route-grid">
           <div class="col-md-3" *ngFor="let column of popularRoutesLinks">
-            <a *ngFor="let route of column" [routerLink]="[
+            <a
+              *ngFor="let route of column"
+              [routerLink]="[
                 '/routes',
                 route.source[0].url +
                   '-' +
                   route.destination[0].url +
                   '-bus-services',
-              ]">
+              ]"
+            >
               {{ route.source[0].name }} to {{ route.destination[0].name }} Bus
             </a>
           </div>
@@ -59,7 +67,10 @@
       <div class="tab-pane fade" [class.active]="activeTab === 2">
         <div class="row route-grid">
           <div class="col-md-3" *ngFor="let column2 of topOperatorLinks">
-            <a *ngFor="let operator of column2" [routerLink]="['/operators', operator.operator_url]">
+            <a
+              *ngFor="let operator of column2"
+              [routerLink]="['/operators', operator.operator_url]"
+            >
               {{ operator.organisation_name }}
             </a>
           </div>
@@ -74,7 +85,9 @@
             <a routerLink="/offers">Offers</a>
             <a routerLink="/manage-booking">Manage Booking</a>
             <a target="_blank" href="https://agent.odbus.in">Agent Login</a>
-            <a target="_blank" href="https://operator.odbus.co.in">Operator Login</a>
+            <a target="_blank" href="https://operator.odbus.co.in"
+              >Operator Login</a
+            >
           </div>
 
           <div class="col-md-3">
@@ -87,7 +100,7 @@
       </div>
 
       <!-- TAB 4 -->
-      <div class="tab-pane fade" [class.active]="activeTab === 4  ">
+      <div class="tab-pane fade" [class.active]="activeTab === 4">
         <div class="row route-grid">
           <div class="col-md-3">
             <a routerLink="/terms-conditions">Terms & Conditions</a>

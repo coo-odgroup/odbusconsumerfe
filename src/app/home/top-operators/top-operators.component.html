@@ -1,4 +1,7 @@
-<section class="top-operators fluid-15" *ngIf="topOperators && topOperators.length > 0">
+<section
+  class="top-operators fluid-15"
+  *ngIf="topOperators && topOperators.length > 0"
+>
   <div class="container">
     <div class="row">
       <div class="col-md-6 text-left">
@@ -12,10 +15,20 @@
   <div class="container">
     <div class="row operator-card-row">
       <div class="col-md-3" *ngFor="let t of displayedOperators">
-        <div class="operator-card small-card" (click)="operator_detail(t.operator_url)">
+        <div
+          class="operator-card small-card"
+          (click)="operator_detail(t.operator_url)"
+          (keydown.enter)="operator_detail(t.operator_url)"
+          (keydown.space)="operator_detail(t.operator_url)"
+        >
           <div class="card-content">
             <div class="icon-wrap">
-              <img src="assets/img/icon-bus-alt.svg" width="20" height="20" alt="Bus Icon" />
+              <img
+                src="assets/img/icon-bus-alt.svg"
+                width="20"
+                height="20"
+                alt="Bus Icon"
+              />
             </div>
 
             <div class="operator-name">
@@ -26,8 +39,11 @@
       </div>
 
       <div class="col-md-12 text-center">
-        <button *ngIf="isMobile && !showAllOperators && topOperators.length > 5" (click)="viewAllOperators()"
-          class="border-btn bh mt-3">
+        <button
+          *ngIf="isMobile && !showAllOperators && topOperators.length > 5"
+          (click)="viewAllOperators()"
+          class="border-btn bh mt-3"
+        >
           View All
         </button>
       </div>

@@ -8,7 +8,7 @@
           <div class="col-md-6">
             <div class="settings-heading review-card mb-3">
               <h2 class="profile-hi">
-                <img src="assets/img/profile-se.svg" />Profile
+                <img src="assets/img/profile-se.svg" alt="Profile" />Profile
               </h2>
             </div>
             <div class="settings-heading review-card mb-3">
@@ -21,7 +21,7 @@
                         profile.profile_image == null)
                     "
                     class="profile"
-                    src="../../../assets/img/user.png"
+                    src="../../../assets/img/user.png" alt="Default Profile"
                   />
 
                   <img
@@ -31,7 +31,7 @@
                       profile.profile_image != null
                     "
                     class="profile"
-                    src="{{ profile.profile_image }}"
+                    src="{{ profile.profile_image }}" alt="Profile"
                   />
                 </div>
                 <div class="box-top">
@@ -89,7 +89,7 @@
           <div class="col-md-6">
             <div class="settings-heading review-card mb-3">
               <h2 class="profile-hi">
-                <img src="assets/img/editprofile.svg" />Edit Profile
+                <img src="assets/img/editprofile.svg" alt="Edit Profile" />Edit Profile
               </h2>
             </div>
 
@@ -111,7 +111,7 @@
                             <img
                               src="assets/img/upload.svg"
                               class="fa fa-upload"
-                              aria-hidden="true"
+                              aria-hidden="true" alt="Upload Image"
                             />
                             <p>Drop files to upload</p>
 
@@ -144,7 +144,7 @@
                         </div>
 
                         <div class="col-md-6">
-                          <img [src]="croppedImage" style="width: 70%" />
+                          <img [src]="croppedImage" style="width: 70%" alt="Cropped" />
                         </div>
                       </div>
                     </div>
@@ -273,9 +273,6 @@
                         <button type="submit" class="log-in">Update</button>
                       </div>
 
-                      <!-- <div class="form-group">
-                      <button class="btn-invite" type="submit">Update</button>
-                    </div> -->
                     </div>
                   </div>
                 </div>
@@ -301,7 +298,7 @@
       </div>
       <div class="col-4 pl-2 pr-2">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img src="assets/img/mob-img/logo.png" alt="Mobile Logo" />
         </div>
       </div>
     </div>
@@ -335,7 +332,7 @@
                     "
                     class="rounded-pill"
                     src="../../../assets/img/user.png"
-                    width="100px"
+                    width="100px" alt="Default Profile"
                   />
 
                   <img
@@ -346,7 +343,7 @@
                     "
                     class="rounded-pill"
                     src="{{ profile.profile_image }}"
-                    width="100px"
+                    width="100px" alt="Profile"
                   />
                 </div>
                 <div class="row" *ngIf="displays == 'True'">
@@ -364,7 +361,7 @@
                   </div>
 
                   <div class="col-md-6">
-                    <img [src]="croppedImage" style="width: 70%" />
+                    <img [src]="croppedImage" style="width: 70%" alt="Cropped Profile" />
                   </div>
                 </div>
 
@@ -384,10 +381,6 @@
                     <div *ngIf="f.name.errors.required">Name is required</div>
                   </div>
                 </div>
-                <!-- <div class="form-group">
-                        <label class="text-muted f-10 mb-1">Mobile Number</label>
-                        <input type="number" class="form-control" placeholder="Enter Mobile Number" >
-                     </div> -->
                 <div class="form-group">
                   <label class="text-muted f-10 mb-1">Email ID</label>
                   <input
@@ -502,7 +495,7 @@
     <div class="row">
       <div class="col-5">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img src="assets/img/mob-img/logo.png" alt="Mobile Logo" />
         </div>
       </div>
       <div class="col-7 mob-logintx">

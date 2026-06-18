@@ -8,7 +8,11 @@
           <div class="col-md-3 field from-field">
             <label>From</label>
             <div class="input-box">
-              <img src="assets/img/Icon-metro-location.svg" class="icon-from" alt="Location" />
+              <img
+                src="assets/img/Icon-metro-location.svg"
+                class="icon-from"
+                alt="Location"
+              />
               <input
                 type="search"
                 class="form-control"
@@ -28,12 +32,16 @@
           <div class="col-md-3 field to-field">
             <label>To</label>
 
-            <div class="swap-center" (click)="swap()">
+            <div class="swap-center" (click)="swap()" (keydown.enter)="swap()" (keydown.space)="swap()">
               <img src="assets/img/swap.svg" alt="Swap" />
             </div>
 
             <div class="input-box">
-              <img src="assets/img/Icon-metro-location.svg" class="icon-to" alt="Location" />
+              <img
+                src="assets/img/Icon-metro-location.svg"
+                class="icon-to"
+                alt="Location"
+              />
               <input
                 type="search"
                 class="form-control"
@@ -54,7 +62,12 @@
             <div class="date-wrapper">
               <!-- Journey Date Box -->
               <div class="input-box date-box">
-                <img src="assets/img/Icon-metro-calendar.svg" loading="lazy" alt="calender" class="icon-date" />
+                <img
+                  src="assets/img/Icon-metro-calendar.svg"
+                  loading="lazy"
+                  alt="calender"
+                  class="icon-date"
+                />
 
                 <input
                   type="text"
@@ -69,10 +82,22 @@
               </div>
 
               <!-- Today Box -->
-              <div class="quick-date-today" (click)="searchToday()">Today</div>
+              <div
+                class="quick-date-today"
+                (click)="searchToday()"
+                (keydown.enter)="searchToday()"
+                (keydown.space)="searchToday()"
+              >
+                Today
+              </div>
 
               <!-- Tomorrow Box -->
-              <div class="quick-date-tomorrow" (click)="searchTomorrow()">
+              <div
+                class="quick-date-tomorrow"
+                (click)="searchTomorrow()"
+                (keydown.enter)="searchTomorrow()"
+                (keydown.space)="searchTomorrow()"
+              >
                 Tomorrow
               </div>
             </div>

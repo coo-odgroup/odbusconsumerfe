@@ -12,9 +12,21 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-sm-6" *ngFor="let p of displayedRoutes">
-        <div class="route-card" (click)="popularSearch(p.source[0].url, p.destination[0].url)">
+        <div
+          class="route-card"
+          (click)="popularSearch(p.source[0].url, p.destination[0].url)"
+          (keydown.enter)="popularSearch(p.source[0].url, p.destination[0].url)"
+          (keydown.space)="popularSearch(p.source[0].url, p.destination[0].url)"
+        >
           <div class="route-left">
-            <img src="assets/img/Icon-metro-location.svg" width="16" height="26" class="route-icon" alt="Location" loading="lazy" />
+            <img
+              src="assets/img/Icon-metro-location.svg"
+              width="16"
+              height="26"
+              class="route-icon"
+              alt="Location"
+              loading="lazy"
+            />
 
             <div class="route-text">
               <span class="city">{{ p.source[0].name }}</span>
@@ -22,14 +34,15 @@
               <span class="city">{{ p.destination[0].name }}</span>
             </div>
           </div>
-
-          <!-- <button class="book-btn">Book Now</button> -->
         </div>
       </div>
 
       <div class="col-md-12 text-center">
-        <button *ngIf="isMobile && !showAllRoutes && popular_routes.length > 5" (click)="viewAllRoutes()"
-          class="border-btn bh mt-3">
+        <button
+          *ngIf="isMobile && !showAllRoutes && popular_routes.length > 5"
+          (click)="viewAllRoutes()"
+          class="border-btn bh mt-3"
+        >
           View All
         </button>
       </div>

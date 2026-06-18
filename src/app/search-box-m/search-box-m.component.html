@@ -29,7 +29,7 @@
                     <div class="col-md-3 field to-field">
                         <label>To</label>
 
-                        <div class="swap-center" (click)="swap()">
+                        <div class="swap-center" (click)="swap()" title="Swap Locations" (keydown.enter)="swap()" (keydown.space)="swap()">
                             <img src="assets/img/swap.svg" alt="Swap Locations" loading="lazy" />
                         </div>
 
@@ -56,12 +56,12 @@
                             </div>
 
                             <!-- Today Box -->
-                            <div class="quick-date-today" (click)="searchToday()">
+                            <div class="quick-date-today" (click)="searchToday()" (keydown.enter)="searchToday()" (keydown.space)="searchToday()">
                                 Today
                             </div>
 
                             <!-- Tomorrow Box -->
-                            <div class="quick-date-tomorrow" (click)="searchTomorrow()">
+                            <div class="quick-date-tomorrow" (click)="searchTomorrow()" (keydown.enter)="searchTomorrow()" (keydown.space)="searchTomorrow()">
                                 Tomorrow
                             </div>
                         </div>

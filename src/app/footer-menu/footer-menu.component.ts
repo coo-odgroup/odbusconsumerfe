@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginChecker } from '../helpers/loginChecker';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-footer-menu',
@@ -16,6 +16,12 @@ export class FooterMenuComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private router: Router) {
     this.session = new LoginChecker();
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.activeMenu = false;
+      }
+    });
   }
 
   ngOnInit(): void {}
