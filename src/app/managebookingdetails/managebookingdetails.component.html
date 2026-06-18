@@ -1,13 +1,3 @@
-<!-- <ngx-spinner
-  bdColor="rgba(0, 0, 0, 0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-clip-rotate"
-  [fullScreen]="true"
->
-  <p style="color: white">Loading...</p></ngx-spinner
-> -->
-
 <ng-container *ngIf="!isMobile">
   <span class="line-span">
     <div class="container">
@@ -49,6 +39,7 @@
                               <img
                                 src="../../assets/img/email-logo.png"
                                 class="od-logo"
+                                alt="Email Logo"
                               />
                             </td>
                             <td>
@@ -447,16 +438,6 @@
                                     >
                                   </td>
                                 </tr>
-                                <!-- <tr>
-
-                                <td class="text-left">Transaction Fee</td>
-                                <td class="text-right"><b>+₹{{bookingDetails.booking[0].transactionFee}}</b></td>
-                              </tr>
-   -->
-                                <!-- <tr *ngIf="bookingDetails.booking[0].customer_comission > 0">
-                                <td class="text-left">Agent Commission</td>
-                                <td class="text-right"><b>+₹{{bookingDetails.booking[0].customer_comission}}</b></td>
-                              </tr> -->
 
                                 <tr>
                                   <td class="text-left">
@@ -759,7 +740,7 @@
                           <td>
                             <img
                               src="../../assets/img/email-logo.png"
-                              class="od-logo"
+                              class="od-logo" alt="Email Logo"
                             />
                           </td>
                           <td>
@@ -1532,9 +1513,6 @@
                             <td class="st-ri">Amount Paid:</td>
                             <td class="st-le">
                               ₹{{ cancelInfo.totalfare }}
-                              <!-- <span *ngIf="bookingDetails.booking[0].origin!='ODBUS'"> -->
-
-                              <!-- </span> -->
                             </td>
                           </tr>
 
@@ -1565,6 +1543,8 @@
 
                         <div
                           (click)="cancel_ticket()"
+                          (keydown.enter)="cancel_ticket()"
+                          (keydown.space)="cancel_ticket()"
                           *ngIf="cancelInfo.cancel_status == false"
                         >
                           <span style="color: #cc0000">
@@ -1600,7 +1580,7 @@
       </div>
       <div class="col-4 pl-2 pr-2">
         <div class="mobile-logo">
-          <img src="../../assets/img/mob-img/logo.png" />
+          <img src="../../assets/img/mob-img/logo.png" alt="Logo" />
         </div>
       </div>
     </div>
@@ -1612,7 +1592,7 @@
         <h5>{{ bookingDetails.booking[0].source[0].name }}</h5>
       </div>
       <div class="col-2 p-0">
-        <img src="../../assets/img/mob-img/bus-icon.png" />
+        <img src="../../assets/img/mob-img/bus-icon.png" alt="Bus Icon" />
       </div>
       <div class="col-5 p-2">
         <h5>{{ bookingDetails.booking[0].destination[0].name }}</h5>
@@ -1750,17 +1730,7 @@
                 >
               </td>
             </tr>
-            <tr>
-              <!-- <tr>
-            <td class="text-left">Transaction Fee</td>
-            <td class="text-right"><b>+₹{{bookingDetails.booking[0].transactionFee}}</b></td>
-          </tr> -->
-
-              <!-- <tr *ngIf="bookingDetails.booking[0].customer_comission > 0">
-            <td class="text-left">Agent Commission</td>
-            <td class="text-right"><b>+₹{{bookingDetails.booking[0].customer_comission}}</b></td>
-          </tr> -->
-            </tr>
+            <tr></tr>
 
             <tr>
               <td class="text-left"><strong>Total Fare</strong></td>
@@ -1821,7 +1791,7 @@
     <div class="row">
       <div class="col-5">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img src="assets/img/mob-img/logo.png" alt="Logo" />
         </div>
       </div>
       <div class="col-7 mob-logintx">
@@ -1889,7 +1859,7 @@
       </div>
       <div class="col-4 pl-2 pr-2">
         <div class="mobile-logo">
-          <img src="../../assets/img/mob-img/logo.png" />
+          <img src="../../assets/img/mob-img/logo.png" alt="Logo" />
         </div>
       </div>
     </div>
@@ -1901,7 +1871,7 @@
         <h5>{{ bookingDetails.booking[0].source[0].name }}</h5>
       </div>
       <div class="col-2 p-0">
-        <img src="../../assets/img/mob-img/bus-icon.png" />
+        <img src="../../assets/img/mob-img/bus-icon.png" alt="Bus Icon" />
       </div>
       <div class="col-5 p-2">
         <h5>{{ bookingDetails.booking[0].destination[0].name }}</h5>
@@ -2036,6 +2006,8 @@
           </button>
           <div
             (click)="cancel_ticket()"
+            (keydown.enter)="cancel_ticket()"
+            (keydown.space)="cancel_ticket()"
             *ngIf="cancelInfo.cancel_status == false"
           >
             Ticket has been cancelled

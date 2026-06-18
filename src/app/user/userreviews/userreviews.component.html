@@ -7,19 +7,15 @@
           <div class="row">
             <div class="col-md-4">
               <h2 class="py-3 booking-hi">
-                <img src="assets/img/booking-history.svg" />My Reviews
+                <img src="assets/img/booking-history.svg" alt="Booking History" />My Reviews
               </h2>
             </div>
           </div>
-          <!-- <hr/> -->
 
           <table class="table table-hover mb-0">
             <!--Table head-->
             <thead>
               <tr>
-                <!-- <th scope="row">Bus Detail</th>
-                <th scope="row">Route</th>
-                <th scope="row">Title</th> -->
                 <th style="width: 50%">Bus Detail / Comments</th>
                 <th class="th-lg">Rating</th>
                 <th class="th-lg"><a>Review Date</a></th>
@@ -29,12 +25,6 @@
 
             <tbody *ngIf="userReviews && userReviews.length > 0">
               <tr *ngFor="let review of userReviews; let i = index">
-                <!-- <th scope="row">
-
-            </th>
-            <td>
-            </td>
-            <td></td> -->
                 <td>
                   <h5>
                     {{ review.bus.name }}
@@ -44,7 +34,7 @@
                   </h5>
                   <h4>
                     {{ review.bus.booking.src_name }}
-                    <img src="assets/img/arrow.svg" />
+                    <img src="assets/img/arrow.svg" alt="Arrow" />
                     {{ review.bus.booking.dest_name }}
                   </h4>
                   <h6>{{ review.title }}</h6>
@@ -139,7 +129,7 @@
       </div>
       <div class="col-4 pl-2 pr-2">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img src="assets/img/mob-img/logo.png" alt="Logo" />
         </div>
       </div>
     </div>
@@ -203,7 +193,7 @@
     <div class="row">
       <div class="col-5">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img src="assets/img/mob-img/logo.png" alt="Logo" />
         </div>
       </div>
       <div class="col-7 mob-logintx">
@@ -312,7 +302,6 @@
           ></textarea>
           <div *ngIf="submitted && f.comments.errors" class="invalid-feedback">
             <div *ngIf="f.comments.errors.required">Comment is required</div>
-            <!-- <div  *ngIf="f.comments.errors.pattern "> Comments  must be of 200 Characters..</div> -->
           </div>
         </div>
         <hr />

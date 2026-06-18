@@ -14,18 +14,22 @@
               <img
                 *ngIf="r.designation == 'google'"
                 src="assets/img/icon/google.png"
+                alt="google"
               />
               <img
                 *ngIf="r.designation == 'facebook'"
                 src="assets/img/icon/facebook.png"
+                alt="facebook"
               />
               <img
                 *ngIf="r.designation == 'tripadvisor'"
                 src="assets/img/icon/tripadvisor.png"
+                alt="tripadvisor"
               />
               <img
                 *ngIf="r.designation == 'trustpilot'"
                 src="assets/img/icon/trustpilot.png"
+                alt="trustpilot"
               />
             </div>
             <h4 style="text-transform: capitalize">{{ r.posted_by }}</h4>
@@ -35,7 +39,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="author item">
-                  <img class="profile" src="assets/img/user.png" />
+                  <img class="profile" src="assets/img/user.png" alt="User Profile" />
                   <h6 class="place">{{ r.source }} - {{ r.destination }}</h6>
                   <h6>{{ r.travel_date | date: "dd MMM yyyy" }}</h6>
                 </div>
@@ -61,7 +65,7 @@
       </div>
       <div class="col-4 pl-2 pr-2">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img src="assets/img/mob-img/logo.png" alt="Mobile Logo" />
         </div>
       </div>
     </div>
@@ -83,18 +87,22 @@
             <img
               *ngIf="r.designation == 'google'"
               src="assets/img/icon/google.png"
+              alt="Google"
             />
             <img
               *ngIf="r.designation == 'facebook'"
               src="assets/img/icon/facebook.png"
+              alt="Facebook"
             />
             <img
               *ngIf="r.designation == 'tripadvisor'"
               src="assets/img/icon/tripadvisor.png"
+              alt="TripAdvisor"
             />
             <img
               *ngIf="r.designation == 'trustpilot'"
               src="assets/img/icon/trustpilot.png"
+              alt="Trustpilot"
             />
           </div>
           <h4 style="text-transform: capitalize">{{ r.posted_by }}</h4>
@@ -106,7 +114,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="author item">
-                <img src="assets/img/mob-img/user.png" class="profile" />
+                <img src="assets/img/mob-img/user.png" class="profile" alt="User Profile" />
                 <h6 class="place">{{ r.source }} - {{ r.destination }}</h6>
                 <h6>{{ r.travel_date | date: "dd MMM yyyy" }}</h6>
               </div>
@@ -123,7 +131,7 @@
     <div class="row">
       <div class="col-5">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img src="assets/img/mob-img/logo.png" alt="Mobile Logo" />
         </div>
       </div>
       <div class="col-7 mob-logintx">

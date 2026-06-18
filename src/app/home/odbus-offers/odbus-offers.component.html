@@ -18,11 +18,6 @@
         <div class="col-md-12 mt-4" *ngIf="isBrowser">
           <carousel [images]="offerList" [cellsToShow]="3" [loop]="true" [autoplay]="true" [autoplayInterval]="3000">
           </carousel>
-          <!-- <carousel [cellsToShow]="3" [loop]="true">
-            <div *ngFor="let item of offerList">
-              <img [src]="item.path" [alt]="item.alt" width="420" height="200">
-            </div>
-          </carousel> -->
         </div>
       </div>
     </div>

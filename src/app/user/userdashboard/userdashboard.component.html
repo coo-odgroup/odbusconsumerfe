@@ -8,7 +8,7 @@
           <div class="row">
             <div class="col-md-4">
               <h2 class="py-3 booking-hi">
-                <img src="assets/img/booking-history.svg" />Bookings History
+                <img src="assets/img/booking-history.svg" alt="Booking History" />Bookings History
               </h2>
             </div>
             <div class="col-md-8">
@@ -36,11 +36,9 @@
                 <th scope="row">PNR</th>
                 <th scope="row">Routes</th>
                 <th scope="row">Bus Name</th>
-                <!-- <th class="th-lg">Bus Number</th> -->
                 <th class="th-lg">Booking Date</th>
                 <th class="th-lg">Journey Date</th>
                 <th class="th-lg">Dep Time</th>
-                <!-- <th class="th-lg"><a>Fare </a></th> -->
                 <th class="th-lg" style="text-align: right; width: 196px">
                   <a>Status</a>
                 </th>
@@ -61,11 +59,9 @@
                   <th scope="row">{{ b.pnr }}</th>
                   <td>{{ b.source[0].name }} to {{ b.destination[0].name }}</td>
                   <td>{{ b.bus.name }} <span *ngIf="b.bus.bus_number!=null">({{ b.bus.bus_number }})</span></td>
-                  <!-- <td></td> -->
                   <td>{{ b.created_at | date: "d MMMM , y" }}</td>
                   <td>{{ b.journey_dt | date: "d MMMM , y" }}</td>
                   <td>{{ b.boarding_time.slice(0, -3) }}</td>
-                  <!-- <td>₹ {{ b.total_fare }}/-</td> -->
                   <td class="status">
                     <a class="{{ b.booking_status }} cursor">{{
                       b.booking_status
@@ -93,36 +89,6 @@
                     </span>
                   </td>
                 </tr>
-
-                <!-- <tr>
-                  <td colspan="7" class="p-0 border-0">
-                    <div class="accordion-content" [class.open]="expandedRefundRow === b.pnr">
-                      <div class="refund-box">
-                        <div class="progress-steps complete">
-
-                          <div class="step done">
-                            <div class="circle"><i class="fa fa-question"></i></div>
-                            <span>Request</span>
-                            <span>(2026-jan-25 | 6.20am)</span>
-                          </div>
-
-                          <div class="step done">
-                            <div class="circle"><i class="fa fa-cogs"></i></div>
-                            <span>Processing</span>
-                            <span>(2026-jan-25 | 6.20am)</span>
-                          </div>
-
-                          <div class="step done final">
-                            <div class="circle"><i class="fa fa-check"></i></div>
-                            <span>Refunded</span>
-                            <span>(2026-jan-25 | 6.20am)</span>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr> -->
                 <tr>
                   <td colspan="7" class="p-0 border-0">
                     <div class="accordion-content" [class.open]="expandedRefundRow === b.pnr">
@@ -641,7 +607,7 @@
     <div class="row">
       <div class="col-5">
         <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
+          <img src="assets/img/mob-img/logo.png" alt="Mobile Logo" />
         </div>
       </div>
       <div class="col-7 mob-logintx">

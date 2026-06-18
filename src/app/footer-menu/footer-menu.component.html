@@ -47,60 +47,6 @@
   </div>
 </div>
 
-<!-- <ng-container *ngIf="MenuActive">
-  <div class="mobile-myaccount-top">
-    <div class="row">
-      <div class="col-5">
-        <div class="mobile-logo">
-          <img src="assets/img/mob-img/logo.png" />
-        </div>
-      </div>
-      <div class="col-7 mob-logintx">
-        <a routerLink="login" *ngIf="!session.isLoggedIn()"> Login / Signup </a>
-        <a routerLink="dashboard" *ngIf="session.isLoggedIn()"> Dashboard </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="mobile-myaccount-middle">
-    <ul class="mobile-menu">
-      <li>
-        <a routerLink="manage-booking"
-          ><i class="far fa-window-restore"></i> Manage Booking</a
-        >
-      </li>
-      <li>
-        <a routerLink="offers"><i class="fas fa-gifts"></i> Offers</a>
-      </li>
-      <li>
-        <a routerLink="operators"><i class="fas fa-bus"></i> Operators</a>
-      </li>
-      <li>
-        <a routerLink="routes"><i class="fas fa-map-marker-alt"></i> Routes</a>
-      </li>
-      <li>
-        <a routerLink="faq"><i class="fas fa-question"></i> FAQ's</a>
-      </li>
-      <li>
-        <a routerLink="testimonials"><i class="fa fa-star"></i> Testimonials</a>
-      </li>
-      <li>
-        <a routerLink="terms-conditions"
-          ><i class="fas fa-file-image"></i> Terms & Conditions</a
-        >
-      </li>
-      <li>
-        <a routerLink="privacy-policy"
-          ><i class="far fa-file-powerpoint"></i> Privacy Policy</a
-        >
-      </li>
-      <li>
-        <a routerLink="about-us"><i class="fas fa-info-circle"></i> About Us</a>
-      </li>
-    </ul>
-  </div>
-</ng-container> -->
-
 <!-- MOBILE FULL SCREEN MENU -->
 
 <ng-container *ngIf="MenuActive">
@@ -112,7 +58,12 @@
         <img src="assets/img/mob-img/logo.png" alt="Footer Logo" />
       </div>
 
-      <div class="menu-close" (click)="MenuActive = false">
+      <div
+        class="menu-close"
+        (click)="MenuActive = false"
+        (keydown.enter)="MenuActive = false"
+        (keydown.space)="MenuActive = false"
+      >
         <i class="fas fa-times"></i>
       </div>
     </div>
@@ -184,16 +135,6 @@
 
         <i class="fas fa-chevron-right right-arrow"></i>
       </a>
-
-      <!-- <a routerLink="testimonials">
-        <div class="menu-icon">
-          <i class="fas fa-star"></i>
-        </div>
-
-        <span>Testimonials</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
-      </a> -->
 
       <a routerLink="/terms-conditions">
         <div class="menu-icon">
