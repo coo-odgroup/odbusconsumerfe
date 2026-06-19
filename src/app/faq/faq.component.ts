@@ -59,11 +59,11 @@ export class FaqComponent implements OnInit {
 
   // Jagan
   ngOnInit(): void {
-    this.spinner.show();
-    this.fetchFaqs();
+       this.fetchFaqs();
   }
 
   private fetchFaqs(): void {
+    this.spinner.show();
     const payload = {};
 
     this.http.post(this.apiurl + '/getfaqs', payload).subscribe((res: any) => {
