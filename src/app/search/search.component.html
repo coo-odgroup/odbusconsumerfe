@@ -1162,14 +1162,13 @@
 
 
             <hr>
-            <div *ngIf="!bussearching && seoContentData?.content" class="row"
-                style="background-color: #ffff;padding:3%">
+            <div *ngIf="!bussearching && seoContentData?.content">
                 <!-- <div class="col-xl-9 col-lg-9 col-md-9">
                     <p [innerHTML]="pageContent"></p>
                 </div> -->
                 <!-- Seo Listing Start -->
                 <ng-container>
-                    <div [innerHTML]="seoContentData?.content"></div>
+                    <div [innerHTML]="seoContentData?.content" class="costom_seo"></div>
                 </ng-container>
 
                 <!-- Seo Listing end  -->
@@ -1314,14 +1313,13 @@
                     </div>
                     
                 </div>
-                <div *ngIf="!bussearching && seoContentData?.content" class="row"
-                        style="background-color: #ffff;padding:3%">
+                <div *ngIf="!bussearching && seoContentData?.content">
                         <!-- <div class="col-xl-9 col-lg-9 col-md-9">
                     <p [innerHTML]="pageContent"></p>
                 </div> -->
                         <!-- Seo Listing Start -->
                         <ng-container>
-                            <div [innerHTML]="seoContentData?.content"></div>
+                            <div [innerHTML]="seoContentData?.content" class="costom_seo"></div>
                         </ng-container>
 
                         <!-- Seo Listing end  -->

@@ -1397,6 +1397,9 @@ ngb-datepicker.dropdown-menu.show {
     margin: 0;
 }
 
+
+
+
 @media all and (max-width: 1199px) {
 
     /*Home Page Start Here*/
@@ -1674,149 +1677,365 @@ ngb-datepicker-navigation {
 
 /* Seo Listing Style Section start */
 
-/* ================= SEO SECTION ================= */
-.seo-section {
-    background: #f7f8f9;
-    padding: 25px 0;
+/* ==========================================
+   SEO CONTENT STYLE
+========================================== */
+
+.costom_seo {
+    width: 100%;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.9;
+    font-weight: 400;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
 }
 
-/* ================= CONTENT WIDTH ================= */
-.seo-full {
-    max-width: 900px;
-    margin: auto;
+/* ==========================================
+   HEADINGS
+========================================== */
+
+.costom_seo h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0b2c6b;
+    margin: 0 0 20px;
+    line-height: 1.4;
 }
 
-/* ================= TITLE ================= */
-.seo-main-title {
+.costom_seo h2 {
     font-size: 22px;
     font-weight: 700;
     color: #0b2c6b;
-    margin-bottom: 10px;
-    line-height: 1.5;
+    margin: 30px 0 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dcdcdc;
+    line-height: 1.4;
 }
 
-/* ================= INTRO ================= */
-.seo-intro {
-    font-size: 14.5px;
-    color: #333;
-    margin-bottom: 18px;
-    line-height: 1.8;
-}
-
-/* ================= HEADINGS ================= */
-.seo-full h2 {
+.costom_seo h3 {
     font-size: 18px;
-    font-weight: 600;
-    color: #0b2c6b;
-    margin-top: 26px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #e5e5e5;
-    padding-bottom: 4px;
+    font-weight: 700;
+    color: #000;
+    margin: 25px 0 12px;
 }
 
-/* ================= TEXT ================= */
-.seo-full p {
+.costom_seo h4,
+.costom_seo h5,
+.costom_seo h6 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin: 20px 0 10px;
+}
+
+/* ==========================================
+   PARAGRAPH
+========================================== */
+
+.costom_seo p {
     font-size: 14px;
-    line-height: 1.85;
+    line-height: 2;
     color: #333;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
-/* ================= LIST ================= */
-.seo-list {
+/* ==========================================
+   LISTS
+========================================== */
+
+.costom_seo ul,
+.costom_seo ol {
+    margin: 15px 0;
     padding-left: 18px;
-    margin-bottom: 16px;
 }
 
-.seo-list li {
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 6px;
-}
-
-.op-list {
-    column-count: 3;
-    /* number of columns */
-    column-gap: 30px;
-    padding: 0;
-    margin: 0;
-}
-
-.op-list li {
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 6px;
-    break-inside: avoid;
+ul.op-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     list-style: none;
-    margin-bottom: 8px;
+    padding: 0 !important;
 }
 
-
-.seo-full a {
-    color: #0f204b;
+.costom_seo li {
+    font-size: 14px;
+    line-height: 2;
+    color: #333;
+    margin-bottom: 6px;
 }
 
-/* ================= STRONG ================= */
-.seo-full strong {
+/* ==========================================
+   ORPHAN LI FIX
+========================================== */
+
+.costom_seo>li,
+.costom_seo li[style] {
+    display: list-item;
+    list-style: disc;
+    margin-left: 18px !important;
+    padding-left: 0 !important;
+}
+
+/* ==========================================
+   LINKS
+========================================== */
+
+.costom_seo a {
+    color: #0b2c6b;
     font-weight: 600;
+    text-decoration: none;
+}
+
+.costom_seo a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================
+   STRONG
+========================================== */
+
+.costom_seo strong,
+.costom_seo b {
+    font-weight: 700;
     color: #000;
 }
 
-/* ================= SPACING FIX ================= */
-.seo-full h2+p {
-    margin-top: 4px;
-}
+/* ==========================================
+   IMAGES
+========================================== */
 
-.seo-full h1 {
-    font-size: 22px;
-    color: #1b2155;
-    font-weight: 600;
-}
-
-.blog img {
-    display: block;
+.costom_seo img {
     max-width: 100%;
     height: auto;
-    margin: 20px auto;
-    border-radius: 6px;
+    display: block;
+    margin: 25px auto;
+    border-radius: 8px;
 }
 
-/* .blog img {
-    display: block;
+/* ==========================================
+   TABLE
+========================================== */
+
+.costom_seo table {
     width: 100%;
-    max-width: 1200px;
-    height: 630px;
-    margin: 20px auto;
-    border-radius: 6px;
-} */
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.costom_seo table th {
+    background: #0b2c6b;
+    color: #fff;
+    padding: 12px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.costom_seo table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.costom_seo table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+/* ==========================================
+   BLOCKQUOTE
+========================================== */
+
+.costom_seo blockquote {
+    border-left: 4px solid #0b2c6b;
+    background: #f8f9fb;
+    padding: 15px 20px;
+    margin: 20px 0;
+}
+
+/* ==========================================
+   WORD BREAK
+========================================== */
+
+.costom_seo * {
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+/* ==========================================
+   SPACING FIX
+========================================== */
+
+.costom_seo h1:first-child,
+.costom_seo h2:first-child {
+    margin-top: 0;
+}
+
+.costom_seo p:last-child,
+.costom_seo ul:last-child,
+.costom_seo ol:last-child {
+    margin-bottom: 0;
+}
 
 
-/* ================= MOBILE ================= */
+
+
+/* ================= MOBILE SEO ================= */
 @media (max-width: 768px) {
 
-    .seo-main-title {
+    .seo-section {
+        padding: 15px 12px;
+    }
+
+    .seo-full,
+    .costom_seo {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    /* Headings */
+    .seo-main-title,
+    .costom_seo h1 {
         font-size: 18px;
-    }
-    .border-btn {
-        font-size: 12px;
+        line-height: 1.4;
+        margin-bottom: 12px;
+        font-weight: 700;
     }
 
-  .seo-main-title {
-    font-size: 18px;
-  }
-
+    .costom_seo h2,
     .seo-full h2 {
         font-size: 16px;
+        line-height: 1.5;
+        margin-top: 22px;
+        margin-bottom: 10px;
+        padding-bottom: 6px;
     }
 
-    .seo-full p,
+    .costom_seo h3 {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-top: 18px;
+        margin-bottom: 8px;
+    }
+
+    /* Text */
+    .seo-intro,
+    .costom_seo p,
+    .seo-full p {
+        font-size: 14px;
+        line-height: 1.9;
+        margin-bottom: 12px;
+        text-align: left;
+    }
+
+    /* Lists */
+    .costom_seo ul,
+    .costom_seo ol,
+    .seo-list {
+        padding-left: 18px;
+        margin: 10px 0;
+    }
+
+    .costom_seo li,
     .seo-list li {
-        font-size: 13px;
+        font-size: 14px;
+        line-height: 1.8;
+        margin-bottom: 8px;
+        padding-left: 0;
     }
 
-    .seo-full {
-        margin-bottom: 50px !important;
+    /* Fix orphan li tags */
+    .costom_seo>li,
+    .costom_seo li[style] {
+        margin-left: 18px !important;
+        list-style: disc;
     }
+
+    /* Operator List */
+    .op-list {
+        column-count: 1;
+        column-gap: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    .op-list li {
+        display: block;
+        width: 100%;
+        margin-bottom: 8px;
+        position: relative;
+        padding-left: 16px;
+    }
+
+    .op-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #0b2c6b;
+        font-weight: 700;
+    }
+
+    /* Images */
+    .costom_seo img,
+    .blog img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 15px 0;
+    }
+
+    /* Tables */
+    .costom_seo table,
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .costom_seo th,
+    .costom_seo td {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    /* Links */
+    .costom_seo a,
+    .seo-full a {
+        word-break: break-word;
+    }
+
+    /* Blockquote */
+    .costom_seo blockquote {
+        padding: 12px;
+        margin: 12px 0;
+        font-size: 14px;
+    }
+
+    /* Prevent overflow */
+    .costom_seo *,
+    .seo-full * {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        box-sizing: border-box;
+    }
+
+    .border-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    ul.op-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    list-style: none;
+    padding: 0 !important;
+}
 }
 
 /* Seo Listing Style Section end */
