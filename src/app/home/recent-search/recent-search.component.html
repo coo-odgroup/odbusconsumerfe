@@ -11,7 +11,7 @@
           '/routes',
           item.source + '-' + item.destination + '-bus-services',
         ]"
-        [queryParams]="{ date: item.date }"
+        [queryParams]="{ date: getValidDate(item.date) }"
       >
         <div class="recent-icon">
           <i class="fas fa-history"></i>
@@ -24,7 +24,7 @@
           </h5>
 
           <p>
-            {{ formatDate(item.date) | date:'EEE d MMM y' }}
+            {{ formatDate(getValidDate(item.date)) | date: "EEE d MMM y" }}
           </p>
         </div>
       </div>

@@ -1613,7 +1613,7 @@ ngb-datepicker-navigation {
 }
 
 /* ngb-modal-window .modal-lg {
-    margin: 0px !important; 
+    margin: 0px !important;
 } */
 
 .mobile-modalbox .modal-dialog {
@@ -2039,3 +2039,7 @@ ul.op-list {
 }
 
 /* Seo Listing Style Section end */
+
+.blog-detail-card .blog-content img {
+  width: 100%;
+}

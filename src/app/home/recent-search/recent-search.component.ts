@@ -22,4 +22,22 @@ export class RecentSearchComponent implements OnInit {
     const parts = date.split('-');
     return new Date(+parts[2], +parts[1] - 1, +parts[0]);
   }
+
+  getValidDate(date: string): string {
+    const parts = date.split('-');
+    const searchDate = new Date(+parts[2], +parts[1] - 1, +parts[0]);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (searchDate < today) {
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const yyyy = today.getFullYear();
+
+      return `${dd}-${mm}-${yyyy}`;
+    }
+
+    return date;
+  }
 }
