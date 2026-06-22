@@ -913,9 +913,9 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       '-' +
       ds +
       '-bus-services?date=' +
-      formattedDate;
+      formattedDate;     
 
-    window.location.replace(url);   
+     window.location.replace(url);   
   }
 
   saveSearchHistory(sr: string, ds: string, date: string) {

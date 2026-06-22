@@ -96,6 +96,10 @@ export class RoutesComponent implements OnInit, AfterViewInit {
     this.router.navigate(['login']);
   }
 
+  goBack() {
+    this.location.back();
+  }
+
   // allRoutes() {
   //   this.spinner.show();
   //   this.popularRoutesService

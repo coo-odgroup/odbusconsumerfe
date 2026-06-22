@@ -39,10 +39,10 @@
 
     <!-- MENU -->
     <div class="col-3 p-0 text-center">
-      <a (click)="menu()" class="home" [ngClass]="{ active: activeMenu }">
+      <span (click)="menu()" (keydown.enter)="menu()" (keydown.space)="menu()" class="home" [ngClass]="{ active: activeMenu }">
         <i class="fa-solid fa-bars-staggered"></i>
         <p class="mb-0 small">Menu</p>
-      </a>
+      </span>
     </div>
   </div>
 </div>

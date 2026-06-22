@@ -1511,7 +1511,7 @@ input {
 /* WRAPPER */
 .recent-wrapper {
   display: flex;
-  gap: 15px;
+  gap: 5px;
   overflow-x: auto;
   padding-bottom: 5px;
 }
@@ -1525,7 +1525,7 @@ input {
   display: flex;
   align-items: center;
   gap: 12px;
-  border: 1px solid #eee;
+  border: 1px solid #c2bcbc;
   cursor: pointer;
   transition: 0.4s;
 }
@@ -1560,7 +1560,7 @@ input {
 
 /* TEXT */
 .recent-text h5 {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   margin: 0;
   color: #1b2155;

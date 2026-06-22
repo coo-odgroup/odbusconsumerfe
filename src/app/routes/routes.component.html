@@ -109,8 +109,8 @@
 <ng-container *ngIf="isMobile && !MenuActive">
   <div class="mobile-mybooking-top">
     <div class="row">
-      <div class="col-1 pr-0 pl-2 mob-arrow-left">
-        <a routerLink="/">
+      <div class="col-1 pr-0 pl-2 mob-arrow-left">        
+        <a routerLink="javascript:void(0)" (click)="goBack()">
           <i class="fas fa-arrow-left"></i>
         </a>
       </div>
