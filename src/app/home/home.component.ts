@@ -155,7 +155,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   masterSettingRecord: any = {}; // Initialize as empty object instead of array
   master_info: any = {};
   isMobile: boolean = false;
-  deviceReady: boolean = true;
+  deviceReady: boolean = false;
 
   countdown_status: number = 0; // Initialize countdown_status
   countdown_title: string = '';
@@ -191,7 +191,11 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     }
 
     if (isPlatformServer(this.platformId) && this.request) {
-      const userAgent = (this.request.headers && this.request.headers['user-agent']) || '';
+      const userAgent =
+        (this.request.headers &&
+          (this.request.headers['user-agent'] || this.request.headers['User-Agent'])) ||
+        (typeof this.request.get === 'function' && this.request.get('user-agent')) ||
+        '';
       return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(userAgent);
     }
 
@@ -220,6 +224,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     @Optional() @Inject(REQUEST) private request: any,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {
+    this.isMobile = this.detectMobile();
     this.session = new LoginChecker();
 
     // Only access localStorage in browser

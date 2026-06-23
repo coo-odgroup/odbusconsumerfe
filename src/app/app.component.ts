@@ -43,7 +43,11 @@ export class AppComponent {
     }
 
     if (isPlatformServer(this.platformId) && this.request) {
-      const userAgent = (this.request.headers && this.request.headers['user-agent']) || '';
+      const userAgent =
+        (this.request.headers &&
+          (this.request.headers['user-agent'] || this.request.headers['User-Agent'])) ||
+        (typeof this.request.get === 'function' && this.request.get('user-agent')) ||
+        '';
       return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(userAgent);
     }
 
@@ -63,6 +67,7 @@ export class AppComponent {
     private seoService: SeoService,
     private spinner: NgxSpinnerService,
   ) {
+    this.isMobile = this.detectMobile();
     // Only access localStorage in browser
     // if (isPlatformBrowser(this.platformId)) {
     //   // this.auth.getToken().subscribe(
