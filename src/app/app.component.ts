@@ -155,6 +155,12 @@ export class AppComponent {
         this.seoService.addCanonicalUrl();
       });
 
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.seoService.addOgUrl();
+      });
+
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.isMobile = this.detectMobile();
     this.deviceReady = true;
@@ -262,7 +268,7 @@ export class AppComponent {
     const metaArr = [
       { name: 'keywords', content: this.meta_keyword },
       { name: 'description', content: this.meta_description },
-      { name: 'og:url', content: this.doc.URL },
+      // { name: 'og:url', content: this.doc.URL },
       { name: 'og:type', content: 'website' },
       { name: 'og:title', content: this.meta_title },
       { name: 'og:description', content: this.meta_description },
