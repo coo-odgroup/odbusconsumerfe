@@ -1,5 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { GlobalConstants } from '../constants/global-constants';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Meta, Title } from '@angular/platform-browser';
@@ -11,10 +15,9 @@ import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SeoService {
-
   private apiURL = GlobalConstants.BASE_URL;
   private MASTER_SETTING_USER_ID = GlobalConstants.MASTER_SETTING_USER_ID;
 
@@ -22,9 +25,9 @@ export class SeoService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
+      'Content-Type': 'application/json',
+    }),
+  };
 
   private seoCache: any = {};
 
@@ -47,11 +50,9 @@ export class SeoService {
 
   //   document.head.appendChild(script);
 
-
   // }
 
   addOrganizationSchema(schema: string): void {
-
     const existing = this.doc.getElementById('organization-schema');
 
     if (existing) {
@@ -68,17 +69,11 @@ export class SeoService {
   }
 
   addCanonicalUrl(): void {
-
-
-    
     const canonicalUrl = this.BASE_URL.replace(/\/$/, '') + this.router.url;
-    // console.log(canonicalUrl);
 
-    const existing = this.doc.querySelectorAll(
-      "link[rel='canonical']"
-    );
+    const existing = this.doc.querySelectorAll("link[rel='canonical']");
 
-    existing.forEach(link => link.remove());
+    existing.forEach((link) => link.remove());
 
     const canonical = this.doc.createElement('link');
     canonical.setAttribute('rel', 'canonical');
@@ -87,8 +82,20 @@ export class SeoService {
     this.doc.head.appendChild(canonical);
   }
 
-  shouldLoadSeo(url: string): boolean {
+  addOgUrl(): void {
+    const ogUrl = this.BASE_URL.replace(/\/$/, '') + this.router.url;
 
+    this.doc
+      .querySelectorAll('meta[property="og:url"], meta[name="og:url"]')
+      .forEach((tag) => tag.remove());
+
+    this.meta.addTag({
+      property: 'og:url',
+      content: ogUrl,
+    });
+  }
+
+  shouldLoadSeo(url: string): boolean {
     // REMOVE QUERY PARAMS
     const cleanUrl = url.split('?')[0];
 
@@ -120,9 +127,7 @@ export class SeoService {
     }
 
     // EXCLUDE BLOG LISTING PAGES
-    if (
-      cleanUrl.startsWith('/blog/tag/')
-    ) {
+    if (cleanUrl.startsWith('/blog/tag/')) {
       return false;
     }
 
@@ -135,10 +140,7 @@ export class SeoService {
 
     // BLOG DETAIL PAGE ONLY
     const segments = cleanUrl.split('/').filter(Boolean);
-    if (
-      segments.length === 3 &&
-      segments[0] === 'blog'
-    ) {
+    if (segments.length === 3 && segments[0] === 'blog') {
       return true;
     }
 
@@ -147,7 +149,13 @@ export class SeoService {
 
   private link!: HTMLLinkElement;
 
-  constructor(@Inject(DOCUMENT) private doc: Document, private httpClient: HttpClient, private title: Title, private meta: Meta, private router:Router) { }
+  constructor(
+    @Inject(DOCUMENT) private doc: Document,
+    private httpClient: HttpClient,
+    private title: Title,
+    private meta: Meta,
+    private router: Router,
+  ) {}
 
   // seolist(current_url: any) {
   //   this.httpClient.get(this.apiURL + '/seolist?user_id=' + this.MASTER_SETTING_USER_ID, this.httpOptions).subscribe(
@@ -177,7 +185,6 @@ export class SeoService {
   // }
 
   seolist(current_url: string): Observable<any> {
-
     // Route check
     if (!this.shouldLoadSeo(current_url)) {
       return of(null);
@@ -185,32 +192,26 @@ export class SeoService {
 
     // Cache check
     if (this.seoCache[current_url]) {
-
       this.setMeta(this.seoCache[current_url]);
 
       return of(this.seoCache[current_url]);
     }
 
     // API Call
-    return this.httpClient.post<any>(
-      this.apiURL + '/allseolist',
-      { current_url },
-      this.httpOptions
-    ).pipe(
-      tap((resp: any) => {
+    return this.httpClient
+      .post<any>(this.apiURL + '/allseolist', { current_url }, this.httpOptions)
+      .pipe(
+        tap((resp: any) => {
+          if (resp.status == 1) {
+            this.seoCache[current_url] = resp.data;
 
-        if (resp.status == 1) {
-
-          this.seoCache[current_url] = resp.data;
-
-          this.setMeta(resp.data);
-        }
-      })
-    );
+            this.setMeta(resp.data);
+          }
+        }),
+      );
   }
 
   setMeta(c: any) {
-
     // Canonical URL
     // if (this.link === undefined) {
     //   this.link = this.doc.createElement('link');
@@ -225,35 +226,34 @@ export class SeoService {
 
     this.meta.updateTag({
       name: 'description',
-      content: c.meta_description || ''
+      content: c.meta_description || '',
     });
 
     this.meta.updateTag({
       name: 'keywords',
-      content: c.meta_keyword || ''
+      content: c.meta_keyword || '',
     });
 
     this.meta.updateTag({
       property: 'og:title',
-      content: c.meta_title || ''
+      content: c.meta_title || '',
     });
 
     this.meta.updateTag({
       property: 'og:description',
-      content: c.meta_description || ''
+      content: c.meta_description || '',
     });
 
-    this.meta.updateTag({
-      property: 'og:url',
-      content: this.doc.URL
-    });
+    // this.meta.updateTag({
+    //   property: 'og:url',
+    //   content: this.doc.URL,
+    // });
 
     // Remove old schema
     this.removeJsonLd();
 
     // FAQ Schema
     if (c.faq_schema) {
-
       const faqScript = this.doc.createElement('script');
 
       faqScript.type = 'application/ld+json';
@@ -267,7 +267,6 @@ export class SeoService {
 
     // Breadcrumb Schema
     if (c.breadcrumb_schema) {
-
       const breadcrumbScript = this.doc.createElement('script');
 
       breadcrumbScript.type = 'application/ld+json';
@@ -280,7 +279,6 @@ export class SeoService {
     }
 
     if (c.person_schema) {
-
       const personScript = this.doc.createElement('script');
       personScript.type = 'application/ld+json';
       personScript.text = c.person_schema;
@@ -291,7 +289,6 @@ export class SeoService {
 
     // Service Schema
     if (c.service_schema) {
-
       const serviceScript = this.doc.createElement('script');
 
       serviceScript.type = 'application/ld+json';
@@ -321,19 +318,16 @@ export class SeoService {
 
     // Extra Meta
     if (c.extra_meta) {
-
       const temp = this.doc.createElement('div');
       temp.innerHTML = c.extra_meta;
 
       Array.from(temp.children).forEach((node: any) => {
         this.doc.head.appendChild(node.cloneNode(true));
       });
-
     }
   }
 
   removeJsonLd() {
-
     const faq = this.doc.getElementById('faq-schema');
     if (faq) faq.remove();
 
@@ -402,10 +396,12 @@ export class SeoService {
   // }
 
   seoList() {
-    return this.httpClient.get<any>(this.apiURL + '/seolist?user_id=' + this.MASTER_SETTING_USER_ID, this.httpOptions)
-      .pipe(
-        catchError(this.errorHandler)
+    return this.httpClient
+      .get<any>(
+        this.apiURL + '/seolist?user_id=' + this.MASTER_SETTING_USER_ID,
+        this.httpOptions,
       )
+      .pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error: HttpErrorResponse) {
