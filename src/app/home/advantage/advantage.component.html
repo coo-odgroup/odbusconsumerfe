@@ -4,8 +4,8 @@
 
     <div class="slider-wrapper">
       <!-- LEFT -->
-      <button class="slide-btn prev-btn" (click)="moveSlider(-1)">
-        <i class="fa fa-angle-left"></i>
+      <button type="button" class="slide-btn prev-btn" (click)="moveSlider(-1)" aria-label="Next Slide">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
       </button>
 
       <!-- Cards Row -->
@@ -15,7 +15,7 @@
           <div class="card-left">
             <h3>Instant Booking</h3>
             <p>Book in seconds. Just 3 steps. Fast. Smooth. Hassle-free.</p>
-            <a [routerLink]="['/advantage', 'instant-booking']">Know More →</a>
+            <a [routerLink]="['/advantage', 'instant-booking']" aria-label="Know more about Instant Booking">Know More →</a>
           </div>
           <div class="card-right">
             <img src="assets/img/Instant_booking.png" width="106" height="159" alt="Instant Booking" loading="lazy" />
@@ -27,7 +27,7 @@
           <div class="card-left">
             <h3>Assured Seats</h3>
             <p>Seats you can भरोसा on 99.99% seat confirmation</p>
-            <a [routerLink]="['/advantage', 'assured-seats']">Know More →</a>
+            <a [routerLink]="['/advantage', 'assured-seats']"  aria-label="Know more about Assured Seats">Know More →</a>
           </div>
           <div class="card-right">
             <img src="assets/img/assured.png" width="106" height="106" alt="Assured Seats" loading="lazy" />
@@ -39,7 +39,7 @@
           <div class="card-left">
             <h3>Instant Trip Details</h3>
             <p>No waiting. No uncertainty. Get ticket details instantly.</p>
-            <a [routerLink]="['/advantage', 'instant-trip-details']">Know More →</a>
+            <a [routerLink]="['/advantage', 'instant-trip-details']"  aria-label="Know more about Instant Trip Details">Know More →</a>
           </div>
           <div class="card-right">
             <img src="assets/img/trip_details.png" width="106" height="159" alt="Instant Trip Details" loading="lazy" />
@@ -51,7 +51,7 @@
           <div class="card-left">
             <h3>24×7 Support</h3>
             <p>Always on. Always ready Call us anytime. We're here for you.</p>
-            <a [routerLink]="['/advantage', '24-7-support']">Know More →</a>
+            <a [routerLink]="['/advantage', '24-7-support']" aria-label="Know more about 24x7 Support">Know More →</a>
           </div>
           <div class="card-right">
             <img src="assets/img/support_247.png" width="106" height="159" alt="24×7 Support" loading="lazy" />
@@ -66,7 +66,7 @@
               Refunds initiated instantly Credited in hours to days <br />
               Quick. Transparent. Reliable.
             </p>
-            <a [routerLink]="['/advantage', 'fast-refunds']">Know More →</a>
+            <a [routerLink]="['/advantage', 'fast-refunds']"  aria-label="Know more about Odisha's Largest Network">Know More →</a>
           </div>
           <div class="card-right">
             <img src="assets/img/wallet.png" width="106" height="159" loading="lazy" alt="wallet" />
@@ -90,8 +90,8 @@
       </div>
 
       <!-- RIGHT -->
-      <button class="slide-btn next-btn" (click)="moveSlider(1)">
-        <i class="fa fa-angle-right"></i>
+      <button type="button" class="slide-btn next-btn" (click)="moveSlider(1)" aria-label="Previous Slide">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
       </button>
     </div>
   </div>

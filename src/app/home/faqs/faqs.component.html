@@ -10,6 +10,7 @@
       <button
         *ngFor="let cat of faqs; let i = index"
         type="button"
+        role="tab"
         class="faq-tab"
         [class.active]="activeTab === i"
         (click)="activeTab = i"
@@ -24,9 +25,11 @@
     <div class="tab-content">
       <div
         *ngFor="let faq of faqs[activeTab]?.faqs; let j = index"
+        role="tabpanel"
         class="faq-item"
         [class.active]="openIndex[activeTab] === j"
-      >
+        [attr.id]="'faq-panel-' + j"
+        [attr.aria-labelledby]="'faq-tab-' + j">
         <div
           class="faq-question"
           (click)="openIndex[activeTab] = openIndex[activeTab] === j ? -1 : j"
