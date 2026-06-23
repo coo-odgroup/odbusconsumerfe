@@ -1,44 +1,48 @@
-<ng-container *ngIf="isMobile; then Mobile; else Desktop"></ng-container>
-
-<!-- DESKTOP -->
-<ng-template #Desktop>
-  <section class="section-offer carousel-home fluid-15" *ngIf="Offers.length > 0">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="section-offer-left">
-            <h2>ODBUS OFFERS</h2>
-          </div>
-        </div>
-
-        <div class="col-md-6 text-right">
-          <a routerLink="/offers">View All</a>
-        </div>
-
-        <div class="col-md-12 mt-4" *ngIf="isBrowser">
-          <carousel [images]="offerList" [cellsToShow]="3" [loop]="true" [autoplay]="true" [autoplayInterval]="3000">
-          </carousel>
+<section class="whats-new-section section-offer">
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="section-offer-left">
+          <h2>ODBUS OFFERS</h2>
         </div>
       </div>
-    </div>
-  </section>
-</ng-template>
 
-<!-- ================= MOBILE OFFER SECTION ================= -->
-<ng-template #Mobile>
-  <section class="mobile-offers-section" *ngIf="Offers.length > 0">
-    <!-- HEADER -->
-    <div class="mobile-offers-top">
-      <h2>ODBUS OFFERS</h2>
-
-      <a routerLink="/offers">View All</a>
+      <div class="col-md-6 text-right">
+        <a routerLink="/offers">View All</a>
+      </div>
     </div>
 
-    <!-- OFFER SLIDER -->
-    <div class="mobile-offers-card" *ngIf="isBrowser">
-      <carousel [images]="offerList" [cellsToShow]="1" [loop]="true" [autoplay]="true" [autoplayInterval]="2500"
-        [arrows]="false">
-      </carousel>
+    <div class="slider-wrapper">
+      <!-- LEFT -->
+      <button
+        type="button"
+        class="slide-btn prev-btn"
+        (click)="moveSlider(-1)"
+        aria-label="Next Slide"
+      >
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+      </button>
+
+      <!-- Cards Row -->
+      <div class="cards-scroll" id="cardsScroll">
+        <div class="news-card" *ngFor="let offer of Offers">
+          <img
+            src="{{offer.slider_photo}}"
+            alt="{{offer.alt_tag}}"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <button
+        type="button"
+        class="slide-btn next-btn"
+        (click)="moveSlider(1)"
+        aria-label="Previous Slide"
+      >
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+      </button>
     </div>
-  </section>
-</ng-template>
+  </div>
+</section>
