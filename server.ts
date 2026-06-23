@@ -6,6 +6,7 @@ import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { existsSync } from 'fs';
 import 'localstorage-polyfill';
 global['localStorage'] = localStorage;
@@ -90,7 +91,10 @@ export function app(): express.Express {
 
     res.render(indexHtml, {
       req,
-      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl || '/' }]
+      providers: [
+        { provide: APP_BASE_HREF, useValue: req.baseUrl || '/' },
+        { provide: REQUEST, useValue: req },
+      ]
     }, (err: Error, html: string) => {
       if (err) {
         console.error('========================================');

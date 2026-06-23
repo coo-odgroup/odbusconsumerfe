@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   OnInit,
+  Optional,
   TemplateRef,
   ViewChild,
   Inject,
@@ -33,7 +34,8 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { LoginChecker } from '../helpers/loginChecker';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { HttpClient } from '@angular/common/http';
 
 import { AfterViewInit } from '@angular/core';
@@ -152,10 +154,8 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
   masterSettingRecord: any = {}; // Initialize as empty object instead of array
   master_info: any = {};
-  // isMobile: boolean | null = null; // Default to false for SSR (desktop view)
-
   isMobile: boolean = false;
-  deviceReady: boolean = false;
+  deviceReady: boolean = true;
 
   countdown_status: number = 0; // Initialize countdown_status
   countdown_title: string = '';
@@ -185,6 +185,19 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   private apiurl = GlobalConstants.BASE_URL;
   baseurl = GlobalConstants.PATHURL;
 
+  private detectMobile(): boolean {
+    if (isPlatformBrowser(this.platformId)) {
+      return this.deviceService.isMobile() || window.innerWidth <= 768;
+    }
+
+    if (isPlatformServer(this.platformId) && this.request) {
+      const userAgent = (this.request.headers && this.request.headers['user-agent']) || '';
+      return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(userAgent);
+    }
+
+    return false;
+  }
+
   constructor(
     private router: Router,
     private _fb: FormBuilder,
@@ -204,6 +217,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     private alertConfig: NgbAlertConfig,
     private datePipe: DatePipe,
     private http: HttpClient,
+    @Optional() @Inject(REQUEST) private request: any,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {
     this.session = new LoginChecker();
@@ -223,11 +237,6 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     this.appForm = this._fb.group({
       phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
     });
-
-    // Only detect device in browser, default to false (desktop) for SSR
-    this.isMobile = isPlatformBrowser(this.platformId)
-      ? this.deviceService.isMobile()
-      : false;
 
     this.currentUrl = location.path().replace('/', '');
     this.seo.seolist(this.currentUrl);
@@ -376,22 +385,9 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     this.formatter = (x: { name: string }) => x.name;
   }
   ngOnInit() {
+    this.isMobile = this.detectMobile();
+    this.deviceReady = true;
 
-    if (isPlatformBrowser(this.platformId)) {
-
-      this.spinner.show();
-
-      setTimeout(() => {
-
-        this.isMobile = this.deviceService.isMobile();
-
-        this.deviceReady = true;
-
-        this.spinner.hide();
-
-      }, 500);
-   }
-    
     const reddata = {
       limit: 3,
     };
@@ -458,7 +454,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
-        if (this.isMobile) {
+        if (this.isMobile === true) {
           const closedUntil = localStorage.getItem('appPopupClosedUntil');
 
           if (closedUntil && new Date().getTime() < Number(closedUntil)) {

@@ -1,8 +1,9 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, Optional, PLATFORM_ID } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { SeoService } from './services/seo.service';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { GlobalConstants } from './constants/global-constants';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import {
@@ -33,11 +34,26 @@ export class AppComponent {
   common: any = [];
 
   isMobile: boolean = false;
+  deviceReady: boolean = false;
   showLoader = true;
+
+  private detectMobile(): boolean {
+    if (isPlatformBrowser(this.platformId)) {
+      return this.deviceService.isMobile() || window.innerWidth <= 768;
+    }
+
+    if (isPlatformServer(this.platformId) && this.request) {
+      const userAgent = (this.request.headers && this.request.headers['user-agent']) || '';
+      return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(userAgent);
+    }
+
+    return false;
+  }
 
   constructor(
     @Inject(DOCUMENT) private doc,
     @Inject(PLATFORM_ID) private platformId: Object,
+    @Optional() @Inject(REQUEST) private request: any,
     private auth: AuthService,
     private titleService: Title,
     private metaService: Meta,
@@ -127,6 +143,9 @@ export class AppComponent {
     });
 
     this.isBrowser = isPlatformBrowser(this.platformId);
+    this.isMobile = this.detectMobile();
+    this.deviceReady = true;
+
     // =========================
     // AUTH TOKEN CHECK
     // =========================
@@ -183,6 +202,8 @@ export class AppComponent {
   }
 
   loadCommonData() {
+    this.isMobile = this.detectMobile();
+
     const storedData = localStorage.getItem('commonData');
 
     if (storedData) {
@@ -190,8 +211,6 @@ export class AppComponent {
 
       this.getCommonInfo(data);
     } else {
-      this.isMobile = this.deviceService.isMobile();
-
       const param = {
         user_id: GlobalConstants.MASTER_SETTING_USER_ID,
         locationName: '',

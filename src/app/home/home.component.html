@@ -511,17 +511,19 @@
   </div>
 </ng-template>
 
-<ng-container *ngIf="isMobile !== null">
+<ng-container>
   <ng-container *ngIf="isMobile; then Mobile; else Desktop"> </ng-container>
 </ng-container>
 
-<app-recent-search></app-recent-search>
-<app-odbus-offers></app-odbus-offers>
-<app-advantage></app-advantage>
-<app-top-routes></app-top-routes>
-<app-mobile-app-download *ngIf="isMobile"></app-mobile-app-download>
-<app-download-app></app-download-app>
-<app-top-operators></app-top-operators>
-<app-growing></app-growing>
-<app-info></app-info>
-<app-faqs></app-faqs>
+<ng-container>
+  <app-recent-search></app-recent-search>
+  <app-odbus-offers></app-odbus-offers>
+  <app-advantage></app-advantage>
+  <app-top-routes></app-top-routes>
+  <app-mobile-app-download *ngIf="isMobile"></app-mobile-app-download>
+  <app-download-app></app-download-app>
+  <app-top-operators></app-top-operators>
+  <app-growing></app-growing>
+  <app-info></app-info>
+  <app-faqs></app-faqs>
+</ng-container>
