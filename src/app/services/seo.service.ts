@@ -9,6 +9,7 @@ import { DOCUMENT } from '@angular/common';
 import { element } from 'protractor';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +17,8 @@ export class SeoService {
 
   private apiURL = GlobalConstants.BASE_URL;
   private MASTER_SETTING_USER_ID = GlobalConstants.MASTER_SETTING_USER_ID;
+
+  private BASE_URL = GlobalConstants.URL;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -62,6 +65,26 @@ export class SeoService {
     script.text = schema;
 
     this.doc.head.appendChild(script);
+  }
+
+  addCanonicalUrl(): void {
+
+
+    
+    const canonicalUrl = this.BASE_URL.replace(/\/$/, '') + this.router.url;
+    // console.log(canonicalUrl);
+
+    const existing = this.doc.querySelectorAll(
+      "link[rel='canonical']"
+    );
+
+    existing.forEach(link => link.remove());
+
+    const canonical = this.doc.createElement('link');
+    canonical.setAttribute('rel', 'canonical');
+    canonical.setAttribute('href', canonicalUrl);
+
+    this.doc.head.appendChild(canonical);
   }
 
   shouldLoadSeo(url: string): boolean {
@@ -124,7 +147,7 @@ export class SeoService {
 
   private link!: HTMLLinkElement;
 
-  constructor(@Inject(DOCUMENT) private doc: Document, private httpClient: HttpClient, private title: Title, private meta: Meta) { }
+  constructor(@Inject(DOCUMENT) private doc: Document, private httpClient: HttpClient, private title: Title, private meta: Meta, private router:Router) { }
 
   // seolist(current_url: any) {
   //   this.httpClient.get(this.apiURL + '/seolist?user_id=' + this.MASTER_SETTING_USER_ID, this.httpOptions).subscribe(
@@ -189,13 +212,13 @@ export class SeoService {
   setMeta(c: any) {
 
     // Canonical URL
-    if (this.link === undefined) {
-      this.link = this.doc.createElement('link');
-      this.link.setAttribute('rel', 'canonical');
-      this.doc.head.appendChild(this.link);
-    }
+    // if (this.link === undefined) {
+    //   this.link = this.doc.createElement('link');
+    //   this.link.setAttribute('rel', 'canonical');
+    //   this.doc.head.appendChild(this.link);
+    // }
 
-    this.link.setAttribute('href', this.doc.URL.split('?')[0]);
+    // this.link.setAttribute('href', this.doc.URL.split('?')[0]);
 
     // Meta Tags
     this.title.setTitle(c.meta_title || '');
@@ -283,18 +306,18 @@ export class SeoService {
     // console.log(c.organization_schema);
 
     // Organization Schema
-    if (c.organization_schema) {
+    // if (c.organization_schema) {
 
-      const organizationScript = this.doc.createElement('script');
+    //   const organizationScript = this.doc.createElement('script');
 
-      organizationScript.type = 'application/ld+json';
+    //   organizationScript.type = 'application/ld+json';
 
-      organizationScript.text = c.organization_schema;
+    //   organizationScript.text = c.organization_schema;
 
-      organizationScript.id = 'organization-schema';
+    //   organizationScript.id = 'organization-schema';
 
-      this.doc.head.appendChild(organizationScript);
-    }
+    //   this.doc.head.appendChild(organizationScript);
+    // }
 
     // Extra Meta
     if (c.extra_meta) {

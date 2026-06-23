@@ -147,6 +147,14 @@ export class AppComponent {
       this.seoService.addOrganizationSchema(res.organization_schema);
     });
 
+    // this.seoService.addCanonicalUrlFromCurrentUrl();.
+
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.seoService.addCanonicalUrl();
+      });
+
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.isMobile = this.detectMobile();
     this.deviceReady = true;
