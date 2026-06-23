@@ -2275,7 +2275,10 @@ input {
 }
 
 .app-content h2 span {
-  color: #f0b400;
+  color: #132a72;
+  font-size: 30px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  letter-spacing: -1px;
 }
 
 .app-content ul {
@@ -3317,7 +3320,7 @@ a.btn.btn-warning:hover {
   margin: 0 0 28px;
   border-bottom: 1px solid #e8e8e8;
   cursor: pointer;
-  
+
 }
 
 /* .route-tabs li {
