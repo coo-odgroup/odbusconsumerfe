@@ -79,6 +79,8 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
           this.showRouteLinks = false;
         } else if (this.isMobile && url.includes('/routes/')) {
           this.showRouteLinks = false;
+        } else if (this.isMobile || url.includes('/sitemap')) {
+          this.showRouteLinks = false;
         } else {
           this.showRouteLinks = true;
         }

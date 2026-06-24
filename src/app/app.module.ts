@@ -60,6 +60,7 @@ import { SearchBoxMComponent } from './search-box-m/search-box-m.component';
 import { MobileAppDownloadComponent } from './home/mobile-app-download/mobile-app-download.component';
 import { SharedModule } from './shared/shared.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { SitemapComponent } from './sitemap/sitemap.component';
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -112,7 +113,8 @@ const ngWizardConfig: NgWizardConfig = {
     // FooterMenuComponent,
     SearchBoxComponent,
     SearchBoxMComponent,
-    MobileAppDownloadComponent
+    MobileAppDownloadComponent,
+    SitemapComponent
   ],
   imports: [
     // BrowserAnimationsModule,

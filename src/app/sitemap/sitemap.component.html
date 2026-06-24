@@ -1,0 +1,471 @@
+<ng-container *ngIf="isMobile">
+  <div class="mobile-mybooking-top">
+    <div class="row">
+      <div class="col-1 pr-0 pl-2 mob-arrow-left">
+        <a routerLink="/">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+      </div>
+      <div class="col-7 pl-2 pr-2 mob-list-center">
+        <h5>Sitemap</h5>
+      </div>
+      <div class="col-4 pl-2 pr-2">
+        <div class="mobile-logo">
+          <img src="assets/img/mob-img/logo.png" alt="Mobile logo" />
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<section class="sitemap">
+  <ng-container *ngIf="!isMobile">
+    <span class="line-span">
+      <div class="container">
+        <h2>ODBUS Sitemap</h2>
+      </div>
+    </span>
+  </ng-container>
+  <div class="sitemap-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>
+            A comprehensive guide to help you navigate through our bus booking
+            services, routes, and support resources.
+          </p>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="sitemap-card">
+            <h3 class="sitemap-title">
+              <i class="fa fa-compass"></i>
+              Quick Access
+            </h3>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <ul class="sitemap-list">
+                  <li>
+                    <a routerLink="/">
+                      <i class="fa fa-home"></i>
+                      Home
+                    </a>
+                  </li>
+
+                  <li>
+                    <a routerLink="/offers">
+                      <i class="fa fa-percent"></i>
+                      Offers
+                    </a>
+                  </li>
+
+                  <li>
+                    <a routerLink="/manage-booking">
+                      <i class="fa fa-calendar-check-o"></i>
+                      Manage Booking
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="https://agent.odbus.in">
+                      <i class="fa fa-user-secret"></i>
+                      Agent Login
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="https://operator.odbus.co.in">
+                      <i class="fa fa-bus"></i>
+                      Operator Login
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <ul class="sitemap-list">
+                  <li>
+                    <a routerLink="/faq">
+                      <i class="fa fa-question-circle"></i>
+                      FAQ
+                    </a>
+                  </li>
+
+                  <li>
+                    <a routerLink="/blog">
+                      <i class="fa fa-newspaper-o"></i>
+                      Blogs
+                    </a>
+                  </li>
+
+                  <li>
+                    <a routerLink="/operators">
+                      <i class="fa fa-bus"></i>
+                      Operators
+                    </a>
+                  </li>
+
+                  <li>
+                    <a routerLink="/routes">
+                      <i class="fa fa-road"></i>
+                      Routes
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="sitemap-card">
+            <h3 class="sitemap-title">
+              <i class="fa fa-info-circle"></i>
+              Info & Support
+            </h3>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <ul class="sitemap-list">
+                  <li>
+                    <a routerLink="/terms-conditions">
+                      <i class="fa fa-file-text-o"></i>
+                      Terms & Conditions
+                    </a>
+                  </li>
+
+                  <li>
+                    <a routerLink="/privacy-policy">
+                      <i class="fa fa-lock"></i>
+                      Privacy Policy
+                    </a>
+                  </li>
+
+                  <li>
+                    <a routerLink="/about-us">
+                      <i class="fa fa-info-circle"></i>
+                      About ODBUS
+                    </a>
+                  </li>
+
+                  <li>
+                    <a routerLink="/careers">
+                      <i class="fa fa-briefcase"></i>
+                      Careers
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-sm-6">
+                <ul class="sitemap-list">
+                  <li>
+                    <a routerLink="/contact-us">
+                      <i class="fa fa-envelope"></i>
+                      Contact Us
+                    </a>
+                  </li>
+
+                  <li>
+                    <a routerLink="/sitemap">
+                      <i class="fa fa-sitemap"></i>
+                      Sitemap
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- App Card -->
+          <div class="sitemap-app-card">
+            <span class="app-badge"> NEW APP </span>
+
+            <h3>Book on the go!</h3>
+
+            <p>
+              Download the ODBUS mobile app for faster bookings and real-time
+              updates.
+            </p>
+
+            <div class="app-buttons">
+              <a routerLink="/" class="store-btn">
+                <i class="fa fa-android"></i>
+                Play Store
+              </a>
+            </div>
+
+            <img
+              src="assets/img/download_mob.png"
+              alt="App"
+              class="app-image"
+            />
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+          <div class="sitemap-card sitemap-services-card">
+            <h3 class="sitemap-title">
+              <i class="fa fa-bus"></i>
+              Top Routes
+            </h3>
+
+            <div class="sitemap-section">
+              <ul class="sitemap-list">
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Bhubaneswar to Puri
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Cuttack to Sambalpur
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Bhubaneswar to Jeypore
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-map-marker"></i>
+                    Rourkela to Bhubaneswar
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/" class="view-all-link">
+                    View All Routes →
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Support -->
+        <div class="col-md-4 col-sm-12">
+          <div class="sitemap-card sitemap-services-card">
+            <h3 class="sitemap-title">
+              <i class="fa fa-bus"></i>
+              Top Operators
+            </h3>
+
+            <div class="sitemap-section">
+              <ul class="sitemap-list">
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    OSRTC
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Dolphin Tours
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Sriram Travels
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li>
+
+
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li><li>
+                  <a routerLink="/">
+                    <i class="fa fa-bus"></i>
+                    Nilamadhab Bus
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/" class="view-all-link">
+                    View All Operators →
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-container *ngIf="isMobile">
+  <app-footer-menu></app-footer-menu>
+</ng-container>
