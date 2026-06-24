@@ -126,8 +126,8 @@ export class OdbusOffersComponent implements OnInit {
     });
   }
 
-  moveSlider(direction: number) {
-    const slider: any = document.getElementById('cardsScroll');
+  moveSlider1(direction: number) {
+    const slider: any = document.getElementById('cardsScroll1');
     if (!slider) return;
 
     const scrollAmount = 420; // card move distance
@@ -143,9 +143,9 @@ export class OdbusOffersComponent implements OnInit {
   }
 
   updateSliderButtons() {
-    const slider: any = document.getElementById('cardsScroll');
-    const prevBtn: any = document.querySelector('.prev-btn');
-    const nextBtn: any = document.querySelector('.next-btn');
+    const slider: any = document.getElementById('cardsScroll1');
+    const prevBtn: any = document.querySelector('.offer-prev');
+    const nextBtn: any = document.querySelector('.offer-next');
 
     if (!slider || !prevBtn || !nextBtn) return;
 

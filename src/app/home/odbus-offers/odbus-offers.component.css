@@ -1,0 +1,179 @@
+/* ==================================
+   ODBUS OFFERS
+================================== */
+
+.odbus-offers-section {
+  padding: 30px 0;
+  background: #fff;
+}
+
+.odbus-offers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.odbus-offers-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 900;
+  color: #072c6b;
+}
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 115px;
+
+  border: 1px solid #1b2155;
+  border-radius: 4px;
+
+  background: #fff;
+  color: #1b2155;
+
+  font-size: 16px;
+
+  text-transform: uppercase;
+  text-decoration: none;
+
+  transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+  background: #1b2155;
+  color: #fff;
+}
+
+.odbus-offers-slider {
+  position: relative;
+}
+
+.offer-scroll-area {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.offer-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* CARD SIZE FIXED */
+
+.offer-card {
+  flex: 0 0 420px;
+  width: 420px;
+  height: 200px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #d8d8d8;
+  background: #fff;
+}
+
+.offer-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ARROWS */
+
+.offer-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  color: #072c6b;
+  font-size: 22px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, .15);
+  z-index: 5;
+}
+
+.offer-prev {
+  left: -20px;
+}
+
+.offer-next {
+  right: -20px;
+}
+
+/* TABLET */
+
+@media (max-width: 991px) {
+
+  .offer-card {
+    flex: 0 0 360px;
+    width: 360px;
+    height: 172px;
+  }
+
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .view-all-btn {
+    min-width: 105px;
+    height: 40px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 767px) {
+
+  .odbus-offers-header h2 {
+    font-size: 18px;
+  }
+
+  .offer-card {
+    flex: 0 0 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .offer-card img {
+    height: auto;
+  }
+
+  .offer-prev,
+  .offer-next {
+    display: none;
+  }
+
+  .view-all-btn {
+    min-width: 95px;
+    height: 36px;
+    font-size: 12px;
+    border-radius: 5px;
+  }
+
+
+}
+
+@media (max-width:575px) {
+  .view-all-btn {
+    height: 36px;
+    padding: 0 12px !important;
+    font-size: 12px !important;
+  }
+
+  .view-all-btn {
+    min-width: 90px;
+    height: 34px;
+    font-size: 11px;
+    padding: 0 12px;
+  }
+}

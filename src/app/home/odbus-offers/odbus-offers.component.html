@@ -1,48 +1,36 @@
-<section class="whats-new-section section-offer">
+<section class="odbus-offers-section">
   <div class="container">
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <div class="section-offer-left">
-          <h2>ODBUS OFFERS</h2>
-        </div>
-      </div>
 
-      <div class="col-md-6 text-right">
-        <a routerLink="/offers">View All</a>
-      </div>
+    <div class="odbus-offers-header">
+      <h2>ODBUS OFFERS</h2>
+
+      <a routerLink="/offers" class="view-all-btn">
+        View All
+      </a>
     </div>
 
-    <div class="slider-wrapper">
+    <div class="odbus-offers-slider">
+
       <!-- LEFT -->
-      <button
-        type="button"
-        class="slide-btn prev-btn"
-        (click)="moveSlider(-1)"
-        aria-label="Next Slide"
-      >
-        <i class="fa fa-angle-left" aria-hidden="true"></i>
+      <button type="button" class="offer-arrow offer-prev" (click)="moveSlider1(-1)">
+        <i class="fa fa-angle-left"></i>
       </button>
 
-      <!-- Cards Row -->
-      <div class="cards-scroll" id="cardsScroll">
-        <div class="news-card" *ngFor="let offer of Offers">
-          <img
-            src="{{offer.slider_photo}}"
-            alt="{{offer.alt_tag}}"
-            loading="lazy"
-          />
+      <!-- OFFERS -->
+      <div class="offer-scroll-area" id="cardsScroll1">
+
+        <div class="offer-card" *ngFor="let offer of Offers">
+          <img [src]="offer.slider_photo" [alt]="offer.alt_tag" loading="lazy" />
         </div>
+
       </div>
 
       <!-- RIGHT -->
-      <button
-        type="button"
-        class="slide-btn next-btn"
-        (click)="moveSlider(1)"
-        aria-label="Previous Slide"
-      >
-        <i class="fa fa-angle-right" aria-hidden="true"></i>
+      <button type="button" class="offer-arrow offer-next" (click)="moveSlider1(1)">
+        <i class="fa fa-angle-right"></i>
       </button>
+
     </div>
+
   </div>
 </section>
