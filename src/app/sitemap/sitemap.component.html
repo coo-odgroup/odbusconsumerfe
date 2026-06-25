@@ -145,12 +145,12 @@
                     </a>
                   </li>
 
-                  <li>
+                  <!-- <li>
                     <a routerLink="/careers">
                       <i class="fa fa-briefcase"></i>
                       Careers
                     </a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
 
@@ -164,9 +164,9 @@
                   </li>
 
                   <li>
-                    <a routerLink="/sitemap">
+                    <a routerLink="/sitemap.xml">
                       <i class="fa fa-sitemap"></i>
-                      Sitemap
+                      Sitemap.xml
                     </a>
                   </li>
                 </ul>
@@ -186,7 +186,7 @@
             </p>
 
             <div class="app-buttons">
-              <a routerLink="/" class="store-btn">
+              <a href="https://play.google.com/store/apps/details?id=com.od.odbus&hl=en" target="_blank" class="store-btn">
                 <i class="fa fa-android"></i>
                 Play Store
               </a>
@@ -209,120 +209,23 @@
 
             <div class="sitemap-section">
               <ul class="sitemap-list">
-                <li>
-                  <a routerLink="/">
+                <li *ngFor="let p of popularRoutes">
+                  <a
+                    [routerLink]="[
+                      '/routes',
+                      p.source[0].url +
+                        '-' +
+                        p.destination[0].url +
+                        '-bus-services',
+                    ]"
+                    [queryParams]="{ date: currentDate }"
+                  >
                     <i class="fa fa-map-marker"></i>
-                    Bhubaneswar to Puri
+                    {{ p.source[0].name }} → {{ p.destination[0].name }}
                   </a>
                 </li>
-
                 <li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Cuttack to Sambalpur
-                  </a>
-                </li>
-
-                <li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Bhubaneswar to Jeypore
-                  </a>
-                </li>
-
-                <li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li>
-
-                <li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li>
-
-                <li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-map-marker"></i>
-                    Rourkela to Bhubaneswar
-                  </a>
-                </li>
-
-                <li>
-                  <a routerLink="/" class="view-all-link">
+                  <a routerLink="/routes" class="view-all-link">
                     View All Routes →
                   </a>
                 </li>
@@ -341,119 +244,14 @@
 
             <div class="sitemap-section">
               <ul class="sitemap-list">
-                <li>
-                  <a routerLink="/">
+                <li *ngFor="let t of topOperators">
+                  <a [routerLink]="['/operators', t.operator_url]">
                     <i class="fa fa-bus"></i>
-                    OSRTC
-                  </a>
-                </li>
-
-                <li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Dolphin Tours
-                  </a>
-                </li>
-
-                <li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Sriram Travels
-                  </a>
-                </li>
-
-                <li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li>
-
-                <li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
+                    {{ t.organisation_name }} ( {{ t.operatorName }} )
                   </a>
                 </li>
                 <li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li>
-                <li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li>
-                <li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li>
-
-
-                <li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li><li>
-                  <a routerLink="/">
-                    <i class="fa fa-bus"></i>
-                    Nilamadhab Bus
-                  </a>
-                </li>
-
-                <li>
-                  <a routerLink="/" class="view-all-link">
+                  <a routerLink="/operators" class="view-all-link">
                     View All Operators →
                   </a>
                 </li>

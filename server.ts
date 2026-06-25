@@ -15,7 +15,9 @@ const domino = require('domino');
 const fs = require('fs');
 const path = require('path');
 // index from browser build!
-const template = fs.readFileSync(path.join('dist/consumerfenew/browser', 'index.html')).toString();
+const template = fs
+  .readFileSync(path.join('dist/consumerfenew/browser', 'index.html'))
+  .toString();
 // for mock global window by domino
 const win = domino.createWindow(template);
 // mock
@@ -28,7 +30,7 @@ Object.defineProperty(win.document.body.style, 'transform', {
       configurable: true,
     };
   },
-  writable: true
+  writable: true,
 });
 
 // mock documnet
@@ -38,18 +40,28 @@ global['CSS'] = null;
 // global['XMLHttpRequest'] = require('xmlhttprequest').XMLHttpRequest;
 global['Prism'] = null;
 
+import axios from 'axios';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/consumerfenew/browser');
-  const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  const indexHtml = existsSync(join(distFolder, 'index.original.html'))
+    ? 'index.original.html'
+    : 'index';
+
+  // Add sitemap.xml code here
+
+  // Add sitemap.xml code here
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
-  server.engine('html', ngExpressEngine({
-    bootstrap: AppServerModule,
-    inlineCriticalCss: false,
-  }));
+  server.engine(
+    'html',
+    ngExpressEngine({
+      bootstrap: AppServerModule,
+      inlineCriticalCss: false,
+    }),
+  );
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
@@ -65,12 +77,16 @@ export function app(): express.Express {
   });
 
   // Serve static files from /browser
-  server.get('*.*', express.static(distFolder, {
-    maxAge: '1y',
-    immutable: true,
-  }), (req, res) => {
-    res.status(404).send(`Asset not found: ${req.url}`);
-  });
+  server.get(
+    '*.*',
+    express.static(distFolder, {
+      maxAge: '1y',
+      immutable: true,
+    }),
+    (req, res) => {
+      res.status(404).send(`Asset not found: ${req.url}`);
+    },
+  );
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
@@ -79,7 +95,7 @@ export function app(): express.Express {
     // =========================================
     res.setHeader(
       'Cache-Control',
-      'no-store, no-cache, must-revalidate, proxy-revalidate'
+      'no-store, no-cache, must-revalidate, proxy-revalidate',
     );
 
     res.setHeader('Pragma', 'no-cache');
@@ -89,35 +105,41 @@ export function app(): express.Express {
     // Optional security headers
     res.setHeader('X-Content-Type-Options', 'nosniff');
 
-    res.render(indexHtml, {
-      req,
-      providers: [
-        { provide: APP_BASE_HREF, useValue: req.baseUrl || '/' },
-        { provide: REQUEST, useValue: req },
-      ]
-    }, (err: Error, html: string) => {
-      if (err) {
-        console.error('========================================');
-        console.error('SSR RENDERING ERROR:');
-        console.error('Error message:', err.message);
-        console.error('Error name:', err.name);
-        console.error('Stack trace:', err.stack);
-        console.error('========================================');
-        // Don't fallback silently - show the error to help debug
-        // Fallback to client-side rendering if SSR fails
-        const fs = require('fs');
-        const indexPath = join(distFolder, 'index.html');
-        if (existsSync(indexPath)) {
-          console.warn('Falling back to static HTML due to SSR error');
-          const indexContent = fs.readFileSync(indexPath, 'utf8');
-          return res.send(indexContent);
+    res.render(
+      indexHtml,
+      {
+        req,
+        providers: [
+          { provide: APP_BASE_HREF, useValue: req.baseUrl || '/' },
+          { provide: REQUEST, useValue: req },
+        ],
+      },
+      (err: Error, html: string) => {
+        if (err) {
+          console.error('========================================');
+          console.error('SSR RENDERING ERROR:');
+          console.error('Error message:', err.message);
+          console.error('Error name:', err.name);
+          console.error('Stack trace:', err.stack);
+          console.error('========================================');
+          // Don't fallback silently - show the error to help debug
+          // Fallback to client-side rendering if SSR fails
+          const fs = require('fs');
+          const indexPath = join(distFolder, 'index.html');
+          if (existsSync(indexPath)) {
+            console.warn('Falling back to static HTML due to SSR error');
+            const indexContent = fs.readFileSync(indexPath, 'utf8');
+            return res.send(indexContent);
+          }
+          return res
+            .status(500)
+            .send('SSR Error: ' + err.message + '\n\nStack: ' + err.stack);
         }
-        return res.status(500).send('SSR Error: ' + err.message + '\n\nStack: ' + err.stack);
-      }
-      // Log successful SSR rendering
-      console.log('SSR rendering successful for:', req.url);
-      res.send(html);
-    });
+        // Log successful SSR rendering
+        console.log('SSR rendering successful for:', req.url);
+        res.send(html);
+      },
+    );
   });
 
   return server;
@@ -138,7 +160,7 @@ function run(): void {
 // The below code is to ensure that the server is run only when not requiring the bundle.
 declare const __non_webpack_require__: NodeRequire;
 const mainModule = __non_webpack_require__.main;
-const moduleFilename = mainModule && mainModule.filename || '';
+const moduleFilename = (mainModule && mainModule.filename) || '';
 if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
   run();
 }

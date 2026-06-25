@@ -45,10 +45,14 @@ export class AppComponent {
     if (isPlatformServer(this.platformId) && this.request) {
       const userAgent =
         (this.request.headers &&
-          (this.request.headers['user-agent'] || this.request.headers['User-Agent'])) ||
-        (typeof this.request.get === 'function' && this.request.get('user-agent')) ||
+          (this.request.headers['user-agent'] ||
+            this.request.headers['User-Agent'])) ||
+        (typeof this.request.get === 'function' &&
+          this.request.get('user-agent')) ||
         '';
-      return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(userAgent);
+      return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(
+        userAgent,
+      );
     }
 
     return false;
@@ -150,13 +154,13 @@ export class AppComponent {
     // this.seoService.addCanonicalUrlFromCurrentUrl();.
 
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         this.seoService.addCanonicalUrl();
       });
 
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         this.seoService.addOgUrl();
       });

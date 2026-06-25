@@ -40,6 +40,6 @@ export class PageErrorComponent implements OnInit {
 
     setTimeout(() => {
       this.spinner.hide();
-    }, 2000); // 2 seconds
+    }, 500); // 0.5 seconds
   }
 }
