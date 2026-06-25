@@ -51,7 +51,75 @@ export function app(): express.Express {
     : 'index';
 
   // Add sitemap.xml code here
+  server.get('/sitemap.xml', async (req, res) => {
+    try {
+      const response = await axios.get(
+        'https://testing.odbus.co.in/api/getSchemaUrls',
+      );
 
+      const routes = response.data.data.routes;
+      const operators = response.data.data.operators;
+
+      let xml = `<?xml version="1.0" encoding="UTF-8"?>`;
+      xml += `
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    `;
+
+      // Static Pages
+      xml += `
+      <url>
+        <loc>https://www.odbus.in/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+      </url>
+
+      <url>
+        <loc>https://www.odbus.in/about-us</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+      </url>
+    `;
+
+      // Dynamic Routes
+      routes.forEach((route: any) => {
+        const url =
+          `https://www.odbus.in/routes/` +
+          `${route.source_slug}-` +
+          `${route.destination_slug}-bus-services`;
+
+        xml += `
+        <url>
+          <loc>${url}</loc>
+          <changefreq>daily</changefreq>
+          <priority>0.8</priority>
+        </url>
+      `;
+      });
+
+      // Dynamic Operators
+      operators.forEach((operator: any) => {
+        const url =
+          `https://www.odbus.in/operators/` +
+          `${operator.operator_url}`;
+
+        xml += `
+        <url>
+          <loc>${url}</loc>
+          <changefreq>daily</changefreq>
+          <priority>0.8</priority>
+        </url>
+      `;
+      });
+
+      xml += `</urlset>`;
+
+      res.setHeader('Content-Type', 'application/xml');
+      res.send(xml);
+    } catch (error) {
+      console.error('Sitemap Error:', error);
+      res.status(500).send('Error generating sitemap');
+    }
+  });
   // Add sitemap.xml code here
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
