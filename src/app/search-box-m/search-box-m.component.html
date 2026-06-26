@@ -29,7 +29,8 @@
                     <div class="col-md-3 field to-field">
                         <label>To</label>
 
-                        <div class="swap-center" (click)="swap()" title="Swap Locations" (keydown.enter)="swap()" (keydown.space)="swap()">
+                        <div class="swap-center" (click)="swap()" title="Swap Locations" (keydown.enter)="swap()"
+                            (keydown.space)="swap()">
                             <img src="assets/img/swap.svg" alt="Swap Locations" loading="lazy" />
                         </div>
 
@@ -47,21 +48,115 @@
 
                         <div class="date-wrapper">
                             <!-- Journey Date Box -->
-                            <div class="input-box date-box">
+                            <!-- <div class="input-box date-box">
                                 <img src="assets/img/Icon-metro-calendar.svg" class="icon-date" loading="lazy"
                                     alt="Calendar" />
 
                                 <input type="text" class="form-control" formControlName="entry_date" ngbDatepicker
                                     #d="ngbDatepicker" (click)="d.toggle()" placeholder="Journey Date" readonly />
-                            </div>
+                            </div> -->
+                            <div class="custom-date-picker">
 
+                                <!-- Input -->
+
+                                <div class="date-input-box" (click)="toggleCalendar()">
+
+                                    <img src="assets/img/Icon-metro-calendar.svg" class="icon-date">
+
+                                    <span class="date-placeholder" *ngIf="!selectedDateText">
+
+                                        Journey Date
+
+                                    </span>
+
+                                    <span class="date-value" *ngIf="selectedDateText">
+
+                                        {{selectedDateText}}
+
+                                    </span>
+
+                                    <i class="fa-solid fa-angle-down"></i>
+
+                                </div>
+
+                                <!-- Calendar -->
+
+                                <div class="calendar-popup" *ngIf="calendarOpen" (click)="$event.stopPropagation()">
+
+                                    <!-- Header -->
+
+                                    <div class="calendar-header">
+
+                                        <button type="button" class="nav-btn"
+                                            (click)="previousMonth(); $event.stopPropagation()">
+
+                                            <i class="fa-solid fa-chevron-left"></i>
+
+                                        </button>
+
+                                        <div class="month-title">
+
+                                            {{ monthNames[currentMonth] }}
+
+                                            {{ currentYear }}
+
+                                        </div>
+
+                                        <button type="button" class="nav-btn"
+                                            (click)="nextMonth(); $event.stopPropagation()">
+
+                                            <i class="fa-solid fa-chevron-right"></i>
+
+                                        </button>
+
+                                    </div>
+
+                                    <!-- Week -->
+
+                                    <div class="week-row">
+
+                                        <span>Su</span>
+
+                                        <span>Mo</span>
+
+                                        <span>Tu</span>
+
+                                        <span>We</span>
+
+                                        <span>Th</span>
+
+                                        <span>Fr</span>
+
+                                        <span>Sa</span>
+
+                                    </div>
+
+                                    <!-- Days -->
+
+                                    <div class="days-grid">
+
+                                        <div *ngFor="let day of calendarDays" class="day" [class.empty]="!day"
+                                            [class.today]="day?.today" [class.selected]="day?.selected"
+                                            [class.disabled]="day?.disabled" (click)="selectDate(day)">
+
+                                            {{day?.date}}
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
                             <!-- Today Box -->
-                            <div class="quick-date-today" (click)="searchToday()" (keydown.enter)="searchToday()" (keydown.space)="searchToday()">
+                            <div class="quick-date-today" (click)="searchToday()" (keydown.enter)="searchToday()"
+                                (keydown.space)="searchToday()">
                                 Today
                             </div>
 
                             <!-- Tomorrow Box -->
-                            <div class="quick-date-tomorrow" (click)="searchTomorrow()" (keydown.enter)="searchTomorrow()" (keydown.space)="searchTomorrow()">
+                            <div class="quick-date-tomorrow" (click)="searchTomorrow()"
+                                (keydown.enter)="searchTomorrow()" (keydown.space)="searchTomorrow()">
                                 Tomorrow
                             </div>
                         </div>

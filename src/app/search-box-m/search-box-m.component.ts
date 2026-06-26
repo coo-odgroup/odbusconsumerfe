@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, HostListener, } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -15,6 +15,52 @@ import { NotificationService } from '../services/notification.service';
   styleUrls: ['./search-box-m.component.css']
 })
 export class SearchBoxMComponent implements OnInit {
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+
+    const target = event.target as HTMLElement;
+
+    if (!target.closest('.custom-date-picker')) {
+
+      this.calendarOpen = false;
+
+    }
+
+  }
+
+  // =======================
+  // CUSTOM CALENDAR
+  // =======================
+
+  calendarOpen = false;
+
+  calendarSelectedDate: Date | null = null;
+
+  selectedDateText = '';
+
+  currentDate = new Date();
+
+  currentMonth = this.currentDate.getMonth();
+
+  currentYear = this.currentDate.getFullYear();
+
+  calendarDays: any[] = [];
+
+  monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 
   searchForm!: FormGroup;
 
@@ -71,6 +117,165 @@ export class SearchBoxMComponent implements OnInit {
       );
 
     this.formatter = (x: any) => x.name;
+
+    this.generateCalendar();
+  }
+
+  toggleCalendar() {
+    console.log('toggleCalendar called');
+    this.calendarOpen = !this.calendarOpen;
+
+    if (this.calendarOpen) {
+      this.generateCalendar();
+    }
+
+    console.log(this.calendarOpen);
+  }
+
+  generateCalendar() {
+
+    this.calendarDays = [];
+
+    const firstDay = new Date(this.currentYear, this.currentMonth, 1);
+
+    const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
+
+    const firstWeekDay = firstDay.getDay();
+
+    const totalDays = lastDay.getDate();
+
+    for (let i = 0; i < firstWeekDay; i++) {
+
+      this.calendarDays.push(null);
+
+    }
+
+    const today = new Date();
+
+    for (let d = 1; d <= totalDays; d++) {
+
+      const fullDate = new Date(this.currentYear, this.currentMonth, d);
+
+      const isToday =
+        fullDate.toDateString() === today.toDateString();
+
+      const selected =
+        this.calendarSelectedDate &&
+        fullDate.toDateString() === this.calendarSelectedDate.toDateString();
+
+      const disabled = fullDate < new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
+      );
+
+      this.calendarDays.push({
+
+        date: d,
+
+        fullDate,
+
+        today: isToday,
+
+        selected,
+
+        disabled
+
+      });
+
+    }
+
+  }
+
+  previousMonth() {
+
+    this.currentMonth--;
+
+    if (this.currentMonth < 0) {
+
+      this.currentMonth = 11;
+
+      this.currentYear--;
+
+    }
+
+    this.generateCalendar();
+
+  }
+
+  nextMonth() {
+
+    this.currentMonth++;
+
+    if (this.currentMonth > 11) {
+
+      this.currentMonth = 0;
+
+      this.currentYear++;
+
+    }
+
+    this.generateCalendar();
+
+  }
+
+  selectDate(day: any) {
+
+    if (!day || day.disabled) return;
+
+    this.calendarSelectedDate = day.fullDate;
+
+    const dd = ('0' + day.fullDate.getDate()).slice(-2);
+
+    const mm = ('0' + (day.fullDate.getMonth() + 1)).slice(-2);
+
+    const yyyy = day.fullDate.getFullYear();
+
+    // Display in input
+    this.selectedDateText = `${dd}-${mm}-${yyyy}`;
+
+    // Store in Reactive Form
+    this.searchForm.patchValue({
+      entry_date: `${dd}-${mm}-${yyyy}`
+    });
+
+    this.calendarOpen = false;
+
+    this.generateCalendar();
+
+  }
+
+  selectToday() {
+
+    const today = new Date();
+
+    this.currentMonth = today.getMonth();
+
+    this.currentYear = today.getFullYear();
+
+    this.selectDate({
+      fullDate: today,
+      date: today.getDate(),
+      disabled: false
+    });
+
+  }
+
+  selectTomorrow() {
+
+    const tomorrow = new Date();
+
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    this.currentMonth = tomorrow.getMonth();
+
+    this.currentYear = tomorrow.getFullYear();
+
+    this.selectDate({
+      fullDate: tomorrow,
+      date: tomorrow.getDate(),
+      disabled: false
+    });
   }
 
   swap() {

@@ -89,7 +89,7 @@
                                             <div class="col-md-4 date_inp">
                                                 <p>Date of Journey</p>
                                                 <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
+                                                    <!-- <div class="input-group-prepend">
                                                         <span class="input-group-text calendar" id="basic-addon3"
                                                             (click)="d.toggle()">
                                                             <img src="assets/img/Icon-metro-calendar.svg"
@@ -100,8 +100,102 @@
                                                         class="form-control calendar" formControlName="entry_date"
                                                         placeholder="Journey Date" [(ngModel)]="jrnyDt"
                                                         [min]="dtconfig.minDate" [max]="dtconfig.maxDate" ngbDatepicker
-                                                        (click)="d.toggle()" #d="ngbDatepicker" readonly>
+                                                        (click)="d.toggle()" #d="ngbDatepicker" readonly> -->
+                                                    <div class="custom-date-picker">
 
+                                                        <!-- Input -->
+
+                                                        <div class="date-input-box" (click)="toggleCalendar()">
+
+                                                            <img src="assets/img/Icon-metro-calendar.svg"
+                                                                class="icon-date">
+
+                                                            <span class="date-placeholder" *ngIf="!selectedDateText">
+
+                                                                Journey Date
+
+                                                            </span>
+
+                                                            <span class="date-value" *ngIf="selectedDateText">
+
+                                                                {{selectedDateText}}
+
+                                                            </span>
+
+                                                        </div>
+
+                                                        <!-- Calendar -->
+
+                                                        <div class="calendar-popup" *ngIf="calendarOpen"
+                                                            (click)="$event.stopPropagation()">
+
+                                                            <!-- Header -->
+
+                                                            <div class="calendar-header">
+
+                                                                <button type="button" class="nav-btn"
+                                                                    (click)="previousMonth(); $event.stopPropagation()">
+
+                                                                    <i class="fa-solid fa-chevron-left"></i>
+
+                                                                </button>
+
+                                                                <div class="month-title">
+
+                                                                    {{ monthNames[currentMonth] }}
+
+                                                                    {{ currentYear }}
+
+                                                                </div>
+
+                                                                <button type="button" class="nav-btn"
+                                                                    (click)="nextMonth(); $event.stopPropagation()">
+
+                                                                    <i class="fa-solid fa-chevron-right"></i>
+
+                                                                </button>
+
+                                                            </div>
+
+                                                            <!-- Week -->
+
+                                                            <div class="week-row">
+
+                                                                <span>Su</span>
+
+                                                                <span>Mo</span>
+
+                                                                <span>Tu</span>
+
+                                                                <span>We</span>
+
+                                                                <span>Th</span>
+
+                                                                <span>Fr</span>
+
+                                                                <span>Sa</span>
+
+                                                            </div>
+
+                                                            <!-- Days -->
+
+                                                            <div class="days-grid">
+
+                                                                <div *ngFor="let day of calendarDays" class="day"
+                                                                    [class.empty]="!day" [class.today]="day?.today"
+                                                                    [class.selected]="day?.selected"
+                                                                    [class.disabled]="day?.disabled"
+                                                                    (click)="selectDate(day)">
+
+                                                                    {{day?.date}}
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1311,20 +1405,20 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div *ngIf="!bussearching && seoContentData?.content">
-                        <!-- <div class="col-xl-9 col-lg-9 col-md-9">
+                    <!-- <div class="col-xl-9 col-lg-9 col-md-9">
                     <p [innerHTML]="pageContent"></p>
                 </div> -->
-                        <!-- Seo Listing Start -->
-                        <ng-container>
-                            <div [innerHTML]="seoContentData?.content" class="costom_seo"></div>
-                        </ng-container>
+                    <!-- Seo Listing Start -->
+                    <ng-container>
+                        <div [innerHTML]="seoContentData?.content" class="costom_seo"></div>
+                    </ng-container>
 
-                        <!-- Seo Listing end  -->
+                    <!-- Seo Listing end  -->
 
-                    </div>
+                </div>
             </div>
         </div>
 
@@ -1922,7 +2016,7 @@
                         <div class="">
 
 
-                            <div class="form-group border-bottom">
+                            <div class="form-group">
                                 <label class="mb-2">From</label><br>
                                 <input autocomplete="off" id="from" type="text" class="" [ngbTypeahead]="search"
                                     [resultTemplate]="rt" [inputFormatter]="formatter" [ngModel]="swapsource"
@@ -1933,7 +2027,7 @@
                                 </ng-template>
                             </div>
 
-                            <div class="form-group border-bottom">
+                            <div class="form-group">
                                 <label class="mb-2">To</label><br>
                                 <input autocomplete="off" id="to" type="text" class="" [ngbTypeahead]="search"
                                     [resultTemplate]="rt2" [inputFormatter]="formatter" [ngModel]="swapdestination"
@@ -1951,14 +2045,106 @@
                             <div class="date_inp">
                                 <p>Date of Journey</p>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
+                                    <!-- <div class="input-group-prepend">
                                         <span class="input-group-text calendar" id="basic-addon3"
                                             (click)="d.toggle()"><img src="assets/img/Icon-metro-calendar.svg"></span>
-                                    </div>
-                                    <input type="text" id="entryDate" autocomplete="off" class="form-control calendar"
+                                    </div> -->
+                                    <!-- <input type="text" id="entryDate" autocomplete="off" class="form-control calendar"
                                         formControlName="entry_date" placeholder="Journey Date" [(ngModel)]="jrnyDt"
                                         [min]="dtconfig.minDate" [max]="dtconfig.maxDate" ngbDatepicker
-                                        (click)="d.toggle()" #d="ngbDatepicker" readonly>
+                                        (click)="d.toggle()" #d="ngbDatepicker" readonly> -->
+                                    <div class="custom-date-picker">
+
+                                        <!-- Input -->
+
+                                        <div class="date-input-box" (click)="toggleCalendar(); console.log('clicked')">
+
+                                            <img src="assets/img/Icon-metro-calendar.svg" class="icon-date">
+
+                                            <span class="date-placeholder" *ngIf="!selectedDateText">
+
+                                                Journey Date
+
+                                            </span>
+
+                                            <span class="date-value" *ngIf="selectedDateText">
+
+                                                {{selectedDateText}}
+
+                                            </span>
+
+                                        </div>
+
+                                        <!-- Calendar -->
+
+                                        <div class="calendar-popup" *ngIf="calendarOpen"
+                                            (click)="$event.stopPropagation()">
+
+                                            <!-- Header -->
+
+                                            <div class="calendar-header">
+
+                                                <button type="button" class="nav-btn"
+                                                    (click)="previousMonth(); $event.stopPropagation()">
+
+                                                    <i class="fa-solid fa-chevron-left"></i>
+
+                                                </button>
+
+                                                <div class="month-title">
+
+                                                    {{ monthNames[currentMonth] }}
+
+                                                    {{ currentYear }}
+
+                                                </div>
+
+                                                <button type="button" class="nav-btn"
+                                                    (click)="nextMonth(); $event.stopPropagation()">
+
+                                                    <i class="fa-solid fa-chevron-right"></i>
+
+                                                </button>
+
+                                            </div>
+
+                                            <!-- Week -->
+
+                                            <div class="week-row">
+
+                                                <span>Su</span>
+
+                                                <span>Mo</span>
+
+                                                <span>Tu</span>
+
+                                                <span>We</span>
+
+                                                <span>Th</span>
+
+                                                <span>Fr</span>
+
+                                                <span>Sa</span>
+
+                                            </div>
+
+                                            <!-- Days -->
+
+                                            <div class="days-grid">
+
+                                                <div *ngFor="let day of calendarDays" class="day" [class.empty]="!day"
+                                                    [class.today]="day?.today" [class.selected]="day?.selected"
+                                                    [class.disabled]="day?.disabled" (click)="selectDate(day)">
+
+                                                    {{day?.date}}
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
 
                                 </div>
                             </div>

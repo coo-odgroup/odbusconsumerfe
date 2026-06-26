@@ -4,6 +4,7 @@ import {
   OnInit,
   Inject,
   PLATFORM_ID,
+  HostListener,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -66,6 +67,48 @@ export const DATEPICKER_VALUE_ACCESSOR = {
   providers: [DatePipe, NgbActiveModal],
 })
 export class SearchComponent implements OnInit {
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    if (!target.closest('.custom-date-picker')) {
+      this.calendarOpen = false;
+    }
+  }
+
+  // =======================
+  // CUSTOM CALENDAR
+  // =======================
+
+  calendarOpen = false;
+
+  calendarSelectedDate: Date | null = null;
+
+  selectedDateText = '';
+
+  currentDate = new Date();
+
+  currentMonth = this.currentDate.getMonth();
+
+  currentYear = this.currentDate.getFullYear();
+
+  calendarDays: any[] = [];
+
+  monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
   selectedDate: any;
   disabled = false;
   isMobile: boolean;
@@ -76,10 +119,10 @@ export class SearchComponent implements OnInit {
 
   _albums = [];
   // Function to call when the date changes.
-  onChange = (date?: Date) => {};
+  onChange = (date?: Date) => { };
 
   // Function to call when the date picker is touched
-  onTouched = () => {};
+  onTouched = () => { };
 
   writeValue(value: Date) {
     if (!value) return;
@@ -326,15 +369,15 @@ export class SearchComponent implements OnInit {
             term === ''
               ? []
               : this.location_list
-                  .filter(
-                    (v) =>
-                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                      (v.synonym != '' &&
-                        v.synonym != null &&
-                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
-                          -1),
-                  )
-                  .slice(0, 10),
+                .filter(
+                  (v) =>
+                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                    (v.synonym != '' &&
+                      v.synonym != null &&
+                      v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                      -1),
+                )
+                .slice(0, 10),
           ),
         );
       this.formatter = (x: { name: string }) => x.name;
@@ -2673,6 +2716,9 @@ export class SearchComponent implements OnInit {
       });
     }
 
+    this.generateCalendar();
+
+
     // this.seoContent();
   }
 
@@ -2995,6 +3041,103 @@ export class SearchComponent implements OnInit {
       this.prevDate = fentdate.setDate(fentdate.getDate() - 2);
       this.prevDate = formatDate(this.prevDate, 'dd-MM-yyyy', 'en_US');
     }
+  }
+
+  toggleCalendar() {
+    this.calendarOpen = !this.calendarOpen;
+
+    if (this.calendarOpen) {
+      this.generateCalendar();
+    }
+  }
+
+  generateCalendar() {
+
+    this.calendarDays = [];
+
+    const firstDay = new Date(this.currentYear, this.currentMonth, 1).getDay();
+
+    const totalDays = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
+
+    for (let i = 0; i < firstDay; i++) {
+      this.calendarDays.push(null);
+    }
+
+    const today = new Date();
+
+    for (let d = 1; d <= totalDays; d++) {
+
+      this.calendarDays.push({
+        date: d,
+        today:
+          d === today.getDate() &&
+          this.currentMonth === today.getMonth() &&
+          this.currentYear === today.getFullYear(),
+
+        selected:
+          this.calendarSelectedDate &&
+          d === this.calendarSelectedDate.getDate() &&
+          this.currentMonth === this.calendarSelectedDate.getMonth() &&
+          this.currentYear === this.calendarSelectedDate.getFullYear(),
+
+        disabled: false
+      });
+
+    }
+  }
+
+  previousMonth() {
+
+    this.currentMonth--;
+
+    if (this.currentMonth < 0) {
+      this.currentMonth = 11;
+      this.currentYear--;
+    }
+
+    this.generateCalendar();
+  }
+
+  nextMonth() {
+
+    this.currentMonth++;
+
+    if (this.currentMonth > 11) {
+      this.currentMonth = 0;
+      this.currentYear++;
+    }
+
+    this.generateCalendar();
+  }
+
+  selectDate(day: any) {
+
+    if (!day) return;
+
+    this.calendarSelectedDate = new Date(
+      this.currentYear,
+      this.currentMonth,
+      day.date
+    );
+
+    this.selectedDateText =
+      ('0' + day.date).slice(-2) +
+      '-' +
+      ('0' + (this.currentMonth + 1)).slice(-2) +
+      '-' +
+      this.currentYear;
+
+    this.searchForm.patchValue({
+      entry_date: {
+        day: day.date,
+        month: this.currentMonth + 1,
+        year: this.currentYear
+      }
+    });
+
+    this.calendarOpen = false;
+
+    this.generateCalendar();
   }
 
   ngOnDestroy() {

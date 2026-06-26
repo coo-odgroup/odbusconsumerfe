@@ -1658,10 +1658,18 @@ ngb-rating.d-inline-flex {
 
 .mobile-white-box .form-group input {
   color: #072c6b;
+  font-weight: 600;
   width: 100%;
-  border: none;
-  background-color: #f5f1f1;
   padding: 5px 10px;
+  height: 50px;
+  border: 1px solid #dfe3eb;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  transition: .25s;
 }
 
 .mobile-white-box .form-group input:focus-visible {
@@ -3018,8 +3026,264 @@ input[type=radio] {
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-  .mobile-list-top{
+  .mobile-list-top {
     z-index: 999;
   }
 }
 
+
+
+/* ==========================================
+   CUSTOM DATE PICKER
+========================================== */
+
+.custom-date-picker {
+  position: relative;
+  overflow: visible !important;
+  z-index: 999999;
+  width: 100%;
+}
+
+.date-input-box {
+  height: 50px;
+  border: 1px solid #dfe3eb;
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  padding: 0 15px 0 42px;
+  transition: .25s;
+}
+
+
+.date-input-box .icon-date {
+  position: absolute;
+  left: 15px;
+  width: 16px;
+}
+
+.date-input-box i {
+  position: absolute;
+  right: 16px;
+  color: #888;
+  font-size: 13px;
+}
+
+.date-placeholder {
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.date-value {
+  color: #1b2155;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ===========================
+      POPUP
+=========================== */
+
+.calendar-popup {
+  position: absolute;
+  top: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 290px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, .20);
+  z-index: 999999;
+  overflow: visible !important;
+}
+
+@keyframes popup {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(10px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+}
+
+/* ===========================
+      HEADER
+=========================== */
+
+.calendar-header {
+  border-radius: 10px 10px 0 0;
+  height: 60px;
+  background: #1b2155;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.month-title {
+
+  color: #fff;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+.nav-btn {
+
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff20;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn:hover {
+  background: #f0c004;
+  color: #1b2155;
+}
+
+/* ===========================
+      WEEK
+=========================== */
+
+.week-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 2px;
+}
+
+.week-row span {
+
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1b2155;
+  background: #f0c004;
+  /* border: 1px solid #1b2155; */
+  padding: 8px;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+/* ===========================
+      DAYS
+=========================== */
+
+.days-grid {
+
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 10px 15px 16px;
+}
+
+.day {
+
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: .2s;
+  color: #1b2155;
+}
+
+.day:hover {
+
+  background: #fff4cc;
+}
+
+.day.today {
+
+  border: 2px solid #1b2155;
+}
+
+.day.selected {
+
+  background: #f0c004;
+
+  color: #1b2155;
+
+  font-weight: 700;
+}
+
+.day.disabled {
+
+  opacity: .35;
+
+  pointer-events: none;
+}
+
+.day.empty {
+
+  visibility: hidden;
+}
+
+/* ===========================
+      MOBILE
+=========================== */
+
+@media (max-width:768px) {
+
+  .calendar-popup {
+    width: 290px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 54px;
+  }
+
+  .calendar-header {
+    height: 50px;
+    padding: 0 10px;
+  }
+
+  .month-title {
+    font-size: 16px;
+  }
+
+  .nav-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .week-row span {
+    padding: 7px 0;
+    font-size: 11px;
+  }
+
+  .day {
+    width: 34px;
+    height: 34px;
+    font-size: 13px;
+  }
+
+  .date-input-box{
+    border-radius: 10px;
+  }
+
+  .days-grid{
+    padding: 10px 10px 16px;
+  }
+
+}

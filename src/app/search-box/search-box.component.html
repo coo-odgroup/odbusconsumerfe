@@ -8,23 +8,10 @@
           <div class="col-md-3 field from-field">
             <label>From</label>
             <div class="input-box">
-              <img
-                src="assets/img/Icon-metro-location.svg"
-                class="icon-from"
-                alt="Location"
-              />
-              <input
-                type="search"
-                class="form-control"
-                [ngbTypeahead]="search"
-                [resultTemplate]="rt"
-                [resultFormatter]="formatter"
-                [inputFormatter]="formatter"
-                [(ngModel)]="swapsource"
-                formControlName="source"
-                placeholder="Enter Source"
-                (selectItem)="tabChange('to')"
-              />
+              <img src="assets/img/Icon-metro-location.svg" class="icon-from" alt="Location" />
+              <input type="search" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt"
+                [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapsource"
+                formControlName="source" placeholder="Enter Source" (selectItem)="tabChange('to')" />
             </div>
           </div>
 
@@ -37,23 +24,10 @@
             </div>
 
             <div class="input-box">
-              <img
-                src="assets/img/Icon-metro-location.svg"
-                class="icon-to"
-                alt="Location"
-              />
-              <input
-                type="search"
-                class="form-control"
-                [ngbTypeahead]="search"
-                [resultTemplate]="rt2"
-                [resultFormatter]="formatter"
-                [inputFormatter]="formatter"
-                [(ngModel)]="swapdestination"
-                formControlName="destination"
-                placeholder="Enter Destination"
-                id="to"
-              />
+              <img src="assets/img/Icon-metro-location.svg" class="icon-to" alt="Location" />
+              <input type="search" class="form-control" [ngbTypeahead]="search" [resultTemplate]="rt2"
+                [resultFormatter]="formatter" [inputFormatter]="formatter" [(ngModel)]="swapdestination"
+                formControlName="destination" placeholder="Enter Destination" id="to" />
             </div>
           </div>
           <div class="col-md-4 field date-field">
@@ -61,7 +35,7 @@
 
             <div class="date-wrapper">
               <!-- Journey Date Box -->
-              <div class="input-box date-box">
+              <!-- <div class="input-box date-box">
                 <img
                   src="assets/img/Icon-metro-calendar.svg"
                   loading="lazy"
@@ -79,25 +53,107 @@
                   placeholder="Journey Date"
                   readonly
                 />
+              </div> -->
+              <div class="custom-date-picker">
+
+                <!-- Input -->
+
+                <div class="date-input-box" (click)="toggleCalendar()">
+
+                  <img src="assets/img/Icon-metro-calendar.svg" class="icon-date">
+
+                  <span class="date-placeholder" *ngIf="!selectedDateText">
+
+                    Journey Date
+
+                  </span>
+
+                  <span class="date-value" *ngIf="selectedDateText">
+
+                    {{selectedDateText}}
+
+                  </span>
+
+                  <i class="fa-solid fa-angle-down"></i>
+
+                </div>
+
+                <!-- Calendar -->
+
+                <div class="calendar-popup" *ngIf="calendarOpen" (click)="$event.stopPropagation()">
+
+                  <!-- Header -->
+
+                  <div class="calendar-header">
+
+                    <button type="button" class="nav-btn" (click)="previousMonth(); $event.stopPropagation()">
+
+                      <i class="fa-solid fa-chevron-left"></i>
+
+                    </button>
+
+                    <div class="month-title">
+
+                      {{ monthNames[currentMonth] }}
+
+                      {{ currentYear }}
+
+                    </div>
+
+                    <button type="button" class="nav-btn" (click)="nextMonth(); $event.stopPropagation()">
+
+                      <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+                  </div>
+
+                  <!-- Week -->
+
+                  <div class="week-row">
+
+                    <span>Su</span>
+
+                    <span>Mo</span>
+
+                    <span>Tu</span>
+
+                    <span>We</span>
+
+                    <span>Th</span>
+
+                    <span>Fr</span>
+
+                    <span>Sa</span>
+
+                  </div>
+
+                  <!-- Days -->
+
+                  <div class="days-grid">
+
+                    <div *ngFor="let day of calendarDays" class="day" [class.empty]="!day" [class.today]="day?.today"
+                      [class.selected]="day?.selected" [class.disabled]="day?.disabled" (click)="selectDate(day)">
+
+                      {{day?.date}}
+
+                    </div>
+
+                  </div>
+
+                </div>
+
               </div>
 
               <!-- Today Box -->
-              <div
-                class="quick-date-today"
-                (click)="searchToday()"
-                (keydown.enter)="searchToday()"
-                (keydown.space)="searchToday()"
-              >
+              <div class="quick-date-today" (click)="searchToday()" (keydown.enter)="searchToday()"
+                (keydown.space)="searchToday()">
                 Today
               </div>
 
               <!-- Tomorrow Box -->
-              <div
-                class="quick-date-tomorrow"
-                (click)="searchTomorrow()"
-                (keydown.enter)="searchTomorrow()"
-                (keydown.space)="searchTomorrow()"
-              >
+              <div class="quick-date-tomorrow" (click)="searchTomorrow()" (keydown.enter)="searchTomorrow()"
+                (keydown.space)="searchTomorrow()">
                 Tomorrow
               </div>
             </div>
