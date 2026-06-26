@@ -62,23 +62,97 @@ export function app(): express.Express {
 
       let xml = `<?xml version="1.0" encoding="UTF-8"?>`;
       xml += `
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    `;
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      `;
 
       // Static Pages
       xml += `
-      <url>
-        <loc>https://www.odbus.in/</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-      </url>
-
-      <url>
-        <loc>https://www.odbus.in/about-us</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-      </url>
-    `;
+        <url>
+          <loc>https://www.odbus.in/</loc>
+          <changefreq>daily</changefreq>
+          <priority>1.0</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/about-us</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/operators</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/routes</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/offers</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/testimonials</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/careers</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/contact-us</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/faq</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/terms-conditions</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/privacy-policy</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/404</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/thank-you</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/signup</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/login</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/thankyou</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.odbus.in/blog</loc>
+          <changefreq>monthly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      `;
 
       // Dynamic Routes
       routes.forEach((route: any) => {
@@ -88,27 +162,27 @@ export function app(): express.Express {
           `${route.destination_slug}-bus-services`;
 
         xml += `
-        <url>
-          <loc>${url}</loc>
-          <changefreq>daily</changefreq>
-          <priority>0.8</priority>
-        </url>
-      `;
+          <url>
+            <loc>${url}</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.8</priority>
+          </url>
+        `;
       });
 
       // Dynamic Operators
       operators.forEach((operator: any) => {
-        const url =
+        const operatorUrl =
           `https://www.odbus.in/operators/` +
           `${operator.operator_url}`;
 
         xml += `
-        <url>
-          <loc>${url}</loc>
-          <changefreq>daily</changefreq>
-          <priority>0.8</priority>
-        </url>
-      `;
+          <url>
+            <loc>${operatorUrl}</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.8</priority>
+          </url>
+        `;
       });
 
       xml += `</urlset>`;
