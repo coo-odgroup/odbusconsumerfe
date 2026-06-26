@@ -2995,7 +2995,7 @@ input {
     display: none !important;
   }
 
-  .prev-btn{
+  .prev-btn {
     display: none !important;
   }
 }
@@ -3537,6 +3537,291 @@ a.btn.btn-warning:hover {
   .route-grid a {
     font-size: 12px;
     padding: 9px 5px;
+  }
+
+}
+
+
+/* ==========================================
+   CUSTOM DATE PICKER
+========================================== */
+
+.custom-date-picker {
+  position: relative;
+  width: 100%;
+}
+
+.date-input-box {
+  height: 50px;
+  border: 1px solid #dfe3eb;
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  padding: 0 42px 0 42px;
+  transition: .25s;
+}
+
+
+.date-input-box .icon-date {
+  position: absolute;
+  left: 15px;
+  width: 16px;
+}
+
+.date-input-box i {
+  position: absolute;
+  right: 16px;
+  color: #888;
+  font-size: 13px;
+}
+
+.date-placeholder {
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.date-value {
+  color: #1b2155;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ===========================
+      POPUP
+=========================== */
+
+.calendar-popup {
+
+  position: absolute;
+  top: 58px;
+  left: 0;
+  width: 290px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, .18);
+  z-index: 99999;
+  overflow: hidden;
+  animation: popup .25s;
+}
+
+@keyframes popup {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(10px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+}
+
+/* ===========================
+      HEADER
+=========================== */
+
+.calendar-header {
+
+  height: 60px;
+
+  background: #1b2155;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 18px;
+}
+
+.month-title {
+
+  color: #fff;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+.nav-btn {
+
+  width: 36px;
+
+  height: 36px;
+
+  border: none;
+
+  background: #ffffff20;
+
+  color: #fff;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: .25s;
+}
+
+.nav-btn:hover {
+
+  background: #f0c004;
+
+  color: #1b2155;
+}
+
+/* ===========================
+      WEEK
+=========================== */
+
+.week-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 2px;
+}
+
+.week-row span {
+
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1b2155;
+  background: #f0c004;
+  /* border: 1px solid #1b2155; */
+  padding: 8px;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+/* ===========================
+      DAYS
+=========================== */
+
+.days-grid {
+
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 10px 15px 16px;
+}
+
+.day {
+
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: .2s;
+}
+
+.day:hover {
+
+  background: #fff4cc;
+}
+
+.day.today {
+
+  border: 2px solid #1b2155;
+}
+
+.day.selected {
+
+  background: #f0c004;
+
+  color: #1b2155;
+
+  font-weight: 700;
+}
+
+.day.disabled {
+
+  opacity: .35;
+
+  pointer-events: none;
+}
+
+.day.empty {
+
+  visibility: hidden;
+}
+
+/* ===========================
+      MOBILE
+=========================== */
+
+@media (max-width: 768px) {
+
+  .date-input-box .fa-angle-down {
+    display: none;
+  }
+
+  .date-input-box {
+    padding-right: 15px;
+    border-radius: 10px;
+  }
+
+  /* Calendar popup */
+  .calendar-popup {
+    width: 290px;
+    left: 0;
+    top: 54px;
+    border-radius: 12px;
+  }
+
+  /* Header */
+  .calendar-header {
+    height: 48px;
+    padding: 0 10px;
+  }
+
+  .month-title {
+    font-size: 16px;
+  }
+
+  .nav-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  /* Week names */
+  .week-row {
+    gap: 2px;
+    padding: 4px;
+  }
+
+  .week-row span {
+    font-size: 11px;
+    padding: 6px 0;
+    margin: 0;
+    border-radius: 4px;
+  }
+
+  /* Days */
+  .days-grid {
+    gap: 3px;
+    padding: 10px 10px 16px;
+  }
+
+  .day {
+    width: 34px;
+    height: 34px;
+    font-size: 13px;
+    border-radius: 8px;
   }
 
 }
