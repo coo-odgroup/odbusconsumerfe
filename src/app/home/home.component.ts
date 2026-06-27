@@ -53,50 +53,50 @@ import { AfterViewInit } from '@angular/core';
 export class HomeComponent implements OnInit, AfterViewInit {
 
   @HostListener('document:click', ['$event'])
-onDocumentClick(event: MouseEvent) {
+  onDocumentClick(event: MouseEvent) {
 
-  const target = event.target as HTMLElement;
+    const target = event.target as HTMLElement;
 
-  if (!target.closest('.custom-date-picker')) {
+    if (!target.closest('.custom-date-picker')) {
 
-    this.calendarOpen = false;
+      this.calendarOpen = false;
+
+    }
 
   }
 
-}
-
   // =======================
-// CUSTOM CALENDAR
-// =======================
+  // CUSTOM CALENDAR
+  // =======================
 
-calendarOpen = false;
+  calendarOpen = false;
 
-calendarSelectedDate: Date | null = null;
+  calendarSelectedDate: Date | null = null;
 
-selectedDateText = '';
+  selectedDateText = '';
 
-currentDate = new Date();
+  currentDate = new Date();
 
-currentMonth = this.currentDate.getMonth();
+  currentMonth = this.currentDate.getMonth();
 
-currentYear = this.currentDate.getFullYear();
+  currentYear = this.currentDate.getFullYear();
 
-calendarDays: any[] = [];
+  calendarDays: any[] = [];
 
-monthNames = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+  monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 
   showAppPopup: boolean = false; // Flag to control app download popup visibility
   public searchForm: FormGroup;
@@ -345,15 +345,15 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
             term === ''
               ? []
               : this.location_list
-                  .filter(
-                    (v) =>
-                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                      (v.synonym != '' &&
-                        v.synonym != null &&
-                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
-                          -1),
-                  )
-                  .slice(0, 10),
+                .filter(
+                  (v) =>
+                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                    (v.synonym != '' &&
+                      v.synonym != null &&
+                      v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                      -1),
+                )
+                .slice(0, 10),
           ),
         );
 
@@ -547,157 +547,162 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   }
 
   toggleCalendar() {
+    console.log('toggleCalendar called');
+    this.calendarOpen = !this.calendarOpen;
 
-  this.calendarOpen = !this.calendarOpen;
+    if (this.calendarOpen) {
+      this.generateCalendar();
+    }
 
-}
+    console.log(this.calendarOpen);
+  }
 
-generateCalendar() {
+  generateCalendar() {
 
-  this.calendarDays = [];
+    this.calendarDays = [];
 
-  const firstDay = new Date(this.currentYear, this.currentMonth, 1);
+    const firstDay = new Date(this.currentYear, this.currentMonth, 1);
 
-  const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
+    const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
 
-  const firstWeekDay = firstDay.getDay();
+    const firstWeekDay = firstDay.getDay();
 
-  const totalDays = lastDay.getDate();
+    const totalDays = lastDay.getDate();
 
-  for (let i = 0; i < firstWeekDay; i++) {
+    for (let i = 0; i < firstWeekDay; i++) {
 
-    this.calendarDays.push(null);
+      this.calendarDays.push(null);
+
+    }
+
+    const today = new Date();
+
+    for (let d = 1; d <= totalDays; d++) {
+
+      const fullDate = new Date(this.currentYear, this.currentMonth, d);
+
+      const isToday =
+        fullDate.toDateString() === today.toDateString();
+
+      const selected =
+        this.calendarSelectedDate &&
+        fullDate.toDateString() === this.calendarSelectedDate.toDateString();
+
+      const disabled = fullDate < new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
+      );
+
+      this.calendarDays.push({
+
+        date: d,
+
+        fullDate,
+
+        today: isToday,
+
+        selected,
+
+        disabled
+
+      });
+
+    }
 
   }
 
-  const today = new Date();
+  previousMonth() {
 
-  for (let d = 1; d <= totalDays; d++) {
+    this.currentMonth--;
 
-    const fullDate = new Date(this.currentYear, this.currentMonth, d);
+    if (this.currentMonth < 0) {
 
-    const isToday =
-      fullDate.toDateString() === today.toDateString();
+      this.currentMonth = 11;
 
-    const selected =
-      this.calendarSelectedDate &&
-      fullDate.toDateString() === this.calendarSelectedDate.toDateString();
+      this.currentYear--;
 
-    const disabled = fullDate < new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate()
-    );
+    }
 
-    this.calendarDays.push({
+    this.generateCalendar();
 
-      date: d,
+  }
 
-      fullDate,
+  nextMonth() {
 
-      today: isToday,
+    this.currentMonth++;
 
-      selected,
+    if (this.currentMonth > 11) {
 
-      disabled
+      this.currentMonth = 0;
 
+      this.currentYear++;
+
+    }
+
+    this.generateCalendar();
+
+  }
+
+  selectDate(day: any) {
+
+    if (!day || day.disabled) return;
+
+    this.calendarSelectedDate = day.fullDate;
+
+    const dd = ('0' + day.fullDate.getDate()).slice(-2);
+
+    const mm = ('0' + (day.fullDate.getMonth() + 1)).slice(-2);
+
+    const yyyy = day.fullDate.getFullYear();
+
+    // Display in input
+    this.selectedDateText = `${dd}-${mm}-${yyyy}`;
+
+    // Store in Reactive Form
+    this.searchForm.patchValue({
+      entry_date: `${dd}-${mm}-${yyyy}`
+    });
+
+    this.calendarOpen = false;
+
+    this.generateCalendar();
+
+  }
+
+  selectToday() {
+
+    const today = new Date();
+
+    this.currentMonth = today.getMonth();
+
+    this.currentYear = today.getFullYear();
+
+    this.selectDate({
+      fullDate: today,
+      date: today.getDate(),
+      disabled: false
     });
 
   }
 
-}
+  selectTomorrow() {
 
-previousMonth() {
+    const tomorrow = new Date();
 
-  this.currentMonth--;
+    tomorrow.setDate(tomorrow.getDate() + 1);
 
-  if (this.currentMonth < 0) {
+    this.currentMonth = tomorrow.getMonth();
 
-    this.currentMonth = 11;
+    this.currentYear = tomorrow.getFullYear();
 
-    this.currentYear--;
-
-  }
-
-  this.generateCalendar();
-
-}
-
-nextMonth() {
-
-  this.currentMonth++;
-
-  if (this.currentMonth > 11) {
-
-    this.currentMonth = 0;
-
-    this.currentYear++;
+    this.selectDate({
+      fullDate: tomorrow,
+      date: tomorrow.getDate(),
+      disabled: false
+    });
 
   }
-
-  this.generateCalendar();
-
-}
-
-selectDate(day: any) {
-
-  if (!day || day.disabled) return;
-
-  this.calendarSelectedDate = day.fullDate;
-
-  const dd = ('0' + day.fullDate.getDate()).slice(-2);
-
-  const mm = ('0' + (day.fullDate.getMonth() + 1)).slice(-2);
-
-  const yyyy = day.fullDate.getFullYear();
-
-  // Display in input
-  this.selectedDateText = `${dd}-${mm}-${yyyy}`;
-
-  // Store in Reactive Form
-  this.searchForm.patchValue({
-    entry_date: `${dd}-${mm}-${yyyy}`
-  });
-
-  this.calendarOpen = false;
-
-  this.generateCalendar();
-
-}
-
-selectToday() {
-
-  const today = new Date();
-
-  this.currentMonth = today.getMonth();
-
-  this.currentYear = today.getFullYear();
-
-  this.selectDate({
-    fullDate: today,
-    date: today.getDate(),
-    disabled: false
-  });
-
-}
-
-selectTomorrow() {
-
-  const tomorrow = new Date();
-
-  tomorrow.setDate(tomorrow.getDate() + 1);
-
-  this.currentMonth = tomorrow.getMonth();
-
-  this.currentYear = tomorrow.getFullYear();
-
-  this.selectDate({
-    fullDate: tomorrow,
-    date: tomorrow.getDate(),
-    disabled: false
-  });
-
-}
 
   menu() {
     this.MenuActive = this.MenuActive == false ? true : false;
@@ -825,10 +830,10 @@ selectTomorrow() {
       if (el) {
         try {
           el.focus();
-        } catch (e) {}
+        } catch (e) { }
         try {
           el.click();
-        } catch (e) {}
+        } catch (e) { }
       }
     }
   }
@@ -1118,9 +1123,9 @@ selectTomorrow() {
       '-' +
       ds +
       '-bus-services?date=' +
-      formattedDate;     
+      formattedDate;
 
-     window.location.replace(url);   
+    window.location.replace(url);
   }
 
   saveSearchHistory(sr: string, ds: string, date: string) {

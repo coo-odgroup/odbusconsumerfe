@@ -56,7 +56,8 @@
 }
 
 .offer-sec {
-  padding-bottom: 40px;
+  padding: 20px !important;
+  background: #f8fafc !important;
 }
 
 .card {
@@ -67,8 +68,8 @@
 .main-tnc {
   background-color: #ffffff;
   border: #000026;
-  margin-top: 65px;
-  margin-bottom: 55px;
+  margin-top: 45px;
+  margin-bottom: 20px;
   border-radius: 8px;
   padding: 40px 40px;
   border: 1px solid #adadad;
@@ -912,6 +913,255 @@ input {
     font-size: 11px;
     line-height: 1.7;
     margin-bottom: 20px;
+  }
+
+}
+
+
+/*==========================
+DOWNLOAD APP
+==========================*/
+
+.download-app-section{
+    padding:20px 0 90px;
+    background: #f8fafc;
+}
+
+.download-app-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  padding: 40px;
+  color: #fff;
+  background: linear-gradient(135deg, #072C6B 0%, #0E4EA6 100%);
+  box-shadow: 0 18px 45px rgba(7, 44, 107, .18);
+}
+
+.download-app-box::before {
+  content: "";
+  position: absolute;
+  right: -140px;
+  top: -120px;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .05);
+}
+
+.download-app-box::after {
+  content: "";
+  position: absolute;
+  left: -120px;
+  bottom: -120px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .05);
+}
+
+.download-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #efc003;
+  color: #072C6B;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.download-tag i {
+  font-size: 16px;
+}
+
+.download-app-box h2 {
+  color: #fff;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 35px;
+  max-width: 650px;
+}
+
+.download-app-box h2 span {
+  color: #efc003;
+}
+
+/* FEATURES */
+
+.app-features {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.app-features li {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.app-features li:not(:last-child)::after {
+  content: "";
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, .25);
+  margin-left: 18px;
+}
+
+.app-features i {
+  color: #efc003;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+/* DOWNLOAD AREA */
+
+.download-bottom {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.play-btn img {
+  height: 58px;
+  transition: .3s;
+}
+
+.play-btn:hover img {
+  transform: translateY(-4px);
+}
+
+.download-divider {
+  width: 1px;
+  height: 70px;
+  background: rgba(255, 255, 255, .20);
+}
+
+/* QR */
+
+.scan-box {
+  text-align: center;
+}
+
+.scan-box img {
+  width: 95px;
+  display: block;
+  margin: auto;
+}
+
+.scan-box small {
+  display: block;
+  margin-top: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* RIGHT */
+
+.app-preview {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.mobile-phone {
+  width: 355px;
+  max-width: 100%;
+  animation: floatPhone 4s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes floatPhone {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+
+}
+
+/* MOBILE */
+
+@media (max-width:991px) {
+
+  .download-app-box {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .mobile-download-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-download-content {
+    width: 52%;
+  }
+
+  .mobile-download-content h2 {
+    font-size: 22px;
+    line-height: 1.2;
+    color: #fff;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .mobile-download-content h2 span {
+    color: #efc003;
+  }
+
+  .mobile-download-content p {
+    margin: 8px 0 14px;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .mobile-download-content strong {
+    color: #efc003;
+  }
+
+  .play-btn img {
+    height: 36px;
+  }
+
+  .mobile-download-image {
+    width: 48%;
+    text-align: right;
+  }
+
+  .mobile-phone {
+    width: 170px;
+    max-width: none;
+    margin-right: -8px;
+    animation: none;
+  }
+
+  .download-tag,
+  .app-features,
+  .scan-box,
+  .download-divider {
+    display: none !important;
   }
 
 }

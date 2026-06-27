@@ -89,7 +89,7 @@
 @media (min-width: 575px) and (max-width: 768px) {
 
     .mobile-search-box {
-        padding: 14px 14px 20px !important;
+        padding: 14px 15px !important;
     }
 
     .search-overlap {
@@ -420,7 +420,7 @@
 @media (max-width: 575px) {
 
     .mobile-search-box {
-        padding: 12px 12px 18px;
+        padding: 12px 15px;
     }
 
     .mobile-search-box h3 {

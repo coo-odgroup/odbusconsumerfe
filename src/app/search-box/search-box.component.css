@@ -474,3 +474,69 @@ input {
   visibility: hidden;
 }
 
+/* ===========================
+      MOBILE
+=========================== */
+
+@media (max-width: 768px) {
+
+  .date-input-box .fa-angle-down {
+    display: none;
+  }
+
+  .date-input-box {
+    padding-right: 15px;
+    border-radius: 10px;
+  }
+
+  /* Calendar popup */
+  .calendar-popup {
+    width: 290px;
+    left: 0;
+    top: 54px;
+    border-radius: 12px;
+  }
+
+  /* Header */
+  .calendar-header {
+    height: 48px;
+    padding: 0 10px;
+  }
+
+  .month-title {
+    font-size: 16px;
+  }
+
+  .nav-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  /* Week names */
+  .week-row {
+    gap: 2px;
+    padding: 4px;
+  }
+
+  .week-row span {
+    font-size: 11px;
+    padding: 6px 0;
+    margin: 0;
+    border-radius: 4px;
+  }
+
+  /* Days */
+  .days-grid {
+    gap: 3px;
+    padding: 10px 10px 16px;
+  }
+
+  .day {
+    width: 34px;
+    height: 34px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+}
