@@ -67,7 +67,6 @@ export const DATEPICKER_VALUE_ACCESSOR = {
   providers: [DatePipe, NgbActiveModal],
 })
 export class SearchComponent implements OnInit {
-
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
@@ -119,10 +118,10 @@ export class SearchComponent implements OnInit {
 
   _albums = [];
   // Function to call when the date changes.
-  onChange = (date?: Date) => { };
+  onChange = (date?: Date) => {};
 
   // Function to call when the date picker is touched
-  onTouched = () => { };
+  onTouched = () => {};
 
   writeValue(value: Date) {
     if (!value) return;
@@ -369,15 +368,15 @@ export class SearchComponent implements OnInit {
             term === ''
               ? []
               : this.location_list
-                .filter(
-                  (v) =>
-                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                    (v.synonym != '' &&
-                      v.synonym != null &&
-                      v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
-                      -1),
-                )
-                .slice(0, 10),
+                  .filter(
+                    (v) =>
+                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                      (v.synonym != '' &&
+                        v.synonym != null &&
+                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                          -1),
+                  )
+                  .slice(0, 10),
           ),
         );
       this.formatter = (x: { name: string }) => x.name;
@@ -2213,6 +2212,11 @@ export class SearchComponent implements OnInit {
 
   toggleShow() {
     this.isShown = !this.isShown;
+    this.selectedDateText = this.entdate;
+
+    const [day, month, year] = this.entdate.split('-');
+    this.calendarSelectedDate = new Date(+year, +month - 1, +day);
+    this.generateCalendar();
   }
 
   formattedDate(entdate) {
@@ -2718,7 +2722,6 @@ export class SearchComponent implements OnInit {
 
     this.generateCalendar();
 
-
     // this.seoContent();
   }
 
@@ -3051,43 +3054,86 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  generateCalendar() {
+  // generateCalendar() {
 
+  //   this.calendarDays = [];
+
+  //   const firstDay = new Date(this.currentYear, this.currentMonth, 1).getDay();
+
+  //   const totalDays = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
+
+  //   for (let i = 0; i < firstDay; i++) {
+  //     this.calendarDays.push(null);
+  //   }
+
+  //   const today = new Date();
+
+  //   for (let d = 1; d <= totalDays; d++) {
+
+  //     this.calendarDays.push({
+  //       date: d,
+  //       today:
+  //         d === today.getDate() &&
+  //         this.currentMonth === today.getMonth() &&
+  //         this.currentYear === today.getFullYear(),
+
+  //       selected:
+  //         this.calendarSelectedDate &&
+  //         d === this.calendarSelectedDate.getDate() &&
+  //         this.currentMonth === this.calendarSelectedDate.getMonth() &&
+  //         this.currentYear === this.calendarSelectedDate.getFullYear(),
+
+  //       disabled: false
+  //     });
+
+  //   }
+  // }
+
+  generateCalendar() {
     this.calendarDays = [];
 
-    const firstDay = new Date(this.currentYear, this.currentMonth, 1).getDay();
+    const firstDay = new Date(this.currentYear, this.currentMonth, 1);
 
-    const totalDays = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
+    const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
 
-    for (let i = 0; i < firstDay; i++) {
+    const firstWeekDay = firstDay.getDay();
+
+    const totalDays = lastDay.getDate();
+
+    for (let i = 0; i < firstWeekDay; i++) {
       this.calendarDays.push(null);
     }
 
     const today = new Date();
 
     for (let d = 1; d <= totalDays; d++) {
+      const fullDate = new Date(this.currentYear, this.currentMonth, d);
+
+      const isToday = fullDate.toDateString() === today.toDateString();
+
+      const selected =
+        this.calendarSelectedDate &&
+        fullDate.toDateString() === this.calendarSelectedDate.toDateString();
+
+      const disabled =
+        fullDate <
+        new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
       this.calendarDays.push({
         date: d,
-        today:
-          d === today.getDate() &&
-          this.currentMonth === today.getMonth() &&
-          this.currentYear === today.getFullYear(),
 
-        selected:
-          this.calendarSelectedDate &&
-          d === this.calendarSelectedDate.getDate() &&
-          this.currentMonth === this.calendarSelectedDate.getMonth() &&
-          this.currentYear === this.calendarSelectedDate.getFullYear(),
+        fullDate,
 
-        disabled: false
+        today: isToday,
+
+        selected,
+
+        disabled,
       });
-
     }
   }
 
   previousMonth() {
-
     this.currentMonth--;
 
     if (this.currentMonth < 0) {
@@ -3099,7 +3145,6 @@ export class SearchComponent implements OnInit {
   }
 
   nextMonth() {
-
     this.currentMonth++;
 
     if (this.currentMonth > 11) {
@@ -3111,13 +3156,12 @@ export class SearchComponent implements OnInit {
   }
 
   selectDate(day: any) {
-
     if (!day) return;
 
     this.calendarSelectedDate = new Date(
       this.currentYear,
       this.currentMonth,
-      day.date
+      day.date,
     );
 
     this.selectedDateText =
@@ -3131,8 +3175,8 @@ export class SearchComponent implements OnInit {
       entry_date: {
         day: day.date,
         month: this.currentMonth + 1,
-        year: this.currentYear
-      }
+        year: this.currentYear,
+      },
     });
 
     this.calendarOpen = false;
