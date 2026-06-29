@@ -71,87 +71,87 @@ export function app(): express.Express {
       // Static Pages
       xml += `
         <url>
-          <loc>`+API_URL+`/</loc>
+          <loc>`+URL+`</loc>
           <changefreq>daily</changefreq>
           <priority>1.0</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/about-us</loc>
+          <loc>`+URL+`about-us</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/operators</loc>
+          <loc>`+URL+`operators</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/routes</loc>
+          <loc>`+URL+`routes</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/offers</loc>
+          <loc>`+URL+`offers</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/testimonials</loc>
+          <loc>`+URL+`testimonials</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/careers</loc>
+          <loc>`+URL+`careers</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/contact-us</loc>
+          <loc>`+URL+`contact-us</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/faq</loc>
+          <loc>`+URL+`faq</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/terms-conditions</loc>
+          <loc>`+URL+`terms-conditions</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/privacy-policy</loc>
+          <loc>`+URL+`privacy-policy</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/404</loc>
+          <loc>`+URL+`404</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/thank-you</loc>
+          <loc>`+URL+`thank-you</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/signup</loc>
+          <loc>`+URL+`signup</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/login</loc>
+          <loc>`+URL+`login</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/thankyou</loc>
+          <loc>`+URL+`thankyou</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+API_URL+`/blog</loc>
+          <loc>`+URL+`blog</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
