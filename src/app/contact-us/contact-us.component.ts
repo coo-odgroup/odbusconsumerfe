@@ -226,7 +226,7 @@ export class ContactUsComponent implements OnInit {
     this.generateCaptcha();
 
     this.masterSettingRecord = this.commonService.commonData;
-    console.log(this.masterSettingRecord.common.office_address_map);
+    // console.log(this.masterSettingRecord.common.office_address_map);
   }
 
   generateCaptcha() {

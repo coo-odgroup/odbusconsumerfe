@@ -203,7 +203,7 @@ export class BookingComponent implements OnInit {
       this.bookingdata = JSON.parse(this.bookingdata);
       this.busRecord = JSON.parse(this.busRecord);
       if (this.busRecord.couponDetails != null && this.busRecord.couponDetails.length > 0) {
-        console.log(this.busRecord.couponDetails[0].coupon_code);
+        // console.log(this.busRecord.couponDetails[0].coupon_code);
         this.autoApplyCouponcode = this.busRecord.couponDetails[0].coupon_code;
       }
 
@@ -222,13 +222,13 @@ export class BookingComponent implements OnInit {
       // this.bookingdata.boardingPoint=brdTm_arr[0];
       // this.bookingdata.droppingPoint=drpTm_arr[0];
       // this.busRecord.departureTime=brdTm_arr[1];
-      // this.busRecord.arrivalTime=drpTm_arr[1]; 
+      // this.busRecord.arrivalTime=drpTm_arr[1];
 
       // if(this.bookingdata.UpperBerthSeats.length){
       //   this.total_seat_name =this.total_seat_name.concat(this.bookingdata.UpperBerthSeats);
       //   this.ub_seats = this.ub_seats.concat(this.bookingdata.UpperBerthSeats);
 
-      // } 
+      // }
 
       // if(this.bookingdata.LowerBerthSeats.length){
       //   this.total_seat_name =this.total_seat_name.concat(this.bookingdata.LowerBerthSeats);
@@ -343,8 +343,8 @@ export class BookingComponent implements OnInit {
 
     // for(let i=0;i< this.bookingdata.Lowerberth.length ;i++){
     //   let seat= this.bookingdata.Lowerberth[i];
-    //    passengerList.push(this.createItem(seat,this.busRecord.seaterPrice)); 
-    // }  
+    //    passengerList.push(this.createItem(seat,this.busRecord.seaterPrice));
+    // }
 
 
     this.couponForm = this.fb.group({
@@ -390,7 +390,7 @@ export class BookingComponent implements OnInit {
       let seat_ar = this.bookingdata.Lowerberth[i].split('-');
       let seat = seat_ar[0];
       if (seat == seat_id) {
-        console.log(seat_ar[1]);
+        // console.log(seat_ar[1]);
         return seat_ar[1];
         //return this.bookingdata.LowerBerthSeats[i]
       }
@@ -530,8 +530,8 @@ export class BookingComponent implements OnInit {
       this.spinner.show();
       this.passengerData = this.bookForm1.value;
 
-      console.log(this.passengerData);
-      console.log("Working");
+      // console.log(this.passengerData);
+      // console.log("Working");
       //  return;
 
       this.bookticketService.book(this.passengerData).subscribe(
@@ -660,7 +660,7 @@ export class BookingComponent implements OnInit {
       }
 
       this.spinner.show();
-      ///// call to make payment API to get RazorPayment Order ID and Total price   
+      ///// call to make payment API to get RazorPayment Order ID and Total price
 
       const paymentParam = {
         "busId": this.busRecord.busId,
@@ -688,16 +688,16 @@ export class BookingComponent implements OnInit {
             if(res.data=='SEAT UN-AVAIL'){
               this.notify.notify(res.message,"Error");
             }else{
-              this.MakePaymnetResponse=res.data;          
+              this.MakePaymnetResponse=res.data;
              // this.OpenRazorpayModal();
                 this.cashfressRedirect();
             }
 
           }else{
             this.notify.notify(res.message,"Error");
-          } 
+          }
 
-          this.spinner.hide();  
+          this.spinner.hide();
 
       });
 
@@ -716,7 +716,7 @@ export class BookingComponent implements OnInit {
       //         localStorage.setItem('od_success_email', this.passengerData.customerInfo.email);
       //         localStorage.setItem('od_success_phone', this.passengerData.customerInfo.phone);
       //         localStorage.setItem('od_razor_id', this.pp_orderId);
-      //         // console.log(res)  
+      //         // console.log(res)
       //         this.pp_orderId = this.MakePaymnetResponse.pp_resp.original.orderId;
       //         // console.log(this.MakePaymnetResponse.pp_resp.original.redirectUrl)
 
@@ -843,24 +843,24 @@ export class BookingComponent implements OnInit {
                   max-width:1320px !important;
                   margin:0 auto ;
               }
-              
+
               .od-body{
                   border:3px solid #323232;
                   padding: 25px;
                   margin-top: 20px;
               }
-              
+
               .row {
                display: flex;
                flex-wrap: wrap;
                margin-right: -15px;
                margin-left: -15px;
               }
-              
+
               .od-logo{
                  height: 80px;
               }
-              
+
               .odtext24 h3{
                  font-size:20px;
                  text-align: left;
@@ -868,7 +868,7 @@ export class BookingComponent implements OnInit {
                  font-weight:600;
                  color: #323232;
               }
-              
+
               .odtext32{
                  font-size:28px;
                  text-align: center;
@@ -877,11 +877,11 @@ export class BookingComponent implements OnInit {
                  padding-top: 8px;
                  color: #043c5d;
               }
-              
+
               .odtext32 span{
                  font-weight: 800;
               }
-              
+
               .od-bktext{
                  font-size:18px;
                  text-align: center;
@@ -904,35 +904,35 @@ export class BookingComponent implements OnInit {
                margin-top: 35px;
               }
               .mb25{
-                 
+
                  margin-bottom: 35px;
               }
-              
+
               .mb40{
                  margin-bottom: 40px;
               }
-              
+
               .odbox1{
                border: 1px solid #c4c4c4;
                padding:25px 15px;
               }
-              
+
               .odbox1 ol{
                margin-left: -20px;
               }
-              
+
               .odbox2{
                border: 1px solid #000000;
                padding:25px 15px;
               }
-              
+
               .odbox2 p{
                font-size:18px;
                color: #000000;
                font-weight: 600;
                margin-bottom: 8px;
               }
-              
+
               .odbox3 p{
                font-size:18px;
                color: #000000;
@@ -977,7 +977,7 @@ export class BookingComponent implements OnInit {
 
     const storedData = localStorage.getItem('commonDetails');
 
-    console.log(storedData);
+    // console.log(storedData);
     if (storedData) {
       const resp = JSON.parse(storedData);
       this.masterSettingRecord = resp.data;
@@ -1005,7 +1005,7 @@ export class BookingComponent implements OnInit {
     // this.commonService.getCommonData(data).subscribe(
     //   resp => {
     //     localStorage.setItem('commonData', JSON.stringify(resp.data));
-    //     this.masterSettingRecord=resp.data; 
+    //     this.masterSettingRecord=resp.data;
     //     this.customer_gst=this.masterSettingRecord.common.customer_gst;
     //   });
 
@@ -1094,14 +1094,14 @@ export class BookingComponent implements OnInit {
     } else {
       this.errorMessage = 'Incorrect answer. Please try again.';
       this.captchaValidated = false;
-      console.log(this.errorMessage);
+      // console.log(this.errorMessage);
     }
 
 
   }
 
   async cashfressRedirect() {
-    console.log(this.MakePaymnetResponse);
+    // console.log(this.MakePaymnetResponse);
     //console.log(this.MakePaymnetResponse.razorpay_order_id.payment_session_id);
     //console.log(this.MakePaymnetResponse.razorpay_order_id.receipt_id);
     const cashfree = await load({

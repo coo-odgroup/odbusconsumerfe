@@ -86,7 +86,7 @@ export class OtpComponent implements OnInit {
 
 
   handleEvent(event: any) {
-    console.log(event.action);
+    // console.log(event.action);
     if (event.action === 'done') {
 
       this.ResendOtp = true;
@@ -179,7 +179,7 @@ export class OtpComponent implements OnInit {
 
               this.ResendTimer = true;
               this.loginService.setAlert("OTP has been sent to " + via);
-              //this.notify.notify("OTP has been sent to "+via,"Success"); 
+              //this.notify.notify("OTP has been sent to "+via,"Success");
             }
           }
           this.spinner.hide();
@@ -220,7 +220,7 @@ export class OtpComponent implements OnInit {
 
     this.userId = localStorage.getItem('userId');
 
-    console.log(this.userId);
+    // console.log(this.userId);
 
     if (this.userId == '' || this.userId == null) {
       this.router.navigate(['']);

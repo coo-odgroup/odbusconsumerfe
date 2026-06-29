@@ -138,7 +138,7 @@ export class OffersComponent implements OnInit {
     navigator.clipboard
       .writeText(code)
       .then(() => {
-        console.log('Coupon copied:', code);
+        // console.log('Coupon copied:', code);
         alert('Coupon copied!');
       })
       .catch((err) => {

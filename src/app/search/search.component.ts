@@ -1460,6 +1460,7 @@ export class SearchComponent implements OnInit {
     ) {
       this.notify.notify('Same Search Already Exists!', 'Error');
       this.toggleShow();
+      this.modalService.dismissAll();
       return false;
     }
 
@@ -2216,6 +2217,14 @@ export class SearchComponent implements OnInit {
 
     const [day, month, year] = this.entdate.split('-');
     this.calendarSelectedDate = new Date(+year, +month - 1, +day);
+    this.searchForm.patchValue({
+      entry_date: {
+        day: +day,
+        month: +month,
+        year: +year,
+      },
+    });
+
     this.generateCalendar();
   }
 
@@ -2996,6 +3005,23 @@ export class SearchComponent implements OnInit {
   modify_search(modify: any, event?: Event) {
     event?.preventDefault();
     event?.stopPropagation();
+
+    // Added by Jagan
+    this.selectedDateText = this.entdate;
+
+    const [day, month, year] = this.entdate.split('-');
+    this.calendarSelectedDate = new Date(+year, +month - 1, +day);
+
+    this.searchForm.patchValue({
+      entry_date: {
+        day: +day,
+        month: +month,
+        year: +year,
+      },
+    });
+
+    // Added by Jagan
+
     this.modalService.open(modify, { windowClass: 'mobile-modalbox' });
   }
 
@@ -3089,15 +3115,57 @@ export class SearchComponent implements OnInit {
   //   }
   // }
 
+  // generateCalendar() {
+  //   this.calendarDays = [];
+
+  //   const firstDay = new Date(this.currentYear, this.currentMonth, 1);
+
+  //   const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
+
+  //   const firstWeekDay = firstDay.getDay();
+
+  //   const totalDays = lastDay.getDate();
+
+  //   for (let i = 0; i < firstWeekDay; i++) {
+  //     this.calendarDays.push(null);
+  //   }
+
+  //   const today = new Date();
+
+  //   for (let d = 1; d <= totalDays; d++) {
+  //     const fullDate = new Date(this.currentYear, this.currentMonth, d);
+
+  //     const isToday = fullDate.toDateString() === today.toDateString();
+
+  //     const selected =
+  //       this.calendarSelectedDate &&
+  //       fullDate.toDateString() === this.calendarSelectedDate.toDateString();
+
+  //     const disabled =
+  //       fullDate <
+  //       new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+  //     this.calendarDays.push({
+  //       date: d,
+
+  //       fullDate,
+
+  //       today: isToday,
+
+  //       selected,
+
+  //       disabled,
+  //     });
+  //   }
+  // }
+
   generateCalendar() {
     this.calendarDays = [];
 
     const firstDay = new Date(this.currentYear, this.currentMonth, 1);
-
     const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
 
     const firstWeekDay = firstDay.getDay();
-
     const totalDays = lastDay.getDate();
 
     for (let i = 0; i < firstWeekDay; i++) {
@@ -3105,6 +3173,23 @@ export class SearchComponent implements OnInit {
     }
 
     const today = new Date();
+
+    // Remove time portion
+    const minDate = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate(),
+    );
+
+    // Allow booking till exactly 1 month from today
+    // const maxDate = new Date(
+    //   today.getFullYear(),
+    //   today.getMonth() + 1,
+    //   today.getDate(),
+    // );
+
+    const maxDate = new Date(today);
+    maxDate.setDate(today.getDate() + 29);
 
     for (let d = 1; d <= totalDays; d++) {
       const fullDate = new Date(this.currentYear, this.currentMonth, d);
@@ -3115,19 +3200,14 @@ export class SearchComponent implements OnInit {
         this.calendarSelectedDate &&
         fullDate.toDateString() === this.calendarSelectedDate.toDateString();
 
-      const disabled =
-        fullDate <
-        new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      // Disable dates before today OR after one month
+      const disabled = fullDate < minDate || fullDate > maxDate;
 
       this.calendarDays.push({
         date: d,
-
         fullDate,
-
         today: isToday,
-
         selected,
-
         disabled,
       });
     }

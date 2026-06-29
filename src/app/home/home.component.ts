@@ -48,21 +48,14 @@ import { AfterViewInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
   providers: [DatePipe, NgbActiveModal, NgbAlertConfig],
 })
-
-
 export class HomeComponent implements OnInit, AfterViewInit {
-
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-
     const target = event.target as HTMLElement;
 
     if (!target.closest('.custom-date-picker')) {
-
       this.calendarOpen = false;
-
     }
-
   }
 
   // =======================
@@ -243,10 +236,14 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     if (isPlatformServer(this.platformId) && this.request) {
       const userAgent =
         (this.request.headers &&
-          (this.request.headers['user-agent'] || this.request.headers['User-Agent'])) ||
-        (typeof this.request.get === 'function' && this.request.get('user-agent')) ||
+          (this.request.headers['user-agent'] ||
+            this.request.headers['User-Agent'])) ||
+        (typeof this.request.get === 'function' &&
+          this.request.get('user-agent')) ||
         '';
-      return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(userAgent);
+      return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(
+        userAgent,
+      );
     }
 
     return false;
@@ -345,15 +342,15 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
             term === ''
               ? []
               : this.location_list
-                .filter(
-                  (v) =>
-                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                    (v.synonym != '' &&
-                      v.synonym != null &&
-                      v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
-                      -1),
-                )
-                .slice(0, 10),
+                  .filter(
+                    (v) =>
+                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                      (v.synonym != '' &&
+                        v.synonym != null &&
+                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                          -1),
+                  )
+                  .slice(0, 10),
           ),
         );
 
@@ -547,105 +544,95 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   }
 
   toggleCalendar() {
-    console.log('toggleCalendar called');
+    // console.log('toggleCalendar called');
     this.calendarOpen = !this.calendarOpen;
 
     if (this.calendarOpen) {
       this.generateCalendar();
     }
 
-    console.log(this.calendarOpen);
+    // console.log(this.calendarOpen);
   }
 
   generateCalendar() {
-
     this.calendarDays = [];
 
     const firstDay = new Date(this.currentYear, this.currentMonth, 1);
-
     const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
 
     const firstWeekDay = firstDay.getDay();
-
     const totalDays = lastDay.getDate();
 
     for (let i = 0; i < firstWeekDay; i++) {
-
       this.calendarDays.push(null);
-
     }
 
     const today = new Date();
 
-    for (let d = 1; d <= totalDays; d++) {
+    // Remove time portion
+    const minDate = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate(),
+    );
 
+    // Allow booking till exactly 1 month from today
+    // const maxDate = new Date(
+    //   today.getFullYear(),
+    //   today.getMonth() + 1,
+    //   today.getDate(),
+    // );
+
+    const maxDate = new Date(today);
+    maxDate.setDate(today.getDate() + 29);
+
+    for (let d = 1; d <= totalDays; d++) {
       const fullDate = new Date(this.currentYear, this.currentMonth, d);
 
-      const isToday =
-        fullDate.toDateString() === today.toDateString();
+      const isToday = fullDate.toDateString() === today.toDateString();
 
       const selected =
         this.calendarSelectedDate &&
         fullDate.toDateString() === this.calendarSelectedDate.toDateString();
 
-      const disabled = fullDate < new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate()
-      );
+      // Disable dates before today OR after one month
+      const disabled = fullDate < minDate || fullDate > maxDate;
 
       this.calendarDays.push({
-
         date: d,
-
         fullDate,
-
         today: isToday,
-
         selected,
-
-        disabled
-
+        disabled,
       });
-
     }
-
   }
 
   previousMonth() {
-
     this.currentMonth--;
 
     if (this.currentMonth < 0) {
-
       this.currentMonth = 11;
 
       this.currentYear--;
-
     }
 
     this.generateCalendar();
-
   }
 
   nextMonth() {
-
     this.currentMonth++;
 
     if (this.currentMonth > 11) {
-
       this.currentMonth = 0;
 
       this.currentYear++;
-
     }
 
     this.generateCalendar();
-
   }
 
   selectDate(day: any) {
-
     if (!day || day.disabled) return;
 
     this.calendarSelectedDate = day.fullDate;
@@ -661,17 +648,15 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
     // Store in Reactive Form
     this.searchForm.patchValue({
-      entry_date: `${dd}-${mm}-${yyyy}`
+      entry_date: `${dd}-${mm}-${yyyy}`,
     });
 
     this.calendarOpen = false;
 
     this.generateCalendar();
-
   }
 
   selectToday() {
-
     const today = new Date();
 
     this.currentMonth = today.getMonth();
@@ -681,13 +666,11 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     this.selectDate({
       fullDate: today,
       date: today.getDate(),
-      disabled: false
+      disabled: false,
     });
-
   }
 
   selectTomorrow() {
-
     const tomorrow = new Date();
 
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -699,9 +682,8 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     this.selectDate({
       fullDate: tomorrow,
       date: tomorrow.getDate(),
-      disabled: false
+      disabled: false,
     });
-
   }
 
   menu() {
@@ -830,10 +812,10 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       if (el) {
         try {
           el.focus();
-        } catch (e) { }
+        } catch (e) {}
         try {
           el.click();
-        } catch (e) { }
+        } catch (e) {}
       }
     }
   }

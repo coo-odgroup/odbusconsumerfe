@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-   
+
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -21,7 +21,7 @@ export class MakepaymentService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getOrderid(params :any): Observable<any> { 
+  getOrderid(params :any): Observable<any> {
 
     return this.httpClient.post<any>(this.apiURL + '/MakePayment' , JSON.stringify(params) ,this.httpOptions)
     .pipe(
@@ -35,14 +35,14 @@ export class MakepaymentService {
       errorMessage = error.error.message;
     } else {
       errorMessage = error;
-      
+
       //`Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
  }
 
  paymentStatus(params:any): Observable<any> {
-  console.log(params)
+  // console.log(params)
   return this.httpClient.post<any>(this.apiURL + '/paymentStatus' , JSON.stringify(params) ,this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
