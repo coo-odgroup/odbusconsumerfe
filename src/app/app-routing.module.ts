@@ -21,6 +21,7 @@ import { ProfiledeleteComponent } from './profiledelete/profiledelete.component'
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { CommonContentComponent } from './common-content/common-content.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
+import { OnlinebusticketsComponent } from './onlinebustickets/onlinebustickets.component';
 
 const userRoutePaths = [
   'wallet',
@@ -160,6 +161,10 @@ export const routes: Routes = [
   {
     path: 'sitemap',
     component: SitemapComponent,
+  },
+  {
+    path: 'online-bus-tickets',
+    component: OnlinebusticketsComponent,
   },
   // { path: 'payment-failed',component:PaymentFailedComponent},
   { path: '**', component: PageErrorComponent },

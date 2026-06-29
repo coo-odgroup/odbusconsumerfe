@@ -61,6 +61,7 @@ import { MobileAppDownloadComponent } from './home/mobile-app-download/mobile-ap
 import { SharedModule } from './shared/shared.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SitemapComponent } from './sitemap/sitemap.component';
+import { OnlinebusticketsComponent } from './onlinebustickets/onlinebustickets.component';
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -114,7 +115,8 @@ const ngWizardConfig: NgWizardConfig = {
     SearchBoxComponent,
     SearchBoxMComponent,
     MobileAppDownloadComponent,
-    SitemapComponent
+    SitemapComponent,
+    OnlinebusticketsComponent
   ],
   imports: [
     // BrowserAnimationsModule,

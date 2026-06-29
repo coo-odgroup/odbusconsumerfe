@@ -41,9 +41,12 @@ global['CSS'] = null;
 global['Prism'] = null;
 
 import axios from 'axios';
+import { GlobalConstants } from 'src/app/constants/global-constants';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
+  const API_URL = GlobalConstants.BASE_URL;
+  const URL = GlobalConstants.URL;
   const server = express();
   const distFolder = join(process.cwd(), 'dist/consumerfenew/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html'))
@@ -54,7 +57,7 @@ export function app(): express.Express {
   server.get('/sitemap.xml', async (req, res) => {
     try {
       const response = await axios.get(
-        'https://testing.odbus.co.in/api/getSchemaUrls',
+        API_URL+'/getSchemaUrls',
       );
 
       const routes = response.data.data.routes;
@@ -68,87 +71,87 @@ export function app(): express.Express {
       // Static Pages
       xml += `
         <url>
-          <loc>https://www.odbus.in/</loc>
+          <loc>`+API_URL+`/</loc>
           <changefreq>daily</changefreq>
           <priority>1.0</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/about-us</loc>
+          <loc>`+API_URL+`/about-us</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/operators</loc>
+          <loc>`+API_URL+`/operators</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/routes</loc>
+          <loc>`+API_URL+`/routes</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/offers</loc>
+          <loc>`+API_URL+`/offers</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/testimonials</loc>
+          <loc>`+API_URL+`/testimonials</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/careers</loc>
+          <loc>`+API_URL+`/careers</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/contact-us</loc>
+          <loc>`+API_URL+`/contact-us</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/faq</loc>
+          <loc>`+API_URL+`/faq</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/terms-conditions</loc>
+          <loc>`+API_URL+`/terms-conditions</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/privacy-policy</loc>
+          <loc>`+API_URL+`/privacy-policy</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/404</loc>
+          <loc>`+API_URL+`/404</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/thank-you</loc>
+          <loc>`+API_URL+`/thank-you</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/signup</loc>
+          <loc>`+API_URL+`/signup</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/login</loc>
+          <loc>`+API_URL+`/login</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/thankyou</loc>
+          <loc>`+API_URL+`/thankyou</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>https://www.odbus.in/blog</loc>
+          <loc>`+API_URL+`/blog</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
@@ -157,7 +160,7 @@ export function app(): express.Express {
       // Dynamic Routes
       routes.forEach((route: any) => {
         const url =
-          `https://www.odbus.in/routes/` +
+          URL+`routes/` +
           `${route.source_slug}-` +
           `${route.destination_slug}-bus-services`;
 
@@ -173,7 +176,7 @@ export function app(): express.Express {
       // Dynamic Operators
       operators.forEach((operator: any) => {
         const operatorUrl =
-          `https://www.odbus.in/operators/` +
+          URL+`operators/` +
           `${operator.operator_url}`;
 
         xml += `
