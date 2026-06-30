@@ -16,8 +16,14 @@
     </section>
 
     <!-- Search -->
-    <section class="search-wrapper">
-            <app-search-box></app-search-box>
+    <!-- Desktop & Tablet -->
+    <section class="search-wrapper d-none d-md-block">
+        <app-search-box></app-search-box>
+    </section>
+
+    <!-- Mobile -->
+    <section class="d-block d-md-none">
+        <app-search-box-m></app-search-box-m>
     </section>
 
     <!-- Content -->

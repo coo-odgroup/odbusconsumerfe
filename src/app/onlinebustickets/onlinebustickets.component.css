@@ -203,62 +203,93 @@ MOBILE
 @media (max-width: 991px) {
 
     .container {
-
         padding: 0 15px;
     }
 
+    /*=========================================
+      HEADER
+    =========================================*/
+
     .page-header {
-
-        height: 165px;
-
-        padding: 20px 0 0;
-    }
-
-    .breadcrumb {
-
-        font-size: 12px;
-
-        padding: 8px 12px;
-
-        margin-bottom: 14px;
+        background: linear-gradient(135deg, #1b3c6b, #2f5aa8) !important;
+        height: auto;
+        min-height: auto;
+        padding: 12px 0;
     }
 
     .page-header h1 {
-
-        font-size: 24px;
+        display: none;
     }
+
+    /*=========================================
+      BREADCRUMB
+    =========================================*/
+
+    .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        width: 100%;
+
+        margin: 0;
+        padding: 0;
+
+        background: transparent;
+        border-radius: 0;
+
+        font-size: 13px;
+    }
+
+    .breadcrumb a,
+    .breadcrumb span {
+        color: #ffffff;
+    }
+
+    /*=========================================
+      SEARCH
+    =========================================*/
 
     .search-wrapper {
-
-        margin-top: -30px;
+        display: none;
+        margin-top: 0;
     }
 
-    .content-wrapper {
+    /*=========================================
+      CONTENT
+    =========================================*/
 
+    .content-wrapper {
         padding: 20px 0 40px;
     }
 
     .content-card {
-
         padding: 22px;
-
         border-radius: 14px;
     }
 
+    /*=========================================
+      TYPOGRAPHY
+    =========================================*/
+
     ::ng-deep .section-block h1,
     ::ng-deep .section-block h2,
-    ::ng-deep .section-block h3 {
-
+    ::ng-deep .section-block h3,
+    ::ng-deep .section-block h4,
+    ::ng-deep .section-block h5,
+    ::ng-deep .section-block h6 {
         font-size: 22px;
     }
 
     ::ng-deep .section-block p,
     ::ng-deep .section-block ul li,
     ::ng-deep .section-block ol li {
-
         font-size: 15px;
-
         line-height: 1.8;
+    }
+
+    ::ng-deep .search-box-v5{
+        margin: 0 !important;
     }
 
 }
