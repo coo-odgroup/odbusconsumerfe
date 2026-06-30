@@ -147,6 +147,7 @@ export class AppComponent {
   // }
 
   ngOnInit() {
+    this.checkLocalStorageVersion();
     this.seoService.getOrganizationSchema().subscribe((res: any) => {
       this.seoService.addOrganizationSchema(res.organization_schema);
     });
@@ -221,6 +222,23 @@ export class AppComponent {
           console.error('Error fetching Data:', error);
         },
       );
+    }
+  }
+
+  checkLocalStorageVersion(): void {
+    const STORAGE_VERSION = '1'; // Increase this whenever localStorage structure changes
+
+    const currentVersion = localStorage.getItem('storage_version');
+
+    if (currentVersion !== STORAGE_VERSION) {
+      // Clear all old local storage
+      localStorage.clear();
+
+      // Save new version
+      localStorage.setItem('storage_version', STORAGE_VERSION);
+
+      // Reload once
+      window.location.reload();
     }
   }
 
