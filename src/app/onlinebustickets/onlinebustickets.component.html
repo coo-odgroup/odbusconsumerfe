@@ -1,11 +1,11 @@
-<section class="odbus-advantage-page">
+<section class="bus-ticket-page">
 
-    <!-- HEADER -->
-    <div class="odbus-header">
+    <!-- Header -->
+    <section class="page-header">
         <div class="container">
 
-            <div class="odbus-breadcrumb">
-                <a href="/">Home</a>
+            <div class="breadcrumb">
+                <a routerLink="/">Home</a>
                 <span>›</span>
                 <span>{{ pageTitle }}</span>
             </div>
@@ -13,38 +13,26 @@
             <h1>{{ pageTitle }}</h1>
 
         </div>
-    </div>
+    </section>
 
-    <!-- CONTENT -->
-    <div class="container odbus-content">
+    <!-- Search -->
+    <section class="search-wrapper">
+            <app-search-box></app-search-box>
+    </section>
 
-        <div class="odbus-card combined-card">
+    <!-- Content -->
+    <section class="content-wrapper">
 
-            <div class="section-block" [innerHTML]="pageContent"></div>
-        </div>
+        <div class="container">
 
-        <!-- FAQ -->
-        <!-- <div class="odbus-card faq-section">
+            <div class="content-card">
 
-            <h3>Frequently Asked Questions</h3>
-
-            <div class="faq-item" *ngFor="let faq of faqs; let i = index">
-
-                <div class="faq-question" (click)="toggleFaq(i)">
-                    <span class="faq-title">
-                        {{ i + 1 }}. {{ faq.question }}
-                    </span>
-
-                    <span class="faq-icon" [class.open]="faq.isOpen">
-                        <i class="fas fa-chevron-down"></i>
-                    </span>
-                </div>
-
-                <div class="faq-answer" *ngIf="faq.isOpen" [innerHTML]="faq.answer"></div>
+                <div class="section-block" [innerHTML]="pageContent"></div>
 
             </div>
 
-        </div> -->
+        </div>
 
-    </div>
+    </section>
+
 </section>
