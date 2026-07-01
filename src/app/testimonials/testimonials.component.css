@@ -154,13 +154,13 @@ span.stars span {
     top: 0;
     box-shadow: 0 3px 10px #0003;
   }
-  
+
   .mobile-mybooking-top .mob-arrow-left i{
-    font-size:30px;
+    font-size:25px;
     color: #072c6b;
     margin-top:10px;
   }
-  
+
   .mobile-mybooking-top .mob-list-center h5{
     color: #072c6b;
     font-size:20px;
@@ -169,17 +169,17 @@ span.stars span {
     padding-top:10px;
     padding-left:5px;
     margin-bottom: 4px;
-  
+
   }
-  
+
   .mobile-logo img{
     height:42px;
     float:right;
-  }  
+  }
   .mobile-testimonials-middle{
      margin:88px 20px 30px
   }
-  
+
   .mobile-testimonials-middle h4{
      font-size: 18px;
     color: #072c6b;
@@ -187,7 +187,7 @@ span.stars span {
     margin-bottom: 12px;
     text-align: center;
   }
-  
+
   .mobile-testimonials-middle .de-angu3{
       width: 100%;
       background: #fff 0 0 no-repeat padding-box;
@@ -200,29 +200,29 @@ span.stars span {
       margin-bottom: 12px;
       min-height: unset !important;
   }
-  
+
   .mobile-testimonials-middle .review-gicon{
       width: 35px;
       position: absolute;
       right: 15px;
       top: 15px;
   }
-  
+
   .mobile-testimonials-middle .review-gicon img{
       width: 100%;
   }
-  
+
   .mobile-testimonials-middle .de-angu3 h4{
       font-size: 18px;
       font-weight: 600;
       text-align: left;
   }
-  
+
   .mobile-testimonials-middle .box{
       margin-bottom: 20px;
       min-height: unset !important;
   }
-  
+
   .mobile-testimonials-middle .box p{
       /* -webkit-line-clamp: 6; */
       -webkit-box-orient: vertical;
@@ -235,24 +235,24 @@ span.stars span {
       line-height:24px;
       font-weight:500;
   }
-  
+
   .mobile-testimonials-middle .item{
       margin-bottom: 8px;
       display: inline-block;
       width: 100%;
   }
-  
+
   .mobile-testimonials-middle .item img{
       max-width: 40px;
       float: left;
       margin-right: 12px;
       margin-top: 0;
   }
-  
+
   .mobile-testimonials-middle .place{
       font-size: 16px;
   }
-  
+
   .mobile-fixed-bottom {
     position: fixed;
     right: 0;
@@ -263,25 +263,25 @@ span.stars span {
   .mobile-fixed-bottom .home{
     color: #323232;
   }
-  
+
   .mobile-fixed-bottom .home i{
     font-size: 24px;
   }
-  
+
   .mobile-fixed-bottom .active{
     color: #efc003;
   }
-  
+
   .mobile-fixed-bottom .active p{
     color: #efc003 !important;
   }
-  
+
   .mobile-fixed-bottom .home p{
     color: #323232;
     font-size:16px;
     font-weight: 600;
   }
-  
+
   .mobile-bg-danger {
     background-color: #ffffff!important;
     padding-top:12px;
@@ -290,7 +290,7 @@ span.stars span {
    -moz-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
    box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
   }
-  
+
   .mob-mtbh{
     height: 80px;
   }
@@ -300,8 +300,8 @@ span.stars span {
   .mobile-logo img{
     height:42px;
     float:right;
-  } 
-  
+  }
+
   .mobile-myaccount-top .mob-logintx a{
       float:right;
       font-size:17px;
@@ -318,24 +318,24 @@ span.stars span {
     width: 100%;
     top: 0;
     box-shadow: 0 3px 10px #0003;
-  } 
+  }
 
   .mobile-myaccount-middle{
        margin:88px 20px 60px
    }
 
   .mobile-myaccount-middle .mobile-menu {
-    width:100%; 
+    width:100%;
     list-style-type: none;
-    padding-left: 0px; 
+    padding-left: 0px;
   }
 
   .mobile-myaccount-middle .mobile-menu a {
       background-color: #fff;
-      display: block;   
+      display: block;
       color: #072c6b;
-      padding:8px 18px; 
-      text-decoration: none; 
+      padding:8px 18px;
+      text-decoration: none;
       font-size :17px;
       font-weight: 600;
       margin-bottom:10px;
@@ -345,14 +345,14 @@ span.stars span {
   .mobile-myaccount-middle .mobile-menu a i{
     color: #efc003;
     margin-right: 8px;
-  }  
+  }
 
  /* Mobile Menu Section */
 
  .mobile-logo img{
     height:42px;
     float:right;
- } 
+ }
 
 .mobile-myaccount-top .mob-logintx a{
     float:right;
@@ -370,24 +370,24 @@ span.stars span {
   width: 100%;
   top: 0;
   box-shadow: 0 3px 10px #0003;
-} 
+}
 
 .mobile-myaccount-middle{
      margin:88px 20px 60px
  }
 
 .mobile-myaccount-middle .mobile-menu {
-    width:100%; 
+    width:100%;
     list-style-type: none;
-    padding-left: 0px; 
+    padding-left: 0px;
 }
 
 .mobile-myaccount-middle .mobile-menu a {
     background-color: #fff;
-    display: block;   
+    display: block;
     color: #072c6b;
-    padding:8px 18px; 
-    text-decoration: none; 
+    padding:8px 18px;
+    text-decoration: none;
     font-size :17px;
     font-weight: 600;
     margin-bottom:10px;
@@ -397,4 +397,4 @@ span.stars span {
 .mobile-myaccount-middle .mobile-menu a i{
   color: #efc003;
   margin-right: 8px;
-}  
+}

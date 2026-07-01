@@ -3,8 +3,8 @@
     font-size: 16px;
     font-weight: bold;
     border-radius: 3px;
-    opacity: 1;   
-    margin-top: 20px; 
+    opacity: 1;
+    margin-top: 20px;
 }
 
 .pt-40{
@@ -24,7 +24,7 @@
     background: #f8f8f8 0% 0% no-repeat padding-box;
     border: 1px solid #00000026;
     border-radius: 3px;
-    opacity: 1; 
+    opacity: 1;
     padding: 20px 25px;
 }
 
@@ -138,7 +138,7 @@ tbody{
     color: #072C6B;
     font-size: 14px;
     /* text-transform: uppercase; */
-    
+
 }
 .roboto{
     font-size: 14px;
@@ -146,7 +146,7 @@ tbody{
 }
 
 .make-payment{
-    
+
     width: 300px;
     height: 75px;
     background: var(--unnamed-color-efc003) 0% 0% no-repeat padding-box;
@@ -156,7 +156,7 @@ tbody{
     padding-top: 20px;
     margin-bottom: 27px;
     margin-bottom: 15px;
-    
+
 }
 
 .payment_box{
@@ -168,7 +168,7 @@ h4{
     font-weight: bold;
     color: #072C6B;
     text-align: left;
-   
+
 }
 
 .payment-btn{
@@ -199,7 +199,7 @@ input[type="radio"]:checked {
 
     background: transparent url('../../assets/img/Group631.svg') 0% 0% no-repeat padding-box;
 
-    
+
   }
 
   .option > label{
@@ -381,7 +381,7 @@ input[type="radio"]:checked {
  margin-top: 35px;
 }
 .mb25{
-   
+
    margin-bottom: 35px;
 }
 
@@ -427,21 +427,21 @@ input[type="radio"]:checked {
     top: 0;
     box-shadow: 0 3px 10px #0003;
   }
-  
-  
-  
+
+
+
   .mobile-booking-top .mob-arrow-left i{
-    font-size:30px;
+    font-size:25px;
     color: #072c6b;
     margin-top:10px;
   }
 
   .mobile-booking-top .mob-arrow-right i{
-    font-size:30px;
+    font-size:25px;
     color: #072c6b;
     margin-top:10px;
   }
-  
+
   .mobile-booking-top .btn-show-modify{
     background-color: #072c6b;
     border-radius: 4px;
@@ -453,7 +453,7 @@ input[type="radio"]:checked {
     float: right;
     margin-top: 10px;
   }
-  
+
   .mobile-booking-top .mob-list-center h5{
     color: #072c6b;
     font-size:18px;
@@ -466,35 +466,35 @@ input[type="radio"]:checked {
   .mob-bk2 label{
    padding-top:2px !important;
   }
-  
+
   .mobile-booking-top .mob-list-center{
     color: #072c6b;
     font-size: 17px;
     font-weight: 600;
     text-align: center;
   }
-  
+
   .mobile-booking-top .mob-list-center i{
     padding-left:15px;
     padding-right:15px;
   }
-  
+
   .mobile-booking-top .mob-list-center .wh10{
    color: #323232 !important;
    font-size: 15px;
   }
-  
+
   .mobile-booking-middle{
      margin:130px 20px 40px
   }
-  
+
   .mobile-booking-middle h3{
     font-size: 18px;
     color: #002F80;
     font-weight:700;
     margin-bottom:10px;
   }
-  
+
   .mobile-contact-infbox{
     background-color: #ffffff;
     border-radius: 4px;
@@ -509,11 +509,11 @@ input[type="radio"]:checked {
   border: none;
   border-bottom: 2px solid #979494;
   }
-  
+
   .mobile-contact-infbox .form-group input:focus-visible {
     outline: -webkit-focus-ring-color auto 0px;
   }
-  
+
   .mobile-contact-infbox h5{
     font-size: 15px;
     text-align: left;
@@ -521,7 +521,7 @@ input[type="radio"]:checked {
     margin-top: -10px;
     font-weight: 600;
   }
-  
+
   .mobile-contact-infbox h6{
     font-size: 13px;
     text-align: right;
@@ -533,8 +533,8 @@ input[type="radio"]:checked {
   .mob-total{
     font-size:18px !important;
   }
-  
-  
+
+
   .mobile-jou-details{
     color: #002F80;
     font-size:16px;
@@ -542,19 +542,19 @@ input[type="radio"]:checked {
     line-height:16px;
     font-weight: 600;
   }
-  
+
   .mobile-jou-details span{
     color:#787878;
     font-size:14px;
     text-align: left;
     line-height: 28px;
-  
+
   }
-  
+
   .mobile-jou-details .fsm15{
     font-size:16px;
     font-weight: 600;
-  
+
   }
 
   .mobile-contact-infbox .table th{
@@ -563,15 +563,15 @@ input[type="radio"]:checked {
     font-size: 14px;
     color: #615e5e;
   }
-  
+
   .mobile-contact-infbox .table td{
     padding:5px 8px;
     vertical-align: top;
     font-size: 14px;
     color: #002F80;
   }
-  
-  
+
+
   .mobile-booking-bottom{
     background-color: #efc003;
     box-shadow: 0px -2px 6px 0px rgb(0 0 0 / 60%);
@@ -579,7 +579,7 @@ input[type="radio"]:checked {
     padding:12px 15px;
     width: 100%;
   }
-  
+
   .mobile-booking-bottom{
     font-size: 20px;
     text-transform: uppercase;
@@ -588,7 +588,7 @@ input[type="radio"]:checked {
     font-weight: 600;
     border-radius: 0;
   }
- 
+
 
   .mobile-contact-ad  h6{
     font-size: 15px;
@@ -599,7 +599,7 @@ input[type="radio"]:checked {
     margin-bottom: 0;
     line-height: 22px !important;
   }
-  
+
   .mobile-contact-ad  h5{
     font-size: 18px;
     text-align: left;
@@ -609,16 +609,16 @@ input[type="radio"]:checked {
     margin-bottom: 0;
     line-height: 25px !important;
   }
-  
-  
-  
+
+
+
   .mobile-fair-det{
     color: #002F80;
     font-size: 15px;
     text-align: left;
     line-height: 28px;
   }
-  
+
   .mobile-fair-det span{
     color: #d69a0d;
     font-size: 15px;
@@ -627,27 +627,27 @@ input[type="radio"]:checked {
     float: right;
     margin-right:5px;
   }
-  
+
   .mobile-fair-det strong{
     font-size: 18px;
-    
-  }
-  
 
-  
+  }
+
+
+
   .mob-term-priv p a{
     font-size: 14px;
     color: #002F80;
     font-weight: 600;
     line-height: 20px;
   }
-  
+
   /* .mob-term-priv p a{
     font-size: 14px;
     color:#d69a0d;
     font-weight: 600;
   } */
-   
+
   .mobile-booking-middle input::placeholder{
     font-size:15px;
     color:#323232
@@ -818,7 +818,7 @@ input[type="radio"]:checked {
 .mobile-logo img{
   height:42px;
   float:right;
-} 
+}
 
 .mobile-myaccount-top .mob-logintx a{
     float:right;
@@ -836,24 +836,24 @@ input[type="radio"]:checked {
   width: 100%;
   top: 0;
   box-shadow: 0 3px 10px #0003;
-} 
+}
 
 .mobile-myaccount-middle{
      margin:88px 20px 60px
  }
 
 .mobile-myaccount-middle .mobile-menu {
-  width:100%; 
+  width:100%;
   list-style-type: none;
-  padding-left: 0px; 
+  padding-left: 0px;
 }
 
 .mobile-myaccount-middle .mobile-menu a {
     background-color: #fff;
-    display: block;   
+    display: block;
     color: #072c6b;
-    padding:8px 18px; 
-    text-decoration: none; 
+    padding:8px 18px;
+    text-decoration: none;
     font-size :17px;
     font-weight: 600;
     margin-bottom:10px;

@@ -159,7 +159,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   position = 'bottom-right';
   swapdestination: any;
   swapsource: any;
-  bannerImage = '../../assets/img/bus-bg.jpg';
+  bannerImage = '../../assets/img/new_banner2.jpg';
   source: any;
   source_id: any;
   destination: any;
@@ -365,7 +365,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       ) {
         this.bannerImage = this.masterSettingRecord.banner_image;
       } else {
-        this.bannerImage = '../../assets/img/bus-bg.jpg';
+        this.bannerImage = '../../assets/img/new_banner2.jpg';
       }
 
       this.master_info = this.masterSettingRecord.common;
@@ -423,7 +423,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     };
 
     this.selectedDate = formatDate(new Date(), 'yyyy-MM-dd', 'en_US');
-    this.bannerImage = '../../assets/img/bus-bg.jpg';
+    this.bannerImage = '../../assets/img/new_banner2.jpg';
     this.location_list = [];
     this.popular_routes = [];
     this.topOperators = [];
@@ -1028,6 +1028,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   }
 
   submitForm() {
+    this.spinner.show();
     if (this.isMobile == true && this.entry_date != null) {
       this.searchForm.patchValue({
         entry_date: this.entry_date,
@@ -1036,16 +1037,19 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
     if (!this.searchForm.value.source) {
       this.notify.notify('Enter Source !', 'Error');
+      this.spinner.hide();
       return;
     }
 
     if (!this.searchForm.value.destination) {
       this.notify.notify('Enter Destination !', 'Error');
+      this.spinner.hide();
       return;
     }
 
     if (!this.searchForm.value.entry_date) {
       this.notify.notify('Enter Journey Date !', 'Error');
+      this.spinner.hide();
       return;
     }
 
@@ -1057,6 +1061,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
         'Source and Destination cannot be the same !',
         'Error',
       );
+      this.spinner.hide();
       return false;
     }
 
@@ -1076,6 +1081,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       formattedDate = `${day}-${month}-${dt.year}`;
     } else {
       this.notify.notify('Invalid Date !', 'Error');
+      this.spinner.hide();
       return;
     }
 
@@ -1088,15 +1094,19 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
     if (!this.searchForm.value.source.name) {
       this.notify.notify('Select Valid Source !', 'Error');
+      this.spinner.hide();
       return;
     }
 
     if (!this.searchForm.value.destination.name) {
       this.notify.notify('Select Valid Destination !', 'Error');
+      this.spinner.hide();
       return;
     }
 
     this.saveSearchHistory(sr, ds, formattedDate);
+
+    this.spinner.hide();
 
     const url =
       GlobalConstants.URL +

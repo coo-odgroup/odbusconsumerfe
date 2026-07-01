@@ -4,6 +4,7 @@ import { GlobalConstants } from '../constants/global-constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgxSpinner } from 'ngx-spinner';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 interface FaqItem {
   question: string;
@@ -21,13 +22,18 @@ export class CommonContentComponent implements OnInit {
   slug: string = '';
   pageDetails: any;
 
+  isMobile: boolean;
+
   private apiURL = GlobalConstants.BASE_URL;
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private spinner: NgxSpinnerService,
-  ) {}
+    private detectService: DeviceDetectorService,
+  ) {
+    this.isMobile = this.detectService.isMobile();
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {

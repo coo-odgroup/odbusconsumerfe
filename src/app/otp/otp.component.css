@@ -11,7 +11,7 @@ label {
     color: #7f7f7f;
 }
 .form-control {
-    height: 0; 
+    height: 0;
     padding: 1.3rem .75rem;
     font-size: .8rem;
     font-weight: 400;
@@ -80,7 +80,7 @@ label {
     text-align: center;
   }
 
-  
+
   /* Mobile Version Support Start- */
   .mobile-mybooking-top{
     background-color: #efc003;
@@ -91,13 +91,13 @@ label {
     top: 0;
     box-shadow: 0 3px 10px #0003;
   }
-  
+
   .mobile-mybooking-top .mob-arrow-left i{
-    font-size:30px;
+    font-size:25px;
     color: #072c6b;
     margin-top:10px;
   }
-  
+
   .mobile-mybooking-top .mob-list-center h5{
     color: #072c6b;
     font-size:20px;
@@ -106,18 +106,18 @@ label {
     padding-top:10px;
     padding-left:5px;
     margin-bottom: 4px;
-  
+
   }
-  
+
   .mobile-logo img{
     height:42px;
     float:right;
   }
-  
+
   .mobile-raiseticket-middle{
     margin:88px 28px 30px
  }
- 
+
  .mobile-raiseticket-middle h4{
     font-size: 18px;
    color: #072c6b;
@@ -125,24 +125,24 @@ label {
    margin-bottom: 12px;
    text-align: center;
  }
- 
+
  .mobile-raiseticket-middle input{
    border:1px solid #072c6b;
  }
- 
+
  .mobile-raiseticket-middle select{
    border:1px solid #072c6b;
  }
- 
+
  .mobile-raiseticket-middle textarea{
    border:1px solid #072c6b;
  }
- 
+
  .mobile-raiseticket-middle .login-app {
      text-align: center;
  }
- 
- 
+
+
  .mobile-raiseticket-middle .login-app .log-in{
      display: inline-block;
      width:120px;
@@ -159,7 +159,7 @@ label {
      border: none;
      background-color: #efc003;
  }
- 
+
  .mobile-raiseticket-middle .card-header{
      color: #072c6b;
      font-weight:500;
@@ -169,7 +169,7 @@ label {
      background-color: rgba(0,0,0,.03);
     border-bottom: 1px solid rgba(0,0,0,.125);
  }
- 
+
  .mobile-raiseticket-middle .card{
    width: 100%;
    margin-top: 25px;

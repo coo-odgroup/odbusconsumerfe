@@ -3,8 +3,8 @@ GENERAL
 ==================================================*/
 
 .bus-ticket-page {
-    background: #f5f7fb;
-    font-family: "Lato", sans-serif;
+  background: #f5f7fb;
+  font-family: "Lato", sans-serif;
 }
 
 /* .container {
@@ -18,17 +18,16 @@ HEADER
 ==================================================*/
 
 .page-header {
+  background: url("/assets/img/small_banner.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    background: url('/assets/img/small_banner.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  height: 210px;
+  padding: 28px 0 0;
 
-    height: 210px;
-    padding: 28px 0 0;
-
-    color: #fff;
-    position: relative;
+  color: #fff;
+  position: relative;
 }
 
 /*==================================================
@@ -36,31 +35,28 @@ BREADCRUMB
 ==================================================*/
 
 .breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+  padding: 10px 16px;
 
-    padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.18);
 
-    background: rgba(255, 255, 255, .18);
+  border-radius: 8px;
 
-    border-radius: 8px;
+  margin-bottom: 20px;
 
-    margin-bottom: 20px;
-
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .breadcrumb a {
-
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 .breadcrumb span {
-
-    color: rgba(255, 255, 255, .8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /*==================================================
@@ -68,14 +64,13 @@ TITLE
 ==================================================*/
 
 .page-header h1 {
+  margin: 0;
 
-    margin: 0;
+  font-size: 30px;
 
-    font-size: 30px;
+  font-weight: 700;
 
-    font-weight: 700;
-
-    color: #fff;
+  color: #fff;
 }
 
 /*==================================================
@@ -83,32 +78,29 @@ SEARCH
 ==================================================*/
 
 .search-wrapper {
+  margin-top: -70px;
 
-    margin-top: -70px;
+  position: relative;
 
-    position: relative;
-
-    z-index: 10;
+  z-index: 10;
 }
 
 ::ng-deep .search-box-v5 {
+  background: #fff !important;
 
-    background: #fff !important;
+  border-radius: 18px;
 
-    border-radius: 18px;
-
-    box-shadow: 0 15px 35px rgba(0, 0, 0, .12);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 ::ng-deep .search-section {
+  background: transparent !important;
 
-    background: transparent !important;
+  border: none !important;
 
-    border: none !important;
+  box-shadow: none !important;
 
-    box-shadow: none !important;
-
-    position: static !important;
+  position: static !important;
 }
 
 /*==================================================
@@ -116,19 +108,17 @@ CONTENT
 ==================================================*/
 
 .content-wrapper {
-
-    padding: 30px 0 60px;
+  padding: 30px 0 60px;
 }
 
 .content-card {
+  background: #fff;
 
-    background: #fff;
+  border-radius: 18px;
 
-    border-radius: 18px;
+  padding: 40px;
 
-    padding: 40px;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, .05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
 }
 
 /*==================================================
@@ -141,59 +131,53 @@ CONTENT HTML
 ::ng-deep .section-block h4,
 ::ng-deep .section-block h5,
 ::ng-deep .section-block h6 {
+  color: #072c6b;
 
-    color: #072c6b;
+  font-size: 22px;
 
-    font-size: 22px;
+  font-weight: 800;
 
-    font-weight: 800;
-
-    margin: 0 0 18px;
+  margin: 0 0 18px;
 }
 
 ::ng-deep .section-block p {
-
-    color: #556273;
-    font-size: 16px;
-    line-height: 1.9;
-    margin-bottom: 22px;
-    font-weight: 400;
+  color: #556273;
+  font-size: 16px;
+  line-height: 1.9;
+  margin-bottom: 22px;
+  font-weight: 400;
 }
 
 ::ng-deep .section-block ul {
+  padding-left: 22px;
 
-    padding-left: 22px;
-
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 ::ng-deep .section-block ul li {
+  font-size: 16px;
 
-    font-size: 16px;
+  color: #556273;
 
-    color: #556273;
+  line-height: 1.9;
 
-    line-height: 1.9;
-
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 ::ng-deep .section-block ol {
+  padding-left: 22px;
 
-    padding-left: 22px;
-
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 ::ng-deep .section-block ol li {
+  font-size: 16px;
 
-    font-size: 16px;
+  color: #556273;
 
-    color: #556273;
+  line-height: 1.9;
 
-    line-height: 1.9;
-
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 /*==================================================
@@ -201,95 +185,93 @@ MOBILE
 ==================================================*/
 
 @media (max-width: 991px) {
+  .container {
+    padding: 0 15px;
+  }
 
-    .container {
-        padding: 0 15px;
-    }
-
-    /*=========================================
+  /*=========================================
       HEADER
     =========================================*/
 
-    .page-header {
-        background: linear-gradient(135deg, #1b3c6b, #2f5aa8) !important;
-        height: auto;
-        min-height: auto;
-        padding: 12px 0;
-    }
+  .page-header {
+    background: linear-gradient(135deg, #1b3c6b, #2f5aa8) !important;
+    height: auto;
+    min-height: auto;
+    padding: 12px 0;
+  }
 
-    .page-header h1 {
-        display: none;
-    }
+  .page-header h1 {
+    display: none;
+  }
 
-    /*=========================================
+  /*=========================================
       BREADCRUMB
     =========================================*/
 
-    .breadcrumb {
-        display: flex;
-        align-items: center;
-        gap: 6px;
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 
-        width: 100%;
+    width: 100%;
 
-        margin: 0;
-        padding: 0;
+    margin: 0;
+    padding: 0;
 
-        background: transparent;
-        border-radius: 0;
+    background: transparent;
+    border-radius: 0;
 
-        font-size: 13px;
-    }
+    font-size: 13px;
+  }
 
-    .breadcrumb a,
-    .breadcrumb span {
-        color: #ffffff;
-    }
+  .breadcrumb a,
+  .breadcrumb span {
+    color: #ffffff;
+  }
 
-    /*=========================================
+  /*=========================================
       SEARCH
     =========================================*/
 
-    .search-wrapper {
-        display: none;
-        margin-top: 0;
-    }
+  .search-wrapper {
+    display: none;
+    margin-top: 0;
+  }
 
-    /*=========================================
+  /*=========================================
       CONTENT
     =========================================*/
 
-    .content-wrapper {
-        padding: 20px 0 40px;
-    }
+  .content-wrapper {
+    padding: 20px 0 40px;
+  }
 
-    .content-card {
-        padding: 22px;
-        border-radius: 14px;
-    }
+  .content-card {
+    padding: 22px;
+    border-radius: 14px;
+  }
 
-    /*=========================================
+  /*=========================================
       TYPOGRAPHY
     =========================================*/
 
-    ::ng-deep .section-block h1,
-    ::ng-deep .section-block h2,
-    ::ng-deep .section-block h3,
-    ::ng-deep .section-block h4,
-    ::ng-deep .section-block h5,
-    ::ng-deep .section-block h6 {
-        font-size: 22px;
-    }
+  ::ng-deep .section-block h1,
+  ::ng-deep .section-block h2,
+  ::ng-deep .section-block h3,
+  ::ng-deep .section-block h4,
+  ::ng-deep .section-block h5,
+  ::ng-deep .section-block h6 {
+    font-size: 22px;
+  }
 
-    ::ng-deep .section-block p,
-    ::ng-deep .section-block ul li,
-    ::ng-deep .section-block ol li {
-        font-size: 15px;
-        line-height: 1.8;
-    }
+  ::ng-deep .section-block p,
+  ::ng-deep .section-block ul li,
+  ::ng-deep .section-block ol li {
+    font-size: 15px;
+    line-height: 1.8;
+  }
 
-    ::ng-deep .search-box-v5{
-        margin: 0 !important;
-    }
-
+  ::ng-deep .search-box-v5 {
+    margin: 0 !important;
+  }
 }

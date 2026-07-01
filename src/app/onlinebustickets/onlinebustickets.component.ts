@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalConstants } from '../constants/global-constants';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PagesService } from '../services/pages.service';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-onlinebustickets',
@@ -12,10 +13,15 @@ export class OnlinebusticketsComponent implements OnInit {
   pageTitle: any;
   pageContent: any;
 
+  isMobile: boolean;
+
   constructor(
     private spinner: NgxSpinnerService,
     private pagesService: PagesService,
-  ) {}
+    private detectService: DeviceDetectorService,
+  ) {
+    this.isMobile = this.detectService.isMobile();
+  }
 
   ngOnInit(): void {
     this.spinner.show();

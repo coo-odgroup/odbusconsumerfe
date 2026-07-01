@@ -26,8 +26,8 @@
     font-size: 16px;
     font-weight: bold;
     border-radius: 3px;
-    opacity: 1;   
-    margin-top: 20px; 
+    opacity: 1;
+    margin-top: 20px;
 }
 
 .passenger-detail{
@@ -36,7 +36,7 @@
     background: #f8f8f8 0% 0% no-repeat padding-box;
     border: 1px solid #00000026;
     border-radius: 3px;
-    opacity: 1; 
+    opacity: 1;
     padding:15px 30px 30px 30px;
 }
 
@@ -56,11 +56,11 @@
 }
 
 .tableclass .od22{
-    margin-left:20px; 
+    margin-left:20px;
 }
 
 .tableclass .od20{
-    margin-left:24px; 
+    margin-left:24px;
 }
 .tableclass .od21{
     margin-left:24px;
@@ -172,7 +172,7 @@ tbody{
 }
 
 .make-payment{
-    
+
     width: 300px;
     height: 75px;
     background: var(--unnamed-color-efc003) 0% 0% no-repeat padding-box;
@@ -182,7 +182,7 @@ tbody{
     padding-top: 20px;
     margin-bottom: 27px;
     margin-bottom: 15px;
-    
+
 }
 
 .payment_box{
@@ -194,7 +194,7 @@ h4{
     font-weight: bold;
     color: #072C6B;
     text-align: left;
-   
+
 }
 
 .payment-btn{
@@ -225,7 +225,7 @@ input[type="radio"]:checked {
 
     background: transparent url('../../assets/img/Group631.svg') 0% 0% no-repeat padding-box;
 
-    
+
   }
 
   .option > label{
@@ -290,7 +290,7 @@ input[type="radio"]:checked {
 .search-result2{
     margin-top:30px;
     margin-bottom: 60px;
-   
+
 }
 .man-print{
     float: right;
@@ -395,7 +395,7 @@ input[type="radio"]:checked {
  margin-top: 35px;
 }
 .mb25{
-   
+
    margin-bottom: 35px;
 }
 
@@ -442,13 +442,13 @@ input[type="radio"]:checked {
     top: 0;
     box-shadow: 0 3px 10px #0003;
   }
-  
+
   .mobile-mybooking-top .mob-arrow-left i{
-    font-size:30px;
+    font-size:25px;
     color: #072c6b;
     margin-top:10px;
   }
-  
+
   .mobile-mybooking-top .mob-list-center h5{
     color: #072c6b;
     font-size:20px;
@@ -457,40 +457,40 @@ input[type="radio"]:checked {
     padding-top:10px;
     padding-left:5px;
     margin-bottom: 4px;
-  
+
   }
-  
+
   .mobile-logo img{
     height:42px;
     float:right;
   }
-  
+
   .mobile-ticket-canceldt-box{
     margin:-55px 20px 30px
   }
-  
+
   .mobile-ticket-canceldt-box{
     background-color: #fff;
     border-radius:8px;
-    padding:20px;    
+    padding:20px;
   }
-  
+
   .mobile-ticket-canceldt-box .mob-tk-dt h5{
    font-size: 17px;
    font-weight: 600;
    color: #072c6b;
    text-align: center;
   }
-  
+
   .mobile-ticket-canceldt-box .mob-tk-dt img{
    width:100%;
    text-align: center;
   }
-  
+
   .mobile-ticket-canceldt-box .linebg{
     height:18px;
   }
-  
+
   .mobile-ticket-canceldt-box .mob-tk-dt2 h6{
    font-size: 15px;
    font-weight: 600;
@@ -498,38 +498,38 @@ input[type="radio"]:checked {
    line-height: 20px;
    text-align: center !important;
   }
-  
+
   .mobile-ticket-canceldt-box .mob-tk-dt3 h6{
    font-size: 15px;
    font-weight: 600;
    color: #072c6b;
    line-height: 24px;
   }
-  
+
   .mobile-ticket-canceldt-box .mob-tk-dt3 h6 span{
    font-size: 15px;
    font-weight: 500;
    color: #b5b6b8;
   }
-  
+
   .mobile-ticket-canceldt-box .mob-tk-dt4{
    margin-top: 12px;
   }
-  
+
   .mobile-ticket-canceldt-box .mob-tk-dt4 h6{
    font-size: 15px;
    font-weight: 600;
    color: #072c6b;
    line-height: 24px;
   }
-  
-  
+
+
   .mobile-ticket-canceldt-box .mob-tk-dt4 h6 span{
    font-size: 18px;
    font-weight: 500;
    color: #b5b6b8;
   }
-  
+
   .mobile-ticket-canceldt-box .mob-submit{
     background: #efc003;
     color: #072c6b;
@@ -541,7 +541,7 @@ input[type="radio"]:checked {
     text-transform: uppercase;
     font-weight: 600;
     width: 100%;
-  }  
+  }
   .mobile-fixed-bottom {
     position: fixed;
     right: 0;
@@ -552,25 +552,25 @@ input[type="radio"]:checked {
   .mobile-fixed-bottom .home{
     color: #323232;
   }
-  
+
   .mobile-fixed-bottom .home i{
     font-size: 24px;
   }
-  
+
   .mobile-fixed-bottom .active{
     color: #efc003;
   }
-  
+
   .mobile-fixed-bottom .active p{
     color: #efc003 !important;
   }
-  
+
   .mobile-fixed-bottom .home p{
     color: #323232;
     font-size:16px;
     font-weight: 600;
   }
-  
+
   .mobile-bg-danger {
     background-color: #ffffff!important;
     padding-top:12px;
@@ -579,7 +579,7 @@ input[type="radio"]:checked {
    -moz-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
    box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
   }
-  
+
   .mob-mtbh{
     height: 80px;
   }
@@ -589,8 +589,8 @@ input[type="radio"]:checked {
    .mobile-logo img{
     height:42px;
     float:right;
-  } 
-  
+  }
+
   .mobile-myaccount-top .mob-logintx a{
       float:right;
       font-size:17px;
@@ -607,24 +607,24 @@ input[type="radio"]:checked {
     width: 100%;
     top: 0;
     box-shadow: 0 3px 10px #0003;
-  } 
+  }
 
   .mobile-myaccount-middle{
        margin:88px 20px 60px
    }
 
   .mobile-myaccount-middle .mobile-menu {
-    width:100%; 
+    width:100%;
     list-style-type: none;
-    padding-left: 0px; 
+    padding-left: 0px;
   }
 
   .mobile-myaccount-middle .mobile-menu a {
       background-color: #fff;
-      display: block;   
+      display: block;
       color: #072c6b;
-      padding:8px 18px; 
-      text-decoration: none; 
+      padding:8px 18px;
+      text-decoration: none;
       font-size :17px;
       font-weight: 600;
       margin-bottom:10px;
@@ -634,7 +634,7 @@ input[type="radio"]:checked {
   .mobile-myaccount-middle .mobile-menu a i{
     color: #efc003;
     margin-right: 8px;
-  } 
+  }
 
   .mob-tk-dt3 small{
     font-size: 13px !important;
@@ -655,8 +655,8 @@ input[type="radio"]:checked {
     font-size: 16px;
     color: #c7a003
   }
-  
-  /* Mobile Version Ticket Cancellation End- */  
+
+  /* Mobile Version Ticket Cancellation End- */
 
   .odbus-journey td{
         padding:6px 12px !important;
@@ -665,7 +665,7 @@ input[type="radio"]:checked {
 
    .odbus-journey th{
     padding:8px 12px !important;
-    
+
 }
 
 .cancelled-box{

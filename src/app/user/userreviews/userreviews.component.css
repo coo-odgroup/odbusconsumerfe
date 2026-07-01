@@ -1002,7 +1002,7 @@ body {
     width: 86%;
     object-fit: cover;
     object-position: center;}
-.setting-ul{    
+.setting-ul{
     list-style: none;
     padding: 0;
     margin: 0 0 15px 0;}
@@ -1157,7 +1157,7 @@ section.header-main {
     color: #efc317 !important;
     font-size: 28px;
     margin-left: 5px;
-} 
+}
 
 .add-rev{
     margin-bottom:20px;
@@ -1181,13 +1181,13 @@ section.header-main {
     top: 0;
     box-shadow: 0 3px 10px #0003;
   }
-  
+
   .mobile-mybooking-top .mob-arrow-left i{
-    font-size:30px;
+    font-size:25px;
     color: #072c6b;
     margin-top:10px;
   }
-  
+
   .mobile-mybooking-top .mob-list-center h5{
     color: #072c6b;
     font-size:20px;
@@ -1196,37 +1196,37 @@ section.header-main {
     padding-top:10px;
     padding-left:5px;
     margin-bottom: 4px;
-  
+
   }
-  
+
   .mobile-logo img{
     height:42px;
     float:right;
   }
-  
-  
+
+
   .mobile-mybooking-middle{
      margin:88px 20px 60px
   }
-  
+
   .mobile-ticket-box{
     background-color: #ffffff;
     border-radius: 4px;
     padding:15px 15px;
     margin-bottom: 25px;
   }
-  
+
   .mob-tkbox-top{
     text-align: left;
     font-size:14px;
     color: #072c6b;
     font-weight: 600;
   }
-  
+
   .mob-tkbox-top span{
     color:#afafaf;
   }
-  
+
   .mob-tkbox-top .confirmed{
     text-align:left;
     background-color:#efc003;
@@ -1238,7 +1238,7 @@ section.header-main {
     width:fit-content;
     border-radius: 4px;
   }
-  
+
   .mob-tkbox-top .cancel{
     text-align:left;
     background-color:#e72b00;
@@ -1250,7 +1250,7 @@ section.header-main {
     width:fit-content;
     border-radius: 4px;
   }
-  
+
   .mob-tkbox-top .expired{
     text-align:left;
     background-color:#b2adad;
@@ -1262,12 +1262,12 @@ section.header-main {
     width:fit-content;
     border-radius: 4px;
   }
-  
+
   .mob-tkbox-mid{
      margin-top:10px;
      margin-bottom: 10px;
   }
-  
+
   .mob-tkbox-mid h6{
      text-align:left;
     font-size: 18px;
@@ -1275,14 +1275,14 @@ section.header-main {
     font-weight: 600;
     margin-bottom:5px;
   }
-  
+
   .mob-tkbox-mid h5{
      text-align: left;
     font-size:16px;
     color: #323232;
     font-weight:500;
   }
-  
+
   .mob-tkbox-mid p{
      text-align: left;
     font-size:15px;
@@ -1290,7 +1290,7 @@ section.header-main {
     font-weight:500;
     margin-bottom:3px;
   }
-  
+
   .mob-tkbox-mid i{
      text-align: center;
     font-size: 18px;
@@ -1298,21 +1298,21 @@ section.header-main {
     font-weight: 600;
     padding-top:10px;
   }
-  
+
   .mob-tkbox-bot{
     text-align:left;
     font-size: 15px;
     color: #072c6b;
     font-weight: 600;
   }
-  
+
   .mob-tkbox-bot span{
     text-align: center;
     font-size: 14px;
     color: #072c6b;
     font-weight: 500;
   }
-  
+
   .edit-btn{
     background:#0062cc;
     padding:4px 12px;
@@ -1321,7 +1321,7 @@ section.header-main {
     color: #fff;
     font-size:15px;
   }
-  
+
   .edit-btn{
     background:#0062cc;
     padding:4px 12px;
@@ -1330,7 +1330,7 @@ section.header-main {
     color: #fff;
     font-size:15px;
   }
-  
+
   .delete-btn{
     background:#bd2130;
     padding:4px 12px;
@@ -1339,7 +1339,7 @@ section.header-main {
     color: #fff;
     font-size:15px;
   }
-  
+
   .mobile-fixed-bottom {
     position: fixed;
     right: 0;
@@ -1350,25 +1350,25 @@ section.header-main {
   .mobile-fixed-bottom .home{
     color: #323232;
   }
-  
+
   .mobile-fixed-bottom .home i{
     font-size: 24px;
   }
-  
+
   .mobile-fixed-bottom .active{
     color: #efc003;
   }
-  
+
   .mobile-fixed-bottom .active p{
     color: #efc003 !important;
   }
-  
+
   .mobile-fixed-bottom .home p{
     color: #323232;
     font-size:16px;
     font-weight: 600;
   }
-  
+
   .mobile-bg-danger {
     background-color: #ffffff!important;
     padding-top:12px;
@@ -1377,7 +1377,7 @@ section.header-main {
    -moz-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
    box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
   }
-  
+
   .mob-mtbh{
     height: 80px;
   }
@@ -1387,8 +1387,8 @@ section.header-main {
   .mobile-logo img{
     height:42px;
     float:right;
-  } 
-  
+  }
+
   .mobile-myaccount-top .mob-logintx a{
       float:right;
       font-size:17px;
@@ -1405,24 +1405,24 @@ section.header-main {
     width: 100%;
     top: 0;
     box-shadow: 0 3px 10px #0003;
-  } 
+  }
 
   .mobile-myaccount-middle{
        margin:88px 20px 60px
    }
 
   .mobile-myaccount-middle .mobile-menu {
-    width:100%; 
+    width:100%;
     list-style-type: none;
-    padding-left: 0px; 
+    padding-left: 0px;
   }
 
   .mobile-myaccount-middle .mobile-menu a {
       background-color: #fff;
-      display: block;   
+      display: block;
       color: #072c6b;
-      padding:8px 18px; 
-      text-decoration: none; 
+      padding:8px 18px;
+      text-decoration: none;
       font-size :17px;
       font-weight: 600;
       margin-bottom:10px;
@@ -1432,4 +1432,4 @@ section.header-main {
   .mobile-myaccount-middle .mobile-menu a i{
     color: #efc003;
     margin-right: 8px;
-  } 
+  }

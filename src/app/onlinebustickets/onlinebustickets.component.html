@@ -1,44 +1,38 @@
 <section class="bus-ticket-page">
+  <!-- Header -->
+  <section class="page-header" *ngIf="!isMobile">
+    <div class="container">
+      <div class="breadcrumb">
+        <a routerLink="/">Home</a>
+        <span>›</span>
+        <span>{{ pageTitle }}</span>
+      </div>
 
-    <!-- Header -->
-    <section class="page-header">
-        <div class="container">
+      <h1>{{ pageTitle }}</h1>
+    </div>
+  </section>
 
-            <div class="breadcrumb">
-                <a routerLink="/">Home</a>
-                <span>›</span>
-                <span>{{ pageTitle }}</span>
-            </div>
+  <!-- Search -->
+  <!-- Desktop & Tablet -->
+  <section class="search-wrapper d-none d-md-block">
+    <app-search-box></app-search-box>
+  </section>
 
-            <h1>{{ pageTitle }}</h1>
+  <!-- Mobile -->
+  <section class="d-block d-md-none">
+    <app-search-box-m></app-search-box-m>
+  </section>
 
-        </div>
-    </section>
-
-    <!-- Search -->
-    <!-- Desktop & Tablet -->
-    <section class="search-wrapper d-none d-md-block">
-        <app-search-box></app-search-box>
-    </section>
-
-    <!-- Mobile -->
-    <section class="d-block d-md-none">
-        <app-search-box-m></app-search-box-m>
-    </section>
-
-    <!-- Content -->
-    <section class="content-wrapper">
-
-        <div class="container">
-
-            <div class="content-card">
-
-                <div class="section-block" [innerHTML]="pageContent"></div>
-
-            </div>
-
-        </div>
-
-    </section>
-
+  <!-- Content -->
+  <section class="content-wrapper">
+    <div class="container">
+      <div class="content-card">
+        <div class="section-block" [innerHTML]="pageContent"></div>
+      </div>
+    </div>
+  </section>
 </section>
+
+<ng-container *ngIf="isMobile">
+  <app-footer-menu></app-footer-menu>
+</ng-container>

@@ -1752,7 +1752,7 @@ ngb-rating.d-inline-flex {
 
 
 .mobile-buslayout-top .mob-arrow-left i {
-  font-size: 30px;
+  font-size: 25px;
   color: #072c6b;
   margin-top: 10px;
 }
@@ -2410,7 +2410,7 @@ label.mobile-sleeper-gray.mobile-fixsize {
 
 
 .mobile-buslayout-top .mob-arrow-left i {
-  font-size: 30px;
+  font-size: 25px;
   color: #072c6b;
   margin-top: 10px;
 }
@@ -2589,7 +2589,7 @@ label.mobile-sleeper-gray.mobile-fixsize {
 
 
 .mobile-booking-top .mob-arrow-left i {
-  font-size: 30px;
+  font-size: 25px;
   color: #072c6b;
   margin-top: 10px;
 }
@@ -3040,7 +3040,7 @@ input[type=radio] {
 .custom-date-picker {
   position: relative;
   overflow: visible !important;
-  z-index: 999999;
+  z-index: 999;
   width: 100%;
 }
 

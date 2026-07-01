@@ -124,7 +124,7 @@ section.header-main {
 }
 
 .hero-banner {
-    background: url(../../assets/img/bus-bg.jpg);
+    background: url(../../assets/img/new_banner2.jpg);
     padding: 150px 0 100px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1491,6 +1491,7 @@ ngb-datepicker-navigation {
     border: none;
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
+    padding-right: 25px;
 }
 
 .sl-56 {
@@ -2028,6 +2029,7 @@ ul.op-list {
     .border-btn {
         font-size: 12px;
         padding: 8px 12px;
+        line-height: 18px;
     }
 
     ul.op-list {

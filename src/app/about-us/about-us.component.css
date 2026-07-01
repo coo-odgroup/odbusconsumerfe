@@ -19,7 +19,7 @@
     font-size: 24px;
     font-weight: 600;
 }
-.main-tnc{    
+.main-tnc{
 	background-color:#ffffff;
     border: #000026;
     margin-top:65px;
@@ -33,10 +33,10 @@
     padding: 0 20px 0 5px;
 
 }
-.main-tnc-ul-ce{    
+.main-tnc-ul-ce{
 	color: #072C6B;
     font-size: 16px; list-style: none;}
-.main-tnc-ul-ce li{    
+.main-tnc-ul-ce li{
     line-height: 24px;
     margin-bottom: 10px;
 }
@@ -44,25 +44,25 @@
   content: "\2022";
   color: #EFC003;
   font-weight: bold;
-  display: inline-block; 
+  display: inline-block;
   width: 1em;
   margin-left: -1em;
 }
 
-.main-tnc-ul-cr{    
+.main-tnc-ul-cr{
 	color: #072C6B;
     font-size: 16px;
 	margin-left: 20px; list-style: none;}
-.main-tnc-ul-cr li{    
+.main-tnc-ul-cr li{
     margin-bottom: 10px; }
 .main-tnc-ul-cr li::before {
   content: "\25AA";
   color: #EFC003;
   font-weight: bold;
-  display: inline-block; 
+  display: inline-block;
   width: 1em;
   margin-left: -1em;
- 
+
 }
 .main-tnc p{font-size: 16px; color: #072C6B;}
 
@@ -80,13 +80,13 @@
     top: 0;
     box-shadow: 0 3px 10px #0003;
   }
-  
+
   .mobile-mybooking-top .mob-arrow-left i{
-    font-size:30px;
+    font-size:25px;
     color: #072c6b;
     margin-top:10px;
   }
-  
+
   .mobile-mybooking-top .mob-list-center h5{
     color: #072c6b;
     font-size:20px;
@@ -95,27 +95,27 @@
     padding-top:10px;
     padding-left:5px;
     margin-bottom: 4px;
-  
+
   }
-  
+
   .mobile-logo img{
     height:42px;
     float:right;
   }
-  
-  
-  
+
+
+
   .mobile-middle-box{
      margin:88px 20px 30px
   }
-  
+
   .mobile-middle-box{
       background-color: #fff;
       border-radius: 5px;
       padding:20px;
       border: 1px solid #adadad;
   }
-  
+
   .mobile-middle-box p{
      font-size:16.5px;
      line-height:24px;
@@ -123,14 +123,14 @@
      margin-bottom:12px;
      font-weight: 500;
   }
-  
+
   .mobile-middle-box p a{
      font-size:16.5px;
      color: #ff7200;
      margin-bottom:12px;
      font-weight: 500;
   }
-  
+
   .mobile-middle-box ul{
      font-size:16.5px;
      line-height:24px;
@@ -139,7 +139,7 @@
      font-weight: 500;
      padding-left: 15px;
   }
-  
+
   .mobile-middle-box ol{
      font-size:16.5px;
      line-height:24px;
@@ -148,19 +148,19 @@
      font-weight: 500;
      padding-left: 15px;
   }
-  
+
   .mobile-middle-box ul li{
      margin-bottom:12px;
   }
-  
+
   .mobile-middle-box ol li{
      margin-bottom:12px;
   }
-  
-  
-  
-  
-  
+
+
+
+
+
   .mobile-fixed-bottom {
     position: fixed;
     right: 0;
@@ -171,25 +171,25 @@
   .mobile-fixed-bottom .home{
     color: #323232;
   }
-  
+
   .mobile-fixed-bottom .home i{
     font-size: 24px;
   }
-  
+
   .mobile-fixed-bottom .active{
     color: #efc003;
   }
-  
+
   .mobile-fixed-bottom .active p{
     color: #efc003 !important;
   }
-  
+
   .mobile-fixed-bottom .home p{
     color: #323232;
     font-size:16px;
     font-weight: 600;
   }
-  
+
   .mobile-bg-danger {
     background-color: #ffffff!important;
     padding-top:12px;
@@ -198,7 +198,7 @@
    -moz-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
    box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.6);
   }
-  
+
   .mob-mtbh{
     height: 80px;
   }
@@ -208,8 +208,8 @@
   .mobile-logo img{
     height:42px;
     float:right;
-  } 
-  
+  }
+
   .mobile-myaccount-top .mob-logintx a{
       float:right;
       font-size:17px;
@@ -226,24 +226,24 @@
     width: 100%;
     top: 0;
     box-shadow: 0 3px 10px #0003;
-  } 
+  }
 
   .mobile-myaccount-middle{
        margin:88px 20px 60px
    }
 
   .mobile-myaccount-middle .mobile-menu {
-    width:100%; 
+    width:100%;
     list-style-type: none;
-    padding-left: 0px; 
+    padding-left: 0px;
   }
 
   .mobile-myaccount-middle .mobile-menu a {
       background-color: #fff;
-      display: block;   
+      display: block;
       color: #072c6b;
-      padding:8px 18px; 
-      text-decoration: none; 
+      padding:8px 18px;
+      text-decoration: none;
       font-size :17px;
       font-weight: 600;
       margin-bottom:10px;
@@ -253,5 +253,5 @@
   .mobile-myaccount-middle .mobile-menu a i{
     color: #efc003;
     margin-right: 8px;
-  }  
-  /* Mobile Version Support Start- */  
+  }
+  /* Mobile Version Support Start- */

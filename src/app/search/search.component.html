@@ -108,7 +108,7 @@
                                                         <div class="date-input-box" (click)="toggleCalendar()">
 
                                                             <img src="assets/img/Icon-metro-calendar.svg"
-                                                                class="icon-date">
+                                                                class="icon-date" alt="Icon-metro-calendar" loading="lazy">
 
                                                             <span class="date-placeholder" *ngIf="!selectedDateText">
 
@@ -2183,7 +2183,7 @@
                     <div class="row">
                         <div class="col-6 mb-3 pl-2 pr-2" *ngFor="let amenity of buslistRecord.amenity;">
                             <div class="de-angu bg-dark">
-                                <img class="iconsize" src="{{amenity.amenity_image}}">
+                                <img class="iconsize" src="{{amenity.amenity_image}}" alt="{{amenity.name}}">
                                 <p class="safety_span">{{amenity.name}}</p>
                             </div>
                         </div>
@@ -2208,7 +2208,7 @@
                     <div class="row">
                         <div class="col-6 mb-3 pl-2 pr-2" *ngFor="let safety of buslistRecord.safety;">
                             <div class="de-angu bg-dark">
-                                <img class="iconsize" src="{{safety.safety_image}}">
+                                <img class="iconsize" src="{{safety.safety_image}}" alt="{{safety.name}}">
                                 <p class="safety_span">{{safety.name}}</p>
                             </div>
                         </div>
@@ -2235,27 +2235,27 @@
                     <div class="row">
                         <div class="col-6 mb-3 pl-2 pr-2" *ngIf="buslistRecord.busPhotos[0].bus_image_1">
 
-                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_1}}">
+                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_1}}" alt="Bus 1">
 
                         </div>
                         <div class="col-6 mb-3 pl-2 pr-2" *ngIf="buslistRecord.busPhotos[0].bus_image_2">
 
-                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_2}}">
+                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_2}}" alt="Bus 2">
 
                         </div>
                         <div class="col-6 mb-3 pl-2 pr-2" *ngIf="buslistRecord.busPhotos[0].bus_image_3">
 
-                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_3}}">
+                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_3}}" alt="Bus 3">
 
                         </div>
                         <div class="col-6 mb-3 pl-2 pr-2" *ngIf="buslistRecord.busPhotos[0].bus_image_4">
 
-                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_4}}">
+                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_4}}" alt="Bus 4">
 
                         </div>
                         <div class="col-6 mb-3 pl-2 pr-2" *ngIf="buslistRecord.busPhotos[0].bus_image_5">
 
-                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_5}}">
+                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_5}}" alt="Bus 5">
 
                         </div>
                     </div>
@@ -2371,9 +2371,9 @@
                             <div class="de-angu1 border">
                                 <div class="author item">
                                     <img class="rounded-circle" *ngIf="rv.profile_image=='' || rv.profile_image== null "
-                                        src="../../assets/img/user.png">
+                                        src="../../assets/img/user.png" alt="User">
                                     <img class="rounded-circle" *ngIf="rv.profile_image!='' && rv.profile_image!=null"
-                                        src="{{ rv.profile_image }}">
+                                        src="{{ rv.profile_image }}" alt="User">
                                     <h5 class="name">{{ rv.name }}</h5>
                                     <span class="rv_img">
                                         <ngb-rating [rate]="rv.rating_overall" [max]="5" [readonly]="true"></ngb-rating>
