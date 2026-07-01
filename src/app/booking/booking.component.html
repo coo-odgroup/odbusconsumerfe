@@ -1,5 +1,5 @@
 <ng-template #Mobile>
-  <ngx-spinner
+  <!-- <ngx-spinner
     bdColor="rgba(0, 0, 0, 0.8)"
     size="medium"
     color="#fff"
@@ -27,7 +27,7 @@
       Please wait and do not press BACK Or REFRESH Button.<br />
       Please be patient while your transaction is being processed.....
     </p>
-  </ngx-spinner>
+  </ngx-spinner> -->
 
   <countdown
     #countdown
@@ -526,41 +526,47 @@
             </div>
           </div>
 
-          <div class="col-md-12">
-            <div class="passenger-detail box-padding padding">
-              <div class="row">
-                <div class="captcha-container">
-                  <label for="captcha-input"
-                    >What is {{ number1 }} + {{ number2 }}?</label
+          <div class="passenger-detail box-padding padding">
+            <div class="row">
+              <div class="captcha-container">
+                <label for="captcha-input"
+                  >What is {{ number1 }} + {{ number2 }}?</label
+                >
+                <div class="captcha-input-group">
+                  <input
+                    type="number"
+                    id="captcha-input"
+                    formControlName="userInput"
+                    placeholder="Enter your answer"
+                  />
+                  <button
+                    class="btn btn-blue"
+                    type="button"
+                    (click)="validateCaptcha()"
                   >
-                  <div class="captcha-input-group">
-                    <input
-                      type="number"
-                      id="captcha-input"
-                      formControlName="userInput"
-                      placeholder="Enter your answer"
-                    />
-                    <button type="button" (click)="validateCaptcha()">
-                      Verify
-                    </button>
-                    <button type="button" (click)="generateCaptcha()">
-                      Refresh
-                    </button>
-                  </div>
-                  <div
-                    *ngIf="!captchaValidated"
-                    class="error-message"
-                    style="color: red"
+                    Verify
+                  </button>
+                  <button
+                    class="btn btn-warning"
+                    type="button"
+                    (click)="generateCaptcha()"
                   >
-                    {{ errorMessage }}
-                  </div>
-                  <div
-                    *ngIf="captchaValidated"
-                    class="error-message"
-                    style="color: green"
-                  >
-                    Captcha is verified successfully
-                  </div>
+                    Refresh
+                  </button>
+                </div>
+                <div
+                  *ngIf="!captchaValidated"
+                  class="error-message"
+                  style="color: red"
+                >
+                  {{ errorMessage }}
+                </div>
+                <div
+                  *ngIf="captchaValidated"
+                  class="error-message"
+                  style="color: green"
+                >
+                  Captcha is verified successfully
                 </div>
               </div>
             </div>
@@ -1154,7 +1160,7 @@
 </ng-container>
 
 <ng-template #Desktop>
-  <ngx-spinner
+  <!-- <ngx-spinner
     bdColor="rgba(0, 0, 0, 0.8)"
     size="medium"
     color="#fff"
@@ -1182,7 +1188,7 @@
       Please wait and do not press BACK Or REFRESH Button.<br />
       Please be patient while your transaction is being processed.....
     </p>
-  </ngx-spinner>
+  </ngx-spinner> -->
 
   <section class="search-result pt-40 pb-60">
     <div class="container">
@@ -1837,10 +1843,18 @@
                               formControlName="userInput"
                               placeholder="Enter your answer"
                             />
-                            <button type="button" (click)="validateCaptcha()">
+                            <button
+                              class="btn btn-blue"
+                              type="button"
+                              (click)="validateCaptcha()"
+                            >
                               Verify
                             </button>
-                            <button type="button" (click)="generateCaptcha()">
+                            <button
+                              class="btn btn-warning"
+                              type="button"
+                              (click)="generateCaptcha()"
+                            >
                               Refresh
                             </button>
                           </div>

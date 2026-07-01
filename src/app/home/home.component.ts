@@ -541,6 +541,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       }, 500);
     }
     this.generateCalendar();
+    this.getHomeData();
   }
 
   toggleCalendar() {
@@ -1200,5 +1201,23 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     );
     this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     this.seconds = Math.floor((distance % (1000 * 60)) / 1000); // Optional
+  }
+
+  homeBanner = '';
+
+  getHomeData() {
+    const param = {
+      user_id: GlobalConstants.MASTER_SETTING_USER_ID
+    };
+
+    this.http.post(this.apiurl + '/homedata', param).subscribe((res: any) => {
+      if (res.status == 1) {
+        if (res.data.banner_image != '' && res.data.banner_image != null) {
+          this.homeBanner = res.data.banner_image;
+        } else {
+          this.homeBanner = '../../assets/img/new_banner2.jpg';
+        }
+      }
+    });
   }
 }
