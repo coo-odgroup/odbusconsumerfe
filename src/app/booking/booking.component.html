@@ -29,16 +29,10 @@
     </p>
   </ngx-spinner> -->
 
-  <countdown
-    #countdown
-    [config]="{ leftTime: Timer, demand: true, format: 'mm:ss' }"
-    (event)="handleEvent($event)"
-    style="display: none"
-  ></countdown>
+  <countdown #countdown [config]="{ leftTime: Timer, demand: true, format: 'mm:ss' }" (event)="handleEvent($event)"
+    style="display: none"></countdown>
 
-  <ng-container
-    *ngIf="bookingStep2 == false && bookingStep3 == false && !MenuActive"
-  >
+  <ng-container *ngIf="bookingStep2 == false && bookingStep3 == false && !MenuActive">
     <div class="mobile-booking-top">
       <div class="row">
         <div class="col-1 pr-0 pl-2 mob-arrow-left" (click)="getBack()">
@@ -67,18 +61,10 @@
           <div class="row" formGroupName="customerInfo">
             <div class="col-12">
               <div class="form-group">
-                <input
-                  type="text"
-                  class=""
-                  [readonly]="isnameReadOnly"
-                  formControlName="name"
-                  placeholder="Enter Your Name"
-                />
+                <input type="text" class="" [readonly]="isnameReadOnly" formControlName="name"
+                  placeholder="Enter Your Name" />
 
-                <div
-                  *ngIf="submitted1 && GetcustomerInfo.controls.name.errors"
-                  class="invalid-feedback"
-                >
+                <div *ngIf="submitted1 && GetcustomerInfo.controls.name.errors" class="invalid-feedback">
                   <div *ngIf="GetcustomerInfo.controls.name.errors.required">
                     Name required
                   </div>
@@ -89,18 +75,9 @@
               </div>
 
               <div class="form-group">
-                <input
-                  type="text"
-                  class=""
-                  [readonly]="ismailReadOnly"
-                  formControlName="email"
-                  placeholder="Enter Email ID"
-                  autocomplete="off"
-                />
-                <div
-                  *ngIf="submitted1 && GetcustomerInfo.controls.email.errors"
-                  class="invalid-feedback"
-                >
+                <input type="text" class="" [readonly]="ismailReadOnly" formControlName="email"
+                  placeholder="Enter Email ID" autocomplete="off" />
+                <div *ngIf="submitted1 && GetcustomerInfo.controls.email.errors" class="invalid-feedback">
                   <div *ngIf="GetcustomerInfo.controls.email.errors.required">
                     Email ID is required
                   </div>
@@ -111,19 +88,10 @@
               </div>
 
               <div class="form-group mb-0">
-                <input
-                  type="number"
-                  class=""
-                  autocomplete="off"
-                  [readonly]="isphoneReadOnly"
-                  formControlName="phone"
-                  placeholder="Mobile Number"
-                />
+                <input type="number" class="" autocomplete="off" [readonly]="isphoneReadOnly" formControlName="phone"
+                  placeholder="Mobile Number" />
 
-                <div
-                  *ngIf="submitted1 && GetcustomerInfo.controls.phone.errors"
-                  class="invalid-feedback"
-                >
+                <div *ngIf="submitted1 && GetcustomerInfo.controls.phone.errors" class="invalid-feedback">
                   <div *ngIf="GetcustomerInfo.controls.phone.errors.required">
                     Mobile no. is required
                   </div>
@@ -139,11 +107,8 @@
         <h3>Passenger Information</h3>
         <!-- Passenger Information box start-->
         <div formGroupName="bookingInfo">
-          <div
-            class="mobile-contact-infbox shadow"
-            formArrayName="bookingDetail"
-            *ngFor="let item of passengerFormGroup.controls; let i = index"
-          >
+          <div class="mobile-contact-infbox shadow" formArrayName="bookingDetail"
+            *ngFor="let item of passengerFormGroup.controls; let i = index">
             <div class="row" [formGroupName]="i">
               <div class="col-6">
                 <h5>Passenger-{{ i + 1 }}</h5>
@@ -153,33 +118,22 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <input
-                    type="text"
-                    formControlName="passenger_name"
-                    class=""
-                    placeholder="Passenger Name"
-                  />
-                  <div
-                    *ngIf="
+                  <input type="text" formControlName="passenger_name" class="" placeholder="Passenger Name" />
+                  <div *ngIf="
                       submitted1 &&
                       getPassengerFormGroup(i).controls[
                         'passenger_name'
                       ].hasError('required')
-                    "
-                    class="invalid-feedback"
-                  >
+                    " class="invalid-feedback">
                     Name is required
                   </div>
 
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       submitted1 &&
                       getPassengerFormGroup(i).controls[
                         'passenger_name'
                       ].hasError('pattern')
-                    "
-                    class="invalid-feedback"
-                  >
+                    " class="invalid-feedback">
                     Alphabets only
                   </div>
                 </div>
@@ -188,46 +142,30 @@
                 <div class="form-group">
                   <label class="text-muted f-10 mb-1">Gender</label>
                   <div class="mt-1">
-                    <div
-                      class="custom-control custom-radio custom-control-inline"
-                      *ngFor="let g of genderArr; let i = index"
-                    >
-                      <input
-                        type="radio"
-                        id="{{ g.name }}{{ item.value.bus_seats_id }}"
-                        [value]="g.value"
-                        formControlName="passenger_gender"
-                        class="custom-control-input"
-                      />
-                      <label
-                        class="custom-control-label small"
-                        for="{{ g.name }}{{ item.value.bus_seats_id }}"
-                        >{{ g.name }}</label
-                      >
+                    <div class="custom-control custom-radio custom-control-inline"
+                      *ngFor="let g of genderArr; let i = index">
+                      <input type="radio" id="{{ g.name }}{{ item.value.bus_seats_id }}" [value]="g.value"
+                        formControlName="passenger_gender" class="custom-control-input" />
+                      <label class="custom-control-label small" for="{{ g.name }}{{ item.value.bus_seats_id }}">{{
+                        g.name }}</label>
                     </div>
 
-                    <div
-                      *ngIf="
+                    <div *ngIf="
                         submitted1 &&
                         getPassengerFormGroup(i).controls[
                           'passenger_gender'
                         ].hasError('required')
-                      "
-                      class="invalid-feedback"
-                    >
+                      " class="invalid-feedback">
                       Gender is required
                     </div>
-                    <div
-                      *ngIf="
+                    <div *ngIf="
                         getPassengerFormGroup(i).controls[
                           'passenger_gender'
                         ].hasError('GenderError')
-                      "
-                      class="invalid-feedback"
-                    >
+                      " class="invalid-feedback">
                       {{
-                        getPassengerFormGroup(i).controls["passenger_gender"]
-                          .errors.message
+                      getPassengerFormGroup(i).controls["passenger_gender"]
+                      .errors.message
                       }}
                     </div>
                   </div>
@@ -235,42 +173,28 @@
               </div>
               <div class="col-12">
                 <div class="form-group mb-0">
-                  <input
-                    type="number"
-                    class=""
-                    formControlName="passenger_age"
-                    placeholder="Passenger Age"
-                  />
+                  <input type="number" class="" formControlName="passenger_age" placeholder="Passenger Age" />
 
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       submitted1 &&
                       getPassengerFormGroup(i).controls['passenger_age'].errors
                         ?.required
-                    "
-                    class="invalid-feedback"
-                  >
+                    " class="invalid-feedback">
                     Age is required
                   </div>
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       submitted1 &&
                       getPassengerFormGroup(i).controls['passenger_age'].errors
                         ?.min
-                    "
-                    class="invalid-feedback"
-                  >
+                    " class="invalid-feedback">
                     Age must be from 1 to 100
                   </div>
 
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       submitted1 &&
                       getPassengerFormGroup(i).controls['passenger_age'].errors
                         ?.max
-                    "
-                    class="invalid-feedback"
-                  >
+                    " class="invalid-feedback">
                     Age must be from 1 to 100
                   </div>
                 </div>
@@ -282,14 +206,10 @@
         <!-- <h3>Fair Details</h3> -->
         <div class="mobile-contact-infbox shadow">
           <div class="row mobile-fair-det">
-            <div class="col-8"><strong>Base Fare</strong></div>
-            <div class="col-4">
-              <span
-                ><strong
-                  >₹
-                  {{ bookingdata.PriceArray.odbus_charges_ownerFare }}</strong
-                ></span
-              >
+            <div class="col-6"><strong>Base Fare</strong></div>
+            <div class="col-6">
+              <span><strong>₹
+                  {{ bookingdata.PriceArray.odbus_charges_ownerFare }}</strong></span>
             </div>
             <!-- <div class="col-8">Service Charges </div>
 			   <div class="col-4"><span>+₹ {{ bookingdata.PriceArray.odbusServiceCharges }}</span> </div> -->
@@ -325,7 +245,7 @@
     <form [formGroup]="bookForm2" (ngSubmit)="submitForm2()">
       <div class="mobile-booking-middle">
         <h3>Journey Details</h3>
-        <div class="mobile-contact-infbox shadow">
+        <!-- <div class="mobile-contact-infbox shadow">
           <div class="row mobile-jou-details">
             <div class="col-8">
               {{ passengerData.bookingInfo.bookingDetail.length }} Passenger(s)
@@ -349,6 +269,82 @@
               {{ bookingdata.droppingPoint.droppingTimes }}
             </div>
           </div>
+        </div> -->
+
+        <div class="journey-card">
+
+          <div class="journey-top">
+
+            <div class="journey-passenger">
+              <span class="journey-title">Passengers</span>
+              <strong>{{ passengerData.bookingInfo.bookingDetail.length }}</strong>
+            </div>
+
+            <div class="journey-duration">
+              <span class="journey-title">Duration</span>
+              <strong>{{ busRecord.totalJourneyTime }}</strong>
+            </div>
+
+          </div>
+
+          <div class="journey-divider"></div>
+
+          <div class="journey-row">
+
+            <div class="journey-left">
+
+              <span class="journey-label">
+                Boarding Point
+              </span>
+
+              <h5>
+                {{ bookingdata.boardingPoint.boardingPoints }}
+              </h5>
+
+            </div>
+
+            <div class="journey-right">
+
+              <span class="journey-label">
+                Departure
+              </span>
+
+              <h5>
+                {{ bookingdata.boardingPoint.boardingTimes }}
+              </h5>
+
+            </div>
+
+          </div>
+
+          <div class="journey-row">
+
+            <div class="journey-left">
+
+              <span class="journey-label">
+                Dropping Point
+              </span>
+
+              <h5>
+                {{ bookingdata.droppingPoint.droppingPoints }}
+              </h5>
+
+            </div>
+
+            <div class="journey-right">
+
+              <span class="journey-label">
+                Arrival
+              </span>
+
+              <h5>
+                {{ bookingdata.droppingPoint.droppingTimes }}
+              </h5>
+
+            </div>
+
+          </div>
+
         </div>
 
         <h3>Contact Information</h3>
@@ -367,9 +363,9 @@
                 Email Id:
                 <span>{{
                   passengerData.customerInfo.email
-                    ? passengerData.customerInfo.email
-                    : "N/A"
-                }}</span>
+                  ? passengerData.customerInfo.email
+                  : "N/A"
+                  }}</span>
               </h6>
               <!-- <h5></h5> -->
             </div>
@@ -387,7 +383,7 @@
         <div class="mobile-contact-infbox shadow">
           <div class="row">
             <div class="col-12">
-              <table class="table table-bordered mb-0">
+              <!-- <table class="table table-bordered mb-0">
                 <thead>
                   <th>Passenger Name</th>
                   <th class="text-center">Seats</th>
@@ -396,12 +392,10 @@
                 </thead>
 
                 <tbody>
-                  <tr
-                    *ngFor="
+                  <tr *ngFor="
                       let dt of passengerData.bookingInfo.bookingDetail;
                       let i = index
-                    "
-                  >
+                    ">
                     <td>{{ dt.passenger_name }}</td>
                     <td class="text-center">
                       {{ get_seatno(dt.bus_seats_id) }}
@@ -410,37 +404,64 @@
                     <td class="text-center">{{ dt.passenger_age }}</td>
                   </tr>
                 </tbody>
-              </table>
+              </table> -->
+              <div class="passenger-card" *ngFor="let dt of passengerData.bookingInfo.bookingDetail; let i = index">
+
+                <div class="passenger-card-header">
+
+                  <div class="passenger-left">
+                    <span class="passenger-number">#{{ i + 1 }}</span>
+
+                    <span class="passenger-name">
+                      {{ dt.passenger_name }}
+                    </span>
+                  </div>
+
+                  <span class="passenger-gender">
+                    {{ dt.passenger_gender }}
+                  </span>
+
+                </div>
+
+                <div class="passenger-card-details">
+
+                  <div class="detail-item">
+                    <span class="detail-label">Seat No :</span>
+                    <span class="detail-value">
+                      {{ get_seatno(dt.bus_seats_id) }}
+                    </span>
+                  </div>
+
+                  <div class="detail-divider"></div>
+
+                  <div class="detail-item">
+                    <span class="detail-label">Age :</span>
+                    <span class="detail-value">
+                      {{ dt.passenger_age }}
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
         <!-- Passenger Information box end-->
 
         <h3>Have a Coupon Code ?</h3>
-        <div
-          class="mobile-contact-infbox shadow"
-          *ngIf="autoApplyCouponStatus == false"
-        >
+        <div class="mobile-contact-infbox shadow" *ngIf="autoApplyCouponStatus == false">
           <form [formGroup]="couponForm" (ngSubmit)="ApplyCoupon()">
             <div class="row">
               <div class="col-8">
                 <div class="form-group mb-0">
-                  <input
-                    type="text"
-                    class=""
-                    autocomplete="off"
-                    formControlName="coupon_code"
-                    placeholder="Enter Coupon Code"
-                  />
+                  <input type="text" class="" autocomplete="off" formControlName="coupon_code"
+                    placeholder="Enter Coupon Code" />
                 </div>
               </div>
 
               <div class="col-4">
-                <button
-                  type="submit"
-                  class="btn btn-warning"
-                  [disabled]="!couponForm.valid"
-                >
+                <button type="submit" class="btn btn-warning" [disabled]="!couponForm.valid">
                   APPLY
                 </button>
               </div>
@@ -453,25 +474,16 @@
           <div class="row mb-2">
             <div class="col-12">
               <label class="terms">
-                <input
-                  formControlName="customer_gst_status"
-                  #customer_gst_status
-                  id="customer_gst_status"
-                  type="checkbox"
-                  [checked]="gstStatus"
-                  (change)="
+                <input formControlName="customer_gst_status" #customer_gst_status id="customer_gst_status"
+                  type="checkbox" [checked]="gstStatus" (change)="
                     customer_gst_StatusChange(customer_gst_status.checked)
-                  "
-                />
+                  " />
                 &nbsp;
-                <span class="mob-gst"
-                  ><b>I have a GST number (optional)? </b></span
-                ></label
-              >
+                <span class="mob-gst"><b>I have a GST number (optional)? </b></span></label>
             </div>
           </div>
 
-          <div class="row" *ngIf="gstStatus">
+          <!-- <div class="row" *ngIf="gstStatus">
             <div class="col-12">
               <label>GSTIN</label><br />
               <input
@@ -524,62 +536,67 @@
                 placeholder="Business Address"
               />
             </div>
+          </div> -->
+
+          <div class="gst-card" *ngIf="gstStatus">
+
+            <div class="gst-card-title">
+              <i class="fas fa-file-invoice"></i>
+              GST Invoice Details
+            </div>
+
+            <div class="form-group">
+              <label>GSTIN</label>
+              <input type="text" class="form-control" formControlName="customer_gst_number" placeholder="Enter GSTIN">
+            </div>
+
+            <div class="form-group">
+              <label>Business Name</label>
+              <input type="text" class="form-control" formControlName="customer_gst_business_name"
+                placeholder="Enter Business Name">
+            </div>
+
+            <div class="form-group">
+              <label>Business Email</label>
+              <input type="email" class="form-control" formControlName="customer_gst_business_email"
+                placeholder="Enter Business Email">
+            </div>
+
+            <div class="form-group mb-0">
+              <label>Business Address</label>
+              <textarea rows="3" class="form-control" formControlName="customer_gst_business_address"
+                placeholder="Enter Business Address"></textarea>
+            </div>
+
           </div>
 
           <div class="passenger-detail box-padding padding">
             <div class="row">
               <div class="captcha-container">
-                <label for="captcha-input"
-                  >What is {{ number1 }} + {{ number2 }}?</label
-                >
+                <label for="captcha-input">What is {{ number1 }} + {{ number2 }}?</label>
                 <div class="captcha-input-group">
-                  <input
-                    type="number"
-                    id="captcha-input"
-                    formControlName="userInput"
-                    placeholder="Enter your answer"
-                  />
-                  <button
-                    class="btn btn-blue"
-                    type="button"
-                    (click)="validateCaptcha()"
-                  >
+                  <input type="number" id="captcha-input" formControlName="userInput" placeholder="Enter your answer" />
+                  <button class="btn btn-blue" type="button" (click)="validateCaptcha()">
                     Verify
                   </button>
-                  <button
-                    class="btn btn-warning"
-                    type="button"
-                    (click)="generateCaptcha()"
-                  >
+                  <button class="btn btn-warning" type="button" (click)="generateCaptcha()">
                     Refresh
                   </button>
                 </div>
-                <div
-                  *ngIf="!captchaValidated"
-                  class="error-message"
-                  style="color: red"
-                >
+                <div *ngIf="!captchaValidated" class="error-message" style="color: red">
                   {{ errorMessage }}
                 </div>
-                <div
-                  *ngIf="captchaValidated"
-                  class="error-message"
-                  style="color: green"
-                >
+                <div *ngIf="captchaValidated" class="error-message" style="color: green">
                   Captcha is verified successfully
                 </div>
               </div>
             </div>
           </div>
 
-          <h3>Fare Details</h3>
+          <!-- <h3>Fare Details</h3>
           <div class="mobile-contact-infbox shadow">
             <div class="row mobile-fair-det">
-              <div
-                class="col-12"
-                *ngIf="couponData.discount > 0"
-                style="color: green; font-weight: bold"
-              >
+              <div class="col-12" *ngIf="couponData.discount > 0" style="color: green; font-weight: bold">
                 Coupon code ( {{ autoApplyCouponcode }} ) applied
               </div>
 
@@ -594,24 +611,19 @@
               </div>
 
               <div class="col-4 text-right" *ngIf="couponData.discount > 0">
-                <strong
-                  style="color: green; font-weight: bold; font-style: italic"
-                  >- ₹ {{ couponData.discount }}</strong
-                >
+                <strong style="color: green; font-weight: bold; font-style: italic">- ₹ {{ couponData.discount
+                  }}</strong>
               </div>
 
               <div class="col-8">Customer GST</div>
 
-              <div
-                class="col-4 text-right"
-                style="color: green; font-weight: bold; font-style: italic"
-              >
+              <div class="col-4 text-right" style="color: green; font-weight: bold; font-style: italic">
                 <strong>+ ₹ {{ bookingdata.PriceArray.customerGst }}</strong>
               </div>
 
-              <!-- <div class="col-8">Transaction Fee</div>
+              <div class="col-8">Transaction Fee</div>
 
-				<div class="col-4 text-right">+ ₹ {{ bookingdata.PriceArray.transactionFee }}</div> -->
+				<div class="col-4 text-right">+ ₹ {{ bookingdata.PriceArray.transactionFee }}</div>
 
               <div class="col-8 mob-total"><strong>Total</strong></div>
 
@@ -619,35 +631,64 @@
                 <strong>₹ {{ couponData.payableAmount }}</strong>
               </div>
 
-              <!-- <div class="col-8"><strong>Payable Amount</strong> </div>
+              <div class="col-8"><strong>Payable Amount</strong> </div>
                 <div class="col-4">
 					<span><strong>₹ {{ couponData.payableAmount }}</strong></span>
 					<span *ngIf="couponData.discount > 0"
 						style="color: green;font-weight: bold;font-style: italic;">( ₹ {{couponData.discount}}/- OFF )</span>
-				</div> -->
+				</div>
             </div>
+          </div> -->
+
+          <h3>Fare Details</h3>
+
+          <div class="fare-card">
+
+            <div class="fare-success" *ngIf="couponData.discount > 0">
+              <i class="fas fa-check-circle"></i>
+              Coupon <strong>{{ autoApplyCouponcode }}</strong> Applied Successfully
+            </div>
+
+            <div class="fare-row">
+              <span>Base Fare</span>
+              <strong>₹ {{ bookingdata.PriceArray.odbus_charges_ownerFare }}</strong>
+            </div>
+
+            <div class="fare-row" *ngIf="couponData.discount > 0">
+              <span>Coupon Discount</span>
+              <strong class="fare-discount">
+                - ₹ {{ couponData.discount }}
+              </strong>
+            </div>
+
+            <div class="fare-row">
+              <span>Customer GST</span>
+              <strong class="fare-gst">
+                + ₹ {{ bookingdata.PriceArray.customerGst }}
+              </strong>
+            </div>
+            <div class="fare-divider"></div>
+
+            <div class="fare-row fare-total">
+              <span>Total</span>
+              <strong>
+                ₹ {{ couponData.payableAmount }}
+              </strong>
+            </div>
+
           </div>
 
           <label class="terms mob-term-priv">
             <p>
-              <input
-                formControlName="tnc"
-                #tnc
-                id="tnc"
-                type="checkbox"
-                [checked]="tncStatus"
-                (change)="tncStatusChange(tnc.checked)"
-              />
+              <input formControlName="tnc" #tnc id="tnc" type="checkbox" [checked]="tncStatus"
+                (change)="tncStatusChange(tnc.checked)" />
               &nbsp; I agree that I have read and understood the
               <a target="_blank" routerLink="/terms-conditions">T&Cs</a> and the
               <a target="_blank" routerLink="/privacy-policy">Privacy Policy</a>
             </p>
           </label>
 
-          <div
-            *ngIf="submitted2 && bookForm2.controls.tnc.errors"
-            class="invalid-feedback"
-          >
+          <div *ngIf="submitted2 && bookForm2.controls.tnc.errors" class="invalid-feedback">
             <div *ngIf="bookForm2.controls.tnc.errors.required">
               Agree the Terms & Conditions
             </div>
@@ -661,11 +702,7 @@
       </div>
       <!-- Footer -->
       <div class="mob-mtbh-8"></div>
-      <button
-        class="btn mobile-booking-bottom fixed-bottom"
-        type="submit"
-        (click)="countdown.resume()"
-      >
+      <button class="btn mobile-booking-bottom fixed-bottom" type="submit" (click)="countdown.resume()">
         Pay Now
       </button>
     </form>
@@ -701,17 +738,13 @@
           <h6 class="print">Your Ticket is Confirmed.</h6>
           <h6 class="print">
             ODBUS Wishing You A Happy Journey
-            <img
-              class="smile"
-              src="../../assets/img/Icon awesome-smile-beam.svg"
-            />
+            <img class="smile" src="../../assets/img/Icon awesome-smile-beam.svg" />
           </h6>
           <h6 class="print-sm">
             We have sent booking details to your
             <b>{{ passengerData.customerInfo.phone }}</b>
             <b *ngIf="passengerData.customerInfo.email">
-              & {{ passengerData.customerInfo.email }}</b
-            >
+              & {{ passengerData.customerInfo.email }}</b>
           </h6>
         </div>
       </div>
@@ -754,7 +787,7 @@
                   <tr>
                     <td scope="col">
                       Bus Name/Number: {{ busRecord.busName }}-{{
-                        busRecord.busNumber
+                      busRecord.busNumber
                       }}
                     </td>
                   </tr>
@@ -775,28 +808,28 @@
                   <tr>
                     <td>
                       From: {{ source }} ({{
-                        bookingdata.boardingPoint.boardingPoints
+                      bookingdata.boardingPoint.boardingPoints
                       }})
                     </td>
                   </tr>
                   <tr>
                     <td>
                       To: {{ destination }} ({{
-                        bookingdata.droppingPoint.droppingPoints
+                      bookingdata.droppingPoint.droppingPoints
                       }})
                     </td>
                   </tr>
                   <tr>
                     <td>
                       Boarding At :{{ source }} ({{
-                        bookingdata.boardingPoint.boardingPoints
+                      bookingdata.boardingPoint.boardingPoints
                       }})
                     </td>
                   </tr>
                   <tr>
                     <td>
                       Droping At: {{ destination }} ({{
-                        bookingdata.droppingPoint.droppingPoints
+                      bookingdata.droppingPoint.droppingPoints
                       }})
                     </td>
                   </tr>
@@ -841,12 +874,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    *ngFor="
+                  <tr *ngFor="
                       let dt of passengerData.bookingInfo.bookingDetail;
                       let i = index
-                    "
-                  >
+                    ">
                     <th scope="row">{{ i + 1 }}</th>
                     <td>{{ dt.passenger_name }}</td>
                     <td class="text-center">{{ dt.passenger_age }}</td>
@@ -894,12 +925,10 @@
                   </tr>
                 </thead>
                 <tbody *ngIf="busRecord.cancellationDuration.length > 0">
-                  <tr
-                    *ngFor="
+                  <tr *ngFor="
                       let can of busRecord.cancellationDuration;
                       let i = index
-                    "
-                  >
+                    ">
                     <td>{{ can }} hr</td>
                     <td class="text-center">
                       {{ busRecord.cancellationDuduction[i] }}%
@@ -1115,9 +1144,7 @@
   <div class="mobile-myaccount-middle">
     <ul class="mobile-menu">
       <li>
-        <a routerLink="/manage-booking"
-          ><i class="far fa-window-restore"></i> Manage Booking</a
-        >
+        <a routerLink="/manage-booking"><i class="far fa-window-restore"></i> Manage Booking</a>
       </li>
       <li>
         <a routerLink="/offers"><i class="fas fa-gifts"></i> Offers</a>
@@ -1132,24 +1159,16 @@
         <a routerLink="/faq"><i class="fas fa-question"></i> FAQ's</a>
       </li>
       <li>
-        <a routerLink="/testimonials"
-          ><i class="fa fa-star"></i> Testimonials</a
-        >
+        <a routerLink="/testimonials"><i class="fa fa-star"></i> Testimonials</a>
       </li>
       <li>
-        <a routerLink="/terms-conditions"
-          ><i class="fas fa-file-image"></i> Terms & Conditions</a
-        >
+        <a routerLink="/terms-conditions"><i class="fas fa-file-image"></i> Terms & Conditions</a>
       </li>
       <li>
-        <a routerLink="/privacy-policy"
-          ><i class="far fa-file-powerpoint"></i> Privacy Policy</a
-        >
+        <a routerLink="/privacy-policy"><i class="far fa-file-powerpoint"></i> Privacy Policy</a>
       </li>
       <li>
-        <a routerLink="/about-us"
-          ><i class="fas fa-info-circle"></i> About Us</a
-        >
+        <a routerLink="/about-us"><i class="fas fa-info-circle"></i> About Us</a>
       </li>
     </ul>
   </div>
@@ -1194,19 +1213,12 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <countdown
-            #countdown
-            [config]="{ leftTime: Timer, demand: true, format: 'mm:ss' }"
-            (event)="handleEvent($event)"
-            style="display: none"
-          ></countdown>
+          <countdown #countdown [config]="{ leftTime: Timer, demand: true, format: 'mm:ss' }"
+            (event)="handleEvent($event)" style="display: none"></countdown>
 
           <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
-            <ng-wizard-step
-              [title]="'Passenger Details'"
-              [canEnter]="isValidFunctionReturnsObservable.bind(this)"
-              [canExit]="isValidFunctionReturnsBoolean.bind(this)"
-            >
+            <ng-wizard-step [title]="'Passenger Details'" [canEnter]="isValidFunctionReturnsObservable.bind(this)"
+              [canExit]="isValidFunctionReturnsBoolean.bind(this)">
               <form [formGroup]="bookForm1" (ngSubmit)="submitForm1()">
                 <div class="row passenger pt-25">
                   <div class="col-md-8">
@@ -1216,130 +1228,89 @@
                       <hr />
 
                       <div formGroupName="bookingInfo">
-                        <div
-                          formArrayName="bookingDetail"
-                          *ngFor="
+                        <div formArrayName="bookingDetail" *ngFor="
                             let item of passengerFormGroup.controls;
                             let i = index
-                          "
-                        >
+                          ">
                           <div class="row" [formGroupName]="i">
                             <div class="col-md-3">
-                              <label>Passenger {{ i + 1 }}</label
-                              ><br />
-                              <ng-select
-                                [items]="genderArr"
-                                bindLabel="name"
-                                bindValue="value"
-                                placeholder="Select Gender"
-                                formControlName="passenger_gender"
-                                [clearable]="false"
-                              >
+                              <label>Passenger {{ i + 1 }}</label><br />
+                              <ng-select [items]="genderArr" bindLabel="name" bindValue="value"
+                                placeholder="Select Gender" formControlName="passenger_gender" [clearable]="false">
                               </ng-select>
-                              <div
-                                *ngIf="
+                              <div *ngIf="
                                   submitted1 &&
                                   getPassengerFormGroup(i).controls[
                                     'passenger_gender'
                                   ].hasError('required')
-                                "
-                                class="invalid-feedback"
-                              >
+                                " class="invalid-feedback">
                                 Gender is required
                               </div>
-                              <div
-                                *ngIf="
+                              <div *ngIf="
                                   getPassengerFormGroup(i).controls[
                                     'passenger_gender'
                                   ].hasError('GenderError')
-                                "
-                                class="invalid-feedback"
-                              >
+                                " class="invalid-feedback">
                                 {{
-                                  getPassengerFormGroup(i).controls[
-                                    "passenger_gender"
-                                  ].errors.message
+                                getPassengerFormGroup(i).controls[
+                                "passenger_gender"
+                                ].errors.message
                                 }}
                               </div>
                             </div>
                             <div class="col-md-6">
-                              <label
-                                ><span class="grey">Seat No:</span>
-                                {{ get_seatno(item.value.bus_seats_id) }}</label
-                              ><br />
-                              <input
-                                type="text"
-                                formControlName="passenger_name"
-                                class="form-control"
-                                placeholder="Full Name"
-                              />
+                              <label><span class="grey">Seat No:</span>
+                                {{ get_seatno(item.value.bus_seats_id) }}</label><br />
+                              <input type="text" formControlName="passenger_name" class="form-control"
+                                placeholder="Full Name" />
 
-                              <div
-                                *ngIf="
+                              <div *ngIf="
                                   submitted1 &&
                                   getPassengerFormGroup(i).controls[
                                     'passenger_name'
                                   ].hasError('required')
-                                "
-                                class="invalid-feedback"
-                              >
+                                " class="invalid-feedback">
                                 Name is required
                               </div>
 
-                              <div
-                                *ngIf="
+                              <div *ngIf="
                                   submitted1 &&
                                   getPassengerFormGroup(i).controls[
                                     'passenger_name'
                                   ].hasError('pattern')
-                                "
-                                class="invalid-feedback"
-                              >
+                                " class="invalid-feedback">
                                 Alphabets only
                               </div>
                             </div>
 
                             <div class="col-md-3">
                               <label>&nbsp;</label><br />
-                              <input
-                                type="number"
-                                class="form-control"
-                                formControlName="passenger_age"
-                                placeholder="Passenger Age"
-                              />
+                              <input type="number" class="form-control" formControlName="passenger_age"
+                                placeholder="Passenger Age" />
 
-                              <div
-                                *ngIf="
+                              <div *ngIf="
                                   submitted1 &&
                                   getPassengerFormGroup(i).controls[
                                     'passenger_age'
                                   ].errors?.required
-                                "
-                                class="invalid-feedback"
-                              >
+                                " class="invalid-feedback">
                                 Age is required
                               </div>
-                              <div
-                                *ngIf="
+                              <div *ngIf="
                                   submitted1 &&
                                   getPassengerFormGroup(i).controls[
                                     'passenger_age'
                                   ].errors?.min
-                                "
-                                class="invalid-feedback"
-                              >
+                                " class="invalid-feedback">
                                 Age must be from 1 to 100
                               </div>
 
-                              <div
-                                *ngIf="
+                              <div *ngIf="
                                   submitted1 &&
                                   getPassengerFormGroup(i).controls[
                                     'passenger_age'
                                   ].errors?.max
-                                "
-                                class="invalid-feedback"
-                              >
+                                " class="invalid-feedback">
                                 Age must be from 1 to 100
                               </div>
                             </div>
@@ -1354,33 +1325,21 @@
                         <div class="row" formGroupName="customerInfo">
                           <div class="col-md-4">
                             <label>Name</label><br />
-                            <input
-                              type="text"
-                              class="form-control"
-                              [readonly]="isnameReadOnly"
-                              formControlName="name"
-                              placeholder="Enter Your Name"
-                            />
+                            <input type="text" class="form-control" [readonly]="isnameReadOnly" formControlName="name"
+                              placeholder="Enter Your Name" />
 
-                            <div
-                              *ngIf="
+                            <div *ngIf="
                                 submitted1 &&
                                 GetcustomerInfo.controls.name.errors
-                              "
-                              class="invalid-feedback"
-                            >
-                              <div
-                                *ngIf="
+                              " class="invalid-feedback">
+                              <div *ngIf="
                                   GetcustomerInfo.controls.name.errors.required
-                                "
-                              >
+                                ">
                                 Name required
                               </div>
-                              <div
-                                *ngIf="
+                              <div *ngIf="
                                   GetcustomerInfo.controls.name.errors.pattern
-                                "
-                              >
+                                ">
                                 Alphabets only
                               </div>
                             </div>
@@ -1388,36 +1347,22 @@
 
                           <div class="col-md-4">
                             <label>Mobile No.</label><br />
-                            <input
-                              type="text"
-                              (keydown)="onlyNumbers($event)"
-                              maxlength="10"
-                              class="form-control"
-                              autocomplete="off"
-                              [readonly]="isphoneReadOnly"
-                              formControlName="phone"
-                              placeholder="Mobile Number"
-                            />
+                            <input type="text" (keydown)="onlyNumbers($event)" maxlength="10" class="form-control"
+                              autocomplete="off" [readonly]="isphoneReadOnly" formControlName="phone"
+                              placeholder="Mobile Number" />
 
-                            <div
-                              *ngIf="
+                            <div *ngIf="
                                 submitted1 &&
                                 GetcustomerInfo.controls.phone.errors
-                              "
-                              class="invalid-feedback"
-                            >
-                              <div
-                                *ngIf="
+                              " class="invalid-feedback">
+                              <div *ngIf="
                                   GetcustomerInfo.controls.phone.errors.required
-                                "
-                              >
+                                ">
                                 Mobile no. is required
                               </div>
-                              <div
-                                *ngIf="
+                              <div *ngIf="
                                   GetcustomerInfo.controls.phone.errors.pattern
-                                "
-                              >
+                                ">
                                 Please, Enter 10 digit Mobile Number
                               </div>
                             </div>
@@ -1425,32 +1370,20 @@
 
                           <div class="col-md-4">
                             <label>Email</label><br />
-                            <input
-                              type="text"
-                              class="form-control"
-                              [readonly]="ismailReadOnly"
-                              formControlName="email"
-                              placeholder="Email"
-                            />
-                            <div
-                              *ngIf="
+                            <input type="text" class="form-control" [readonly]="ismailReadOnly" formControlName="email"
+                              placeholder="Email" />
+                            <div *ngIf="
                                 submitted1 &&
                                 GetcustomerInfo.controls.email.errors
-                              "
-                              class="invalid-feedback"
-                            >
-                              <div
-                                *ngIf="
+                              " class="invalid-feedback">
+                              <div *ngIf="
                                   GetcustomerInfo.controls.email.errors.required
-                                "
-                              >
+                                ">
                                 Email ID is required
                               </div>
-                              <div
-                                *ngIf="
+                              <div *ngIf="
                                   GetcustomerInfo.controls.email.errors.email
-                                "
-                              >
+                                ">
                                 Email must be a valid email address
                               </div>
                             </div>
@@ -1478,9 +1411,7 @@
                           <!-- <span class="font">Bus Name</span> -->
                           <h5>
                             {{ busRecord.busName }}
-                            <span *ngIf="busRecord.busNumber != ''"
-                              >({{ busRecord.busNumber }})</span
-                            >
+                            <span *ngIf="busRecord.busNumber != ''">({{ busRecord.busNumber }})</span>
                           </h5>
                           <h6>
                             {{ busRecord.bus_description }}
@@ -1488,14 +1419,11 @@
                           </h6>
                           <h6>
                             <b *ngIf="ub_seats != ''">
-                              Sleeper No. :- {{ ub_seats }}</b
-                            >
+                              Sleeper No. :- {{ ub_seats }}</b>
                             <span *ngIf="lb_seats != '' && ub_seats != ''">
                               <br />
                             </span>
-                            <b *ngIf="lb_seats != ''"
-                              >Seat No. :- {{ lb_seats }}</b
-                            >
+                            <b *ngIf="lb_seats != ''">Seat No. :- {{ lb_seats }}</b>
                           </h6>
 
                           <span class="font">Journey Date</span>
@@ -1505,16 +1433,10 @@
 
                       <div class="row">
                         <div class="col-md-1">
-                          <img
-                            src="assets/img/Icon metro-location (1).svg"
-                            class="img1"
-                          /><br />
+                          <img src="assets/img/Icon metro-location (1).svg" class="img1" /><br />
                           <img src="assets/img/Line 11.svg" class="img2" />
                           <br />
-                          <img
-                            src="assets/img/Icon metro-location (1).svg"
-                            class="img3"
-                          />
+                          <img src="assets/img/Icon metro-location (1).svg" class="img3" />
                         </div>
                         <div class="col-md-11">
                           <span class="font">From</span>
@@ -1575,11 +1497,8 @@
               </form>
             </ng-wizard-step>
 
-            <ng-wizard-step
-              [title]="'Review Details'"
-              [canEnter]="isValidFunctionReturnsObservable.bind(this)"
-              [canExit]="isValidFunctionReturnsBoolean.bind(this)"
-            >
+            <ng-wizard-step [title]="'Review Details'" [canEnter]="isValidFunctionReturnsObservable.bind(this)"
+              [canExit]="isValidFunctionReturnsBoolean.bind(this)">
               <form [formGroup]="bookForm2" (ngSubmit)="submitForm2()">
                 <div class="row passenger pt-25">
                   <div class="col-md-12">
@@ -1615,10 +1534,7 @@
                             <i class="fas fa-bus-alt icon-color"></i>
                             {{ busRecord.busName }}
                           </h5>
-                          <h6
-                            class="padding-left"
-                            *ngIf="busRecord.busNumber != ''"
-                          >
+                          <h6 class="padding-left" *ngIf="busRecord.busNumber != ''">
                             ({{ busRecord.busNumber }})
                           </h6>
                         </div>
@@ -1650,13 +1566,11 @@
                               <th class="pd2">Age</th>
                             </thead>
                             <tbody>
-                              <tr
-                                *ngFor="
+                              <tr *ngFor="
                                   let dt of passengerData.bookingInfo
                                     .bookingDetail;
                                   let i = index
-                                "
-                              >
+                                ">
                                 <td align="left">{{ dt.passenger_name }}</td>
                                 <td align="center">
                                   {{ get_seatno(dt.bus_seats_id) }}
@@ -1688,9 +1602,9 @@
                                 </td>
                                 <td>
                                   {{
-                                    passengerData.customerInfo.email
-                                      ? passengerData.customerInfo.email
-                                      : "N/A"
+                                  passengerData.customerInfo.email
+                                  ? passengerData.customerInfo.email
+                                  : "N/A"
                                   }}
                                 </td>
                                 <td>&nbsp;</td>
@@ -1699,34 +1613,21 @@
                           </table>
 
                           <p class="roboto">
-                            <img
-                              src="../../assets/img/Icon awesome-hashtag.svg"
-                            />
+                            <img src="../../assets/img/Icon awesome-hashtag.svg" />
                             will receive booking details in this mobile number &
                             email address
                           </p>
                         </div>
                       </div>
 
-                      <div
-                        class="padding"
-                        *ngIf="autoApplyCouponStatus == false"
-                      >
-                        <form
-                          [formGroup]="couponForm"
-                          (ngSubmit)="ApplyCoupon()"
-                        >
+                      <div class="padding" *ngIf="autoApplyCouponStatus == false">
+                        <form [formGroup]="couponForm" (ngSubmit)="ApplyCoupon()">
                           <h5>Have a Coupon Code ?</h5>
                           <hr />
                           <div class="row padding">
                             <div class="col-md-4">
-                              <input
-                                type="text"
-                                class="form-control"
-                                autocomplete="off"
-                                formControlName="coupon_code"
-                                placeholder="Enter Coupon Code"
-                              />
+                              <input type="text" class="form-control" autocomplete="off" formControlName="coupon_code"
+                                placeholder="Enter Coupon Code" />
 
                               <!-- <div *ngIf="couponSubmitted && couponForm.controls.coupon_code.errors" class="invalid-feedback">
 						<div *ngIf="couponForm.controls.coupon_code.errors.required">Coupon code is required</div>
@@ -1734,11 +1635,7 @@
 					</div> -->
                             </div>
                             <div class="col-md-2">
-                              <button
-                                [disabled]="!couponForm.valid"
-                                class="btn btn-warning"
-                                type="submit"
-                              >
+                              <button [disabled]="!couponForm.valid" class="btn btn-warning" type="submit">
                                 APPLY
                               </button>
                             </div>
@@ -1751,78 +1648,48 @@
                       <div class="row">
                         <div class="col-12">
                           <label class="terms">
-                            <input
-                              formControlName="customer_gst_status"
-                              #customer_gst_status
-                              id="customer_gst_status"
-                              type="checkbox"
-                              [checked]="gstStatus"
-                              (change)="
+                            <input formControlName="customer_gst_status" #customer_gst_status id="customer_gst_status"
+                              type="checkbox" [checked]="gstStatus" (change)="
                                 customer_gst_StatusChange(
                                   customer_gst_status.checked
                                 )
-                              "
-                            />
+                              " />
                             &nbsp;
-                            <span class="mob-gst"
-                              ><b>I have a GST number (optional)? </b></span
-                            ></label
-                          >
+                            <span class="mob-gst"><b>I have a GST number (optional)? </b></span></label>
                         </div>
 
                         <div class="row col-md-12" *ngIf="gstStatus">
                           <div class="col-md-3">
                             <label>GSTIN</label><br />
-                            <input
-                              type="text"
-                              formControlName="customer_gst_number"
-                              class="form-control"
-                              placeholder="GSTIN"
-                            />
+                            <input type="text" formControlName="customer_gst_number" class="form-control"
+                              placeholder="GSTIN" />
                           </div>
                           <div class="col-md-3">
                             <label>Business Name</label><br />
-                            <input
-                              type="text"
-                              formControlName="customer_gst_business_name"
-                              class="form-control"
-                              placeholder="Business Name"
-                            />
+                            <input type="text" formControlName="customer_gst_business_name" class="form-control"
+                              placeholder="Business Name" />
                           </div>
                           <div class="col-md-3">
                             <label>Business Email</label><br />
-                            <input
-                              type="text"
-                              formControlName="customer_gst_business_email"
-                              class="form-control"
-                              placeholder="Business Email"
-                            />
-                            <div
-                              *ngIf="
+                            <input type="text" formControlName="customer_gst_business_email" class="form-control"
+                              placeholder="Business Email" />
+                            <div *ngIf="
                                 submitted2 &&
                                 bookForm2.controls.customer_gst_business_email
                                   .errors
-                              "
-                              class="invalid-feedback"
-                            >
-                              <div
-                                *ngIf="
+                              " class="invalid-feedback">
+                              <div *ngIf="
                                   bookForm2.controls.customer_gst_business_email
                                     .errors.email
-                                "
-                              >
+                                ">
                                 Email must be a valid email address
                               </div>
                             </div>
                           </div>
                           <div class="col-md-3">
                             <label>Business Address</label><br />
-                            <input
-                              type="text"
-                              formControlName="customer_gst_business_address"
-                              class="form-control"
-                              placeholder="Business Address"
-                            />
+                            <input type="text" formControlName="customer_gst_business_address" class="form-control"
+                              placeholder="Business Address" />
                           </div>
                         </div>
                       </div>
@@ -1833,43 +1700,21 @@
                     <div class="passenger-detail box-padding padding">
                       <div class="row">
                         <div class="captcha-container">
-                          <label for="captcha-input"
-                            >What is {{ number1 }} + {{ number2 }}?</label
-                          >
+                          <label for="captcha-input">What is {{ number1 }} + {{ number2 }}?</label>
                           <div class="captcha-input-group">
-                            <input
-                              type="number"
-                              id="captcha-input"
-                              formControlName="userInput"
-                              placeholder="Enter your answer"
-                            />
-                            <button
-                              class="btn btn-blue"
-                              type="button"
-                              (click)="validateCaptcha()"
-                            >
+                            <input type="number" id="captcha-input" formControlName="userInput"
+                              placeholder="Enter your answer" />
+                            <button class="btn btn-blue" type="button" (click)="validateCaptcha()">
                               Verify
                             </button>
-                            <button
-                              class="btn btn-warning"
-                              type="button"
-                              (click)="generateCaptcha()"
-                            >
+                            <button class="btn btn-warning" type="button" (click)="generateCaptcha()">
                               Refresh
                             </button>
                           </div>
-                          <div
-                            *ngIf="!captchaValidated"
-                            class="error-message"
-                            style="color: red"
-                          >
+                          <div *ngIf="!captchaValidated" class="error-message" style="color: red">
                             {{ errorMessage }}
                           </div>
-                          <div
-                            *ngIf="captchaValidated"
-                            class="error-message"
-                            style="color: green"
-                          >
+                          <div *ngIf="captchaValidated" class="error-message" style="color: green">
                             Captcha is verified successfully
                           </div>
                         </div>
@@ -1881,45 +1726,39 @@
                     <div class="passenger-detail box-padding padding">
                       <div class="row">
                         <div class="col-md-9 payable">
-                          <p
-                            *ngIf="couponData.discount > 0"
-                            style="color: green; font-weight: bold"
-                          >
+                          <p *ngIf="couponData.discount > 0" style="color: green; font-weight: bold">
                             Coupon code ( {{ autoApplyCouponcode }} ) applied
                           </p>
 
                           <div class="row fare-detail">
-                            <div class="col-md-8"><h6>Base Fare</h6></div>
+                            <div class="col-md-8">
+                              <h6>Base Fare</h6>
+                            </div>
 
                             <div class="col-md-4">
                               <h6>
-                                <strong
-                                  >₹
+                                <strong>₹
                                   {{
-                                    bookingdata.PriceArray
-                                      .odbus_charges_ownerFare
-                                  }}</strong
-                                >
+                                  bookingdata.PriceArray
+                                  .odbus_charges_ownerFare
+                                  }}</strong>
                               </h6>
                             </div>
 
-                            <div class="col-md-8"><h6>Customer GST</h6></div>
+                            <div class="col-md-8">
+                              <h6>Customer GST</h6>
+                            </div>
 
-                            <div
-                              class="col-md-4"
-                              style="
+                            <div class="col-md-4" style="
                                 color: green;
                                 font-weight: bold;
                                 font-style: italic;
-                              "
-                            >
+                              ">
                               <h6>
-                                <strong
-                                  >+ ₹
+                                <strong>+ ₹
                                   {{
-                                    bookingdata.PriceArray.customerGst
-                                  }}</strong
-                                >
+                                  bookingdata.PriceArray.customerGst
+                                  }}</strong>
                               </h6>
                             </div>
 
@@ -1927,28 +1766,23 @@
 
 							<div class="col-md-4"><h6><strong>+ ₹ {{ bookingdata.PriceArray.transactionFee }}</strong></h6></div> -->
 
-                            <div
-                              class="col-md-8"
-                              *ngIf="couponData.discount > 0"
-                            >
+                            <div class="col-md-8" *ngIf="couponData.discount > 0">
                               <h6>Coupon Discount</h6>
                             </div>
 
-                            <div
-                              class="col-md-4"
-                              *ngIf="couponData.discount > 0"
-                              style="
+                            <div class="col-md-4" *ngIf="couponData.discount > 0" style="
                                 color: green;
                                 font-weight: bold;
                                 font-style: italic;
-                              "
-                            >
+                              ">
                               <h6>
                                 <strong>- ₹ {{ couponData.discount }}</strong>
                               </h6>
                             </div>
 
-                            <div class="col-md-8"><h5>Total</h5></div>
+                            <div class="col-md-8">
+                              <h5>Total</h5>
+                            </div>
 
                             <div class="col-md-4">
                               <h5>₹ {{ couponData.payableAmount }}</h5>
@@ -1956,28 +1790,15 @@
                           </div>
 
                           <label class="terms" style="color: #daad23">
-                            <input
-                              formControlName="tnc"
-                              #tnc
-                              id="tnc"
-                              type="checkbox"
-                              [checked]="tncStatus"
-                              (change)="tncStatusChange(tnc.checked)"
-                            />
+                            <input formControlName="tnc" #tnc id="tnc" type="checkbox" [checked]="tncStatus"
+                              (change)="tncStatusChange(tnc.checked)" />
                             &nbsp; I agree that I have read
-                            <a target="_blank" routerLink="/terms-conditions"
-                              >T&Cs</a
-                            >
+                            <a target="_blank" routerLink="/terms-conditions">T&Cs</a>
                             and the
-                            <a target="_blank" routerLink="/privacy-policy"
-                              >Privacy Policy
-                            </a></label
-                          >
+                            <a target="_blank" routerLink="/privacy-policy">Privacy Policy
+                            </a></label>
 
-                          <div
-                            *ngIf="submitted2 && bookForm2.controls.tnc.errors"
-                            class="invalid-feedback"
-                          >
+                          <div *ngIf="submitted2 && bookForm2.controls.tnc.errors" class="invalid-feedback">
                             <div *ngIf="bookForm2.controls.tnc.errors.required">
                               Agree the Terms & Conditions
                             </div>
@@ -1990,13 +1811,8 @@
                         <div class="col-md-3">
                           <div class="payment_box">
                             <!-- make-payment -->
-                            <input
-                              type="image"
-                              name="submit"
-                              alt="Submit"
-                              style="cursor: pointer; width: 100%"
-                              src="../../assets/img/makepayment.png"
-                            />
+                            <input type="image" name="submit" alt="Submit" style="cursor: pointer; width: 100%"
+                              src="../../assets/img/makepayment.png" />
                           </div>
                         </div>
                       </div>
