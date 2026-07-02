@@ -3355,20 +3355,13 @@ a.btn.btn-warning:hover {
 
 } */
 
-.route-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  border-bottom: 1px solid #e8e8e8;
-}
-
 .route-tab {
   display: inline-block;
   padding: 10px 14px;
   cursor: pointer;
   color: #000;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   transition: .3s;
 }
 
@@ -3436,7 +3429,7 @@ a.btn.btn-warning:hover {
 @media (max-width: 767px) {
 
   .route-link-section {
-    padding: 35px 0 75px 0;
+    padding: 35px 0;
   }
 
   /* 4 BUTTON SINGLE ROW */
@@ -3521,7 +3514,7 @@ a.btn.btn-warning:hover {
 @media (max-width: 575px) {
 
   .route-link-section {
-    padding: 28px 0 75px 0;
+    padding: 28px 0;
   }
 
   .route-tabs {

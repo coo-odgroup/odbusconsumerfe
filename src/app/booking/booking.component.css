@@ -1360,8 +1360,8 @@ Journey Details Card
 }
 
 .journey-top strong {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
   color: #072c6b;
 }
 
@@ -1402,7 +1402,7 @@ Journey Details Card
 .journey-row h5 {
   margin: 0;
   padding: 0;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
   color: #072c6b;
 }
