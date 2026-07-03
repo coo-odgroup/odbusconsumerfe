@@ -30,27 +30,19 @@ export class SeoService {
   };
 
   private seoCache: any = {};
+  private metaTitle: any;
+  private metaDescription: any;
+  private metaKeyword: any;
 
   getOrganizationSchema() {
-    return this.httpClient.post<any>(this.apiURL + '/organization_schema', '');
+    return this.httpClient.post<any>(this.apiURL + '/organization_schema', '').pipe(
+      tap((resp: any) => {
+        this.metaTitle = resp.meta_title;
+        this.metaDescription = resp.meta_description;
+        this.metaKeyword = resp.meta_keyword;
+      }),
+    );;
   }
-
-  // addOrganizationSchema(schema: any): void {
-
-  //   const existing = document.getElementById('organization-schema');
-
-  //   if (existing) {
-  //     existing.remove();
-  //   }
-
-  //   const script = document.createElement('script');
-  //   script.id = 'organization-schema';
-  //   script.type = 'application/ld+json';
-  //   script.text = schema;
-
-  //   document.head.appendChild(script);
-
-  // }
 
   addOrganizationSchema(schema: string): void {
     const existing = this.doc.getElementById('organization-schema');
@@ -155,34 +147,7 @@ export class SeoService {
     private title: Title,
     private meta: Meta,
     private router: Router,
-  ) {}
-
-  // seolist(current_url: any) {
-  //   this.httpClient.get(this.apiURL + '/seolist?user_id=' + this.MASTER_SETTING_USER_ID, this.httpOptions).subscribe(
-  //     (resp: any) => {
-  //       this.setMeta(resp['data'], current_url);
-  //     }
-  //   );
-  // }
-
-  // seolist(current_url: any) {
-  //   this.httpClient.post(this.apiURL + '/allseolist', { current_url }, this.httpOptions).subscribe(
-  //     (resp: any) => {
-  //       // console.log(resp);
-  //       // this.setMeta(resp['data'], current_url);
-  //       if (resp.status == 1) {
-  //         this.setMeta(resp.data);
-  //       }
-  //     }
-  //   );
-  // }
-
-  // shouldLoadSeo(url: string): boolean {
-
-  //   return this.seoRoutes.some(route =>
-  //     url.includes(route)
-  //   );
-  // }
+  ) { }
 
   seolist(current_url: string): Observable<any> {
     // Route check
@@ -212,26 +177,17 @@ export class SeoService {
   }
 
   setMeta(c: any) {
-    // Canonical URL
-    // if (this.link === undefined) {
-    //   this.link = this.doc.createElement('link');
-    //   this.link.setAttribute('rel', 'canonical');
-    //   this.doc.head.appendChild(this.link);
-    // }
-
-    // this.link.setAttribute('href', this.doc.URL.split('?')[0]);
-
     // Meta Tags
-    this.title.setTitle(c.meta_title || '');
+    this.title.setTitle(c?.meta_title || this.metaTitle);
 
     this.meta.updateTag({
       name: 'description',
-      content: c.meta_description || '',
+      content: c?.meta_description || this.metaDescription,
     });
 
     this.meta.updateTag({
       name: 'keywords',
-      content: c.meta_keyword || '',
+      content: c?.meta_keyword || this.metaKeyword,
     });
 
     this.meta.updateTag({
@@ -243,11 +199,6 @@ export class SeoService {
       property: 'og:description',
       content: c.meta_description || '',
     });
-
-    // this.meta.updateTag({
-    //   property: 'og:url',
-    //   content: this.doc.URL,
-    // });
 
     // Remove old schema
     this.removeJsonLd();
@@ -300,22 +251,6 @@ export class SeoService {
       this.doc.head.appendChild(serviceScript);
     }
 
-    // console.log(c.organization_schema);
-
-    // Organization Schema
-    // if (c.organization_schema) {
-
-    //   const organizationScript = this.doc.createElement('script');
-
-    //   organizationScript.type = 'application/ld+json';
-
-    //   organizationScript.text = c.organization_schema;
-
-    //   organizationScript.id = 'organization-schema';
-
-    //   this.doc.head.appendChild(organizationScript);
-    // }
-
     // Extra Meta
     if (c.extra_meta) {
       const temp = this.doc.createElement('div');
@@ -338,62 +273,6 @@ export class SeoService {
     if (extra) extra.remove();
   }
 
-  // setMeta(res: any, current_url: any) {
-
-  //   if (this.link === undefined) {
-  //     this.link = this.doc.createElement('link');
-  //     this.link.setAttribute('rel', 'canonical');
-  //     this.doc.head.appendChild(this.link);
-  //   }
-  //   this.link.setAttribute('href', this.doc.URL.split('?')[0]);
-  //   this.meta.updateTag({ name: 'og:url', content: this.doc.URL });
-
-  //   let flag = false;
-
-  //   if (res) {
-
-  //     res.forEach((c: any) => {
-  //       if (c.page_url == current_url) {
-
-  //         flag = true;
-
-  //         this.title.setTitle(c.meta_title);
-  //         this.meta.updateTag({ name: 'description', content: c.meta_description });
-  //         this.meta.updateTag({ name: 'keywords', content: c.meta_keyword });
-  //         this.meta.updateTag({ name: 'og:title', content: c.meta_title });
-  //         this.meta.updateTag({ name: 'og:description', content: c.meta_description });
-
-  //         if (c.extra_meta != null) {
-  //           const script = document.createElement('script');
-  //           script.innerHTML = c.extra_meta;
-  //           script.id = "extra_meta";
-  //           this.doc.head.append(script);
-  //         }
-  //       }
-  //     });
-  //   }
-
-  //   if (flag == false) {
-  //     // this.deafultmeta_description.subscribe((s:any) => {
-  //     //   this.meta.updateTag({ name: 'description', content: s });
-  //     //  this.meta.updateTag({ name: 'og:description', content: s }) ;
-  //     //});
-  //     //this.deafultmeta_title.subscribe((s:any) => {
-  //     //  this.title.setTitle(s);
-  //     // this.meta.updateTag({ name: 'og:title', content: s }) ;
-
-  //     //});
-  //     //this.deafultmeta_keyword.subscribe((s:any) => {
-  //     // this.meta.updateTag({ name: 'keywords', content: s }) ;
-
-  //     // });
-
-  //     let scripts = document.getElementById('extra_meta');
-  //     if (scripts?.parentNode) {
-  //       scripts.parentNode.removeChild(scripts);
-  //     }
-  //   }
-  // }
 
   seoList() {
     return this.httpClient
