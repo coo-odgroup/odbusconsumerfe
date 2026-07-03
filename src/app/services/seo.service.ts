@@ -192,12 +192,12 @@ export class SeoService {
 
     this.meta.updateTag({
       property: 'og:title',
-      content: c.meta_title || '',
+      content: c.meta_title || this.metaTitle,
     });
 
     this.meta.updateTag({
       property: 'og:description',
-      content: c.meta_description || '',
+      content: c.meta_description || this.metaDescription,
     });
 
     // Remove old schema
