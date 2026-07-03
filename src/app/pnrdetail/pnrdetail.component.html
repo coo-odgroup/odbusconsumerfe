@@ -31,11 +31,11 @@
                                 }}
                               </div>
 
-                              <div class="od-bktext" *ngIf="bookingDetails.status==2" style="color:red;font-size:bold">
+                              <div class="od-bktext" *ngIf="bookingDetails?.booking[0]?.status==2" style="color:red;font-size:bold">
                                 STATUS:- CANCELLED
                               </div>
 
-                              <div class="od-bktext" *ngIf="bookingDetails.status==1"
+                              <div class="od-bktext" *ngIf="bookingDetails?.booking[0]?.status==1"
                                 style="color:green;font-size:bold">
                                 STATUS:- CONFIRMED
                               </div>
@@ -463,10 +463,10 @@
 
       <!-- STATUS -->
 
-      <div class="ticket-status confirmed" *ngIf="bookingDetails.status==1">
+      <div class="ticket-status confirmed" *ngIf="bookingDetails?.booking[0]?.status==1">
         BOOKING CONFIRMED
       </div>
-      <div class="ticket-status cancelled" *ngIf="bookingDetails.status==2">
+      <div class="ticket-status cancelled" *ngIf="bookingDetails?.booking[0]?.status==2">
         BOOKING CANCELLED
       </div>
 
@@ -759,9 +759,9 @@
       </div>
 
       <!-- BUTTON -->
-      <button class="mobile-print-btn" (click)="print()">
+      <!-- <button class="mobile-print-btn" (click)="print()">
         SAVE / PRINT TICKET
-      </button>
+      </button> -->
     </div>
   </div>
 </ng-container>

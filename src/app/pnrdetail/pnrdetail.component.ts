@@ -44,7 +44,7 @@ export class PnrdetailComponent implements OnInit {
         if (res.status == 1) {
           this.bookingDetails = res.data[0];
 
-          console.log(this.bookingDetails);
+          // console.log(this.bookingDetails);
 
           let brdtmarr = this.bookingDetails.booking[0].boarding_time.split(':');
           this.brdtime = brdtmarr[0] + ':' + brdtmarr[1];
@@ -102,7 +102,7 @@ export class PnrdetailComponent implements OnInit {
   //   );
   //  printButton.style.visibility = 'visible';
   //   popupWin.document.close();
-  // }  
+  // }
 
   print(): void {
     const printButton = document.getElementById('print_btn');
