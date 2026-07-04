@@ -692,7 +692,7 @@ input {
 /* ============================= */
 
 .offer-left-side {
-  width: 32%;
+  width: 25%;
 }
 
 .offer-info-card {
@@ -755,7 +755,9 @@ input {
 /* ============================= */
 
 .offer-right-side {
-  width: 68%;
+  width: 75%;
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
 .offer-right-side h4 {

@@ -60,7 +60,7 @@ export class UserdashboardComponent implements OnInit {
   }
 
   list: any = [];
-  per_page = 5;
+  per_page = 10;
 
 
   @Input() session: LoginChecker;

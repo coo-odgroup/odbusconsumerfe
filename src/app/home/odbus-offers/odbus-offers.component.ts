@@ -47,7 +47,6 @@ export class OdbusOffersComponent implements OnInit {
       this.checkScreen();
     }
     this.getOffers();
-
   }
 
   checkScreen(): void {
@@ -63,20 +62,15 @@ export class OdbusOffersComponent implements OnInit {
     if (!this.isBrowser) {
       return;
     }
+  }
 
-    setTimeout(() => {
-        const cells = document.querySelectorAll('.carousel-cell');
+  onOfferClick(index: number): void {
+    const code =
+      this.Offers[index]?.coupon_id === 0
+        ? this.Offers[index]?.unique_id
+        : this.Offers[index]?.coupon?.coupon_code;
 
-        cells.forEach((cell, index) => {
-          cell.addEventListener('click', () => {
-            // alert(this.Offers[0]?.unique_id);
-            const code = this.Offers[0]?.coupon_id == 0
-              ? this.Offers[0]?.unique_id
-              : this.Offers[index]?.coupon?.coupon_code;
-            this.goToOffers(code);
-          });
-        });
-      }, 100);
+    this.goToOffers(code);
   }
 
   getOffers(): void {

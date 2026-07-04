@@ -1,36 +1,44 @@
 <section class="odbus-offers-section" *ngIf="Offers && Offers.length > 0">
   <div class="container">
-
     <div class="odbus-offers-header">
       <h2>ODBUS OFFERS</h2>
 
-      <a routerLink="/offers" class="view-all-btn">
-        View All
-      </a>
+      <a routerLink="/offers" class="view-all-btn"> View All </a>
     </div>
 
     <div class="odbus-offers-slider">
-
       <!-- LEFT -->
-      <button type="button" class="offer-arrow offer-prev" (click)="moveSlider1(-1)">
+      <button
+        type="button"
+        class="offer-arrow offer-prev"
+        (click)="moveSlider1(-1)"
+      >
         <i class="fa fa-angle-left"></i>
       </button>
 
       <!-- OFFERS -->
-      <div class="offer-scroll-area carousel-cell pointer" id="cardsScroll1">
-
-        <div class="offer-card" *ngFor="let offer of Offers">
-          <img [src]="offer.slider_photo" [alt]="offer.alt_tag" loading="lazy" />
+      <div class="offer-scroll-area" id="cardsScroll1">
+        <div
+          class="offer-card carouselCell pointer"
+          *ngFor="let offer of Offers; let i = index"
+          (click)="onOfferClick(i)"
+        >
+          <img
+            [src]="offer.slider_photo"
+            [alt]="offer.alt_tag"
+            loading="lazy"
+          />
         </div>
-
       </div>
 
       <!-- RIGHT -->
-      <button type="button" class="offer-arrow offer-next" (click)="moveSlider1(1)">
+      <button
+        type="button"
+        class="offer-arrow offer-next"
+        (click)="moveSlider1(1)"
+      >
         <i class="fa fa-angle-right"></i>
       </button>
-
     </div>
-
   </div>
 </section>
