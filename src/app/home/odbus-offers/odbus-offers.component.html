@@ -11,9 +11,11 @@
       <button
         type="button"
         class="offer-arrow offer-prev"
+        aria-label="Previous Offer"
+        title="Previous Offer"
         (click)="moveSlider1(-1)"
       >
-        <i class="fa fa-angle-left"></i>
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
       </button>
 
       <!-- OFFERS -->
@@ -35,9 +37,11 @@
       <button
         type="button"
         class="offer-arrow offer-next"
+        aria-label="Next Offer"
+        title="Next Offer"
         (click)="moveSlider1(1)"
       >
-        <i class="fa fa-angle-right"></i>
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
       </button>
     </div>
   </div>
