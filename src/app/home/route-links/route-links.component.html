@@ -51,13 +51,13 @@
               *ngFor="let route of column"
               [routerLink]="[
                 '/routes',
-                route.source[0].url +
+                route.source +
                   '-' +
-                  route.destination[0].url +
+                  route.destination+
                   '-bus-services',
               ]"
             >
-              {{ route.source[0].name }} to {{ route.destination[0].name }} Bus
+              {{ route.source}} to {{ route.destination}} Bus
             </a>
           </div>
         </div>

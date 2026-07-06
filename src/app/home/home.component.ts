@@ -268,6 +268,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     private alertConfig: NgbAlertConfig,
     private datePipe: DatePipe,
     private http: HttpClient,
+    private homeService: PopularRoutesService,
     @Optional() @Inject(REQUEST) private request: any,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {
@@ -342,15 +343,15 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
             term === ''
               ? []
               : this.location_list
-                  .filter(
-                    (v) =>
-                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                      (v.synonym != '' &&
-                        v.synonym != null &&
-                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
-                          -1),
-                  )
-                  .slice(0, 10),
+                .filter(
+                  (v) =>
+                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                    (v.synonym != '' &&
+                      v.synonym != null &&
+                      v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                      -1),
+                )
+                .slice(0, 10),
           ),
         );
 
@@ -813,10 +814,10 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       if (el) {
         try {
           el.focus();
-        } catch (e) {}
+        } catch (e) { }
         try {
           el.click();
-        } catch (e) {}
+        } catch (e) { }
       }
     }
   }
@@ -1205,19 +1206,35 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
   homeBanner = '';
 
-  getHomeData() {
-    const param = {
-      user_id: GlobalConstants.MASTER_SETTING_USER_ID
-    };
+  // getHomeData() {
+  //   const param = {
+  //     user_id: GlobalConstants.MASTER_SETTING_USER_ID
+  //   };
 
-    this.http.post(this.apiurl + '/homedata', param).subscribe((res: any) => {
+  //   this.http.post(this.apiurl + '/homedata', param).subscribe((res: any) => {
+  //     if (res.status == 1) {
+  //       this.popular_routes = res.data.popular_routes;
+  //       if (res.data.banner_image != '' && res.data.banner_image != null) {
+  //         this.homeBanner = res.data.banner_image;
+  //       } else {
+  //         this.homeBanner = '../../assets/img/new_banner2.jpg';
+  //       }
+  //     }
+  //   });
+  // }
+
+  getHomeData() {
+    this.homeService.getHomeData().subscribe((res: any) => {
+
       if (res.status == 1) {
-        if (res.data.banner_image != '' && res.data.banner_image != null) {
-          this.homeBanner = res.data.banner_image;
-        } else {
-          this.homeBanner = '../../assets/img/new_banner2.jpg';
-        }
+
+        this.popular_routes = res.data.popular_routes;
+
+        this.homeBanner = res.data.banner_image
+          ? res.data.banner_image
+          : '../../assets/img/new_banner2.jpg';
       }
+
     });
   }
 }

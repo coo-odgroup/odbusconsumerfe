@@ -11,12 +11,12 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-md-4 col-sm-6" *ngFor="let p of displayedRoutes">
+      <div class="col-md-4 col-sm-6" *ngFor="let p of popularRoutes">
         <div
           class="route-card"
-          (click)="popularSearch(p.source[0].url, p.destination[0].url)"
-          (keydown.enter)="popularSearch(p.source[0].url, p.destination[0].url)"
-          (keydown.space)="popularSearch(p.source[0].url, p.destination[0].url)"
+          (click)="popularSearch(p.source, p.destination)"
+          (keydown.enter)="popularSearch(p.source, p.destination)"
+          (keydown.space)="popularSearch(p.source, p.destination)"
         >
           <div class="route-left">
             <img
@@ -29,9 +29,9 @@
             />
 
             <div class="route-text">
-              <span class="city">{{ p.source[0].name }}</span>
+              <span class="city">{{ p.source }}</span>
               <span class="exchange">→</span>
-              <span class="city">{{ p.destination[0].name }}</span>
+              <span class="city">{{ p.destination }}</span>
             </div>
           </div>
         </div>

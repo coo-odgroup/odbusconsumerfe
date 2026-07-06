@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { PopularRoutesService } from 'src/app/services/popular-routes.service';
 
 @Component({
   selector: 'app-route-links',
@@ -19,7 +20,7 @@ export class RouteLinksComponent implements OnInit, OnDestroy {
   popularRoutesRes: any[] = [];
   popularRoutesLinks: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private homeService: PopularRoutesService) { }
 
   ngOnInit(): void {
     this.loadRouteLinks();
@@ -38,35 +39,52 @@ export class RouteLinksComponent implements OnInit, OnDestroy {
     // Reset tab on route change
     this.activeTab = 1;
 
-    const popularInfo = localStorage.getItem('PopularInfo');
+    this.homeService.getHomeData().subscribe((res: any) => {
 
-    if (popularInfo) {
-      const parsedData = JSON.parse(popularInfo);
+      if (res.status == 1) {
+        const topRoutes = res.data.top_routes;
+        const popularInfo = localStorage.getItem('PopularInfo');
 
-      // Top Operators
-      if (
-        parsedData?.topOperators &&
-        Array.isArray(parsedData.topOperators)
-      ) {
-        this.topOperatorRes = parsedData.topOperators;
-        this.topOperatorLinks = this.chunkArray(
-          this.topOperatorRes,
-          5
-        );
+        // Access anything you need
+        // res.data.popular_routes
+        // res.data.footer_links
+        // res.data.banner_image
+        if (popularInfo) {
+          const parsedData = JSON.parse(popularInfo);
+
+          // Top Operators
+          if (
+            parsedData?.topOperators &&
+            Array.isArray(parsedData.topOperators)
+          ) {
+            this.topOperatorRes = parsedData.topOperators;
+            this.topOperatorLinks = this.chunkArray(
+              this.topOperatorRes,
+              5
+            );
+          }
+
+          // Popular Routes
+          if (
+            parsedData?.popularRoutes &&
+            Array.isArray(parsedData.popularRoutes)
+          ) {
+            this.popularRoutesRes = topRoutes;
+            this.popularRoutesLinks = this.chunkArray(
+              this.popularRoutesRes,
+              7
+            );
+          }
+        }
       }
 
-      // Popular Routes
-      if (
-        parsedData?.popularRoutes &&
-        Array.isArray(parsedData.popularRoutes)
-      ) {
-        this.popularRoutesRes = parsedData.popularRoutes;
-        this.popularRoutesLinks = this.chunkArray(
-          this.popularRoutesRes,
-          7
-        );
-      }
-    }
+
+
+    });
+
+    // const popularInfo = localStorage.getItem('PopularInfo');
+
+
   }
 
   chunkArray(array: any[], size: number): any[][] {

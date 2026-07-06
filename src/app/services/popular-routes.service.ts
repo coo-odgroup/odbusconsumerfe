@@ -7,12 +7,14 @@ import {
 import { BehaviorSubject, Observable, ReplaySubject, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { GlobalConstants } from '../constants/global-constants';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PopularRoutesService {
   private apiURL = GlobalConstants.BASE_URL;
+  private homeData$!: Observable<any>;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -75,6 +77,23 @@ export class PopularRoutesService {
         this.httpOptions,
       )
       .pipe(catchError(this.errorHandler));
+  }
+
+  getHomeData(): Observable<any> {
+    if (!this.homeData$) {
+      const param = {
+        user_id: GlobalConstants.MASTER_SETTING_USER_ID
+      };
+
+      this.homeData$ = this.httpClient.post<any>(
+        this.apiURL + '/homedata',
+        param
+      ).pipe(
+        shareReplay(1)
+      );
+    }
+
+    return this.homeData$;
   }
 
   errorHandler(error: HttpErrorResponse) {
