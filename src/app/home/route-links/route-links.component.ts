@@ -33,6 +33,7 @@ export class RouteLinksComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.loadRouteLinks();
       });
+      
   }
 
   loadRouteLinks(): void {

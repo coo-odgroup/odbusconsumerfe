@@ -14,9 +14,9 @@
       <div class="col-md-4 col-sm-6" *ngFor="let p of popularRoutes">
         <div
           class="route-card"
-          (click)="popularSearch(p.source, p.destination)"
-          (keydown.enter)="popularSearch(p.source, p.destination)"
-          (keydown.space)="popularSearch(p.source, p.destination)"
+          (click)="popularSearch(p.source_url, p.destination_url)"
+          (keydown.enter)="popularSearch(p.source_url, p.destination_url)"
+          (keydown.space)="popularSearch(p.source_url, p.destination_url)"
         >
           <div class="route-left">
             <img

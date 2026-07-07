@@ -226,7 +226,7 @@ export class AppComponent {
   }
 
   checkLocalStorageVersion(): void {
-    const STORAGE_VERSION = '1'; // Increase this whenever localStorage structure changes
+    const STORAGE_VERSION = '2'; // Increase this whenever localStorage structure changes
 
     const currentVersion = localStorage.getItem('storage_version');
 
