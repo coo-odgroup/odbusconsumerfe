@@ -79,15 +79,17 @@ export class PopularRoutesService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getHomeData(): Observable<any> {
+  getHomeData(params: any): Observable<any> {
     if (!this.homeData$) {
-      const param = {
-        user_id: GlobalConstants.MASTER_SETTING_USER_ID
-      };
+      // const param = {
+      //   user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+      //   is_top_routes: 1,
+      //   is_popular_routes: 1,
+      // };
 
       this.homeData$ = this.httpClient.post<any>(
         this.apiURL + '/homedata',
-        param
+        params
       ).pipe(
         shareReplay(1)
       );

@@ -1224,7 +1224,13 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   // }
 
   getHomeData() {
-    this.homeService.getHomeData().subscribe((res: any) => {
+    const params = {
+      user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+      is_popular_routes: 1,
+      is_top_routes: 1
+    };
+
+    this.homeService.getHomeData(params).subscribe((res: any) => {
 
       if (res.status == 1) {
 

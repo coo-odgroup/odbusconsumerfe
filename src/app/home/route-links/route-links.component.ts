@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { GlobalConstants } from 'src/app/constants/global-constants';
 import { PopularRoutesService } from 'src/app/services/popular-routes.service';
 
 @Component({
@@ -33,14 +34,20 @@ export class RouteLinksComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.loadRouteLinks();
       });
-      
+
   }
 
   loadRouteLinks(): void {
     // Reset tab on route change
     this.activeTab = 1;
 
-    this.homeService.getHomeData().subscribe((res: any) => {
+    const params = {
+      user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+      is_popular_routes: 1,
+      is_top_routes: 1
+    };
+
+    this.homeService.getHomeData(params).subscribe((res: any) => {
 
       if (res.status == 1) {
         const topRoutes = res.data.top_routes;
