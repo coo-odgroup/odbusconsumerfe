@@ -209,19 +209,19 @@
 
             <div class="sitemap-section">
               <ul class="sitemap-list">
-                <li *ngFor="let p of popularRoutes">
+                <li *ngFor="let tr of topRoutes">
                   <a
                     [routerLink]="[
                       '/routes',
-                      p.source[0].url +
+                      tr.source_url +
                         '-' +
-                        p.destination[0].url +
+                        tr.destination_url +
                         '-bus-services',
                     ]"
                     [queryParams]="{ date: currentDate }"
                   >
                     <i class="fa fa-map-marker"></i>
-                    {{ p.source[0].name }} → {{ p.destination[0].name }}
+                    {{ tr.source }} → {{ tr.destination }}
                   </a>
                 </li>
                 <li>
