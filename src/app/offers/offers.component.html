@@ -179,7 +179,7 @@
 </ng-container>
 
 <ng-container *ngIf="MenuActive">
-  <div class="mobile-myaccount-top">
+<div class="mobile-myaccount-top">
     <div class="row">
       <div class="col-5">
         <div class="mobile-logo">
@@ -252,7 +252,7 @@
     <!-- BODY -->
     <div class="offer-popup-body">
       <!-- LEFT -->
-      <div class="offer-left-side" *ngIf="OfferData?.coupon">
+      <!-- <div class="offer-left-side" *ngIf="OfferData?.coupon">
         <div class="offer-info-card">
           <div class="offer-row">
             <span>Coupon Code</span>
@@ -284,20 +284,23 @@
         <div class="offer-type-line">
           <strong>Offer Type :</strong> {{ OfferData.occassion }}
         </div>
-      </div>
+      </div> -->
 
       <!-- RIGHT -->
       <div class="offer-right-side">
-        <h4>COUPON DESCRIPTION</h4>
+        <!-- <h4>COUPON DESCRIPTION</h4> -->
 
         <div class="offer-description" [innerHTML]="OfferData?.coupon?.full_desc"></div>
+        <button class="copy-btn" (click)="copyCoupon(OfferData.coupon.coupon_code)">
+            Copy Coupon
+          </button>
 
-        <div class="slider-desc" *ngIf="
+        <!-- <div class="slider-desc" *ngIf="
             OfferData?.slider_description != 'null' &&
             OfferData?.slider_description !== ''
           ">
           {{ OfferData.slider_description }}
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
