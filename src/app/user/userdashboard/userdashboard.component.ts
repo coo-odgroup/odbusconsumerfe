@@ -388,4 +388,14 @@ export class UserdashboardComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  bookAgainV2(sourceUrl: string, destinationUrl: string) {
+    this.spinner.show();
+
+    const url = `/routes/${sourceUrl}-${destinationUrl}-bus-services`;
+
+    this.router.navigateByUrl(url);
+
+    this.spinner.hide();
+  }
 }

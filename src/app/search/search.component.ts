@@ -2732,6 +2732,22 @@ export class SearchComponent implements OnInit {
     this.generateCalendar();
 
     // this.seoContent();
+
+    // Added by Jagan
+    this.route.queryParams.subscribe(params => {
+      if (params['date']) {
+        this.entdate = params['date'];
+
+        // Reset if required
+        this.buslist = [];
+
+        // Reload data
+        this.getbuslist();
+        this.setPrevNextDate(this.entdate);
+        this.showformattedDate(this.entdate);
+      }
+    });
+    // Added by Jagan
   }
 
   removeOldJsonLd() {
@@ -3267,4 +3283,50 @@ export class SearchComponent implements OnInit {
   ngOnDestroy() {
     this.modalService.dismissAll();
   }
+
+  // Added by Jagan
+  resetData() {
+    this.currentSeatlayoutIndex = false;
+    this.seatsLayoutRecord.visibility = false;
+    this.seatlayoutShow = '';
+    this.safetyshow = '';
+    this.busPhotoshow = '';
+    this.reviewShow = '';
+    this.policyShow = '';
+    this.checkedIndex = 0;
+
+    this.buslist = [];
+    this.isShown = false;
+  }
+
+  changeDate(days: number) {
+    const [day, month, year] = this.entdate.split('-').map(Number);
+
+    const date = new Date(year, month - 1, day);
+    date.setDate(date.getDate() + days);
+
+    const formattedDate =
+      ('0' + date.getDate()).slice(-2) +
+      '-' +
+      ('0' + (date.getMonth() + 1)).slice(-2) +
+      '-' +
+      date.getFullYear();
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { date: formattedDate },
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  searchPrev() {
+    this.resetData();
+    this.changeDate(-1);
+  }
+
+  searchNext() {
+    this.resetData();
+    this.changeDate(1);
+  }
+  // Added by Jagan
 }
