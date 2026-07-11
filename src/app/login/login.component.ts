@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private seo: SeoService,
     private location: Location,
-    private enc:EncryptionService,
+    private enc: EncryptionService,
     private deviceService: DeviceDetectorService
   ) {
     this.isMobile = this.deviceService.isMobile();
@@ -48,20 +48,19 @@ export class LoginComponent implements OnInit {
     this.session = new LoginChecker();
     this.loginForm = this.fb.group({
       email: [null],
-      phone: ['',[Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],],
+      phone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],],
     });
   }
 
-  menu(){
+  menu() {
     this.MenuActive = true;
   }
 
-  getLogin(e: any) 
-  {
-     this.submitted = false;  
-     this.loginForm = this.fb.group({
-        email: [null],
-        phone: [null],
+  getLogin(e: any) {
+    this.submitted = false;
+    this.loginForm = this.fb.group({
+      email: [null],
+      phone: [null],
     });
 
     let v = e.target.value;
@@ -75,9 +74,8 @@ export class LoginComponent implements OnInit {
       this.viaemail = false;
     }
 
-    if (v == 'email') 
-    {
-        this.loginForm = this.fb.group({
+    if (v == 'email') {
+      this.loginForm = this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         phone: [null],
       });
@@ -139,8 +137,8 @@ export class LoginComponent implements OnInit {
               this.notify.notify(res.message, 'Error');
             } else {
 
-              let data :any=this.enc.decrypt(res.data);
-              data = JSON.parse(data); 
+              let data: any = this.enc.decrypt(res.data);
+              data = JSON.parse(data);
               localStorage.setItem('resendParam', JSON.stringify(param));
               localStorage.setItem('otp_type', 'login');
               localStorage.setItem('via', sentTo);
@@ -155,30 +153,27 @@ export class LoginComponent implements OnInit {
             }
           } else {
 
-            let msg=this.enc.decrypt(res.message);
+            let msg = res.message;
 
             let message = '';
 
-            if(typeof msg ==='string')
-            {
-              message=  msg;
+            if (typeof msg === 'string') {
+              message = msg;
             }
 
             // if(typeof msg ==='object')
             // {
             //   let msg = JSON.parse(msg);
-             
-  
+
+
             //   if (this.viaemail && msg['email']) {
             //     message = msg['email'] + '\n';
             //   }
-  
+
             //   if (this.viaphone && msg['phone']) {
             //     message = msg['phone'] + '\n';
             //   }
-            // }   
-
-           
+            // }
 
             this.notify.notify(message, 'Error');
           }
