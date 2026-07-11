@@ -1292,7 +1292,8 @@
         </div>
 
         <div class="modal-footer">
-            <a class="btn btn-primary" (click)="modal.dismiss('Cross Click')">Close</a>
+            <!-- <a class="btn btn-primary" (click)="modal.dismiss('Cross Click')">Close</a> -->
+            <a class="btn btn-success" (click)="copyCode(couponDetail[0].coupon_code)">Copy Coupon</a>
         </div>
     </div>
 </ng-template>

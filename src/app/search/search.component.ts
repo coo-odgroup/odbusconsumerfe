@@ -1486,8 +1486,11 @@ export class SearchComponent implements OnInit {
   coupon_detail(i, modal) {
     this.couponDetail = [];
     this.couponDetail = this.buslist[i]['couponDetails'];
-    //console.log(this.couponDetail);
-    this.modalService.open(modal);
+    // console.log(this.couponDetail);
+    // this.modalService.open(modal);
+    this.modalService.open(modal, {
+      size: 'xl'
+    });
   }
 
   sort(coulmn: any) {
@@ -3327,6 +3330,10 @@ export class SearchComponent implements OnInit {
   searchNext() {
     this.resetData();
     this.changeDate(1);
+  }
+
+  copyCode(code: string) {
+    navigator.clipboard.writeText(code);
   }
   // Added by Jagan
 }
