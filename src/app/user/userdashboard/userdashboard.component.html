@@ -83,7 +83,8 @@
                           <a class="cursor" (click)="addReview(b.pnr, b.bus_id, review)">Review</a>|
                         </li>
                         <li class="list-inline-item">
-                          <a class="cursor" (click)="bookAgain(b.source[0].name, b.destination[0].name)">Book again</a>
+                          <!-- <a class="cursor" (click)="bookAgain(b.source[0].name, b.destination[0].name)">Book again</a> -->
+                          <a class="cursor" (click)="bookAgainV2(b.source[0].url, b.destination[0].url)">Book again</a>
                         </li>
                       </ul>
                     </span>

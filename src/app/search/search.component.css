@@ -1356,7 +1356,7 @@ ngb-rating.d-inline-flex {
 .sticky-top4 {
   position: fixed;
   top: 70px;
-  z-index: 1018;
+  z-index: 999; /* 1018 */
 }
 
 /* .sticky-top3 {
