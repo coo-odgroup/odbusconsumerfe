@@ -1030,7 +1030,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   }
 
   submitForm() {
-    this.spinner.show();
+    // this.spinner.show();
     if (this.isMobile == true && this.entry_date != null) {
       this.searchForm.patchValue({
         entry_date: this.entry_date,
@@ -1104,22 +1104,25 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       this.notify.notify('Select Valid Destination !', 'Error');
       this.spinner.hide();
       return;
-    }
+    }    
 
+    // this.spinner.hide();
+
+    this.router.navigateByUrl(
+      `/routes/${sr}-${ds}-bus-services?date=${formattedDate}`
+    );
+
+    // const url =
+    //   GlobalConstants.URL +
+    //   'routes/' +
+    //   sr +
+    //   '-' +
+    //   ds +
+    //   '-bus-services?date=' +
+    //   formattedDate;
+
+    // window.location.replace(url);
     this.saveSearchHistory(sr, ds, formattedDate);
-
-    this.spinner.hide();
-
-    const url =
-      GlobalConstants.URL +
-      'routes/' +
-      sr +
-      '-' +
-      ds +
-      '-bus-services?date=' +
-      formattedDate;
-
-    window.location.replace(url);
   }
 
   saveSearchHistory(sr: string, ds: string, date: string) {

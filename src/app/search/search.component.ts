@@ -2708,7 +2708,7 @@ export class SearchComponent implements OnInit {
           );
         }
 
-        this.getbuslist();
+       this.getbuslist();
       }
     }
 
@@ -2738,8 +2738,13 @@ export class SearchComponent implements OnInit {
 
     // Added by Jagan
     this.route.queryParams.subscribe(params => {
+      console.log(params);
+      
       if (params['date']) {
         this.entdate = params['date'];
+
+        console.log(this.nextDate);
+        
 
         // Reset if required
         this.buslist = [];

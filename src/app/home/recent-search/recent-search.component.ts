@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recent-search',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recent-search.component.css', '../home.component.css'],
 })
 export class RecentSearchComponent implements OnInit {
-  constructor() {}
+  // router: any;
+  constructor(private router: Router) {}
 
   recentSearches: any[] = [];
 
@@ -40,4 +42,15 @@ export class RecentSearchComponent implements OnInit {
 
     return date;
   }
+
+  openRecent(item:any) {
+    this.router.navigate(
+        ['/routes', `${item.source}-${item.destination}-bus-services`],
+        {
+            queryParams: {
+                date: item.validDate
+            }
+        }
+    );
+}
 }

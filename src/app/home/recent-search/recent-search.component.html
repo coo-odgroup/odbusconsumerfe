@@ -7,11 +7,7 @@
       <div
         class="recent-card"
         *ngFor="let item of recentSearches"
-        [routerLink]="[
-          '/routes',
-          item.source + '-' + item.destination + '-bus-services',
-        ]"
-        [queryParams]="{ date: getValidDate(item.date) }"
+        (click)="openRecent(item)"
       >
         <div class="recent-icon">
           <i class="fas fa-history"></i>
