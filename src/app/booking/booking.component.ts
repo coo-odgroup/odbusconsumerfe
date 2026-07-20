@@ -1118,6 +1118,8 @@ export class BookingComponent implements OnInit {
       }
       if (result.paymentDetails) {
 
+        this.spinner.show();
+
         localStorage.setItem('od_success_name', this.passengerData.customerInfo.name);
         localStorage.setItem('od_success_email', this.passengerData.customerInfo.email);
         localStorage.setItem('od_success_phone', this.passengerData.customerInfo.phone);

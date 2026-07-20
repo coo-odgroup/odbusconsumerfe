@@ -24,11 +24,11 @@ export class GlobalConstants {
   // public static PAYMENT_MODE: any = 'sandbox';
   // public static PATHURL: any = 'https://testingadminapi.odbus.co.in/public/uploads/';
 
- // Testing ADGLOB
+  // Testing ADGLOB
   public static BASE_URL: any = 'https://odclient.adglob.in/api';
   public static URL: any = 'https://odbus.adglob.in/';
   public static PAYMENT_MODE: any = 'sandbox';
-  public static PATHURL: any = 'https://odapi.adglob.in/public/uploads/';
+  public static PATHURL: any = 'https://odapi.adglob.in/uploads/';
 
 
 

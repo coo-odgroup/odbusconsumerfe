@@ -60,12 +60,27 @@ export class SeoService {
     this.doc.head.appendChild(script);
   }
 
+  // addCanonicalUrl(): void {
+  //   const canonicalUrl = this.BASE_URL.replace(/\/$/, '') + this.router.url;
+
+  //   const existing = this.doc.querySelectorAll("link[rel='canonical']");
+
+  //   existing.forEach((link) => link.remove());
+
+  //   const canonical = this.doc.createElement('link');
+  //   canonical.setAttribute('rel', 'canonical');
+  //   canonical.setAttribute('href', canonicalUrl);
+
+  //   this.doc.head.appendChild(canonical);
+  // }
+
   addCanonicalUrl(): void {
-    const canonicalUrl = this.BASE_URL.replace(/\/$/, '') + this.router.url;
+    const path = this.router.url.split('?')[0]; // Remove query params
+
+    const canonicalUrl = this.BASE_URL.replace(/\/$/, '') + path;
 
     const existing = this.doc.querySelectorAll("link[rel='canonical']");
-
-    existing.forEach((link) => link.remove());
+    existing.forEach(link => link.remove());
 
     const canonical = this.doc.createElement('link');
     canonical.setAttribute('rel', 'canonical');

@@ -86,7 +86,17 @@
 
     <!-- MENU LIST -->
     <div class="mobile-menu-list">
-      <a routerLink="/manage-booking">
+      <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
+        <div class="menu-icon">
+          <i class="far fa-window-restore"></i>
+        </div>
+
+        <span>Manage Booking</span>
+
+        <i class="fas fa-chevron-right right-arrow"></i>
+      </a>
+
+      <a routerLink="/login" *ngIf="!session.isLoggedIn()">
         <div class="menu-icon">
           <i class="far fa-window-restore"></i>
         </div>

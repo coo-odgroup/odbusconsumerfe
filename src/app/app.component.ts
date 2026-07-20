@@ -29,6 +29,7 @@ export class AppComponent {
   meta_title: any;
   meta_keyword: any;
   meta_description: any;
+  storage_version: any;
   logo: any = '';
   og_image: any = '';
   common: any = [];
@@ -147,9 +148,10 @@ export class AppComponent {
   // }
 
   ngOnInit() {
-    this.checkLocalStorageVersion();
     this.seoService.getOrganizationSchema().subscribe((res: any) => {
       this.seoService.addOrganizationSchema(res.organization_schema);
+      this.storage_version = res.storage_version;
+      this.checkLocalStorageVersion();
     });
 
     // this.seoService.addCanonicalUrlFromCurrentUrl();.
@@ -226,7 +228,7 @@ export class AppComponent {
   }
 
   checkLocalStorageVersion(): void {
-    const STORAGE_VERSION = '2'; // Increase this whenever localStorage structure changes
+    const STORAGE_VERSION = String(this.storage_version);
 
     const currentVersion = localStorage.getItem('storage_version');
 

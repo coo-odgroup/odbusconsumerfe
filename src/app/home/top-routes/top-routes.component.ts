@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,41 +6,27 @@ import { Router } from '@angular/router';
   templateUrl: './top-routes.component.html',
   styleUrls: ['./top-routes.component.css', '../home.component.css'],
 })
-export class TopRoutesComponent implements OnInit {
-  constructor(private router: Router) { }
+export class TopRoutesComponent implements OnChanges {
+  constructor(private router: Router) {}
 
-   @Input() popularRoutes: any[] = [];
+  @Input() popularRoutes: any[] = [];
 
-  popular_routes: any = [];
   displayedRoutes: any = [];
   showAllRoutes = false;
   isMobile = false;
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.isMobile = window.innerWidth <= 768;
-
-    try {
-      const data = localStorage.getItem('PopularInfo');
-
-      if (data) {
-        const parsedData = JSON.parse(data);
-
-        if (parsedData && parsedData.popularRoutes) {
-          this.popular_routes = parsedData.popularRoutes;
-
-          this.displayedRoutes = this.isMobile
-            ? this.popular_routes.slice(0, 5)
-            : this.popular_routes;
-        }
-      }
-    } catch (error) {
-      console.error('Error parsing localStorage data', error);
+    if (changes['popularRoutes'] && this.popularRoutes?.length) {
+      this.displayedRoutes = this.isMobile
+        ? this.popularRoutes.slice(0, 5)
+        : this.popularRoutes;
     }
   }
 
   viewAllRoutes() {
     this.showAllRoutes = true;
-    this.displayedRoutes = this.popular_routes;
+    this.displayedRoutes = this.popularRoutes;
   }
 
   popularSearch(sr: any, ds: any) {
