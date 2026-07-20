@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { LoginChecker } from '../helpers/loginChecker';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-page-error',
@@ -21,7 +21,8 @@ export class PageErrorComponent implements OnInit {
     private deviceService: DeviceDetectorService,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private title: Title
+    private title: Title,
+    private meta: Meta
   ) {}
 
   menu() {
@@ -39,6 +40,11 @@ export class PageErrorComponent implements OnInit {
 
     this.isMobile = this.deviceService.isMobile();
     this.session = new LoginChecker();
+
+    this.meta.addTag({
+      name: 'page-status',
+      content: '404'
+    });
 
     this.title.setTitle('404 - Page Not Found');
 
