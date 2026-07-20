@@ -282,6 +282,11 @@ export function app(): express.Express {
         }
         // Log successful SSR rendering
         console.log('SSR rendering successful for:', req.url);
+
+        if (html.includes('<title>404 - Page Not Found</title>')) {
+          res.status(404);
+        }
+
         res.send(html);
       },
     );

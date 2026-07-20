@@ -33,6 +33,7 @@ export class SeoService {
   private metaTitle: any;
   private metaDescription: any;
   private metaKeyword: any;
+  private storage_version: any;
 
   getOrganizationSchema() {
     return this.httpClient.post<any>(this.apiURL + '/organization_schema', '').pipe(
@@ -40,6 +41,7 @@ export class SeoService {
         this.metaTitle = resp.meta_title;
         this.metaDescription = resp.meta_description;
         this.metaKeyword = resp.meta_keyword;
+        this.storage_version = resp.storage_version;
       }),
     );;
   }
