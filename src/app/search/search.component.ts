@@ -1404,6 +1404,8 @@ export class SearchComponent implements OnInit {
   }
 
   submitForm() {
+    this.toggleShow();
+    this.spinner.show();
     this.seatsLayoutRecord.visibility = false;
     this.seatlayoutShow = '';
     this.safetyshow = '';
@@ -1461,6 +1463,7 @@ export class SearchComponent implements OnInit {
       this.notify.notify('Same Search Already Exists!', 'Error');
       this.toggleShow();
       this.modalService.dismissAll();
+      this.spinner.hide();
       return false;
     }
 
@@ -2739,12 +2742,12 @@ export class SearchComponent implements OnInit {
     // Added by Jagan
     this.route.queryParams.subscribe(params => {
       console.log(params);
-      
+
       if (params['date']) {
         this.entdate = params['date'];
 
         console.log(this.nextDate);
-        
+
 
         // Reset if required
         this.buslist = [];
