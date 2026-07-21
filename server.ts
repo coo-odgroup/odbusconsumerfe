@@ -221,6 +221,21 @@ export function app(): express.Express {
     next();
   });
 
+  server.use((req, res, next) => {
+    if (req.path === '/operator') {
+      return res.redirect(301, '/operators');
+    }
+
+    if (req.path.startsWith('/operator/')) {
+      return res.redirect(
+        301,
+        req.originalUrl.replace(/^\/operator/, '/operators')
+      );
+    }
+
+    next();
+  });
+
   // Serve static files from /browser
   server.get(
     '*.*',
