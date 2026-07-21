@@ -152,6 +152,7 @@ export class AppComponent {
       this.seoService.addOrganizationSchema(res.organization_schema);
       this.storage_version = res.storage_version;
       this.checkLocalStorageVersion();
+      this.startApplication();
     });
 
     // this.seoService.addCanonicalUrlFromCurrentUrl();.
@@ -227,6 +228,20 @@ export class AppComponent {
     }
   }
 
+  startApplication() {
+
+    const token = localStorage.getItem('AuthAccessToken');
+
+    if (token) {
+      this.loadCommonData();
+    } else {
+      this.auth.getToken().subscribe((res: any) => {
+        localStorage.setItem('AuthAccessToken', res.data);
+        this.loadCommonData();
+      });
+    }
+  }
+
   checkLocalStorageVersion(): void {
     const STORAGE_VERSION = String(this.storage_version);
 
@@ -234,13 +249,12 @@ export class AppComponent {
 
     if (currentVersion !== STORAGE_VERSION) {
       // Clear all old local storage
-      localStorage.clear();
+      // localStorage.clear();
+      localStorage.removeItem('commonData');
+      localStorage.removeItem('PopularInfo');
 
       // Save new version
       localStorage.setItem('storage_version', STORAGE_VERSION);
-
-      // Reload once
-      window.location.reload();
     }
   }
 
