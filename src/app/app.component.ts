@@ -16,6 +16,8 @@ import {
 import { CommonService } from './services/common.service';
 import { filter } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { interval, Observable, Subscription } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -237,6 +239,7 @@ export class AppComponent {
     this.commonService.PopularInfo(param).subscribe(
       (resp) => {
         const data = resp && resp.data ? resp.data : resp;
+        this.setPopularInfoData(data);
         localStorage.setItem('PopularInfo', JSON.stringify(data));
       },
       (error) => {
@@ -409,5 +412,61 @@ export class AppComponent {
     //     this.doc.head.append(chatScript);
     //   }
     // }
+  }
+
+  popular_routes: any = [];
+  topOperators: any = [];
+  location_list: any = [];
+  search: any = (text$: Observable<string>) => text$.pipe(map(() => []));
+  topOperatorLinks: any[] = [];
+  popularRoutesLinks: any[] = [];
+
+  setPopularInfoData(resp: any) {
+    this.popular_routes = resp.popularRoutes || [];
+    this.popularRoutesLinks = this.chunkArray(
+      this.popular_routes,
+      7
+    );
+
+    console.log('this.popularRoutesLinks: ', this.popularRoutesLinks);
+
+    this.topOperators = resp.topOperators || [];
+    this.topOperatorLinks = this.chunkArray(
+      this.topOperators,
+      5
+    );
+
+    console.log('this.topOperatorLinks: ', this.topOperatorLinks);
+
+    this.location_list = resp.locationName || [];
+
+    this.search = (text$: Observable<string>) =>
+      text$.pipe(
+        debounceTime(200),
+        map((term) =>
+          term === ''
+            ? []
+            : this.location_list
+              .filter(
+                (v: any) =>
+                  v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                  (v.synonym != '' &&
+                    v.synonym != null &&
+                    v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                    -1),
+              )
+              .slice(0, 10),
+        ),
+      );
+  }
+
+  chunkArray(array: any[], size: number): any[][] {
+    const result: any[][] = [];
+
+    for (let i = 0; i < array.length; i += size) {
+      result.push(array.slice(i, i + size));
+    }
+
+    return result;
   }
 }
