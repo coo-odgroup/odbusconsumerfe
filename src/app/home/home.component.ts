@@ -1104,7 +1104,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       this.notify.notify('Select Valid Destination !', 'Error');
       this.spinner.hide();
       return;
-    }    
+    }
 
     // this.spinner.hide();
 

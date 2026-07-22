@@ -1404,7 +1404,7 @@ export class SearchComponent implements OnInit {
   }
 
   submitForm() {
-    this.toggleShow();
+    this.isShown = !this.isShown;
     this.spinner.show();
     this.seatsLayoutRecord.visibility = false;
     this.seatlayoutShow = '';
@@ -1426,16 +1426,19 @@ export class SearchComponent implements OnInit {
       } else if (!entryDateObj) {
         this.notify.notify('Select Journey Date !', 'Error');
       }
+      this.spinner.hide();
       return false;
     }
 
     if (!source?.name) {
       this.notify.notify('Select Valid Source !', 'Error');
+      this.spinner.hide();
       return false;
     }
 
     if (!destination?.name) {
       this.notify.notify('Select Valid Destination !', 'Error');
+      this.spinner.hide();
       return false;
     }
 
@@ -1446,6 +1449,7 @@ export class SearchComponent implements OnInit {
         'Source and Destination cannot be the same !',
         'Error',
       );
+      this.spinner.hide();
       return false;
     }
 
@@ -1461,8 +1465,7 @@ export class SearchComponent implements OnInit {
       this.entdate === date
     ) {
       this.notify.notify('Same Search Already Exists!', 'Error');
-      this.toggleShow();
-      this.modalService.dismissAll();
+      this.isShown = this.isShown;
       this.spinner.hide();
       return false;
     }
@@ -2741,12 +2744,12 @@ export class SearchComponent implements OnInit {
 
     // Added by Jagan
     this.route.queryParams.subscribe(params => {
-      console.log(params);
+      // console.log(params);
 
       if (params['date']) {
         this.entdate = params['date'];
 
-        console.log(this.nextDate);
+        // console.log(this.nextDate);
 
 
         // Reset if required

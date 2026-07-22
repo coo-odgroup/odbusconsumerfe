@@ -236,6 +236,11 @@ export function app(): express.Express {
     next();
   });
 
+  server.get('*', (req, res, next) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+    next();
+  });
+
   // Serve static files from /browser
   server.get(
     '*.*',

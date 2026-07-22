@@ -151,6 +151,7 @@ export class AppComponent {
     this.seoService.getOrganizationSchema().subscribe((res: any) => {
       this.seoService.addOrganizationSchema(res.organization_schema);
       this.storage_version = res.storage_version;
+      this.storeLocalStorage();
       this.checkLocalStorageVersion();
       this.startApplication();
     });
@@ -228,6 +229,22 @@ export class AppComponent {
     }
   }
 
+  storeLocalStorage() {
+    const param = {
+      user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+      locationName: '',
+    };
+    this.commonService.PopularInfo(param).subscribe(
+      (resp) => {
+        const data = resp && resp.data ? resp.data : resp;
+        localStorage.setItem('PopularInfo', JSON.stringify(data));
+      },
+      (error) => {
+        console.error('Error fetching PopularInfo:', error);
+      },
+    );
+  }
+
   startApplication() {
 
     const token = localStorage.getItem('AuthAccessToken');
@@ -250,8 +267,27 @@ export class AppComponent {
     if (currentVersion !== STORAGE_VERSION) {
       // Clear all old local storage
       // localStorage.clear();
-      localStorage.removeItem('commonData');
-      localStorage.removeItem('PopularInfo');
+      // localStorage.removeItem('commonData');
+      // localStorage.removeItem('PopularInfo');
+
+      const gclLs = localStorage.getItem('_gcl_ls');
+      const authAccessToken = localStorage.getItem('AuthAccessToken');
+      const recentSearches = localStorage.getItem('recentSearches');
+
+      localStorage.clear();
+      // sessionStorage.clear();
+
+      if (gclLs !== null) {
+        localStorage.setItem('_gcl_ls', gclLs);
+      }
+
+      if (authAccessToken !== null) {
+        localStorage.setItem('AuthAccessToken', authAccessToken);
+      }
+
+      if (recentSearches !== null) {
+        localStorage.setItem('recentSearches', recentSearches);
+      }
 
       // Save new version
       localStorage.setItem('storage_version', STORAGE_VERSION);
