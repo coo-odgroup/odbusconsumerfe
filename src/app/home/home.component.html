@@ -5,14 +5,8 @@
       <div class="row">
         <div class="col-md-6">
           <div class="banner-left">
-            <img
-              class="trust-badge"
-              src="assets/img/trust_badge.png"
-              alt="logo-ODBUS"
-              title="Logo ODBUS"
-              width="200"
-              height="145"
-            />
+            <img class="trust-badge" src="assets/img/trust_badge.png" alt="logo-ODBUS" title="Logo ODBUS" width="200"
+              height="145" />
             <h1>
               Odisha’s No. 1 Online,<br />
               Bus Ticket Booking Platform
@@ -523,4 +517,42 @@
   <app-growing></app-growing>
   <app-info></app-info>
   <app-faqs></app-faqs>
+
+  <!-- =========================================
+     MAINTENANCE NOTICE POPUP
+========================================= -->
+
+  <div class="maintenance-overlay" *ngIf="showMaintenancePopup">
+    <div class="maintenance-popup">
+
+      <button class="maintenance-close" (click)="closeMaintenancePopup()">
+        &times;
+      </button>
+
+      <div class="maintenance-icon">
+        <i class="fas fa-tools"></i>
+      </div>
+
+      <h3>Scheduled Maintenance</h3>
+
+      <p>
+        Our website will undergo scheduled maintenance from
+        <strong>28 July, 10:00 PM</strong> to
+        <strong>29 July, 10:00 AM</strong>.
+      </p>
+
+      <p>
+        During this time, the website and related services may be temporarily unavailable.
+      </p>
+
+      <p class="thank-you">
+        We apologize for the inconvenience and appreciate your patience.
+      </p>
+
+      <button class="maintenance-btn" (click)="closeMaintenancePopup()">
+        OK
+      </button>
+
+    </div>
+  </div>
 </ng-container>
