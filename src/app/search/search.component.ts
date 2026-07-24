@@ -1477,16 +1477,20 @@ export class SearchComponent implements OnInit {
     this.source_id = source.id;
     this.destination_id = destination.id;
 
-    const url =
-      GlobalConstants.URL +
-      'routes/' +
-      source.url +
-      '-' +
-      destination.url +
-      '-bus-services?date=' +
-      date;
+    // const url =
+    //   GlobalConstants.URL +
+    //   'routes/' +
+    //   source.url +
+    //   '-' +
+    //   destination.url +
+    //   '-bus-services?date=' +
+    //   date;
 
-    window.location.replace(url);
+    // window.location.replace(url);
+
+    this.router.navigateByUrl(
+      `/routes/${source.url}-${destination.url}-bus-services?date=${date}`
+    );
   }
 
   coupon_detail(i, modal) {

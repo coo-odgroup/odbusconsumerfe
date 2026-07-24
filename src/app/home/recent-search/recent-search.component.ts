@@ -48,7 +48,7 @@ export class RecentSearchComponent implements OnInit {
         ['/routes', `${item.source}-${item.destination}-bus-services`],
         {
             queryParams: {
-                date: item.validDate
+                date: this.getValidDate(item.date)
             }
         }
     );

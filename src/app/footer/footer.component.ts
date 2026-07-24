@@ -43,7 +43,8 @@ export class FooterComponent implements OnInit, OnDestroy, AfterContentChecked {
   private commonDataSubscription: Subscription | null = null;
 
   private apiurl = GlobalConstants.BASE_URL;
-  // baseurl = "http://localhost:7001/ODBUS/odbusproviderbe/public/";
+  @Input() topOperatorLinks: any[] = [];
+  @Input() popularRoutesLinks: any[] = [];
 
   bloglist: any;
 

@@ -27,20 +27,8 @@
       <div class="tab-pane fade" [class.active]="activeTab === 1">
         <div class="row route-grid">
           <div class="col-md-3" *ngFor="let column of popularRoutesLinks">
-            <!-- <a
-              *ngFor="let route of column"
-              [routerLink]="[
-                '/routes',
-                route.source_url +
-                  '-' +
-                  route.destination_url+
-                  '-bus-services',
-              ]"
-            >
-              {{ route.source}} to {{ route.destination}} Bus
-            </a> -->
             <a *ngFor="let route of column"
-              [href]="'/routes/' + route.source_url + '-' + route.destination_url + '-bus-services'">
+              [routerLink]="'/routes/' + route.source_url + '-' + route.destination_url + '-bus-services'">
               {{ route.source }} to {{ route.destination }} Bus
             </a>
           </div>

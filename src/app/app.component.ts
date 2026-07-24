@@ -18,6 +18,7 @@ import { filter } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { interval, Observable, Subscription } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
+import { PopularRoutesService } from 'src/app/services/popular-routes.service';
 
 @Component({
   selector: 'app-root',
@@ -73,6 +74,7 @@ export class AppComponent {
     public router: Router,
     private seoService: SeoService,
     private spinner: NgxSpinnerService,
+    private homeService: PopularRoutesService
   ) {
     this.isMobile = this.detectMobile();
     // Only access localStorage in browser
@@ -420,23 +422,30 @@ export class AppComponent {
   search: any = (text$: Observable<string>) => text$.pipe(map(() => []));
   topOperatorLinks: any[] = [];
   popularRoutesLinks: any[] = [];
+  topRoutes: any = [];
 
   setPopularInfoData(resp: any) {
-    this.popular_routes = resp.popularRoutes || [];
+    const params = {
+      user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+      is_popular_routes: 1,
+      is_top_routes: 1
+    };
+
+    this.homeService.getHomeData(params).subscribe((res: any) => {
+      this.topRoutes = res.data.top_routes;
+    });
+
+    this.popular_routes = this.topRoutes || [];
     this.popularRoutesLinks = this.chunkArray(
       this.popular_routes,
       7
     );
-
-    console.log('this.popularRoutesLinks: ', this.popularRoutesLinks);
 
     this.topOperators = resp.topOperators || [];
     this.topOperatorLinks = this.chunkArray(
       this.topOperators,
       5
     );
-
-    console.log('this.topOperatorLinks: ', this.topOperatorLinks);
 
     this.location_list = resp.locationName || [];
 

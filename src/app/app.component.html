@@ -20,5 +20,5 @@
 
 <app-footer
   *ngIf="deviceReady && !router.url.includes('pnr') && !router.url.includes('payment-status')"
->
+  [topOperatorLinks]="topOperatorLinks" [popularRoutesLinks]="popularRoutesLinks">
 </app-footer>

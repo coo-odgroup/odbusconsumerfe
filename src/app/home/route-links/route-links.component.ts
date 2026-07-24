@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -16,10 +16,13 @@ export class RouteLinksComponent implements OnInit, OnDestroy {
   activeTab = 1;
 
   topOperatorRes: any[] = [];
-  topOperatorLinks: any[] = [];
+  // topOperatorLinks: any[] = [];
 
   popularRoutesRes: any[] = [];
-  popularRoutesLinks: any[] = [];
+  // popularRoutesLinks: any[] = [];
+
+  @Input() topOperatorLinks: any[] = [];
+  @Input() popularRoutesLinks: any[] = [];
 
   constructor(private router: Router, private homeService: PopularRoutesService) { }
 

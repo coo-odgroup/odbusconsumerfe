@@ -397,14 +397,18 @@ export class SearchBoxComponent implements OnInit {
 
     this.saveSearchHistory(sr, ds, formattedDate);
 
-    window.location.href =
-      GlobalConstants.URL +
-      'routes/' +
-      sr +
-      '-' +
-      ds +
-      '-bus-services?date=' +
-      formattedDate;
+    // window.location.href =
+    //   GlobalConstants.URL +
+    //   'routes/' +
+    //   sr +
+    //   '-' +
+    //   ds +
+    //   '-bus-services?date=' +
+    //   formattedDate;
+
+    this.router.navigateByUrl(
+      `/routes/${sr}-${ds}-bus-services?date=${formattedDate}`
+    );
   }
 
   searchToday() {
