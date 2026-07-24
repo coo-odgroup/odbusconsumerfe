@@ -28,7 +28,7 @@
         <div class="row route-grid">
           <div class="col-md-3" *ngFor="let column of popularRoutesLinks">
             <a *ngFor="let route of column"
-              [routerLink]="'/routes/' + route.source_url + '-' + route.destination_url + '-bus-services'">
+              (click)="goToRoute(route)" style="cursor: pointer;">
               {{ route.source }} to {{ route.destination }} Bus
             </a>
           </div>

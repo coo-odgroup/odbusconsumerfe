@@ -56,10 +56,6 @@ export class RouteLinksComponent implements OnInit, OnDestroy {
         const topRoutes = res.data.top_routes;
         const popularInfo = localStorage.getItem('PopularInfo');
 
-        // Access anything you need
-        // res.data.popular_routes
-        // res.data.footer_links
-        // res.data.banner_image
         if (popularInfo) {
           const parsedData = JSON.parse(popularInfo);
 
@@ -88,14 +84,7 @@ export class RouteLinksComponent implements OnInit, OnDestroy {
           }
         }
       }
-
-
-
     });
-
-    // const popularInfo = localStorage.getItem('PopularInfo');
-
-
   }
 
   chunkArray(array: any[], size: number): any[][] {
@@ -111,5 +100,13 @@ export class RouteLinksComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  goToRoute(route: any): void {
+    const url = `/routes/${route.source_url}-${route.destination_url}-bus-services`;
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigateByUrl(url);
+    });
   }
 }
