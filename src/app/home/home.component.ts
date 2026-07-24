@@ -58,12 +58,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  showMaintenancePopup = true;
-
-  closeMaintenancePopup() {
-    this.showMaintenancePopup = false;
-  }
-
   // =======================
   // CUSTOM CALENDAR
   // =======================
@@ -1232,6 +1226,9 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   //   });
   // }
 
+  showMaintenancePopup = false;
+  maintenance: any;
+
   getHomeData() {
     const params = {
       user_id: GlobalConstants.MASTER_SETTING_USER_ID,
@@ -1248,8 +1245,24 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
         this.homeBanner = res.data.banner_image
           ? res.data.banner_image
           : '../../assets/img/new_banner2.jpg';
+
+        this.maintenance = res.data.maintenance;
+
+        const popupClosed = localStorage.getItem('maintenance_notice_dismissed');
+
+        if (
+          this.maintenance?.maintenance_popup &&
+          !popupClosed
+        ) {
+          this.showMaintenancePopup = true;
+        }
       }
 
     });
+  }
+
+  closeMaintenancePopup() {
+    this.showMaintenancePopup = false;
+    localStorage.setItem('maintenance_notice_dismissed', 'true');
   }
 }
