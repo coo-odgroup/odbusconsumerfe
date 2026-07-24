@@ -1289,120 +1289,6 @@ export class SearchComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  submitForm_bk() {
-    this.seatsLayoutRecord.visibility = false;
-    this.seatlayoutShow = '';
-    this.safetyshow = '';
-    this.busPhotoshow = '';
-    this.reviewShow = '';
-    this.policyShow = '';
-    this.checkedIndex = 0;
-
-    this.buslist = [];
-
-    if (this.searchForm.valid) {
-      if (!this.searchForm.value.source.name) {
-        this.notify.notify('Select Valid Source !', 'Error');
-
-        return false;
-      }
-
-      if (!this.searchForm.value.destination.name) {
-        this.notify.notify('Select Valid Destination !', 'Error');
-
-        return false;
-      }
-
-      if (
-        this.searchForm.value.source?.name.trim().toLowerCase() ===
-        this.searchForm.value.destination?.name.trim().toLowerCase()
-      ) {
-        this.notify.notify(
-          'Source and Destination cannot be the same !',
-          'Error',
-        );
-        return false;
-      }
-
-      let dt = this.searchForm.value.entry_date;
-      if (dt.month < 10) {
-        dt.month = '0' + dt.month;
-      }
-      if (dt.day < 10) {
-        dt.day = '0' + dt.day;
-      }
-      this.searchForm.value.entry_date = [dt.day, dt.month, dt.year].join('-');
-
-      this.sourceData = this.searchForm.value.source;
-      this.destinationData = this.searchForm.value.destination;
-      this.entdate = this.searchForm.value.entry_date;
-
-      this.source_id = this.sourceData.id;
-      this.destination_id = this.destinationData.id;
-
-      let sr = this.searchForm.value.source.url;
-      let ds = this.searchForm.value.destination.url;
-      let date = this.searchForm.value.entry_date;
-
-      // window.location.href =
-      //   GlobalConstants.URL +
-      //   'routes/' +
-      //   sr +
-      //   '-' +
-      //   ds +
-      //   '-bus-services?date=' +
-      //   date;
-
-      const url =
-        GlobalConstants.URL +
-        'routes/' +
-        sr +
-        '-' +
-        ds +
-        '-bus-services?date=' +
-        date;
-
-      window.location.replace(url);
-
-      // this.locationService.setSource(this.sourceData);
-      // this.locationService.setDestination(this.destinationData);
-      // this.locationService.setDate(this.searchForm.value.entry_date);
-
-      // this.isShown = false ;
-      // this.showformattedDate(this.searchForm.value.entry_date);
-
-      // this.setPrevNextDate(this.entdate);
-      // this.setPrevNextDate(this.entdate);
-
-      // this.getbuslist();
-    } else {
-      if (
-        this.searchForm.value.source == null ||
-        this.searchForm.value.source == ''
-      ) {
-        this.notify.notify('Select Source !', 'Error');
-      } else if (
-        this.searchForm.value.destination == null ||
-        this.searchForm.value.destination == ''
-      ) {
-        this.notify.notify('Select Destination !', 'Error');
-      } else if (
-        this.searchForm.value.entry_date == null ||
-        this.searchForm.value.entry_date == ''
-      ) {
-        this.notify.notify('Select Journey Date !', 'Error');
-      } else if (
-        this.searchForm.value.source?.name.trim().toLowerCase() ===
-        this.searchForm.value.destination?.name.trim().toLowerCase()
-      ) {
-        this.notify.notify(
-          'Source and Destination cannot be the same !',
-          'Error',
-        );
-      }
-    }
-  }
-
   submitForm() {
     this.isShown = !this.isShown;
     this.spinner.show();
@@ -1443,7 +1329,7 @@ export class SearchComponent implements OnInit {
     }
 
     if (
-      source.name.trim().toLowerCase() === destination.name.trim().toLowerCase()
+      source.url === destination.url
     ) {
       this.notify.notify(
         'Source and Destination cannot be the same !',
@@ -1464,7 +1350,7 @@ export class SearchComponent implements OnInit {
       this.destinationData?.url === destination.url &&
       this.entdate === date
     ) {
-      this.notify.notify('Same Search Already Exists!', 'Error');
+      this.notify.notify('This search already exists. Please modify your search and try again.', 'Error');
       this.isShown = this.isShown;
       this.spinner.hide();
       return false;
@@ -1477,20 +1363,16 @@ export class SearchComponent implements OnInit {
     this.source_id = source.id;
     this.destination_id = destination.id;
 
-    // const url =
-    //   GlobalConstants.URL +
-    //   'routes/' +
-    //   source.url +
-    //   '-' +
-    //   destination.url +
-    //   '-bus-services?date=' +
-    //   date;
+    const url =
+      GlobalConstants.URL +
+      'routes/' +
+      source.url +
+      '-' +
+      destination.url +
+      '-bus-services?date=' +
+      date;
 
-    // window.location.replace(url);
-
-    this.router.navigateByUrl(
-      `/routes/${source.url}-${destination.url}-bus-services?date=${date}`
-    );
+    window.location.replace(url);
   }
 
   coupon_detail(i, modal) {

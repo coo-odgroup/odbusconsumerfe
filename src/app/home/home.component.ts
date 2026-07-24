@@ -343,15 +343,15 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
             term === ''
               ? []
               : this.location_list
-                .filter(
-                  (v) =>
-                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                    (v.synonym != '' &&
-                      v.synonym != null &&
-                      v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
-                      -1),
-                )
-                .slice(0, 10),
+                  .filter(
+                    (v) =>
+                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                      (v.synonym != '' &&
+                        v.synonym != null &&
+                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                          -1),
+                  )
+                  .slice(0, 10),
           ),
         );
 
@@ -814,10 +814,10 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       if (el) {
         try {
           el.focus();
-        } catch (e) { }
+        } catch (e) {}
         try {
           el.click();
-        } catch (e) { }
+        } catch (e) {}
       }
     }
   }
@@ -1030,7 +1030,6 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   }
 
   submitForm() {
-    // this.spinner.show();
     if (this.isMobile == true && this.entry_date != null) {
       this.searchForm.patchValue({
         entry_date: this.entry_date,
@@ -1056,8 +1055,8 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     }
 
     if (
-      this.searchForm.value.source?.name.trim().toLowerCase() ===
-      this.searchForm.value.destination?.name.trim().toLowerCase()
+      this.searchForm.value.source ===
+      this.searchForm.value.destination
     ) {
       this.notify.notify(
         'Source and Destination cannot be the same !',
@@ -1106,22 +1105,10 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       return;
     }
 
-    // this.spinner.hide();
-
     this.router.navigateByUrl(
-      `/routes/${sr}-${ds}-bus-services?date=${formattedDate}`
+      `/routes/${sr}-${ds}-bus-services?date=${formattedDate}`,
     );
 
-    // const url =
-    //   GlobalConstants.URL +
-    //   'routes/' +
-    //   sr +
-    //   '-' +
-    //   ds +
-    //   '-bus-services?date=' +
-    //   formattedDate;
-
-    // window.location.replace(url);
     this.saveSearchHistory(sr, ds, formattedDate);
   }
 
@@ -1233,13 +1220,11 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     const params = {
       user_id: GlobalConstants.MASTER_SETTING_USER_ID,
       is_popular_routes: 1,
-      is_top_routes: 1
+      is_top_routes: 1,
     };
 
     this.homeService.getHomeData(params).subscribe((res: any) => {
-
       if (res.status == 1) {
-
         this.popular_routes = res.data.popular_routes;
 
         this.homeBanner = res.data.banner_image
@@ -1248,16 +1233,14 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
         this.maintenance = res.data.maintenance;
 
-        const popupClosed = localStorage.getItem('maintenance_notice_dismissed');
+        const popupClosed = localStorage.getItem(
+          'maintenance_notice_dismissed',
+        );
 
-        if (
-          this.maintenance?.maintenance_popup &&
-          !popupClosed
-        ) {
+        if (this.maintenance?.maintenance_popup && !popupClosed) {
           this.showMaintenancePopup = true;
         }
       }
-
     });
   }
 

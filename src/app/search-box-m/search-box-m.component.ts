@@ -349,8 +349,8 @@ export class SearchBoxMComponent implements OnInit {
     }
 
     if (
-      this.searchForm.value.source?.name.trim().toLowerCase() ===
-      this.searchForm.value.destination?.name.trim().toLowerCase()
+      this.searchForm.value.source ===
+      this.searchForm.value.destination
     ) {
       this.notify.notify(
         'Source and Destination cannot be the same !',
@@ -396,15 +396,6 @@ export class SearchBoxMComponent implements OnInit {
     }
 
     this.saveSearchHistory(sr, ds, formattedDate);
-
-    // window.location.href =
-    //   GlobalConstants.URL +
-    //   'routes/' +
-    //   sr +
-    //   '-' +
-    //   ds +
-    //   '-bus-services?date=' +
-    //   formattedDate;
 
     this.router.navigateByUrl(
       `/routes/${sr}-${ds}-bus-services?date=${formattedDate}`
