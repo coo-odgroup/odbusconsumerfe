@@ -58,6 +58,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
+  showMaintenancePopup = true;
+
+  closeMaintenancePopup() {
+    this.showMaintenancePopup = false;
+  }
+
   // =======================
   // CUSTOM CALENDAR
   // =======================
