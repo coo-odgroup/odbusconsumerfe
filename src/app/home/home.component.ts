@@ -1213,7 +1213,6 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   //   });
   // }
 
-  showMaintenancePopup = false;
   maintenance: any;
 
   getHomeData() {
@@ -1238,14 +1237,25 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
         );
 
         if (this.maintenance?.maintenance_popup && !popupClosed) {
-          this.showMaintenancePopup = true;
+          setTimeout(() => {
+            const popup = document.getElementById('maintenancePopup');
+
+            if (popup) {
+              popup.style.display = 'flex';
+            }
+          }, 5000);
         }
       }
     });
   }
 
   closeMaintenancePopup() {
-    this.showMaintenancePopup = false;
+    const popup = document.getElementById('maintenancePopup');
+
+    if (popup) {
+      popup.style.display = 'none';
+    }
+
     localStorage.setItem('maintenance_notice_dismissed', 'true');
   }
 }

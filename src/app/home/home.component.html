@@ -522,7 +522,7 @@
      MAINTENANCE NOTICE POPUP
 ========================================= -->
 
-  <div class="maintenance-overlay" *ngIf="showMaintenancePopup">
+  <div class="maintenance-overlay" id="maintenancePopup" style="display: none;">
     <div class="maintenance-popup">
 
       <button class="maintenance-close" (click)="closeMaintenancePopup()">
@@ -548,6 +548,12 @@
 
       <p class="thank-you">
         We apologize for the inconvenience and appreciate your patience.
+      </p>
+
+      <p>
+        <b>Email: </b><a href="mailto:support@odbus.in">support@odbus.in</a>
+        <br />
+        <b>Phone: </b><a href="tel:9937000838">+91 9937000838</a>
       </p>
 
       <button class="maintenance-btn" (click)="closeMaintenancePopup()">
