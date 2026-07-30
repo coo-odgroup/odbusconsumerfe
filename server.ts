@@ -57,7 +57,7 @@ export function app(): express.Express {
   server.get('/sitemap.xml', async (req, res) => {
     try {
       const response = await axios.get(
-        API_URL+'/getSchemaUrls',
+        API_URL + '/getSchemaUrls',
       );
 
       const routes = response.data.data.routes;
@@ -71,87 +71,87 @@ export function app(): express.Express {
       // Static Pages
       xml += `
         <url>
-          <loc>`+URL+`</loc>
+          <loc>`+ URL + `</loc>
           <changefreq>daily</changefreq>
           <priority>1.0</priority>
         </url>
         <url>
-          <loc>`+URL+`about-us</loc>
+          <loc>`+ URL + `about-us</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`operators</loc>
+          <loc>`+ URL + `operators</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`routes</loc>
+          <loc>`+ URL + `routes</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`offers</loc>
+          <loc>`+ URL + `offers</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`testimonials</loc>
+          <loc>`+ URL + `testimonials</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`careers</loc>
+          <loc>`+ URL + `careers</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`contact-us</loc>
+          <loc>`+ URL + `contact-us</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`faq</loc>
+          <loc>`+ URL + `faq</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`terms-conditions</loc>
+          <loc>`+ URL + `terms-conditions</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`privacy-policy</loc>
+          <loc>`+ URL + `privacy-policy</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`404</loc>
+          <loc>`+ URL + `404</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`thank-you</loc>
+          <loc>`+ URL + `thank-you</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`signup</loc>
+          <loc>`+ URL + `signup</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`login</loc>
+          <loc>`+ URL + `login</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`thankyou</loc>
+          <loc>`+ URL + `thankyou</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
         <url>
-          <loc>`+URL+`blog</loc>
+          <loc>`+ URL + `blog</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
         </url>
@@ -160,7 +160,7 @@ export function app(): express.Express {
       // Dynamic Routes
       routes.forEach((route: any) => {
         const url =
-          URL+`routes/` +
+          URL + `routes/` +
           `${route.source_slug}-` +
           `${route.destination_slug}-bus-services`;
 
@@ -176,7 +176,7 @@ export function app(): express.Express {
       // Dynamic Operators
       operators.forEach((operator: any) => {
         const operatorUrl =
-          URL+`operators/` +
+          URL + `operators/` +
           `${operator.operator_url}`;
 
         xml += `
@@ -198,6 +198,80 @@ export function app(): express.Express {
     }
   });
   // Add sitemap.xml code here
+
+  // Home page - cache at CDN for 60 seconds
+  server.get('/', (req, res, next) => {
+    res.setHeader(
+      'Cache-Control',
+      'public, max-age=0, s-maxage=60, stale-while-revalidate=30'
+    );
+
+    res.removeHeader('Pragma');
+    res.removeHeader('Expires');
+    res.removeHeader('Surrogate-Control');
+
+    next();
+  });
+
+  // Dynamic pages - do not cache
+  server.use(
+    [
+      '/listing',
+      '/routes',
+      '/booking',
+      '/success',
+      '/pnr',
+      '/payment-status',
+      '/manage-booking',
+      '/manage-booking-detail',
+      '/profile',
+      '/profile/delete',
+      '/my-bookings',
+      '/account',
+      '/login',
+      '/signup',
+      '/otp',
+      '/seat',
+      '/passenger',
+      '/payment'
+    ],
+    (req, res, next) => {
+      res.setHeader(
+        'Cache-Control',
+        'private, no-store, no-cache, must-revalidate'
+      );
+      next();
+    }
+  );
+
+  // Static content pages - cache
+  server.use(
+    [
+      '/about-us',
+      '/operators',
+      '/offers',
+      '/testimonials',
+      '/careers',
+      '/contact-us',
+      '/faq',
+      '/terms-conditions',
+      '/privacy-policy',
+      '/thank-you',
+      '/api-reference',
+      '/maintenance',
+      '/advantage',
+      '/blog',
+      '/sitemap',
+      '/online-bus-tickets'
+    ],
+    (req, res, next) => {
+      res.setHeader(
+        'Cache-Control',
+        'public, max-age=0, s-maxage=3600, stale-while-revalidate=300'
+      );
+      next();
+    }
+  );
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine(
