@@ -32,7 +32,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from '../services/notification.service';
 import { DatePipe, formatDate, isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, skip } from 'rxjs/operators';
 import { GlobalConstants } from '../constants/global-constants';
 import { CommonService } from '../services/common.service';
 import * as moment from 'moment';
@@ -2629,19 +2629,11 @@ export class SearchComponent implements OnInit {
     // this.seoContent();
 
     // Added by Jagan
-    this.route.queryParams.subscribe(params => {
-      // console.log(params);
-
+    this.route.queryParams.pipe(skip(1)).subscribe((params) => {
       if (params['date']) {
         this.entdate = params['date'];
 
-        // console.log(this.nextDate);
-
-
-        // Reset if required
         this.buslist = [];
-
-        // Reload data
         this.getbuslist();
         this.setPrevNextDate(this.entdate);
         this.showformattedDate(this.entdate);
