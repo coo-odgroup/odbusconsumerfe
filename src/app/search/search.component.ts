@@ -1363,16 +1363,11 @@ export class SearchComponent implements OnInit {
     this.source_id = source.id;
     this.destination_id = destination.id;
 
-    const url =
-      GlobalConstants.URL +
-      'routes/' +
-      source.url +
-      '-' +
-      destination.url +
-      '-bus-services?date=' +
-      date;
+    const url = `/routes/${source.url}-${destination.url}-bus-services?date=${date}`;
 
-    window.location.replace(url);
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigateByUrl(url);
+    });
   }
 
   coupon_detail(i, modal) {
@@ -1892,8 +1887,10 @@ export class SearchComponent implements OnInit {
       });
     }
 
-    this.getseatlayout();
-    this.getBoardingDroppingPoints();
+    if (currentBusId == this.busId && showbtn == 'View Seat') {
+      this.getseatlayout();
+      this.getBoardingDroppingPoints();
+    }
   }
 
   showAllAmenity(id: any) {
