@@ -1,0 +1,812 @@
+<div class="bg-gray-50 text-gray-900 overflow-x-hidden">
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center">
+          <span
+            class="text-2xl font-bold brand-gradient bg-clip-text text-transparent"
+            >ODBUS</span
+          >
+          <span class="ml-2 text-sm font-semibold text-gray-500 tracking-wider"
+            >BUSINESS PARTNER</span
+          >
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium">
+          <a href="#features" class="hover:text-orange-600">Features</a>
+          <a href="#earnings" class="hover:text-orange-600">Earnings</a>
+          <a href="#routes" class="hover:text-orange-600">Routes</a>
+          <a href="#faq" class="hover:text-orange-600">FAQ</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button class="text-gray-600 text-sm font-medium hover:text-gray-900">
+            Agent Login
+          </button>
+          <a
+            href="#register"
+            class="bg-orange-600 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-orange-700 transition"
+            >Register Now</a
+          >
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative py-12 lg:py-20 gradient-bg overflow-hidden">
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12"
+    >
+      <div class="w-full lg:w-3/5 text-center lg:text-left">
+        <span
+          class="inline-block px-4 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-widest mb-6"
+          >Odisha's Premier Travel Agent Network</span
+        >
+        <h1
+          class="text-4xl lg:text-6xl font-extrabold text-white leading-tight mb-6"
+        >
+          Seats That Pay Higher. <br />
+          <span class="text-orange-500">Earn More Every Ticket.</span>
+        </h1>
+        <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0">
+          Maximize agency revenue with ODBUS. Access 1,000+ regional bus
+          operators with 99.99% seat assurance. Stack commissions on tickets,
+          insurance, and cancellation protection.
+        </p>
+        <div
+          class="flex flex-wrap justify-center lg:justify-start gap-4 text-sm text-gray-400"
+        >
+          <div class="flex items-center">● Free Registration</div>
+          <div class="flex items-center">● Zero Setup Fees</div>
+          <div class="flex items-center">● 2-Minute Activation</div>
+        </div>
+      </div>
+
+      <!-- Registration Form -->
+      <div id="register" class="w-full lg:w-2/5">
+        <div
+          class="glass-card p-8 rounded-2xl shadow-2xl border border-white/20"
+        >
+          <h3 class="text-2xl font-bold text-gray-900 mb-2 text-center">
+            Start Earning Today
+          </h3>
+          <p class="text-sm text-gray-500 mb-6 text-center">
+            Join 5,000+ successful ODBUS travel partners.
+          </p>
+          <form
+            class="space-y-4"
+            onsubmit="
+              event.preventDefault();
+              alert('Registration submitted for processing!');
+            "
+          >
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1"
+                >FULL NAME</label
+              >
+              <input
+                type="text"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none transition"
+                placeholder="Enter your full name"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1"
+                >AGENCY / SHOP NAME</label
+              >
+              <input
+                type="text"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none transition"
+                placeholder="Your business name"
+              />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1"
+                  >MOBILE NUMBER</label
+                >
+                <input
+                  type="tel"
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none transition"
+                  placeholder="10-digit mobile"
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1"
+                  >CITY / TOWN</label
+                >
+                <input
+                  type="text"
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none transition"
+                  placeholder="e.g. Sambalpur"
+                />
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="w-full brand-gradient text-white py-4 rounded-lg font-bold text-lg hover:shadow-lg hover:brightness-110 transition mt-4"
+            >
+              Create Free Agent Account
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Banner -->
+  <div class="bg-white border-b border-gray-200 py-8 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
+        <div>
+          <div class="text-3xl font-extrabold text-gray-900">1,000+</div>
+          <div class="text-xs font-medium text-gray-500 uppercase mt-1">
+            Bus Operators
+          </div>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold text-gray-900">500+</div>
+          <div class="text-xs font-medium text-gray-500 uppercase mt-1">
+            Daily Routes
+          </div>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold text-orange-600">99.99%</div>
+          <div class="text-xs font-medium text-gray-500 uppercase mt-1">
+            Assured Seats
+          </div>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold text-green-600">₹45k+</div>
+          <div class="text-xs font-medium text-gray-500 uppercase mt-1">
+            Monthly Goal
+          </div>
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <div class="text-3xl font-extrabold text-gray-900">24/7</div>
+          <div class="text-xs font-medium text-gray-500 uppercase mt-1">
+            Agent Support
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Revenue Simulator Section -->
+  <section id="earnings" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">
+          Calculate Your Earning Potential
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          See how ODBUS commission stacking turns a single ticket booking into a
+          massive revenue stream for your agency.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+          <div class="mb-8">
+            <label class="flex justify-between font-bold text-gray-700 mb-4">
+              <span>Tickets Booked Daily</span>
+              <span
+                id="ticketCountLabel"
+                class="text-orange-600 text-xl font-extrabold"
+                >15</span
+              >
+            </label>
+            <input
+              type="range"
+              id="ticketSlider"
+              min="1"
+              max="100"
+              value="15"
+              class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-600"
+            />
+          </div>
+
+          <div class="space-y-6">
+            <div
+              class="flex justify-between items-center p-4 bg-gray-50 rounded-lg"
+            >
+              <div>
+                <div class="font-bold">Base Commission</div>
+                <div class="text-xs text-gray-500">
+                  ~8% per ticket fare (Avg ₹850)
+                </div>
+              </div>
+              <div id="baseCommVal" class="text-lg font-bold text-gray-900">
+                ₹1,020
+              </div>
+            </div>
+            <div
+              class="flex justify-between items-center p-4 bg-green-50 rounded-lg border border-green-100"
+            >
+              <div>
+                <div class="font-bold text-green-800">Add-on Bonuses</div>
+                <div class="text-xs text-green-600">
+                  Insurance + Cancellation Stacking
+                </div>
+              </div>
+              <div id="addonCommVal" class="text-lg font-bold text-green-700">
+                +₹255
+              </div>
+            </div>
+            <div class="pt-6 border-t border-gray-200">
+              <div class="text-xs font-bold text-gray-500 uppercase mb-1">
+                Estimated Daily Profit
+              </div>
+              <div
+                id="totalDailyProfit"
+                class="text-4xl font-extrabold text-orange-600"
+              >
+                ₹1,275
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <div class="chart-container">
+            <canvas id="incomeChart"></canvas>
+          </div>
+          <div class="mt-8 text-center">
+            <div class="text-sm font-medium text-gray-500">
+              Projected Monthly Earnings
+            </div>
+            <div
+              id="monthlyProfit"
+              class="text-5xl font-black text-gray-900 mt-2"
+            >
+              ₹38,250
+            </div>
+            <p class="text-xs text-gray-400 mt-4 italic">
+              *Estimates based on average ticket values and full margin
+              stacking.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profit Stacking Visual -->
+  <section class="py-12 gradient-bg text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-center mb-12">
+        The Revenue Stacking Advantage
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div
+          class="p-6 rounded-xl bg-white/5 border border-white/10 text-center"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-orange-600 flex items-center justify-center mx-auto mb-4 font-bold text-xl"
+          >
+            1
+          </div>
+          <h4 class="font-bold mb-2">Base Commission</h4>
+          <p class="text-sm text-gray-400">
+            Guaranteed percentage payouts on every AC, Sleeper, and Seater
+            ticket across all operators.
+          </p>
+        </div>
+        <div
+          class="p-6 rounded-xl bg-white/5 border border-white/10 text-center"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center mx-auto mb-4 font-bold text-xl"
+          >
+            2
+          </div>
+          <h4 class="font-bold mb-2">Insurance Bonus</h4>
+          <p class="text-sm text-gray-400">
+            Earn lucrative add-on commissions on every travel insurance policy
+            issued at checkout.
+          </p>
+        </div>
+        <div
+          class="p-6 rounded-xl bg-white/5 border border-white/10 text-center"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center mx-auto mb-4 font-bold text-xl"
+          >
+            3
+          </div>
+          <h4 class="font-bold mb-2">Protection Stack</h4>
+          <p class="text-sm text-gray-400">
+            Earn extra revenue by protecting customer bookings against
+            last-minute trip cancellations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section id="features" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Built for Agency Success</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Experience a booking portal that eliminates technical friction so you
+          can focus on selling more tickets.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          class="p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition group"
+        >
+          <div
+            class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6 text-orange-600 text-2xl group-hover:bg-orange-600 group-hover:text-white transition"
+          >
+            &#128187;
+          </div>
+          <h4 class="font-bold text-xl mb-3">Unified Dashboard</h4>
+          <p class="text-sm text-gray-500 leading-relaxed">
+            Access 1,000+ local operators from one login. No more juggling
+            multiple portals.
+          </p>
+        </div>
+        <div
+          class="p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition group"
+        >
+          <div
+            class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6 text-green-600 text-2xl group-hover:bg-green-600 group-hover:text-white transition"
+          >
+            &#9889;
+          </div>
+          <h4 class="font-bold text-xl mb-3">Express 3-Step</h4>
+          <p class="text-sm text-gray-500 leading-relaxed">
+            Search, Select, and Pay. Optimized for rapid counter issuance under
+            pressure.
+          </p>
+        </div>
+        <div
+          class="p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition group"
+        >
+          <div
+            class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 text-blue-600 text-2xl group-hover:bg-blue-600 group-hover:text-white transition"
+          >
+            &#9989;
+          </div>
+          <h4 class="font-bold text-xl mb-3">Assured Seats</h4>
+          <p class="text-sm text-gray-500 leading-relaxed">
+            99.99% seat lock protocol. Protect your agency's reputation from
+            double-bookings.
+          </p>
+        </div>
+        <div
+          class="p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition group"
+        >
+          <div
+            class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 text-purple-600 text-2xl group-hover:bg-purple-600 group-hover:text-white transition"
+          >
+            &#128176;
+          </div>
+          <h4 class="font-bold text-xl mb-3">Instant Wallet</h4>
+          <p class="text-sm text-gray-500 leading-relaxed">
+            Commissions credited instantly. Rapid refunds automated back to your
+            agency wallet.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regional Route Network -->
+  <section id="routes" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        class="flex flex-col lg:flex-row items-end justify-between mb-12 gap-6"
+      >
+        <div class="max-w-xl">
+          <h2 class="text-3xl font-bold mb-4">
+            Deepest Route Penetration in Odisha
+          </h2>
+          <p class="text-gray-600">
+            Sell tickets for the routes your customers actually take. From
+            coastal urban centers to interior industrial districts.
+          </p>
+        </div>
+        <div
+          class="flex bg-white p-1 rounded-xl shadow-sm border border-gray-200"
+          id="routeTabs"
+        >
+          <button
+            onclick="switchRoute('coastal')"
+            class="route-tab px-6 py-2 rounded-lg text-sm font-bold bg-orange-600 text-white transition"
+          >
+            Coastal
+          </button>
+          <button
+            onclick="switchRoute('western')"
+            class="route-tab px-6 py-2 rounded-lg text-sm font-bold text-gray-500 hover:text-gray-900 transition"
+          >
+            Western
+          </button>
+          <button
+            onclick="switchRoute('southern')"
+            class="route-tab px-6 py-2 rounded-lg text-sm font-bold text-gray-500 hover:text-gray-900 transition"
+          >
+            Southern
+          </button>
+          <button
+            onclick="switchRoute('interstate')"
+            class="route-tab px-6 py-2 rounded-lg text-sm font-bold text-gray-500 hover:text-gray-900 transition"
+          >
+            Interstate
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="routeGrid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+      >
+        <!-- Dynamic Content -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Onboarding Process -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">How to Start Earning</h2>
+        <p class="text-gray-600">
+          Follow these 4 simple steps to go live on the ODBUS network.
+        </p>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-8 relative">
+        <div class="flex-1 text-center relative">
+          <div
+            class="w-16 h-16 brand-gradient text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg step-line"
+          >
+            1
+          </div>
+          <h4 class="font-bold mb-2">Register</h4>
+          <p class="text-sm text-gray-500">
+            Fill the 60-second online form with shop details.
+          </p>
+        </div>
+        <div class="flex-1 text-center relative">
+          <div
+            class="w-16 h-16 brand-gradient text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg step-line"
+          >
+            2
+          </div>
+          <h4 class="font-bold mb-2">KYC Verify</h4>
+          <p class="text-sm text-gray-500">
+            Submit PAN/Aadhaar for instant digital verification.
+          </p>
+        </div>
+        <div class="flex-1 text-center relative">
+          <div
+            class="w-16 h-16 brand-gradient text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg step-line"
+          >
+            3
+          </div>
+          <h4 class="font-bold mb-2">Load Wallet</h4>
+          <p class="text-sm text-gray-500">
+            Add funds instantly via UPI or NetBanking.
+          </p>
+        </div>
+        <div class="flex-1 text-center">
+          <div
+            class="w-16 h-16 brand-gradient text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg"
+          >
+            4
+          </div>
+          <h4 class="font-bold mb-2">Start Earnings</h4>
+          <p class="text-sm text-gray-500">
+            Book tickets, stack add-ons & earn top margins.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section id="faq" class="py-20 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-12">
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-4">
+        <div
+          class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
+        >
+          <button
+            onclick="toggleFaq(0)"
+            class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition"
+          >
+            <span class="font-bold text-gray-800"
+              >Are there any setup or membership fees?</span
+            >
+            <span class="text-orange-600 text-xl font-bold">+</span>
+          </button>
+          <div
+            class="faq-content hidden p-6 pt-0 text-sm text-gray-600 border-t border-gray-50"
+          >
+            No. Joining the ODBUS Agent Network is completely free. There are no
+            upfront setup fees, recurring subscription charges, or hidden
+            platform maintenance costs.
+          </div>
+        </div>
+        <div
+          class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
+        >
+          <button
+            onclick="toggleFaq(1)"
+            class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition"
+          >
+            <span class="font-bold text-gray-800"
+              >How are commission payouts processed?</span
+            >
+            <span class="text-orange-600 text-xl font-bold">+</span>
+          </button>
+          <div
+            class="faq-content hidden p-6 pt-0 text-sm text-gray-600 border-t border-gray-50"
+          >
+            Commissions are calculated instantly upon every successful ticket
+            issuance and credited directly to your agent wallet balance. You can
+            use your commission balance immediately to book subsequent tickets.
+          </div>
+        </div>
+        <div
+          class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
+        >
+          <button
+            onclick="toggleFaq(2)"
+            class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition"
+          >
+            <span class="font-bold text-gray-800"
+              >What happens if a customer cancels a ticket?</span
+            >
+            <span class="text-orange-600 text-xl font-bold">+</span>
+          </button>
+          <div
+            class="faq-content hidden p-6 pt-0 text-sm text-gray-600 border-t border-gray-50"
+          >
+            Refunds are determined by the specific operator's policy. The refund
+            amount is credited back to your agent wallet immediately. If you
+            booked with Cancellation Protection, the passenger receives enhanced
+            refund terms.
+          </div>
+        </div>
+        <div
+          class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
+        >
+          <button
+            onclick="toggleFaq(3)"
+            class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition"
+          >
+            <span class="font-bold text-gray-800"
+              >How do I get help with a booking?</span
+            >
+            <span class="text-orange-600 text-xl font-bold">+</span>
+          </button>
+          <div
+            class="faq-content hidden p-6 pt-0 text-sm text-gray-600 border-t border-gray-50"
+          >
+            ODBUS maintains a 24/7 dedicated regional support desk. You can
+            reach us at 9583918888 or via email at support@odbus.in for instant
+            resolution of trip or payment issues.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-12 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+        <div class="col-span-2">
+          <div class="text-2xl font-bold text-white mb-6">ODBUS</div>
+          <p class="max-w-md text-sm leading-relaxed mb-6">
+            ODBUS is Odisha’s leading digital bus ticketing ecosystem,
+            connecting 1,000+ operators to a nationwide network of travel
+            partners. Established in 2015 to revolutionize regional travel
+            connectivity.
+          </p>
+          <div class="flex space-x-4 text-xl">
+            <a href="#" class="hover:text-white">f</a>
+            <a href="#" class="hover:text-white">in</a>
+            <a href="#" class="hover:text-white">x</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6">Contact Us</h4>
+          <ul class="text-sm space-y-3">
+            <li>9583918888 / 9438654942</li>
+            <li>support@odbus.in</li>
+            <li>Bhubaneswar, Odisha</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6">B2B Quick Links</h4>
+          <ul class="text-sm space-y-3">
+            <li><a href="#" class="hover:text-white">Agent Agreement</a></li>
+            <li>
+              <a href="#" class="hover:text-white">Commission Policy</a>
+            </li>
+            <li><a href="#" class="hover:text-white">Help Desk</a></li>
+            <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-white/5 text-center text-xs">
+        &copy; 2026 OD Tours & Travels Private Limited. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Data Objects ---
+    const routeData = {
+      coastal: [
+        { from: "Bhubaneswar", to: "Puri", ops: "Chandan Bus" },
+        { from: "Cuttack", to: "Berhampur", ops: "Devdas Travels" },
+        { from: "Bhubaneswar", to: "Balasore", ops: "Binapani" },
+        { from: "Bhubaneswar", to: "Baripada", ops: "Ananya Srikunj" },
+        { from: "Puri", to: "Konark", ops: "Local Express" },
+        { from: "Bhadrak", to: "Bhubaneswar", ops: "Jagannath" },
+        { from: "Berhampur", to: "Puri", ops: "Maa Kali" },
+        { from: "Cuttack", to: "Balasore", ops: "Grand Coastal" },
+      ],
+      western: [
+        { from: "Bhubaneswar", to: "Rourkela", ops: "Green Baloon" },
+        { from: "Bhubaneswar", to: "Sambalpur", ops: "Sampark" },
+        { from: "Cuttack", to: "Jharsuguda", ops: "Shakti" },
+        { from: "Bhubaneswar", to: "Balangir", ops: "Sai Darshan" },
+        { from: "Sambalpur", to: "Bargarh", ops: "Maa Manikeswari" },
+        { from: "Rourkela", to: "Jharsuguda", ops: "Super Western" },
+        { from: "Bhubaneswar", to: "Sonepur", ops: "Gourav Bus" },
+        { from: "Cuttack", to: "Nuapada", ops: "Panchayat" },
+      ],
+      southern: [
+        { from: "Bhubaneswar", to: "Rayagada", ops: "Maa Thakurani" },
+        { from: "Bhubaneswar", to: "Koraput", ops: "Annapurna" },
+        { from: "Cuttack", to: "Jeypore", ops: "Mahadev" },
+        { from: "Cuttack", to: "Malkangiri", ops: "Satya Bus" },
+        { from: "Berhampur", to: "Phulbani", ops: "Gajapati" },
+        { from: "Bhubaneswar", to: "Bhawanipatna", ops: "Sun Express" },
+        { from: "Jeypore", to: "Malkangiri", ops: "Tribal King" },
+        { from: "Bhubaneswar", to: "Gunupur", ops: "Southern Star" },
+      ],
+      interstate: [
+        { from: "Kolkata", to: "Bhubaneswar", ops: "Mallick Bus" },
+        { from: "Ranchi", to: "Bhubaneswar", ops: "Grand Express" },
+        { from: "Raipur", to: "Sambalpur", ops: "SBP Express" },
+        { from: "Bhubaneswar", to: "TATA", ops: "Satya Travels" },
+        { from: "Surat", to: "Bhubaneswar", ops: "Pradhan Bus" },
+        { from: "Vizag", to: "Berhampur", ops: "Andhra Exp" },
+        { from: "Kolkata", to: "Puri", ops: "Holiday Spl" },
+        { from: "Chennai", to: "Berhampur", ops: "Coastal Long" },
+      ],
+    };
+
+    // --- State & Chart Initialization ---
+    let incomeChart;
+    const ticketSlider = document.getElementById("ticketSlider");
+    const ticketCountLabel = document.getElementById("ticketCountLabel");
+    const baseCommVal = document.getElementById("baseCommVal");
+    const addonCommVal = document.getElementById("addonCommVal");
+    const totalDailyProfit = document.getElementById("totalDailyProfit");
+    const monthlyProfit = document.getElementById("monthlyProfit");
+
+    function initChart() {
+      const ctx = document.getElementById("incomeChart").getContext("2d");
+      incomeChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Daily Profit", "Weekly Profit", "Monthly Profit"],
+          datasets: [
+            {
+              label: "Income Projection (₹)",
+              data: [0, 0, 0],
+              backgroundColor: ["#E4532B", "#111827", "#10B981"],
+              borderRadius: 8,
+              maxBarThickness: 50,
+            },
+          ],
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { display: false },
+            },
+            x: {
+              grid: { display: false },
+            },
+          },
+        },
+      });
+    }
+
+    // --- Logic Functions ---
+    function updateIncome() {
+      const count = parseInt(ticketSlider.value);
+      const avgFare = 850;
+      const baseComm = Math.round(count * avgFare * 0.08);
+      const addonComm = Math.round(count * 17); // ~ ₹17 extra profit per ticket from add-ons
+      const daily = baseComm + addonComm;
+      const monthly = daily * 30;
+
+      ticketCountLabel.innerText = count;
+      baseCommVal.innerText = `₹${baseComm.toLocaleString()}`;
+      addonCommVal.innerText = `+₹${addonComm.toLocaleString()}`;
+      totalDailyProfit.innerText = `₹${daily.toLocaleString()}`;
+      monthlyProfit.innerText = `₹${monthly.toLocaleString()}`;
+
+      // Update Chart
+      incomeChart.data.datasets[0].data = [daily, daily * 7, monthly];
+      incomeChart.update();
+    }
+
+    function switchRoute(zone) {
+      // Update Tabs UI
+      document.querySelectorAll(".route-tab").forEach((tab) => {
+        tab.classList.remove("bg-orange-600", "text-white");
+        tab.classList.add("text-gray-500");
+      });
+      event.target.classList.add("bg-orange-600", "text-white");
+      event.target.classList.remove("text-gray-500");
+
+      // Update Grid
+      const grid = document.getElementById("routeGrid");
+      grid.innerHTML = "";
+      routeData[zone].forEach((item) => {
+        const card = document.createElement("div");
+        card.className =
+          "bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between hover:border-orange-200 transition";
+        card.innerHTML = `
+                <div>
+                    <div class="flex items-center justify-between text-xs font-bold text-gray-400 uppercase mb-2">
+                        <span>${item.from}</span>
+                        <span>&#8594;</span>
+                        <span>${item.to}</span>
+                    </div>
+                    <div class="text-sm font-bold text-gray-800">${item.ops}</div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-[10px] font-bold text-green-600 uppercase">Live Availability</span>
+                </div>
+            `;
+        grid.appendChild(card);
+      });
+    }
+
+    function toggleFaq(index) {
+      const contents = document.querySelectorAll(".faq-content");
+      const content = contents[index];
+      const isHidden = content.classList.contains("hidden");
+
+      // Close others
+      contents.forEach((c) => c.classList.add("hidden"));
+
+      if (isHidden) {
+        content.classList.remove("hidden");
+      }
+    }
+
+    // --- Initializations ---
+    window.onload = () => {
+      initChart();
+      updateIncome();
+      switchRoute("coastal");
+
+      ticketSlider.addEventListener("input", updateIncome);
+    };
+  </script>
+</div>

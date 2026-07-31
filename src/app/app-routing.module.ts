@@ -107,6 +107,20 @@ export const routes: Routes = [
         (m) => m.PrivacyPolicyModule,
       ),
   },
+  {
+    path: 'refund-policy',
+    loadChildren: () =>
+      import('./refund-policy/refund-policy.module').then(
+        (m) => m.RefundPolicyModule,
+      ),
+  },
+  {
+    path: 'become-an-agent',
+    loadChildren: () =>
+      import('./join-as-agent/join-as-agent.module').then(
+        (m) => m.JoinAsAgentModule,
+      ),
+  },
   { path: '404', component: PageErrorComponent },
   {
     path: 'thank-you',
