@@ -1887,8 +1887,10 @@ export class SearchComponent implements OnInit {
       });
     }
 
-    this.getseatlayout();
-    this.getBoardingDroppingPoints();
+    if (currentBusId == this.busId && showbtn == 'View Seat') {
+      this.getseatlayout();
+      this.getBoardingDroppingPoints();
+    }
   }
 
   showAllAmenity(id: any) {
