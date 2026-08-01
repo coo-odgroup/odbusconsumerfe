@@ -354,7 +354,7 @@
    LINKS
 =================================*/
 
-.route-grid a {
+.route-grid a, .route-grid div {
     display: block;
     font-size: 16px;
     font-weight: 400;
@@ -364,7 +364,7 @@
     text-decoration: none !important;
 }
 
-.route-grid a:hover {
+.route-grid a:hover, .route-grid div:hover {
     color: #1b2155;
 }
 
@@ -479,7 +479,7 @@
 }
 
 .imp_links_wrapper {
-    padding: 18px 0;    
+    padding: 18px 0;
     border-top: 1px solid #e6e8f0;
 }
 

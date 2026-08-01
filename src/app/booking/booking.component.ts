@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, Input, HostListener, SecurityCont
 import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, STEP_STATE, THEME } from 'ng-wizard';
 import { Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ExternalLibraryService } from '../util';
+// import { ExternalLibraryService } from '../util';
 import { BookticketService } from '../services/bookticket.service';
 import { MakepaymentService } from '../services/makepayment.service';
 import { PaymentstatusService } from '../services/paymentstatus.service';
@@ -128,7 +128,7 @@ export class BookingComponent implements OnInit {
   activeMenu?: string;
   constructor(private ngWizardService: NgWizardService, private fb: FormBuilder,
     private router: Router, private bookticketService: BookticketService,
-    private razorpayService: ExternalLibraryService,
+    // private razorpayService: ExternalLibraryService,
     private cd: ChangeDetectorRef,
     private notify: NotificationService,
     private makepaymentService: MakepaymentService,
@@ -145,9 +145,9 @@ export class BookingComponent implements OnInit {
     private platformLocation: PlatformLocation,
     private managebookingService: ManagebookingService
   ) {
-    this.razorpayService
-      .lazyLoadLibrary('https://checkout.razorpay.com/v1/checkout.js')
-      .subscribe();
+    // this.razorpayService
+    //   .lazyLoadLibrary('https://checkout.razorpay.com/v1/checkout.js')
+    //   .subscribe();
 
     this.isMobile = this.deviceService.isMobile();
 

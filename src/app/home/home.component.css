@@ -3367,7 +3367,7 @@ a.btn.btn-warning:hover {
 
 .route-tab.active {
   color: #1b2155;
-  font-weight: 700;
+  /* font-weight: 700; */
   border-bottom: 3px solid #f0c92f;
   background: #f5f5f5 !important;
   border-radius: 3px !important;
@@ -3408,7 +3408,7 @@ a.btn.btn-warning:hover {
 /* ===============================
    LINKS
 =================================*/
-.route-grid a {
+.route-grid a, .route-grid div {
   display: block;
   font-size: 14px;
   font-weight: 500;
@@ -3418,7 +3418,7 @@ a.btn.btn-warning:hover {
   text-decoration: none !important;
 }
 
-.route-grid a:hover {
+.route-grid a:hover, .route-grid div:hover {
   color: #1b2155;
 }
 
@@ -3905,7 +3905,7 @@ a.btn.btn-warning:hover {
 
 .thank-you {
   font-weight: 600;
-  color: rgb(255, 0, 0) !important; 
+  color: rgb(255, 0, 0) !important;
 }
 
 .maintenance-btn {
