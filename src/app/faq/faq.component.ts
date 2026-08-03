@@ -48,8 +48,8 @@ export class FaqComponent implements OnInit {
   }
 
   menu() {
-    this.MenuActive = (this.MenuActive==false) ? true : false;
-    this.activeMenu='';
+    this.MenuActive = (this.MenuActive == false) ? true : false;
+    this.activeMenu = '';
   }
 
   signOut() {
@@ -59,18 +59,41 @@ export class FaqComponent implements OnInit {
 
   // Jagan
   ngOnInit(): void {
-       this.fetchFaqs();
+    this.fetchFaqs();
   }
+
+  // private fetchFaqs(): void {
+  //   this.spinner.show();
+  //   const payload = {};
+
+  //   this.http.post(this.apiurl + '/getfaqs', payload).subscribe((res: any) => {
+  //     this.faqs = res.data;
+  //     this.openIndex = this.faqs.map(() => 0);
+  //     this.spinner.hide();
+  //   });
+  // }
+  // Jagan
 
   private fetchFaqs(): void {
     this.spinner.show();
+    const storageKey = 'faqs_data';
+
+    const cachedFaqs = localStorage.getItem(storageKey);
+
+    if (cachedFaqs) {
+      this.faqs = JSON.parse(cachedFaqs);
+      this.openIndex = this.faqs.map(() => 0);
+      this.spinner.hide();
+      return;
+    }
     const payload = {};
 
     this.http.post(this.apiurl + '/getfaqs', payload).subscribe((res: any) => {
       this.faqs = res.data;
+      // Save for future use
+      localStorage.setItem(storageKey, JSON.stringify(this.faqs));
       this.openIndex = this.faqs.map(() => 0);
       this.spinner.hide();
     });
   }
-  // Jagan
 }
