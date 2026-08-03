@@ -478,26 +478,26 @@
       </button>
 
       <p *ngIf="
-          popupData.common.popup_heading &&
-          popupData.common.popup_heading != 'null'
+          popupData?.common?.popup_heading &&
+          popupData?.common?.popup_heading != 'null'
         " style="font-weight: bold; color: red">
-        {{ popupData.common.popup_heading }}
+        {{ popupData?.common?.popup_heading }}
       </p>
 
       <img *ngIf="
-          popupData.common.popup_image && popupData.common.popup_image != 'null'
-        " src="{{ popupData.common.popup_image }}" width="100%" alt="Popup" loading="lazy" />
+          popupData?.common?.popup_image && popupData?.common?.popup_image != 'null'
+        " src="{{ popupData?.common?.popup_image }}" width="100%" alt="Popup" loading="lazy" />
 
       <p *ngIf="
-          popupData.common.popup_description &&
-          popupData.common.popup_description != 'null'
+          popupData?.common?.popup_description &&
+          popupData?.common?.popup_description != 'null'
         ">
-        {{ popupData.common.popup_description }}
+        {{ popupData?.common?.popup_description }}
       </p>
 
       <a style="text-align: right" target="_blank" *ngIf="
-          popupData.common.popup_url && popupData.common.popup_url != 'null'
-        " class="btn btn-primary" href="{{ popupData.common.popup_url }}">Click Here</a>
+          popupData?.common?.popup_url && popupData?.common?.popup_url != 'null'
+        " class="btn btn-primary" href="{{ popupData?.common?.popup_url }}">Click Here</a>
     </div>
   </div>
 </ng-template>

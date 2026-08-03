@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { parseMetadata } from '@angular/localize/src/utils';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -52,19 +53,21 @@ export class RouteLinksComponent implements OnInit, OnDestroy {
 
     this.homeService.getHomeData(params).subscribe((res: any) => {
 
-      if (res.status == 1) {
-        const topRoutes = res.data.top_routes;
+      if (res?.status == 1) {
+        const topRoutes = res?.data?.top_routes;
         const popularInfo = localStorage.getItem('PopularInfo');
 
         if (popularInfo) {
-          const parsedData = JSON.parse(popularInfo);
+          const parsedData = JSON.parse(popularInfo);    
+          
 
           // Top Operators
           if (
             parsedData?.topOperators &&
-            Array.isArray(parsedData.topOperators)
+            Array.isArray(parsedData?.topOperators)
           ) {
-            this.topOperatorRes = parsedData.topOperators;
+            this.topOperatorRes = parsedData?.topOperators;
+             console.log(this.topOperatorRes);
             this.topOperatorLinks = this.chunkArray(
               this.topOperatorRes,
               5

@@ -9,6 +9,7 @@
     </div>
   </div>
 </ngx-spinner>
+<div class="app-loading-overlay" *ngIf="showLoader && isBrowser"></div>
 <app-header
   *ngIf="deviceReady && !isMobile && !router.url.includes('pnr') && !router.url.includes('payment-status')"
 >

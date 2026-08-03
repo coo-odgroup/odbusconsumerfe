@@ -1223,11 +1223,11 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     };
 
     this.homeService.getHomeData(params).subscribe((res: any) => {
-      if (res.status == 1) {
-        this.popular_routes = res.data.popular_routes;
+      if (res?.status == 1) {
+        this.popular_routes = res?.data?.popular_routes;
 
-        this.homeBanner = res.data.banner_image
-          ? res.data.banner_image
+        this.homeBanner = res?.data?.banner_image
+          ? res?.data?.banner_image
           : '../../assets/img/new_banner2.jpg';
 
         this.maintenance = res.data.maintenance;

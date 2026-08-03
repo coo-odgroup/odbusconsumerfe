@@ -16,8 +16,8 @@ import {
 import { CommonService } from './services/common.service';
 import { filter } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { interval, Observable, Subscription } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
+import { interval, Observable, Subscription, of } from 'rxjs';
+import { debounceTime, map, tap, catchError } from 'rxjs/operators';
 import { PopularRoutesService } from 'src/app/services/popular-routes.service';
 
 @Component({
@@ -152,12 +152,22 @@ export class AppComponent {
   // }
 
   ngOnInit() {
-    this.seoService.getOrganizationSchema().subscribe((res: any) => {
-      this.seoService.addOrganizationSchema(res.organization_schema);
-      this.storage_version = res.storage_version;
-      this.storeLocalStorage();
-      this.checkLocalStorageVersion();
-      this.startApplication();
+    // Show loader in browser until initial data is ready
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    if (this.isBrowser) {
+      this.spinner.show();
+    }
+
+    // Load PopularInfo first, then continue with schema and common data setup.
+    this.storeLocalStorage().subscribe(() => {
+      this.seoService.getOrganizationSchema().subscribe((res: any) => {
+        this.seoService.addOrganizationSchema(res.organization_schema);
+        this.storage_version = res.storage_version;
+
+        if (isPlatformBrowser(this.platformId)) {
+          this.checkLocalStorageVersion();
+        }
+      });
     });
 
     // this.seoService.addCanonicalUrlFromCurrentUrl();.
@@ -208,6 +218,7 @@ export class AppComponent {
 
             // prevent infinite loader
             this.authReady = true;
+            this.finishLoading();
           },
         });
       }
@@ -224,44 +235,45 @@ export class AppComponent {
       this.commonService.getCommonData(param).subscribe(
         (resp: any) => {
           this.getCommonInfo(resp.data);
+          this.finishLoading();
         },
 
         (error: any) => {
           console.error('Error fetching Data:', error);
+          this.finishLoading();
         },
       );
     }
   }
 
-  storeLocalStorage() {
+  storeLocalStorage(): Observable<any> {
     const param = {
       user_id: GlobalConstants.MASTER_SETTING_USER_ID,
       locationName: '',
     };
-    this.commonService.PopularInfo(param).subscribe(
-      (resp) => {
+    // If PopularInfo is already set in the CommonService (e.g. by AppInitializer), reuse it.
+    const cached = this.commonService.getPopularInfo();
+    if (cached) {
+      try {
+        this.setPopularInfoData(cached);
+      } catch (e) {}
+      return of(cached);
+    }
+
+    return this.commonService.PopularInfo(param).pipe(
+      tap((resp: any) => {
         const data = resp && resp.data ? resp.data : resp;
         this.setPopularInfoData(data);
-        localStorage.setItem('PopularInfo', JSON.stringify(data));
-      },
-      (error) => {
+
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('PopularInfo', JSON.stringify(data));
+        }
+      }),
+      catchError((error) => {
         console.error('Error fetching PopularInfo:', error);
-      },
+        return of(null);
+      }),
     );
-  }
-
-  startApplication() {
-
-    const token = localStorage.getItem('AuthAccessToken');
-
-    if (token) {
-      this.loadCommonData();
-    } else {
-      this.auth.getToken().subscribe((res: any) => {
-        localStorage.setItem('AuthAccessToken', res.data);
-        this.loadCommonData();
-      });
-    }
   }
 
   checkLocalStorageVersion(): void {
@@ -308,6 +320,7 @@ export class AppComponent {
       const data = JSON.parse(storedData);
 
       this.getCommonInfo(data);
+      this.finishLoading();
     } else {
       const param = {
         user_id: GlobalConstants.MASTER_SETTING_USER_ID,
@@ -319,13 +332,28 @@ export class AppComponent {
           localStorage.setItem('commonData', JSON.stringify(resp.data));
 
           this.getCommonInfo(resp.data);
+          this.finishLoading();
         },
 
         (error: any) => {
           console.error('Error fetching Data:', error);
+          this.finishLoading();
         },
       );
     }
+  }
+
+  private finishLoading(): void {
+    // Hide spinner and mark loader off. Only run in browser.
+    if (isPlatformBrowser(this.platformId)) {
+      try {
+        this.spinner.hide();
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    this.showLoader = false;
   }
 
   getCommonInfo(resp: any) {
