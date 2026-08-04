@@ -161,7 +161,7 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": false
+              "optimization": true
             }
           }
         },

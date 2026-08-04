@@ -66,8 +66,7 @@ export class RouteLinksComponent implements OnInit, OnDestroy {
             parsedData?.topOperators &&
             Array.isArray(parsedData?.topOperators)
           ) {
-            this.topOperatorRes = parsedData?.topOperators;
-             console.log(this.topOperatorRes);
+            this.topOperatorRes = parsedData?.topOperators;            
             this.topOperatorLinks = this.chunkArray(
               this.topOperatorRes,
               5
