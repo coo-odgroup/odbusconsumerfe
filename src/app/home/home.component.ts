@@ -1054,10 +1054,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       return;
     }
 
-    if (
-      this.searchForm.value.source ===
-      this.searchForm.value.destination
-    ) {
+    if (this.searchForm.value.source === this.searchForm.value.destination) {
       this.notify.notify(
         'Source and Destination cannot be the same !',
         'Error',
@@ -1214,6 +1211,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
   // }
 
   maintenance: any;
+  homePopup: any;
 
   getHomeData() {
     const params = {
@@ -1231,6 +1229,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
           : '../../assets/img/new_banner2.jpg';
 
         this.maintenance = res.data.maintenance;
+        this.homePopup = res.data.website_popup;
 
         const popupClosed = localStorage.getItem(
           'maintenance_notice_dismissed',
@@ -1245,6 +1244,18 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
             }
           }, 5000);
         }
+
+        // Website Popup
+        const websiteClosed = localStorage.getItem('website_popup_dismissed');
+
+        if (this.homePopup && !websiteClosed) {
+          setTimeout(() => {
+            const popup = document.getElementById('websitePopup');
+            if (popup) {
+              popup.style.display = 'flex';
+            }
+          }, 10000);
+        }
       }
     });
   }
@@ -1257,5 +1268,15 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     }
 
     localStorage.setItem('maintenance_notice_dismissed', 'true');
+  }
+
+  closeWebsitePopup() {
+    const popup = document.getElementById('websitePopup');
+
+    if (popup) {
+      popup.style.display = 'none';
+    }
+
+    localStorage.setItem('website_popup_dismissed', 'true');
   }
 }

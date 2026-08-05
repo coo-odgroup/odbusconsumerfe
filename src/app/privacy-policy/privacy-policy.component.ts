@@ -22,7 +22,7 @@ export class PrivacyPolicyComponent implements OnInit {
   session: LoginChecker;
 
   MenuActive: boolean = false;
-  activeMenu: string;
+  activeMenu!: string;
 
   constructor(
     private pagesService: PagesService,
@@ -41,7 +41,7 @@ export class PrivacyPolicyComponent implements OnInit {
 
   menu() {
     this.MenuActive = (this.MenuActive==false) ? true : false;
-    this.activeMenu='';   
+    this.activeMenu='';
   }
 
   signOut() {
