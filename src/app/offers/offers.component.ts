@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 import { LoginChecker } from '../helpers/loginChecker';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-offers',
@@ -39,6 +40,7 @@ export class OffersComponent implements OnInit {
     private location: Location,
     private detectService: DeviceDetectorService,
     private route: ActivatedRoute,
+    private notify: NotificationService,
   ) {
     this.isMobile = this.detectService.isMobile();
     this.session = new LoginChecker();
@@ -133,16 +135,23 @@ export class OffersComponent implements OnInit {
   }
 
   copyCoupon(code: string) {
-    if (!code) return;
+    // if (!code) return;
+    if (!code) {
+      this.notify.notify('No coupon code available to copy.', 'Error');
+      this.closeOfferModal();
+      return;
+    }
 
     navigator.clipboard
       .writeText(code)
       .then(() => {
-        // console.log('Coupon copied:', code);
-        alert('Coupon copied!');
+        this.router.navigate(['offers']);
+        this.notify.notify('Coupon copied!', 'Success');
+        this.closeOfferModal();
       })
       .catch((err) => {
         console.error('Copy failed:', err);
+        this.notify.notify('Failed to copy coupon.', 'Error');
       });
   }
 }

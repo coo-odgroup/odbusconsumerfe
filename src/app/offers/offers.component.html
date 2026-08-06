@@ -291,7 +291,7 @@
         <!-- <h4>COUPON DESCRIPTION</h4> -->
 
         <div class="offer-description" [innerHTML]="OfferData?.coupon?.full_desc"></div>
-        <button class="copy-btn" (click)="copyCoupon(OfferData.coupon.coupon_code)">
+        <button class="copy-btn" (click)="copyCoupon(OfferData?.coupon?.coupon_code)">
             Copy Coupon
           </button>
 
