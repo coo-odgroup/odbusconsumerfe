@@ -93,4 +93,25 @@ export class BlogListingComponent implements OnInit {
       },
     );
   }
+
+  getList(url: string) {
+    this.spinner.show();
+
+    const formData = new FormData();
+    formData.append('cat_slug', this.slug || '');
+    formData.append('tag_slug', this.tag_slug || '');
+    formData.append('author_slug', this.author_slug || '');
+
+    this.http.post(url, formData).subscribe(
+      (res: any) => {
+        this.blogData = res.data.blogs;
+        this.categoryData = res.data.categories;
+        this.spinner.hide();
+      },
+      (error) => {
+        console.error(error);
+        this.spinner.hide();
+      }
+    );
+  }
 }

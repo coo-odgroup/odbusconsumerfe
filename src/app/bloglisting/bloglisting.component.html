@@ -36,15 +36,10 @@
       <div class="col-md-9">
         <div class="row blog-cards">
           <!-- CARD -->
-          <div class="col-md-4" *ngFor="let blog of blogData">
+          <div class="col-md-4" *ngFor="let blog of blogData?.data">
             <div class="blog-card position-relative">
               <div class="blog-img">
-                <img
-                  [src]="baseurl + blog.thumb_image"
-                  class="img-responsive"
-                  loading="lazy"
-                  alt=" {{ blog.title }}"
-                />
+                <img [src]="baseurl + blog.thumb_image" class="img-responsive" loading="lazy" alt=" {{ blog.title }}" />
                 <span class="blog-tag">{{ blog.category_name }}</span>
               </div>
 
@@ -58,12 +53,55 @@
                 </h4>
               </div>
 
-              <a
-                [routerLink]="['/blog', blog.blog_cat_slug, blog.slug]"
-                class="stretched-link"
-              ></a>
+              <a [routerLink]="['/blog', blog.blog_cat_slug, blog.slug]" class="stretched-link"></a>
             </div>
           </div>
+        </div>
+        <div class="d-flex justify-content-center mb-5" *ngIf="blogData">
+          <nav class="my-1 pt-3">
+            <ol class="pagination pagination-circle mb-0">
+
+              <!-- First -->
+              <li class="page-item" [class.disabled]="blogData.current_page == 1">
+                <a class="page-link cursor" (click)="blogData.first_page_url && getList(blogData.first_page_url)">
+                  First
+                </a>
+              </li>
+
+              <!-- Previous -->
+              <li class="page-item" [class.disabled]="!blogData.prev_page_url">
+                <a class="page-link cursor" (click)="blogData.prev_page_url && getList(blogData.prev_page_url)">
+                  &laquo;
+                </a>
+              </li>
+
+              <!-- Page Numbers -->
+              <ng-container *ngFor="let link of blogData.links; let i = index">
+                <li class="page-item" *ngIf="i != 0 && i != blogData.links.length - 1" [class.active]="link.active">
+
+                  <a class="page-link cursor" (click)="link.url && getList(link.url)">
+                    {{ link.label }}
+                  </a>
+
+                </li>
+              </ng-container>
+
+              <!-- Next -->
+              <li class="page-item" [class.disabled]="!blogData.next_page_url">
+                <a class="page-link cursor" (click)="blogData.next_page_url && getList(blogData.next_page_url)">
+                  &raquo;
+                </a>
+              </li>
+
+              <!-- Last -->
+              <li class="page-item" [class.disabled]="blogData.current_page == blogData.last_page">
+                <a class="page-link cursor" (click)="blogData.last_page_url && getList(blogData.last_page_url)">
+                  Last
+                </a>
+              </li>
+
+            </ol>
+          </nav>
         </div>
       </div>
 

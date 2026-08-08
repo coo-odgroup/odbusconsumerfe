@@ -151,6 +151,14 @@ export class AppComponent {
   //   }
   // }
 
+  hideLayout(): boolean {
+    const url = this.router.url;
+
+    return (
+      url.includes('become-an-agent') || url.includes('pnr') || url.includes('payment-status')
+    );
+  }
+
   ngOnInit() {
     // Show loader in browser until initial data is ready
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -256,7 +264,7 @@ export class AppComponent {
     if (cached) {
       try {
         this.setPopularInfoData(cached);
-      } catch (e) {}
+      } catch (e) { }
       return of(cached);
     }
 

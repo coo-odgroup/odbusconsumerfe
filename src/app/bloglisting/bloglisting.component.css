@@ -44,6 +44,27 @@
   }
 }
 
+.pagination .page-link {
+    color: #0e204b !important;
+    background: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.pagination .page-link:hover {
+    color: #0e204b !important;
+    background: #f8f9fa;
+}
+
+.pagination .page-item.active .page-link {
+    background: #0e204b !important;
+    border-color: #0e204b !important;
+    color: #fff !important;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d !important;
+}
+
 /* BLOG SECTION */
 
 .blog {
