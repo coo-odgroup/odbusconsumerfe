@@ -107,10 +107,10 @@ export class UserdashboardComponent implements OnInit {
     //console.log(this.currentDate);
     this.isMobile = this.deviceService.isMobile();
     this.session = new LoginChecker();
-    this.user = JSON.parse(localStorage.getItem('user'));
+    // this.user = JSON.parse(localStorage.getItem('user'));
 
-    this.getList();
-    this.profileData();
+    // this.getList();
+    // this.profileData();
 
     const current = new Date();
     this.dtconfig.minDate = {
@@ -166,7 +166,7 @@ export class UserdashboardComponent implements OnInit {
   profileData() {
 
     this.spinner.show();
-    this.profile = JSON.parse(localStorage.getItem('user'));
+    this.profile = JSON.parse(localStorage.getItem('user') || 'null');
 
     this.session = new LoginChecker();
     this.userdataservice.getProfile(this.profile.id, this.profile.token).subscribe(
@@ -179,36 +179,165 @@ export class UserdashboardComponent implements OnInit {
 
   }
 
+  // getList(url: any = '', status: any = '') {
+
+  //   this.expandedRefundRow = null;
+  //   this.spinner.show();
+
+  //   this.statusLabel = status;
+  //   const param = {
+  //     "status": status,
+  //     "paginate": this.per_page,
+  //     "userId": this.user.id,
+  //     "token": this.user.token
+  //   };
+
+
+  //   this.userdataservice.BookingHistroy(url, param).subscribe(
+  //     res => {
+  //       if (res.status == 1) {
+  //         this.list = res.data.data;
+  //         //console.log(this.list);
+  //       }
+  //       this.spinner.hide();
+
+  //     },
+  //     error => {
+  //       this.spinner.hide();
+  //       //this.notify.notify("Login is expired","Error");
+  //     }
+  //   );
+  // }
+
+  allBookings: any[] = [];
+  filteredBookings: any[] = [];
+
+  paginatedBookings: any[] = [];
+
+  currentPage: number = 1;
+  totalPages: number = 1;
+
   getList(url: any = '', status: any = '') {
 
     this.expandedRefundRow = null;
-    this.spinner.show();
-
     this.statusLabel = status;
-    const param = {
-      "status": status,
-      "paginate": this.per_page,
-      "userId": this.user.id,
-      "token": this.user.token
-    };
 
+    // API only once
+    if (this.allBookings.length === 0) {
 
-    this.userdataservice.BookingHistroy(url, param).subscribe(
-      res => {
-        if (res.status == 1) {
-          this.list = res.data.data;
-          //console.log(this.list);
+      this.spinner.show();
+
+      const param = {
+        status: '',
+        paginate: 10000,
+        userId: this.user.id,
+        token: this.user.token
+      };
+
+      this.userdataservice.BookingHistroy('', param).subscribe(
+        (res: any) => {
+
+          this.spinner.hide();
+
+          if (res.status == 1) {
+
+            // Get ALL bookings
+            this.allBookings = res.data?.data?.data || [];
+
+            // Filter
+            if (status) {
+              this.filteredBookings = this.allBookings.filter(
+                (booking: any) =>
+                  booking.booking_status === status
+              );
+            } else {
+              this.filteredBookings = [...this.allBookings];
+            }
+            this.currentPage = 1;
+
+            this.applyPagination();
+          }
+        },
+        error => {
+          this.spinner.hide();
+          console.error('API ERROR:', error);
         }
-        this.spinner.hide();
+      );
 
-      },
-      error => {
-        this.spinner.hide();
-        //this.notify.notify("Login is expired","Error");
+    } else {
+
+      // NO API CALL
+
+      if (status) {
+
+        this.filteredBookings = this.allBookings.filter(
+          (booking: any) =>
+            booking.booking_status === status
+        );
+
+      } else {
+
+        this.filteredBookings = [...this.allBookings];
       }
-    );
+
+      // When filter changes, go to page 1
+      this.currentPage = 1;
+
+      // Apply pagination
+      this.applyPagination();
+    }
   }
 
+  filterBookings(status: string) {
+
+    this.statusLabel = status;
+
+    if (!status) {
+      this.filteredBookings = [...this.allBookings];
+    } else {
+      this.filteredBookings = this.allBookings.filter(
+        (booking: any) =>
+          booking.booking_status === status
+      );
+    }
+
+    // Filter change → page 1
+    this.currentPage = 1;
+
+    this.applyPagination();
+  }
+
+  applyPagination() {
+
+    this.totalPages = Math.max(
+      1,
+      Math.ceil(this.filteredBookings.length / this.per_page)
+    );
+
+    const start = (this.currentPage - 1) * this.per_page;
+    const end = start + this.per_page;
+
+    this.paginatedBookings =
+      this.filteredBookings.slice(start, end);
+  }
+
+  goToPage(page: number) {
+
+    if (page < 1 || page > this.totalPages) {
+      return;
+    }
+
+    this.currentPage = page;
+
+    this.applyPagination();
+  }
+
+  getPageNumbers(): number[] {
+    return Array.from(
+      { length: this.totalPages },
+      (_, i) => i + 1
+    );
+  }
 
   page(label: any) {
     return label;
@@ -387,6 +516,17 @@ export class UserdashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.user = JSON.parse(
+      localStorage.getItem('user') || 'null'
+    );
+
+    if (!this.user?.id || !this.user?.token) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    this.getList();
+    this.profileData();
   }
 
   bookAgainV2(sourceUrl: string, destinationUrl: string) {

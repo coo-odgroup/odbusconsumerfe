@@ -209,19 +209,19 @@ export class SeoService {
 
     this.meta.updateTag({
       property: 'og:title',
-      content: c.meta_title || this.metaTitle,
+      content: c?.meta_title || this.metaTitle,
     });
 
     this.meta.updateTag({
       property: 'og:description',
-      content: c.meta_description || this.metaDescription,
+      content: c?.meta_description || this.metaDescription,
     });
 
     // Remove old schema
     this.removeJsonLd();
 
     // FAQ Schema
-    if (c.faq_schema) {
+    if (c?.faq_schema) {
       const faqScript = this.doc.createElement('script');
 
       faqScript.type = 'application/ld+json';
@@ -234,7 +234,7 @@ export class SeoService {
     }
 
     // Breadcrumb Schema
-    if (c.breadcrumb_schema) {
+    if (c?.breadcrumb_schema) {
       const breadcrumbScript = this.doc.createElement('script');
 
       breadcrumbScript.type = 'application/ld+json';
@@ -246,7 +246,7 @@ export class SeoService {
       this.doc.head.appendChild(breadcrumbScript);
     }
 
-    if (c.person_schema) {
+    if (c?.person_schema) {
       const personScript = this.doc.createElement('script');
       personScript.type = 'application/ld+json';
       personScript.text = c.person_schema;
@@ -256,7 +256,7 @@ export class SeoService {
     }
 
     // Service Schema
-    if (c.service_schema) {
+    if (c?.service_schema) {
       const serviceScript = this.doc.createElement('script');
 
       serviceScript.type = 'application/ld+json';
@@ -269,7 +269,7 @@ export class SeoService {
     }
 
     // Extra Meta
-    if (c.extra_meta) {
+    if (c?.extra_meta) {
       const temp = this.doc.createElement('div');
       temp.innerHTML = c.extra_meta;
 

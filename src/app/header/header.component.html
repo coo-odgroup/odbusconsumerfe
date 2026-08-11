@@ -35,21 +35,11 @@
         <div class="col-md-10 d-flex align-items-center">
           <div class="main-navigation">
             <nav class="navbar navbar-expand-lg navbar-light">
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <div
-                class="collapse navbar-collapse menu-cnt"
-                id="navbarSupportedContent"
-              >
+              <div class="collapse navbar-collapse menu-cnt" id="navbarSupportedContent">
                 <ul class="">
                   <li class="nav-item home">
                     <a class="nav-link" routerLink="/contact-us">Need Support</a>
@@ -59,9 +49,7 @@
                   </li>
                   <ng-container *ngIf="session.isLoggedIn()">
                     <li class="nav-item">
-                      <a class="nav-link" routerLink="/dashboard"
-                        >Manage Booking</a
-                      >
+                      <a class="nav-link" routerLink="/dashboard">Manage Booking</a>
                     </li>
                   </ng-container>
                   <ng-container *ngIf="!session.isLoggedIn()">
@@ -94,53 +82,23 @@
                                     class="download black-btn yellow-btn bh">Download App</a></li> -->
             </ul>
             <nav class="navbar navbar-expand-md" *ngIf="session.isLoggedIn()">
-              <button
-                class="navbar-toggler"
-                type="button"
-                aria-controls="navbarContent"
-                [attr.aria-expanded]="!collapsed"
-                aria-label="Toggle navigation"
-                (click)="collapsed = !collapsed"
-              >
+              <button class="navbar-toggler" type="button" aria-controls="navbarContent"
+                [attr.aria-expanded]="!collapsed" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
                 <span class="navbar-toggler-icon"></span>
               </button>
 
-              <div
-                class="navbar-collapse"
-                [class.collapse]="collapsed"
-                id="navbarContent"
-              >
+              <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
                 <ul class="navbar-nav ml-auto">
-                  <li
-                    class="nav-item"
-                    ngbDropdown
-                    display="dynamic"
-                    placement="bottom-right"
-                  >
-                    <a
-                      class="nav-link"
-                      tabindex="0"
-                      ngbDropdownToggle
-                      id="navbarDropdown3"
-                      role="button"
-                      >My Account</a
-                    >
+                  <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
+                    <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">My Account</a>
 
-                    <div
-                      ngbDropdownMenu
-                      aria-labelledby="navbarDropdown3"
-                      class="dropdown-menu"
-                    >
-                      <a ngbDropdownItem class="cursor" routerLink="myaccount"
-                        >Profile Setting</a
-                      >
-                      <a ngbDropdownItem class="cursor" routerLink="dashboard"
-                        >Dashboard</a
-                      >
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+                      <a ngbDropdownItem class="cursor" routerLink="dashboard">Dashboard</a>
+                      <a ngbDropdownItem class="cursor" routerLink="myaccount">Profile Setting</a>
 
-                      <a ngbDropdownItem class="cursor" (click)="signOut()"
-                        >Log out</a
-                      >
+                      <a ngbDropdownItem class="cursor" routerLink="my-reviews">My Reviews</a>
+
+                      <a ngbDropdownItem class="cursor" (click)="signOut()">Log out</a>
                     </div>
                   </li>
                 </ul>
