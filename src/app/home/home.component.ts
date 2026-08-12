@@ -1279,4 +1279,10 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
     localStorage.setItem('website_popup_dismissed', 'true');
   }
+
+  getRouterLink(url: string): string {
+    const parsedUrl = new URL(url);
+    localStorage.setItem('website_popup_dismissed', 'true');
+    return parsedUrl.pathname + parsedUrl.search;
+  }
 }

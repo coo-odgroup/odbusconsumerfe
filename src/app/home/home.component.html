@@ -779,10 +779,9 @@
       </p>
 
       <a
-        *ngIf="homePopup?.popup_url && homePopup?.popup_url != 'null'"
+        *ngIf="homePopup?.popup_url && homePopup?.popup_url !== 'null'"
         class="maintenance-btn"
-        [href]="homePopup?.popup_url"
-        target="_blank"
+        [routerLink]="getRouterLink(homePopup.popup_url)"
       >
         Click Here
       </a>
