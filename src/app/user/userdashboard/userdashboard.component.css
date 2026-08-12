@@ -937,3 +937,15 @@ ngb-rating.d-inline-flex {
 .step.final span {
     color: #28a745;
 }
+
+.custom-page-link .page-link {
+    background-color: #ffffff !important;
+    border-color: #0f204b !important;
+    color: #0f204b !important;
+}
+
+.custom-page-link.active .page-link {
+    background-color: #0f204b !important;
+    border-color: #0f204b !important;
+    color: #fff !important;
+}

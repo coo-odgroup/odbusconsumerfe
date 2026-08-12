@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { UserModule } from '../user.module';
 import { MyaccountComponent } from './myaccount.component';
 import { MyaccountRoutingModule } from './myaccount-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -11,7 +13,9 @@ import { MyaccountRoutingModule } from './myaccount-routing.module';
   imports: [
     CommonModule,
     MyaccountRoutingModule,
-    UserModule
+    UserModule,
+    ReactiveFormsModule,
+    ImageCropperModule
   ]
 })
 export class MyaccountModule {}
