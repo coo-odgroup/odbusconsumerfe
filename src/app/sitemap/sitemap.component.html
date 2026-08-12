@@ -60,7 +60,7 @@
                   </li>
 
                   <li>
-                    <a routerLink="/manage-booking">
+                    <a routerLink="/login">
                       <i class="fa fa-calendar-check-o"></i>
                       Manage Booking
                     </a>
@@ -139,9 +139,9 @@
                   </li>
 
                   <li>
-                    <a routerLink="/about-us">
+                    <a routerLink="/cancelation-policy">
                       <i class="fa fa-info-circle"></i>
-                      About ODBUS
+                      Cancellation Policy
                     </a>
                   </li>
 
@@ -156,6 +156,12 @@
 
               <div class="col-sm-6">
                 <ul class="sitemap-list">
+                  <li>
+                    <a routerLink="/about-us">
+                      <i class="fa fa-info-circle"></i>
+                      About ODBUS
+                    </a>
+                  </li>
                   <li>
                     <a routerLink="/contact-us">
                       <i class="fa fa-envelope"></i>
@@ -218,7 +224,6 @@
                         tr.destination_url +
                         '-bus-services',
                     ]"
-                    [queryParams]="{ date: currentDate }"
                   >
                     <i class="fa fa-map-marker"></i>
                     {{ tr.source }} → {{ tr.destination }}

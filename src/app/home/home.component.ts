@@ -886,28 +886,28 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       return;
     }
 
-    if (common.popup_status == 1) {
-      // guard date fields exist before constructing Date
-      const startDateStr = (common.popup_start_date || '').trim();
-      const startTimeStr = (common.popup_start_time || '').trim();
-      const endDateStr = (common.popup_end_date || '').trim();
-      const endTimeStr = (common.popup_end_time || '').trim();
+    // if (common.popup_status == 1) {
+    //   // guard date fields exist before constructing Date
+    //   const startDateStr = (common.popup_start_date || '').trim();
+    //   const startTimeStr = (common.popup_start_time || '').trim();
+    //   const endDateStr = (common.popup_end_date || '').trim();
+    //   const endTimeStr = (common.popup_end_time || '').trim();
 
-      if (startDateStr && startTimeStr && endDateStr && endTimeStr) {
-        const popup_s_datetime = new Date(
-          startDateStr + ' ' + startTimeStr,
-        ).getTime();
-        const popup_e_datetime = new Date(
-          endDateStr + ' ' + endTimeStr,
-        ).getTime();
+    //   if (startDateStr && startTimeStr && endDateStr && endTimeStr) {
+    //     const popup_s_datetime = new Date(
+    //       startDateStr + ' ' + startTimeStr,
+    //     ).getTime();
+    //     const popup_e_datetime = new Date(
+    //       endDateStr + ' ' + endTimeStr,
+    //     ).getTime();
 
-        if (!isNaN(popup_s_datetime) && !isNaN(popup_e_datetime)) {
-          if (popup_s_datetime <= timestamp && timestamp <= popup_e_datetime) {
-            this.modalService.open(this.popup);
-          }
-        }
-      }
-    }
+    //     if (!isNaN(popup_s_datetime) && !isNaN(popup_e_datetime)) {
+    //       if (popup_s_datetime <= timestamp && timestamp <= popup_e_datetime) {
+    //         this.modalService.open(this.popup);
+    //       }
+    //     }
+    //   }
+    // }
 
     /* =========================================
    FAQ WORKING WITHOUT ID / EXTRA CLASSES
