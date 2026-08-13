@@ -11,7 +11,7 @@
 </ngx-spinner>
 <div class="app-loading-overlay" *ngIf="showLoader && isBrowser"></div>
 <app-header
-  *ngIf="deviceReady && !isMobile && !router.url.includes('pnr') && !router.url.includes('payment-status')"
+  *ngIf="deviceReady && !isMobile && !hideLayout()"
 >
 </app-header>
 
@@ -20,6 +20,6 @@
 </main>
 
 <app-footer
-  *ngIf="deviceReady && !router.url.includes('pnr') && !router.url.includes('payment-status')"
+  *ngIf="deviceReady && !hideLayout()"
   [topOperatorLinks]="topOperatorLinks" [popularRoutesLinks]="popularRoutesLinks">
 </app-footer>

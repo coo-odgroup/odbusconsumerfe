@@ -147,14 +147,14 @@ export class OdbusOffersComponent implements OnInit {
     if (slider.scrollLeft <= 5) {
       prevBtn.style.display = 'none';
     } else {
-      prevBtn.style.display = 'flex';
+      prevBtn.style.display = 'block';
     }
 
     /* RIGHT BUTTON */
     if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 5) {
       nextBtn.style.display = 'none';
     } else {
-      nextBtn.style.display = 'flex';
+      nextBtn.style.display = 'block';
     }
   }
 }

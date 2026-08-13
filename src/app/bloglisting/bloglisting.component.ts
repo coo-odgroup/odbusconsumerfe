@@ -68,7 +68,18 @@ export class BlogListingComponent implements OnInit {
       this.slug = params.get('slug');
       this.tag_slug = params.get('tag_slug');
       this.author_slug = params.get('author_slug');
-      this.loadBlogs(this.slug, this.tag_slug, this.author_slug);
+      // this.loadBlogs(this.slug, this.tag_slug, this.author_slug);
+      this.route.queryParams.subscribe((queryParams) => {
+        const page = queryParams['page'];
+
+        if (page) {
+          const pageUrl = this.apiURL + '/bloglist?page=' + page;
+
+          this.getList(pageUrl);
+        } else {
+          this.loadBlogs(this.slug, this.tag_slug, this.author_slug);
+        }
+      });
     });
   }
 
@@ -91,6 +102,46 @@ export class BlogListingComponent implements OnInit {
         console.error('API Error:', error);
         this.spinner.hide();
       },
+    );
+  }
+
+
+  getList(url: string) {
+    this.spinner.show();
+
+    const formData = new FormData();
+    formData.append('cat_slug', this.slug || '');
+    formData.append('tag_slug', this.tag_slug || '');
+    formData.append('author_slug', this.author_slug || '');
+
+    // Get page number from API URL
+    const page = new URL(url).searchParams.get('page');
+
+    // Update browser URL
+    if (page) {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { page: page },
+        queryParamsHandling: ''
+      });
+    } else {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: {}
+      });
+    }
+
+    // Call API
+    this.http.post(url, formData).subscribe(
+      (res: any) => {
+        this.blogData = res.data.blogs;
+        this.categoryData = res.data.categories;
+        this.spinner.hide();
+      },
+      (error) => {
+        console.error(error);
+        this.spinner.hide();
+      }
     );
   }
 }
