@@ -58,7 +58,7 @@
   width: 56px;
   height: 56px;
   border-radius: 18px;
-  background: #fff4cc;
+  background: #072c6b;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,7 +121,7 @@
 }
 
 .menu-icon i {
-  color: #f0c004;
+  color: #072c6b;
   font-size: 18px;
 }
 

@@ -39,7 +39,13 @@
 
     <!-- MENU -->
     <div class="col-3 p-0 text-center">
-      <span (click)="menu()" (keydown.enter)="menu()" (keydown.space)="menu()" class="home" [ngClass]="{ active: activeMenu }">
+      <span
+        (click)="menu()"
+        (keydown.enter)="menu()"
+        (keydown.space)="menu()"
+        class="home"
+        [ngClass]="{ active: activeMenu }"
+      >
         <i class="fa-solid fa-bars-staggered"></i>
         <p class="mb-0 small">Menu</p>
       </span>
@@ -90,80 +96,56 @@
         <div class="menu-icon">
           <i class="far fa-window-restore"></i>
         </div>
-
         <span>Manage Booking</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
       <a routerLink="/login" *ngIf="!session.isLoggedIn()">
         <div class="menu-icon">
           <i class="far fa-window-restore"></i>
         </div>
-
         <span>Manage Booking</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
       <a routerLink="/offers">
         <div class="menu-icon">
           <i class="fas fa-gifts"></i>
         </div>
-
         <span>Offers</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
       <a routerLink="/operators">
         <div class="menu-icon">
           <i class="fas fa-bus"></i>
         </div>
-
         <span>Operators</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
       <a routerLink="/routes">
         <div class="menu-icon">
           <i class="fas fa-map-marker-alt"></i>
         </div>
-
         <span>Routes</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
       <a routerLink="/faq">
         <div class="menu-icon">
           <i class="fas fa-question-circle"></i>
         </div>
-
         <span>FAQ's</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
       <a routerLink="/terms-conditions">
         <div class="menu-icon">
           <i class="fas fa-file-alt"></i>
         </div>
-
         <span>Terms & Conditions</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
       <a routerLink="/privacy-policy">
         <div class="menu-icon">
           <i class="fas fa-shield-alt"></i>
         </div>
-
         <span>Privacy Policy</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
       <a routerLink="/about-us">
@@ -172,35 +154,26 @@
         </div>
 
         <span>About Us</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
       <a routerLink="/blog">
         <div class="menu-icon">
           <i class="fas fa-info-circle"></i>
         </div>
-
         <span>Blogs</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
       </a>
 
       <a *ngIf="session.isLoggedIn()" (click)="signOut()">
         <div class="menu-icon">
           <i class="fas fa-sign-out-alt"></i>
         </div>
-
         <span>Logout</span>
-
-        <i class="fas fa-chevron-right right-arrow"></i>
       </a>
     </div>
 
     <!-- BOTTOM -->
     <div class="menu-bottom">
       <a routerLink="/login" *ngIf="!session.isLoggedIn()"> Login / Signup </a>
-
       <a routerLink="/dashboard" *ngIf="session.isLoggedIn()">
         Go To Dashboard
       </a>
