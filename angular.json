@@ -88,8 +88,7 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "consumerfenew:build:production",      
-              "optimization": true             
+              "browserTarget": "consumerfenew:build:production"             
             }
           }
         },
@@ -115,20 +114,6 @@
               "src/styles.css"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json",
-              "tsconfig.server.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
