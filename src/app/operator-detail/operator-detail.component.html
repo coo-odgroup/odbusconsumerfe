@@ -192,7 +192,7 @@ DESKTOP VIEW
 
           <!-- BUTTON -->
           <button class="desktop-book-btn" (click)="popularSearch(t.sourceUrl, t.destinationUrl)">
-            BOOK NOW
+            Book Now
           </button>
 
           <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker
@@ -445,7 +445,7 @@ MOBILE VIEW
 
         <!-- BUTTON -->
         <button class="mobile-book-btn" (click)="popularSearch(t.sourceUrl, t.destinationUrl)">
-          BOOK NOW
+          Book Now
         </button>
 
         <input type="hidden" [(ngModel)]="dtconfig.minDate" name="todayDate" id="todayDate" ngbDatepicker
@@ -453,7 +453,7 @@ MOBILE VIEW
 
       </div>
 
-      <div *ngIf="hasMoreRoutes()" class="text-center mt-5">
+      <div *ngIf="hasMoreRoutes()" class="text-center mt-1">
 
         <button class="border-btn bh" (click)="loadMoreRoutes()">
 

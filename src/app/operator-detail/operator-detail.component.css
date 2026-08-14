@@ -706,7 +706,7 @@ AMENITIES
 .amenity-icon {
     width: 62px;
     height: 62px;
-    background: #efc003;
+    background: #072c6b;
     border-radius: 18px;
     display: flex;
     align-items: center;
@@ -742,14 +742,14 @@ NEW DESKTOP ROUTES GRID
 .desktop-routes-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+    gap: 10px;
 }
 
 /* CARD */
 .desktop-route-card {
     background: #fff;
     border-radius: 14px;
-    padding: 12px 20px;
+    padding: 10px 20px;
     position: relative;
     overflow: hidden;
     border: 1px solid #e8eaf2;
@@ -771,7 +771,7 @@ NEW DESKTOP ROUTES GRID
     top: 0;
     width: 5px;
     height: 100%;
-    background: #efc003;
+    background: #072c6b;
 }
 
 /* TOP */
@@ -819,6 +819,7 @@ NEW DESKTOP ROUTES GRID
     font-size: 14px;
     font-weight: 900;
     color: #072c6b;
+    text-align: right;
 }
 
 /* ARROW */
@@ -846,14 +847,14 @@ NEW DESKTOP ROUTES GRID
 
 /* BUTTON */
 .desktop-book-btn {
-      width: 70%;
+    width: 37%;
     height: 35px;
     border: none;
-    background: #efc003;
-    color: #072c6b;
-    border-radius: 15px;
-    font-size: 16px;
-    font-weight: 900;
+    background: #072c6b;
+    color: #fff;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 700;
     display: block;
     margin: auto;
     letter-spacing: .5px;
@@ -935,7 +936,7 @@ MOBILE MAIN
 ===================================================== */
 
 .mobile-main-section {
-    padding: 82px 14px 100px;
+    padding: 82px 14px 30px;
 }
 
 /* =====================================================
@@ -1064,7 +1065,7 @@ NEW MOBILE AMENITIES DESIGN
 .mobile-amenity-icon {
     width: 56px;
     height: 56px;
-    background: #efc003;
+    background: #072c6b;
     border-radius: 18px;
     display: flex;
     align-items: center;
@@ -1096,7 +1097,7 @@ NEW MOBILE ROUTES DESIGN
 .mobile-routes-grid {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 5px;
 }
 
 
@@ -1104,7 +1105,7 @@ NEW MOBILE ROUTES DESIGN
 .mobile-route-card {
     background: #fff;
     border-radius: 14px;
-    padding: 18px 16px;
+    padding: 10px 16px;
     position: relative;
     overflow: hidden;
     border: 1px solid #e8eaf2;
@@ -1119,7 +1120,7 @@ NEW MOBILE ROUTES DESIGN
     top: 0;
     width: 5px;
     height: 100%;
-    background: #efc003;
+    background: #072c6b;
 }
 
 /* TOP */
@@ -1192,22 +1193,22 @@ NEW MOBILE ROUTES DESIGN
 .mobile-route-divider {
     height: 1px;
     background: #e7eaf2;
-    margin: 18px 0;
+    margin: 9px 0;
 }
 
 /* BUTTON */
 .mobile-book-btn {
-    width: 70%;
+    width: 37%;
     height: 30px;
-    background: #efc003;
-    color: #072c6b;
-    font-size: 14px;
+    background: #072c6b;
+    color: #fff;
+    font-size: 15px;
     font-weight: 900;
     display: block;
     margin: auto;
     letter-spacing: .5px;
     border: none;
-    border-radius: 14px;
+    border-radius: 9px;
 }
 
 

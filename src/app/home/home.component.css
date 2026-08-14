@@ -1585,7 +1585,7 @@ input {
 .recent-icon {
   width: 36px;
   height: 36px;
-  background: #fff4cc;
+  background: #072c6b;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -1597,7 +1597,7 @@ input {
 }
 
 .recent-icon i {
-  color: #f0c004;
+  color: #fff;
   font-size: 16px;
 }
 
@@ -1659,7 +1659,7 @@ input {
   left: 0;
   height: 3px;
   width: 100%;
-  background: linear-gradient(90deg, #f0c92f, #ffdd57);
+  background: linear-gradient(90deg, #072c6b, #072c6b);
 }
 
 /* HOVER */
