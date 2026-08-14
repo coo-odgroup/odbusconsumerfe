@@ -18,7 +18,7 @@
     inset: 0;
     border-radius: 50%;
 
-    background: conic-gradient(#f4b400 0deg 300deg,
+    background: conic-gradient(#0f204b 0deg 300deg,
             transparent 300deg 360deg);
 
     -webkit-mask: radial-gradient(farthest-side,

@@ -1119,8 +1119,8 @@ section.section-offer .nav-tabs .nav-item .nav-link {
 .search-btn-v5 {
   height: 50px;
   width: 100%;
-  background: #f0c004;
-  color: #072c6b;
+  background: #072c6b;
+  color: #fff;
   font-weight: 700;
   border-radius: 0 8px 8px 0;
   border: none;
@@ -1128,7 +1128,7 @@ section.section-offer .nav-tabs .nav-item .nav-link {
 }
 
 .search-btn-v5:hover {
-  background: #072c6b;
+  background: #093e99;
   color: #fff;
 }
 

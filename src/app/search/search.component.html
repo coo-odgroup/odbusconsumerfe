@@ -452,8 +452,8 @@
                                                     <ul class="bs-srch-dt-dtl">
                                                         <li class="p-2 flex-fill tx-left">
                                                             <h4>{{ bus.busName }}<br>
-                                                                <span *ngIf="bus.busNumber!=''">({{ bus.busNumber
-                                                                    }})</span>
+                                                                <span *ngIf="bus.busNumber!=''">{{ bus.busNumber
+                                                                    }}</span>
                                                             </h4>
 
                                                             <p class="bus-type"><span>{{ bus.bus_description
@@ -1358,7 +1358,7 @@
                             <div class="col-8 mob-bus-name pr-0">
                                 <h5>{{ bus.busName }}</h5>
 
-                                <h6><span> ({{ bus.busNumber }})</span>, {{ bus.bus_description }} {{ bus.sittingType }}
+                                <h6><span>{{ bus.busNumber }}</span>, {{ bus.bus_description }} {{ bus.sittingType }}
                                 </h6>
                                 <h6></h6>
 
@@ -1618,11 +1618,11 @@
                             <div class="row m-0">
                                 <div class="col-6 pl-0 pr-0 brlt15 mob-seat-btn cursor {{lower_tab}}"
                                     (click)="displayBerth('lower')">
-                                    Seater
+                                    Lower
                                 </div>
                                 <div class="col-6 pl-0 pr-0 brrt15 mob-seat-btn cursor {{upper_tab}}"
                                     (click)="displayBerth('upper')">
-                                    Sleeper
+                                    Upper
                                 </div>
                             </div>
                         </div>
