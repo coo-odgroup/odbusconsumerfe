@@ -38,7 +38,8 @@
               "node_modules/ngx-lightbox/lightbox.css",
               "src/assets/css/all.min.css",
               "src/assets/css/font-awesome.min.css",
-              "src/assets/css/bootstrap-icons.css"
+              "src/assets/css/bootstrap-icons.css",
+               "node_modules/@ng-select/ng-select/themes/default.theme.css"
             ],
             "scripts": [],
             "serviceWorker": true,
