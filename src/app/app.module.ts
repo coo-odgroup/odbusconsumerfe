@@ -135,7 +135,7 @@ const ngWizardConfig: NgWizardConfig = {
     NgxSpinnerModule,
     NgbProgressbarModule,
     CountdownModule ,
-    IvyCarouselModule,
+    // IvyCarouselModule,
     AuthModule.forRoot({
       domain: 'dev-seofied.us.auth0.com',
       clientId: 'RsznkkMUqmJD0nUXjYv2LS8HPopT4xy1',
