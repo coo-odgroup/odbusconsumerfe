@@ -30,7 +30,6 @@ import { MyaccountComponent } from './user/myaccount/myaccount.component';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { AuthGuard } from './helpers/auth.guard';
 import { CountdownModule } from 'ngx-countdown';
-import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { AuthModule } from '@auth0/auth0-angular';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { LightboxModule } from 'ngx-lightbox';
