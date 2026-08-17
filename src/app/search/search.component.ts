@@ -50,7 +50,8 @@ import { time } from 'console';
 import 'lodash';
 import { exit } from 'process';
 import { Meta, Title } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 declare var _: any;
 
@@ -115,13 +116,14 @@ export class SearchComponent implements OnInit {
   journey_date: any;
 
   couponDetail: any = [];
+  Offers: any[] = [];
 
   _albums = [];
   // Function to call when the date changes.
-  onChange = (date?: Date) => {};
+  onChange = (date?: Date) => { };
 
   // Function to call when the date picker is touched
-  onTouched = () => {};
+  onTouched = () => { };
 
   writeValue(value: Date) {
     if (!value) return;
@@ -368,15 +370,15 @@ export class SearchComponent implements OnInit {
             term === ''
               ? []
               : this.location_list
-                  .filter(
-                    (v) =>
-                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                      (v.synonym != '' &&
-                        v.synonym != null &&
-                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
-                          -1),
-                  )
-                  .slice(0, 10),
+                .filter(
+                  (v) =>
+                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                    (v.synonym != '' &&
+                      v.synonym != null &&
+                      v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                      -1),
+                )
+                .slice(0, 10),
           ),
         );
       this.formatter = (x: { name: string }) => x.name;
@@ -1380,6 +1382,58 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  moveListingCoupon(direction: number): void {
+    const slider = document.getElementById(
+      'listingCouponScroll'
+    ) as HTMLElement;
+
+    if (!slider) {
+      return;
+    }
+
+    const scrollAmount = 255;
+
+    slider.scrollBy({
+      left: direction * scrollAmount,
+      behavior: 'smooth',
+    });
+
+    setTimeout(() => {
+      this.updateListingCouponButtons();
+    }, 400);
+  }
+
+
+  updateListingCouponButtons(): void {
+    const slider = document.getElementById(
+      'listingCouponScroll'
+    ) as HTMLElement;
+
+    const prevBtn = document.getElementById(
+      'listingCouponPrev'
+    ) as HTMLButtonElement;
+
+    const nextBtn = document.getElementById(
+      'listingCouponNext'
+    ) as HTMLButtonElement;
+
+    if (!slider || !prevBtn || !nextBtn) {
+      return;
+    }
+
+    const maxScrollLeft =
+      slider.scrollWidth - slider.clientWidth;
+
+    /* PREVIOUS */
+
+    prevBtn.disabled = slider.scrollLeft <= 5;
+
+    /* NEXT */
+
+    nextBtn.disabled =
+      slider.scrollLeft >= maxScrollLeft - 5;
+  }
+
   sort(coulmn: any) {
     let order = '';
 
@@ -1431,6 +1485,43 @@ export class SearchComponent implements OnInit {
   }
 
   bussearching: boolean = false;
+
+  getOffers(): void {
+    const postData = {
+      user_id: 1,
+    };
+
+    this.http.post<any>(GlobalConstants.BASE_URL + '/Offers', postData).subscribe(
+      (res: any) => {
+        if (Array.isArray(res)) {
+          this.Offers = res;
+        } else if (Array.isArray(res.data)) {
+          this.Offers = res.data;
+        } else {
+          this.Offers = [];
+        }
+      },
+      (error) => {
+        console.log('Offers API Error:', error);
+        this.Offers = [];
+      },
+    );
+  }
+
+  onOfferClick(index: number): void {
+    const code =
+      this.Offers[index]?.coupon_id === 0
+        ? this.Offers[index]?.unique_id
+        : this.Offers[index]?.coupon?.coupon_code;
+
+    this.goToOffers(code);
+  }
+
+  goToOffers(couponCode: string): void {
+    this.router.navigate(['/offers'], {
+      fragment: couponCode,
+    });
+  }
 
   getbuslist() {
     this.busIds = [];
@@ -2443,6 +2534,8 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.getOffers();
     let currentPath = this.router.url.split('?')[0];
 
     currentPath = currentPath.replace(/^\/+/, '');
@@ -2597,7 +2690,7 @@ export class SearchComponent implements OnInit {
           );
         }
 
-       this.getbuslist();
+        this.getbuslist();
       }
     }
 

@@ -108,7 +108,8 @@
                                                         <div class="date-input-box" (click)="toggleCalendar()">
 
                                                             <img src="assets/img/Icon-metro-calendar.svg"
-                                                                class="icon-date" alt="Icon-metro-calendar" alt="calender icon" loading="lazy">
+                                                                class="icon-date" alt="Icon-metro-calendar"
+                                                                alt="calender icon" loading="lazy">
 
                                                             <span class="date-placeholder" *ngIf="!selectedDateText">
 
@@ -225,7 +226,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-3">
                     <div class="sticky-top2">
                         <form [formGroup]="filterForm">
-                            <p style="opacity: 0">Filters</p>
+                            <!-- <p style="opacity: 0">Filters</p> -->
                             <div class="search-result-left">
                                 <h3 class="tit-filtr"><img src="assets/img/Icon-awesome-filter.svg"
                                         alt="Icon-awesome-filter">Filters</h3>
@@ -331,9 +332,35 @@
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-9 col-md-9">
+                    <!-- ODBUS LISTING COUPON CAROUSEL -->
+                    <div class="listing-coupon-strip" *ngIf="Offers && Offers.length > 0">
+
+                        <!-- PREVIOUS -->
+                        <button type="button" class="listing-coupon-arrow listing-coupon-prev" id="listingCouponPrev"
+                            aria-label="Previous offers" (click)="moveListingCoupon(-1)">
+                            <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        </button>
+
+                        <!-- COUPONS -->
+                        <div class="listing-coupon-scroll" id="listingCouponScroll"
+                            (scroll)="updateListingCouponButtons()">
+
+                            <div class="listing-coupon-card" *ngFor="let offer of Offers; let i = index"
+                                (click)="onOfferClick(i)">
+                                <img [src]="offer.slider_photo" [alt]="offer.alt_tag || 'ODBUS Offer'" loading="lazy" />
+                            </div>
+
+                        </div>
+
+                        <!-- NEXT -->
+                        <button type="button" class="listing-coupon-arrow listing-coupon-next" id="listingCouponNext"
+                            aria-label="Next offers" (click)="moveListingCoupon(1)">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
+
+                    </div>
 
 
-                    <p class="srch-rslt-found" *ngIf="totalfound">{{ totalfound }} Buses Found</p>
                     <div class="search-result-right">
                         <div class="sorting-tab">
                             <div class="sorting-tab-in">
@@ -398,11 +425,20 @@
                                                     alt="down">
                                             </a>
                                         </li>
-                                        <li class="bs-dtl-one"></li>
+                                        <li class="bs-dtl-one">
+                                            <div class="info" *ngIf="totalfound">{{ totalfound }} Buses Found
+
+                                            </div>
+
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
+
+
+
+
                         <div *ngIf="!bussearching && totalfound == 0">
                             <div class="col-md-12" style="text-align: center;">
                                 <img src="../../assets/img/no-bus.png" alt="no bus">
@@ -512,7 +548,7 @@
                                                                 *ngIf="bus.totalSeats == 0 && bus.display == 'show' ">SOLD
                                                                 OUT</a>
 
-                                                            <a class="vw-sit cursor showbtn" id="showbtn{{i}}"
+                                                            <a class="view_btnn" id="showbtn{{i}}"
                                                                 (click)="ShowLayout(i)"
                                                                 *ngIf="bus.totalSeats > 0 && bus.display  == 'show'">View
                                                                 Seat</a>
@@ -1328,6 +1364,20 @@
 
 
         <div class="mobile-bus-listing">
+            <!-- ODBUS LISTING COUPON CAROUSEL -->
+            <div class="listing-coupon-strip" *ngIf="Offers && Offers.length > 0">
+
+                <!-- COUPONS -->
+                <div class="listing-coupon-scroll" id="listingCouponScroll" (scroll)="updateListingCouponButtons()">
+
+                    <div class="listing-coupon-card" *ngFor="let offer of Offers; let i = index"
+                        (click)="onOfferClick(i)">
+                        <img [src]="offer.slider_photo" [alt]="offer.alt_tag || 'ODBUS Offer'" loading="lazy" />
+                    </div>
+
+                </div>
+
+            </div>
             <div class="row">
                 <div class="col-12">
                     <h3 *ngIf="totalfound && totalfound !=0"> {{ totalfound }} Buses Found</h3>

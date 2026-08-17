@@ -235,13 +235,14 @@ a {
 
 .sorting-tab-in .col-md-12 {
   padding: 10px 15px;
-  border: 1px solid #0000001A;
+  border: 1px solid #00319b47;
+  border-radius: 5px;
   background: #fff 0% 0% no-repeat padding-box;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .bus-dtl-btm-panel .col-md-12 {
-  background: #072c6b;
+  background: #00319b;
   color: #FFFFFF99;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -317,7 +318,7 @@ section.search-result {
   background: #ffffff; */
   /* padding: 25px 40px !important; */
   border-radius: 0px 0px 5px 5px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   background: #E9EBED;
   border: 2px solid #0000000F;
   margin-top: -4px;
@@ -1356,7 +1357,8 @@ ngb-rating.d-inline-flex {
 .sticky-top4 {
   position: fixed;
   top: 70px;
-  z-index: 999; /* 1018 */
+  z-index: 999;
+  /* 1018 */
 }
 
 /* .sticky-top3 {
@@ -1450,7 +1452,7 @@ ngb-rating.d-inline-flex {
   border-radius: 8px;
   padding: 12px 12px 4px 12px;
   border: 1px solid #c1cdd1;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 .mobile-bus-listing-box hr {
@@ -3008,10 +3010,11 @@ input[type=radio] {
   background: #fff;
   cursor: pointer;
   width: 100%;
-  margin-bottom: -6px;
-  border: 1px solid #c1cdd1;
+  margin-bottom: -7px;
+  border: 1px solid #00319b47;
   border-bottom: none;
   border-radius: 4px 4px 0 0;
+  padding-top: 3px;
   /* z-index: 9; */
   position: relative;
 }
@@ -3025,6 +3028,11 @@ input[type=radio] {
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
+
+  .deal img,
+.bus_name img {
+  margin-right: 0;
+}
 
   .mobile-list-top {
     z-index: 999;
@@ -3278,12 +3286,250 @@ input[type=radio] {
     font-size: 13px;
   }
 
-  .date-input-box{
+  .date-input-box {
     border-radius: 10px;
   }
 
-  .days-grid{
+  .days-grid {
     padding: 10px 10px 16px;
   }
 
+}
+
+
+
+
+/* =========================================================
+   ODBUS LISTING - COUPON CAROUSEL
+   ========================================================= */
+
+.listing-coupon-strip {
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 0 2px;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   COUPON SCROLL AREA
+   ========================================================= */
+
+.listing-coupon-scroll {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /* padding: 5px 0; */
+
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  scroll-snap-type: x proximity;
+}
+
+.listing-coupon-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+
+.info {
+  color: #eb0000;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   COUPON CARD
+   ========================================================= */
+
+.listing-coupon-card {
+  flex: 0 0 240px;
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 11px;
+  /* background: #ffffff; */
+  border: 1px solid #00319b47;
+  cursor: pointer;
+  scroll-snap-align: start;
+  /* box-shadow: 0 2px 7px rgb(143 187 255 / 8%); */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+/* Hover */
+
+.listing-coupon-card:hover {
+  /* transform: translateY(-1px); */
+
+  box-shadow:
+    0 5px 15px rgba(85, 119, 138, 0.414);
+}
+
+
+/* =========================================================
+   COUPON IMAGE
+   ========================================================= */
+
+.listing-coupon-card img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 11px;
+
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+
+/* =========================================================
+   ARROWS
+   ========================================================= */
+
+.listing-coupon-arrow {
+  position: absolute;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  z-index: 10;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #ffffff8f;
+
+  color: #0b3270;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.18);
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.listing-coupon-arrow:hover {
+  background: #0b32708d;
+  color: #ffffff;
+
+  transform: translateY(-50%) scale(1.05);
+}
+
+
+/* Previous */
+
+.listing-coupon-prev {
+  left: 5px;
+}
+
+
+/* Next */
+
+.listing-coupon-next {
+  right: 5px;
+}
+
+
+/* Disabled */
+
+.listing-coupon-arrow:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+.view_btnn{
+  color: #ffffff;
+    line-height: 22px;
+    font-weight: 500;
+  background: #00319b;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    padding: 7px 0;
+    margin-top: 0;
+    position: relative;
+    top: 8px;
+    box-shadow: 3px 3px 6px #00000029;
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+  .listing-coupon-strip {
+    margin: 0;
+    padding: 0;
+  }
+
+  .listing-coupon-scroll {
+    gap: 9px;
+
+    padding: 2px 3px 6px;
+  }
+
+  .listing-coupon-card {
+    flex: 0 0 220px;
+
+    width: 100%;
+    height: auto;
+
+    border-radius: 5px;
+  }
+
+  .listing-coupon-card img {
+    border-radius: 9px;
+  }
+
+  .listing-coupon-arrow {
+    width: 32px;
+    height: 32px;
+
+    font-size: 17px;
+  }
+
+  .listing-coupon-prev {
+    left: 3px;
+  }
+
+  .listing-coupon-next {
+    right: 3px;
+  }
 }

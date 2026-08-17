@@ -1117,7 +1117,7 @@ li.bs-dtl-start-pont {
 }
 
 .bus-dtl-btm-panel-right ul li a {
-    color: #fff;
+    color: #ffffff !important;
     text-transform: capitalize;
     font-weight: 500;
     font-size: 14px;
