@@ -38,7 +38,7 @@
                         <div class="col-md-1 plr0"></div>
                         <div class="col-md-10 plr0">
                             <div class="hero-banner-inner-srchbus">
-                                <h3>Modify Your Search</h3>
+                                <!-- <h3>Modify Your Search</h3> -->
                                 <div class="row no-gutters">
                                     <div class="col-md-10">
                                         <div class="row no-gutters">
@@ -1495,7 +1495,7 @@
                                 <div *ngFor="let busType of busTypes; let i = index">
                                     <div *ngIf="busType.id == 1">
                                         <div class="home"
-                                            [ngStyle]="{'background-color': (acFilter==true) ? '#fff' : '#efc003'}">
+                                            [ngStyle]="{'background-color': (acFilter==true) ? '#072c6b' : '#fff'}">
                                             <i><img src="../../assets/img/mob-img/ac.png" [value]="busType.id"
                                                     (click)="FilterMobile($event,'bus_type','AC');" /></i>
                                             <p class="mb-0 small">{{busType.class_name}}</p>
@@ -1507,7 +1507,7 @@
                                 <div *ngFor="let busType of busTypes; let i = index">
                                     <div *ngIf="busType.id == 2">
                                         <div class="home"
-                                            [ngStyle]="{'background-color': (nonacFilter==true) ? '#fff' : '#efc003'}">
+                                            [ngStyle]="{'background-color': (nonacFilter==true) ? '#072c6b' : '#fff'}">
                                             <i><img src="../../assets/img/mob-img/sun.png" [value]="busType.id"
                                                     (click)="FilterMobile($event,'bus_type','NONAC');" /></i>
                                             <p class="mb-0 small">{{busType.class_name}}</p>
@@ -1521,7 +1521,7 @@
                                 <div *ngFor="let seatType of seatTypes; let i = index">
                                     <div *ngIf="seatType.id == 1">
                                         <div class="home"
-                                            [ngStyle]="(seaterFilter) ? {'background-color':  '#fff'} : {'background-color':  '#efc003'}">
+                                            [ngStyle]="(seaterFilter) ? {'background-color':  '#072c6b'} : {'background-color':  '#fff'}">
                                             <i><img src="../../assets/img/mob-img/safety-seat.png" [value]="seatType.id"
                                                     (click)="FilterMobile($event,'seat_type');" /></i>
                                             <p class="mb-0 small">{{seatType.name}}</p>
@@ -1533,7 +1533,7 @@
                                 <div *ngFor="let seatType of seatTypes; let i = index">
                                     <div *ngIf="seatType.id == 2">
                                         <div class="home"
-                                            [ngStyle]="{'background-color': (sleeperFilter==true) ? '#fff' : '#efc003'}">
+                                            [ngStyle]="{'background-color': (sleeperFilter==true) ? '#072c6b' : '#fff', color: (sleeperFilter==true) ? '#fff !important' : '#072c6b'}">
                                             <i><img src="../../assets/img/mob-img/bed.png" [value]="seatType.id"
                                                     (click)="FilterMobile($event,'seat_type');" /></i>
                                             <p class="mb-0 small">{{seatType.name}}</p>
@@ -1559,7 +1559,7 @@
         <div class="filter-mobile-modal">
 
             <div class="modal-header mob-filterbg">
-                <h4 class="modal-title" id="modal-basic-title"><strong>Sort and Filter By</strong></h4>
+                <h4 class="modal-title" id="modal-basic-title"><strong>Filter By</strong></h4>
                 <button type="button" class="close close-mob" aria-label="Close" (click)="modal.dismiss('Cross Click')">
                     <span aria-hidden="true">&times;</span>
                 </button>

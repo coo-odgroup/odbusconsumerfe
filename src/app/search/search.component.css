@@ -10,7 +10,7 @@
   cursor: pointer;
   width: 100%;
   margin-bottom: -2px;
-  border: 1px solid #0000001a;
+  border: 1px solid #00319b47;
   border-bottom: none;
   border-radius: 4px 4px 0 0;
 }
@@ -1376,7 +1376,7 @@ ngb-rating.d-inline-flex {
 
 /* Mobile Version Start Bus listing */
 .mobile-list-top {
-  background-color: #efc003;
+  background-color: #ffffff;
   padding: 12px 18px;
   position: fixed;
   z-index: 1200;
@@ -1387,7 +1387,7 @@ ngb-rating.d-inline-flex {
 
 
 .mob-arrow-left i {
-  font-size: 30px;
+  font-size: 25px;
   color: #072c6b;
   margin-top: 10px;
 }
@@ -1418,7 +1418,7 @@ ngb-rating.d-inline-flex {
 
 .mobile-list-top .mob-list-center {
   color: #072c6b;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   text-align: center;
 }
@@ -1430,7 +1430,7 @@ ngb-rating.d-inline-flex {
 
 .mob-list-center .wh10 {
   color: #323232 !important;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .mobile-bus-listing {
@@ -1445,6 +1445,7 @@ ngb-rating.d-inline-flex {
   font-size: 16px;
   color: #072c6b;
   margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .mobile-bus-listing-box {
@@ -1461,7 +1462,7 @@ ngb-rating.d-inline-flex {
 }
 
 .mobile-bus-listing-box .mob-bus-name h5 {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
   text-transform: capitalize;
   margin-bottom: 4px;
@@ -1536,7 +1537,7 @@ ngb-rating.d-inline-flex {
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 1px;
-  color: #9a9595;
+  color: #072c6b;
 }
 
 .mob-bus-bot .mob-time {
@@ -1679,9 +1680,9 @@ ngb-rating.d-inline-flex {
 }
 
 .mobile-mod .bus_search-mod .btn {
-  background: #efc003;
-  color: #072c6b;
-  text-transform: uppercase;
+  background: #072c6b;
+  color: #fff;
+  text-transform: capitalize !important;
   font-weight: 600;
   line-height: 34px;
   width: 100%;
@@ -1710,12 +1711,13 @@ ngb-rating.d-inline-flex {
 }
 
 .mob-filterbg {
-  background: #efc003;
+  background: #ffffff;
   padding: 5px 20px;
   border-radius: unset;
 }
 
 .mob-filterbg h4 {
+  color: #072c6b;
   font-size: 20px;
   padding-top: 8px;
 }
@@ -1743,7 +1745,7 @@ ngb-rating.d-inline-flex {
 }
 
 .mobile-buslayout-top {
-  background-color: #efc003;
+  background-color: #dae6ff !important;
   padding: 12px 18px 50px;
   /* position: fixed;
   z-index: 99;
@@ -2411,49 +2413,6 @@ label.mobile-sleeper-gray.mobile-fixsize {
 
 
 
-.mobile-buslayout-top .mob-arrow-left i {
-  font-size: 25px;
-  color: #072c6b;
-  margin-top: 10px;
-}
-
-.mobile-buslayout-top .btn-show-modify {
-  background-color: #072c6b;
-  border-radius: 4px;
-  color: #ffffff !important;
-  height: 35px !important;
-  line-height: 24px;
-  padding: 4px 4px !important;
-  width: 80px !important;
-  float: right;
-  margin-top: 10px;
-}
-
-.mobile-buslayout-top .mob-list-center h5 {
-  color: #072c6b;
-  font-size: 18px;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 4px;
-}
-
-.mobile-buslayout-top .mob-list-center {
-  color: #072c6b;
-  font-size: 17px;
-  font-weight: 600;
-  text-align: center;
-}
-
-.mobile-buslayout-top .mob-list-center i {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.mobile-buslayout-top .mob-list-center .wh10 {
-  color: #323232 !important;
-  font-size: 15px;
-}
-
 .mobile-boarding-middle {
   /* background: #ffffff; */
   margin-left: 24px;
@@ -2819,16 +2778,17 @@ label.mobile-sleeper-gray.mobile-fixsize {
 
 .mobile-filter-middle h4 {
   color: #00286d;
-  font-size: 19px;
+  font-size: 18px;
   background: #ffffff;
-  padding: 8px 15px;
+  padding: 4px 10px 0;
   margin-bottom: 12px;
   margin-top: 10px;
+  font-weight: 600;
 }
 
 .mobile-filter-middle h4 i {
   float: right;
-  color: #d39e00;
+  color: #00286d;
 }
 
 
@@ -2863,7 +2823,7 @@ label.mobile-sleeper-gray.mobile-fixsize {
 .mobile-filter-middle .container-chkbox {
   display: inline-block;
   position: relative;
-  padding-left: 25px;
+  padding-left: 20px;
   margin-bottom: 4px;
   cursor: pointer;
   color: #072c6b;
@@ -2922,7 +2882,7 @@ input[type=radio] {
 
 
 .mobile-filter-bottom {
-  background-color: #efc003;
+  background-color: #ffffff;
   box-shadow: 0px -2px 6px 0px rgb(0 0 0 / 60%);
   text-align: center;
   height: 50px;
@@ -2931,7 +2891,7 @@ input[type=radio] {
 
 .mobile-filter-bottom a {
   font-size: 20px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   color: #002F80 !important;
   line-height: 28px;
   font-weight: 500;
@@ -3030,9 +2990,9 @@ input[type=radio] {
 @media (max-width: 768px) {
 
   .deal img,
-.bus_name img {
-  margin-right: 0;
-}
+  .bus_name img {
+    margin-right: 0;
+  }
 
   .mobile-list-top {
     z-index: 999;
@@ -3470,21 +3430,22 @@ input[type=radio] {
 }
 
 
-.view_btnn{
+.view_btnn {
   color: #ffffff;
-    line-height: 22px;
-    font-weight: 500;
+  line-height: 22px;
+  font-weight: 500;
   background: #00319b;
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    padding: 7px 0;
-    margin-top: 0;
-    position: relative;
-    top: 8px;
-    box-shadow: 3px 3px 6px #00000029;
-    border-radius: 3px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  padding: 7px 0;
+  margin-top: 0;
+  position: relative;
+  top: 8px;
+  box-shadow: 3px 3px 6px #00000029;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 

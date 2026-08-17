@@ -107,7 +107,7 @@ section.top-routs {
 
 /* Mobile Version Support Start- */
 .mobile-mybooking-top {
-  background-color: #efc003;
+  background-color: #ffffff;
   padding: 12px 18px 14px;
   position: fixed;
   z-index: 99;
@@ -149,19 +149,17 @@ section.top-routs {
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
-  /* border: 1px solid #adadad; */
 }
 
 
 .mobile-offerbox-middle .mobile-offer {
-  /* border: 1px solid #adadad; */
-  /* position: 10px; */
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .mobile-offerbox-middle .mobile-offer img {
   width: 100%;
-  /* margin-bottom: 8px; */
+  border: 1px solid #ced4da;
+  border-radius: 10px;
 }
 
 .mobile-offerbox-middle .mobile-offer h5 {
@@ -911,9 +909,10 @@ input {
 @media(max-width:768px) {
 
   .offer-top-text {
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.7;
     margin-bottom: 20px;
+    font-weight: 600;
   }
 
 }
@@ -923,9 +922,9 @@ input {
 DOWNLOAD APP
 ==========================*/
 
-.download-app-section{
-    padding:20px 0 90px;
-    background: #f8fafc;
+.download-app-section {
+  padding: 20px 0 90px;
+  background: #f8fafc;
 }
 
 .download-app-box {

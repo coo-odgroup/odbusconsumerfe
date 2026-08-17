@@ -6,9 +6,9 @@
     background-color: rgb(239 192 3);
 }
 label {
-   font-size: 1rem;
-    font-weight: 500;
-    color: #7f7f7f;
+   font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #072c6b;
 }
 .form-control {
     height: 0;
@@ -39,7 +39,7 @@ label {
       }
 
     .login-app .log-in{
-        display: inline-block;
+        display: table;
         width: 140px;
         background-color: #072C6B;
         height: 38px;
@@ -47,7 +47,7 @@ label {
         text-align: center;
         box-shadow: 3px 3px 6px #00000029;
         border-radius: 8px;
-        margin-left:30%;
+        margin:0 auto;
         color: #fff;
         letter-spacing: 0.25px;
         font-size: 14px;
@@ -73,7 +73,9 @@ label {
         padding:8px 12px 8px 0px;
       }
       .log-left{
-          margin-left:30px;
+        display: table;
+          margin: 0 auto;
+          font-size: 14px;
       }
 
     .alert-success{
@@ -84,7 +86,7 @@ label {
 
   /* Mobile Version Support Start- */
  .mobile-mybooking-top{
-    background-color: #efc003;
+    background-color: #ffffff;
     padding:12px 18px 14px;
     position: fixed;
     z-index: 99;
@@ -142,20 +144,21 @@ label {
   }
 
   .mobile-raiseticket-middle .login-app .log-in{
-      display: inline-block;
+      display: table;
       width:120px;
-      color:#072c6b;
+      color:#ffffff;
       height: 38px;
       line-height: 38px;
       text-align: center;
       box-shadow: 3px 3px 6px #00000029;
       border-radius:4px;
       letter-spacing: .25px;
-      font-size:18px;
-      text-transform: uppercase;
+      font-size:14px;
+      text-transform: capitalize;
       font-weight:600;
       border: none;
-      background-color: #efc003;
+      background-color: #072c6b;
+      margin: 0 auto;
   }
 
   .mobile-raiseticket-middle .card-header{

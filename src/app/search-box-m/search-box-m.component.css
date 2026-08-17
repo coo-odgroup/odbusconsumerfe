@@ -150,7 +150,7 @@
 
     /* TOP YELLOW AREA */
     .mobile-search-box {
-        background: #f0c004;
+        background: #e4f1ff;
         padding: 14px 14px 20px;
         position: relative;
     }
@@ -312,7 +312,7 @@
         height: 50px;
         border-radius: 12px;
         border: 1px solid #d8e0ff;
-        background: #fff5d4;
+        background: #d4ecff;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -354,8 +354,8 @@
         height: 52px;
         border: none;
         border-radius: 12px !important;
-        background: #f0c004;
-        color: #1b2155;
+        background: #072c6b;
+        color: #ffffff;
         font-size: 16px;
         font-weight: 800;
         margin: 0 !important;
