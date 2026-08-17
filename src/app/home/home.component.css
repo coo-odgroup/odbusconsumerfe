@@ -1373,8 +1373,8 @@ input {
     min-width: auto;
     height: 50px;
     border-radius: 12px;
-    border: 1px solid #d8e0ff;
-    background: #d4ecff;
+    border: 1px solid #b4cfff;
+    background: #f6fcff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1546,7 +1546,8 @@ input {
 .recent-title .line {
   width: 4px;
   height: 18px;
-  background: #0062e1;;
+  background: #0062e1;
+  ;
   margin-right: 10px;
   border-radius: 2px;
 }
