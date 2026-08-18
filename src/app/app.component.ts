@@ -1,4 +1,4 @@
-import { Component, Inject, Optional, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, Optional, PLATFORM_ID,AfterViewInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { SeoService } from './services/seo.service';
@@ -19,13 +19,22 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { interval, Observable, Subscription, of } from 'rxjs';
 import { debounceTime, map, tap, catchError } from 'rxjs/operators';
 import { PopularRoutesService } from 'src/app/services/popular-routes.service';
+import { ExternalScriptService } from './services/external-script.service';
+
+declare global {
+  interface Window {
+    fbq: any;
+    _fbq: any;
+  }
+}
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   authReady: boolean = false;
   isBrowser: boolean = false;
 
@@ -74,7 +83,8 @@ export class AppComponent {
     public router: Router,
     private seoService: SeoService,
     private spinner: NgxSpinnerService,
-    private homeService: PopularRoutesService
+    private homeService: PopularRoutesService,
+    private externalScript: ExternalScriptService
   ) {
     this.isMobile = this.detectMobile();
     // Only access localStorage in browser
@@ -514,4 +524,64 @@ export class AppComponent {
 
     return result;
   }
+
+   ngAfterViewInit(): void {
+
+      if (!isPlatformBrowser(this.platformId)) {
+        return;
+      }
+
+      setTimeout(() => {
+        this.loadGoogleTagManager();
+      }, 2000);     
+
+  }
+
+  private loadGoogleTagManager(): void {
+
+    // Prevent duplicate loading
+    if (document.getElementById('google-tag-manager')) {
+      return;
+    }
+
+    // GTM script
+    const script = document.createElement('script');
+
+    script.id = 'google-tag-manager';
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-PH8XGR9H';
+
+    document.head.appendChild(script);
+
+
+    // GTM noscript fallback
+    const iframe = document.createElement('iframe');
+
+    iframe.src =
+      'https://www.googletagmanager.com/ns.html?id=GTM-PH8XGR9H';
+
+    iframe.height = '0';
+    iframe.width = '0';
+
+    iframe.style.display = 'none';
+    iframe.style.visibility = 'hidden';
+
+    iframe.title = 'Google Tag Manager';
+
+    const noscriptContainer = document.createElement('div');
+
+    noscriptContainer.id = 'google-tag-manager-noscript';
+
+    noscriptContainer.style.display = 'none';
+
+    noscriptContainer.appendChild(iframe);
+
+    document.body.insertBefore(
+      noscriptContainer,
+      document.body.firstChild
+    );
+  }
+ 
+
+  
 }
