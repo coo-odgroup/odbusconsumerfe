@@ -358,6 +358,8 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  PATHURL =GlobalConstants.PATHURL;
+
   locationList(res: any) {
     // console.log(res);
     if (res.status == 1) {
@@ -1486,27 +1488,65 @@ export class SearchComponent implements OnInit {
 
   bussearching: boolean = false;
 
-  getOffers(): void {
-    const postData = {
-      user_id: 1,
-    };
+  // getOffers(): void {
+  //   const postData = {
+  //     user_id: 1,
+  //     source_id:localStorage.getItem('source_id'),
+  //     destination_id:localStorage.getItem('destination_id'),
+  //   };
 
-    this.http.post<any>(GlobalConstants.BASE_URL + '/Offers', postData).subscribe(
-      (res: any) => {
-        if (Array.isArray(res)) {
-          this.Offers = res;
-        } else if (Array.isArray(res.data)) {
-          this.Offers = res.data;
-        } else {
-          this.Offers = [];
-        }
-      },
-      (error) => {
-        console.log('Offers API Error:', error);
+  //   this.http.post<any>(GlobalConstants.BASE_URL + '/Listing-Offers', postData).subscribe(
+  //     (res: any) => {
+  //       if (Array.isArray(res)) {
+  //         this.Offers = res;
+  //       } else if (Array.isArray(res.data)) {
+  //         this.Offers = res.data;
+  //       } else {
+  //         this.Offers = [];
+  //       }
+  //     },
+  //     (error) => {
+  //       console.log('Offers API Error:', error);
+  //       this.Offers = [];
+  //     },
+  //   );
+  // }
+
+  getOffers(): void {
+  const postData = {
+    user_id: 1,
+    source_id: localStorage.getItem('source_id'),
+    destination_id: localStorage.getItem('destination_id'),
+  };
+
+  this.http.post<any>(
+    GlobalConstants.BASE_URL + '/Listing-Offers',
+    postData
+  ).subscribe(
+    (res: any) => {
+
+      if (Array.isArray(res)) {
+        this.Offers = res;
+      } else if (Array.isArray(res.data)) {
+        this.Offers = res.data;
+      } else {
         this.Offers = [];
-      },
-    );
-  }
+      }
+
+      // Hide spinner only after Offers are loaded
+      this.spinner.hide();
+      this.modalService.dismissAll();
+    },
+    (error) => {
+      console.log('Offers API Error:', error);
+      this.Offers = [];
+
+      // Also hide spinner if Offers API fails
+      this.spinner.hide();
+      this.modalService.dismissAll();
+    }
+  );
+}
 
   onOfferClick(index: number): void {
     const code =
@@ -1582,11 +1622,12 @@ export class SearchComponent implements OnInit {
 
         this.swapdestination = this.destinationData;
         this.swapsource = this.sourceData;
+        this.getOffers();
         this.seoContent();
 
-        this.spinner.hide();
+        // this.spinner.hide();
 
-        this.modalService.dismissAll();
+        // this.modalService.dismissAll();
       });
   }
 
@@ -2535,7 +2576,6 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getOffers();
     let currentPath = this.router.url.split('?')[0];
 
     currentPath = currentPath.replace(/^\/+/, '');

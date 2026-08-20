@@ -345,9 +345,8 @@
                         <div class="listing-coupon-scroll" id="listingCouponScroll"
                             (scroll)="updateListingCouponButtons()">
 
-                            <div class="listing-coupon-card" *ngFor="let offer of Offers; let i = index"
-                                (click)="onOfferClick(i)">
-                                <img [src]="offer.slider_photo" [alt]="offer.alt_tag || 'ODBUS Offer'" loading="lazy" />
+                            <div class="listing-coupon-card" *ngFor="let offer of Offers; let i = index">
+                                <img [src]="PATHURL + 'slider_photos/' + offer.slider_photo" [alt]="offer.alt_tag || 'ODBUS Offer'" loading="lazy" />
                             </div>
 
                         </div>
@@ -1370,9 +1369,9 @@
                 <!-- COUPONS -->
                 <div class="listing-coupon-scroll" id="listingCouponScroll" (scroll)="updateListingCouponButtons()">
 
-                    <div class="listing-coupon-card" *ngFor="let offer of Offers; let i = index"
-                        (click)="onOfferClick(i)">
-                        <img [src]="offer.slider_photo" [alt]="offer.alt_tag || 'ODBUS Offer'" loading="lazy" />
+                    <div class="listing-coupon-card" *ngFor="let offer of Offers; let i = index">
+                        <img [src]="PATHURL + 'slider_photos/' + offer.slider_photo"
+                            [alt]="offer.alt_tag || 'ODBUS Offer'" loading="lazy" />
                     </div>
 
                 </div>
