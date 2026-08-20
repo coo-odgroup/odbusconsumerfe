@@ -1,28 +1,28 @@
 <section class="recent-search-section">
   <div class="container" *ngIf="recentSearches.length > 0">
-    <h4 class="recent-title"><span class="line"></span> Recent Searches</h4>
+    <h2 class="recent-title"><span class="line"></span> Recent Searches</h2>
 
-    <div class="recent-wrapper">
-      <!-- ITEM -->
+    <div class="recent-wrapper">     
       <div
         class="recent-card"
         *ngFor="let item of recentSearches"
         (click)="openRecent(item)"
       >
-        <div class="recent-icon">
+       <span class="recent-icon" aria-hidden="true">
           <i class="fas fa-history"></i>
-        </div>
+      </span>
 
-        <div class="recent-text">
-          <h5>
+
+        <span class="recent-text">
+        <span class="recent-route">
             {{ item.source | titlecase }} →
             {{ item.destination | titlecase }}
-          </h5>
+         </span>
 
-          <p>
+           <span class="recent-date">
             {{ formatDate(item.date) | date: "EEE d MMM y" }}
-          </p>
-        </div>
+           </span>
+        </span>
       </div>
     </div>
   </div>
