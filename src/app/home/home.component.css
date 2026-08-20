@@ -1,7 +1,7 @@
-.ng-autocomplete {
+/* .ng-autocomplete {
   width: 100%;
   z-index: 9;
-}
+} */
 
 .banner-text {
   font-size: 26px;
@@ -1534,8 +1534,8 @@ input {
 
 /* TITLE */
 .recent-title {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
   color: #1b2155;
   margin-bottom: 20px;
   display: flex;
@@ -1561,7 +1561,7 @@ input {
 }
 
 /* CARD */
-.recent-card {
+/* .recent-card {
   min-width: 240px;
   background: #f6fcff;
   border-radius: 12px;
@@ -1572,12 +1572,52 @@ input {
   border: 1px solid #b4cfff;
   cursor: pointer;
   transition: 0.4s;
-}
+} 
 
-/* HOVER */
+
 .recent-card:hover {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   border: 1px solid #1b2155;
+}
+
+  */
+.recent-card {
+  min-width: 240px;
+  padding: 12px 14px;
+  background: #fff;  
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #b4cfff;
+  transition: 0.4s;
+}
+
+.recent-card:focus-visible {
+  outline: 2px solid #0062e1;
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.recent-card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border: 1px solid #1b2155;
+}
+
+
+.recent-route {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1b2155;
+}
+
+.recent-date {
+  display: block;
+  font-size: 12px;
+  color: #555;
+  margin-top: 2px;
 }
 
 
@@ -1612,7 +1652,7 @@ input {
 
 .recent-text p {
   font-size: 12px;
-  color: #777;
+  color: #555;
   margin: 2px 0 0;
 }
 
@@ -3941,4 +3981,11 @@ a.btn.btn-warning:hover {
     font-size: 15px;
   }
 
+}
+.search-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1b2155;
+    margin-bottom: 4px;
 }

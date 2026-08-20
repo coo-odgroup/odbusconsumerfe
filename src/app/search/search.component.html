@@ -43,7 +43,7 @@
                                     <div class="col-md-10">
                                         <div class="row no-gutters">
                                             <div class="col-md-4 pr-1">
-                                                <p>From</p>
+                                               <label for="from" class="search-label">From</label>
                                                 <div class="mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><img
@@ -53,7 +53,7 @@
                                                             class="form-control" [ngbTypeahead]="search"
                                                             [resultTemplate]="rt" [inputFormatter]="formatter"
                                                             [ngModel]="swapsource" placeholder="Enter Source"
-                                                            formControlName="source" (selectItem)="tabChange('to')" />
+                                                            formControlName="source" aria-label="Source location" (selectItem)="tabChange('to')" />
                                                         <ng-template #rt let-r="result" let-t="term">
                                                             <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
                                                         </ng-template>
@@ -61,7 +61,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1 to_dest_block">
-                                                <p>To</p>
+                                                <label for="from" class="search-label">To</label>
                                                 <div class="swap-srch-mod cursor">
                                                     <img (click)=swap(); src="assets/img/swap.svg" alt="swap">
                                                 </div>
@@ -75,6 +75,7 @@
                                                             [resultTemplate]="rt2" [inputFormatter]="formatter"
                                                             [ngModel]="swapdestination" formControlName="destination"
                                                             placeholder="Enter Destination"
+                                                             aria-label="Destination location"
                                                             (selectItem)="tabChange('entryDate')" />
 
                                                         <ng-template #rt2 let-r="result" let-t="term">
@@ -2068,7 +2069,7 @@
 
 
                             <div class="form-group">
-                                <label class="mb-2">From</label><br>
+                                <label for="from" class="mb-2">From</label><br>
                                 <input autocomplete="off" id="from" type="text" class="" [ngbTypeahead]="search"
                                     [resultTemplate]="rt" [inputFormatter]="formatter" [ngModel]="swapsource"
                                     placeholder="Enter Source" formControlName="source"
@@ -2079,7 +2080,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="mb-2">To</label><br>
+                                <label for="to" class="mb-2">To</label><br>
                                 <input autocomplete="off" id="to" type="text" class="" [ngbTypeahead]="search"
                                     [resultTemplate]="rt2" [inputFormatter]="formatter" [ngModel]="swapdestination"
                                     formControlName="destination" placeholder="Enter Destination"
@@ -2110,7 +2111,7 @@
 
                                         <div class="date-input-box" (click)="toggleCalendar();">
 
-                                            <img src="assets/img/Icon-metro-calendar.svg" class="icon-date">
+                                            <img src="assets/img/Icon-metro-calendar.svg" class="icon-date" alt="calender icon">
 
                                             <span class="date-placeholder" *ngIf="!selectedDateText">
 
