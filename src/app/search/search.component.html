@@ -43,7 +43,7 @@
                                     <div class="col-md-10">
                                         <div class="row no-gutters">
                                             <div class="col-md-4 pr-1">
-                                               <label for="from" class="search-label">From</label>
+                                                <label for="from" class="search-label">From</label>
                                                 <div class="mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><img
@@ -53,7 +53,8 @@
                                                             class="form-control" [ngbTypeahead]="search"
                                                             [resultTemplate]="rt" [inputFormatter]="formatter"
                                                             [ngModel]="swapsource" placeholder="Enter Source"
-                                                            formControlName="source" aria-label="Source location" (selectItem)="tabChange('to')" />
+                                                            formControlName="source" aria-label="Source location"
+                                                            (selectItem)="tabChange('to')" />
                                                         <ng-template #rt let-r="result" let-t="term">
                                                             <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
                                                         </ng-template>
@@ -75,7 +76,7 @@
                                                             [resultTemplate]="rt2" [inputFormatter]="formatter"
                                                             [ngModel]="swapdestination" formControlName="destination"
                                                             placeholder="Enter Destination"
-                                                             aria-label="Destination location"
+                                                            aria-label="Destination location"
                                                             (selectItem)="tabChange('entryDate')" />
 
                                                         <ng-template #rt2 let-r="result" let-t="term">
@@ -347,7 +348,7 @@
                             (scroll)="updateListingCouponButtons()">
 
                             <div class="listing-coupon-card" *ngFor="let offer of Offers; let i = index">
-                                <img [src]="PATHURL + 'slider_photos/' + offer.slider_photo" [alt]="offer.alt_tag || 'ODBUS Offer'" loading="lazy" />
+                                <img [src]="offer.slider_photo" [alt]="offer.alt_tag || 'ODBUS Offer'" loading="lazy" />
                             </div>
 
                         </div>
@@ -1158,7 +1159,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <a class="all-btn cursor" routerLink="/operator/{{bus.operatorUrl}}">All
+                                                <a class="all-btn cursor"
+                                                    routerLink="/operators/{{bus.operatorUrl}}">All
                                                     Reviews</a>
                                             </div>
                                         </div>
@@ -1371,8 +1373,7 @@
                 <div class="listing-coupon-scroll" id="listingCouponScroll" (scroll)="updateListingCouponButtons()">
 
                     <div class="listing-coupon-card" *ngFor="let offer of Offers; let i = index">
-                        <img [src]="PATHURL + 'slider_photos/' + offer.slider_photo"
-                            [alt]="offer.alt_tag || 'ODBUS Offer'" loading="lazy" />
+                        <img [src]="offer.slider_photo" [alt]="offer.alt_tag || 'ODBUS Offer'" loading="lazy" />
                     </div>
 
                 </div>
@@ -1489,7 +1490,7 @@
                     </div>
 
                     <div class="col-9 pl-0 pr-0">
-                        <div class="row m-0">
+                        <!-- <div class="row m-0">
 
                             <div class="col-3 p-0 text-center" *ngIf="busTypes.length != 0">
                                 <div *ngFor="let busType of busTypes; let i = index">
@@ -1498,7 +1499,9 @@
                                             [ngStyle]="{'background-color': (acFilter==true) ? '#072c6b' : '#fff'}">
                                             <i><img src="../../assets/img/mob-img/ac.png" [value]="busType.id"
                                                     (click)="FilterMobile($event,'bus_type','AC');" /></i>
-                                            <p class="mb-0 small">{{busType.class_name}}</p>
+                                            <p class="mb-0 small" [ngStyle]="{'color': acFilter ? '#fff' : '#000'}">
+                                                {{busType.class_name}}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -1510,7 +1513,7 @@
                                             [ngStyle]="{'background-color': (nonacFilter==true) ? '#072c6b' : '#fff'}">
                                             <i><img src="../../assets/img/mob-img/sun.png" [value]="busType.id"
                                                     (click)="FilterMobile($event,'bus_type','NONAC');" /></i>
-                                            <p class="mb-0 small">{{busType.class_name}}</p>
+                                            <p class="mb-0 small" [ngStyle]="{'color': nonacFilter ? '#fff' : '#000'}">{{busType.class_name}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1524,7 +1527,7 @@
                                             [ngStyle]="(seaterFilter) ? {'background-color':  '#072c6b'} : {'background-color':  '#fff'}">
                                             <i><img src="../../assets/img/mob-img/safety-seat.png" [value]="seatType.id"
                                                     (click)="FilterMobile($event,'seat_type');" /></i>
-                                            <p class="mb-0 small">{{seatType.name}}</p>
+                                            <p class="mb-0 small" [ngStyle]="{'color': seaterFilter ? '#fff' : '#000'}">{{seatType.name}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1541,6 +1544,99 @@
                                     </div>
                                 </div>
                             </div>
+                        </div> -->
+                        <div class="row m-0">
+
+                            <!-- AC -->
+                            <div class="col-3 p-0 text-center" *ngIf="busTypes.length != 0">
+                                <div *ngFor="let busType of busTypes">
+                                    <div *ngIf="busType.id == 1">
+                                        <div class="home"
+                                            [ngStyle]="{'background-color': acFilter ? '#072c6b' : '#fff'}">
+                                            <i *ngIf="!acFilter">
+                                                <img src="../../assets/img/mob-img/ac.png" [value]="busType.id"
+                                                    (click)="FilterMobile($event,'bus_type','AC');" />
+                                            </i>
+
+                                            <i *ngIf="acFilter">
+                                                <img src="../../assets/img/mob-img/ac-white.webp" [value]="busType.id"
+                                                    (click)="FilterMobile($event,'bus_type','AC');" />
+                                            </i>
+                                            <p class="mb-0 small" [ngStyle]="{'color': acFilter ? '#fff' : '#000'}">
+                                                {{busType.class_name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NON AC -->
+                            <div class="col-3 p-0 text-center" *ngIf="busTypes.length != 0">
+                                <div *ngFor="let busType of busTypes">
+                                    <div *ngIf="busType.id == 2">
+                                        <div class="home"
+                                            [ngStyle]="{'background-color': nonacFilter ? '#072c6b' : '#fff'}">
+                                            <i *ngIf="!nonacFilter">
+                                                <img src="../../assets/img/mob-img/sun.png" [value]="busType.id"
+                                                    (click)="FilterMobile($event,'bus_type','NONAC');" />
+                                            </i>
+                                            <i *ngIf="nonacFilter">
+                                                <img src="../../assets/img/mob-img/sun-white.webp" [value]="busType.id"
+                                                    (click)="FilterMobile($event,'bus_type','NONAC');" />
+                                            </i>
+                                            <p class="mb-0 small" [ngStyle]="{'color': nonacFilter ? '#fff' : '#000'}">
+                                                {{busType.class_name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SEATER -->
+                            <div class="col-3 p-0 text-center" *ngIf="seatTypes.length != 0">
+                                <div *ngFor="let seatType of seatTypes">
+                                    <div *ngIf="seatType.id == 1">
+                                        <div class="home"
+                                            [ngStyle]="{'background-color': seaterFilter ? '#072c6b' : '#fff'}">
+                                            <i *ngIf="!seaterFilter">
+                                                <img src="../../assets/img/mob-img/safety-seat.png"
+                                                    [value]="seatType.id" (click)="FilterMobile($event,'seat_type');" />
+                                            </i>
+                                            <i *ngIf="seaterFilter">
+                                                <img src="../../assets/img/mob-img/safety-seat-white.webp"
+                                                    [value]="seatType.id" (click)="FilterMobile($event,'seat_type');" />
+                                            </i>
+                                            <p class="mb-0 small" [ngStyle]="{'color': seaterFilter ? '#fff' : '#000'}">
+                                                {{seatType.name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SLEEPER -->
+                            <div class="col-3 p-0 text-center" *ngIf="seatTypes.length != 0">
+                                <div *ngFor="let seatType of seatTypes">
+                                    <div *ngIf="seatType.id == 2">
+                                        <div class="home"
+                                            [ngStyle]="{'background-color': sleeperFilter ? '#072c6b' : '#fff'}">
+                                            <i *ngIf="!sleeperFilter">
+                                                <img src="../../assets/img/mob-img/bed.png" [value]="seatType.id"
+                                                    (click)="FilterMobile($event,'seat_type');" />
+                                            </i>
+                                            <i *ngIf="sleeperFilter">
+                                                <img src="../../assets/img/mob-img/bed-white.webp" [value]="seatType.id"
+                                                    (click)="FilterMobile($event,'seat_type');" />
+                                            </i>
+                                            <p class="mb-0 small"
+                                                [ngStyle]="{'color': sleeperFilter ? '#fff' : '#000'}">
+                                                {{seatType.name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-3 pl-0 pr-0" (click)="moreFilter(more_filter)">
@@ -2110,7 +2206,8 @@
 
                                         <div class="date-input-box" (click)="toggleCalendar();">
 
-                                            <img src="assets/img/Icon-metro-calendar.svg" class="icon-date" alt="calender icon">
+                                            <img src="assets/img/Icon-metro-calendar.svg" class="icon-date"
+                                                alt="calender icon">
 
                                             <span class="date-placeholder" *ngIf="!selectedDateText">
 

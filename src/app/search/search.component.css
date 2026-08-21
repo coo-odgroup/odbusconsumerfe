@@ -1560,7 +1560,7 @@ ngb-rating.d-inline-flex {
 }
 
 .mobile-listing-bottom {
-  background: #efc003;
+  background: #fff;
   box-shadow: 0px -2px 6px 0px rgb(0 0 0 / 60%);
   position: fixed;
   width: 100%;
@@ -1580,7 +1580,7 @@ ngb-rating.d-inline-flex {
 }
 
 .mobile-listing-bottom .mob-more-filter a {
-  color: #efc003;
+  color: #fff;
   margin-top: 12px;
 
 }
