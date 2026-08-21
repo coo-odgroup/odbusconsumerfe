@@ -3015,7 +3015,7 @@ input[type=radio] {
 .date-input-box {
   height: 50px;
   border: 1px solid #dfe3eb;
-  border-radius: 10px 0 0 10px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   background: #fff;
@@ -3493,4 +3493,7 @@ input[type=radio] {
   .listing-coupon-next {
     right: 3px;
   }
+}
+.mt10{
+  margin-top: 10px;
 }
