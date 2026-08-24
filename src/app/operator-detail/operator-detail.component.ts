@@ -45,7 +45,7 @@ export class OperatorDetailComponent implements OnInit {
     private Common: CommonService,
     private location: Location,
     private seo: SeoService,
-    private detectService: DeviceDetectorService
+    private detectService: DeviceDetectorService,
   ) {
 
     this.isMobile = this.detectService.isMobile();
@@ -112,6 +112,12 @@ export class OperatorDetailComponent implements OnInit {
         if (res.status == 1) {
 
           this.OperatorData = res.data;
+
+          // Set Operator SEO
+          const operatorName = this.OperatorData.organisation_name;
+          if (operatorName) {
+            this.seo.setOperatorMeta(operatorName);
+          }
 
           this.routes = this.OperatorData.routes || [];
 

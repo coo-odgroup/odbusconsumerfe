@@ -120,7 +120,13 @@ export class SeoService {
       cleanUrl === '/blog' ||
       cleanUrl === '/privacy-policy' ||
       cleanUrl === '/instant-booking' ||
-      cleanUrl === '/terms-conditions'
+      cleanUrl === '/terms-conditions' ||
+      cleanUrl === '/login' ||
+      cleanUrl === '/faq' ||
+      cleanUrl === '/operators' ||
+      cleanUrl === '/routes' ||
+      cleanUrl === '/offers' ||
+      cleanUrl === '/cancelation-policy'
     ) {
       return true;
     }
@@ -298,6 +304,58 @@ export class SeoService {
         this.httpOptions,
       )
       .pipe(catchError(this.errorHandler));
+  }
+
+  setOperatorMeta(operatorName: string): void {
+    if (!operatorName) {
+      return;
+    }
+
+    operatorName = operatorName
+      .replace(/\s+BUS\s+SERVICE\s*$/i, '')
+      .replace(/\s+BUS\s*$/i, '')
+      .trim();
+
+    operatorName = operatorName
+      .toLowerCase()
+      .replace(/\b\w/g, char => char.toUpperCase());
+
+    console.log(operatorName)
+
+    const title =
+      `${operatorName} Bus Tickets, Routes And Booking | ODBUS`;
+
+    const description =
+      `Book ${operatorName} bus tickets with ODBUS. View routes, timings, fares, boarding points and seat availability for your journey.`;
+
+    console.log(title);
+
+    // Page Title
+    this.title.setTitle(title);
+
+    // Meta Description
+    this.meta.updateTag({
+      name: 'description',
+      content: description
+    });
+
+    // Open Graph Title
+    this.meta.updateTag({
+      property: 'og:title',
+      content: title
+    });
+
+    // Open Graph Description
+    this.meta.updateTag({
+      property: 'og:description',
+      content: description
+    });
+
+    // Canonical URL
+    this.addCanonicalUrl();
+
+    // OG URL
+    this.addOgUrl();
   }
 
   errorHandler(error: HttpErrorResponse) {
