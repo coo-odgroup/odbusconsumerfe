@@ -5,6 +5,8 @@ import {
   Inject,
   PLATFORM_ID,
   HostListener,
+  ViewChild,
+  TemplateRef
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -358,7 +360,7 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  PATHURL =GlobalConstants.PATHURL;
+  PATHURL = GlobalConstants.PATHURL;
 
   locationList(res: any) {
     // console.log(res);
@@ -441,9 +443,18 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  // tabChange(val) {
+  //   document.getElementById(val).focus();
+  //   document.getElementById(val).click();
+  // }
+
   tabChange(val) {
-    document.getElementById(val).focus();
-    document.getElementById(val).click();
+    const element = document.getElementById(val);
+
+    if (element) {
+      element.focus();
+      element.click();
+    }
   }
 
   submitSeat() {
@@ -1375,7 +1386,7 @@ export class SearchComponent implements OnInit {
   }
 
   coupon_detail(i, modal) {
-    this.couponDetail = [];
+    // this.couponDetail = [];
     this.couponDetail = this.buslist[i]['couponDetails'];
     // console.log(this.couponDetail);
     // this.modalService.open(modal);
@@ -1513,40 +1524,40 @@ export class SearchComponent implements OnInit {
   // }
 
   getOffers(): void {
-  const postData = {
-    user_id: 1,
-    source_id: localStorage.getItem('source_id'),
-    destination_id: localStorage.getItem('destination_id'),
-  };
+    const postData = {
+      user_id: 1,
+      source_id: localStorage.getItem('source_id'),
+      destination_id: localStorage.getItem('destination_id'),
+    };
 
-  this.http.post<any>(
-    GlobalConstants.BASE_URL + '/Listing-Offers',
-    postData
-  ).subscribe(
-    (res: any) => {
+    this.http.post<any>(
+      GlobalConstants.BASE_URL + '/Listing-Offers',
+      postData
+    ).subscribe(
+      (res: any) => {
 
-      if (Array.isArray(res)) {
-        this.Offers = res;
-      } else if (Array.isArray(res.data)) {
-        this.Offers = res.data;
-      } else {
+        if (Array.isArray(res)) {
+          this.Offers = res;
+        } else if (Array.isArray(res.data)) {
+          this.Offers = res.data;
+        } else {
+          this.Offers = [];
+        }
+
+        // Hide spinner only after Offers are loaded
+        this.spinner.hide();
+        this.modalService.dismissAll();
+      },
+      (error) => {
+        console.log('Offers API Error:', error);
         this.Offers = [];
+
+        // Also hide spinner if Offers API fails
+        this.spinner.hide();
+        this.modalService.dismissAll();
       }
-
-      // Hide spinner only after Offers are loaded
-      this.spinner.hide();
-      this.modalService.dismissAll();
-    },
-    (error) => {
-      console.log('Offers API Error:', error);
-      this.Offers = [];
-
-      // Also hide spinner if Offers API fails
-      this.spinner.hide();
-      this.modalService.dismissAll();
-    }
-  );
-}
+    );
+  }
 
   onOfferClick(index: number): void {
     const code =
@@ -2025,7 +2036,156 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  showAllAmenity(id: any) {
+  busDetailsCache: { [key: number]: any } = {};
+
+
+  //bus facilities for mobile
+  loadMobBusDetails(
+    busId: any,
+    type: string,
+    template: any
+  ) {
+
+    // Check cache
+    if (this.busDetailsCache[busId]) {
+      this.openMobileDetails(type, template);
+      return;
+    }
+    // API call
+    this.spinner.show();
+    this.listingService.getBusFacilities(busId).subscribe(
+      (res: any) => {
+
+        this.spinner.hide();
+
+        if (res.status === '1') {
+
+          // Save response in cache
+          this.busDetailsCache[busId] = res.data;
+          // Open selected modal
+          this.openMobileDetails(type, template);
+        }
+      },
+      (error: any) => {
+
+        this.spinner.hide();
+        console.log('API Error:', error);
+      }
+    );
+  }
+
+  openMobileDetails(
+    type: string,
+    template: any
+  ) {
+
+    switch (type) {
+
+      case 'amenities':
+
+        this.viewamenity(template);
+
+        break;
+
+
+      case 'safety':
+
+        this.viewsafety(template);
+
+        break;
+
+
+      case 'photos':
+
+        this.viewphotos(template);
+
+        break;
+
+
+      case 'reviews':
+
+        this.viewreview(template);
+
+        break;
+
+
+      case 'policy':
+
+        this.viewpolicy(template);
+
+        break;
+    }
+  }
+
+
+  loadBusDetails(i: any, type: string) {
+
+    const busId = this.buslist[i].busId;
+
+    // Check if this bus data is already available
+    if (this.busDetailsCache[busId]) {
+
+      console.log('Using cached data:', busId);
+      console.log('Using cached data:', this.busDetailsCache[busId]);
+
+      this.showBusDetails(i, type);
+
+      return;
+    }
+    this.spinner.show();
+
+    // First click for this bus
+    console.log('Calling API:', busId);
+
+    this.listingService.getBusFacilities(busId).subscribe((res: any) => {
+
+      if (res.status === '1') {
+        this.spinner.hide();
+
+        // Store only res.data
+        this.busDetailsCache[busId] = res.data;
+
+        console.log('API response cached:', this.busDetailsCache[busId]);
+
+        // Open the clicked section
+        this.showBusDetails(i, type);
+      }
+    });
+  }
+
+
+  showBusDetails(i: any, type: string) {
+
+    switch (type) {
+
+      case 'amenities':
+        this.showAllAmenity(i);
+        break;
+
+      case 'safety':
+        this.safety(i);
+        break;
+
+      case 'photos':
+        this.bus_pic(i);
+        break;
+
+      case 'reviews':
+        this.reviews(i);
+        break;
+
+      case 'policy':
+        this.booking_policy(i);
+        break;
+    }
+  }
+
+
+  showAllAmenity(i: any) {
+
+    const busId = this.buslist[i].busId;
+    const data = this.busDetailsCache[busId];
+
     this.currentSeatlayoutIndex = false;
 
     this.seatsLayoutRecord.visibility = false;
@@ -2035,9 +2195,20 @@ export class SearchComponent implements OnInit {
     this.busPhotoshow = '';
     this.reviewShow = '';
     this.policyShow = '';
-    this.amenityShow = id;
+    this.amenityShow = i;
 
-    this.checkSeatHTML(id);
+    // Use cached API response
+    this.amenities = data.amenities;
+
+    // Don't call API again
+    // this.checkSeatHTML(i);
+  }
+
+  getBusDetails(i: any): any {
+
+    const busId = this.buslist[i].busId;
+
+    return this.busDetailsCache[busId] || {};
   }
 
   closeTab(id: any) {
@@ -2096,71 +2267,62 @@ export class SearchComponent implements OnInit {
 
     this.busPhotoshow = id;
 
-    let busRecord = this.buslist[id];
+    const busRecord = this.buslist[id];
+    const busId = busRecord.busId;
 
-    if (busRecord.busPhotos.length > 0) {
-      busRecord.busPhotos.forEach((sf) => {
-        if (sf.bus_image_1 != '' && sf.bus_image_1 != null) {
-          const src = sf.bus_image_1;
-          const caption = '';
-          const thumb = sf.bus_image_1;
-          const album = {
-            src: src,
-            caption: caption,
-            thumb: thumb,
-          };
-          this._albums.push(album);
+    console.log('Bus Record:', busRecord);
+    console.log('Cached Details:', this.busDetailsCache[busId]);
+
+    const gallery = this.busDetailsCache[busId]?.gallery || [];
+
+    if (gallery.length > 0) {
+
+      gallery.forEach((sf: any) => {
+
+        if (sf.bus_image_1) {
+          this._albums.push({
+            src: sf.bus_image_1,
+            caption: '',
+            thumb: sf.bus_image_1
+          });
         }
 
-        if (sf.bus_image_2 != '' && sf.bus_image_2 != null) {
-          const src = sf.bus_image_2;
-          const caption = '';
-          const thumb = sf.bus_image_2;
-          const album = {
-            src: src,
-            caption: caption,
-            thumb: thumb,
-          };
-          this._albums.push(album);
+        if (sf.bus_image_2) {
+          this._albums.push({
+            src: sf.bus_image_2,
+            caption: '',
+            thumb: sf.bus_image_2
+          });
         }
 
-        if (sf.bus_image_3 != '' && sf.bus_image_3 != null) {
-          const src = sf.bus_image_3;
-          const caption = '';
-          const thumb = sf.bus_image_3;
-          const album = {
-            src: src,
-            caption: caption,
-            thumb: thumb,
-          };
-          this._albums.push(album);
+        if (sf.bus_image_3) {
+          this._albums.push({
+            src: sf.bus_image_3,
+            caption: '',
+            thumb: sf.bus_image_3
+          });
         }
 
-        if (sf.bus_image_4 != '' && sf.bus_image_4 != null) {
-          const src = sf.bus_image_4;
-          const caption = '';
-          const thumb = sf.bus_image_4;
-          const album = {
-            src: src,
-            caption: caption,
-            thumb: thumb,
-          };
-          this._albums.push(album);
+        if (sf.bus_image_4) {
+          this._albums.push({
+            src: sf.bus_image_4,
+            caption: '',
+            thumb: sf.bus_image_4
+          });
         }
 
-        if (sf.bus_image_5 != '' && sf.bus_image_5 != null) {
-          const src = sf.bus_image_5;
-          const caption = '';
-          const thumb = sf.bus_image_5;
-          const album = {
-            src: src,
-            caption: caption,
-            thumb: thumb,
-          };
-          this._albums.push(album);
+        if (sf.bus_image_5) {
+          this._albums.push({
+            src: sf.bus_image_5,
+            caption: '',
+            thumb: sf.bus_image_5
+          });
         }
+
       });
     }
+
+    console.log('Albums:', this._albums);
 
     this.reviewShow = '';
     this.amenityShow = '';
@@ -3067,8 +3229,21 @@ export class SearchComponent implements OnInit {
     this.modalService.open(viewamenity, { windowClass: 'mobile-modalbox' });
   }
 
+  getAmenityImage(amenity: any): string {
+    if (this.isMobile) {
+      return amenity.amenities_image;
+    }
+    return amenity.amenities_image;
+  }
+
   viewsafety(viewsafety: any) {
     this.modalService.open(viewsafety, { windowClass: 'mobile-modalbox' });
+  }
+
+  getSafetyImage(safety: any): string {
+    return this.isMobile
+      ? safety.safety_image
+      : safety.safety_image;
   }
 
   viewphotos(viewphotos: any) {

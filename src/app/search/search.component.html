@@ -89,7 +89,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4 date_inp">
-                                                <label for="doj" class="search-label">Date of Journey</label>                                             
+                                                <label for="doj" class="search-label">Date of Journey</label>
                                                 <div class="input-group mb-3">
                                                     <!-- <div class="input-group-prepend">
                                                         <span class="input-group-text calendar" id="basic-addon3"
@@ -335,7 +335,7 @@
                 </div>
                 <div class="col-xl-9 col-lg-9 col-md-9">
                     <!-- ODBUS LISTING COUPON CAROUSEL -->
-                    <div class="listing-coupon-strip" *ngIf="Offers && Offers.length > 0">
+                    <div class="listing-coupon-strip" *ngIf="Offers && Offers.length > 0 && totalfound != 0">
 
                         <!-- PREVIOUS -->
                         <button type="button" class="listing-coupon-arrow listing-coupon-prev" id="listingCouponPrev"
@@ -466,7 +466,7 @@
                                     <div class="col-md-12">
                                         <div class="search-result-bus-box-inner">
 
-                                            <div class="row cursor" (click)="coupon_detail(i,CouponDetail)"
+                                            <!-- <div class="row cursor" (click)="coupon_detail(i,CouponDetail)"
                                                 *ngIf="bus.couponDetails && bus.couponDetails.length>0">
                                                 <div class="new-deal deal coupon_terms" title="Click To View">
                                                     <img src="assets/img/deal.png" alt="deal">
@@ -474,6 +474,22 @@
                                                     <span class="cpnbox"> {{ bus.couponDetails[0].coupon_code}}</span>
 
                                                 </div>
+                                            </div> -->
+                                            <div class="row cursor" (click)="coupon_detail(i, CouponDetail)"
+                                                *ngIf="bus.couponDetails && bus.couponDetails.id">
+
+                                                <div class="new-deal deal coupon_terms" title="Click To View">
+                                                    <img src="assets/img/deal.png" alt="deal">
+
+                                                    <span>
+                                                        {{ bus.couponDetails.short_desc }}
+                                                    </span>
+
+                                                    <span class="cpnbox">
+                                                        {{ bus.couponDetails.coupon_code }}
+                                                    </span>
+                                                </div>
+
                                             </div>
 
                                             <div class="row">
@@ -575,20 +591,30 @@
                                                         <div class="col-md-7">
                                                             <div class="bus-dtl-btm-panel-right">
                                                                 <ul>
-                                                                    <li class="cursor"><a
-                                                                            (click)="showAllAmenity(i)">Amenities</a>
+                                                                    <li class="cursor">
+                                                                        <a
+                                                                            (click)="loadBusDetails(i, 'amenities')">Amenities</a>
                                                                     </li>
-                                                                    <li class="cursor"><a
-                                                                            (click)="safety(i);">Safety</a>
+
+                                                                    <li class="cursor">
+                                                                        <a
+                                                                            (click)="loadBusDetails(i, 'safety')">Safety</a>
                                                                     </li>
-                                                                    <li class="cursor"><a (click)="bus_pic(i);">Bus
-                                                                            Photos</a></li>
-                                                                    <li class="cursor"><a
-                                                                            (click)="reviews(i);">Reviews</a>
+
+                                                                    <li class="cursor">
+                                                                        <a (click)="loadBusDetails(i, 'photos')">Bus
+                                                                            Photos</a>
                                                                     </li>
-                                                                    <li class="cursor"><a
-                                                                            (click)="booking_policy(i);">Booking
-                                                                            Policies</a></li>
+
+                                                                    <li class="cursor">
+                                                                        <a
+                                                                            (click)="loadBusDetails(i, 'reviews')">Reviews</a>
+                                                                    </li>
+
+                                                                    <li class="cursor">
+                                                                        <a (click)="loadBusDetails(i, 'policy')">Booking
+                                                                            Policies</a>
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -942,115 +968,174 @@
 
 
                                     <div id="amenity_div{{i}}" *ngIf="amenityShow === i">
-                                        <div align="right" class="bt-close">
-                                            <button (click)="closeTab(i)" class="btn btn-default btn-xs"><i
-                                                    class="fa fa-close"></i> Close</button>
 
+                                        <div align="right" class="bt-close">
+                                            <button (click)="closeTab(i)" class="btn btn-default btn-xs">
+                                                <i class="fa fa-close"></i> Close
+                                            </button>
                                         </div>
+
                                         <div class="safety_box">
-                                            <div *ngIf="bus.amenity.length != 0" class="bus-dtl-btm-panel-left">
-                                                <div *ngFor="let nm of bus.amenity; let am=index; "
+
+                                            <div *ngIf="busDetailsCache[bus.busId]?.amenities?.length > 0; else amenityEmpty"
+                                                class="bus-dtl-btm-panel-left">
+
+                                                <div *ngFor="let nm of busDetailsCache[bus.busId].amenities"
                                                     class="p-2 flex-fill de-angu">
-                                                    <div *ngIf="nm && nm.amenity_image != ''">
-                                                        <img src="{{ nm.amenity_image }}" class="iconsize" />
-                                                        <p class="safety_span">{{nm.name}}</p>
+
+                                                    <div *ngIf="nm && nm.amenities_image">
+
+                                                        <img [src]="nm.amenities_image" class="iconsize" />
+
+                                                        <p class="safety_span">
+                                                            {{ nm.name }}
+                                                        </p>
+
                                                     </div>
+
                                                 </div>
 
                                             </div>
+
+                                            <ng-template #amenityEmpty>
+                                                <div class="no-available">
+                                                    No amenity icons available...
+                                                </div>
+                                            </ng-template>
+
                                         </div>
+
                                     </div>
 
                                     <div id="safety{{i}}" *ngIf="safetyshow === i">
-                                        <div align="right" class="bt-close">
-                                            <button (click)="closeTab(i)" class="btn btn-default btn-xs"><i
-                                                    class="fa fa-close"></i> Close</button>
 
+                                        <div align="right" class="bt-close">
+                                            <button (click)="closeTab(i)" class="btn btn-default btn-xs">
+                                                <i class="fa fa-close"></i> Close
+                                            </button>
                                         </div>
+
                                         <div class="safety_box">
-                                            <div *ngIf="bus.safety.length != 0 ; else safeiconempty">
-                                                <div *ngFor="let sf of bus.safety; let i=index; "
+
+                                            <div
+                                                *ngIf="busDetailsCache[bus.busId]?.safety?.length > 0; else safeiconempty">
+
+                                                <div *ngFor="let sf of busDetailsCache[bus.busId].safety"
                                                     class="p-2 flex-fill de-angu">
-                                                    <!-- <img src = "{{url_path.safety_url}}{{ sf.safety.safety_image }}" class="iconsize" /> -->
-                                                    <img src="{{ sf.safety_image }}" class="iconsize" />
-                                                    <!-- <img [attr.src]="getImagePath(bus.safetyIcon[i])"> -->
-                                                    <p class="safety_span">{{ sf.name }}</p>
+
+                                                    <img [src]="sf.safety_image" class="iconsize" />
+
+                                                    <p class="safety_span">
+                                                        {{ sf.name }}
+                                                    </p>
+
                                                 </div>
+
                                             </div>
+
                                             <ng-template #safeiconempty>
                                                 <div class="no-available">
                                                     No safety icons available...
                                                 </div>
                                             </ng-template>
+
                                         </div>
+
                                     </div>
                                     <div id="bus_pic{{i}}" *ngIf="busPhotoshow === i">
-                                        <div align="right" class="bt-close">
-                                            <button (click)="closeTab(i)" class="btn btn-default btn-xs"><i
-                                                    class="fa fa-close"></i> Close</button>
 
+                                        <div align="right" class="bt-close">
+                                            <button (click)="closeTab(i)" class="btn btn-default btn-xs">
+                                                <i class="fa fa-close"></i> Close
+                                            </button>
                                         </div>
+
                                         <div class="safety_box">
 
-                                            <div *ngIf="bus.busPhotos.length != 0 ; else busphotoempty">
-                                                <div *ngFor="let sf of bus.busPhotos;">
-                                                    <div class="flex-fill de-angu-bus">
-                                                        <img *ngIf="sf.bus_image_1 !='' && sf.bus_image_1 != null "
-                                                            src="{{ sf.bus_image_1 }}" (click)="open(0)" />
+                                            <div
+                                                *ngIf="busDetailsCache[bus.busId]?.gallery?.length > 0; else busphotoempty">
+
+                                                <div *ngFor="let sf of busDetailsCache[bus.busId].gallery">
+
+                                                    <div class="flex-fill de-angu-bus" *ngIf="sf.bus_image_1">
+
+                                                        <img [src]="sf.bus_image_1" (click)="open(0)" />
+
                                                     </div>
 
-                                                    <div class="flex-fill de-angu-bus"> <img
-                                                            *ngIf="sf.bus_image_2 !='' && sf.bus_image_2 != null "
-                                                            src="{{ sf.bus_image_2 }}" (click)="open(1)" />
+                                                    <div class="flex-fill de-angu-bus" *ngIf="sf.bus_image_2">
+
+                                                        <img [src]="sf.bus_image_2" (click)="open(1)" />
+
                                                     </div>
 
-                                                    <div class="flex-fill de-angu-bus"> <img
-                                                            *ngIf="sf.bus_image_3 !='' && sf.bus_image_3 != null "
-                                                            src="{{ sf.bus_image_3 }}" (click)="open(2)" />
+                                                    <div class="flex-fill de-angu-bus" *ngIf="sf.bus_image_3">
+
+                                                        <img [src]="sf.bus_image_3" (click)="open(2)" />
+
                                                     </div>
-                                                    <div class="flex-fill de-angu-bus">
-                                                        <img *ngIf="sf.bus_image_4 !='' && sf.bus_image_4 != null "
-                                                            src="{{ sf.bus_image_4 }}" (click)="open(3)" />
+
+                                                    <div class="flex-fill de-angu-bus" *ngIf="sf.bus_image_4">
+
+                                                        <img [src]="sf.bus_image_4" (click)="open(3)" />
+
                                                     </div>
-                                                    <div class="flex-fill de-angu-bus"><img
-                                                            *ngIf="sf.bus_image_5 !='' && sf.bus_image_5 != null "
-                                                            src="{{ sf.bus_image_5 }}" (click)="open(4)" />
+
+                                                    <div class="flex-fill de-angu-bus" *ngIf="sf.bus_image_5">
+
+                                                        <img [src]="sf.bus_image_5" (click)="open(4)" />
+
                                                     </div>
 
                                                 </div>
+
                                             </div>
+
                                             <ng-template #busphotoempty>
                                                 <div class="no-available">
                                                     No bus photos available...
                                                 </div>
                                             </ng-template>
+
                                         </div>
+
                                     </div>
                                     <div id="review{{i}}" *ngIf="reviewShow === i">
 
                                         <div align="right" class="bt-close">
-                                            <button (click)="closeTab(i)" class="btn btn-default btn-xs"><i
-                                                    class="fa fa-close"></i> Close</button>
-
+                                            <button (click)="closeTab(i)" class="btn btn-default btn-xs">
+                                                <i class="fa fa-close"></i> Close
+                                            </button>
                                         </div>
 
                                         <ng-template #reviewempty>
-                                            <div class="no-available">No bus reviews available...</div>
+                                            <div class="no-available">
+                                                No bus reviews available...
+                                            </div>
                                         </ng-template>
 
-                                        <div class="safety_box1" *ngIf="bus.reviews.length > 0 ; else reviewempty ">
+                                        <div class="safety_box1"
+                                            *ngIf="busDetailsCache[bus.busId]?.reviews?.length > 0; else reviewempty">
+
                                             <div class="row safety_box-flex">
+
                                                 <div class="col-md-4 de-angu1 no-bg">
 
                                                     <div class="review" id="review">
 
                                                         <div class="row mb-3">
+
                                                             <div class="col-3 p-0">
                                                                 <h6 class="font-weight-normal">Review</h6>
-                                                                <p class="mb-0"><span
-                                                                        class="h4 mb-0">{{bus.Totalrating}}</span><span
-                                                                        class="h6">/5</span></p>
+
+                                                                <p class="mb-0">
+                                                                    <span class="h4 mb-0">
+                                                                        {{ bus.Totalrating }}
+                                                                    </span>
+                                                                    <span class="h6">/5</span>
+                                                                </p>
                                                             </div>
+
                                                             <div class="start-rating f-8 col-7 p-0 pt-44">
                                                                 <i class="fas fa-star text-danger"></i>
                                                                 <i class="fas fa-star text-danger"></i>
@@ -1058,74 +1143,98 @@
                                                                 <i class="fas fa-star text-danger"></i>
                                                                 <i class="fas fa-star text-danger"></i>
                                                             </div>
-                                                            <div class="col-2">
-                                                            </div>
+
+                                                            <div class="col-2"></div>
 
                                                         </div>
+
                                                         <div class="review-rating row align-items-center mb-1">
                                                             <div class="col-2 p-0">
                                                                 <span class="small">5.0</span>
                                                             </div>
+
                                                             <div class="progress col-8 p-0">
                                                                 <div class="progress-bar bg-danger" role="progressbar"
-                                                                    style="width:100%" aria-valuenow="90"
-                                                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    style="width:100%">
+                                                                </div>
                                                             </div>
+
                                                             <div class="col-2 p-0">
-                                                                <span class="small">{{bus.Totalrating_5star}}</span>
+                                                                <span class="small">
+                                                                    {{ bus.Totalrating_5star }}
+                                                                </span>
                                                             </div>
                                                         </div>
+
                                                         <div class="review-rating row align-items-center mb-1">
                                                             <div class="col-2 p-0">
                                                                 <span class="small">4.0</span>
                                                             </div>
+
                                                             <div class="progress col-8 p-0">
                                                                 <div class="progress-bar bg-danger" role="progressbar"
-                                                                    style="width: 80%" aria-valuenow="75"
-                                                                    aria-valuemin="0" aria-valuemax="75"></div>
+                                                                    style="width:80%">
+                                                                </div>
                                                             </div>
+
                                                             <div class="col-2 p-0">
-                                                                <span class="small">{{bus.Totalrating_4star}}</span>
+                                                                <span class="small">
+                                                                    {{ bus.Totalrating_4star }}
+                                                                </span>
                                                             </div>
                                                         </div>
+
                                                         <div class="review-rating row align-items-center mb-1">
                                                             <div class="col-2 p-0">
                                                                 <span class="small">3.0</span>
                                                             </div>
+
                                                             <div class="progress col-8 p-0">
                                                                 <div class="progress-bar bg-danger" role="progressbar"
-                                                                    style="width: 60%" aria-valuenow="50"
-                                                                    aria-valuemin="0" aria-valuemax="50"></div>
+                                                                    style="width:60%">
+                                                                </div>
                                                             </div>
+
                                                             <div class="col-2 p-0">
-                                                                <span class="small">{{bus.Totalrating_3star}}</span>
+                                                                <span class="small">
+                                                                    {{ bus.Totalrating_3star }}
+                                                                </span>
                                                             </div>
                                                         </div>
-                                                        <div class="review-rating row align-items-center mb-1">
 
+                                                        <div class="review-rating row align-items-center mb-1">
                                                             <div class="col-2 p-0">
                                                                 <span class="small">2.0</span>
                                                             </div>
+
                                                             <div class="progress col-8 p-0">
                                                                 <div class="progress-bar bg-danger" role="progressbar"
-                                                                    style="width: 40%" aria-valuenow="25"
-                                                                    aria-valuemin="0" aria-valuemax="25"></div>
+                                                                    style="width:40%">
+                                                                </div>
                                                             </div>
+
                                                             <div class="col-2 p-0">
-                                                                <span class="small">{{bus.Totalrating_2star}}</span>
+                                                                <span class="small">
+                                                                    {{ bus.Totalrating_2star }}
+                                                                </span>
                                                             </div>
                                                         </div>
+
                                                         <div class="review-rating row align-items-center mb-1">
                                                             <div class="col-2 p-0">
                                                                 <span class="small">1.0</span>
                                                             </div>
+
                                                             <div class="progress col-8 p-0">
                                                                 <div class="progress-bar bg-danger" role="progressbar"
-                                                                    style="width:20%" aria-valuenow="5"
-                                                                    aria-valuemin="0" aria-valuemax="5"></div>
+                                                                    style="width:20%">
+                                                                </div>
                                                             </div>
+
                                                             <div class="col-2 p-0">
-                                                                <span class="small">{{bus.Totalrating_1star}}</span>
+                                                                <span class="small">
+                                                                    {{ bus.Totalrating_1star }}
+                                                                </span>
                                                             </div>
                                                         </div>
 
@@ -1133,157 +1242,298 @@
 
                                                 </div>
 
-                                                <div class="col-md-4 testimonials-clean" *ngFor="let rv of bus.reviews">
+                                                <div class="col-md-4 testimonials-clean"
+                                                    *ngFor="let rv of busDetailsCache[bus.busId].reviews">
+
                                                     <div class="de-angu1 border">
+
                                                         <div class="author item">
+
                                                             <img class="rounded-circle"
-                                                                *ngIf="rv.profile_image=='' || rv.profile_image== null "
+                                                                *ngIf="rv.profile_image == '' || rv.profile_image == null"
                                                                 src="../../assets/img/user.png">
+
                                                             <img class="rounded-circle"
-                                                                *ngIf="rv.profile_image!='' && rv.profile_image!=null"
-                                                                src="{{ rv.profile_image }}">
-                                                            <h5 class="name">{{ rv.name }}</h5>
+                                                                *ngIf="rv.profile_image != '' && rv.profile_image != null"
+                                                                [src]="rv.profile_image">
+
+                                                            <h5 class="name">
+                                                                {{ rv.name }}
+                                                            </h5>
+
                                                             <span class="rv_img">
                                                                 <ngb-rating [rate]="rv.rating_overall" [max]="5"
-                                                                    [readonly]="true"></ngb-rating>
+                                                                    [readonly]="true">
+                                                                </ngb-rating>
                                                             </span>
+
                                                         </div>
-                                                        <h2 class="heading-ser">{{ rv.title }}</h2>
+
+                                                        <h2 class="heading-ser">
+                                                            {{ rv.title }}
+                                                        </h2>
+
                                                         <div class="box">
                                                             <div class="description">
                                                                 {{ rv.comments }}
                                                             </div>
                                                         </div>
+
                                                     </div>
 
                                                 </div>
+
+                                                <div class="col-md-12">
+                                                    <a class="all-btn cursor"
+                                                        [routerLink]="['/operators', bus.operatorUrl]">
+                                                        All Reviews
+                                                    </a>
+                                                </div>
+
                                             </div>
-                                            <div class="col-md-12">
-                                                <a class="all-btn cursor"
-                                                    routerLink="/operators/{{bus.operatorUrl}}">All
-                                                    Reviews</a>
-                                            </div>
+
                                         </div>
+
                                     </div>
 
 
                                     <div id="booking_policy{{i}}" *ngIf="policyShow === i">
 
                                         <div align="right" class="bt-close">
-                                            <button (click)="closeTab(i)" class="btn btn-default btn-xs"><i
-                                                    class="fa fa-close"></i> Close</button>
-
+                                            <button (click)="closeTab(i)" class="btn btn-default btn-xs">
+                                                <i class="fa fa-close"></i> Close
+                                            </button>
                                         </div>
+
                                         <ul class="ul-booking nav1 nav-pills1" ngbNav #policynav="ngbNav"
                                             [activeId]="5">
-                                            <li class="active" [ngbNavItem]=5>
-                                                <a data-toggle="pill" ngbNavLink>Cancellation Policy</a>
+
+                                            <!-- Cancellation Policy -->
+                                            <li class="active" [ngbNavItem]="5">
+
+                                                <a data-toggle="pill" ngbNavLink>
+                                                    Cancellation Policy
+                                                </a>
+
                                                 <ng-template ngbNavContent>
+
                                                     <div class="policy_box">
+
                                                         <div class="row">
+
+                                                            <!-- Cancellation Slabs -->
                                                             <div class="col-md-6">
+
                                                                 <div class="safety_box2">
-                                                                    <h1 class="policy-h1">Your current ticket
-                                                                        cancellation
-                                                                        charges</h1>
+
+                                                                    <h1 class="policy-h1">
+                                                                        Your current ticket
+                                                                        cancellation charges
+                                                                    </h1>
+
                                                                 </div>
+
                                                                 <div class="safety_box2">
+
                                                                     <table class="table">
+
                                                                         <thead>
                                                                             <tr>
                                                                                 <th>Cancellation Time</th>
                                                                                 <th>Cancellation Charges</th>
                                                                             </tr>
                                                                         </thead>
-                                                                        <tbody
-                                                                            *ngIf="bus.cancellationDuration.length > 0 ">
-                                                                            <tr
-                                                                                *ngFor="let can of bus.cancellationDuration; let i=index">
-                                                                                <td>{{ can }} hr</td>
-                                                                                <td>{{ bus.cancellationDuduction[i] }}%
+
+                                                                        <tbody *ngIf="
+                                            busDetailsCache[bus.busId]
+                                                ?.cancellation_policy
+                                                ?.cancellation_slab_info
+                                                ?.length > 0
+                                        ">
+
+                                                                            <tr *ngFor="
+                                                let can of busDetailsCache[bus.busId]
+                                                    .cancellation_policy
+                                                    .cancellation_slab_info
+                                            ">
+
+                                                                                <td>
+                                                                                    {{ can.duration }} hr
                                                                                 </td>
+
+                                                                                <td>
+                                                                                    {{ can.deduction }}%
+                                                                                </td>
+
                                                                             </tr>
 
                                                                         </tbody>
+
                                                                     </table>
+
+                                                                    <div class="no-available" *ngIf="
+                                        !busDetailsCache[bus.busId]
+                                            ?.cancellation_policy
+                                            ?.cancellation_slab_info?.length
+                                    ">
+                                                                        No cancellation policy available...
+                                                                    </div>
+
                                                                 </div>
+
                                                             </div>
+
+                                                            <!-- Cancellation Policy Content -->
                                                             <div class="col-md-6">
-                                                                <div class="safety_box"
-                                                                    [innerHTML]="getContent(bus.cancellationPolicyContent)">
+
+                                                                <div class="safety_box" [innerHTML]="
+                                    getContent(
+                                        busDetailsCache[bus.busId]
+                                            ?.cancellation_policy
+                                            ?.cancellation_policy_desc
+                                    )
+                                ">
                                                                 </div>
+
                                                             </div>
+
                                                         </div>
+
                                                     </div>
+
                                                 </ng-template>
+
                                             </li>
-                                            <li [ngbNavItem]=6>
-                                                <a data-toggle="pill" ngbNavLink>Travel Related Policy</a>
+
+
+                                            <!-- Travel Related Policy -->
+                                            <li [ngbNavItem]="6">
+
+                                                <a data-toggle="pill" ngbNavLink>
+                                                    Travel Related Policy
+                                                </a>
+
                                                 <ng-template ngbNavContent>
+
                                                     <div class="policy_box">
+
                                                         <div class="row pol-box">
-                                                            <div class="col-md-1"><i class="fas fa-child"></i></div>
+
+                                                            <div class="col-md-1">
+                                                                <i class="fas fa-child"></i>
+                                                            </div>
+
                                                             <div class="col-md-11 p-0">
+
                                                                 <h5>Child Passenger Policy</h5>
-                                                                <p>Children above the age of 2 will need a ticket (As
-                                                                    per Bus Operator).</p>
+
+                                                                <p>
+                                                                    Children above the age of 2 will need a ticket
+                                                                    (As per Bus Operator).
+                                                                </p>
+
                                                             </div>
 
                                                         </div>
+
                                                         <hr>
+
                                                         <div class="row pol-box">
-                                                            <div class="col-md-1"><i
-                                                                    class="fas fa-suitcase-rolling"></i></div>
+
+                                                            <div class="col-md-1">
+                                                                <i class="fas fa-suitcase-rolling"></i>
+                                                            </div>
+
                                                             <div class="col-md-11 p-0">
+
                                                                 <h5>Luggage Policy</h5>
-                                                                <p>2 pieces of luggage will be accepted free of charge
-                                                                    per passenger.
-                                                                    Excess items will be chargeable Excess baggage over
-                                                                    15 kgs per passenger will be chargeable.</p>
+
+                                                                <p>
+                                                                    2 pieces of luggage will be accepted free of
+                                                                    charge per passenger. Excess items will be
+                                                                    chargeable. Excess baggage over 15 kgs per
+                                                                    passenger will be chargeable.
+                                                                </p>
+
                                                             </div>
 
                                                         </div>
+
                                                         <hr>
+
                                                         <div class="row pol-box">
-                                                            <div class="col-md-1"><i class="fas fa-paw"></i></div>
+
+                                                            <div class="col-md-1">
+                                                                <i class="fas fa-paw"></i>
+                                                            </div>
+
                                                             <div class="col-md-11 p-0">
+
                                                                 <h5>Pets Policy</h5>
-                                                                <p>Pets are not allowed.</p>
+
+                                                                <p>
+                                                                    Pets are not allowed.
+                                                                </p>
+
                                                             </div>
 
                                                         </div>
+
                                                         <hr>
+
                                                         <div class="row pol-box">
-                                                            <div class="col-md-1"><i
-                                                                    class="fas fa-glass-martini-alt"></i></div>
+
+                                                            <div class="col-md-1">
+                                                                <i class="fas fa-glass-martini-alt"></i>
+                                                            </div>
+
                                                             <div class="col-md-11 p-0">
+
                                                                 <h5>Liquor Policy</h5>
-                                                                <p>Carrying or consuming liquor inside the bus is
+
+                                                                <p>
+                                                                    Carrying or consuming liquor inside the bus is
                                                                     prohibited. Bus operator reserves the right to
-                                                                    deboard drunk passengers.</p>
+                                                                    deboard drunk passengers.
+                                                                </p>
+
                                                             </div>
 
                                                         </div>
+
                                                         <hr>
+
                                                         <div class="row pol-box">
-                                                            <div class="col-md-1"><i class="fas fa-history"></i></div>
+
+                                                            <div class="col-md-1">
+                                                                <i class="fas fa-history"></i>
+                                                            </div>
+
                                                             <div class="col-md-11 p-0">
+
                                                                 <h5>Pick Up Time Policy</h5>
-                                                                <p>Bus operator is not obligated to wait beyond the
-                                                                    scheduled departure
-                                                                    time of the bus. No refund request will be
-                                                                    entertained for late
-                                                                    arriving passengers.</p>
+
+                                                                <p>
+                                                                    Bus operator is not obligated to wait beyond
+                                                                    the scheduled departure time of the bus.
+                                                                    No refund request will be entertained for
+                                                                    late arriving passengers.
+                                                                </p>
+
                                                             </div>
 
                                                         </div>
-
 
                                                     </div>
+
                                                 </ng-template>
+
                                             </li>
+
                                         </ul>
+
                                         <div [ngbNavOutlet]="policynav"></div>
+
                                     </div>
                                 </div>
                             </div>
@@ -1325,13 +1575,13 @@
         </div>
 
         <div class="modal-body">
-            <div class="mobile-filter-middle" [innerHTML]="couponDetail[0].full_desc">
+            <div class="mobile-filter-middle" [innerHTML]="couponDetail?.full_desc">
             </div>
         </div>
 
         <div class="modal-footer">
             <!-- <a class="btn btn-primary" (click)="modal.dismiss('Cross Click')">Close</a> -->
-            <a class="btn btn-success" (click)="copyCode(couponDetail[0].coupon_code)">Copy Coupon</a>
+            <a class="btn btn-success" (click)="copyCode(couponDetail?.coupon_code)">Copy Coupon</a>
         </div>
     </div>
 </ng-template>
@@ -1367,7 +1617,7 @@
 
         <div class="mobile-bus-listing">
             <!-- ODBUS LISTING COUPON CAROUSEL -->
-            <div class="listing-coupon-strip" *ngIf="Offers && Offers.length > 0">
+            <div class="listing-coupon-strip" *ngIf="Offers && Offers.length > 0 && totalfound != 0">
 
                 <!-- COUPONS -->
                 <div class="listing-coupon-scroll" id="listingCouponScroll" (scroll)="updateListingCouponButtons()">
@@ -1432,14 +1682,14 @@
                                         class="gray"> {{
                                         bus.arrivalTime }}</span></h5>
                                 <h6>
-                                    <span *ngIf="bus.amenity.length != 0">
+                                    <!-- <span *ngIf="bus.amenity.length != 0">
                                         <span *ngFor="let nm of bus.amenity">
                                             <span *ngIf="nm && nm.amenity_android_image != ''">
                                                 <img src="{{ nm.amenity_android_image }}" class="icon" alt="{{nm.name}}"
                                                     title="{{nm.name}}" />
                                             </span>
                                         </span>
-                                    </span>
+                                    </span> -->
                                 </h6>
 
                             </div>
@@ -2106,7 +2356,7 @@
 
 
 
-                    <div class="mobile-buslayout-bottom fixed-bottom">
+                    <!-- <div class="mobile-buslayout-bottom fixed-bottom">
 
                         <div class="row m-0">
                             <div class="col20 p-1" (click)="viewamenity(viewAmenity)">
@@ -2130,6 +2380,74 @@
                                 Booking Policy
                             </div>
                         </div>
+                    </div> -->
+                    <div class="mobile-buslayout-bottom fixed-bottom">
+
+                        <div class="row m-0">
+
+                            <!-- Amenities -->
+                            <div class="col20 p-1"
+                                (click)="loadMobBusDetails(buslistRecord.busId,'amenities',viewAmenity)">
+
+                                <div class="mob-colr-11">
+                                    <img src="assets/img/odmob-amenities.png">
+                                    <br>
+                                </div>
+
+                                <span>Amenities</span>
+                            </div>
+
+
+                            <!-- Safety -->
+                            <div class="col20 p-1" (click)="loadMobBusDetails(buslistRecord.busId,'safety',viewSafety)">
+
+                                <div class="mob-colr-11">
+                                    <img src="assets/img/odmob-safety.png">
+                                    <br>
+                                </div>
+
+                                Safety
+                            </div>
+
+
+                            <!-- Photos -->
+                            <div class="col20 p-1" (click)="loadMobBusDetails(buslistRecord.busId,'photos',viewPhotos)">
+
+                                <div class="mob-colr-11">
+                                    <img src="assets/img/odmob-busphoto.png">
+                                    <br>
+                                </div>
+
+                                Bus Photos
+                            </div>
+
+
+                            <!-- Reviews -->
+                            <div class="col20 p-1"
+                                (click)="loadMobBusDetails(buslistRecord.busId,'reviews',viewReview)">
+
+                                <div class="mob-colr-11">
+                                    <img src="assets/img/odmob-reviews.png">
+                                    <br>
+                                </div>
+
+                                Reviews
+                            </div>
+
+
+                            <!-- Policy -->
+                            <div class="col20 p-1" (click)="loadMobBusDetails(buslistRecord.busId,'policy',viewPolicy)">
+
+                                <div class="mob-colr-11">
+                                    <img src="assets/img/odmob-booking-policy.png">
+                                    <br>
+                                </div>
+
+                                Booking Policy
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
 
@@ -2316,7 +2634,7 @@
 
     </ng-template>
 
-    <ng-template #viewAmenity let-modal>
+    <!-- <ng-template #viewAmenity let-modal>
         <div class="modal-header mob-filterbg" (click)="modal.dismiss('Cross Click')">
             <h4 class="modal-title" id="modal-basic-title"><strong>Amenities</strong></h4>
             <button type="button" class="close close-mob" aria-label="Close">
@@ -2340,28 +2658,91 @@
             </div>
         </div>
 
-    </ng-template>
+    </ng-template> -->
 
-    <ng-template #viewSafety let-modal>
+    <ng-template #viewAmenity let-modal>
         <div class="modal-header mob-filterbg" (click)="modal.dismiss('Cross Click')">
-            <h4 class="modal-title" id="modal-basic-title"><strong>SAFETY</strong></h4>
-            <button type="button" class="close close-mob" aria-label="Close">
+
+            <h4 class="modal-title" id="modal-basic-title">
+                <strong>Amenities</strong>
+            </h4>
+
+            <button type="button" class="close close-mob" aria-label="Close" (click)="modal.dismiss('Cross Click')">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
 
-        <div class="modal-body mobile-white-box">
-            <div class="mobile-amenities-middle">
-                <div *ngIf="buslistRecord.safety.length>0">
-                    <div class="row">
-                        <div class="col-6 mb-3 pl-2 pr-2" *ngFor="let safety of buslistRecord.safety;">
-                            <div class="de-angu bg-dark">
-                                <img class="iconsize" src="{{safety.safety_image}}" alt="{{safety.name}}">
-                                <p class="safety_span">{{safety.name}}</p>
-                            </div>
+        <div class="modal-body mobile-white-box mobile-amenities-middle">
+
+            <div *ngIf="busDetailsCache[busId]?.amenities?.length > 0">
+
+                <div class="row">
+
+                    <div class="col-6 mb-3 pl-2 pr-2" *ngFor="let amenity of busDetailsCache[busId].amenities">
+
+                        <div class="de-angu bg-dark">
+
+                            <img class="iconsize" [src]="getAmenityImage(amenity)" [alt]="amenity.name">
+
+                            <p class="safety_span">
+                                {{ amenity.name }}
+                            </p>
+
                         </div>
+
                     </div>
+
                 </div>
+
+            </div>
+
+        </div>
+    </ng-template>
+
+    <ng-template #viewSafety let-modal>
+
+        <div class="modal-header mob-filterbg">
+
+            <h4 class="modal-title">
+                <strong>SAFETY</strong>
+            </h4>
+
+            <button type="button" class="close close-mob" aria-label="Close" (click)="modal.dismiss('Cross Click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+        </div>
+
+        <div class="modal-body mobile-white-box">
+
+            <div class="mobile-amenities-middle">
+
+                <div *ngIf="busDetailsCache[busId]?.safety?.length > 0">
+
+                    <div class="row">
+
+                        <div class="col-6 mb-3 pl-2 pr-2" *ngFor="let safety of busDetailsCache[busId].safety">
+
+                            <div class="de-angu bg-dark">
+
+                                <img class="iconsize" [src]="getSafetyImage(safety)" [alt]="safety.name">
+
+                                <p class="safety_span">
+                                    {{ safety.name }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div *ngIf="!busDetailsCache[busId]?.safety?.length">
+                    <h5>No Safety Information Available For This Bus.</h5>
+                </div>
+
             </div>
 
         </div>
@@ -2370,182 +2751,135 @@
 
 
     <ng-template #viewPhotos let-modal>
-        <div class="modal-header mob-filterbg" (click)="modal.dismiss('Cross Click')">
-            <h4 class="modal-title" id="modal-basic-title"><strong>PHOTOS</strong></h4>
-            <button type="button" class="close close-mob" aria-label="Close">
+
+        <div class="modal-header mob-filterbg">
+
+            <h4 class="modal-title">
+                <strong>PHOTOS</strong>
+            </h4>
+
+            <button type="button" class="close close-mob" aria-label="Close" (click)="modal.dismiss('Cross Click')">
                 <span aria-hidden="true">&times;</span>
             </button>
+
         </div>
 
         <div class="modal-body mobile-white-box">
+
             <div class="mobile-amenities-middle">
-                <div *ngIf="buslistRecord.busPhotos.length>0">
+
+                <div *ngIf="busDetailsCache[busId]?.gallery?.length > 0">
+
                     <div class="row">
-                        <div class="col-6 mb-3 pl-2 pr-2" *ngIf="buslistRecord.busPhotos[0].bus_image_1">
 
-                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_1}}" alt="Bus 1">
+                        <div class="col-6 mb-3 pl-2 pr-2" *ngFor="let photo of busDetailsCache[busId].gallery">
 
-                        </div>
-                        <div class="col-6 mb-3 pl-2 pr-2" *ngIf="buslistRecord.busPhotos[0].bus_image_2">
-
-                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_2}}" alt="Bus 2">
+                            <img class="mob-photo" [src]="photo" alt="Bus Photo">
 
                         </div>
-                        <div class="col-6 mb-3 pl-2 pr-2" *ngIf="buslistRecord.busPhotos[0].bus_image_3">
 
-                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_3}}" alt="Bus 3">
-
-                        </div>
-                        <div class="col-6 mb-3 pl-2 pr-2" *ngIf="buslistRecord.busPhotos[0].bus_image_4">
-
-                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_4}}" alt="Bus 4">
-
-                        </div>
-                        <div class="col-6 mb-3 pl-2 pr-2" *ngIf="buslistRecord.busPhotos[0].bus_image_5">
-
-                            <img class="mob-photo" src="{{buslistRecord.busPhotos[0].bus_image_5}}" alt="Bus 5">
-
-                        </div>
                     </div>
+
                 </div>
-                <div *ngIf="buslistRecord.busPhotos.length==0">
-                    <h5>No Photos Avalible For This Bus.</h5>
+
+                <div *ngIf="!busDetailsCache[busId]?.gallery?.length">
+
+                    <h5>No Photos Available For This Bus.</h5>
+
                 </div>
+
             </div>
+
         </div>
 
     </ng-template>
 
 
     <ng-template #viewReview let-modal>
-        <div class="modal-header mob-filterbg" (click)="modal.dismiss('Cross Click')">
-            <h4 class="modal-title" id="modal-basic-title"><strong>REVIEW</strong></h4>
-            <button type="button" class="close close-mob" aria-label="Close">
+
+        <div class="modal-header mob-filterbg">
+
+            <h4 class="modal-title">
+                <strong>REVIEW</strong>
+            </h4>
+
+            <button type="button" class="close close-mob" aria-label="Close" (click)="modal.dismiss('Cross Click')">
+
                 <span aria-hidden="true">&times;</span>
+
             </button>
+
         </div>
 
-
         <div class="modal-body mobile-white-box">
+
             <div class="mobile-amenities-middle">
-                <div *ngIf="buslistRecord.reviews.length>0">
+
+                <div *ngIf="busDetailsCache[busId]?.reviews?.length > 0">
+
                     <div class="row safety_box-flex">
-                        <div class="col-12 de-angu1 no-bg">
-                            <div class="review" id="review">
-                                <div class="row mb-3 p-0 m-0">
-                                    <div class="col-3 p-0">
-                                        <h6 class="font-weight-normal">Review</h6>
-                                        <p class="mb-0"><span class="h4 mb-0">{{buslistRecord.Totalrating}}</span><span
-                                                class="h6">/5</span></p>
-                                    </div>
-                                    <div class="start-rating f-8 col-7 p-0 pt-44">
-                                        <i class="fas fa-star text-danger"></i>
-                                        <i class="fas fa-star text-danger"></i>
-                                        <i class="fas fa-star text-danger"></i>
-                                        <i class="fas fa-star text-danger"></i>
-                                        <i class="fas fa-star text-danger"></i>
-                                    </div>
-                                    <div class="col-2">
-                                    </div>
 
-                                </div>
-                                <div class="review-rating row align-items-center mb-1">
-                                    <div class="col-2 p-0">
-                                        <span class="small">5.0</span>
-                                    </div>
-                                    <div class="progress col-8 p-0">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width:100%"
-                                            aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <div class="col-2 p-0">
-                                        <span class="small">{{buslistRecord.Totalrating_5star}}</span>
-                                    </div>
-                                </div>
-                                <div class="review-rating row align-items-center mb-1">
-                                    <div class="col-2 p-0">
-                                        <span class="small">4.0</span>
-                                    </div>
-                                    <div class="progress col-8 p-0">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 80%"
-                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="75"></div>
-                                    </div>
-                                    <div class="col-2 p-0">
-                                        <span class="small">{{buslistRecord.Totalrating_4star}}</span>
-                                    </div>
-                                </div>
-                                <div class="review-rating row align-items-center mb-1">
-                                    <div class="col-2 p-0">
-                                        <span class="small">3.0</span>
-                                    </div>
-                                    <div class="progress col-8 p-0">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 60%"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="50"></div>
-                                    </div>
-                                    <div class="col-2 p-0">
-                                        <span class="small">{{buslistRecord.Totalrating_3star}}</span>
-                                    </div>
-                                </div>
-                                <div class="review-rating row align-items-center mb-1">
+                        <!-- Reviews -->
+                        <div class="col-12 testimonials-clean"
+                            *ngFor="let rv of busDetailsCache[busId].reviews">
 
-                                    <div class="col-2 p-0">
-                                        <span class="small">2.0</span>
-                                    </div>
-                                    <div class="progress col-8 p-0">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 40%"
-                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
-                                    </div>
-                                    <div class="col-2 p-0">
-                                        <span class="small">{{buslistRecord.Totalrating_2star}}</span>
-                                    </div>
-                                </div>
-                                <div class="review-rating row align-items-center mb-1">
-                                    <div class="col-2 p-0">
-                                        <span class="small">1.0</span>
-                                    </div>
-                                    <div class="progress col-8 p-0">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width:20%"
-                                            aria-valuenow="5" aria-valuemin="0" aria-valuemax="5"></div>
-                                    </div>
-                                    <div class="col-2 p-0">
-                                        <span class="small">{{buslistRecord.Totalrating_1star}}</span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-12 testimonials-clean" *ngFor="let rv of buslistRecord.reviews">
                             <div class="de-angu1 border">
+
                                 <div class="author item">
-                                    <img class="rounded-circle" *ngIf="rv.profile_image=='' || rv.profile_image== null "
+
+                                    <!-- No profile image -->
+                                    <img class="rounded-circle" *ngIf="!rv.users?.profile_image"
                                         src="../../assets/img/user.png" alt="User">
-                                    <img class="rounded-circle" *ngIf="rv.profile_image!='' && rv.profile_image!=null"
-                                        src="{{ rv.profile_image }}" alt="User">
-                                    <h5 class="name">{{ rv.name }}</h5>
+
+                                    <!-- Profile image -->
+                                    <img class="rounded-circle" *ngIf="rv.users?.profile_image"
+                                        [src]="rv.users.profile_image" alt="User">
+
+                                    <h5 class="name">
+                                        {{ rv.users?.name }}
+                                    </h5>
+
                                     <span class="rv_img">
-                                        <ngb-rating [rate]="rv.rating_overall" [max]="5" [readonly]="true"></ngb-rating>
+
+                                        <ngb-rating [rate]="rv.rating_overall" [max]="5" [readonly]="true">
+                                        </ngb-rating>
+
                                     </span>
+
                                 </div>
-                                <h2 class="heading-ser">{{ rv.title }}</h2>
+
+                                <h2 class="heading-ser">
+                                    {{ rv.title }}
+                                </h2>
+
                                 <div class="box">
+
                                     <div class="description" style="height: auto;">
+
                                         {{ rv.comments }}
+
                                     </div>
+
                                 </div>
+
                             </div>
 
                         </div>
+
                     </div>
-                    <!-- <div class="col-md-12">
-                        <a class="all-btn cursor" routerLink="/operator/{{buslistRecord.operatorUrl}}">All Reviews</a>
-                    </div> -->
+
                 </div>
-                <div *ngIf="buslistRecord.reviews.length==0">
+
+                <div *ngIf="!busDetailsCache[busId]?.reviews?.length">
+
                     <div class="row">
-                        <h4>No Review Avalible For This Bus</h4>
+
+                        <h4>No Review Available For This Bus</h4>
+
                     </div>
+
                 </div>
+
             </div>
 
         </div>
@@ -2554,16 +2888,32 @@
 
 
     <ng-template #viewPolicy let-modal>
-        <div class="modal-header mob-filterbg" (click)="modal.dismiss('Cross Click')">
-            <h4 class="modal-title" id="modal-basic-title"><strong>BOOKING POLICY</strong></h4>
-            <button type="button" class="close close-mob" aria-label="Close">
+
+        <div class="modal-header mob-filterbg">
+
+            <h4 class="modal-title">
+                <strong>BOOKING POLICY</strong>
+            </h4>
+
+            <button type="button" class="close close-mob" aria-label="Close" (click)="modal.dismiss('Cross Click')">
+
                 <span aria-hidden="true">&times;</span>
+
             </button>
+
         </div>
 
         <div class="modal-body mobile-white-box">
-            <div [innerHTML]="buslistRecord.cancellationPolicyContent"></div>
 
+            <div *ngIf="busDetailsCache[busId]?.cancellation_policy?.cancellation_policy_desc"
+                [innerHTML]="busDetailsCache[busId].cancellation_policy.cancellation_policy_desc">
+            </div>
+
+            <div *ngIf="!busDetailsCache[busId]?.cancellation_policy?.cancellation_policy_desc">
+
+                <h5>No Booking Policy Available For This Bus.</h5>
+
+            </div>
 
         </div>
 
