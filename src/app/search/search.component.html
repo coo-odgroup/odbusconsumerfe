@@ -1645,11 +1645,11 @@
             <div class="row" *ngIf="totalfound != 0">
                 <div class="col-12" *ngFor="let bus of buslist; let i=index; ">
                     <div class="cursor" (click)="coupon_detail(i,CouponDetail)"
-                        *ngIf="bus.couponDetails && bus.couponDetails.length>0">
+                        *ngIf="bus.couponDetails && bus.couponDetails.id">
                         <div class="new-deal-mob deal coupon_terms" title="Click To View">
                             <img src="assets/img/deal.png">
-                            <span>{{bus.couponDetails[0].short_desc}}</span>
-                            <span class="cpnbox"> {{ bus.couponDetails[0].coupon_code}}</span>
+                            <span>{{bus.couponDetails.short_desc}}</span>
+                            <span class="cpnbox"> {{ bus.couponDetails.coupon_code}}</span>
                         </div>
                     </div>
                     <div class="mobile-bus-listing-box shadow"
@@ -2772,11 +2772,29 @@
 
                     <div class="row">
 
-                        <div class="col-6 mb-3 pl-2 pr-2" *ngFor="let photo of busDetailsCache[busId].gallery">
+                        <ng-container *ngFor="let photo of busDetailsCache[busId].gallery">
 
-                            <img class="mob-photo" [src]="photo" alt="Bus Photo">
+                            <div class="col-6 mb-3 pl-2 pr-2" *ngIf="photo.bus_image_1">
 
-                        </div>
+                                <img class="mob-photo" [src]="photo.bus_image_1" alt="Bus Photo">
+                            </div>
+
+                            <div class="col-6 mb-3 pl-2 pr-2" *ngIf="photo.bus_image_2">
+
+                                <img class="mob-photo" [src]="photo.bus_image_2" alt="Bus Photo">
+                            </div>
+
+                            <div class="col-6 mb-3 pl-2 pr-2" *ngIf="photo.bus_image_3">
+
+                                <img class="mob-photo" [src]="photo.bus_image_3" alt="Bus Photo">
+                            </div>
+
+                            <div class="col-6 mb-3 pl-2 pr-2" *ngIf="photo.bus_image_4">
+
+                                <img class="mob-photo" [src]="photo.bus_image_4" alt="Bus Photo">
+                            </div>
+
+                        </ng-container>
 
                     </div>
 
@@ -2820,8 +2838,7 @@
                     <div class="row safety_box-flex">
 
                         <!-- Reviews -->
-                        <div class="col-12 testimonials-clean"
-                            *ngFor="let rv of busDetailsCache[busId].reviews">
+                        <div class="col-12 testimonials-clean" *ngFor="let rv of busDetailsCache[busId].reviews">
 
                             <div class="de-angu1 border">
 

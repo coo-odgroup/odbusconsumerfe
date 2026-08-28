@@ -2124,10 +2124,6 @@ export class SearchComponent implements OnInit {
 
     // Check if this bus data is already available
     if (this.busDetailsCache[busId]) {
-
-      console.log('Using cached data:', busId);
-      console.log('Using cached data:', this.busDetailsCache[busId]);
-
       this.showBusDetails(i, type);
 
       return;
@@ -2144,8 +2140,6 @@ export class SearchComponent implements OnInit {
 
         // Store only res.data
         this.busDetailsCache[busId] = res.data;
-
-        console.log('API response cached:', this.busDetailsCache[busId]);
 
         // Open the clicked section
         this.showBusDetails(i, type);
