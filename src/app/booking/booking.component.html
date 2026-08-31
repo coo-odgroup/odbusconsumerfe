@@ -449,24 +449,161 @@
         </div>
         <!-- Passenger Information box end-->
 
-        <h3>Have a Coupon Code ?</h3>
-        <div class="mobile-contact-infbox shadow" *ngIf="autoApplyCouponStatus == false">
+        <!-- =========================================================
+     MOBILE COUPON + OFFERS
+========================================================= -->
+
+        <div class="mobile-coupon-card" *ngIf="autoApplyCouponStatus == false">
+
+          <!-- Coupon Header -->
+          <div class="mobile-coupon-title">
+            <i class="fas fa-tag"></i>
+            <span>Have a Coupon Code ?</span>
+          </div>
+
+
+          <!-- Coupon Input -->
           <form [formGroup]="couponForm" (ngSubmit)="ApplyCoupon()">
-            <div class="row">
-              <div class="col-8">
-                <div class="form-group mb-0">
-                  <input type="text" class="" autocomplete="off" formControlName="coupon_code"
-                    placeholder="Enter Coupon Code" style="text-transform: uppercase;"/>
+
+            <div class="mobile-coupon-input-row">
+
+              <input type="text" autocomplete="off" formControlName="coupon_code" placeholder="ENTER COUPON CODE"
+                style="text-transform: uppercase;" />
+
+              <button type="submit" [disabled]="!couponForm.valid">
+
+                APPLY
+
+              </button>
+
+            </div>
+
+          </form>
+
+
+          <!-- Scrollable Offers -->
+          <div class="mobile-offers-scroll">
+
+
+            <!-- OFFER 1 -->
+            <div class="mobile-offer-card selected-offer">
+
+              <div class="mobile-offer-content">
+
+                <div class="mobile-offer-code">
+
+                  <strong>SBICAB</strong>
+
+                  <i class="fas fa-info-circle" title="Coupon details">
+                  </i>
+
                 </div>
+
+                <p>
+                  Use Coupon SBICAB &amp; Get Rs. 200 OFF with SBI
+                  Credit Card
+                </p>
+
               </div>
 
-              <div class="col-4">
-                <button type="submit" class="btn btn-warning" [disabled]="!couponForm.valid">
-                  APPLY
-                </button>
+              <div class="mobile-offer-radio">
+
+                <input type="radio" name="mobileCouponOffer" value="SBICAB" />
+
               </div>
+
             </div>
-          </form>
+
+
+            <!-- OFFER 2 -->
+            <div class="mobile-offer-card">
+
+              <div class="mobile-offer-content">
+
+                <div class="mobile-offer-code">
+
+                  <strong>BUS20</strong>
+
+                  <i class="fas fa-info-circle" title="Coupon details">
+                  </i>
+
+                </div>
+
+                <p>
+                  Get up to 20% OFF on selected bus bookings
+                </p>
+
+              </div>
+
+              <div class="mobile-offer-radio">
+
+                <input type="radio" name="mobileCouponOffer" value="BUS20" />
+
+              </div>
+
+            </div>
+
+
+            <!-- OFFER 3 -->
+            <div class="mobile-offer-card">
+
+              <div class="mobile-offer-content">
+
+                <div class="mobile-offer-code">
+
+                  <strong>TRAVEL10</strong>
+
+                  <i class="fas fa-info-circle" title="Coupon details">
+                  </i>
+
+                </div>
+
+                <p>
+                  Save extra on your next bus journey
+                </p>
+
+              </div>
+
+              <div class="mobile-offer-radio">
+
+                <input type="radio" name="mobileCouponOffer" value="TRAVEL10" />
+
+              </div>
+
+            </div>
+
+
+            <!-- OFFER 4 -->
+            <div class="mobile-offer-card">
+
+              <div class="mobile-offer-content">
+
+                <div class="mobile-offer-code">
+
+                  <strong>WELCOME15</strong>
+
+                  <i class="fas fa-info-circle" title="Coupon details">
+                  </i>
+
+                </div>
+
+                <p>
+                  Get extra discount on your first booking
+                </p>
+
+              </div>
+
+              <div class="mobile-offer-radio">
+
+                <input type="radio" name="mobileCouponOffer" value="WELCOME15" />
+
+              </div>
+
+            </div>
+
+
+          </div>
+
         </div>
         <div class="mob-term-priv">
           <!-- customer GST  -->
@@ -1497,7 +1634,7 @@
               </form>
             </ng-wizard-step>
 
-            <ng-wizard-step [title]="'Review Details'" [canEnter]="isValidFunctionReturnsObservable.bind(this)"
+            <!-- <ng-wizard-step [title]="'Review Details'" [canEnter]="isValidFunctionReturnsObservable.bind(this)"
               [canExit]="isValidFunctionReturnsBoolean.bind(this)">
               <form [formGroup]="bookForm2" (ngSubmit)="submitForm2()">
                 <div class="row passenger pt-25">
@@ -1585,7 +1722,7 @@
 
                           <h5>Contact Details</h5>
                           <hr />
-                          <!-- <h4 style="color: #bbadad;font-size: 17px;"><hr>Contact Details</h4> -->
+                          
 
                           <table class="tableclass2" cellpadding="10">
                             <thead>
@@ -1629,10 +1766,7 @@
                               <input type="text" class="form-control" autocomplete="off" formControlName="coupon_code"
                                 placeholder="Enter Coupon Code" style="text-transform: uppercase;"/>
 
-                              <!-- <div *ngIf="couponSubmitted && couponForm.controls.coupon_code.errors" class="invalid-feedback">
-						<div *ngIf="couponForm.controls.coupon_code.errors.required">Coupon code is required</div>
-
-					</div> -->
+                              
                             </div>
                             <div class="col-md-2">
                               <button [disabled]="!couponForm.valid" class="btn btn-warning" type="submit">
@@ -1643,7 +1777,7 @@
                         </form>
                       </div>
 
-                      <!-- customer GST  -->
+                     
 
                       <div class="row">
                         <div class="col-12">
@@ -1762,9 +1896,7 @@
                               </h6>
                             </div>
 
-                            <!-- <div class="col-md-8"><h6>Transaction Fee</h6></div>
-
-							<div class="col-md-4"><h6><strong>+ ₹ {{ bookingdata.PriceArray.transactionFee }}</strong></h6></div> -->
+                           
 
                             <div class="col-md-8" *ngIf="couponData.discount > 0">
                               <h6>Coupon Discount</h6>
@@ -1810,7 +1942,7 @@
 
                         <div class="col-md-3">
                           <div class="payment_box">
-                            <!-- make-payment -->
+                           
                             <input type="image" name="submit" alt="Submit" style="cursor: pointer; width: 100%"
                               src="../../assets/img/makepayment.png" />
                           </div>
@@ -1820,6 +1952,820 @@
                   </div>
                 </div>
               </form>
+            </ng-wizard-step> -->
+
+
+            <ng-wizard-step [title]="'Review Details'" [canEnter]="isValidFunctionReturnsObservable.bind(this)"
+              [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+
+              <form [formGroup]="bookForm2" (ngSubmit)="submitForm2()">
+
+                <div class="review-details-page">
+
+                  <!-- =====================================================
+                 LEFT SIDE - 9 COLUMNS
+            ====================================================== -->
+
+                  <div class="review-left-column">
+
+
+                    <!-- =================================================
+                     JOURNEY DETAILS
+                ================================================== -->
+
+                    <div class="review-main-card">
+
+                      <div class="review-heading">
+                        <h5>Journey Details</h5>
+                      </div>
+
+                      <div class="review-yellow-line"></div>
+
+
+                      <div class="journey-grid">
+
+
+                        <!-- FROM -->
+
+                        <div class="journey-item">
+
+                          <div class="journey-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                          </div>
+
+                          <div class="journey-content">
+
+                            <span class="journey-small-label">
+                              FROM
+                            </span>
+
+                            <h5>
+                              {{ source }}
+                            </h5>
+
+                            <p>
+                              {{ bookingdata.boardingPoint.boardingPoints }}
+                              -
+                              {{ bookingdata.boardingPoint.boardingTimes }}
+                            </p>
+
+                          </div>
+
+                        </div>
+
+
+                        <!-- TO -->
+
+                        <div class="journey-item">
+
+                          <div class="journey-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                          </div>
+
+                          <div class="journey-content">
+
+                            <span class="journey-small-label">
+                              TO
+                            </span>
+
+                            <h5>
+                              {{ destination }}
+                            </h5>
+
+                            <p>
+                              {{ bookingdata.droppingPoint.droppingPoints }}
+                              -
+                              {{ bookingdata.droppingPoint.droppingTimes }}
+                            </p>
+
+                          </div>
+
+                        </div>
+
+
+                        <!-- BUS -->
+
+                        <div class="journey-item">
+
+                          <div class="journey-icon">
+                            <i class="fas fa-bus"></i>
+                          </div>
+
+                          <div class="journey-content">
+
+                            <span class="journey-small-label">
+                              BUS
+                            </span>
+
+                            <h5>
+                              {{ busRecord.busName }}
+                            </h5>
+
+                            <p *ngIf="busRecord.busNumber != ''">
+                              {{ busRecord.busNumber }}
+                            </p>
+
+                          </div>
+
+                        </div>
+
+
+                        <!-- DATE -->
+
+                        <div class="journey-item">
+
+                          <div class="journey-icon">
+                            <i class="far fa-calendar-alt"></i>
+                          </div>
+
+                          <div class="journey-content">
+
+                            <span class="journey-small-label">
+                              JOURNEY DATE
+                            </span>
+
+                            <h5>
+                              {{ entdate | date:"EEEE, d MMMM, y" }}
+                            </h5>
+
+                            <p>
+                              {{ passengerFormGroup.length }}
+                              Passenger(s)
+                            </p>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                     PASSENGER + CONTACT
+                ================================================== -->
+
+                    <div class="review-main-card">
+
+
+                      <!-- PASSENGER -->
+
+                      <div class="review-heading">
+                        <h5>Passenger Details</h5>
+                      </div>
+
+                      <div class="review-yellow-line"></div>
+
+
+                      <div class="review-table-wrap">
+
+                        <table class="review-passenger-table">
+
+                          <thead>
+
+                            <tr>
+
+                              <th>
+                                Passenger Name
+                              </th>
+
+                              <th>
+                                Seats
+                              </th>
+
+                              <th>
+                                Gender
+                              </th>
+
+                              <th>
+                                Age
+                              </th>
+
+                            </tr>
+
+                          </thead>
+
+                          <tbody>
+
+                            <tr *ngFor="
+                                        let dt of passengerData.bookingInfo.bookingDetail;
+                                        let i = index
+                                    ">
+
+                              <td>
+                                {{ dt.passenger_name }}
+                              </td>
+
+                              <td>
+                                {{ get_seatno(dt.bus_seats_id) }}
+                              </td>
+
+                              <td>
+                                <span class="gender-pill">
+                                  {{ dt.passenger_gender }}
+                                </span>
+                              </td>
+
+                              <td>
+                                {{ dt.passenger_age }}
+                              </td>
+
+                            </tr>
+
+                          </tbody>
+
+                        </table>
+
+                      </div>
+
+
+
+                      <!-- CONTACT -->
+
+                      <div class="review-sub-heading">
+                        <h5>Contact Details</h5>
+                      </div>
+
+                      <div class="review-yellow-line"></div>
+
+
+                      <div class="contact-grid">
+
+
+                        <div class="contact-item">
+
+                          <span>
+                            NAME
+                          </span>
+
+                          <strong>
+                            {{ passengerData.customerInfo.name }}
+                          </strong>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                          <span>
+                            MOBILE NUMBER
+                          </span>
+
+                          <strong>
+                            +91 {{ passengerData.customerInfo.phone }}
+                          </strong>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                          <span>
+                            EMAIL ADDRESS
+                          </span>
+
+                          <strong>
+                            {{
+                            passengerData.customerInfo.email
+                            ? passengerData.customerInfo.email
+                            : "N/A"
+                            }}
+                          </strong>
+
+                        </div>
+
+                      </div>
+
+
+                      <div class="contact-note">
+
+                        <i class="fas fa-hashtag"></i>
+
+                        <span>
+                          will receive booking details in this mobile
+                          number &amp; email address
+                        </span>
+
+                      </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                     GST DETAILS - LEFT SIDE
+                ================================================== -->
+
+                    <div class="review-main-card gst-left-card">
+
+                      <div class="review-heading">
+
+                        <div class="heading-icon">
+                          <i class="fas fa-file-invoice"></i>
+                        </div>
+
+                        <h5>
+                          GST Details
+                        </h5>
+
+                      </div>
+
+                      <div class="review-yellow-line"></div>
+
+
+                      <label class="gst-checkbox">
+
+                        <input formControlName="customer_gst_status" #customer_gst_status id="customer_gst_status"
+                          type="checkbox" [checked]="gstStatus" (change)="
+                                customer_gst_StatusChange(
+                                    customer_gst_status.checked
+                                )
+                            " />
+
+                        <span>
+                          <b>I have a GST number</b>
+                          <small>(Optional)</small>
+                        </span>
+
+                      </label>
+
+
+                      <!-- GST FIELDS -->
+
+                      <div class="gst-fields" *ngIf="gstStatus">
+
+
+                        <div class="gst-field">
+
+                          <label>
+                            GSTIN
+                          </label>
+
+                          <input type="text" class="form-control" formControlName="customer_gst_number"
+                            placeholder="Enter GSTIN" />
+
+                        </div>
+
+
+                        <div class="gst-field">
+
+                          <label>
+                            Business Name
+                          </label>
+
+                          <input type="text" class="form-control" formControlName="customer_gst_business_name"
+                            placeholder="Enter Business Name" />
+
+                        </div>
+
+
+                        <div class="gst-field">
+
+                          <label>
+                            Business Email
+                          </label>
+
+                          <input type="email" class="form-control" formControlName="customer_gst_business_email"
+                            placeholder="Enter Business Email" />
+
+                        </div>
+
+
+                        <div class="gst-field">
+
+                          <label>
+                            Business Address
+                          </label>
+
+                          <textarea rows="2" class="form-control" formControlName="customer_gst_business_address"
+                            placeholder="Enter Business Address">
+                            </textarea>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+
+                  <!-- =====================================================
+                 RIGHT SIDE - 3 COLUMNS
+            ====================================================== -->
+
+                  <div class="review-right-column">
+
+
+                    <!-- =================================================
+                     OFFERS / COUPON
+                ================================================== -->
+
+                    <div class="review-side-card offers-card" *ngIf="autoApplyCouponStatus == false">
+
+
+                      <!-- HEADING -->
+
+                      <div class="side-heading">
+
+                        <div class="side-heading-icon">
+                          <i class="fas fa-tag"></i>
+                        </div>
+
+                        <h5>
+                          Offers For You
+                        </h5>
+
+                      </div>
+
+
+                      <div class="side-yellow-line"></div>
+
+
+                      <!-- COUPON INPUT -->
+
+                      <form [formGroup]="couponForm" (ngSubmit)="ApplyCoupon()">
+
+                        <div class="coupon-input-row">
+
+                          <div class="coupon-input-wrap">
+
+                            <i class="fas fa-ticket-alt"></i>
+
+                            <input type="text" autocomplete="off" formControlName="coupon_code"
+                              placeholder="Have a Coupon code?" style="text-transform: uppercase;" />
+
+                          </div>
+
+                          <button type="submit" [disabled]="!couponForm.valid">
+
+                            Apply
+
+                          </button>
+
+                        </div>
+
+                      </form>
+
+
+                      <!-- =================================================
+                         COUPON OFFERS SCROLL BOX
+                    ================================================== -->
+
+                      <div class="coupon-offers-box">
+
+
+                        <!-- OFFER 1 -->
+
+                        <div class="coupon-offer active-offer">
+
+                          <div class="offer-content">
+
+                            <div class="offer-code-row">
+
+                              <strong>
+                                SBICAB
+                              </strong>
+
+                              <i class="fas fa-info-circle" title="Coupon details">
+                              </i>
+
+                            </div>
+
+                            <p>
+                              Use Coupon SBICAB &amp; Get Rs. 200 OFF
+                              with SBI Credit Card
+                            </p>
+
+                          </div>
+
+
+                          <div class="offer-select">
+
+                            <input type="radio" name="couponOffer" />
+
+                          </div>
+
+                        </div>
+
+
+                        <!-- OFFER 2 -->
+
+                        <div class="coupon-offer">
+
+                          <div class="offer-content">
+
+                            <div class="offer-code-row">
+
+                              <strong>
+                                BUS20
+                              </strong>
+
+                              <i class="fas fa-info-circle" title="Coupon details">
+                              </i>
+
+                            </div>
+
+                            <p>
+                              Get up to 20% OFF on selected bus bookings
+                            </p>
+
+                          </div>
+
+
+                          <div class="offer-select">
+
+                            <input type="radio" name="couponOffer" />
+
+                          </div>
+
+                        </div>
+
+
+                        <!-- OFFER 3 -->
+
+                        <div class="coupon-offer">
+
+                          <div class="offer-content">
+
+                            <div class="offer-code-row">
+
+                              <strong>
+                                TRAVEL10
+                              </strong>
+
+                              <i class="fas fa-info-circle" title="Coupon details">
+                              </i>
+
+                            </div>
+
+                            <p>
+                              Save extra on your next bus journey
+                            </p>
+
+                          </div>
+
+
+                          <div class="offer-select">
+
+                            <input type="radio" name="couponOffer" />
+
+                          </div>
+
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                     VERIFICATION
+                ================================================== -->
+
+                    <div class="review-side-card verification-card">
+
+
+                      <div class="side-heading">
+
+                        <div class="side-heading-icon">
+                          <i class="fas fa-shield-alt"></i>
+                        </div>
+
+                        <h5>
+                          Verification
+                        </h5>
+
+                      </div>
+
+
+                      <div class="side-yellow-line"></div>
+
+
+                      <!-- QUESTION + REFRESH SAME ROW -->
+
+                      <div class="captcha-top-row">
+
+                        <span class="captcha-question">
+
+                          What is {{ number1 }} + {{ number2 }}?
+
+                        </span>
+
+                        <button type="button" class="captcha-refresh-top" (click)="generateCaptcha()">
+
+                          <i class="fas fa-sync-alt"></i>
+
+                          Refresh
+
+                        </button>
+
+                      </div>
+
+
+                      <!-- ANSWER + VERIFY -->
+
+                      <div class="captcha-answer-row">
+
+                        <input type="number" id="captcha-input" formControlName="userInput"
+                          placeholder="Enter your answer" />
+
+
+                        <button type="button" class="captcha-verify-btn" (click)="validateCaptcha()">
+
+                          Verify
+
+                        </button>
+
+                      </div>
+
+
+                      <!-- ERROR -->
+
+                      <div *ngIf="!captchaValidated" class="captcha-message captcha-error">
+
+                        {{ errorMessage }}
+
+                      </div>
+
+
+                      <!-- SUCCESS -->
+
+                      <div *ngIf="captchaValidated" class="captcha-message captcha-success">
+
+                        <i class="fas fa-check-circle"></i>
+
+                        Captcha is verified successfully
+
+                      </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                     FARE SUMMARY
+                ================================================== -->
+
+                    <div class="review-side-card fare-card">
+
+
+                      <div class="side-heading">
+
+                        <div class="side-heading-icon">
+                          <i class="fas fa-receipt"></i>
+                        </div>
+
+                        <h5>
+                          Fare Summary
+                        </h5>
+
+                      </div>
+
+
+                      <div class="side-yellow-line"></div>
+
+
+                      <!-- COUPON APPLIED -->
+
+                      <div class="fare-success" *ngIf="couponData.discount > 0">
+
+                        <i class="fas fa-check-circle"></i>
+
+                        Coupon
+                        <strong>
+                          {{ autoApplyCouponcode }}
+                        </strong>
+                        Applied Successfully
+
+                      </div>
+
+
+                      <!-- BASE FARE -->
+
+                      <div class="fare-row">
+
+                        <span>
+                          Base Fare
+                        </span>
+
+                        <strong>
+                          ₹ {{ bookingdata.PriceArray.odbus_charges_ownerFare }}
+                        </strong>
+
+                      </div>
+
+
+                      <!-- CUSTOMER GST -->
+
+                      <div class="fare-row">
+
+                        <span>
+                          Customer GST
+                        </span>
+
+                        <strong class="gst-price">
+                          + ₹ {{ bookingdata.PriceArray.customerGst }}
+                        </strong>
+
+                      </div>
+
+
+                      <!-- COUPON DISCOUNT -->
+
+                      <div class="fare-row discount-row" *ngIf="couponData.discount > 0">
+
+                        <span>
+                          Coupon Discount
+                        </span>
+
+                        <strong>
+                          - ₹ {{ couponData.discount }}
+                        </strong>
+
+                      </div>
+
+
+                      <div class="fare-divider"></div>
+
+
+                      <!-- TOTAL -->
+
+                      <div class="fare-total">
+
+                        <span>
+                          Total
+                        </span>
+
+                        <strong>
+                          ₹ {{ couponData.payableAmount }}
+                        </strong>
+
+                      </div>
+
+
+                      <!-- TERMS -->
+
+                      <label class="terms-check">
+
+                        <input type="checkbox" formControlName="terms" />
+
+                        <span>
+
+                          I Agree That I Have Read
+
+                          <a href="javascript:void(0)">
+                            T&amp;Cs
+                          </a>
+
+                          And
+
+                          <a href="javascript:void(0)">
+                            The Privacy Policy
+                          </a>
+
+                        </span>
+
+                      </label>
+
+
+                      <!-- PAYMENT -->
+
+                      <button type="submit" class="make-payment-btn">
+
+                        <span class="payment-lock">
+                          <i class="fas fa-lock"></i>
+                        </span>
+
+                        <span class="payment-text">
+
+                          <strong>
+                            MAKE PAYMENT
+                          </strong>
+
+                          <small>
+                            100% Secure &amp; Easy Payment
+                          </small>
+
+                        </span>
+
+                        <i class="fas fa-arrow-right"></i>
+
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </form>
+
             </ng-wizard-step>
           </ng-wizard>
         </div>

@@ -521,9 +521,9 @@ input[type="radio"]:checked {
   height: 46px;
   border-radius: 5px;
   font-weight: 700;
-      color: #ffffff !important;
-    background-color: #072c6b !important;
-    border-color: #072c6b !important;
+  color: #ffffff !important;
+  background-color: #072c6b !important;
+  border-color: #072c6b !important;
 }
 
 .mobile-contact-infbox .form-group input:focus-visible {
@@ -1079,7 +1079,7 @@ Premium Fare Card
   margin-bottom: 10px;
 }
 
-.captcha-question {
+/* .captcha-question {
   display: inline-block;
   padding: 10px 16px;
   background: #f1f5f9;
@@ -1089,7 +1089,7 @@ Premium Fare Card
   font-weight: 600;
   color: #222;
   margin-bottom: 15px;
-}
+} */
 
 /* Input Row */
 .captcha-input-group {
@@ -1405,4 +1405,1633 @@ Journey Details Card
   font-size: 16px;
   font-weight: 600;
   color: #072c6b;
+}
+
+
+
+/* ============================================================
+   REVIEW DETAILS REDESIGN
+   NG-WIZARD CONTENT ONLY
+============================================================ */
+
+.review-details-page {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 3fr) minmax(285px, 1fr);
+
+  gap: 18px;
+
+  align-items: start;
+
+  padding: 15px 0 30px;
+
+  box-sizing: border-box;
+}
+
+.review-left-column,
+.review-right-column {
+  min-width: 0;
+}
+
+
+/* ============================================================
+   LEFT / RIGHT COMMON CARD
+============================================================ */
+
+.review-main-card,
+.review-side-card {
+  width: 100%;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 3px 12px rgba(7, 44, 107, 0.055);
+
+  box-sizing: border-box;
+}
+
+.review-main-card {
+  padding: 18px;
+
+  margin-bottom: 18px;
+}
+
+.review-side-card {
+  padding: 15px;
+
+  margin-bottom: 14px;
+}
+
+
+/* ============================================================
+   HEADINGS
+============================================================ */
+
+.review-heading,
+.review-sub-heading,
+.side-heading {
+  display: flex;
+
+  align-items: center;
+}
+
+.review-heading h5,
+.review-sub-heading h5,
+.side-heading h5 {
+  margin: 0;
+
+  padding: 0;
+
+  color: #072c6b;
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+.review-sub-heading {
+  margin-top: 25px;
+}
+
+.review-yellow-line,
+.side-yellow-line {
+  width: 100%;
+
+  height: 2px;
+
+  background: #006ecf;
+
+  margin: 13px 0 18px;
+}
+
+
+/* ============================================================
+   JOURNEY DETAILS
+============================================================ */
+
+.journey-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+.journey-item {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 9px;
+
+  min-width: 0;
+}
+
+.journey-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #d8f2ff;
+  color: #072c6b;
+  font-size: 13px;
+}
+
+.journey-content {
+  min-width: 0;
+}
+
+.journey-small-label {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #9ba6b5;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: .4px;
+}
+
+.journey-content h5 {
+  margin: 0 0 5px;
+
+  color: #072c6b;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.journey-content p {
+  margin: 0;
+
+  color: #59677a;
+
+  font-size: 11px;
+
+  line-height: 1.35;
+}
+
+
+/* ============================================================
+   PASSENGER TABLE
+============================================================ */
+
+.review-table-wrap {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.review-passenger-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+.review-passenger-table th {
+  padding: 9px 10px;
+
+  color: #9ca7b5;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  text-align: left;
+
+  border-bottom: 1px solid #e8edf3;
+}
+
+.review-passenger-table td {
+  padding: 13px 10px;
+
+  color: #072c6b;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  border-bottom: 1px solid #edf1f5;
+}
+
+.review-passenger-table th:not(:first-child),
+.review-passenger-table td:not(:first-child) {
+  text-align: center;
+}
+
+.review-passenger-table th:first-child,
+.review-passenger-table td:first-child {
+  width: 45%;
+
+  text-align: left;
+}
+
+.gender-pill {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 28px;
+
+  height: 24px;
+
+  padding: 0 7px;
+
+  border-radius: 20px;
+
+  background: #eef4ff;
+
+  border: 1px solid #d6e3f6;
+
+  color: #072c6b;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   CONTACT
+============================================================ */
+
+.contact-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr 1.35fr;
+
+  gap: 20px;
+}
+
+.contact-item {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  min-width: 0;
+}
+
+.contact-item span {
+  color: #9ca7b5;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: .35px;
+}
+
+.contact-item strong {
+  color: #072c6b;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  word-break: break-word;
+}
+
+.contact-note {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  margin-top: 20px;
+
+  color: #072c6b;
+
+  font-size: 11px;
+
+  text-align: center;
+}
+
+.contact-note span {
+  color: #072c6b !important;
+  font-weight: 600;
+}
+
+.contact-note i {
+  color: #072c6b !important;
+}
+
+
+/* ============================================================
+   GST - LEFT SIDE
+============================================================ */
+
+.gst-left-card {
+  margin-bottom: 18px;
+}
+
+.heading-icon {
+  width: 29px;
+  height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  border-radius: 7px;
+  background: #d8f2ff;
+  color: #072c6b;
+  font-size: 12px;
+}
+
+.gst-checkbox {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin: 0;
+
+  color: #072c6b;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.gst-checkbox input {
+  width: 16px;
+  height: 16px;
+
+  margin: 0;
+
+  accent-color: #072c6b;
+
+  flex-shrink: 0;
+}
+
+.gst-checkbox b {
+  font-weight: 700;
+  color: #072c6b !important;
+}
+
+.gst-checkbox small {
+  margin-left: 3px;
+
+  color: #8b96a5;
+
+  font-size: 10px;
+}
+
+
+.terms-check span {
+  color: #072c6b !important;
+}
+
+/* ============================================================
+   GST FIELDS
+============================================================ */
+
+.gst-fields {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-top: 15px;
+
+  padding-top: 15px;
+
+  border-top: 1px solid #edf1f5;
+
+}
+
+.gst-field label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #7c8796;
+
+  font-size: 10px;
+
+  font-weight: 600;
+  text-align: left !important;
+}
+
+.gst-field input,
+.gst-field textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d5deea;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  color: #072c6b;
+
+  font-size: 11px;
+
+  padding: 8px 10px;
+}
+
+.gst-field input {
+  height: 38px;
+}
+
+.gst-field textarea {
+  resize: vertical;
+}
+
+.gst-field input:focus,
+.gst-field textarea:focus {
+  border-color: #86aee8;
+
+  box-shadow:
+    0 0 0 2px rgba(7, 44, 107, .04);
+}
+
+
+/* ============================================================
+   RIGHT SIDE
+============================================================ */
+
+.review-right-column {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0;
+}
+
+
+/* ============================================================
+   SIDE HEADING
+============================================================ */
+
+.side-heading-icon {
+  width: 29px;
+  height: 29px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  border-radius: 7px;
+  background: #d8f2ff;
+  color: #072c6b;
+  font-size: 12px;
+}
+
+
+/* ============================================================
+   OFFERS / COUPON
+============================================================ */
+
+.offers-card {
+  padding-bottom: 14px;
+}
+
+.coupon-input-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  width: 100%;
+}
+
+.coupon-input-wrap {
+  position: relative;
+
+  flex: 1;
+
+  min-width: 0;
+}
+
+.coupon-input-wrap i {
+  position: absolute;
+
+  left: 10px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #7b8797;
+
+  font-size: 12px;
+
+  pointer-events: none;
+}
+
+.coupon-input-wrap input {
+  width: 100%;
+  height: 38px;
+
+  box-sizing: border-box;
+
+  padding: 0 10px 0 31px;
+
+  border: 1px solid #9daabd;
+
+  border-radius: 7px;
+
+  outline: none;
+
+  color: #072c6b;
+
+  font-size: 11px;
+}
+
+.coupon-input-wrap input::placeholder {
+  color: #687587;
+}
+
+.coupon-input-wrap input:focus {
+  border-color: #072c6b;
+}
+
+.coupon-input-row>form {
+  width: 100%;
+}
+
+.coupon-input-row button {
+  width: 57px;
+  height: 38px;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: #072c6b;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.coupon-input-row button:disabled {
+  opacity: .6;
+
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   COUPON SCROLL BOX
+============================================================ */
+
+.coupon-offers-box {
+  width: 100%;
+
+  max-height: 185px;
+
+  margin-top: 10px;
+
+  padding-right: 3px;
+
+  overflow-y: auto;
+
+  box-sizing: border-box;
+}
+
+
+/* Scrollbar */
+
+.coupon-offers-box::-webkit-scrollbar {
+  width: 4px;
+}
+
+.coupon-offers-box::-webkit-scrollbar-track {
+  background: #f0f3f7;
+
+  border-radius: 10px;
+}
+
+.coupon-offers-box::-webkit-scrollbar-thumb {
+  background: #c5cfdb;
+
+  border-radius: 10px;
+}
+
+
+/* ============================================================
+   COUPON OFFER
+============================================================ */
+
+.coupon-offer {
+  width: 100%;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px;
+  margin-bottom: 7px;
+  box-sizing: border-box;
+  border: 1px solid #dce2e9;
+  border-radius: 9px;
+
+  background: #ffffff;
+}
+
+.coupon-offer:last-child {
+  margin-bottom: 0;
+}
+
+.coupon-offer:hover {
+  border-color: #c8d5e4;
+}
+
+.active-offer {
+  background: #eefaff;
+  border-color: #006ecf;
+}
+
+.offer-content {
+  min-width: 0;
+}
+
+.offer-code-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-bottom: 3px;
+}
+
+.offer-code-row strong {
+  color: #072c6b;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+.offer-code-row i {
+  color: #8b96a4;
+
+  font-size: 10px;
+}
+
+.offer-content p {
+  margin: 0;
+  color: #006ecf;
+  font-size: 10px;
+  line-height: 1.4;
+  text-align: left;
+  font-weight: 600;
+}
+
+.offer-select {
+  flex-shrink: 0;
+}
+
+.offer-select input {
+  width: 18px;
+  height: 18px;
+
+  margin: 0;
+
+  accent-color: #072c6b;
+
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   VERIFICATION
+============================================================ */
+
+.verification-card {
+  padding-bottom: 13px;
+}
+
+
+/* Question + Refresh same row */
+
+.captcha-top-row {
+  width: 100%;
+
+  min-height: 30px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+
+  margin-bottom: 8px;
+}
+
+.captcha-question {
+  color: #072c6b;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.captcha-refresh-top {
+  height: 28px;
+  padding: 0 9px;
+  flex-shrink: 0;
+  border: 1px solid #006ecf;
+  border-radius: 5px;
+  background: #eaf2ff;
+  color: #072c6b;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.captcha-refresh-top i {
+  margin-right: 4px;
+
+  color: #072c6b;
+}
+
+
+/* Answer + Verify */
+
+.captcha-answer-row {
+  display: flex;
+
+  gap: 6px;
+
+  width: 100%;
+}
+
+.captcha-answer-row input {
+  min-width: 0;
+
+  flex: 1;
+
+  height: 38px;
+
+  box-sizing: border-box;
+
+  padding: 0 9px;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  color: #072c6b;
+
+  font-size: 11px;
+}
+
+.captcha-answer-row input:focus {
+  border-color: #86aee8;
+}
+
+.captcha-verify-btn {
+  height: 38px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 6px;
+  background: #006ecf;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.captcha-message {
+  margin-top: 7px;
+
+  font-size: 10px;
+}
+
+.captcha-error {
+  color: #dc3545;
+}
+
+.captcha-success {
+  color: #198754;
+
+  font-weight: 600;
+}
+
+.captcha-success i {
+  margin-right: 4px;
+}
+
+
+/* ============================================================
+   FARE SUMMARY
+============================================================ */
+
+.fare-card {
+  margin-bottom: 0;
+}
+
+.fare-success {
+  margin-bottom: 9px;
+
+  padding: 7px 8px;
+
+  border-radius: 6px;
+
+  background: #effaf2;
+
+  color: #198754;
+
+  font-size: 10px;
+
+  line-height: 1.4;
+}
+
+.fare-success i {
+  margin-right: 4px;
+}
+
+.fare-row {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 5px 0;
+
+  color: #657285;
+
+  font-size: 11px;
+}
+
+.fare-row strong {
+  color: #072c6b !important;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+.gst-price {
+  color: #072c6b !important;
+}
+
+.discount-row {
+  color: #198754;
+}
+
+.discount-row strong {
+  color: #198754 !important;
+}
+
+.fare-divider {
+  width: 100%;
+
+  height: 1px;
+
+  margin: 7px 0;
+
+  background: #e2e7ed;
+}
+
+.fare-total {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 4px 0 12px;
+}
+
+.fare-total span {
+  color: #072c6b;
+
+  font-size: 16px;
+
+  font-weight: 700;
+}
+
+.fare-total strong {
+  color: #072c6b;
+
+  font-size: 19px;
+
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   TERMS
+============================================================ */
+
+.terms-check {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 6px;
+
+  margin-bottom: 12px;
+
+  color: #072c6b;
+
+  font-size: 9px;
+
+  line-height: 14px;
+
+  cursor: pointer;
+}
+
+.terms-check input {
+  width: 14px;
+  height: 14px;
+
+  margin: 0;
+
+  flex-shrink: 0;
+
+  accent-color: #072c6b;
+}
+
+.terms-check a {
+  color: #075bc9;
+
+  text-decoration: underline;
+
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   MAKE PAYMENT
+============================================================ */
+
+.make-payment-btn {
+  width: 100%;
+  min-height: 55px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 7px;
+  background: #006ecf;
+  color: #ffffff;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.make-payment-btn:hover {
+  background: #0188ff;
+
+  transform: translateY(-1px);
+}
+
+.payment-lock {
+  width: 29px;
+  height: 29px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: rgb(255 255 255);
+  font-size: 13px;
+}
+
+
+.payment-lock i {
+  color: #072c6b;
+}
+
+.payment-text {
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+
+.payment-text strong {
+  font-size: 14px;
+
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.payment-text small {
+  margin-top: 2px;
+
+  font-size: 10px;
+
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.make-payment-btn>i {
+  font-size: 11px;
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1000px) {
+
+  .review-details-page {
+    grid-template-columns:
+      minmax(0, 2fr) minmax(260px, 1fr);
+
+    gap: 14px;
+  }
+
+  .journey-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 767px) {
+
+  .review-details-page {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+
+    padding: 10px 0 25px;
+
+    gap: 0;
+  }
+
+  .review-left-column,
+  .review-right-column {
+    width: 100%;
+  }
+
+  .review-main-card {
+    padding: 14px;
+
+    margin-bottom: 12px;
+  }
+
+  .review-side-card {
+    padding: 14px;
+
+    margin-bottom: 12px;
+  }
+
+  .journey-grid {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .journey-content h5 {
+    white-space: normal;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .gst-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .review-table-wrap {
+    overflow-x: auto;
+  }
+
+  .review-passenger-table {
+    min-width: 480px;
+  }
+
+  .contact-note {
+    justify-content: flex-start;
+
+    align-items: flex-start;
+
+    text-align: left;
+  }
+
+  .coupon-offers-box {
+    max-height: 180px;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 420px) {
+
+  .review-heading h5,
+  .review-sub-heading h5,
+  .side-heading h5 {
+    font-size: 14px;
+  }
+
+  .coupon-input-row {
+    gap: 5px;
+  }
+
+  .coupon-input-row button {
+    width: 54px;
+  }
+
+  .captcha-question {
+    font-size: 11px;
+  }
+
+  .captcha-refresh-top {
+    padding: 0 7px;
+
+    font-size: 9px;
+  }
+
+  .fare-total span {
+    font-size: 15px;
+  }
+
+  .fare-total strong {
+    font-size: 18px;
+  }
+
+}
+
+
+
+
+/* =========================================================
+   MOBILE COUPON + OFFERS
+========================================================= */
+
+.mobile-coupon-card {
+  width: 100%;
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  padding: 14px;
+
+  margin-bottom: 18px;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================================
+   COUPON TITLE
+========================================================= */
+
+.mobile-coupon-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 12px;
+
+  color: #072c6b;
+
+  font-size: 16px;
+
+  font-weight: 700;
+}
+
+.mobile-coupon-title i {
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  background: #d8ebff;
+
+  color: #072c6b;
+
+  font-size: 12px;
+}
+
+.mobile-coupon-title span{
+  color: #072c6b;
+}
+
+
+/* =========================================================
+   COUPON INPUT
+========================================================= */
+
+.mobile-coupon-input-row {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mobile-coupon-input-row input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 45px;
+
+  box-sizing: border-box;
+
+  padding: 0 10px;
+
+  border: 1px solid #d6dde7;
+
+  border-radius: 6px;
+
+  background: #f0f7ff;
+
+  color: #072c6b;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  outline: none;
+}
+
+.mobile-coupon-input-row input::placeholder {
+  color: #303030;
+
+  opacity: 1;
+
+  font-size: 12px;
+}
+
+.mobile-coupon-input-row input:focus {
+  border-color: #072c6b;
+
+  background: #ffffff;
+}
+
+
+.mobile-coupon-input-row button {
+  width: 74px;
+
+  height: 45px;
+
+  flex-shrink: 0;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #072c6b;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: .2s ease;
+}
+
+.mobile-coupon-input-row button:not(:disabled):active {
+  transform: scale(.97);
+}
+
+.mobile-coupon-input-row button:disabled {
+  opacity: .65;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   OFFERS TITLE
+========================================================= */
+
+.mobile-offers-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 16px;
+
+  margin-bottom: 8px;
+
+  padding-top: 12px;
+
+  border-top: 1px solid #edf0f4;
+
+  color: #072c6b;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.mobile-offers-title i {
+  color: #e8bd00;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   OFFERS SCROLL AREA
+========================================================= */
+
+.mobile-offers-scroll {
+  width: 100%;
+
+  max-height: 190px;
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+
+  padding: 2px 3px 2px 0;
+
+  box-sizing: border-box;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* Scrollbar */
+
+.mobile-offers-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.mobile-offers-scroll::-webkit-scrollbar-track {
+  background: #edf1f5;
+
+  border-radius: 10px;
+}
+
+.mobile-offers-scroll::-webkit-scrollbar-thumb {
+  background: #aeb8c5;
+
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   OFFER CARD
+========================================================= */
+
+.mobile-offer-card {
+  width: 100%;
+
+  min-height: 74px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  box-sizing: border-box;
+
+  padding: 10px;
+
+  margin-bottom: 7px;
+
+  border: 1px solid #d8dee6;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  transition: .2s ease;
+}
+
+.mobile-offer-card:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Selected offer */
+
+.mobile-offer-card.selected-offer {
+  background: #eefaff;
+
+  border-color: #b9d4e7;
+}
+
+
+/* =========================================================
+   OFFER CONTENT
+========================================================= */
+
+.mobile-offer-content {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.mobile-offer-code {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-bottom: 4px;
+}
+
+.mobile-offer-code strong {
+  color: #072c6b;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+.mobile-offer-code i {
+  color: #8491a2;
+
+  font-size: 9px;
+}
+
+.mobile-offer-content p {
+  margin: 0;
+
+  color: #126b3b;
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   RADIO BUTTON
+========================================================= */
+
+.mobile-offer-radio {
+  width: 22px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.mobile-offer-radio input {
+  appearance: none;
+
+  -webkit-appearance: none;
+
+  width: 18px;
+  height: 18px;
+
+  margin: 0;
+
+  border: 1.5px solid #7e8791;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  position: relative;
+}
+
+.mobile-offer-radio input:checked {
+  border-color: #072c6b;
+}
+
+.mobile-offer-radio input:checked::after {
+  content: "";
+
+  position: absolute;
+
+  width: 9px;
+  height: 9px;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: #072c6b;
+}
+
+
+/* =========================================================
+   MOBILE ONLY
+========================================================= */
+
+@media (min-width: 768px) {
+
+  .mobile-coupon-card {
+    display: none !important;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .mobile-coupon-card {
+    padding: 12px;
+  }
+
+  .mobile-coupon-title {
+    font-size: 15px;
+  }
+
+  .mobile-coupon-input-row {
+    gap: 7px;
+  }
+
+  .mobile-coupon-input-row button {
+    width: 68px;
+  }
+
+  .mobile-offer-content p {
+    font-size: 9px;
+  }
+
 }
