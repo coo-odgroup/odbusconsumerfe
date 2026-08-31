@@ -1619,107 +1619,688 @@ ngb-rating.d-inline-flex {
 /* Mobile Version End  */
 
 
-/* Mobile Modify */
+/* =========================================================
+   MOBILE MODIFY SEARCH
+   ========================================================= */
 
-.mobile-white-box {
-  background-color: #ffffff;
-  padding: 0px 22px 20px;
-  border-radius: 5px;
-  margin-top: 18px;
-}
-
-.mobile-white-box .img1 {
-  margin-top: 13px;
-  margin-left: 20px;
-}
-
-.mobile-white-box .img2 {
-  margin-left: 24.5px;
-  height: 60px;
-}
-
-.mobile-white-box .img3 {
-  margin-left: 20px;
-  margin-top: -20px;
-}
-
-.mobile-white-box .img4 {
-  margin-top: 70px;
-}
-
-.mobile-white-box .form-group label {
-  color: #323232;
-}
-
-.mobile-white-box .border-bottom {
-  border-bottom: 1px solid #b1b1b1 !important;
-}
-
-.mobile-white-box .form-group {
-  margin-bottom: 5px;
-}
-
-.mobile-white-box .form-group input {
-  color: #072c6b;
-  font-weight: 600;
+.modify-search-modal {
   width: 100%;
-  padding: 5px 10px;
-  height: 50px;
-  border: 1px solid #dfe3eb;
-  border-radius: 10px;
+  min-height: 100%;
+  background: #eaf4ff;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.modify-search-modal .mob-filterbg {
+  height: 58px;
+  min-height: 58px;
+
+  padding: 0 20px;
+
+  background: #ffffff;
+
+  border: 0;
+  border-bottom: 1px solid #dce3eb;
+
   display: flex;
   align-items: center;
-  background: #fff;
-  cursor: pointer;
-  position: relative;
-  transition: .25s;
+  justify-content: space-between;
+
+  box-sizing: border-box;
 }
 
-.mobile-white-box .form-group input:focus-visible {
-  outline: -webkit-focus-ring-color auto 0px;
-}
+.modify-search-modal .mob-filterbg h4 {
+  margin: 0;
+  padding: 0;
 
-.mobile-mod .bus_search-mod .btn {
-  background: #072c6b;
-  color: #fff;
-  text-transform: capitalize !important;
-  font-weight: 600;
-  line-height: 34px;
-  width: 100%;
-  height: 46px;
-  font-size: 17px;
-  border: none;
-  border-radius: 5px;
-}
-
-.date_inp input {
   color: #072c6b;
-  border: none;
-  background-color: #f5f1f1;
-  padding: 5px 10px;
-  border-bottom: 1px solid #b1b1b1 !important;
-  border-radius: 0px;
-}
 
-.date_inp .input-group-text {
-  color: #072c6b;
-  border: none;
-  background-color: #f5f1f1;
-  padding: 5px 10px;
-  border-bottom: 1px solid #b1b1b1 !important;
-  border-radius: 0px;
-}
-
-.mob-filterbg {
-  background: #ffffff;
-  padding: 5px 20px;
-  border-radius: unset;
-}
-
-.mob-filterbg h4 {
-  color: #072c6b;
   font-size: 20px;
-  padding-top: 8px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+.modify-search-modal .close-mob {
+  width: 36px;
+  height: 36px;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  outline: none;
+
+  background: transparent;
+
+  color: #072c6b;
+
+  font-size: 34px;
+  font-weight: 300;
+
+  line-height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   MODAL BODY
+   ========================================================= */
+
+.modify-search-modal>.modal-body {
+  padding: 20px 16px 22px;
+
+  background: #eaf4ff;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   WHITE FORM CARD
+   ========================================================= */
+
+.modify-search-modal .mobile-white-box {
+  width: 100%;
+
+  margin: 0;
+  padding: 20px 12px 20px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 5px 18px rgba(7, 44, 107, 0.08);
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.modify-search-modal form {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.modify-search-modal .modify-form-content {
+  position: relative;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
+.modify-search-modal .form-group {
+  width: 100%;
+
+  margin: 0 0 14px;
+  padding: 0;
+
+  position: relative;
+
+  box-sizing: border-box;
+}
+
+.modify-search-modal .form-group label {
+  display: block;
+
+  margin: 0 0 7px 1px;
+  padding: 0;
+
+  color: #072c6b;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   TEXT INPUT
+   ========================================================= */
+
+.modify-search-modal .form-group input {
+  display: block;
+
+  width: 100%;
+  height: 48px;
+
+  margin: 0;
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #d6e0ed;
+  border-radius: 11px;
+
+  color: #072c6b;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  outline: none;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.modify-search-modal .form-group input::placeholder {
+  color: #61718a;
+  opacity: 1;
+}
+
+.modify-search-modal .form-group input:focus {
+  border-color: #8fbaff;
+
+  outline: none;
+
+  box-shadow: 0 0 0 2px rgba(7, 44, 107, 0.05);
+}
+
+
+/* =========================================================
+   SWAP BUTTON
+   ========================================================= */
+
+.modify-search-modal .modify-swap-btn {
+  position: absolute;
+
+  /*
+      Between From and To fields
+    */
+  top: 67px;
+  right: 3px;
+
+  width: 36px;
+  height: 36px;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  background: #f4c400;
+
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 20;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.15);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.modify-search-modal .modify-swap-btn:hover {
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.modify-search-modal .modify-swap-btn:active {
+  transform: scale(0.95);
+}
+
+.modify-search-modal .modify-swap-btn img {
+  width: 18px;
+  height: 18px;
+
+  margin: 0;
+  padding: 0;
+
+  object-fit: contain;
+
+  display: block;
+  transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   DATE SECTION
+   ========================================================= */
+
+.modify-search-modal .date_inp {
+  width: 100%;
+
+  margin: 0 0 18px;
+  padding: 0;
+
+  background: transparent;
+
+  border: 0 !important;
+
+  box-sizing: border-box;
+}
+
+.modify-search-modal .date_inp>p {
+  display: block;
+
+  margin: 0 0 7px 1px;
+  padding: 0;
+
+  color: #072c6b;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   CUSTOM DATE PICKER
+   ========================================================= */
+
+.modify-search-modal .custom-date-picker {
+  position: relative;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================================
+   DATE INPUT BOX
+   ========================================================= */
+
+.modify-search-modal .date-input-box {
+  width: 100%;
+  height: 48px;
+
+  padding: 0 12px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #d6e0ed;
+  border-radius: 11px;
+
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.modify-search-modal .date-input-box:hover {
+  border-color: #8fbaff;
+}
+
+
+/* =========================================================
+   CALENDAR ICON
+   ========================================================= */
+
+.modify-search-modal .icon-date {
+  width: 18px;
+  height: 18px;
+
+  margin: 0 10px 0 0;
+  padding: 0;
+
+  object-fit: contain;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   DATE TEXT
+   ========================================================= */
+
+.modify-search-modal .date-placeholder {
+  color: #61718a;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.modify-search-modal .date-value {
+  color: #072c6b;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+  margin-left: 30px;
+}
+
+.location-input {
+  position: relative;
+  width: 100%;
+}
+
+.location-input .location-icon {
+  position: absolute;
+
+  left: 13px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #072c6b;
+
+  font-size: 20px;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+.location-input input {
+  padding-left: 42px !important;
+}
+
+
+/* =========================================================
+   CALENDAR POPUP
+   ========================================================= */
+
+.modify-search-modal .calendar-popup {
+  position: absolute;
+
+  top: calc(100% + 7px);
+
+  width: 100%;
+
+  padding: 10px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #dce4ee;
+  border-radius: 12px;
+
+  z-index: 9999;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.14);
+  height: auto;
+}
+
+
+/* =========================================================
+   CALENDAR HEADER
+   ========================================================= */
+
+.modify-search-modal .calendar-header {
+  width: 100%;
+
+  min-height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #072c6b;
+
+  border-radius: 8px;
+
+  padding: 4px 6px;
+
+  box-sizing: border-box;
+}
+
+.modify-search-modal .month-title {
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.modify-search-modal .nav-btn {
+  width: 30px;
+  height: 30px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   WEEK ROW
+   ========================================================= */
+
+.modify-search-modal .week-row {
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 2px;
+
+  margin-top: 8px;
+
+  text-align: center;
+}
+
+.modify-search-modal .week-row span {
+  color: #072c6b;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   DAYS
+   ========================================================= */
+
+.modify-search-modal .days-grid {
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 3px;
+
+  margin-top: 6px;
+}
+
+.modify-search-modal .day {
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  color: #596b86;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.modify-search-modal .day:hover {
+  background: #eaf4ff;
+}
+
+.modify-search-modal .day.empty {
+  pointer-events: none;
+}
+
+.modify-search-modal .day.disabled {
+  color: #c5ccd7;
+
+  pointer-events: none;
+}
+
+.modify-search-modal .day.today {
+  color: #072c6b;
+
+  font-weight: 700;
+}
+
+.modify-search-modal .day.selected {
+  background: #f4c400;
+
+  color: #072c6b;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   MODIFY SEARCH BUTTON
+   ========================================================= */
+
+.modify-search-modal .mobile-mod {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+.modify-search-modal .bus_search-mod {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+.modify-search-modal .bus_search-mod .btn {
+  width: 100%;
+  height: 48px;
+
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  background: #072c6b;
+  color: #ffffff;
+
+  border: 0;
+  border-radius: 8px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  line-height: 48px;
+
+  text-align: center;
+
+  text-transform: none !important;
+
+  box-shadow: none;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.modify-search-modal .bus_search-mod .btn:hover {
+  background: #06265c;
+}
+
+.modify-search-modal .bus_search-mod .btn:active {
+  transform: scale(0.98);
+}
+
+.modify-search-modal .bus_search-mod .btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   REMOVE OLD MOBILE MODIFY ELEMENTS
+   ========================================================= */
+
+.modify-search-modal .img1,
+.modify-search-modal .img2,
+.modify-search-modal .img3,
+.modify-search-modal .img4 {
+  display: none !important;
+}
+
+.modify-search-modal .border-bottom {
+  border-bottom: none !important;
+}
+
+
+/* =========================================================
+   REMOVE OLD DATE STYLING
+   ========================================================= */
+
+.modify-search-modal .date_inp input,
+.modify-search-modal .date_inp .input-group-text {
+  border: none !important;
+  background: transparent !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+  .modify-search-modal .modal-body {
+    padding: 20px 16px 22px;
+  }
+
+  .modify-search-modal .mobile-white-box {
+    padding: 20px 12px 20px;
+    border-radius: 18px;
+  }
+
 }
 
 
@@ -3494,6 +4075,7 @@ input[type=radio] {
     right: 3px;
   }
 }
-.mt10{
+
+.mt10 {
   margin-top: 10px;
 }

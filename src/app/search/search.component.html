@@ -2460,151 +2460,179 @@
 
 
     <ng-template #modify let-modal>
-        <div class="modal-header mob-filterbg">
-            <h4 class="modal-title" id="modal-basic-title"><strong>Modify Your Search</strong></h4>
-            <button type="button" class="close close-mob" aria-label="Close" (click)="modal.dismiss('Cross Click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
 
-        <div class="modal-body mobile-white-box">
+        <div class="modify-search-modal">
 
-            <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
+            <!-- ================= HEADER ================= -->
+            <div class="modal-header mob-filterbg">
 
-                <div class="row">
-                    <div class="col-1 p-0">
-                        <img src="assets/img/Icon metro-location (1).svg" class="img1"><br>
-                        <img src="assets/img/Line 11.svg" class="img2"> <br>
-                        <img src="assets/img/Icon metro-location (1).svg" class="img3">
-                    </div>
-                    <div class="col-9 p-2">
-                        <div class="">
+                <h4 class="modal-title" id="modal-basic-title">
+                    <strong>Modify Your Search</strong>
+                </h4>
+
+                <button type="button" class="close close-mob" aria-label="Close" (click)="modal.dismiss('Cross Click')">
+
+                    <span aria-hidden="true">&times;</span>
+
+                </button>
+
+            </div>
 
 
+            <!-- ================= BODY ================= -->
+            <div class="modal-body">
+
+                <div class="mobile-white-box">
+
+                    <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
+
+                        <div class="modify-form-content">
+
+
+                            <!-- ================= FROM ================= -->
                             <div class="form-group">
-                                <label for="from" class="mb-2">From</label><br>
-                                <input autocomplete="off" id="from" type="text" class="" [ngbTypeahead]="search"
-                                    [resultTemplate]="rt" [inputFormatter]="formatter" [ngModel]="swapsource"
-                                    placeholder="Enter Source" formControlName="source"
-                                    (selectItem)="tabChange('to')" />
+
+                                <label for="from">
+                                    From
+                                </label>
+
+                                <div class="location-input">
+
+                                    <i class="fa fa-map-marker location-icon"></i>
+
+                                    <input autocomplete="off" id="from" type="text" [ngbTypeahead]="search"
+                                        [resultTemplate]="rt" [inputFormatter]="formatter" [ngModel]="swapsource"
+                                        placeholder="Enter Source" formControlName="source"
+                                        (selectItem)="tabChange('to')" />
+
+                                </div>
+
                                 <ng-template #rt let-r="result" let-t="term">
-                                    <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+
+                                    <ngb-highlight [result]="r.name" [term]="t">
+                                    </ngb-highlight>
+
                                 </ng-template>
+
                             </div>
 
-                            <div class="form-group">
-                                <label for="to" class="mb-2">To</label><br>
-                                <input autocomplete="off" id="to" type="text" class="" [ngbTypeahead]="search"
+
+                            <!-- ================= TO ================= -->
+                            <div class="form-group to-group">
+
+                                <label for="to">
+                                    To
+                                </label>
+
+                                  <div class="location-input">
+
+                                    <i class="fa fa-map-marker location-icon"></i>
+                                <input autocomplete="off" id="to" type="text" [ngbTypeahead]="search"
                                     [resultTemplate]="rt2" [inputFormatter]="formatter" [ngModel]="swapdestination"
                                     formControlName="destination" placeholder="Enter Destination"
                                     (selectItem)="tabChange('entryDate')" />
-
+                                </div>
                                 <ng-template #rt2 let-r="result" let-t="term">
-                                    <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
-                                </ng-template>
 
+                                    <ngb-highlight [result]="r.name" [term]="t">
+                                    </ngb-highlight>
+
+                                </ng-template>
 
                             </div>
 
 
+                            <!-- ================= SWAP ================= -->
+                            <button type="button" class="modify-swap-btn" (click)="swap()"
+                                aria-label="Swap From and To">
+
+                                <img src="assets/img/swap.svg" alt="Swap">
+
+                            </button>
+
+
+                            <!-- ================= DATE ================= -->
                             <div class="date_inp">
+
                                 <p>Date of Journey</p>
-                                <div class="input-group">
-                                    <!-- <div class="input-group-prepend">
-                                        <span class="input-group-text calendar" id="basic-addon3"
-                                            (click)="d.toggle()"><img src="assets/img/Icon-metro-calendar.svg"></span>
-                                    </div> -->
-                                    <!-- <input type="text" id="entryDate" autocomplete="off" class="form-control calendar"
-                                        formControlName="entry_date" placeholder="Journey Date" [(ngModel)]="jrnyDt"
-                                        [min]="dtconfig.minDate" [max]="dtconfig.maxDate" ngbDatepicker
-                                        (click)="d.toggle()" #d="ngbDatepicker" readonly> -->
-                                    <div class="custom-date-picker">
 
-                                        <!-- Input -->
+                                <div class="custom-date-picker">
 
-                                        <div class="date-input-box" (click)="toggleCalendar();">
+                                    <!-- DATE BOX -->
+                                    <div class="date-input-box" (click)="toggleCalendar()">
 
-                                            <img src="assets/img/Icon-metro-calendar.svg" class="icon-date"
-                                                alt="calender icon">
+                                        <img src="assets/img/Icon-metro-calendar.svg" class="icon-date" alt="Calendar">
 
-                                            <span class="date-placeholder" *ngIf="!selectedDateText">
+                                        <span class="date-placeholder" *ngIf="!selectedDateText">
 
-                                                Journey Date
+                                            Journey Date
 
-                                            </span>
+                                        </span>
 
-                                            <span class="date-value" *ngIf="selectedDateText">
+                                        <span class="date-value" *ngIf="selectedDateText">
 
-                                                {{selectedDateText}}
+                                            {{ selectedDateText }}
 
-                                            </span>
+                                        </span>
+
+                                    </div>
+
+
+                                    <!-- ================= CALENDAR ================= -->
+                                    <div class="calendar-popup" *ngIf="calendarOpen" (click)="$event.stopPropagation()">
+
+
+                                        <!-- CALENDAR HEADER -->
+                                        <div class="calendar-header">
+
+                                            <button type="button" class="nav-btn"
+                                                (click)="previousMonth(); $event.stopPropagation()">
+
+                                                <i class="fa-solid fa-chevron-left"></i>
+
+                                            </button>
+
+
+                                            <div class="month-title">
+
+                                                {{ monthNames[currentMonth] }}
+                                                {{ currentYear }}
+
+                                            </div>
+
+
+                                            <button type="button" class="nav-btn"
+                                                (click)="nextMonth(); $event.stopPropagation()">
+
+                                                <i class="fa-solid fa-chevron-right"></i>
+
+                                            </button>
 
                                         </div>
 
-                                        <!-- Calendar -->
 
-                                        <div class="calendar-popup" *ngIf="calendarOpen"
-                                            (click)="$event.stopPropagation()">
+                                        <!-- WEEK -->
+                                        <div class="week-row">
 
-                                            <!-- Header -->
+                                            <span>Su</span>
+                                            <span>Mo</span>
+                                            <span>Tu</span>
+                                            <span>We</span>
+                                            <span>Th</span>
+                                            <span>Fr</span>
+                                            <span>Sa</span>
 
-                                            <div class="calendar-header">
+                                        </div>
 
-                                                <button type="button" class="nav-btn"
-                                                    (click)="previousMonth(); $event.stopPropagation()">
 
-                                                    <i class="fa-solid fa-chevron-left"></i>
+                                        <!-- DAYS -->
+                                        <div class="days-grid">
 
-                                                </button>
+                                            <div *ngFor="let day of calendarDays" class="day" [class.empty]="!day"
+                                                [class.today]="day?.today" [class.selected]="day?.selected"
+                                                [class.disabled]="day?.disabled" (click)="selectDate(day)">
 
-                                                <div class="month-title">
-
-                                                    {{ monthNames[currentMonth] }}
-
-                                                    {{ currentYear }}
-
-                                                </div>
-
-                                                <button type="button" class="nav-btn"
-                                                    (click)="nextMonth(); $event.stopPropagation()">
-
-                                                    <i class="fa-solid fa-chevron-right"></i>
-
-                                                </button>
-
-                                            </div>
-
-                                            <!-- Week -->
-
-                                            <div class="week-row">
-
-                                                <span>Su</span>
-
-                                                <span>Mo</span>
-
-                                                <span>Tu</span>
-
-                                                <span>We</span>
-
-                                                <span>Th</span>
-
-                                                <span>Fr</span>
-
-                                                <span>Sa</span>
-
-                                            </div>
-
-                                            <!-- Days -->
-
-                                            <div class="days-grid">
-
-                                                <div *ngFor="let day of calendarDays" class="day" [class.empty]="!day"
-                                                    [class.today]="day?.today" [class.selected]="day?.selected"
-                                                    [class.disabled]="day?.disabled" (click)="selectDate(day)">
-
-                                                    {{day?.date}}
-
-                                                </div>
+                                                {{ day?.date }}
 
                                             </div>
 
@@ -2613,22 +2641,32 @@
                                     </div>
 
                                 </div>
+
                             </div>
 
 
-                            <div class="col-12 p-0 mobile-mod">
-                                <p class="mb-0" style="opacity: 0;">Search</p>
-                                <div class="bus_search-mod" style="top:0px">
-                                    <button type="submit" class="btn">Modify Search</button>
+                            <!-- ================= MODIFY BUTTON ================= -->
+                            <div class="mobile-mod">
+
+                                <div class="bus_search-mod">
+
+                                    <button type="submit" class="btn">
+
+                                        Modify Search
+
+                                    </button>
+
                                 </div>
+
                             </div>
 
                         </div>
-                    </div>
-                    <div class="col-2 p-1"><img (click)="swap();" src="assets/img/mob-img/swap.png" class="img4"></div>
+
+                    </form>
 
                 </div>
-            </form>
+
+            </div>
 
         </div>
 
