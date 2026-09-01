@@ -79,15 +79,15 @@ label {
 }
 
 hr {
-  border: 1px solid #efc003;
+  border: 1px solid #006ecf;
 }
 
 span {
-  color: #efc003;
+  color: inherit;
 }
 
 .font {
-  color: #efc003;
+  color: #262f6b;
   font-size: 15px;
 }
 
@@ -149,7 +149,7 @@ tbody {
   width: 300px;
   height: 75px;
   background: var(--unnamed-color-efc003) 0% 0% no-repeat padding-box;
-  background: #efc003 0% 0% no-repeat padding-box;
+  background: #006ecf !important;
   border-radius: 3px;
   opacity: 1;
   padding-top: 20px;
@@ -1063,7 +1063,7 @@ Premium Fare Card
 
 .mob-gst {
   font-size: 15px;
-  color: #dc3545;
+  color: #072c6b;
 }
 
 /* Captcha */
@@ -1491,7 +1491,7 @@ Journey Details Card
 
   color: #072c6b;
 
-  font-size: 15px;
+  font-size: 17px;
 
   font-weight: 700;
 }
@@ -1557,9 +1557,9 @@ Journey Details Card
 
   margin-bottom: 3px;
 
-  color: #9ba6b5;
+  color: #414141;
 
-  font-size: 9px;
+  font-size: 10px;
 
   font-weight: 700;
 
@@ -1586,12 +1586,10 @@ Journey Details Card
 
 .journey-content p {
   margin: 0;
-
-  color: #59677a;
-
-  font-size: 11px;
-
+  color: #000000;
+  font-size: 12px;
   line-height: 1.35;
+  font-weight: 600;
 }
 
 
@@ -1616,10 +1614,8 @@ Journey Details Card
 .review-passenger-table th {
   padding: 9px 10px;
 
-  color: #9ca7b5;
-
-  font-size: 11px;
-
+  color: #414141;
+  font-size: 12px;
   font-weight: 600;
 
   text-align: left;
@@ -1631,9 +1627,7 @@ Journey Details Card
   padding: 13px 10px;
 
   color: #072c6b;
-
-  font-size: 12px;
-
+  font-size: 14px;
   font-weight: 600;
 
   border-bottom: 1px solid #edf1f5;
@@ -1701,10 +1695,8 @@ Journey Details Card
 }
 
 .contact-item span {
-  color: #9ca7b5;
-
+  color: #414141;
   font-size: 10px;
-
   font-weight: 600;
 
   letter-spacing: .35px;
@@ -1712,9 +1704,7 @@ Journey Details Card
 
 .contact-item strong {
   color: #072c6b;
-
-  font-size: 12px;
-
+  font-size: 14px;
   font-weight: 700;
 
   word-break: break-word;
@@ -1958,20 +1948,14 @@ Journey Details Card
 .coupon-input-wrap input {
   width: 100%;
   height: 38px;
-
   box-sizing: border-box;
-
   padding: 0 10px 0 31px;
-
   border: 1px solid #9daabd;
-
   border-radius: 7px;
-
   outline: none;
-
   color: #072c6b;
-
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .coupon-input-wrap input::placeholder {
@@ -2671,7 +2655,7 @@ Journey Details Card
   font-size: 12px;
 }
 
-.mobile-coupon-title span{
+.mobile-coupon-title span {
   color: #072c6b;
 }
 
@@ -2829,13 +2813,11 @@ Journey Details Card
 
 .mobile-offers-scroll::-webkit-scrollbar-track {
   background: #edf1f5;
-
   border-radius: 10px;
 }
 
 .mobile-offers-scroll::-webkit-scrollbar-thumb {
   background: #aeb8c5;
-
   border-radius: 10px;
 }
 
@@ -2846,29 +2828,17 @@ Journey Details Card
 
 .mobile-offer-card {
   width: 100%;
-
   min-height: 74px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   gap: 10px;
-
   box-sizing: border-box;
-
   padding: 10px;
-
   margin-bottom: 7px;
-
   border: 1px solid #d8dee6;
-
   border-radius: 9px;
-
   background: #ffffff;
-
   transition: .2s ease;
 }
 
@@ -2892,45 +2862,33 @@ Journey Details Card
 
 .mobile-offer-content {
   min-width: 0;
-
   flex: 1;
 }
 
 .mobile-offer-code {
   display: flex;
-
   align-items: center;
-
   gap: 5px;
-
   margin-bottom: 4px;
 }
 
 .mobile-offer-code strong {
   color: #072c6b;
-
   font-size: 13px;
-
   font-weight: 700;
-
   line-height: 1;
 }
 
 .mobile-offer-code i {
   color: #8491a2;
-
   font-size: 9px;
 }
 
 .mobile-offer-content p {
   margin: 0;
-
   color: #126b3b;
-
   font-size: 10px;
-
   font-weight: 500;
-
   line-height: 1.4;
   text-align: left;
 }
@@ -2942,34 +2900,22 @@ Journey Details Card
 
 .mobile-offer-radio {
   width: 22px;
-
   flex-shrink: 0;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 }
 
 .mobile-offer-radio input {
   appearance: none;
-
   -webkit-appearance: none;
-
   width: 18px;
   height: 18px;
-
   margin: 0;
-
   border: 1.5px solid #7e8791;
-
   border-radius: 50%;
-
   background: #ffffff;
-
   cursor: pointer;
-
   position: relative;
 }
 
@@ -2979,19 +2925,13 @@ Journey Details Card
 
 .mobile-offer-radio input:checked::after {
   content: "";
-
   position: absolute;
-
   width: 9px;
   height: 9px;
-
   top: 50%;
   left: 50%;
-
   transform: translate(-50%, -50%);
-
   border-radius: 50%;
-
   background: #072c6b;
 }
 
@@ -3035,4 +2975,117 @@ Journey Details Card
     font-size: 9px;
   }
 
+}
+
+
+/* ============================================================
+   FINAL BLUE THEME OVERRIDE
+   REVIEW / BOOKING DETAILS
+============================================================ */
+
+/* Remove old global yellow span color */
+.review-details-page span,
+.journey-card span {
+  color: inherit;
+}
+
+
+/* Main review headings */
+.review-details-page h5,
+.review-details-page h4 {
+  color: #072c6b;
+}
+
+
+/* Journey labels */
+.journey-card .journey-label {
+  color: #072c6b !important;
+}
+
+.journey-card .journey-title {
+  color: #98a2b3 !important;
+}
+
+.journey-card .journey-row h5 {
+  color: #072c6b !important;
+}
+
+
+/* Journey date */
+.journey-card .detail-value {
+  color: #072c6b !important;
+}
+
+
+/* Base fare */
+.journey-card .fare-detail,
+.journey-card .fare-value,
+.journey-card .fare-price {
+  color: #072c6b !important;
+}
+
+
+/* Icons */
+.journey-card i {
+  color: #006ecf;
+}
+
+
+/* Proceed button */
+.proceed {
+  background: #006ecf !important;
+  background-color: #006ecf !important;
+
+  color: #ffffff !important;
+
+  border-color: #006ecf !important;
+}
+
+
+/* If button uses make-payment */
+.make-payment {
+  background: #006ecf !important;
+  background-color: #006ecf !important;
+
+  color: #ffffff !important;
+
+  border-color: #006ecf !important;
+}
+
+
+/* Cancellation warning stays red */
+.pnrr {
+  color: #dc3545 !important;
+}
+
+
+/* Input borders */
+.review-details-page input,
+.review-details-page select,
+.review-details-page textarea {
+  border-color: #072c6b;
+}
+
+
+/* Section blue lines */
+.review-yellow-line,
+.side-yellow-line {
+  background: #006ecf !important;
+}
+
+
+/* Headings */
+.review-heading h5,
+.review-sub-heading h5,
+.side-heading h5 {
+  color: #072c6b !important;
+}
+
+
+/* Light blue icon boxes */
+.heading-icon,
+.side-heading-icon,
+.journey-icon {
+  background: #d8f2ff !important;
+  color: #072c6b !important;
 }
