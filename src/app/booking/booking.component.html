@@ -2713,8 +2713,9 @@
 
                       <label class="terms-check">
 
-                        <input type="checkbox" formControlName="terms" />
-
+                        <!-- <input type="checkbox" formControlName="terms" /> -->
+                         <input formControlName="tnc" #tnc id="tnc" type="checkbox" [checked]="tncStatus"
+                              (change)="tncStatusChange(tnc.checked)" />
                         <span>
 
                           I Agree That I Have Read

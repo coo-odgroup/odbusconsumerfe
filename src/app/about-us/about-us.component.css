@@ -28,6 +28,11 @@
     padding: 50px 40px;
     border: 1px solid #adadad;
 }
+
+::ng-deep .main-tnc h1 {
+  font-size: 30px !important;
+}
+
 .tnc-result {
     margin: 50px 0;
     padding: 0 20px 0 5px;

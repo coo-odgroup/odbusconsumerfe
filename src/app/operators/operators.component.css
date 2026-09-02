@@ -65,6 +65,19 @@ a {
     font-weight: 600;
 }
 
+.line-span h1 {
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    background: #EFC003;
+    /* left: 41%; */
+    top: -26px;
+    color: #072C6B;
+    padding: 10px 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
 section.top-routs {
     padding: 0px !important;
 }
@@ -178,6 +191,17 @@ section.top-routs ul li a::before {
 }
 
 .mobile-mybooking-top .mob-list-center h5 {
+    color: #072c6b;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 5px;
+    margin-bottom: 4px;
+
+}
+
+.mobile-mybooking-top .mob-list-center h1 {
     color: #072c6b;
     font-size: 20px;
     font-weight: 800;
