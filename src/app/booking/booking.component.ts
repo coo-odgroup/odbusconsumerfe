@@ -462,6 +462,41 @@ export class BookingComponent implements OnInit {
 
   }
 
+  couponcode: any;
+
+  CouponCode() {
+    const params = {
+      "bus_id": this.busRecord.busId,
+    };
+
+    this.couponService.couponcode(params).subscribe(
+      res => {
+        if (res.status == 1) {
+          this.couponcode = res.data;
+        }
+      }
+    );
+  }
+
+  selectCoupon(couponCode: string): void {
+
+    const currentCoupon = this.couponForm.get('coupon_code')?.value;
+
+    if (currentCoupon === couponCode) {
+      // Unselect → remove coupon
+      this.couponForm.patchValue({
+        coupon_code: ''
+      });
+    } else {
+      // Select coupon
+      this.couponForm.patchValue({
+        coupon_code: couponCode
+      });
+    }
+  }
+
+
+
   ApplyCoupon() {
 
     this.couponSubmitted = true;
@@ -682,24 +717,24 @@ export class BookingComponent implements OnInit {
       // For Razorpay Payment Gateway
 
       this.makepaymentService.getOrderid(paymentParam).subscribe(
-        res=>{
+        res => {
 
-          if(res.status==1){
-            if(res.data=='SEAT UN-AVAIL'){
-              this.notify.notify(res.message,"Error");
-            }else{
-              this.MakePaymnetResponse=res.data;
-             // this.OpenRazorpayModal();
-                this.cashfressRedirect();
+          if (res.status == 1) {
+            if (res.data == 'SEAT UN-AVAIL') {
+              this.notify.notify(res.message, "Error");
+            } else {
+              this.MakePaymnetResponse = res.data;
+              // this.OpenRazorpayModal();
+              this.cashfressRedirect();
             }
 
-          }else{
-            this.notify.notify(res.message,"Error");
+          } else {
+            this.notify.notify(res.message, "Error");
           }
 
           this.spinner.hide();
 
-      });
+        });
 
 
       // For PhonePe Payment Gateway
@@ -1033,6 +1068,8 @@ export class BookingComponent implements OnInit {
     //}
     // Push dummy state so back button is trapped
     history.pushState(null, '', location.href);
+
+    this.CouponCode();
   }
 
   @HostListener('window:popstate', ['$event'])

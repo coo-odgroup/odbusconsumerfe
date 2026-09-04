@@ -586,7 +586,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     // );
 
     const maxDate = new Date(today);
-    maxDate.setDate(today.getDate() + 29);
+    maxDate.setDate(today.getDate() + this.advance_days_show);
 
     for (let d = 1; d <= totalDays; d++) {
       const fullDate = new Date(this.currentYear, this.currentMonth, d);
@@ -1212,6 +1212,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
   maintenance: any;
   homePopup: any;
+  advance_days_show:any;
 
   getHomeData() {
     const params = {
@@ -1230,6 +1231,10 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
         this.maintenance = res.data.maintenance;
         this.homePopup = res.data.website_popup;
+        this.advance_days_show = res.data.website_popup.advance_days_show;
+
+        localStorage.setItem('advance_days_show', this.advance_days_show);
+        
 
         const popupClosed = localStorage.getItem(
           'maintenance_notice_dismissed',

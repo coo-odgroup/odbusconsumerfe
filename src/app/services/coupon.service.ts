@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';   
-import {  Observable, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import{ GlobalConstants } from '../constants/global-constants';
+import { GlobalConstants } from '../constants/global-constants';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,23 +17,30 @@ export class CouponService {
 
   constructor(private httpClient: HttpClient) { }
 
-  apply(params :any): Observable<any> {
- 
-     return this.httpClient.post<any>(this.apiURL + '/Coupons' , JSON.stringify(params) ,this.httpOptions)
-     .pipe(
-       catchError(this.errorHandler)
-     )
-   }
- 
-   errorHandler(error:HttpErrorResponse) {
-    let errorMessage :any;
-    if(error.error instanceof HttpErrorResponse) {
+  apply(params: any): Observable<any> {
+
+    return this.httpClient.post<any>(this.apiURL + '/Coupons', JSON.stringify(params), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
+  couponcode(params: any): Observable<any> {
+    return this.httpClient.post<any>(this.apiURL + '/CouponCode', JSON.stringify(params), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
+  errorHandler(error: HttpErrorResponse) {
+    let errorMessage: any;
+    if (error.error instanceof HttpErrorResponse) {
       errorMessage = error.error.message;
     } else {
       errorMessage = error;
-      
+
       //`Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
- }
+  }
 }

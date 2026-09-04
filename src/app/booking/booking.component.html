@@ -485,117 +485,25 @@
           <div class="mobile-offers-scroll">
 
 
-            <!-- OFFER 1 -->
-            <div class="mobile-offer-card selected-offer">
-
+            <div class="mobile-offer-card selected-offer" *ngFor="let offercode of couponcode" (click)="selectCoupon(offercode.coupon_code)">
               <div class="mobile-offer-content">
-
                 <div class="mobile-offer-code">
+                  <strong>{{ offercode.coupon_code }}</strong>
 
-                  <strong>SBICAB</strong>
-
-                  <i class="fas fa-info-circle" title="Coupon details">
-                  </i>
+                  <!-- <i class="fas fa-info-circle" title="Coupon details"></i> -->
 
                 </div>
 
                 <p>
-                  Use Coupon SBICAB &amp; Get Rs. 200 OFF with SBI
-                  Credit Card
+                  {{ offercode.short_desc }}
                 </p>
 
               </div>
 
               <div class="mobile-offer-radio">
 
-                <input type="radio" name="mobileCouponOffer" value="SBICAB" />
-
-              </div>
-
-            </div>
-
-
-            <!-- OFFER 2 -->
-            <div class="mobile-offer-card">
-
-              <div class="mobile-offer-content">
-
-                <div class="mobile-offer-code">
-
-                  <strong>BUS20</strong>
-
-                  <i class="fas fa-info-circle" title="Coupon details">
-                  </i>
-
-                </div>
-
-                <p>
-                  Get up to 20% OFF on selected bus bookings
-                </p>
-
-              </div>
-
-              <div class="mobile-offer-radio">
-
-                <input type="radio" name="mobileCouponOffer" value="BUS20" />
-
-              </div>
-
-            </div>
-
-
-            <!-- OFFER 3 -->
-            <div class="mobile-offer-card">
-
-              <div class="mobile-offer-content">
-
-                <div class="mobile-offer-code">
-
-                  <strong>TRAVEL10</strong>
-
-                  <i class="fas fa-info-circle" title="Coupon details">
-                  </i>
-
-                </div>
-
-                <p>
-                  Save extra on your next bus journey
-                </p>
-
-              </div>
-
-              <div class="mobile-offer-radio">
-
-                <input type="radio" name="mobileCouponOffer" value="TRAVEL10" />
-
-              </div>
-
-            </div>
-
-
-            <!-- OFFER 4 -->
-            <div class="mobile-offer-card">
-
-              <div class="mobile-offer-content">
-
-                <div class="mobile-offer-code">
-
-                  <strong>WELCOME15</strong>
-
-                  <i class="fas fa-info-circle" title="Coupon details">
-                  </i>
-
-                </div>
-
-                <p>
-                  Get extra discount on your first booking
-                </p>
-
-              </div>
-
-              <div class="mobile-offer-radio">
-
-                <input type="radio" name="mobileCouponOffer" value="WELCOME15" />
+                <input type="radio" nname="couponOffer" [checked]="couponForm.get('coupon_code')?.value === offercode.coupon_code"
+                (click)="$event.stopPropagation()" (click)="selectCoupon(offercode.coupon_code)" />
 
               </div>
 
@@ -2416,109 +2324,30 @@
                     ================================================== -->
 
                       <div class="coupon-offers-box">
-
-
-                        <!-- OFFER 1 -->
-
-                        <div class="coupon-offer active-offer">
+                        <div class="coupon-offer" *ngFor="let offercode of couponcode"
+                          (click)="selectCoupon(offercode.coupon_code)">
 
                           <div class="offer-content">
 
                             <div class="offer-code-row">
+                              <strong>{{ offercode.coupon_code }}</strong>
 
-                              <strong>
-                                SBICAB
-                              </strong>
-
-                              <i class="fas fa-info-circle" title="Coupon details">
-                              </i>
-
+                              <!-- <i class="fas fa-info-circle" title="Coupon details"></i> -->
                             </div>
 
-                            <p>
-                              Use Coupon SBICAB &amp; Get Rs. 200 OFF
-                              with SBI Credit Card
-                            </p>
+                            <p>{{ offercode.short_desc }}</p>
 
                           </div>
 
-
                           <div class="offer-select">
-
-                            <input type="radio" name="couponOffer" />
-
+                            <input type="radio" name="couponOffer"
+                              [checked]="couponForm.get('coupon_code')?.value === offercode.coupon_code"
+                              (click)="$event.stopPropagation()" (click)="selectCoupon(offercode.coupon_code)" />
                           </div>
 
                         </div>
-
-
-                        <!-- OFFER 2 -->
-
-                        <div class="coupon-offer">
-
-                          <div class="offer-content">
-
-                            <div class="offer-code-row">
-
-                              <strong>
-                                BUS20
-                              </strong>
-
-                              <i class="fas fa-info-circle" title="Coupon details">
-                              </i>
-
-                            </div>
-
-                            <p>
-                              Get up to 20% OFF on selected bus bookings
-                            </p>
-
-                          </div>
-
-
-                          <div class="offer-select">
-
-                            <input type="radio" name="couponOffer" />
-
-                          </div>
-
-                        </div>
-
-
-                        <!-- OFFER 3 -->
-
-                        <div class="coupon-offer">
-
-                          <div class="offer-content">
-
-                            <div class="offer-code-row">
-
-                              <strong>
-                                TRAVEL10
-                              </strong>
-
-                              <i class="fas fa-info-circle" title="Coupon details">
-                              </i>
-
-                            </div>
-
-                            <p>
-                              Save extra on your next bus journey
-                            </p>
-
-                          </div>
-
-
-                          <div class="offer-select">
-
-                            <input type="radio" name="couponOffer" />
-
-                          </div>
-
-                        </div>
-
-
                       </div>
+
 
                     </div>
 
@@ -2714,8 +2543,8 @@
                       <label class="terms-check">
 
                         <!-- <input type="checkbox" formControlName="terms" /> -->
-                         <input formControlName="tnc" #tnc id="tnc" type="checkbox" [checked]="tncStatus"
-                              (change)="tncStatusChange(tnc.checked)" />
+                        <input formControlName="tnc" #tnc id="tnc" type="checkbox" [checked]="tncStatus"
+                          (change)="tncStatusChange(tnc.checked)" />
                         <span>
 
                           I Agree That I Have Read

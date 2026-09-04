@@ -218,7 +218,7 @@ export class SearchBoxComponent implements OnInit {
     // );
 
     const maxDate = new Date(today);
-    maxDate.setDate(today.getDate() + 29);
+    maxDate.setDate(today.getDate() + parseInt(localStorage.getItem('advance_days_show') || '29'));
 
     for (let d = 1; d <= totalDays; d++) {
       const fullDate = new Date(this.currentYear, this.currentMonth, d);
