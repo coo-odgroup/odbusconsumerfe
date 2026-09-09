@@ -58,7 +58,7 @@ export class RefundPolicyComponent implements OnInit {
     } else {
       const param = {
         user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-        page_url: 'refund-policy',
+        page_url: 'cancelation-policy',
       };
 
       this.pagesService.PageContent(param).subscribe((res) => {
