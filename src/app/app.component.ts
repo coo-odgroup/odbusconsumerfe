@@ -109,17 +109,16 @@ export class AppComponent implements AfterViewInit {
       this.spinner.show();
     }
 
-    // Load PopularInfo first, then continue with schema and common data setup.
-    this.storeLocalStorage().subscribe(() => {
-      this.seoService.getOrganizationSchema().subscribe((res: any) => {
-        this.seoService.addOrganizationSchema(res.organization_schema);
-        this.storage_version = res.storage_version;
-
-        if (isPlatformBrowser(this.platformId)) {
+    // Load browser-only data after startup; SSR should not call protected APIs.
+    if (isPlatformBrowser(this.platformId)) {
+      this.storeLocalStorage().subscribe(() => {
+        this.seoService.getOrganizationSchema().subscribe((res: any) => {
+          this.seoService.addOrganizationSchema(res.organization_schema);
+          this.storage_version = res.storage_version;
           this.checkLocalStorageVersion();
-        }
+        });
       });
-    });
+    }
 
     // this.seoService.addCanonicalUrlFromCurrentUrl();.
 
@@ -178,22 +177,7 @@ export class AppComponent implements AfterViewInit {
 
       this.authReady = true;
 
-      const param = {
-        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-        locationName: '',
-      };
-
-      this.commonService.getCommonData(param).subscribe(
-        (resp: any) => {
-          this.getCommonInfo(resp.data);
-          this.finishLoading();
-        },
-
-        (error: any) => {
-          console.error('Error fetching Data:', error);
-          this.finishLoading();
-        },
-      );
+      this.finishLoading();
     }
   }
 

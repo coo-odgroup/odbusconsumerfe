@@ -495,7 +495,9 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       }
     }
 
-    this.startCountdown();
+    if (isPlatformBrowser(this.platformId)) {
+      this.startCountdown();
+    }
 
     this.searchForm = this._fb.group({
       source: [null],
@@ -542,7 +544,9 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       }, 500);
     }
     this.generateCalendar();
-    this.getHomeData();
+    if (isPlatformBrowser(this.platformId)) {
+      this.getHomeData();
+    }
   }
 
   toggleCalendar() {

@@ -1,5 +1,5 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { AuthService } from './auth.service';
 import { CommonService } from './common.service';
 import { GlobalConstants } from '../constants/global-constants';
@@ -13,15 +13,13 @@ export class AppInitializerService {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  // Called by APP_INITIALIZER. Return a Promise that resolves when the initial auth token
-  // has been acquired (or when an error occurs). This ensures other services that run
-  // during app bootstrap (eg. PopularInfo/CommonService calls) have a Bearer token.
-  load(): Promise<any> {
-    // Step 1: Acquire auth token (required for PopularInfo API calls)
-    const tokenPromise = this.getAuthToken();
+  // Called by APP_INITIALIZER. Browser-only initialization must not delay SSR.
+  load(): Promise<boolean> {
+    if (isPlatformServer(this.platformId)) {
+      return Promise.resolve(true);
+    }
 
-    // Step 2: Once token is acquired, fetch PopularInfo
-    return tokenPromise.then(() => {
+    return this.getAuthToken().then(() => {
       return this.fetchPopularInfo();
     }).catch((err) => {
       console.error('AppInitializer: error during initialization', err);

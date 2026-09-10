@@ -45,8 +45,8 @@ export class OdbusOffersComponent implements OnInit {
     // SSR SAFE
     if (this.isBrowser) {
       this.checkScreen();
+      this.getOffers();
     }
-    this.getOffers();
   }
 
   checkScreen(): void {
