@@ -25,6 +25,7 @@ import { PlatformLocation } from '@angular/common';
 import { EquirectangularReflectionMapping } from 'three';
 import { ManagebookingService } from '../services/managebooking.service';
 import { load } from '@cashfreepayments/cashfree-js';
+import { PagesService } from '../services/pages.service';
 
 declare let Razorpay: any;
 
@@ -143,7 +144,8 @@ export class BookingComponent implements OnInit {
     private location: Location,
     private sanitizer: DomSanitizer,
     private platformLocation: PlatformLocation,
-    private managebookingService: ManagebookingService
+    private managebookingService: ManagebookingService,
+    private pagesService: PagesService
   ) {
     // this.razorpayService
     //   .lazyLoadLibrary('https://checkout.razorpay.com/v1/checkout.js')
@@ -1166,5 +1168,72 @@ export class BookingComponent implements OnInit {
       }
 
     });
+  }
+
+  pageTitle:any;
+  pageContent:any;
+
+  modalContent(loaclStorageKey: string, pageUrl: string) {
+    this.spinner.show();
+
+    const content = localStorage.getItem(loaclStorageKey);
+
+    if (content) {
+      const data = JSON.parse(content);
+      this.aboutContent(data);
+    } else {
+      const param = {
+        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+        page_url: pageUrl,
+      };
+
+      this.pagesService.PageContent(param).subscribe((res) => {
+        localStorage.setItem(loaclStorageKey, JSON.stringify(res.data));
+        this.aboutContent(res.data);
+      });
+    }
+
+    this.openModal();
+
+    this.spinner.hide();
+  }
+
+
+  aboutContent(res: any) {
+    if (res.length > 0) {
+      this.pageTitle = res[0].page_name;
+      this.pageContent = res[0].page_description;
+    }
+  }
+
+
+
+
+  showTermsModal = false;
+  termsAccepted = false;
+
+  openModal(): void {
+    this.termsAccepted = false;
+    this.showTermsModal = true;
+
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeTermsModal(): void {
+    this.showTermsModal = false;
+    this.termsAccepted = false;
+
+    document.body.style.overflow = '';
+  }
+
+  acceptTerms(): void {
+    if (!this.termsAccepted) {
+      return;
+    }
+
+    this.closeTermsModal();
+
+    // Continue your booking/payment process here
+    console.log('Terms accepted');
   }
 }

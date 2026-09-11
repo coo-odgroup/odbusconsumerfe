@@ -485,7 +485,8 @@
           <div class="mobile-offers-scroll">
 
 
-            <div class="mobile-offer-card selected-offer" *ngFor="let offercode of couponcode" (click)="selectCoupon(offercode.coupon_code)">
+            <div class="mobile-offer-card selected-offer" *ngFor="let offercode of couponcode"
+              (click)="selectCoupon(offercode.coupon_code)">
               <div class="mobile-offer-content">
                 <div class="mobile-offer-code">
                   <strong>{{ offercode.coupon_code }}</strong>
@@ -502,8 +503,9 @@
 
               <div class="mobile-offer-radio">
 
-                <input type="radio" nname="couponOffer" [checked]="couponForm.get('coupon_code')?.value === offercode.coupon_code"
-                (click)="$event.stopPropagation()" (click)="selectCoupon(offercode.coupon_code)" />
+                <input type="radio" nname="couponOffer"
+                  [checked]="couponForm.get('coupon_code')?.value === offercode.coupon_code"
+                  (click)="$event.stopPropagation()" (click)="selectCoupon(offercode.coupon_code)" />
 
               </div>
 
@@ -725,11 +727,19 @@
 
           <label class="terms mob-term-priv">
             <p>
-              <input formControlName="tnc" #tnc id="tnc" type="checkbox" [checked]="tncStatus"
-                (change)="tncStatusChange(tnc.checked)" />
+              <input formControlName="tnc" #tnc id="tnc" type="checkbox" (change)="tncStatusChange(tnc.checked)" />
+
               &nbsp; I agree that I have read and understood the
-              <a target="_blank" routerLink="/terms-conditions">T&Cs</a> and the
-              <a target="_blank" routerLink="/privacy-policy">Privacy Policy</a>
+
+              <a href="javascript:void(0)" (click)="modalContent('tncContent', 'terms-conditions')">
+                T&Cs
+              </a>
+
+              and the
+
+              <a href="javascript:void(0)" (click)="modalContent('privacyPolicyContent', 'privacy-policy')">
+                Privacy Policy
+              </a>
             </p>
           </label>
 
@@ -1870,16 +1880,9 @@
 
                 <div class="review-details-page">
 
-                  <!-- =====================================================
-                 LEFT SIDE - 9 COLUMNS
-            ====================================================== -->
 
                   <div class="review-left-column">
 
-
-                    <!-- =================================================
-                     JOURNEY DETAILS
-                ================================================== -->
 
                     <div class="review-main-card">
 
@@ -2009,11 +2012,6 @@
 
                     </div>
 
-
-
-                    <!-- =================================================
-                     PASSENGER + CONTACT
-                ================================================== -->
 
                     <div class="review-main-card">
 
@@ -2161,11 +2159,6 @@
                     </div>
 
 
-
-                    <!-- =================================================
-                     GST DETAILS - LEFT SIDE
-                ================================================== -->
-
                     <div class="review-main-card gst-left-card">
 
                       <div class="review-heading">
@@ -2260,17 +2253,9 @@
                   </div>
 
 
-
-                  <!-- =====================================================
-                 RIGHT SIDE - 3 COLUMNS
-            ====================================================== -->
-
                   <div class="review-right-column">
 
 
-                    <!-- =================================================
-                     OFFERS / COUPON
-                ================================================== -->
 
                     <div class="review-side-card offers-card" *ngIf="autoApplyCouponStatus == false">
 
@@ -2319,10 +2304,6 @@
                       </form>
 
 
-                      <!-- =================================================
-                         COUPON OFFERS SCROLL BOX
-                    ================================================== -->
-
                       <div class="coupon-offers-box">
                         <div class="coupon-offer" *ngFor="let offercode of couponcode"
                           (click)="selectCoupon(offercode.coupon_code)">
@@ -2351,11 +2332,6 @@
 
                     </div>
 
-
-
-                    <!-- =================================================
-                     VERIFICATION
-                ================================================== -->
 
                     <div class="review-side-card verification-card">
 
@@ -2435,11 +2411,6 @@
 
                     </div>
 
-
-
-                    <!-- =================================================
-                     FARE SUMMARY
-                ================================================== -->
 
                     <div class="review-side-card fare-card">
 
@@ -2539,29 +2510,27 @@
 
 
                       <!-- TERMS -->
-
                       <label class="terms-check">
 
-                        <!-- <input type="checkbox" formControlName="terms" /> -->
-                        <input formControlName="tnc" #tnc id="tnc" type="checkbox" [checked]="tncStatus"
+                        <input formControlName="tnc" #tnc id="tnc" type="checkbox"
                           (change)="tncStatusChange(tnc.checked)" />
-                        <span>
 
+                        <span>
                           I Agree That I Have Read
 
-                          <a href="javascript:void(0)">
+                          <a href="javascript:void(0)" (click)="modalContent('tncContent', 'terms-conditions')">
                             T&amp;Cs
                           </a>
 
                           And
 
-                          <a href="javascript:void(0)">
+                          <a href="javascript:void(0)" (click)="modalContent('privacyPolicyContent', 'privacy-policy')">
                             The Privacy Policy
                           </a>
-
                         </span>
 
                       </label>
+
 
 
                       <!-- PAYMENT -->
@@ -2605,3 +2574,45 @@
 </ng-template>
 
 <ng-container *ngIf="isMobile; then Mobile; else Desktop"> </ng-container>
+
+<!-- Terms & Conditions Modal -->
+<div class="terms-modal-backdrop" *ngIf="showTermsModal" (click)="closeTermsModal()">
+  <div class="terms-modal" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle"
+    (click)="$event.stopPropagation()">
+
+    <!-- Header -->
+    <div class="terms-modal-header">
+      <div class="terms-title-wrap">
+        <div class="terms-icon">
+          <i class="fas fa-file-contract"></i>
+        </div>
+
+        <div>
+          <h3 id="termsModalTitle">{{ pageTitle }}</h3>
+        </div>
+      </div>
+
+      <button type="button" class="terms-close-btn" aria-label="Close" (click)="closeTermsModal()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="terms-modal-body">
+
+      <div class="terms-intro">
+        <div [innerHTML]="pageContent"></div>
+      </div>
+
+      <div class="terms-content">
+
+        <div class="terms-section">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
