@@ -1667,26 +1667,19 @@ ngb-rating.d-inline-flex {
 .modify-search-modal .close-mob {
   width: 36px;
   height: 36px;
-
+  font-weight: 500 !important;
   margin: 0;
   padding: 0;
-
+  border-radius: 8px;
   border: 0;
   outline: none;
-
-  background: transparent;
-
-  color: #072c6b;
-
+  background: #072c6b;
+  color: #fff;
   font-size: 34px;
-  font-weight: 300;
-
   line-height: 30px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   opacity: 1;
 }
 
@@ -2311,7 +2304,7 @@ ngb-rating.d-inline-flex {
 
 /* Mobile Version Bus Seat Layout Start */
 
-.close-mob {
+/* .close-mob {
   float: right;
   font-size: 42px !important;
   font-weight: 500 !important;
@@ -2323,7 +2316,7 @@ ngb-rating.d-inline-flex {
   right: 15px !important;
   z-index: 999;
 
-}
+} */
 
 .mobile-buslayout-top {
   background-color: #dae6ff !important;

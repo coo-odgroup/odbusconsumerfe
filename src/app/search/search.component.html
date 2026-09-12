@@ -2500,7 +2500,7 @@
 
                                     <i class="fa fa-map-marker location-icon"></i>
 
-                                    <input autocomplete="off" id="from" type="text" [ngbTypeahead]="search"
+                                    <input autocomplete="off" id="from" type="search" [ngbTypeahead]="search"
                                         [resultTemplate]="rt" [inputFormatter]="formatter" [ngModel]="swapsource"
                                         placeholder="Enter Source" formControlName="source"
                                         (selectItem)="tabChange('to')" />
@@ -2527,7 +2527,7 @@
                                   <div class="location-input">
 
                                     <i class="fa fa-map-marker location-icon"></i>
-                                <input autocomplete="off" id="to" type="text" [ngbTypeahead]="search"
+                                <input autocomplete="off" id="to" type="search" [ngbTypeahead]="search"
                                     [resultTemplate]="rt2" [inputFormatter]="formatter" [ngModel]="swapdestination"
                                     formControlName="destination" placeholder="Enter Destination"
                                     (selectItem)="tabChange('entryDate')" />
