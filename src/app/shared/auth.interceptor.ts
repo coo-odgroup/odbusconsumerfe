@@ -13,7 +13,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 export class AuthInterceptor implements HttpInterceptor {
 
-    tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+    tokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   
     constructor(
         private token: TokenService, 
@@ -71,7 +71,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
 cachedRequests: Array<HttpRequest<any>> = [];
 
-collectFailedRequest(request): void {
+collectFailedRequest(request: HttpRequest<any>): void {
    this.cachedRequests.push(request);
    }
 

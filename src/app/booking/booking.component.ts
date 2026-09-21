@@ -26,6 +26,7 @@ import { EquirectangularReflectionMapping } from 'three';
 import { ManagebookingService } from '../services/managebooking.service';
 import { load } from '@cashfreepayments/cashfree-js';
 import { PagesService } from '../services/pages.service';
+import { log } from 'console';
 
 declare let Razorpay: any;
 
@@ -726,6 +727,8 @@ export class BookingComponent implements OnInit {
               this.notify.notify(res.message, "Error");
             } else {
               this.MakePaymnetResponse = res.data;
+              console.log(this.MakePaymnetResponse);
+
               // this.OpenRazorpayModal();
               this.cashfressRedirect();
             }
@@ -1163,8 +1166,11 @@ export class BookingComponent implements OnInit {
         localStorage.setItem('od_success_email', this.passengerData.customerInfo.email);
         localStorage.setItem('od_success_phone', this.passengerData.customerInfo.phone);
         localStorage.setItem('receipt_id', this.MakePaymnetResponse.razorpay_order_id.receipt_id);
+        localStorage.setItem('ticket_amount',this.MakePaymnetResponse.amount);
 
-        window.location.href = "/success";
+        this.router.navigate(['/success']);
+
+        this.spinner.hide();
       }
 
     });

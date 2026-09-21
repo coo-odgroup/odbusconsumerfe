@@ -99,12 +99,7 @@ export function app(): express.Express {
           <loc>`+ URL + `testimonials</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
-        </url>
-        <url>
-          <loc>`+ URL + `careers</loc>
-          <changefreq>monthly</changefreq>
-          <priority>0.8</priority>
-        </url>
+        </url>       
         <url>
           <loc>`+ URL + `contact-us</loc>
           <changefreq>monthly</changefreq>
@@ -144,12 +139,7 @@ export function app(): express.Express {
           <loc>`+ URL + `login</loc>
           <changefreq>monthly</changefreq>
           <priority>0.8</priority>
-        </url>
-        <url>
-          <loc>`+ URL + `thankyou</loc>
-          <changefreq>monthly</changefreq>
-          <priority>0.8</priority>
-        </url>
+        </url>       
         <url>
           <loc>`+ URL + `blog</loc>
           <changefreq>monthly</changefreq>
@@ -391,7 +381,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env.PORT || 4000; // TEST
+  const port = process.env.PORT || 4000; 
   // const port = process.env.PORT || 4444; // LIVE
 
   // Start up the Node server

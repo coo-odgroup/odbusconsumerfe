@@ -1,5 +1,5 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { AuthService } from './auth.service';
 import { CommonService } from './common.service';
 import { GlobalConstants } from '../constants/global-constants';
@@ -13,12 +13,8 @@ export class AppInitializerService {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  // Called by APP_INITIALIZER. Browser-only initialization must not delay SSR.
+  // Called by APP_INITIALIZER so requests made during SSR have a token too.
   load(): Promise<boolean> {
-    if (isPlatformServer(this.platformId)) {
-      return Promise.resolve(true);
-    }
-
     return this.getAuthToken().then(() => {
       return this.fetchPopularInfo();
     }).catch((err) => {
