@@ -1,1 +1,269 @@
-<p>new-page works!</p>
+<div class="payment-success-page">
+
+    <!-- Background decorative elements -->
+    <div class="bg-glow bg-glow-one"></div>
+    <div class="bg-glow bg-glow-two"></div>
+
+    <!-- Floating confetti -->
+    <div class="confetti confetti-one"></div>
+    <div class="confetti confetti-two"></div>
+    <div class="confetti confetti-three"></div>
+    <div class="confetti confetti-four"></div>
+    <div class="confetti confetti-five"></div>
+    <div class="confetti confetti-six"></div>
+
+    <!-- Main Content -->
+    <main class="success-wrapper">
+
+        <!-- Premium Confirmation Card -->
+        <section class="success-card">
+
+            <!-- Success Icon -->
+            <div class="success-icon-wrapper">
+
+                <div class="success-ring ring-one"></div>
+                <div class="success-ring ring-two"></div>
+
+                <!-- Premium Sparkles -->
+                <span class="sparkle sparkle-1"></span>
+                <span class="sparkle sparkle-2"></span>
+                <span class="sparkle sparkle-3"></span>
+                <span class="sparkle sparkle-4"></span>
+                <span class="sparkle sparkle-5"></span>
+                <span class="sparkle sparkle-6"></span>
+                <span class="sparkle sparkle-7"></span>
+                <span class="sparkle sparkle-8"></span>
+
+                <div class="success-icon">
+
+                    <svg viewBox="0 0 52 52" class="check-svg" aria-hidden="true">
+
+                        <path d="M14 27.5L22.5 36L39 18" fill="none" stroke="white" stroke-width="4"
+                            stroke-linecap="round" stroke-linejoin="round">
+                        </path>
+
+                    </svg>
+
+                </div>
+
+            </div>
+
+
+            <!-- Heading -->
+            <div class="success-heading">
+
+                <h1>
+                    Payment
+                    <span>Successful!</span>
+                </h1>
+
+                <div class="heading-line"></div>
+
+                <h2>
+                    Hello {{ customerName }}
+                </h2>
+
+                <p class="ticket-confirmed">
+                    Your Ticket is Confirmed.
+                </p>
+
+                <p class="happy-journey">
+                    ODBUS Wishing You A Happy Journey
+
+                    <span class="smile-icon">☺</span>
+                </p>
+
+            </div>
+
+
+            <!-- Receipt Section -->
+            <div class="receipt-box">
+
+                <div class="receipt-left">
+
+                    <div class="receipt-icon">
+
+                        <!-- Ticket / PNR Icon -->
+                        <svg viewBox="0 0 24 24" fill="none">
+
+                            <path
+                                d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5V9a2 2 0 0 0 0 4v4.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5V13a2 2 0 0 0 0-4V6.5Z"
+                                stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+                            </path>
+
+                            <path d="M9 7v10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                                stroke-dasharray="2 2">
+                            </path>
+
+                            <path d="M12.5 9h4M12.5 12h4M12.5 15h2.5" stroke="currentColor" stroke-width="1.7"
+                                stroke-linecap="round">
+                            </path>
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="receipt-content">
+
+                        <span class="receipt-label">
+                            PNR Number
+                        </span>
+
+                        <strong>
+                            {{ pnrNumber }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- View Ticket Button -->
+                <button type="button" class="copy-button view-ticket-button" (click)="viewTicket()">
+
+                    <!-- Ticket Icon -->
+                    <svg viewBox="0 0 24 24" fill="none">
+
+                        <path
+                            d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5V9a2 2 0 0 0 0 4v4.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5V13a2 2 0 0 0 0-4V6.5Z"
+                            stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+                        </path>
+
+                        <path d="M9 7v10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                            stroke-dasharray="2 2">
+                        </path>
+
+                    </svg>
+
+                    <span>
+                        View Ticket
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- Booking Notification -->
+            <div class="booking-notice">
+
+                <div class="notice-icon">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+
+                        <rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.8">
+                        </rect>
+
+                        <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+                        </path>
+
+                    </svg>
+
+                </div>
+
+
+                <p>
+                    We have sent booking details to your
+                    <strong>{{ phone }}</strong>
+                    &
+                    <strong>{{ email }}</strong>
+                </p>
+
+            </div>
+
+
+            <!-- Divider -->
+            <div class="card-divider"></div>
+
+
+            <!-- Bottom Actions -->
+            <div class="success-actions">
+
+                <!-- Support -->
+                <div class="support-area">
+
+                    <div class="support-icon">
+
+                        <svg viewBox="0 0 24 24" fill="none">
+
+                            <path d="M4 13v-1a8 8 0 0 1 16 0v1" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round">
+                            </path>
+
+                            <path
+                                d="M4 13h3v5H5a2 2 0 0 1-2-2v-1a2 2 0 0 1 1-2ZM20 13h-3v5h2a2 2 0 0 0 2-2v-1a2 2 0 0 0-1-2Z"
+                                stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+                            </path>
+
+                            <path d="M17 18c0 1.1-1.3 2-3 2h-1" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round">
+                            </path>
+
+                        </svg>
+
+                    </div>
+
+                    <span>
+                        Having trouble?
+                    </span>
+
+                    <a href="javascript:void(0)">
+                        Contact us
+                    </a>
+
+                </div>
+
+
+                <!-- Homepage Button -->
+                <button type="button" class="homepage-button" (click)="continueToHomepage()">
+
+                    <span>
+                        Continue to Homepage
+                    </span>
+
+                    <svg viewBox="0 0 24 24" fill="none">
+
+                        <path d="M5 12h13" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        </path>
+
+                        <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                        </path>
+
+                    </svg>
+
+                </button>
+
+            </div>
+
+
+            <!-- Bottom Message -->
+            <div class="thank-you">
+
+                <span class="thank-line"></span>
+
+                <p>
+                    Thank you for choosing
+                    <strong>ODBUS</strong>
+                </p>
+
+                <span class="thank-line"></span>
+
+            </div>
+
+            <div class="thank-subtitle">
+                EXPLORE
+                <i></i>
+                BOOK
+                <i></i>
+                TRAVEL
+                <i></i>
+                REPEAT
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
