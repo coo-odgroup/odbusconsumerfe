@@ -29,7 +29,7 @@
         linear-gradient(90deg,
             rgba(236, 247, 255, 0.08),
             rgba(255, 255, 255, 0.02)),
-        url('/assets/img/payment_page.png');
+        url('/assets/img/payment_page.webp');
 
     background-size: cover;
     background-position: center center;
