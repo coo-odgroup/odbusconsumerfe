@@ -22,6 +22,8 @@ import { PaymentStatusComponent } from './payment-status/payment-status.componen
 import { CommonContentComponent } from './common-content/common-content.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { OnlinebusticketsComponent } from './onlinebustickets/onlinebustickets.component';
+import { NewPageComponent } from './new-page/new-page.component';
+
 
 const userRoutePaths = [
   'wallet',
@@ -53,6 +55,7 @@ export const routes: Routes = [
   { path: 'listing', component: SearchComponent },
   { path: 'success', component: SuccessComponent },
   { path: 'booking', component: BookingComponent },
+   { path: 'newpage', component: NewPageComponent },
   {
     path: 'about-us',
     loadChildren: () =>
