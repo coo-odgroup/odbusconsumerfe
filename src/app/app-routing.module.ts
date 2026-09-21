@@ -23,6 +23,7 @@ import { CommonContentComponent } from './common-content/common-content.componen
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { OnlinebusticketsComponent } from './onlinebustickets/onlinebustickets.component';
 import { NewPageComponent } from './new-page/new-page.component';
+import { NewLoginPageComponent } from './new-login-page/new-login-page.component';
 
 
 const userRoutePaths = [
@@ -56,6 +57,7 @@ export const routes: Routes = [
   { path: 'success', component: SuccessComponent },
   { path: 'booking', component: BookingComponent },
    { path: 'newpage', component: NewPageComponent },
+   { path: 'newloginpage', component: NewLoginPageComponent },
   {
     path: 'about-us',
     loadChildren: () =>
