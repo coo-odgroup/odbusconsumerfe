@@ -112,6 +112,7 @@
 
 .blog-img img {
   height: 220px;
+  width: 100%;
   object-fit: cover;
   display: block;
 }
@@ -292,4 +293,12 @@
   .blog-banner-content p {
     font-size: 14px;
   }
+}
+
+
+.blog-banner-title {
+    font-size: 2rem;         /* h1-like size */
+    font-weight: 700;       /* bold */
+    line-height: 1.2;
+    margin-top: 0;
 }

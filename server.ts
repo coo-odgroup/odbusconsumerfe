@@ -62,6 +62,9 @@ export function app(): express.Express {
 
       const routes = response.data.data.routes;
       const operators = response.data.data.operators;
+      const blogCategories = response.data.data.blogCategories;
+      const authors = response.data.data.authors;
+      const blogs = response.data.data.blogs;
 
       let xml = `<?xml version="1.0" encoding="UTF-8"?>`;
       xml += `
@@ -172,6 +175,51 @@ export function app(): express.Express {
         xml += `
           <url>
             <loc>${operatorUrl}</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.8</priority>
+          </url>
+        `;
+      });
+
+      // Dynamic Blogs
+      blogs.forEach((blogs: any) => {
+        const blogUrl =
+          URL + `blog/` +
+          `${blogs.slug_url}`;
+
+        xml += `
+          <url>
+            <loc>${blogUrl}</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.8</priority>
+          </url>
+        `;
+      });
+
+      // Dynamic Categories
+      blogCategories.forEach((blogCategories: any) => {
+        const categoryUrl =
+          URL + `blog/category/` +
+          `${blogCategories.slug}`;
+
+        xml += `
+          <url>
+            <loc>${categoryUrl}</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.8</priority>
+          </url>
+        `;
+      });
+
+      // Dynamic Authors
+      authors.forEach((authors: any) => {
+        const authorUrl =
+          URL + `blog/author/` +
+          `${authors.author_slug}`;
+
+        xml += `
+          <url>
+            <loc>${authorUrl}</loc>
             <changefreq>daily</changefreq>
             <priority>0.8</priority>
           </url>
@@ -381,7 +429,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env.PORT || 4000; 
+  const port = process.env.PORT || 4000; // TEST
   // const port = process.env.PORT || 4444; // LIVE
 
   // Start up the Node server

@@ -470,6 +470,7 @@ export class BookingComponent implements OnInit {
   CouponCode() {
     const params = {
       "bus_id": this.busRecord.busId,
+      "date": localStorage.getItem('entdate'),
     };
 
     this.couponService.couponcode(params).subscribe(
