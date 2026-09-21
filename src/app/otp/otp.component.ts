@@ -128,7 +128,7 @@ export class OtpComponent implements OnInit {
             localStorage.removeItem('otp_type');
             localStorage.removeItem('resendParam');
             this.notify.notify('OTP verification is successful', "Success");
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['/']);
 
           }
           else {
