@@ -98,7 +98,7 @@ export class AppComponent implements AfterViewInit {
     const url = this.router.url;
 
     return (
-      url.includes('become-an-agent') || url.includes('pnr') || url.includes('payment-status')
+      url.includes('become-an-agent') || url.includes('pnr') || url.includes('payment-status') || url.includes('newloginpage')
     );
   }
 
