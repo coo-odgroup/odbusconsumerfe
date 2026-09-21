@@ -589,6 +589,8 @@ export class BookingComponent implements OnInit {
 
             this.bookTicketResponse = res.data;
 
+            localStorage.setItem('pnr',this.bookTicketResponse.pnr);
+
             if (this.isMobile == true) {
 
               this.bookingStep2 = true;
@@ -848,6 +850,8 @@ export class BookingComponent implements OnInit {
       localStorage.setItem('od_success_email', this.passengerData.customerInfo.email);
       localStorage.setItem('od_success_phone', this.passengerData.customerInfo.phone);
       localStorage.setItem('od_razor_id', res.razorpay_payment_id);
+
+      // console.log(this.passengerData);
 
 
       window.location.href = "/success";
