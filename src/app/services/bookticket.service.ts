@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-   
-import {  Observable, throwError } from 'rxjs';
+
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 
-import{ GlobalConstants } from '../constants/global-constants';
+import { GlobalConstants } from '../constants/global-constants';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class BookticketService {
+
+  private bookingData: any = {};
 
   private apiURL = GlobalConstants.BASE_URL;
   httpOptions = {
@@ -22,25 +24,37 @@ export class BookticketService {
 
   constructor(private httpClient: HttpClient) { }
 
-  book(params :any): Observable<any> {
+  book(params: any): Observable<any> {
 
-   // console.log(JSON.stringify(params));
+    // console.log(JSON.stringify(params));
 
-    return this.httpClient.post<any>(this.apiURL + '/BookTicket' , JSON.stringify(params) ,this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
+    return this.httpClient.post<any>(this.apiURL + '/BookTicket', JSON.stringify(params), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
   }
 
-  errorHandler(error:HttpErrorResponse) {
-    let errorMessage :any;
-    if(error.error instanceof HttpErrorResponse) {
+  errorHandler(error: HttpErrorResponse) {
+    let errorMessage: any;
+    if (error.error instanceof HttpErrorResponse) {
       errorMessage = error.error.message;
     } else {
       errorMessage = error;
-      
+
       //`Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
- }
+  }
+
+  setBookingData(data: any) {
+    this.bookingData = data;
+  }
+
+  getBookingData() {
+    return this.bookingData;
+  }
+
+  clearBookingData() {
+    this.bookingData = {};
+  }
 }

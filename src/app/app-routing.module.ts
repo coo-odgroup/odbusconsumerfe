@@ -22,7 +22,6 @@ import { PaymentStatusComponent } from './payment-status/payment-status.componen
 import { CommonContentComponent } from './common-content/common-content.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { OnlinebusticketsComponent } from './onlinebustickets/onlinebustickets.component';
-import { NewPageComponent } from './new-page/new-page.component';
 import { NewLoginPageComponent } from './new-login-page/new-login-page.component';
 
 
@@ -54,10 +53,8 @@ export const routes: Routes = [
   // { path: 'pnr', component: Page404Component },
   { path: 'pnr/:id', component: PnrdetailComponent },
   { path: 'listing', component: SearchComponent },
-  // { path: 'success', component: SuccessComponent },
-  { path: 'success', component: NewPageComponent },
+  { path: 'success', component: SuccessComponent },
   { path: 'booking', component: BookingComponent },
-   { path: 'newpage', component: NewPageComponent },
    { path: 'newloginpage', component: NewLoginPageComponent },
   {
     path: 'about-us',

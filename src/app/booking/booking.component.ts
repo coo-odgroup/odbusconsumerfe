@@ -589,8 +589,6 @@ export class BookingComponent implements OnInit {
 
             this.bookTicketResponse = res.data;
 
-            localStorage.setItem('pnr',this.bookTicketResponse.pnr);
-
             if (this.isMobile == true) {
 
               this.bookingStep2 = true;
@@ -845,11 +843,14 @@ export class BookingComponent implements OnInit {
 
     if (res && res.razorpay_signature && res.razorpay_payment_id) {
 
-
-      localStorage.setItem('od_success_name', this.passengerData.customerInfo.name);
-      localStorage.setItem('od_success_email', this.passengerData.customerInfo.email);
-      localStorage.setItem('od_success_phone', this.passengerData.customerInfo.phone);
-      localStorage.setItem('od_razor_id', res.razorpay_payment_id);
+      this.bookticketService.setBookingData({
+        name: this.passengerData.customerInfo.name,
+        email: this.passengerData.customerInfo.email,
+        phone: this.passengerData.customerInfo.phone,
+        receipt_id: this.MakePaymnetResponse.razorpay_order_id.receipt_id,
+        ticket_amount: this.MakePaymnetResponse.amount,
+        pnr: this.bookTicketResponse.pnr
+      });
 
       // console.log(this.passengerData);
 
@@ -1167,11 +1168,14 @@ export class BookingComponent implements OnInit {
 
         this.spinner.show();
 
-        localStorage.setItem('od_success_name', this.passengerData.customerInfo.name);
-        localStorage.setItem('od_success_email', this.passengerData.customerInfo.email);
-        localStorage.setItem('od_success_phone', this.passengerData.customerInfo.phone);
-        localStorage.setItem('receipt_id', this.MakePaymnetResponse.razorpay_order_id.receipt_id);
-        localStorage.setItem('ticket_amount',this.MakePaymnetResponse.amount);
+        this.bookticketService.setBookingData({
+          name: this.passengerData.customerInfo.name,
+          email: this.passengerData.customerInfo.email,
+          phone: this.passengerData.customerInfo.phone,
+          receipt_id: this.MakePaymnetResponse.razorpay_order_id.receipt_id,
+          ticket_amount: this.MakePaymnetResponse.amount,
+          pnr: this.bookTicketResponse.pnr
+        });
 
         this.router.navigate(['/success']);
 
@@ -1181,8 +1185,8 @@ export class BookingComponent implements OnInit {
     });
   }
 
-  pageTitle:any;
-  pageContent:any;
+  pageTitle: any;
+  pageContent: any;
 
   modalContent(loaclStorageKey: string, pageUrl: string) {
     this.spinner.show();
