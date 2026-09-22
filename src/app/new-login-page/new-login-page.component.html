@@ -1,52 +1,56 @@
-<div class="new-login-page">
+<ng-container *ngIf="!isMobile">
 
-    <!-- =====================================================
+    <div class="new-login-page">
+
+        <!-- =====================================================
          LEFT TRAVEL SECTION
     ====================================================== -->
-    <section class="login-visual-section">
+        <section class="login-visual-section">
 
-        <!-- Your main travel image -->
-        <div class="visual-image"></div>
+            <!-- Your main travel image -->
+            <div class="visual-image"></div>
 
-        <!-- Soft overlay -->
-        <div class="visual-overlay"></div>
+            <!-- Soft overlay -->
+            <div class="visual-overlay"></div>
 
 
-        <div class="visual-content">
+            <div class="visual-content">
 
-            <!-- Top Content -->
-            <div class="visual-top">
+                <img src="assets/img/odbus-logo.svg" alt="ODBUS" class="login-logo-left">
 
-                <div class="visual-copy">
+                <!-- Top Content -->
+                <div class="visual-top">
 
-                    <h1>
-                        Travel Together
-                        <span>A Better Tomorrow</span>
-                    </h1>
+                    <div class="visual-copy">
 
-                    <div class="yellow-line"></div>
+                        <h1>
+                            Travel Together
+                            <span>A Better Tomorrow</span>
+                        </h1>
 
-                    <p>
-                        Safe. Comfortable. Affordable.
-                        <br>
-                        Your trusted bus travel partner across Odisha.
-                    </p>
+                        <div class="yellow-line"></div>
+
+                        <p>
+                            Safe. Comfortable. Affordable.
+                            <br>
+                            Your trusted bus travel partner across Odisha.
+                        </p>
+
+                    </div>
+
+
+                    <!-- 400 × 400 Coupon -->
+                    <div class="coupon-wrapper">
+
+                        <img src="assets/img/coupon.png" alt="ODBUS Offer" class="coupon-image">
+
+                    </div>
 
                 </div>
 
 
-                <!-- 400 × 400 Coupon -->
-                <div class="coupon-wrapper">
-
-                    <img src="assets/img/login-coupon.png" alt="ODBUS Offer" class="coupon-image">
-
-                </div>
-
-            </div>
-
-
-            <!-- Feature Highlights -->
-            <div class="visual-features">
+                <!-- Feature Highlights -->
+                <!-- <div class="visual-features">
 
                 <div class="visual-feature">
 
@@ -144,40 +148,529 @@
 
                 </div>
 
+            </div> -->
+
+
+                <!-- Bottom Message -->
+                <div class="visual-bottom">
+
+                    <span>EXPLORE</span>
+                    <span>BOOK</span>
+                    <span>TRAVEL</span>
+                    <span>REPEAT</span>
+
+                </div>
+
             </div>
 
-
-            <!-- Bottom Message -->
-            <div class="visual-bottom">
-
-                <span>EXPLORE</span>
-                <span>BOOK</span>
-                <span>TRAVEL</span>
-                <span>REPEAT</span>
-
-            </div>
-
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- =====================================================
+        <!-- =====================================================
          RIGHT LOGIN SECTION
     ====================================================== -->
-    <section class="login-form-section">
+        <section class="login-form-section">
 
-        <div class="login-card">
+            <div class="login-card">
 
+                <a routerLink="/" class="back-home-button">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M19 12H5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                        </path>
+
+                        <path d="M11 6L5 12L11 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round">
+                        </path>
+                    </svg>
+
+                    <span>Back to Home</span>
+
+                </a>
+                <!-- =================================================
+                 OTP SCREEN
+            ================================================== -->
+                <ng-container *ngIf="showOtp">
+
+
+                    <!-- Back -->
+                    <button type="button" class="otp-back-button" (click)="backToLogin()">
+
+                        <svg viewBox="0 0 24 24" fill="none">
+
+                            <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            </path>
+
+                            <path d="M11 6L5 12L11 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                            </path>
+
+                        </svg>
+
+                        <span>Back</span>
+
+                    </button>
+
+
+                    <div class="otp-header">
+
+                        <div class="otp-icon">
+
+                            <svg viewBox="0 0 24 24" fill="none">
+
+                                <rect x="4" y="3" width="16" height="18" rx="3" stroke="currentColor"
+                                    stroke-width="1.8">
+                                </rect>
+
+                                <path d="M8 8H16M8 12H16M8 16H12" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+                        <h2>
+                            Verify Your OTP
+                        </h2>
+
+                        <p>
+                            Enter the 6-digit code sent to
+                        </p>
+
+                        <strong>
+                            {{ maskedContact }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- OTP Boxes -->
+                    <div class="otp-boxes">
+
+                        <input #otp0 maxlength="1" type="text" inputmode="numeric" autocomplete="one-time-code"
+                            [(ngModel)]="otp[0]" (input)="onOtpInput($event, 0)" (keydown)="onOtpKeyDown($event, 0)">
+
+                        <input #otp1 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[1]"
+                            (input)="onOtpInput($event, 1)" (keydown)="onOtpKeyDown($event, 1)">
+
+                        <input #otp2 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[2]"
+                            (input)="onOtpInput($event, 2)" (keydown)="onOtpKeyDown($event, 2)">
+
+                        <input #otp3 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[3]"
+                            (input)="onOtpInput($event, 3)" (keydown)="onOtpKeyDown($event, 3)">
+
+                        <input #otp4 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[4]"
+                            (input)="onOtpInput($event, 4)" (keydown)="onOtpKeyDown($event, 4)">
+
+
+
+                    </div>
+
+
+                    <!-- Error -->
+                    <div class="form-error" *ngIf="otpError">
+
+                        {{ otpError }}
+
+                    </div>
+
+
+                    <!-- Verify -->
+                    <button type="button" class="primary-button" [disabled]="isLoading" (click)="verifyOtp()">
+
+                        <span *ngIf="!isLoading">
+                            Verify OTP
+                        </span>
+
+                        <span *ngIf="isLoading">
+                            Verifying...
+                        </span>
+
+                        <svg *ngIf="!isLoading" viewBox="0 0 24 24" fill="none">
+
+                            <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            </path>
+
+                            <path d="M13 6L19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                            </path>
+
+                        </svg>
+
+                    </button>
+
+
+                    <!-- Timer -->
+                    <div class="otp-resend">
+
+                        <ng-container *ngIf="resendTimer > 0">
+
+                            <span>
+                                Didn't receive the code?
+                            </span>
+
+                            <strong>
+                                Resend in {{ resendTimer }}s
+                            </strong>
+
+                        </ng-container>
+
+
+                        <ng-container *ngIf="resendTimer <= 0">
+
+                            <span>
+                                Didn't receive the code?
+                            </span>
+
+                            <button type="button" (click)="resendOtp()" [disabled]="isLoading">
+
+                                Resend OTP
+
+                            </button>
+
+                        </ng-container>
+
+                    </div>
+
+
+                </ng-container>
+
+
+                <!-- =================================================
+                 LOGIN / SIGNUP SCREEN
+            ================================================== -->
+                <ng-container *ngIf="!showOtp">
+
+
+                    <!-- Heading -->
+                    <div class="login-heading">
+
+                        <div class="heading-copy">
+
+                            <h1>
+                                {{ authMode === 'login'
+                                ? 'Login To Your'
+                                : 'Create Your'
+                                }}
+
+                                <span>
+                                    ODBUS Account
+                                </span>
+                            </h1>
+
+                            <p>
+                                {{
+                                authMode === 'login'
+                                ? 'Access your bookings, manage trips and enjoy a seamless travel experience.'
+                                : 'Create your ODBUS account and make your bus travel easier.'
+                                }}
+                            </p>
+
+                        </div>
+
+
+                        <!-- Small decorative ticket -->
+                        <div class="ticket-decoration">
+
+                            <div class="mini-ticket">
+
+                                <svg viewBox="0 0 24 24" fill="none">
+
+                                    <path
+                                        d="M4 7.5A2.5 2.5 0 0 0 6.5 5H17.5A2.5 2.5 0 0 0 20 7.5V9A2 2 0 0 0 20 13V14.5A2.5 2.5 0 0 0 17.5 17H6.5A2.5 2.5 0 0 0 4 14.5V13A2 2 0 0 0 4 9V7.5Z"
+                                        stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+                                    </path>
+
+                                    <path d="M9 8V14M12 8V14M15 8V14" stroke="currentColor" stroke-width="1.4"
+                                        stroke-linecap="round">
+                                    </path>
+
+                                </svg>
+
+                                <span>
+                                    Happy<br>
+                                    Journeys!
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Login / Signup / Method Switch -->
+                    <div class="method-switch" *ngIf="authMode === 'login'">
+
+                        <button type="button" [class.active]="loginMethod === 'phone'" (click)="switchMethod('phone')">
+                            Via Phone
+                        </button>
+
+                        <button type="button" [class.active]="loginMethod === 'email'" (click)="switchMethod('email')">
+                            Via Email
+                        </button>
+
+                    </div>
+
+
+                    <!-- SIGNUP: Name + Mobile + Email -->
+                    <ng-container *ngIf="authMode === 'signup'">
+
+                        <!-- Name -->
+                        <div class="input-group-premium signup-input">
+                            <div class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"></circle>
+                                    <path d="M5 20C5.5 16.5 8.2 14.5 12 14.5C15.8 14.5 18.5 16.5 19 20"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                                </svg>
+                            </div>
+                            <input type="text" [(ngModel)]="name" placeholder="Enter your name" autocomplete="name"
+                                (input)="clearAuthError()">
+                        </div>
+
+                        <!-- Mobile -->
+                        <div class="input-group-premium signup-input">
+                            <div class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M7 3H5C3.9 3 3 3.9 3 5C3 13.8 10.2 21 19 21C20.1 21 21 20.1 21 19V17L16 15L14 17C11.2 15.7 8.3 12.8 7 10L9 8L7 3Z"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                                </svg>
+                            </div>
+                            <input type="tel" [(ngModel)]="signupPhone" maxlength="10" inputmode="numeric"
+                                placeholder="Enter mobile number" autocomplete="tel" (input)="clearAuthError()">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="input-group-premium signup-input">
+                            <div class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor"
+                                        stroke-width="1.8"></rect>
+                                    <path d="M4 7L12 13L20 7" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </div>
+                            <input type="email" [(ngModel)]="signupEmail" placeholder="Enter email address"
+                                autocomplete="email" (input)="clearAuthError()">
+                        </div>
+
+                    </ng-container>
+
+
+                    <!-- LOGIN: Phone / Email -->
+                    <div class="input-group-premium login-method-input" *ngIf="authMode === 'login'">
+
+                        <div class="input-icon">
+                            <svg *ngIf="loginMethod === 'phone'" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M7 3H5C3.9 3 3 3.9 3 5C3 13.8 10.2 21 19 21C20.1 21 21 20.1 21 19V17L16 15L14 17C11.2 15.7 8.3 12.8 7 10L9 8L7 3Z"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                            </svg>
+
+                            <svg *ngIf="loginMethod === 'email'" viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor"
+                                    stroke-width="1.8">
+                                </rect>
+                                <path d="M4 7L12 13L20 7" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linejoin="round">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <input *ngIf="loginMethod === 'phone'" type="tel" [(ngModel)]="authValue" maxlength="10"
+                            inputmode="numeric" placeholder="Enter Mobile Number" autocomplete="tel"
+                            (input)="clearAuthError()">
+
+                        <input *ngIf="loginMethod === 'email'" type="email" [(ngModel)]="authValue"
+                            placeholder="Enter Email Address" autocomplete="email" (input)="clearAuthError()">
+
+                    </div>
+
+
+                    <!-- Error -->
+                    <div class="form-error" *ngIf="authError">
+
+                        {{ authError }}
+
+                    </div>
+
+
+                    <!-- Get OTP -->
+                    <button type="button" class="primary-button" [disabled]="isLoading" (click)="getOtp()">
+
+                        <span>
+                            {{ isLoading ? 'Please wait...' : 'GET OTP' }}
+                        </span>
+
+                        <svg *ngIf="!isLoading" viewBox="0 0 24 24" fill="none">
+
+                            <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            </path>
+
+                            <path d="M13 6L19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                            </path>
+
+                        </svg>
+
+                    </button>
+
+
+                    <!-- Bottom Signup/Login -->
+                    <div class="auth-bottom">
+
+                        <span>
+                            {{
+                            authMode === 'login'
+                            ? "Don't have an account with us?"
+                            : "Already have an account?"
+                            }}
+                        </span>
+
+                        <button type="button" (click)="switchAuthMode(
+                            authMode === 'login'
+                            ? 'signup'
+                            : 'login'
+                        )">
+
+                            {{
+                            authMode === 'login'
+                            ? 'Signup'
+                            : 'Login'
+                            }}
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Trust Strip -->
+                    <div class="trust-strip">
+
+                        <div class="trust-item">
+
+                            <svg viewBox="0 0 24 24" fill="none">
+
+                                <path d="M4 13V12A8 8 0 0 1 20 12V13" stroke="currentColor" stroke-width="1.7"
+                                    stroke-linecap="round">
+                                </path>
+
+                                <path
+                                    d="M4 13H7V18H5.5A2.5 2.5 0 0 1 3 15.5V14A1 1 0 0 1 4 13ZM20 13H17V18H18.5A2.5 2.5 0 0 0 21 15.5V14A1 1 0 0 0 20 13Z"
+                                    stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+                                </path>
+
+                            </svg>
+
+                            <div>
+                                <strong>24/7 Support</strong>
+                                <span>Always here to help</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="trust-item">
+
+                            <svg viewBox="0 0 24 24" fill="none">
+
+                                <path d="M12 3L20 6V11C20 16.2 16.6 20.1 12 21C7.4 20.1 4 16.2 4 11V6L12 3Z"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+                                </path>
+
+                                <path d="M8.5 12L10.8 14.3L15.8 9.3" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+
+                            </svg>
+
+                            <div>
+                                <strong>Secure</strong>
+                                <span>Your data is safe</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="trust-item">
+
+                            <svg viewBox="0 0 24 24" fill="none">
+
+                                <rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor"
+                                    stroke-width="1.8">
+                                </rect>
+
+                                <path d="M8 9H16M8 13H13" stroke="currentColor" stroke-width="1.7"
+                                    stroke-linecap="round">
+                                </path>
+
+                            </svg>
+
+                            <div>
+                                <strong>Easy Booking</strong>
+                                <span>Simple & fast</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </ng-container>
+
+            </div>
+
+        </section>
+
+    </div>
+</ng-container>
+
+
+
+<!-- =========================================================
+     MOBILE VERSION
+========================================================= -->
+
+<ng-container *ngIf="isMobile">
+
+    <div class="mobile-login-page">
+
+        <div class="mobile-logo-top">
+            <img src="assets/img/odbus-logo.svg" alt="ODBUS">
+        </div>
+
+        <!-- =================================================
+             MOBILE LOGIN / SIGNUP / OTP CARD
+        ================================================== -->
+
+        <div class="mobile-login-card">
+            
+            <a routerLink="/" class="mobile-back-home">
+
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M19 12H5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                    </path>
+
+                    <path d="M11 6L5 12L11 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+                    </path>
+                </svg>
+
+                <span>Back to Home</span>
+
+            </a>
 
             <!-- =================================================
                  OTP SCREEN
             ================================================== -->
+
             <ng-container *ngIf="showOtp">
 
+                <!-- Back Button -->
 
-                <!-- Back -->
-                <button type="button" class="otp-back-button" (click)="backToLogin()">
+                <button type="button" class="mobile-otp-back" (click)="backToLogin()">
 
                     <svg viewBox="0 0 24 24" fill="none">
 
@@ -195,9 +688,11 @@
                 </button>
 
 
-                <div class="otp-header">
+                <!-- OTP Header -->
 
-                    <div class="otp-icon">
+                <div class="mobile-otp-header">
+
+                    <div class="mobile-otp-icon">
 
                         <svg viewBox="0 0 24 24" fill="none">
 
@@ -212,12 +707,13 @@
 
                     </div>
 
+
                     <h2>
                         Verify Your OTP
                     </h2>
 
                     <p>
-                        Enter the 6-digit code sent to
+                        Enter the 5-digit code sent to
                     </p>
 
                     <strong>
@@ -227,47 +723,49 @@
                 </div>
 
 
-                <!-- OTP Boxes -->
-                <div class="otp-boxes">
+                <!-- =================================================
+                     5 DIGIT OTP
+                ================================================== -->
 
-                    <input #otp0 maxlength="1" type="text" inputmode="numeric" autocomplete="one-time-code"
+                <div class="mobile-otp-boxes">
+
+                    <input #mobileOtp0 maxlength="1" type="text" inputmode="numeric" autocomplete="one-time-code"
                         [(ngModel)]="otp[0]" (input)="onOtpInput($event, 0)" (keydown)="onOtpKeyDown($event, 0)">
 
-                    <input #otp1 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[1]"
+
+                    <input #mobileOtp1 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[1]"
                         (input)="onOtpInput($event, 1)" (keydown)="onOtpKeyDown($event, 1)">
 
-                    <input #otp2 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[2]"
+
+                    <input #mobileOtp2 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[2]"
                         (input)="onOtpInput($event, 2)" (keydown)="onOtpKeyDown($event, 2)">
 
-                    <input #otp3 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[3]"
+
+                    <input #mobileOtp3 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[3]"
                         (input)="onOtpInput($event, 3)" (keydown)="onOtpKeyDown($event, 3)">
 
-                    <input #otp4 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[4]"
-                        (input)="onOtpInput($event, 4)" (keydown)="onOtpKeyDown($event, 4)">
 
-                    <input #otp5 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[5]"
-                        (input)="onOtpInput($event, 5)" (keydown)="onOtpKeyDown($event, 5)">
+                    <input #mobileOtp4 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[4]"
+                        (input)="onOtpInput($event, 4)" (keydown)="onOtpKeyDown($event, 4)">
 
                 </div>
 
 
-                <!-- Error -->
-                <div class="form-error" *ngIf="otpError">
+                <!-- OTP Error -->
+
+                <div class="mobile-form-error" *ngIf="otpError">
 
                     {{ otpError }}
 
                 </div>
 
 
-                <!-- Verify -->
-                <button type="button" class="primary-button" [disabled]="isLoading" (click)="verifyOtp()">
+                <!-- Verify OTP -->
 
-                    <span *ngIf="!isLoading">
-                        Verify OTP
-                    </span>
+                <button type="button" class="mobile-primary-button" [disabled]="isLoading" (click)="verifyOtp()">
 
-                    <span *ngIf="isLoading">
-                        Verifying...
+                    <span>
+                        {{ isLoading ? 'Verifying...' : 'Verify OTP' }}
                     </span>
 
                     <svg *ngIf="!isLoading" viewBox="0 0 24 24" fill="none">
@@ -284,8 +782,9 @@
                 </button>
 
 
-                <!-- Timer -->
-                <div class="otp-resend">
+                <!-- Resend -->
+
+                <div class="mobile-otp-resend">
 
                     <ng-container *ngIf="resendTimer > 0">
 
@@ -316,97 +815,57 @@
 
                 </div>
 
-
             </ng-container>
 
 
+
             <!-- =================================================
-                 LOGIN / SIGNUP SCREEN
+                 LOGIN / SIGNUP
             ================================================== -->
+
             <ng-container *ngIf="!showOtp">
 
 
                 <!-- Heading -->
-                <div class="login-heading">
 
-                    <div class="heading-copy">
+                <div class="mobile-login-heading">
 
-                        <h1>
-                            {{ authMode === 'login'
-                            ? 'Login To Your'
-                            : 'Create Your'
-                            }}
+                    <h1>
 
-                            <span>
-                                ODBUS Account
-                            </span>
-                        </h1>
+                        {{
+                        authMode === 'login'
+                        ? 'Login To Your'
+                        : 'Create Your'
+                        }}
 
-                        <p>
-                            {{
-                            authMode === 'login'
-                            ? 'Access your bookings, manage trips and enjoy a seamless travel experience.'
-                            : 'Create your ODBUS account and make your bus travel easier.'
-                            }}
-                        </p>
+                        <span>
+                            ODBUS Account
+                        </span>
 
-                    </div>
+                    </h1>
 
 
-                    <!-- Small decorative ticket -->
-                    <div class="ticket-decoration">
+                    <p>
 
-                        <div class="mini-ticket">
+                        {{
+                        authMode === 'login'
+                        ? 'Access your bookings, manage trips and enjoy a seamless travel experience.'
+                        : 'Create your ODBUS account and make your bus travel easier.'
+                        }}
 
-                            <svg viewBox="0 0 24 24" fill="none">
-
-                                <path
-                                    d="M4 7.5A2.5 2.5 0 0 0 6.5 5H17.5A2.5 2.5 0 0 0 20 7.5V9A2 2 0 0 0 20 13V14.5A2.5 2.5 0 0 0 17.5 17H6.5A2.5 2.5 0 0 0 4 14.5V13A2 2 0 0 0 4 9V7.5Z"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
-                                </path>
-
-                                <path d="M9 8V14M12 8V14M15 8V14" stroke="currentColor" stroke-width="1.4"
-                                    stroke-linecap="round">
-                                </path>
-
-                            </svg>
-
-                            <span>
-                                Happy<br>
-                                Journeys!
-                            </span>
-
-                        </div>
-
-                    </div>
+                    </p>
 
                 </div>
 
 
-                <!-- Login / Signup Switch -->
-                <div class="auth-switch">
 
-                    <button type="button" [class.active]="authMode === 'login'" (click)="switchAuthMode('login')">
+                <!-- =================================================
+                     LOGIN METHOD
+                ================================================== -->
 
-                        Login
-
-                    </button>
-
-                    <button type="button" [class.active]="authMode === 'signup'" (click)="switchAuthMode('signup')">
-
-                        New User
-
-                    </button>
-
-                </div>
-
-
-                <!-- Phone / Email Switch -->
-                <div class="method-switch">
+                <div class="mobile-method-tabs" *ngIf="authMode === 'login'">
 
                     <button type="button" [class.active]="loginMethod === 'phone'" (click)="switchMethod('phone')">
-
-                        <span class="switch-dot"></span>
 
                         Via Phone
 
@@ -415,8 +874,6 @@
 
                     <button type="button" [class.active]="loginMethod === 'email'" (click)="switchMethod('email')">
 
-                        <span class="switch-dot"></span>
-
                         Via Email
 
                     </button>
@@ -424,33 +881,14 @@
                 </div>
 
 
-                <!-- Signup Name -->
-                <div class="input-group-premium" *ngIf="authMode === 'signup'">
 
-                    <div class="input-icon">
+                <!-- =================================================
+                     LOGIN INPUT
+                ================================================== -->
 
-                        <svg viewBox="0 0 24 24" fill="none">
+                <div class="mobile-input" *ngIf="authMode === 'login'">
 
-                            <circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8">
-                            </circle>
-
-                            <path d="M5 20C5.5 16.5 8.2 14.5 12 14.5C15.8 14.5 18.5 16.5 19 20" stroke="currentColor"
-                                stroke-width="1.8" stroke-linecap="round">
-                            </path>
-
-                        </svg>
-
-                    </div>
-
-                    <input type="text" [(ngModel)]="name" placeholder="Enter your name" autocomplete="name">
-
-                </div>
-
-
-                <!-- Phone / Email -->
-                <div class="input-group-premium">
-
-                    <div class="input-icon">
+                    <div class="mobile-input-icon">
 
                         <svg *ngIf="loginMethod === 'phone'" viewBox="0 0 24 24" fill="none">
 
@@ -486,20 +924,117 @@
                 </div>
 
 
+
+                <!-- =================================================
+                     SIGNUP FIELDS
+                ================================================== -->
+
+                <ng-container *ngIf="authMode === 'signup'">
+
+
+                    <!-- Name -->
+
+                    <div class="mobile-input">
+
+                        <div class="mobile-input-icon">
+
+                            <svg viewBox="0 0 24 24" fill="none">
+
+                                <circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8">
+                                </circle>
+
+                                <path d="M5 20C5.5 16.5 8.2 14.5 12 14.5C15.8 14.5 18.5 16.5 19 20"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+                        <input type="text" [(ngModel)]="name" placeholder="Enter your name" autocomplete="name"
+                            (input)="clearAuthError()">
+
+                    </div>
+
+
+
+                    <!-- Mobile -->
+
+                    <div class="mobile-input">
+
+                        <div class="mobile-input-icon">
+
+                            <svg viewBox="0 0 24 24" fill="none">
+
+                                <path
+                                    d="M7 3H5C3.9 3 3 3.9 3 5C3 13.8 10.2 21 19 21C20.1 21 21 20.1 21 19V17L16 15L14 17C11.2 15.7 8.3 12.8 7 10L9 8L7 3Z"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+                        <input type="tel" [(ngModel)]="signupPhone" maxlength="10" inputmode="numeric"
+                            placeholder="Enter mobile number" autocomplete="tel" (input)="clearAuthError()">
+
+                    </div>
+
+
+
+                    <!-- Email -->
+
+                    <div class="mobile-input">
+
+                        <div class="mobile-input-icon">
+
+                            <svg viewBox="0 0 24 24" fill="none">
+
+                                <rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor"
+                                    stroke-width="1.8">
+                                </rect>
+
+                                <path d="M4 7L12 13L20 7" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linejoin="round">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+                        <input type="email" [(ngModel)]="signupEmail" placeholder="Enter email address"
+                            autocomplete="email" (input)="clearAuthError()">
+
+                    </div>
+
+                </ng-container>
+
+
+
                 <!-- Error -->
-                <div class="form-error" *ngIf="authError">
+
+                <div class="mobile-form-error" *ngIf="authError">
 
                     {{ authError }}
 
                 </div>
 
 
-                <!-- Get OTP -->
-                <button type="button" class="primary-button" [disabled]="isLoading" (click)="getOtp()">
+
+                <!-- GET OTP -->
+
+                <button type="button" class="mobile-primary-button" [disabled]="isLoading" (click)="getOtp()">
 
                     <span>
-                        {{ isLoading ? 'Please wait...' : 'GET OTP' }}
+
+                        {{
+                        isLoading
+                        ? 'Please wait...'
+                        : 'GET OTP'
+                        }}
+
                     </span>
+
 
                     <svg *ngIf="!isLoading" viewBox="0 0 24 24" fill="none">
 
@@ -515,16 +1050,21 @@
                 </button>
 
 
-                <!-- Bottom Signup/Login -->
-                <div class="auth-bottom">
+
+                <!-- Signup / Login -->
+
+                <div class="mobile-auth-bottom">
 
                     <span>
+
                         {{
                         authMode === 'login'
                         ? "Don't have an account with us?"
                         : "Already have an account?"
                         }}
+
                     </span>
+
 
                     <button type="button" (click)="switchAuthMode(
                             authMode === 'login'
@@ -543,10 +1083,18 @@
                 </div>
 
 
-                <!-- Trust Strip -->
-                <div class="trust-strip">
 
-                    <div class="trust-item">
+                <!-- =================================================
+                     MOBILE TRUST FEATURES
+                     SINGLE ROW
+                ================================================== -->
+
+                <div class="mobile-trust-strip">
+
+
+                    <!-- Support -->
+
+                    <div class="mobile-trust-item">
 
                         <svg viewBox="0 0 24 24" fill="none">
 
@@ -561,15 +1109,21 @@
 
                         </svg>
 
-                        <div>
-                            <strong>24/7 Support</strong>
-                            <span>Always here to help</span>
-                        </div>
+                        <strong>
+                            24/7 Support
+                        </strong>
+
+                        <span>
+                            Always here
+                        </span>
 
                     </div>
 
 
-                    <div class="trust-item">
+
+                    <!-- Secure -->
+
+                    <div class="mobile-trust-item">
 
                         <svg viewBox="0 0 24 24" fill="none">
 
@@ -583,15 +1137,21 @@
 
                         </svg>
 
-                        <div>
-                            <strong>Secure</strong>
-                            <span>Your data is safe</span>
-                        </div>
+                        <strong>
+                            Secure
+                        </strong>
+
+                        <span>
+                            Your data is safe
+                        </span>
 
                     </div>
 
 
-                    <div class="trust-item">
+
+                    <!-- Easy Booking -->
+
+                    <div class="mobile-trust-item">
 
                         <svg viewBox="0 0 24 24" fill="none">
 
@@ -603,19 +1163,24 @@
 
                         </svg>
 
-                        <div>
-                            <strong>Easy Booking</strong>
-                            <span>Simple & fast</span>
-                        </div>
+                        <strong>
+                            Easy Booking
+                        </strong>
+
+                        <span>
+                            Simple & fast
+                        </span>
 
                     </div>
 
+
                 </div>
+
 
             </ng-container>
 
         </div>
 
-    </section>
+    </div>
 
-</div>
+</ng-container>

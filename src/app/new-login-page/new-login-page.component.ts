@@ -24,6 +24,7 @@ import { LoginChecker } from '../helpers/loginChecker';
 import { EncryptionService } from '../encrypt.service';
 import { SeoService } from '../services/seo.service';
 import { Location } from '@angular/common';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 
 @Component({
@@ -33,12 +34,13 @@ import { Location } from '@angular/common';
 })
 export class NewLoginPageComponent implements OnInit, OnDestroy {
 
+  isMobile: boolean = false;
 
   /* =====================================================
      OTP INPUT REFERENCES
   ====================================================== */
 
-  @ViewChildren('otp0, otp1, otp2, otp3, otp4, otp5')
+  @ViewChildren('otp0, otp1, otp2, otp3, otp4')
   otpInputs!: QueryList<ElementRef>;
 
 
@@ -59,12 +61,16 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
 
   authValue = '';
 
+  signupPhone = '';
+  signupEmail = '';
+
 
   /* =====================================================
      OTP DATA
   ====================================================== */
 
-  otp: string[] = ['', '', '', '', '', ''];
+  // OTP is always 6 digits
+  otp: string[] = ['', '', '', '', ''];
 
   showOtp = false;
 
@@ -116,16 +122,21 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
 
     private enc: EncryptionService,
 
-    private location: Location
+    private location: Location,
+
+    private deviceService: DeviceDetectorService
   ) {
 
     this.session = new LoginChecker();
+
+    this.isMobile = this.deviceService.isMobile();
 
     const currentUrl =
       location.path().replace('/', '');
 
     this.seo.seolist(currentUrl);
   }
+
 
 
   /* =====================================================
@@ -150,33 +161,9 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
     }
 
 
-    /*
-     * If OTP data already exists,
-     * restore OTP screen.
-     */
-
-    const otpType =
-      localStorage.getItem('otp_type');
-
-    const resendParam =
-      localStorage.getItem('resendParam');
-
-
-    if (
-      otpType &&
-      resendParam &&
-      this.userId
-    ) {
-
-      this.authMode =
-        otpType === 'signup'
-          ? 'signup'
-          : 'login';
-
-      this.showOtp = true;
-
-      this.startTimer();
-    }
+    // Always open the login screen when the page loads.
+    // OTP screen is shown only after a successful GET OTP request.
+    this.showOtp = false;
 
   }
 
@@ -194,8 +181,10 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
     this.authError = '';
 
     this.authValue = '';
-
     this.name = '';
+    this.signupPhone = '';
+    this.signupEmail = '';
+    this.loginMethod = 'phone';
   }
 
 
@@ -233,73 +222,52 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
 
     this.authError = '';
 
+    if (this.authMode === 'signup') {
+      if (!this.name.trim()) {
+        this.authError = 'Please enter your name.';
+        return false;
+      }
 
-    if (
-      this.authMode === 'signup' &&
-      !this.name.trim()
-    ) {
+      const phone = this.signupPhone.replace(/\D/g, '');
+      if (phone.length !== 10) {
+        this.authError = 'Please enter a valid 10-digit mobile number.';
+        return false;
+      }
 
-      this.authError =
-        'Please enter your name.';
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(this.signupEmail.trim())) {
+        this.authError = 'Please enter a valid email address.';
+        return false;
+      }
 
-      return false;
+      return true;
     }
-
 
     if (!this.authValue.trim()) {
-
-      this.authError =
-        this.loginMethod === 'phone'
-          ? 'Please enter your mobile number.'
-          : 'Please enter your email address.';
-
+      this.authError = this.loginMethod === 'phone'
+        ? 'Please enter your mobile number.'
+        : 'Please enter your email address.';
       return false;
     }
 
-
-    if (
-      this.loginMethod === 'phone'
-    ) {
-
-      const phone =
-        this.authValue.replace(/\D/g, '');
-
-
+    if (this.loginMethod === 'phone') {
+      const phone = this.authValue.replace(/\D/g, '');
       if (phone.length !== 10) {
-
-        this.authError =
-          'Please enter a valid 10-digit mobile number.';
-
+        this.authError = 'Please enter a valid 10-digit mobile number.';
         return false;
       }
     }
 
-
-    if (
-      this.loginMethod === 'email'
-    ) {
-
-      const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-      if (
-        !emailPattern.test(
-          this.authValue.trim()
-        )
-      ) {
-
-        this.authError =
-          'Please enter a valid email address.';
-
+    if (this.loginMethod === 'email') {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(this.authValue.trim())) {
+        this.authError = 'Please enter a valid email address.';
         return false;
       }
     }
-
 
     return true;
   }
-
 
   /* =====================================================
      GET OTP
@@ -328,12 +296,11 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
     );
 
 
-    localStorage.setItem(
-      'via',
-      this.loginMethod === 'phone'
-        ? this.authValue
-        : this.authValue
-    );
+    const viaValue = this.authMode === 'signup'
+      ? `${this.signupPhone} / ${this.signupEmail}`
+      : this.authValue;
+
+    localStorage.setItem('via', viaValue);
 
 
     /*
@@ -346,25 +313,18 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
      * match that existing component.
      */
 
-    const param: any = {
-
-      via:
-        this.loginMethod,
-
-      phone:
-        this.loginMethod === 'phone'
-          ? this.authValue
-          : '',
-
-      email:
-        this.loginMethod === 'email'
-          ? this.authValue
-          : '',
-
-      name:
-        this.name
-
-    };
+    const param: any = this.authMode === 'signup'
+      ? {
+        name: this.name.trim(),
+        phone: this.signupPhone.replace(/\D/g, ''),
+        email: this.signupEmail.trim()
+      }
+      : {
+        via: this.loginMethod,
+        phone: this.loginMethod === 'phone' ? this.authValue.trim() : '',
+        email: this.loginMethod === 'email' ? this.authValue.trim() : '',
+        name: ''
+      };
 
 
     localStorage.setItem(
@@ -411,7 +371,7 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
               this.showOtp = true;
 
               this.otp =
-                ['', '', '', '', '', ''];
+                ['', '', '', '', ''];
 
               this.otpError = '';
 
@@ -501,7 +461,7 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
               this.showOtp = true;
 
               this.otp =
-                ['', '', '', '', '', ''];
+                ['', '', '', '', ''];
 
               this.otpError = '';
 
@@ -605,7 +565,7 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
      */
 
     if (
-      index < 5 &&
+      index < 4 &&
       value
     ) {
 
@@ -615,11 +575,11 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
 
     /*
      * Auto verify when all
-     * 6 digits are entered.
+     * 5 digits are entered.
      */
 
     if (
-      this.otp.join('').length === 6
+      this.otp.join('').length === 5
     ) {
 
       this.verifyOtp();
@@ -686,11 +646,11 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
 
 
     if (
-      otpValue.length !== 6
+      otpValue.length !== 5
     ) {
 
       this.otpError =
-        'Please enter the complete 6-digit OTP.';
+        'Please enter the complete 5-digit OTP.';
 
       return;
     }
@@ -1032,9 +992,9 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
                 JSON.parse(data);
 
 
-              
 
-             
+
+
 
 
               this.notify.notify(
@@ -1087,7 +1047,7 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
     this.showOtp = false;
 
     this.otp =
-      ['', '', '', '', '', ''];
+      ['', '', '', '', ''];
 
     this.otpError = '';
 
@@ -1102,70 +1062,42 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
 
   get maskedContact(): string {
 
-    if (
-      this.loginMethod === 'phone'
-    ) {
+    if (this.authMode === 'signup') {
+      const phone = this.signupPhone || '';
+      const email = this.signupEmail || '';
 
-      const value =
-        this.authValue || '';
+      const maskedPhone = phone.length >= 4
+        ? '******' + phone.slice(-4)
+        : phone;
 
+      const parts = email.split('@');
+      const maskedEmail = parts.length === 2
+        ? (parts[0].length > 2 ? parts[0].substring(0, 2) + '***' : '***') + '@' + parts[1]
+        : email;
 
-      if (
-        value.length >= 4
-      ) {
-
-        return (
-          '******' +
-          value.slice(-4)
-        );
-
-      }
-
+      return `${maskedPhone} & ${maskedEmail}`;
     }
 
-
-    if (
-      this.loginMethod === 'email'
-    ) {
-
-      const email =
-        this.authValue || '';
-
-
-      const parts =
-        email.split('@');
-
-
-      if (
-        parts.length === 2
-      ) {
-
-        const name =
-          parts[0];
-
-
-        const masked =
-          name.length > 2
-            ? name.substring(0, 2) +
-            '***'
-            : '***';
-
-
-        return (
-          masked +
-          '@' +
-          parts[1]
-        );
-
+    if (this.loginMethod === 'phone') {
+      const value = this.authValue || '';
+      if (value.length >= 4) {
+        return '******' + value.slice(-4);
       }
-
     }
 
+    if (this.loginMethod === 'email') {
+      const email = this.authValue || '';
+      const parts = email.split('@');
+      if (parts.length === 2) {
+        const masked = parts[0].length > 2
+          ? parts[0].substring(0, 2) + '***'
+          : '***';
+        return masked + '@' + parts[1];
+      }
+    }
 
     return this.authValue;
-
   }
-
 
   /* =====================================================
      DESTROY

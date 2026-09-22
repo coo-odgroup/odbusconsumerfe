@@ -52,7 +52,7 @@
     inset: 0;
 
     background-image:
-        url('/assets/img/login_banner.png');
+        url('/assets/img/login_banner.jpg');
 
     background-size: cover;
     background-position: center center;
@@ -94,6 +94,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.login-logo-left {
+    position: absolute;
+    top: 28px;
+    left: 35px;
+    width: 140px;
+    height: auto;
+    z-index: 20;
 }
 
 
@@ -470,6 +479,32 @@
     }
 }
 
+
+.login-card {
+    position: relative;
+}
+
+.back-home-button {
+    /* position: absolute; */
+    top: 22px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    color: #123d82;
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    z-index: 10;
+}
+
+.back-home-button svg {
+    width: 17px;
+    height: 17px;
+}
 
 /* =========================================================
    HEADING
@@ -1593,4 +1628,1148 @@
         transition: none !important;
     }
 
+}
+
+/* =========================================================
+   ODBUS LOGIN PAGE - FINAL DESIGN OVERRIDES
+   ========================================================= */
+
+/* Stronger white fade at the top of the travel image */
+.login-visual-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, .82) 0%,
+            rgba(255, 255, 255, .58) 7%,
+            rgba(255, 255, 255, .24) 18%,
+            rgba(255, 255, 255, 0) 38%,
+            rgba(255, 255, 255, 0) 100%);
+}
+
+.visual-content {
+    z-index: 5;
+}
+
+/* Smaller, cleaner left heading */
+.visual-copy h1 {
+    font-size: clamp(34px, 3.15vw, 52px);
+    letter-spacing: -1.8px;
+    line-height: 1.04;
+}
+
+.visual-copy p {
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.yellow-line {
+    width: 58px;
+    height: 4px;
+    margin: 18px 0 13px;
+}
+
+/* Keep all four feature icons compact and aligned */
+.visual-features {
+    gap: 15px;
+    max-width: 560px;
+    padding: 8px 0;
+}
+
+.visual-feature {
+    min-width: 78px;
+    gap: 5px;
+}
+
+.feature-icon {
+    width: 46px;
+    height: 46px;
+}
+
+.feature-icon svg {
+    width: 23px;
+    height: 23px;
+}
+
+.fare-icon {
+    font-size: 22px;
+}
+
+.visual-feature span {
+    font-size: 11px;
+}
+
+.feature-divider {
+    height: 48px;
+}
+
+/* Explore / Book / Travel / Repeat on the right side of the image */
+.visual-bottom {
+    position: absolute;
+    right: 38px;
+    bottom: 27px;
+    z-index: 8;
+    gap: 13px;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+}
+
+.visual-bottom span:not(:last-child)::after {
+    margin-left: 13px;
+}
+
+/* Login / Email method tabs: no box, only a clean underline */
+.method-switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    margin: 28px 0 18px;
+    padding: 0 0 11px;
+    border-bottom: 1px solid #dbe5f2;
+    background: transparent;
+}
+
+.method-switch::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 72px;
+    height: 3px;
+    border-radius: 8px;
+    background: #1477e9;
+    transition: transform .25s ease, width .25s ease;
+}
+
+.method-switch button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    min-width: 90px;
+    padding: 0 0 1px;
+    border: none;
+    background: transparent;
+    color: #7b8ba3;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.method-switch button.active {
+    color: #103d82;
+}
+
+/* Position underline under the selected method */
+.method-switch button:nth-child(2).active~* {
+    transform: translateX(124px);
+}
+
+/* Signup has three clean fields */
+.signup-input {
+    margin-top: 11px;
+}
+
+.signup-input:first-child {
+    margin-top: 20px;
+}
+
+/* Login input follows method tabs cleanly */
+.login-method-input {
+    margin-top: 20px;
+}
+
+/* Make signup CTA breathe with the extra field */
+.auth-bottom {
+    margin-top: 20px;
+}
+
+/* OTP screen spacing and card stability */
+.login-card:has(.otp-header) {
+    min-height: 520px;
+}
+
+.otp-header {
+    margin-top: 22px;
+}
+
+.otp-boxes {
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.otp-boxes input {
+    width: 52px;
+    height: 58px;
+}
+
+/* Desktop only */
+@media (min-width: 901px) {
+    .login-form-section {
+        padding: 40px 55px;
+    }
+
+    .login-card {
+        max-width: 620px;
+        padding: 46px 52px 34px;
+    }
+}
+
+/* Tablet / mobile */
+@media (max-width: 900px) {
+    .login-visual-section::after {
+        background: linear-gradient(180deg,
+                rgba(255, 255, 255, .75),
+                rgba(255, 255, 255, .15) 35%,
+                rgba(255, 255, 255, 0) 60%);
+    }
+
+    .visual-copy h1 {
+        font-size: 38px;
+    }
+
+    .visual-bottom {
+        right: 22px;
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 650px) {
+    .visual-copy h1 {
+        font-size: 34px;
+    }
+
+    .visual-features {
+        gap: 8px;
+    }
+
+    .visual-feature {
+        min-width: 65px;
+    }
+
+    .feature-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .feature-divider {
+        height: 40px;
+    }
+
+    .visual-bottom {
+        right: 15px;
+        bottom: 14px;
+        font-size: 8px;
+        letter-spacing: 1.7px;
+    }
+
+    .method-switch {
+        gap: 25px;
+    }
+
+    .method-switch::after {
+        width: 65px;
+    }
+
+    .method-switch button:nth-child(2).active~* {
+        transform: translateX(90px);
+    }
+
+    .login-card:has(.otp-header) {
+        min-height: auto;
+    }
+
+    .otp-boxes input {
+        width: 43px;
+        height: 53px;
+    }
+}
+
+
+/* Selected Via Email underline */
+.method-switch:has(button:nth-child(2).active)::after {
+    transform: translateX(124px);
+}
+
+@media (max-width: 650px) {
+    .method-switch:has(button:nth-child(2).active)::after {
+        transform: translateX(90px);
+    }
+}
+
+
+/* =========================================================
+   FINAL CORRECTIONS
+   ========================================================= */
+
+/* Stronger soft-white fade at the very top of the travel image */
+.login-visual-section::after {
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.94) 0%,
+            rgba(255, 255, 255, 0.78) 8%,
+            rgba(255, 255, 255, 0.42) 20%,
+            rgba(255, 255, 255, 0.14) 30%,
+            rgba(255, 255, 255, 0) 44%,
+            rgba(255, 255, 255, 0) 100%);
+}
+
+/* Keep the content above the fade and crisp */
+.visual-content {
+    z-index: 5;
+}
+
+/* Five-digit OTP layout */
+.otp-boxes {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 650px) {
+    .login-visual-section::after {
+        background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.92) 0%,
+                rgba(255, 255, 255, 0.70) 12%,
+                rgba(255, 255, 255, 0.28) 30%,
+                rgba(255, 255, 255, 0) 52%);
+    }
+}
+
+
+
+/* =========================================================
+   ODBUS MOBILE LOGIN
+   DEDICATED MOBILE DESIGN
+========================================================= */
+
+.mobile-login-page {
+    display: none;
+}
+
+
+/* =========================================================
+   MOBILE ONLY
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .mobile-login-page {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        min-height: 100svh;
+
+        padding: 14px 10px 22px;
+
+        box-sizing: border-box;
+
+        background:
+            radial-gradient(circle at 100% 0%,
+                rgba(52, 145, 235, .16),
+                transparent 38%),
+            linear-gradient(180deg,
+                #eef8ff 0%,
+                #f7fbff 50%,
+                #ffffff 100%);
+
+        align-items: center;
+        justify-content: flex-start;
+
+        overflow-x: hidden;
+    }
+
+
+    /* =====================================================
+       CARD
+    ===================================================== */
+
+    .mobile-login-card {
+        width: 100%;
+        max-width: 460px;
+
+        box-sizing: border-box;
+
+        padding: 27px 18px 20px;
+
+        border-radius: 24px;
+
+        background: rgba(255, 255, 255, .97);
+
+        border: 1px solid rgba(255, 255, 255, .95);
+
+        box-shadow:
+            0 18px 50px rgba(21, 67, 118, .13),
+            0 3px 12px rgba(21, 67, 118, .05);
+
+        animation:
+            mobileCardIn .55s cubic-bezier(.22, 1, .36, 1) both;
+    }
+
+
+    @keyframes mobileCardIn {
+
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    }
+
+
+    /* =====================================================
+       HEADING
+    ===================================================== */
+
+    .mobile-login-heading {
+        padding: 0 2px;
+    }
+
+
+    .mobile-login-heading h1 {
+        margin: 0;
+
+        color: #102d69;
+
+        font-size: 29px;
+        line-height: 1.05;
+
+        font-weight: 800;
+
+        letter-spacing: -1.1px;
+    }
+
+
+    .mobile-login-heading h1 span {
+        display: block;
+
+        margin-top: 2px;
+
+        color: #1478e9;
+    }
+
+
+    .mobile-login-heading p {
+        margin: 12px 0 0;
+
+        color: #697991;
+
+        font-size: 12px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =====================================================
+       PHONE / EMAIL TABS
+    ===================================================== */
+
+    .mobile-method-tabs {
+        position: relative;
+
+        display: flex;
+
+        width: 100%;
+
+        margin-top: 25px;
+
+        padding-bottom: 11px;
+
+        border-bottom: 1px solid #dce6f2;
+    }
+
+
+    .mobile-method-tabs button {
+        position: relative;
+
+        width: 50%;
+
+        padding: 0;
+
+        border: 0;
+
+        background: transparent;
+
+        color: #78879e;
+
+        font-family: inherit;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        text-align: left;
+
+        cursor: pointer;
+    }
+
+
+    .mobile-method-tabs button.active {
+        color: #123f82;
+    }
+
+
+    .mobile-method-tabs button.active::after {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        bottom: -12px;
+
+        width: 64px;
+        height: 3px;
+
+        border-radius: 10px;
+
+        background: #1478e9;
+    }
+
+
+    .mobile-method-tabs button:nth-child(2).active::after {
+        left: 0;
+    }
+
+
+    /* =====================================================
+       INPUT
+    ===================================================== */
+
+    .mobile-input {
+        display: flex;
+
+        align-items: center;
+
+        width: 100%;
+        height: 54px;
+
+        margin-top: 14px;
+
+        padding: 0 15px;
+
+        box-sizing: border-box;
+
+        border:
+            1px solid #d7e3f2;
+
+        border-radius: 13px;
+
+        background: #f8fbff;
+
+        transition:
+            border-color .2s ease,
+            box-shadow .2s ease,
+            background .2s ease;
+    }
+
+
+    .mobile-input:focus-within {
+        border-color: #2584eb;
+
+        background: #ffffff;
+
+        box-shadow:
+            0 0 0 4px rgba(37, 132, 235, .08);
+    }
+
+
+    .mobile-input-icon {
+        width: 25px;
+        height: 25px;
+
+        flex-shrink: 0;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        margin-right: 10px;
+
+        color: #17417e;
+    }
+
+
+    .mobile-input-icon svg {
+        width: 21px;
+        height: 21px;
+    }
+
+
+    .mobile-input input {
+        width: 100%;
+        height: 100%;
+
+        padding: 0;
+
+        border: none;
+        outline: none;
+
+        background: transparent;
+
+        color: #183565;
+
+        font-family: inherit;
+
+        font-size: 13px;
+    }
+
+
+    .mobile-input input::placeholder {
+        color: #8997aa;
+    }
+
+
+    /* =====================================================
+       SIGNUP INPUT SPACING
+    ===================================================== */
+
+    .mobile-input+.mobile-input {
+        margin-top: 11px;
+    }
+
+
+    /* =====================================================
+       ERROR
+    ===================================================== */
+
+    .mobile-form-error {
+        margin-top: 8px;
+
+        color: #dc3545;
+
+        font-size: 11px;
+
+        font-weight: 600;
+    }
+
+
+    /* =====================================================
+       PRIMARY BUTTON
+    ===================================================== */
+
+    .mobile-primary-button {
+        position: relative;
+
+        width: 100%;
+        height: 54px;
+
+        margin-top: 17px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 13px;
+
+        border: none;
+
+        border-radius: 13px;
+
+        background:
+            linear-gradient(135deg,
+                #176fe5,
+                #104eae);
+
+        color: #ffffff;
+
+        font-family: inherit;
+
+        font-size: 14px;
+
+        font-weight: 750;
+
+        cursor: pointer;
+
+        overflow: hidden;
+
+        box-shadow:
+            0 12px 25px rgba(18, 91, 190, .22);
+
+        transition:
+            transform .2s ease,
+            box-shadow .2s ease;
+    }
+
+
+    .mobile-primary-button::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: -120%;
+
+        width: 70%;
+        height: 100%;
+
+        transform: skewX(-20deg);
+
+        background:
+            linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, .22),
+                transparent);
+
+        transition: left .65s ease;
+    }
+
+
+    .mobile-primary-button:active {
+        transform: scale(.985);
+    }
+
+
+    .mobile-primary-button:active::before {
+        left: 140%;
+    }
+
+
+    .mobile-primary-button svg {
+        width: 19px;
+        height: 19px;
+    }
+
+
+    .mobile-primary-button:disabled {
+        opacity: .65;
+        cursor: not-allowed;
+    }
+
+
+    /* =====================================================
+       SIGNUP / LOGIN
+    ===================================================== */
+
+    .mobile-auth-bottom {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 5px;
+
+        margin-top: 20px;
+
+        color: #63728b;
+
+        font-size: 12px;
+    }
+
+
+    .mobile-auth-bottom button {
+        padding: 0;
+
+        border: none;
+
+        background: transparent;
+
+        color: #dda900;
+
+        font-family: inherit;
+
+        font-size: 12px;
+
+        font-weight: 750;
+
+        text-decoration: underline;
+
+        text-underline-offset: 3px;
+
+        cursor: pointer;
+    }
+
+
+    /* =====================================================
+       TRUST STRIP
+       3 ITEMS IN ONE ROW
+    ===================================================== */
+
+    .mobile-trust-strip {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 5px;
+
+        width: 100%;
+
+        margin-top: 23px;
+
+        padding-top: 18px;
+
+        border-top:
+            1px solid #e1e9f3;
+    }
+
+
+    .mobile-trust-item {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: flex-start;
+
+        min-width: 0;
+
+        text-align: center;
+
+        color: #17417e;
+    }
+
+
+    .mobile-trust-item svg {
+        width: 25px;
+        height: 25px;
+
+        margin-bottom: 6px;
+    }
+
+
+    .mobile-trust-item strong {
+        font-size: 9px;
+
+        line-height: 1.25;
+
+        font-weight: 750;
+
+        white-space: nowrap;
+    }
+
+
+    .mobile-trust-item span {
+        margin-top: 2px;
+
+        color: #8290a4;
+
+        font-size: 7.5px;
+
+        line-height: 1.25;
+
+        white-space: nowrap;
+    }
+
+
+    /* =====================================================
+       OTP
+    ===================================================== */
+
+    .mobile-otp-back {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        padding: 0;
+
+        border: none;
+
+        background: transparent;
+
+        color: #174784;
+
+        font-family: inherit;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+    }
+
+
+    .mobile-otp-back svg {
+        width: 18px;
+        height: 18px;
+    }
+
+
+    .mobile-otp-header {
+        margin-top: 25px;
+
+        text-align: center;
+    }
+
+
+    .mobile-otp-icon {
+        width: 55px;
+        height: 55px;
+
+        margin: auto;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 17px;
+
+        background:
+            linear-gradient(145deg,
+                #e3f1ff,
+                #f2f8ff);
+
+        color: #1476e7;
+
+        box-shadow:
+            0 10px 25px rgba(20, 110, 220, .10);
+    }
+
+
+    .mobile-otp-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+
+    .mobile-otp-header h2 {
+        margin: 16px 0 7px;
+
+        color: #12346e;
+
+        font-size: 26px;
+
+        line-height: 1.1;
+
+        font-weight: 800;
+
+        letter-spacing: -.7px;
+    }
+
+
+    .mobile-otp-header p {
+        margin: 0;
+
+        color: #78879c;
+
+        font-size: 11px;
+    }
+
+
+    .mobile-otp-header strong {
+        display: block;
+
+        margin-top: 5px;
+
+        color: #173d7b;
+
+        font-size: 13px;
+    }
+
+
+    /* =====================================================
+       OTP BOXES - 5 DIGITS
+    ===================================================== */
+
+    .mobile-otp-boxes {
+        display: flex;
+
+        justify-content: center;
+
+        gap: 7px;
+
+        margin-top: 25px;
+    }
+
+
+    .mobile-otp-boxes input {
+        width: 44px;
+        height: 52px;
+
+        flex: 0 0 44px;
+
+        box-sizing: border-box;
+
+        text-align: center;
+
+        border:
+            1px solid #d5e2f1;
+
+        border-radius: 11px;
+
+        outline: none;
+
+        background: #f8fbff;
+
+        color: #143a79;
+
+        font-family: inherit;
+
+        font-size: 20px;
+
+        font-weight: 750;
+
+        transition:
+            border-color .2s ease,
+            box-shadow .2s ease,
+            transform .2s ease;
+    }
+
+
+    .mobile-otp-boxes input:focus {
+        border-color: #1679e9;
+
+        background: #ffffff;
+
+        box-shadow:
+            0 0 0 4px rgba(22, 121, 233, .08);
+
+        transform: translateY(-2px);
+    }
+
+
+    /* =====================================================
+       OTP RESEND
+    ===================================================== */
+
+    .mobile-otp-resend {
+        margin-top: 18px;
+
+        text-align: center;
+
+        color: #718098;
+
+        font-size: 11px;
+    }
+
+
+    .mobile-otp-resend strong {
+        margin-left: 4px;
+
+        color: #173d7b;
+    }
+
+
+    .mobile-otp-resend button {
+        padding: 0;
+
+        border: none;
+
+        background: transparent;
+
+        color: #1477e9;
+
+        font-family: inherit;
+
+        font-size: 11px;
+
+        font-weight: 750;
+
+        text-decoration: underline;
+
+        cursor: pointer;
+    }
+
+
+    /* =====================================================
+       OTP CARD
+    ===================================================== */
+
+    .mobile-login-card:has(.mobile-otp-header) {
+        min-height: 520px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .mobile-login-page {
+        padding: 8px 7px 18px;
+    }
+
+
+    .mobile-login-card {
+        padding:
+            24px 14px 18px;
+
+        border-radius: 20px;
+    }
+
+
+    .mobile-login-heading h1 {
+        font-size: 26px;
+    }
+
+
+    .mobile-login-heading p {
+        font-size: 11px;
+    }
+
+
+    .mobile-otp-boxes {
+        gap: 5px;
+    }
+
+
+    .mobile-otp-boxes input {
+        width: 40px;
+        height: 49px;
+
+        flex-basis: 40px;
+    }
+
+
+    .mobile-trust-item strong {
+        font-size: 8px;
+    }
+
+
+    .mobile-trust-item span {
+        font-size: 7px;
+    }
+
+}
+
+
+.mobile-logo-top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 14px 0 12px;
+}
+
+.mobile-logo-top img {
+    width: 50%;
+    height: auto;
+    display: block;
+}
+
+.mobile-login-card {
+    position: relative;
+}
+
+.mobile-back-home {
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+    color: #123d82;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.mobile-back-home svg {
+    width: 17px;
+    height: 17px;
 }
