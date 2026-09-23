@@ -467,7 +467,7 @@
 
             <div class="mobile-coupon-input-row">
 
-              <input type="text" autocomplete="off" formControlName="coupon_code" placeholder="ENTER COUPON CODE"
+              <input type="search" autocomplete="off" formControlName="coupon_code" placeholder="ENTER COUPON CODE"
                 style="text-transform: uppercase;" />
 
               <button type="submit" [disabled]="!couponForm.valid">
@@ -622,7 +622,9 @@
               <div class="captcha-container">
                 <label for="captcha-input">What is {{ number1 }} + {{ number2 }}?</label>
                 <div class="captcha-input-group">
-                  <input type="number" id="captcha-input" formControlName="userInput" placeholder="Enter your answer" />
+                  <!-- <input type="number" id="captcha-input" formControlName="userInput" placeholder="Enter your answer" /> -->
+                  <input type="number" id="captcha-input" formControlName="userInput" placeholder="Enter your answer" (input)="onCaptchaInput()"
+                    [class.captcha-invalid]="captchaSubmitted && !captchaValidated" />
                   <button class="btn btn-blue" type="button" (click)="validateCaptcha()">
                     Verify
                   </button>
@@ -2288,7 +2290,7 @@
 
                             <i class="fas fa-ticket-alt"></i>
 
-                            <input type="text" autocomplete="off" formControlName="coupon_code"
+                            <input type="search" autocomplete="off" formControlName="coupon_code"
                               placeholder="Have a Coupon code?" style="text-transform: uppercase;" />
 
                           </div>
@@ -2378,7 +2380,8 @@
                       <div class="captcha-answer-row">
 
                         <input type="number" id="captcha-input" formControlName="userInput"
-                          placeholder="Enter your answer" />
+                          placeholder="Enter your answer" (input)="onCaptchaInput()"
+                          [class.captcha-invalid]="captchaSubmitted && !captchaValidated" />
 
 
                         <button type="button" class="captcha-verify-btn" (click)="validateCaptcha()">

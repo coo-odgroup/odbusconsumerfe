@@ -623,6 +623,7 @@ export class BookingComponent implements OnInit {
 
   submitForm2() {
 
+    this.captchaSubmitted = true;
     this.submitted2 = true;
     if (this.bookForm2.invalid) {
       return;
@@ -695,6 +696,7 @@ export class BookingComponent implements OnInit {
 
       if (this.captchaValidated == false) {
         this.notify.notify("Captch is not validated", "Error");
+        this.blankCaptcha()
         return;
       }
 
@@ -1125,6 +1127,7 @@ export class BookingComponent implements OnInit {
   captchaResult: number;
   errorMessage: string;
   captchaValidated: boolean = false;
+  captchaSubmitted = false;
 
   generateCaptcha(): void {
     this.number1 = Math.floor(Math.random() * 10) + 1;
@@ -1136,6 +1139,7 @@ export class BookingComponent implements OnInit {
   }
 
   validateCaptcha(): void {
+    this.captchaSubmitted = true;
     if (this.bookForm2.value.userInput == this.captchaResult) {
       this.errorMessage = '';
       this.captchaValidated = true;
@@ -1148,22 +1152,123 @@ export class BookingComponent implements OnInit {
 
   }
 
-  async cashfressRedirect() {
-    // console.log(this.MakePaymnetResponse);
-    //console.log(this.MakePaymnetResponse.razorpay_order_id.payment_session_id);
-    //console.log(this.MakePaymnetResponse.razorpay_order_id.receipt_id);
-    const cashfree = await load({
-      mode: GlobalConstants.PAYMENT_MODE //production , sandbox
+  blankCaptcha(): void {
+
+    this.captchaSubmitted = true;
+    this.captchaValidated = false;
+
+    const captchaControl = this.bookForm2.get('userInput');
+
+    captchaControl?.setErrors({
+      captchaRequired: true
     });
-    const checkOptions = {
-      paymentSessionId: this.MakePaymnetResponse.razorpay_order_id.payment_session_id,
-      redirectTarget: "_modal" // _blank , _self
+
+    captchaControl?.markAsTouched();
+
+    this.errorMessage = 'Please enter the captcha answer.';
+  }
+
+  onCaptchaInput(): void {
+    const value = this.bookForm2.get('userInput')?.value;
+
+    if (value === null || value === '') {
+      this.captchaValidated = false;
+      this.captchaSubmitted = true;
+      this.errorMessage = 'Please enter the captcha answer.';
     }
+  }
+
+  redirectToBusRoute(): void {
+    const journeyDate = localStorage.getItem('entdate');
+
+    if (journeyDate) {
+      const dateParts = journeyDate.trim().split('-');
+
+      let formattedDate = journeyDate.trim();
+
+      // Convert YYYY-MM-DD → DD-MM-YYYY
+      if (
+        dateParts.length === 3 &&
+        dateParts[0].length === 4
+      ) {
+        formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+      }
+
+      this.router.navigate(
+        ['/routes/bhubaneswar-digha-bus-services'],
+        {
+          queryParams: {
+            date: formattedDate
+          },
+          replaceUrl: true
+        }
+      );
+    } else {
+      this.router.navigate(['/'], { replaceUrl: true });
+    }
+  }
+
+  // async cashfressRedirect() {
+  //   // console.log(this.MakePaymnetResponse);
+  //   //console.log(this.MakePaymnetResponse.razorpay_order_id.payment_session_id);
+  //   //console.log(this.MakePaymnetResponse.razorpay_order_id.receipt_id);
+  //   const cashfree = await load({
+  //     mode: GlobalConstants.PAYMENT_MODE //production , sandbox
+  //   });
+  //   const checkOptions = {
+  //     paymentSessionId: this.MakePaymnetResponse.razorpay_order_id.payment_session_id,
+  //     redirectTarget: "_modal" // _blank , _self
+  //   }
+
+  //   cashfree.checkout(checkOptions).then((result) => {
+  //     if (result.error) {
+  //       alert('payment failed');
+  //     }
+  //     if (result.paymentDetails) {
+
+  //       this.spinner.show();
+
+  //       this.bookticketService.setBookingData({
+  //         name: this.passengerData.customerInfo.name,
+  //         email: this.passengerData.customerInfo.email,
+  //         phone: this.passengerData.customerInfo.phone,
+  //         receipt_id: this.MakePaymnetResponse.razorpay_order_id.receipt_id,
+  //         ticket_amount: this.MakePaymnetResponse.amount,
+  //         pnr: this.bookTicketResponse.pnr
+  //       });
+
+  //       this.router.navigate(['/success']);
+
+  //       this.spinner.hide();
+  //     }
+
+  //   });
+  // }
+
+  async cashfressRedirect() {
+
+    const cashfree = await load({
+      mode: GlobalConstants.PAYMENT_MODE
+    });
+
+    const checkOptions = {
+      paymentSessionId:
+        this.MakePaymnetResponse.razorpay_order_id.payment_session_id,
+
+      redirectTarget: "_modal"
+    };
 
     cashfree.checkout(checkOptions).then((result) => {
+
+      // Payment failed
       if (result.error) {
-        alert('payment failed');
+        console.log('Cashfree payment error:', result.error);
+
+        this.redirectToBusRoute();
+        return;
       }
+
+      // Payment successful
       if (result.paymentDetails) {
 
         this.spinner.show();
@@ -1172,7 +1277,8 @@ export class BookingComponent implements OnInit {
           name: this.passengerData.customerInfo.name,
           email: this.passengerData.customerInfo.email,
           phone: this.passengerData.customerInfo.phone,
-          receipt_id: this.MakePaymnetResponse.razorpay_order_id.receipt_id,
+          receipt_id:
+            this.MakePaymnetResponse.razorpay_order_id.receipt_id,
           ticket_amount: this.MakePaymnetResponse.amount,
           pnr: this.bookTicketResponse.pnr
         });
@@ -1180,10 +1286,21 @@ export class BookingComponent implements OnInit {
         this.router.navigate(['/success']);
 
         this.spinner.hide();
+        return;
       }
+
+      // User closed Cashfree / pressed back
+      this.redirectToBusRoute();
+
+    }).catch((error) => {
+
+      console.log('Cashfree checkout closed/error:', error);
+
+      this.redirectToBusRoute();
 
     });
   }
+
 
   pageTitle: any;
   pageContent: any;

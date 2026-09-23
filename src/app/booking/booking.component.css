@@ -1128,6 +1128,10 @@ Premium Fare Card
   flex-shrink: 0;
 }
 
+#captcha-input.captcha-invalid {
+  border: 1px solid red !important;
+}
+
 .verify-btn {
   padding: 0 18px;
 }
@@ -1149,7 +1153,7 @@ Premium Fare Card
 .captcha-error {
   margin-top: 12px;
   color: #dc3545;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -2145,7 +2149,7 @@ Journey Details Card
 .captcha-question {
   color: #072c6b;
 
-  font-size: 12px;
+  font-size: 14px;
 
   font-weight: 700;
 
@@ -2213,7 +2217,7 @@ Journey Details Card
   padding: 0 12px;
   border: none;
   border-radius: 6px;
-  background: #006ecf;
+  background: #072c6b;
   color: #ffffff;
   font-size: 10px;
   font-weight: 700;
@@ -2228,12 +2232,14 @@ Journey Details Card
 
 .captcha-error {
   color: #dc3545;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .captcha-success {
   color: #198754;
-
   font-weight: 600;
+  font-size: 14px;
 }
 
 .captcha-success i {
