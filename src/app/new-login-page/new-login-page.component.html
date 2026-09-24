@@ -1,4 +1,4 @@
-<ng-container *ngIf="!isMobile">
+<div class="desktop-login-version">
 
     <div class="new-login-page">
 
@@ -497,6 +497,18 @@
 
                     </div>
 
+                    <!-- Terms and Conditions -->
+                    <div class="terms-checkbox" *ngIf="authMode === 'signup'">
+                        <label class="terms-label">
+                            <input type="checkbox">
+                            <span class="custom-checkbox"></span>
+
+                            <span class="terms-text">
+                                I agree to the
+                                <span class="terms-link">Terms and Conditions</span>
+                            </span>
+                        </label>
+                    </div>
 
                     <!-- Get OTP -->
                     <button type="button" class="primary-button" [disabled]="isLoading" (click)="getOtp()">
@@ -625,7 +637,7 @@
         </section>
 
     </div>
-</ng-container>
+</div>
 
 
 
@@ -633,7 +645,7 @@
      MOBILE VERSION
 ========================================================= -->
 
-<ng-container *ngIf="isMobile">
+<div class="mobile-login-version">
 
     <div class="mobile-login-page">
 
@@ -646,7 +658,7 @@
         ================================================== -->
 
         <div class="mobile-login-card">
-            
+
             <a routerLink="/" class="mobile-back-home">
 
                 <svg viewBox="0 0 24 24" fill="none">
@@ -1019,7 +1031,18 @@
 
                 </div>
 
+                <!-- Terms and Conditions -->
+                <div class="mobile-terms-checkbox" *ngIf="authMode === 'signup'">
+                    <label class="mobile-terms-label">
+                        <input type="checkbox">
+                        <span class="mobile-custom-checkbox"></span>
 
+                        <span class="mobile-terms-text">
+                            I agree to the
+                            <span class="mobile-terms-link">Terms and Conditions</span>
+                        </span>
+                    </label>
+                </div>
 
                 <!-- GET OTP -->
 
@@ -1183,4 +1206,4 @@
 
     </div>
 
-</ng-container>
+</div>

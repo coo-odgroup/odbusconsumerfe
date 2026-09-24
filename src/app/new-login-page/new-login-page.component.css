@@ -9,7 +9,6 @@
     height: 100%;
 }
 
-
 /* =========================================================
    MAIN PAGE
 ========================================================= */
@@ -33,7 +32,6 @@
         sans-serif;
 }
 
-
 /* =========================================================
    LEFT VISUAL SECTION
 ========================================================= */
@@ -45,7 +43,6 @@
 
     overflow: hidden;
 }
-
 
 .visual-image {
     position: absolute;
@@ -61,7 +58,6 @@
     transform: scale(1.01);
 }
 
-
 .visual-overlay {
     position: absolute;
     inset: 0;
@@ -75,7 +71,6 @@
             rgba(4, 38, 89, 0.12));
 }
 
-
 /* =========================================================
    LEFT CONTENT
 ========================================================= */
@@ -88,8 +83,7 @@
     width: 100%;
     height: 100%;
 
-    padding:
-        clamp(45px, 6vw, 90px) clamp(40px, 6vw, 90px) 35px;
+    padding: 110px 50px 50px 50px;
 
     display: flex;
     flex-direction: column;
@@ -105,35 +99,35 @@
     z-index: 20;
 }
 
-
 /* =========================================================
    TOP CONTENT
 ========================================================= */
 
 .visual-top {
+    width: 100%;
+
     display: flex;
 
-    align-items: flex-start;
+    grid-template-columns:
+        minmax(0, 1fr) minmax(260px, 400px);
 
+    align-items: center;
     justify-content: space-between;
-
-    gap: 25px;
+    gap: 20px;
 }
 
 
 .visual-copy {
     max-width: 570px;
+    min-width: 0;
 }
-
 
 .visual-copy h1 {
     margin: 0;
 
     color: #09265f;
 
-    font-size: clamp(42px,
-            4.2vw,
-            66px);
+    font-size: 45px;
 
     line-height: 1.02;
 
@@ -141,10 +135,8 @@
 
     font-weight: 800;
 
-    text-shadow:
-        0 2px 10px rgba(255, 255, 255, 0.55);
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.55);
 }
-
 
 .visual-copy h1 span {
     display: block;
@@ -153,7 +145,6 @@
 
     margin-top: 5px;
 }
-
 
 .yellow-line {
     width: 68px;
@@ -170,7 +161,6 @@
         0 3px 10px rgba(242, 197, 0, 0.22);
 }
 
-
 .visual-copy p {
     margin: 0;
 
@@ -186,41 +176,30 @@
         0 1px 6px rgba(255, 255, 255, 0.7);
 }
 
-
 /* =========================================================
    COUPON
 ========================================================= */
 
 .coupon-wrapper {
-    flex: 0 0 400px;
-
-    width: 400px;
-    height: 400px;
-
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    height: auto;
     display: flex;
-
     align-items: center;
     justify-content: center;
-
-    margin-top: 5px;
+    margin-top: 0;
+    flex: none;
 }
-
 
 .coupon-image {
-    width: 400px;
-    height: 400px;
-
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 300px;
     object-fit: contain;
-
-    display: block;
-
-    filter:
-        drop-shadow(0 18px 35px rgba(0, 35, 90, 0.20));
-
-    animation:
-        couponFloat 5s ease-in-out infinite;
+    animation: couponFloat 5s ease-in-out infinite;
 }
-
 
 @keyframes couponFloat {
 
@@ -241,32 +220,21 @@
 
 .visual-features {
     display: flex;
-
     align-items: center;
-
     gap: 25px;
-
     max-width: 650px;
-
     padding: 14px 0;
 }
 
 
 .visual-feature {
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 8px;
-
     min-width: 100px;
-
     text-align: center;
-
     color: #082e70;
 }
 
@@ -274,22 +242,14 @@
 .feature-icon {
     width: 58px;
     height: 58px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     border-radius: 50%;
-
-    background:
-        rgba(226, 241, 255, 0.88);
+    background: rgba(226, 241, 255, 0.88);
 
     color: #0a62d5;
-
-    box-shadow:
-        0 8px 22px rgba(0, 65, 130, 0.10);
-
+    box-shadow: 0 8px 22px rgba(0, 65, 130, 0.10);
     backdrop-filter: blur(8px);
 }
 
@@ -299,7 +259,6 @@
     height: 29px;
 }
 
-
 .trusted-icon {
     background:
         rgba(224, 250, 238, 0.90);
@@ -307,43 +266,29 @@
     color: #16a765;
 }
 
-
 .fare-icon {
-    background:
-        rgba(255, 239, 193, 0.92);
-
+    background: rgba(255, 239, 193, 0.92);
     color: #e2a900;
-
     font-size: 27px;
-
     font-weight: 800;
 }
 
 
 .heart-icon {
-    background:
-        rgba(235, 229, 255, 0.92);
-
+    background: rgba(235, 229, 255, 0.92);
     color: #6650d9;
 }
 
-
 .visual-feature span {
     font-size: 13px;
-
     line-height: 1.25;
-
     font-weight: 700;
 }
 
-
 .feature-divider {
     width: 1px;
-
     height: 63px;
-
-    background:
-        rgba(8, 46, 112, 0.18);
+    background:rgba(8, 46, 112, 0.18);
 }
 
 
@@ -353,27 +298,18 @@
 
 .visual-bottom {
     display: flex;
-
     gap: 17px;
-
     color: #ffffff;
-
     font-size: 11px;
-
     font-weight: 800;
-
     letter-spacing: 3px;
-
-    text-shadow:
-        0 2px 7px rgba(0, 0, 0, 0.35);
+    text-shadow:  0 2px 7px rgba(0, 0, 0, 0.35);
 }
 
 
 .visual-bottom span:not(:last-child)::after {
     content: "•";
-
     margin-left: 17px;
-
     color: #f2c500;
 }
 
@@ -384,14 +320,10 @@
 
 .login-form-section {
     min-height: 100vh;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     padding: 45px;
-
     background:
         radial-gradient(circle at 85% 15%,
             rgba(90, 178, 255, 0.24),
@@ -401,27 +333,19 @@
             #f8fcff);
 
     position: relative;
-
     overflow: hidden;
 }
 
 
 .login-form-section::before {
     content: "";
-
     position: absolute;
-
     width: 420px;
     height: 420px;
-
     right: -210px;
     bottom: -190px;
-
     border-radius: 50%;
-
-    background:
-        rgba(39, 137, 240, 0.10);
-
+    background: rgba(39, 137, 240, 0.10);
     filter: blur(5px);
 }
 
@@ -432,31 +356,22 @@
 
 .login-card {
     position: relative;
-
     z-index: 5;
-
     width: 100%;
-
     max-width: 660px;
-
     padding:
         52px 55px 38px;
-
     border-radius: 30px;
-
     background:
         rgba(255, 255, 255, 0.92);
-
     border:
         1px solid rgba(255, 255, 255, 0.95);
-
     box-shadow:
         0 30px 80px rgba(20, 65, 115, 0.13),
         0 8px 25px rgba(20, 65, 115, 0.06),
         inset 0 1px 0 #ffffff;
 
     backdrop-filter: blur(20px);
-
     animation:
         loginCardEntrance 0.75s cubic-bezier(.22, 1, .36, 1) both;
 }
@@ -485,19 +400,15 @@
 }
 
 .back-home-button {
-    /* position: absolute; */
     top: 22px;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 5px;
-
     color: #123d82;
     text-decoration: none;
-
     font-size: 11px;
     font-weight: 700;
-
     z-index: 10;
 }
 
@@ -512,11 +423,8 @@
 
 .login-heading {
     display: flex;
-
     justify-content: space-between;
-
     align-items: flex-start;
-
     gap: 20px;
 }
 
@@ -528,38 +436,29 @@
 
 .login-heading h1 {
     margin: 0;
-
     color: #102d69;
-
     font-size: clamp(32px,
             3vw,
             44px);
-
     line-height: 1.05;
-
     letter-spacing: -1.5px;
-
     font-weight: 800;
 }
 
 
 .login-heading h1 span {
     display: block;
-
     color: #1478e9;
 }
 
 
 .login-heading p {
     max-width: 500px;
-
     margin:
         18px 0 0;
 
     color: #63728c;
-
     font-size: 14px;
-
     line-height: 1.65;
 }
 
@@ -570,10 +469,8 @@
 
 .ticket-decoration {
     position: relative;
-
     width: 120px;
     height: 95px;
-
     flex-shrink: 0;
 }
 
@@ -862,6 +759,58 @@
     font-weight: 600;
 }
 
+/* terms & conditions */
+.terms-checkbox {
+    margin-top: 14px;
+}
+
+.terms-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #63728c;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.terms-label input {
+    position: absolute;
+    opacity: 0;
+}
+
+.custom-checkbox {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 17px;
+    border: 1.5px solid #b9c9dc;
+    border-radius: 4px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.terms-label input:checked+.custom-checkbox {
+    background: #176fe5;
+    border-color: #176fe5;
+}
+
+.terms-label input:checked+.custom-checkbox::after {
+    content: "";
+    width: 5px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.terms-link {
+    color: #176fe5;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
 
 /* =========================================================
    PRIMARY BUTTON
@@ -1283,335 +1232,59 @@
 }
 
 
+
 /* =========================================================
-   MOBILE
-========================================================= */
+   FINAL DESKTOP RESPONSIVE COUPON FIX
+   ========================================================= */
 
-@media (max-width: 1200px) {
+@media (min-width: 1201px) {
 
-    .new-login-page {
+    .visual-top {
         grid-template-columns:
-            48% 52%;
+            minmax(0, 1fr) 400px;
     }
 
-
-    .coupon-wrapper {
-        flex-basis: 260px;
-
-        width: 260px;
-        height: 260px;
-    }
-
-
+    .coupon-wrapper,
     .coupon-image {
-        width: 260px;
-        height: 260px;
+        width: 300px;
+        height: 300px;
     }
-
-
-    .visual-copy h1 {
-        font-size: 43px;
-    }
-
-
-    .login-card {
-        padding:
-            40px;
-    }
-
 }
 
 
-@media (max-width: 900px) {
-
-    .new-login-page {
-        display: block;
-
-        overflow-y: auto;
-    }
-
-
-    .login-visual-section {
-        min-height: 430px;
-
-        height: 430px;
-    }
-
-
-    .login-form-section {
-        min-height: auto;
-
-        padding:
-            40px 20px 60px;
-    }
-
+@media (min-width: 901px) and (max-width: 1200px) {
 
     .visual-content {
-        padding:
-            45px 35px 25px;
+        padding-left: 45px;
+        padding-right: 35px;
     }
 
+    .visual-top {
+        grid-template-columns:
+            minmax(0, 1fr) 260px;
 
-    .coupon-wrapper {
-        width: 220px;
-        height: 220px;
-
-        flex-basis: 220px;
-    }
-
-
-    .coupon-image {
-        width: 220px;
-        height: 220px;
-    }
-
-
-    .visual-features {
         gap: 15px;
     }
 
-}
-
-
-/* =========================================================
-   MOBILE PHONE
-========================================================= */
-
-@media (max-width: 650px) {
-
-    .new-login-page {
-        min-height: 100svh;
+    .coupon-wrapper,
+    .coupon-image {
+        width: 260px;
+        height: 260px;
     }
-
-
-    .login-visual-section {
-        min-height: 340px;
-
-        height: 340px;
-    }
-
-
-    .visual-content {
-        padding:
-            30px 20px 20px;
-    }
-
-
-    .visual-top {
-        display: block;
-    }
-
-
-    .visual-copy {
-        max-width: 100%;
-    }
-
 
     .visual-copy h1 {
-        font-size: 31px;
+        font-size: 35px;
 
-        letter-spacing: -1px;
+        letter-spacing: -1.5px;
     }
-
 
     .visual-copy p {
-        font-size: 12px;
-    }
-
-
-    .yellow-line {
-        width: 48px;
-
-        height: 4px;
-
-        margin:
-            13px 0 10px;
-    }
-
-
-    .coupon-wrapper {
-        display: none;
-    }
-
-
-    .visual-features {
-        gap: 7px;
-
-        justify-content: space-between;
-
-        width: 100%;
-    }
-
-
-    .visual-feature {
-        min-width: auto;
-
-        flex: 1;
-    }
-
-
-    .feature-icon {
-        width: 39px;
-        height: 39px;
-    }
-
-
-    .feature-icon svg {
-        width: 20px;
-        height: 20px;
-    }
-
-
-    .fare-icon {
-        font-size: 18px;
-    }
-
-
-    .visual-feature span {
-        font-size: 8px;
-    }
-
-
-    .feature-divider {
-        height: 45px;
-    }
-
-
-    .visual-bottom {
-        display: none;
-    }
-
-
-    .login-form-section {
-        padding:
-            0 12px 35px;
-
-        background:
-            linear-gradient(180deg,
-                #eef8ff,
-                #ffffff);
-    }
-
-
-    .login-card {
-        max-width: none;
-
-        margin-top: -25px;
-
-        padding:
-            29px 20px 25px;
-
-        border-radius: 24px;
-
-        box-shadow:
-            0 20px 55px rgba(20, 65, 115, .14);
-    }
-
-
-    .login-heading h1 {
-        font-size: 29px;
-    }
-
-
-    .login-heading p {
-        font-size: 12px;
-
-        margin-top: 11px;
-    }
-
-
-    .ticket-decoration {
-        display: none;
-    }
-
-
-    .auth-switch {
-        margin-top: 23px;
-    }
-
-
-    .method-switch {
-        gap: 22px;
-
-        margin-top: 21px;
-    }
-
-
-    .method-switch button {
-        font-size: 12px;
-    }
-
-
-    .input-group-premium {
-        height: 53px;
-    }
-
-
-    .primary-button {
-        height: 53px;
-
         font-size: 14px;
     }
-
-
-    .trust-strip {
-        grid-template-columns:
-            1fr;
-
-        gap: 13px;
-
-        margin-top: 24px;
-    }
-
-
-    .trust-item {
-        justify-content: center;
-    }
-
-
-    .otp-header h2 {
-        font-size: 26px;
-    }
-
-
-    .otp-boxes {
-        gap: 7px;
-    }
-
-
-    .otp-boxes input {
-        width: 43px;
-        height: 53px;
-
-        font-size: 19px;
-    }
-
 }
 
 
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
 
-@media (max-width: 380px) {
-
-    .login-card {
-        padding:
-            27px 15px 23px;
-    }
-
-
-    .otp-boxes {
-        gap: 5px;
-    }
-
-
-    .otp-boxes input {
-        width: 39px;
-        height: 49px;
-    }
-
-}
 
 
 /* =========================================================
@@ -1624,7 +1297,6 @@
     *::before,
     *::after {
         animation: none !important;
-
         transition: none !important;
     }
 
@@ -1653,12 +1325,7 @@
     z-index: 5;
 }
 
-/* Smaller, cleaner left heading */
-.visual-copy h1 {
-    font-size: clamp(34px, 3.15vw, 52px);
-    letter-spacing: -1.8px;
-    line-height: 1.04;
-}
+
 
 .visual-copy p {
     font-size: 14px;
@@ -1998,7 +1665,7 @@
 
         background: rgba(255, 255, 255, .97);
 
-        border: 1px solid rgba(255, 255, 255, .95);
+        border: 1px solid rgb(20, 120, 233);
 
         box-shadow:
             0 18px 50px rgba(21, 67, 118, .13),
@@ -2772,4 +2439,133 @@
 .mobile-back-home svg {
     width: 17px;
     height: 17px;
+}
+
+
+/* =====================================================
+   MOBILE TERMS & CONDITIONS
+===================================================== */
+
+.mobile-terms-checkbox {
+    width: 100%;
+    margin-top: 13px;
+    margin-bottom: 0;
+}
+
+.mobile-terms-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    width: fit-content;
+
+    cursor: pointer;
+    user-select: none;
+
+    color: #63728c;
+    font-size: 11px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* Hide default checkbox */
+.mobile-terms-label input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Custom checkbox */
+.mobile-custom-checkbox {
+    width: 16px;
+    height: 16px;
+
+    flex: 0 0 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1.5px solid #b9c9dc;
+    border-radius: 4px;
+
+    background: #ffffff;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+/* Checked state */
+.mobile-terms-label input:checked+.mobile-custom-checkbox {
+    background: #176fe5;
+    border-color: #176fe5;
+
+    box-shadow:
+        0 3px 8px rgba(23, 111, 229, 0.18);
+}
+
+/* Tick */
+.mobile-terms-label input:checked+.mobile-custom-checkbox::after {
+    content: "";
+
+    width: 5px;
+    height: 9px;
+
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+
+    transform: rotate(45deg) translate(-1px, -1px);
+}
+
+/* Focus */
+.mobile-terms-label:focus-within .mobile-custom-checkbox {
+    box-shadow:
+        0 0 0 3px rgba(23, 111, 229, 0.10);
+}
+
+/* Text */
+.mobile-terms-text {
+    white-space: nowrap;
+}
+
+/* Terms text */
+.mobile-terms-link {
+    color: #176fe5;
+    font-weight: 700;
+
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* =========================================================
+   DESKTOP / MOBILE VERSION CONTROL
+   ========================================================= */
+
+.desktop-login-version {
+    display: block;
+    width: 100%;
+}
+
+.mobile-login-version {
+    display: none;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .desktop-login-version {
+        display: none;
+    }
+
+    .mobile-login-version {
+        display: block;
+        width: 100%;
+    }
+
 }
