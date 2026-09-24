@@ -84,7 +84,7 @@
   height: 2px;
   display: block;
   position: relative;
-  margin-top: 63px;
+  margin-top: 0 !important;
 }
 
 .line-span h2 {
@@ -113,10 +113,10 @@
   font-weight: 600;
 }
 
-section.top-routs {
+/* section.top-routs {
   padding: 2px 0 !important;
   margin-top: 140px !important;
-}
+} */
 
 /* Mobile Version Support Start- */
 .mobile-mybooking-top {
@@ -1188,4 +1188,717 @@ DOWNLOAD APP
     display: none !important;
   }
 
+}
+
+
+
+
+/* =========================================
+   PREMIUM FESTIVAL BANNER
+========================================= */
+
+.festival-banner-section {
+  width: 100%;
+  padding: 24px 0 58px;
+
+  /* Clean page background */
+  background: #f4f7fb;
+}
+
+
+/* =========================================
+   MAIN BANNER
+========================================= */
+
+.festival-banner {
+  position: relative;
+
+  width: 100%;
+  height: 255px;
+
+  overflow: visible;
+
+  border-radius: 18px;
+
+  border: 1px solid #efc003;
+
+  background: transparent;
+
+  box-shadow:
+    0 16px 40px rgba(7, 44, 107, 0.16),
+    0 4px 12px rgba(7, 44, 107, 0.08);
+
+  isolation: isolate;
+}
+
+
+/* =========================================
+   IMAGE AREA
+========================================= */
+
+.festival-banner-image {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-image: url('/assets/img/offer_banner.webp');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /*
+    Keep image inside rounded banner.
+  */
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  z-index: 1;
+}
+
+
+/* =========================================
+   IMAGE OVERLAY
+========================================= */
+
+.festival-banner-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: transparent;
+
+  border-radius: 18px;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   REMOVE OLD DECORATIVE EFFECTS
+========================================= */
+
+.festival-banner::before,
+.festival-banner::after {
+  display: none;
+}
+
+
+/* =========================================
+   BOOK YOUR TICKET NOW
+   OUTSIDE THE BANNER
+========================================= */
+
+.festival-banner-action {
+  position: absolute;
+
+  left: 50%;
+
+  /*
+    Negative value moves button outside
+    the bottom edge of the banner.
+  */
+  bottom: -27px;
+
+  transform: translateX(-50%);
+
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================================
+   BOOK BUTTON
+========================================= */
+
+.festival-book-btn {
+  min-width: 235px;
+
+  height: 54px;
+
+  padding: 0 32px;
+
+  border: none;
+
+  border-radius: 9px;
+  border: 1px solid white;
+  background: linear-gradient(90deg, #f9ad05 0%, #8f3915 100%);
+  color: #ffffff;
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.2px;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 22px rgba(7, 44, 107, 0.25);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
+
+.festival-book-btn:hover {
+  background: linear-gradient(90deg, #c9a455 0%, #bc3939 100%);
+  color: #ffffff;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 26px rgba(7, 44, 107, 0.28);
+}
+
+
+/* =========================================
+   BOOK YOUR TICKET NOW
+   FLOAT + RADIAL WAVE EFFECT
+========================================= */
+
+.festival-banner-action {
+  position: absolute;
+
+  left: 50%;
+  bottom: -70px;
+
+  transform: translateX(-50%);
+
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Required for wave effect */
+  isolation: isolate;
+}
+
+
+/* =========================================
+   RADIAL PULSE WAVE
+========================================= */
+
+.festival-banner-action::before,
+.festival-banner-action::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 12px;
+
+  background: rgba(3, 113, 239, 0.32);
+
+  transform: translate(-50%, -50%) scale(1);
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  animation: festivalButtonWave 2.4s ease-out infinite;
+}
+
+
+.festival-banner-action::after {
+  animation-delay: 1.2s;
+}
+
+
+/* =========================================
+   RADIAL WAVE ANIMATION
+========================================= */
+
+@keyframes festivalButtonWave {
+
+  0% {
+    opacity: 0.45;
+
+    transform:
+      translate(-50%, -50%) scale(1);
+  }
+
+  70% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%) scale(1.55);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%) scale(1.7);
+  }
+
+}
+
+
+/* =========================================
+   BOOK BUTTON
+========================================= */
+
+.festival-book-btn {
+  position: relative;
+
+  min-width: 235px;
+
+  height: 54px;
+
+  padding: 0 32px;
+
+  border: 1px solid rgba(255, 255, 255, 0.85);
+
+  border-radius: 9px;
+
+  background: #032651;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.2px;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 22px rgba(7, 44, 107, 0.25);
+
+  animation: festivalButtonFloat 3s ease-in-out infinite;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+
+  z-index: 2;
+}
+
+
+/* =========================================
+   SUBTLE FLOAT EFFECT
+========================================= */
+
+@keyframes festivalButtonFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+
+}
+
+
+/* =========================================
+   PREMIUM SHINE
+========================================= */
+
+.festival-book-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -80%;
+
+  width: 45%;
+  height: 100%;
+
+  background:
+    linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent);
+
+  transform: skewX(-20deg);
+
+  animation: festivalButtonShine 4s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+
+@keyframes festivalButtonShine {
+
+  0% {
+    left: -80%;
+  }
+
+  35% {
+    left: 130%;
+  }
+
+  100% {
+    left: 130%;
+  }
+
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.festival-book-btn:hover {
+  background: #05438e;
+
+  color: #ffffff;
+
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 12px 30px rgba(7, 44, 107, 0.32);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 991px) {
+
+  .festival-banner-section {
+    padding: 20px 0 55px;
+  }
+
+  .festival-banner {
+    height: 220px;
+
+    border-radius: 15px;
+  }
+
+  .festival-banner-image,
+  .festival-banner-overlay {
+    border-radius: 15px;
+  }
+
+  .festival-banner-action {
+    bottom: -25px;
+  }
+
+  .festival-book-btn {
+    min-width: 220px;
+
+    height: 50px;
+
+    padding: 0 26px;
+
+    font-size: 14px;
+
+    border-radius: 8px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+   TEMPORARY VERSION
+   Separate mobile design will be done later.
+========================================= */
+
+@media (max-width: 767px) {
+
+  .festival-banner-section {
+    padding: 12px 0 48px;
+  }
+
+  .festival-banner {
+    height: 145px;
+
+    border-radius: 12px;
+
+    box-shadow:
+      0 10px 25px rgba(7, 44, 107, 0.14);
+  }
+
+  .festival-banner-image,
+  .festival-banner-overlay {
+    border-radius: 12px;
+  }
+
+  .festival-banner-action {
+    bottom: -20px;
+  }
+
+  .festival-book-btn {
+    min-width: 175px;
+
+    height: 40px;
+
+    padding: 0 16px;
+
+    font-size: 11px;
+
+    border-radius: 7px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE DUSSEHRA FESTIVAL SECTION
+========================================= */
+
+.mobile-festival-section {
+  width: 100%;
+
+  padding: 14px 15px 48px;
+
+  background: #f4f7fb;
+
+  box-sizing: border-box;
+
+  margin-top: 70px;
+}
+
+
+/* =========================================
+   MAIN MOBILE CARD
+========================================= */
+
+.mobile-festival-card {
+  position: relative;
+
+  width: 100%;
+
+  /*
+    Responsive ratio.
+    Height automatically adjusts according
+    to mobile screen width.
+  */
+  aspect-ratio: 717 / 792;
+
+  min-height: 0;
+
+  border-radius: 16px;
+
+  overflow: visible;
+
+  background:
+    linear-gradient(135deg,
+      #fff8eb 0%,
+      #f9ead3 50%,
+      #fff6e4 100%);
+
+  border: 1px solid #efc003;
+
+  box-shadow:
+    0 8px 24px rgba(7, 44, 107, 0.14);
+
+  isolation: isolate;
+}
+
+
+/* =========================================
+   IMAGE AREA
+========================================= */
+
+.mobile-festival-image {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-image:
+    url('/assets/img/offer_banner_mob.webp');
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  z-index: 1;
+}
+
+
+/* =========================================
+   IMAGE OVERLAY
+========================================= */
+
+.mobile-festival-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 16px;
+
+  background: transparent;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   BOOK BUTTON
+========================================= */
+
+.mobile-festival-cta {
+  position: absolute;
+
+  left: 50%;
+
+  /*
+    Button position scales with banner height.
+  */
+  bottom: -22px;
+
+  transform: translateX(-50%);
+
+  z-index: 20;
+
+  width: max-content;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+
+/* =========================================
+   BOOK BUTTON
+========================================= */
+
+.mobile-festival-btn {
+  /*
+    Responsive width instead of fixed width.
+  */
+  width: min(190px, 58vw);
+
+  min-width: 165px;
+
+  height: clamp(40px, 11vw, 46px);
+
+  padding:
+    0 clamp(12px, 4vw, 20px);
+
+  border: 1px solid #ffffff;
+
+  border-radius: 8px;
+
+  background: #0c3064;
+
+  color: #ffffff;
+
+  font-size: clamp(10px, 2.8vw, 12px);
+
+  font-weight: 800;
+
+  letter-spacing: 0.2px;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 18px rgba(0, 0, 0, 0.22);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* =========================================
+   BUTTON PRESS
+========================================= */
+
+.mobile-festival-btn:active {
+  transform: translateY(2px);
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================
+   VERY SMALL DEVICES
+========================================= */
+
+@media (max-width: 340px) {
+
+  .mobile-festival-section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .mobile-festival-card {
+    border-radius: 14px;
+  }
+
+  .mobile-festival-btn {
+    min-width: 150px;
+
+    width: 55vw;
+
+    font-size: 9px;
+  }
+}
+
+
+/* =========================================
+   LARGER MOBILE DEVICES
+========================================= */
+
+@media (min-width: 400px) and (max-width: 767px) {
+
+  .mobile-festival-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mobile-festival-card {
+    border-radius: 17px;
+  }
+
+  .mobile-festival-btn {
+    width: 195px;
+
+    height: 46px;
+
+    font-size: 12px;
+  }
 }
