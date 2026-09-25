@@ -1601,6 +1601,8 @@ export class SearchComponent implements OnInit {
           localStorage.setItem('destination', this.destinationData.name);
           localStorage.setItem('destination_id', this.destinationData.id);
           localStorage.setItem('entdate', this.entdate);
+          localStorage.setItem('source_url', this.sourceData.url);
+          localStorage.setItem('destination_url', this.destinationData.url);
         }
 
         if (res.data) {
@@ -2826,6 +2828,8 @@ export class SearchComponent implements OnInit {
         localStorage.setItem('source_id', this.sourceData.id);
         localStorage.setItem('destination_id', this.destinationData.id);
         localStorage.setItem('entdate', this.entdate);
+        localStorage.setItem('source_url', this.sourceData.url);
+        localStorage.setItem('destination_url', this.destinationData.url);
 
         this.showformattedDate(this.entdate);
 
@@ -3002,6 +3006,8 @@ export class SearchComponent implements OnInit {
       localStorage.setItem('source_id', this.sourceData.id);
       localStorage.setItem('destination_id', this.destinationData.id);
       localStorage.setItem('entdate', this.entdate);
+      localStorage.setItem('source_url', this.sourceData.url);
+      localStorage.setItem('destination_url', this.destinationData.url);
 
       this.showformattedDate(this.entdate);
 
