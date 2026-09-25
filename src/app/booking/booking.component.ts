@@ -1180,6 +1180,8 @@ export class BookingComponent implements OnInit {
 
   redirectToBusRoute(): void {
     const journeyDate = localStorage.getItem('entdate');
+    const source_url = localStorage.getItem('source_url');
+    const destination_url = localStorage.getItem('destination_url');
 
     if (journeyDate) {
       const dateParts = journeyDate.trim().split('-');
@@ -1194,15 +1196,10 @@ export class BookingComponent implements OnInit {
         formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
       }
 
+      const routeUrl = `/routes/${source_url}-${destination_url}-bus-services`;
       this.router.navigate(
-        ['/routes/bhubaneswar-digha-bus-services'],
-        {
-          queryParams: {
-            date: formattedDate
-          },
-          replaceUrl: true
-        }
-      );
+        [routeUrl],
+        { queryParams: { date: formattedDate }, replaceUrl: true });
     } else {
       this.router.navigate(['/'], { replaceUrl: true });
     }
