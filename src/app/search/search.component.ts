@@ -6,7 +6,7 @@ import {
   PLATFORM_ID,
   HostListener,
   ViewChild,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -48,7 +48,7 @@ import {
   NgbModal,
   NgbActiveModal,
 } from '@ng-bootstrap/ng-bootstrap';
-import { time } from 'console';
+import { Console, time } from 'console';
 import 'lodash';
 import { exit } from 'process';
 import { Meta, Title } from '@angular/platform-browser';
@@ -122,10 +122,10 @@ export class SearchComponent implements OnInit {
 
   _albums = [];
   // Function to call when the date changes.
-  onChange = (date?: Date) => { };
+  onChange = (date?: Date) => {};
 
   // Function to call when the date picker is touched
-  onTouched = () => { };
+  onTouched = () => {};
 
   writeValue(value: Date) {
     if (!value) return;
@@ -291,6 +291,7 @@ export class SearchComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document,
   ) {
+    
     // Only access localStorage in browser
     const allLocData = isPlatformBrowser(this.platformId)
       ? localStorage.getItem('allLoc')
@@ -374,15 +375,15 @@ export class SearchComponent implements OnInit {
             term === ''
               ? []
               : this.location_list
-                .filter(
-                  (v) =>
-                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                    (v.synonym != '' &&
-                      v.synonym != null &&
-                      v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
-                      -1),
-                )
-                .slice(0, 10),
+                  .filter(
+                    (v) =>
+                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                      (v.synonym != '' &&
+                        v.synonym != null &&
+                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                          -1),
+                  )
+                  .slice(0, 10),
           ),
         );
       this.formatter = (x: { name: string }) => x.name;
@@ -507,11 +508,21 @@ export class SearchComponent implements OnInit {
         droppingPoint: this.seatForm.value.droppingPoint,
       };
 
+      // const returnUrl = this.router.url;
+      // console.log(returnUrl);
+
       if (isPlatformBrowser(this.platformId)) {
         localStorage.setItem('bookingdata', JSON.stringify(bookingdata));
         localStorage.setItem('busRecord', JSON.stringify(this.buslistRecord));
+        // localStorage.setItem('booking_return_url',this.router.url);        
       }
-      this.router.navigate(['booking']);
+
+      // Tracking
+      this.pushInitiateCheckoutEvent();
+
+      this.router.navigate(['booking'], {
+  replaceUrl: false
+});
     } else {
       if (
         this.seatForm.value.boardingPoint == null ||
@@ -1343,9 +1354,7 @@ export class SearchComponent implements OnInit {
       return false;
     }
 
-    if (
-      source.url === destination.url
-    ) {
+    if (source.url === destination.url) {
       this.notify.notify(
         'Source and Destination cannot be the same !',
         'Error',
@@ -1365,7 +1374,10 @@ export class SearchComponent implements OnInit {
       this.destinationData?.url === destination.url &&
       this.entdate === date
     ) {
-      this.notify.notify('This search already exists. Please modify your search and try again.', 'Error');
+      this.notify.notify(
+        'This search already exists. Please modify your search and try again.',
+        'Error',
+      );
       this.isShown = this.isShown;
       this.spinner.hide();
       return false;
@@ -1391,13 +1403,13 @@ export class SearchComponent implements OnInit {
     // console.log(this.couponDetail);
     // this.modalService.open(modal);
     this.modalService.open(modal, {
-      size: 'xl'
+      size: 'xl',
     });
   }
 
   moveListingCoupon(direction: number): void {
     const slider = document.getElementById(
-      'listingCouponScroll'
+      'listingCouponScroll',
     ) as HTMLElement;
 
     if (!slider) {
@@ -1416,26 +1428,24 @@ export class SearchComponent implements OnInit {
     }, 400);
   }
 
-
   updateListingCouponButtons(): void {
     const slider = document.getElementById(
-      'listingCouponScroll'
+      'listingCouponScroll',
     ) as HTMLElement;
 
     const prevBtn = document.getElementById(
-      'listingCouponPrev'
+      'listingCouponPrev',
     ) as HTMLButtonElement;
 
     const nextBtn = document.getElementById(
-      'listingCouponNext'
+      'listingCouponNext',
     ) as HTMLButtonElement;
 
     if (!slider || !prevBtn || !nextBtn) {
       return;
     }
 
-    const maxScrollLeft =
-      slider.scrollWidth - slider.clientWidth;
+    const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
 
     /* PREVIOUS */
 
@@ -1443,8 +1453,7 @@ export class SearchComponent implements OnInit {
 
     /* NEXT */
 
-    nextBtn.disabled =
-      slider.scrollLeft >= maxScrollLeft - 5;
+    nextBtn.disabled = slider.scrollLeft >= maxScrollLeft - 5;
   }
 
   sort(coulmn: any) {
@@ -1530,33 +1539,31 @@ export class SearchComponent implements OnInit {
       destination_id: localStorage.getItem('destination_id'),
     };
 
-    this.http.post<any>(
-      GlobalConstants.BASE_URL + '/Listing-Offers',
-      postData
-    ).subscribe(
-      (res: any) => {
+    this.http
+      .post<any>(GlobalConstants.BASE_URL + '/Listing-Offers', postData)
+      .subscribe(
+        (res: any) => {
+          if (Array.isArray(res)) {
+            this.Offers = res;
+          } else if (Array.isArray(res.data)) {
+            this.Offers = res.data;
+          } else {
+            this.Offers = [];
+          }
 
-        if (Array.isArray(res)) {
-          this.Offers = res;
-        } else if (Array.isArray(res.data)) {
-          this.Offers = res.data;
-        } else {
+          // Hide spinner only after Offers are loaded
+          this.spinner.hide();
+          this.modalService.dismissAll();
+        },
+        (error) => {
+          console.log('Offers API Error:', error);
           this.Offers = [];
-        }
 
-        // Hide spinner only after Offers are loaded
-        this.spinner.hide();
-        this.modalService.dismissAll();
-      },
-      (error) => {
-        console.log('Offers API Error:', error);
-        this.Offers = [];
-
-        // Also hide spinner if Offers API fails
-        this.spinner.hide();
-        this.modalService.dismissAll();
-      }
-    );
+          // Also hide spinner if Offers API fails
+          this.spinner.hide();
+          this.modalService.dismissAll();
+        },
+      );
   }
 
   onOfferClick(index: number): void {
@@ -1594,6 +1601,8 @@ export class SearchComponent implements OnInit {
           localStorage.setItem('destination', this.destinationData.name);
           localStorage.setItem('destination_id', this.destinationData.id);
           localStorage.setItem('entdate', this.entdate);
+          localStorage.setItem('source_url', this.sourceData.url);
+          localStorage.setItem('destination_url', this.destinationData.url);
         }
 
         if (res.data) {
@@ -2038,14 +2047,8 @@ export class SearchComponent implements OnInit {
 
   busDetailsCache: { [key: number]: any } = {};
 
-
   //bus facilities for mobile
-  loadMobBusDetails(
-    busId: any,
-    type: string,
-    template: any
-  ) {
-
+  loadMobBusDetails(busId: any, type: string, template: any) {
     // Check cache
     if (this.busDetailsCache[busId]) {
       this.openMobileDetails(type, template);
@@ -2055,11 +2058,9 @@ export class SearchComponent implements OnInit {
     this.spinner.show();
     this.listingService.getBusFacilities(busId).subscribe(
       (res: any) => {
-
         this.spinner.hide();
 
         if (res.status === '1') {
-
           // Save response in cache
           this.busDetailsCache[busId] = res.data;
           // Open selected modal
@@ -2067,59 +2068,42 @@ export class SearchComponent implements OnInit {
         }
       },
       (error: any) => {
-
         this.spinner.hide();
         console.log('API Error:', error);
-      }
+      },
     );
   }
 
-  openMobileDetails(
-    type: string,
-    template: any
-  ) {
-
+  openMobileDetails(type: string, template: any) {
     switch (type) {
-
       case 'amenities':
-
         this.viewamenity(template);
 
         break;
 
-
       case 'safety':
-
         this.viewsafety(template);
 
         break;
 
-
       case 'photos':
-
         this.viewphotos(template);
 
         break;
 
-
       case 'reviews':
-
         this.viewreview(template);
 
         break;
 
-
       case 'policy':
-
         this.viewpolicy(template);
 
         break;
     }
   }
 
-
   loadBusDetails(i: any, type: string) {
-
     const busId = this.buslist[i].busId;
 
     // Check if this bus data is already available
@@ -2134,7 +2118,6 @@ export class SearchComponent implements OnInit {
     console.log('Calling API:', busId);
 
     this.listingService.getBusFacilities(busId).subscribe((res: any) => {
-
       if (res.status === '1') {
         this.spinner.hide();
 
@@ -2147,11 +2130,8 @@ export class SearchComponent implements OnInit {
     });
   }
 
-
   showBusDetails(i: any, type: string) {
-
     switch (type) {
-
       case 'amenities':
         this.showAllAmenity(i);
         break;
@@ -2174,9 +2154,7 @@ export class SearchComponent implements OnInit {
     }
   }
 
-
   showAllAmenity(i: any) {
-
     const busId = this.buslist[i].busId;
     const data = this.busDetailsCache[busId];
 
@@ -2199,7 +2177,6 @@ export class SearchComponent implements OnInit {
   }
 
   getBusDetails(i: any): any {
-
     const busId = this.buslist[i].busId;
 
     return this.busDetailsCache[busId] || {};
@@ -2264,20 +2241,15 @@ export class SearchComponent implements OnInit {
     const busRecord = this.buslist[id];
     const busId = busRecord.busId;
 
-    console.log('Bus Record:', busRecord);
-    console.log('Cached Details:', this.busDetailsCache[busId]);
-
     const gallery = this.busDetailsCache[busId]?.gallery || [];
 
     if (gallery.length > 0) {
-
       gallery.forEach((sf: any) => {
-
         if (sf.bus_image_1) {
           this._albums.push({
             src: sf.bus_image_1,
             caption: '',
-            thumb: sf.bus_image_1
+            thumb: sf.bus_image_1,
           });
         }
 
@@ -2285,7 +2257,7 @@ export class SearchComponent implements OnInit {
           this._albums.push({
             src: sf.bus_image_2,
             caption: '',
-            thumb: sf.bus_image_2
+            thumb: sf.bus_image_2,
           });
         }
 
@@ -2293,7 +2265,7 @@ export class SearchComponent implements OnInit {
           this._albums.push({
             src: sf.bus_image_3,
             caption: '',
-            thumb: sf.bus_image_3
+            thumb: sf.bus_image_3,
           });
         }
 
@@ -2301,7 +2273,7 @@ export class SearchComponent implements OnInit {
           this._albums.push({
             src: sf.bus_image_4,
             caption: '',
-            thumb: sf.bus_image_4
+            thumb: sf.bus_image_4,
           });
         }
 
@@ -2309,14 +2281,13 @@ export class SearchComponent implements OnInit {
           this._albums.push({
             src: sf.bus_image_5,
             caption: '',
-            thumb: sf.bus_image_5
+            thumb: sf.bus_image_5,
           });
         }
-
       });
     }
 
-    console.log('Albums:', this._albums);
+    
 
     this.reviewShow = '';
     this.amenityShow = '';
@@ -2731,7 +2702,6 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     let currentPath = this.router.url.split('?')[0];
 
     currentPath = currentPath.replace(/^\/+/, '');
@@ -2858,6 +2828,8 @@ export class SearchComponent implements OnInit {
         localStorage.setItem('source_id', this.sourceData.id);
         localStorage.setItem('destination_id', this.destinationData.id);
         localStorage.setItem('entdate', this.entdate);
+        localStorage.setItem('source_url', this.sourceData.url);
+        localStorage.setItem('destination_url', this.destinationData.url);
 
         this.showformattedDate(this.entdate);
 
@@ -2885,6 +2857,9 @@ export class SearchComponent implements OnInit {
             },
           );
         }
+
+        // PUSH VIEW_CONTENT
+        this.pushViewContentEvent();
 
         this.getbuslist();
       }
@@ -3031,6 +3006,8 @@ export class SearchComponent implements OnInit {
       localStorage.setItem('source_id', this.sourceData.id);
       localStorage.setItem('destination_id', this.destinationData.id);
       localStorage.setItem('entdate', this.entdate);
+      localStorage.setItem('source_url', this.sourceData.url);
+      localStorage.setItem('destination_url', this.destinationData.url);
 
       this.showformattedDate(this.entdate);
 
@@ -3070,6 +3047,9 @@ export class SearchComponent implements OnInit {
           },
         );
       }
+
+      // PUSH VIEW_CONTENT
+      this.pushViewContentEvent();
 
       this.getbuslist();
     }
@@ -3235,9 +3215,7 @@ export class SearchComponent implements OnInit {
   }
 
   getSafetyImage(safety: any): string {
-    return this.isMobile
-      ? safety.safety_image
-      : safety.safety_image;
+    return this.isMobile ? safety.safety_image : safety.safety_image;
   }
 
   viewphotos(viewphotos: any) {
@@ -3396,7 +3374,10 @@ export class SearchComponent implements OnInit {
     // );
 
     const maxDate = new Date(today);
-    maxDate.setDate(today.getDate() + parseInt(localStorage.getItem('advance_days_show') || '29'));
+    maxDate.setDate(
+      today.getDate() +
+        parseInt(localStorage.getItem('advance_days_show') || '29'),
+    );
 
     for (let d = 1; d <= totalDays; d++) {
       const fullDate = new Date(this.currentYear, this.currentMonth, d);
@@ -3506,7 +3487,7 @@ export class SearchComponent implements OnInit {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { date: formattedDate },
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 
@@ -3524,4 +3505,54 @@ export class SearchComponent implements OnInit {
     navigator.clipboard.writeText(code);
   }
   // Added by Jagan
+
+  // Desc: dataLayer for Tracking Created On : 25-Sept-2026 By: Chakradhar Sahu
+
+  private viewContentTracked = false;
+
+  private pushViewContentEvent(): void {
+
+      if (this.viewContentTracked) {
+        return;
+      }     
+
+      window.dataLayer = window.dataLayer || [];
+
+      const viewContentEvent = {
+        event: 'view_content',
+        content_name: `${this.sourceData.name} to ${this.destinationData.name}`,
+        content_type: 'route',
+      };
+
+      window.dataLayer.push(viewContentEvent);
+
+      this.viewContentTracked = true;
+  }
+
+  // Desc: dataLayer for Tracking Created On : 25-Sept-2026 By: Chakradhar Sahu
+
+  private pushInitiateCheckoutEvent(): void {
+      const totalFare = Number(this.PriceArray?.odbus_charges_ownerFare || 0);
+      const busName = this.buslistRecord?.busName || '';
+
+      if (totalFare <= 0) {
+        return;
+      }
+
+      if (!this.sourceData?.name || !this.destinationData?.name) {
+        return;
+      }
+
+      window.dataLayer = window.dataLayer || [];
+
+      const checkoutEvent = {
+        event: 'initiate_checkout',
+        route: `${this.sourceData.name} to ${this.destinationData.name}`,
+        busName: busName,
+        value: totalFare,       
+        currency: 'INR',
+      };
+
+      window.dataLayer.push(checkoutEvent);
+  }
 }

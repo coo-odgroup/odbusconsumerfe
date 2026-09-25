@@ -14,9 +14,9 @@
       <div class="col-md-4 col-sm-6" *ngFor="let p of displayedRoutes">
         <div
           class="route-card"
-          (click)="popularSearch(p.source_url, p.destination_url)"
-          (keydown.enter)="popularSearch(p.source_url, p.destination_url)"
-          (keydown.space)="popularSearch(p.source_url, p.destination_url)"
+          (click)="popularSearch(p?.source_url, p?.destination_url)"
+          (keydown.enter)="popularSearch(p?.source_url, p?.destination_url)"
+          (keydown.space)="popularSearch(p?.source_url, p?.destination_url)"
         >
           <div class="route-left">
             <img
@@ -29,9 +29,9 @@
             />
 
             <div class="route-text">
-              <span class="city">{{ p.source }}</span>
+              <span class="city">{{ p?.source }}</span>
               <span class="exchange">→</span>
-              <span class="city">{{ p.destination }}</span>
+              <span class="city">{{ p?.destination }}</span>
             </div>
           </div>
         </div>
@@ -39,7 +39,7 @@
 
       <div class="col-md-12 text-center">
         <button
-          *ngIf="isMobile && !showAllRoutes && popularRoutes.length > 5"
+          *ngIf="isMobile && !showAllRoutes && popularRoutes?.length > 5"
           (click)="viewAllRoutes()"
           class="border-btn bh mt-3"
         >
