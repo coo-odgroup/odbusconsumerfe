@@ -1,6 +1,33 @@
 <ng-container *ngIf="!isMobile">
-  <app-search-box></app-search-box>
+  <!-- <app-search-box></app-search-box> -->
 
+
+  <!-- DUSSEHRA FESTIVAL BANNER -->
+  <section class="festival-banner-section">
+    <div class="container">
+
+      <div class="festival-banner">
+
+        <!-- Dussehra Banner Image -->
+        <div class="festival-banner-image"></div>
+
+        <!-- Transparent Overlay -->
+        <div class="festival-banner-overlay"></div>
+
+        <!-- Book Now -->
+        <div class="festival-banner-action">
+          <button class="festival-book-btn">
+            BOOK YOUR TICKET NOW
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Offer section -->
   <section class="top-routs offer-sec">
     <span class="line-span">
       <div class="container">
@@ -117,7 +144,30 @@
     </div>
   </div>
 
-  <app-search-box-m></app-search-box-m>
+  <!-- <app-search-box-m></app-search-box-m> -->
+
+  <!-- MOBILE DUSSEHRA FESTIVAL BANNER -->
+  <section class="mobile-festival-section">
+
+    <div class="mobile-festival-card">
+
+      <!-- Dussehra image will be added here -->
+      <div class="mobile-festival-image"></div>
+
+      <!-- Overlay -->
+      <div class="mobile-festival-overlay"></div>
+
+      <!-- CTA -->
+      <div class="mobile-festival-cta">
+        <button class="mobile-festival-btn">
+          BOOK YOUR TICKET NOW
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+  <!-- End -->
 
   <div class="mobile-offerbox-middle">
     <p class="offer-top-text">
@@ -179,7 +229,7 @@
 </ng-container>
 
 <ng-container *ngIf="MenuActive">
-<div class="mobile-myaccount-top">
+  <div class="mobile-myaccount-top">
     <div class="row">
       <div class="col-5">
         <div class="mobile-logo">
@@ -292,8 +342,8 @@
 
         <div class="offer-description" [innerHTML]="OfferData?.coupon?.full_desc"></div>
         <button class="copy-btn" (click)="copyCoupon(OfferData?.coupon?.coupon_code)">
-            Copy Coupon
-          </button>
+          Copy Coupon
+        </button>
 
         <!-- <div class="slider-desc" *ngIf="
             OfferData?.slider_description != 'null' &&
