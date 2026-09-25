@@ -154,4 +154,8 @@ export class OffersComponent implements OnInit {
         this.notify.notify('Failed to copy coupon.', 'Error');
       });
   }
+
+  bookToHome(){
+    this.router.navigate(['/']);
+  }
 }

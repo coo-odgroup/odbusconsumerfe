@@ -1142,19 +1142,10 @@ export class BookingComponent implements OnInit {
         formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
       }
 
-<<<<<<< HEAD
-      this.router.navigate(['/routes/bhubaneswar-digha-bus-services'], {
-        queryParams: {
-          date: formattedDate,
-        },
-        replaceUrl: true,
-      });
-=======
       const routeUrl = `/routes/${source_url}-${destination_url}-bus-services`;
       this.router.navigate(
         [routeUrl],
         { queryParams: { date: formattedDate }, replaceUrl: true });
->>>>>>> 44def564308c7687a32b99b3488689c42518531a
     } else {
       this.router.navigate(['/'], { replaceUrl: true });
     }
