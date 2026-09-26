@@ -39,14 +39,14 @@ export class FaqsComponent implements OnInit {
 
     if (cachedFaqs) {
       this.faqs = JSON.parse(cachedFaqs);
-      this.openIndex = this.faqs.map(() => 0);
+      this.openIndex = this.faqs.map(() => -1);
       return;
     }
 
     this.http.post(this.apiurl + '/getfaqs', {}).subscribe({
       next: (res: any) => {
         this.faqs = res.data;
-        this.openIndex = this.faqs.map(() => 0);
+        this.openIndex = this.faqs.map(() => -1);
 
         // Save to localStorage
         localStorage.setItem(storageKey, JSON.stringify(this.faqs));
