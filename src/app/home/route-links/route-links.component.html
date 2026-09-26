@@ -29,7 +29,7 @@
           <div class="col-md-3" *ngFor="let column of popularRoutesLinks">
             <div *ngFor="let route of column"
               (click)="goToRoute(route)" style="cursor: pointer;">
-              {{ route.source }} to {{ route.destination }} Bus
+              {{ route?.source }} to {{ route?.destination }} Bus
             </div>
           </div>
         </div>
