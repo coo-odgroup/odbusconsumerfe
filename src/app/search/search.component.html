@@ -347,6 +347,13 @@
                         <div class="listing-coupon-scroll" id="listingCouponScroll"
                             (scroll)="updateListingCouponButtons()">
 
+                            <!-- STATIC SLIDER -->
+                            <div class="listing-coupon-card" *ngIf="showStaticSlider">
+                                <img src="{{ static_sliderImage }}"
+                                    alt="ODBUS Offer" loading="lazy" />
+                            </div>
+
+                            <!-- DYNAMIC SLIDER -->
                             <div class="listing-coupon-card" *ngFor="let offer of Offers; let i = index">
                                 <img [src]="offer.slider_photo" [alt]="offer.alt_tag || 'ODBUS Offer'" loading="lazy" />
                             </div>
@@ -2524,13 +2531,13 @@
                                     To
                                 </label>
 
-                                  <div class="location-input">
+                                <div class="location-input">
 
                                     <i class="fa fa-map-marker location-icon"></i>
-                                <input autocomplete="off" id="to" type="search" [ngbTypeahead]="search"
-                                    [resultTemplate]="rt2" [inputFormatter]="formatter" [ngModel]="swapdestination"
-                                    formControlName="destination" placeholder="Enter Destination"
-                                    (selectItem)="tabChange('entryDate')" />
+                                    <input autocomplete="off" id="to" type="search" [ngbTypeahead]="search"
+                                        [resultTemplate]="rt2" [inputFormatter]="formatter" [ngModel]="swapdestination"
+                                        formControlName="destination" placeholder="Enter Destination"
+                                        (selectItem)="tabChange('entryDate')" />
                                 </div>
                                 <ng-template #rt2 let-r="result" let-t="term">
 

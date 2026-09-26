@@ -122,10 +122,10 @@ export class SearchComponent implements OnInit {
 
   _albums = [];
   // Function to call when the date changes.
-  onChange = (date?: Date) => {};
+  onChange = (date?: Date) => { };
 
   // Function to call when the date picker is touched
-  onTouched = () => {};
+  onTouched = () => { };
 
   writeValue(value: Date) {
     if (!value) return;
@@ -291,7 +291,7 @@ export class SearchComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document,
   ) {
-    
+
     // Only access localStorage in browser
     const allLocData = isPlatformBrowser(this.platformId)
       ? localStorage.getItem('allLoc')
@@ -375,15 +375,15 @@ export class SearchComponent implements OnInit {
             term === ''
               ? []
               : this.location_list
-                  .filter(
-                    (v) =>
-                      v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
-                      (v.synonym != '' &&
-                        v.synonym != null &&
-                        v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
-                          -1),
-                  )
-                  .slice(0, 10),
+                .filter(
+                  (v) =>
+                    v.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
+                    (v.synonym != '' &&
+                      v.synonym != null &&
+                      v.synonym.toLowerCase().indexOf(term.toLowerCase()) >
+                      -1),
+                )
+                .slice(0, 10),
           ),
         );
       this.formatter = (x: { name: string }) => x.name;
@@ -521,8 +521,8 @@ export class SearchComponent implements OnInit {
       this.pushInitiateCheckoutEvent();
 
       this.router.navigate(['booking'], {
-  replaceUrl: false
-});
+        replaceUrl: false
+      });
     } else {
       if (
         this.seatForm.value.boardingPoint == null ||
@@ -2287,7 +2287,7 @@ export class SearchComponent implements OnInit {
       });
     }
 
-    
+
 
     this.reviewShow = '';
     this.amenityShow = '';
@@ -2701,6 +2701,33 @@ export class SearchComponent implements OnInit {
       });
   }
 
+  // Add by sahil -- for puja offer slider static
+  showStaticSlider: boolean = false;
+  static_sliderImage = "https://provider.odbus.co.in/uploads/slider_photos/17903389602548.webp";
+
+  checkStaticSlider(): void {
+    if (!this.entdate) {
+      this.showStaticSlider = false;
+      return;
+    }
+
+    const parts = this.entdate.split('-');
+    if (parts.length !== 3) {
+      this.showStaticSlider = false;
+      return;
+    }
+
+    // DD-MM-YYYY → YYYY-MM-DD
+    const journeyDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+
+    const startDate = '2026-10-14';
+    const endDate = '2026-10-18';
+
+    this.showStaticSlider =
+      journeyDate >= startDate &&
+      journeyDate <= endDate;
+  }
+
   ngOnInit(): void {
     let currentPath = this.router.url.split('?')[0];
 
@@ -2708,36 +2735,6 @@ export class SearchComponent implements OnInit {
     currentPath = currentPath.replace(/^(route|routes)\//, '');
 
     this.currentUrl = currentPath;
-
-    // ================= SEO =================
-    // this.seo.seoList().subscribe(
-    //   (resp: any) => {
-
-    //     let seoPages: any[] = [];
-
-    //     if (Array.isArray(resp)) {
-    //       seoPages = resp;
-    //     } else if (resp?.data && Array.isArray(resp.data)) {
-    //       seoPages = resp.data;
-    //     }
-
-    //     const seoData = seoPages.find(
-    //       (x: any) => x?.page_url === currentPath
-    //     );
-
-    //     if (seoData) {
-    //       this.applySeo(seoData);
-    //     }
-
-    //     if (isPlatformBrowser(this.platformId)) {
-    //       localStorage.setItem('seoData', JSON.stringify(resp));
-    //     }
-
-    //   },
-    //   error => {
-    //     console.error('Error fetching SEO:', error);
-    //   }
-    // );
 
     // ================= LOCATION OBS =================
     this.locationService.currentsource.subscribe((s: any) => {
@@ -2886,6 +2883,8 @@ export class SearchComponent implements OnInit {
     }
 
     this.generateCalendar();
+    //Add by Sahil
+    this.checkStaticSlider();
 
     // this.seoContent();
 
@@ -2909,54 +2908,6 @@ export class SearchComponent implements OnInit {
     );
     scripts.forEach((s) => s.remove());
   }
-
-  // applySeo(seodata: any) {
-
-  //   this.title.setTitle(seodata.meta_title || '');
-
-  //   this.meta.updateTag({
-  //     name: 'description',
-  //     content: seodata.meta_description || '',
-  //   });
-
-  //   this.removeOldJsonLd();
-
-  //   const schemas: any[] = [];
-
-  //   if (seodata?.breadcrumb_schema) {
-  //     try {
-  //       const breadcrumb =
-  //         typeof seodata.breadcrumb_schema === 'string'
-  //           ? JSON.parse(seodata.breadcrumb_schema)
-  //           : seodata.breadcrumb_schema;
-
-  //       schemas.push(breadcrumb);
-  //     } catch (e) {
-  //       console.error('Invalid breadcrumb JSON', e);
-  //     }
-  //   }
-
-  //   if (seodata?.faq_schema) {
-  //     try {
-  //       const faq =
-  //         typeof seodata.faq_schema === 'string'
-  //           ? JSON.parse(seodata.faq_schema)
-  //           : seodata.faq_schema;
-
-  //       schemas.push(faq);
-  //     } catch (e) {
-  //       console.error('Invalid FAQ JSON', e);
-  //     }
-  //   }
-
-  //   // ✅ THIS PART WAS MISSING
-  //   schemas.forEach(schema => {
-  //     const script = this.document.createElement('script');
-  //     script.type = 'application/ld+json';
-  //     script.text = JSON.stringify(schema);
-  //     this.document.head.appendChild(script);
-  //   });
-  // }
 
   setCanonical(url: string) {
     let link = document.querySelector(
@@ -3376,7 +3327,7 @@ export class SearchComponent implements OnInit {
     const maxDate = new Date(today);
     maxDate.setDate(
       today.getDate() +
-        parseInt(localStorage.getItem('advance_days_show') || '29'),
+      parseInt(localStorage.getItem('advance_days_show') || '29'),
     );
 
     for (let d = 1; d <= totalDays; d++) {
@@ -3512,47 +3463,47 @@ export class SearchComponent implements OnInit {
 
   private pushViewContentEvent(): void {
 
-      if (this.viewContentTracked) {
-        return;
-      }     
+    if (this.viewContentTracked) {
+      return;
+    }
 
-      window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 
-      const viewContentEvent = {
-        event: 'view_content',
-        content_name: `${this.sourceData.name} to ${this.destinationData.name}`,
-        content_type: 'route',
-      };
+    const viewContentEvent = {
+      event: 'view_content',
+      content_name: `${this.sourceData.name} to ${this.destinationData.name}`,
+      content_type: 'route',
+    };
 
-      window.dataLayer.push(viewContentEvent);
+    window.dataLayer.push(viewContentEvent);
 
-      this.viewContentTracked = true;
+    this.viewContentTracked = true;
   }
 
   // Desc: dataLayer for Tracking Created On : 25-Sept-2026 By: Chakradhar Sahu
 
   private pushInitiateCheckoutEvent(): void {
-      const totalFare = Number(this.PriceArray?.odbus_charges_ownerFare || 0);
-      const busName = this.buslistRecord?.busName || '';
+    const totalFare = Number(this.PriceArray?.odbus_charges_ownerFare || 0);
+    const busName = this.buslistRecord?.busName || '';
 
-      if (totalFare <= 0) {
-        return;
-      }
+    if (totalFare <= 0) {
+      return;
+    }
 
-      if (!this.sourceData?.name || !this.destinationData?.name) {
-        return;
-      }
+    if (!this.sourceData?.name || !this.destinationData?.name) {
+      return;
+    }
 
-      window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 
-      const checkoutEvent = {
-        event: 'initiate_checkout',
-        route: `${this.sourceData.name} to ${this.destinationData.name}`,
-        busName: busName,
-        value: totalFare,       
-        currency: 'INR',
-      };
+    const checkoutEvent = {
+      event: 'initiate_checkout',
+      route: `${this.sourceData.name} to ${this.destinationData.name}`,
+      busName: busName,
+      value: totalFare,
+      currency: 'INR',
+    };
 
-      window.dataLayer.push(checkoutEvent);
+    window.dataLayer.push(checkoutEvent);
   }
 }
