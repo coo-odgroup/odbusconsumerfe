@@ -1369,12 +1369,26 @@ export class BookingComponent implements OnInit {
   }
 
 
-  onlyAlphabets(event: Event,fieldname:any): void {
+  onlyAlphabets(event: Event, index: number, fieldvalue: any): void {
     const input = event.target as HTMLInputElement;
 
-    input.value = input.value.replace(/[^a-zA-Z ]/g, '');
+    const value = input.value.replace(/[^a-zA-Z ]/g, '');
 
-    this.bookForm1.get(fieldname)?.setValue(input.value, {
+    input.value = value;
+
+    this.getPassengerFormGroup(index)
+      .get(fieldvalue)
+      ?.setValue(value, { emitEvent: false });
+  }
+
+  onlyAlphabetsCustomer(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    const value = input.value.replace(/[^a-zA-Z ]/g, '');
+
+    input.value = value;
+
+    this.GetcustomerInfo.controls.name.setValue(value, {
       emitEvent: false
     });
   }

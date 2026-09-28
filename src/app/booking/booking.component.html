@@ -62,7 +62,7 @@
             <div class="col-12">
               <div class="form-group">
                 <input type="text" class="" [readonly]="isnameReadOnly" formControlName="name"
-                  placeholder="Enter Your Name" (input)="onlyAlphabets($event,'passenger_name')"/>
+                  placeholder="Enter Your Name" (input)="onlyAlphabetsCustomer($event)" />
 
                 <div *ngIf="submitted1 && GetcustomerInfo.controls.name.errors" class="invalid-feedback">
                   <div *ngIf="GetcustomerInfo.controls.name.errors.required">
@@ -118,7 +118,8 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <input type="text" formControlName="passenger_name" class="" placeholder="Passenger Name" (input)="onlyAlphabets($event,'passenger_name')"/>
+                  <input type="text" formControlName="passenger_name" class="" placeholder="Passenger Name"
+                    (input)="onlyAlphabets($event,i,'passenger_name')" />
                   <div *ngIf="
                       submitted1 &&
                       getPassengerFormGroup(i).controls[
@@ -173,7 +174,8 @@
               </div>
               <div class="col-12">
                 <div class="form-group mb-0">
-                  <input type="number" class="" formControlName="passenger_age" placeholder="Passenger Age" min="1" step="1"/>
+                  <input type="number" class="" formControlName="passenger_age" placeholder="Passenger Age" min="1"
+                    step="1" max="99" />
 
                   <div *ngIf="
                       submitted1 &&
@@ -488,9 +490,11 @@
             <div class="mobile-offer-card selected-offer" *ngFor="let offercode of couponcode">
               <div class="mobile-offer-content">
                 <div class="mobile-offer-code">
-                  <strong (click)="openCouponModal(offercode)">{{ offercode.coupon_code }}</strong>
+                  <strong (click)="openCouponModal(offercode)">
+                    {{ offercode.coupon_code }}
+                  </strong>
 
-                  <!-- <i class="fas fa-info-circle" title="Coupon details"></i> -->
+                  <i class="fas fa-info-circle" title="Coupon details" (click)="openCouponModal(offercode)"></i>
 
                 </div>
 
@@ -849,7 +853,7 @@
                   </tr>
                   <tr>
                     <td>
-                      Journey Date: {{ entdate | date: "EEEE, d MMMM , y" }}
+                      Journey Date: {{ entdate | date: "EEE, d MMM" }}
                     </td>
                   </tr>
                   <tr>
@@ -1325,7 +1329,7 @@
                               <label><span class="grey">Seat No:</span>
                                 {{ get_seatno(item.value.bus_seats_id) }}</label><br />
                               <input type="text" formControlName="passenger_name" class="form-control"
-                                placeholder="Full Name" (input)="onlyAlphabets($event,'passenger_name')"/>
+                                placeholder="Full Name" (input)="onlyAlphabets($event,i,'passenger_name')" />
 
                               <div *ngIf="
                                   submitted1 &&
@@ -1349,7 +1353,7 @@
                             <div class="col-md-3">
                               <label>&nbsp;</label><br />
                               <input type="number" class="form-control" formControlName="passenger_age"
-                                placeholder="Passenger Age" min="1" step="1"/>
+                                placeholder="Passenger Age" min="1" step="1" max="99" />
 
                               <div *ngIf="
                                   submitted1 &&
@@ -1389,7 +1393,7 @@
                           <div class="col-md-4">
                             <label>Name</label><br />
                             <input type="text" class="form-control" [readonly]="isnameReadOnly" formControlName="name"
-                              placeholder="Enter Your Name" (input)="onlyAlphabets($event,'name')"/>
+                              placeholder="Enter Your Name" (input)="onlyAlphabetsCustomer($event)" />
 
                             <div *ngIf="
                                 submitted1 &&
@@ -1490,7 +1494,7 @@
                           </h6>
 
                           <span class="font">Journey Date</span>
-                          <h5>{{ entdate | date: "EEEE, d MMMM , y" }}</h5>
+                          <h5>{{ entdate | date: "EEE, d MMM" }}</h5>
                         </div>
                       </div>
 
@@ -1661,7 +1665,7 @@
                             </span>
 
                             <h5>
-                              {{ entdate | date:"EEEE, d MMMM, y" }}
+                              {{ entdate | date: "EEE, d MMM" }}
                             </h5>
 
                             <p>
@@ -1975,9 +1979,11 @@
                           <div class="offer-content">
 
                             <div class="offer-code-row">
-                              <strong (click)="openCouponModal(offercode)">{{ offercode.coupon_code }}</strong>
+                              <strong (click)="openCouponModal(offercode)">
+                                {{ offercode.coupon_code }}
+                              </strong>
 
-                              <!-- <i class="fas fa-info-circle" title="Coupon details"></i> -->
+                              <i class="fas fa-info-circle" title="Coupon details" (click)="openCouponModal(offercode)"></i>
                             </div>
 
                             <p (click)="openCouponModal(offercode)">{{ offercode.short_desc }}</p>
