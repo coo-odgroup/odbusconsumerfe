@@ -126,6 +126,8 @@ export class OffersComponent implements OnInit {
   closeOfferModal() {
     this.showOfferModal = false;
     this.OfferData = null;
+
+    this.router.navigate(['offers']);
   }
 
   getImagePath(slider_img: any) {

@@ -658,7 +658,7 @@ export class BookingComponent implements OnInit {
               return k < 14
                 ? i + p
                 : j ==
-                    ((c = c - (i % c)) < 10 ? c : String.fromCharCode(c + b));
+                ((c = c - (i % c)) < 10 ? c : String.fromCharCode(c + b));
             },
             0,
           );
@@ -1029,6 +1029,36 @@ export class BookingComponent implements OnInit {
     history.pushState(null, '', location.href);
 
     this.CouponCode();
+    this.couponForm.get('coupon_code')?.valueChanges.subscribe((value: string) => {
+
+      if (!value || value.trim() === '') {
+        this.removeCoupon();
+      }
+
+    });
+  }
+
+  removeCoupon(): void {
+
+    this.autoApplyCouponcode = '';
+    this.autoApplyCouponStatus = false;
+
+    this.couponData = {
+      totalAmount: this.bookingdata.PriceArray.totalFare,
+      discount: 0,
+      payableAmount: this.bookingdata.PriceArray.totalFare,
+    } as Coupon;
+
+  }
+
+  selectedCoupon: any = null;
+
+  openCouponModal(coupon: any): void {
+    this.selectedCoupon = coupon;
+  }
+
+  closeCouponModal(): void {
+    this.selectedCoupon = null;
   }
 
   @HostListener('window:popstate', ['$event'])
@@ -1314,27 +1344,38 @@ export class BookingComponent implements OnInit {
 
     try {
 
-        const storedBookingData = JSON.parse(stored);
+      const storedBookingData = JSON.parse(stored);
 
-        const totalFare = Number(storedBookingData?.PriceArray?.totalFare || 0);
-      
-        if (totalFare <= 0) {
-          console.log('Invalid total fare for add_payment_info:', totalFare);
-          return;
-        }
+      const totalFare = Number(storedBookingData?.PriceArray?.totalFare || 0);
 
-        window.dataLayer = window.dataLayer || [];
+      if (totalFare <= 0) {
+        console.log('Invalid total fare for add_payment_info:', totalFare);
+        return;
+      }
 
-        const paymentInfoEvent = {
-          event: 'add_payment_info',
-          value: totalFare,
-          currency: 'INR',
-        };
+      window.dataLayer = window.dataLayer || [];
 
-        window.dataLayer.push(paymentInfoEvent);
+      const paymentInfoEvent = {
+        event: 'add_payment_info',
+        value: totalFare,
+        currency: 'INR',
+      };
+
+      window.dataLayer.push(paymentInfoEvent);
 
     } catch (error) {
       console.error('Error parsing bookingdata:', error);
     }
+  }
+
+
+  onlyAlphabets(event: Event,fieldname:any): void {
+    const input = event.target as HTMLInputElement;
+
+    input.value = input.value.replace(/[^a-zA-Z ]/g, '');
+
+    this.bookForm1.get(fieldname)?.setValue(input.value, {
+      emitEvent: false
+    });
   }
 }
