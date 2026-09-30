@@ -1,16 +1,16 @@
 /* =========================================================
-   ODBUS NEW LOGIN PAGE
-   Full Screen Premium Login
+ODBUS NEW LOGIN PAGE
+Full Screen Premium Login
 ========================================================= */
 
-:host {
+    {
     display: block;
     width: 100%;
     height: 100%;
 }
 
 /* =========================================================
-   MAIN PAGE
+MAIN PAGE
 ========================================================= */
 
 .new-login-page {
@@ -30,10 +30,11 @@
         "Segoe UI",
         Arial,
         sans-serif;
+
 }
 
 /* =========================================================
-   LEFT VISUAL SECTION
+LEFT VISUAL SECTION
 ========================================================= */
 
 .login-visual-section {
@@ -42,6 +43,7 @@
     min-height: 100vh;
 
     overflow: hidden;
+
 }
 
 .visual-image {
@@ -56,6 +58,7 @@
     background-repeat: no-repeat;
 
     transform: scale(1.01);
+
 }
 
 .visual-overlay {
@@ -69,10 +72,11 @@
         linear-gradient(180deg,
             rgba(255, 255, 255, 0.04),
             rgba(4, 38, 89, 0.12));
+
 }
 
 /* =========================================================
-   LEFT CONTENT
+LEFT CONTENT
 ========================================================= */
 
 .visual-content {
@@ -88,6 +92,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
 }
 
 .login-logo-left {
@@ -100,7 +105,7 @@
 }
 
 /* =========================================================
-   TOP CONTENT
+TOP CONTENT
 ========================================================= */
 
 .visual-top {
@@ -114,8 +119,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-}
 
+}
 
 .visual-copy {
     max-width: 570px;
@@ -136,6 +141,7 @@
     font-weight: 800;
 
     text-shadow: 0 2px 10px rgba(255, 255, 255, 0.55);
+
 }
 
 .visual-copy h1 span {
@@ -144,6 +150,7 @@
     color: #1477e9;
 
     margin-top: 5px;
+
 }
 
 .yellow-line {
@@ -159,6 +166,7 @@
 
     box-shadow:
         0 3px 10px rgba(242, 197, 0, 0.22);
+
 }
 
 .visual-copy p {
@@ -174,10 +182,11 @@
 
     text-shadow:
         0 1px 6px rgba(255, 255, 255, 0.7);
+
 }
 
 /* =========================================================
-   COUPON
+COUPON
 ========================================================= */
 
 .coupon-wrapper {
@@ -211,11 +220,11 @@
     50% {
         transform: translateY(-8px) rotate(0.7deg);
     }
+
 }
 
-
 /* =========================================================
-   FEATURES
+FEATURES
 ========================================================= */
 
 .visual-features {
@@ -225,7 +234,6 @@
     max-width: 650px;
     padding: 14px 0;
 }
-
 
 .visual-feature {
     display: flex;
@@ -237,7 +245,6 @@
     text-align: center;
     color: #082e70;
 }
-
 
 .feature-icon {
     width: 58px;
@@ -251,8 +258,8 @@
     color: #0a62d5;
     box-shadow: 0 8px 22px rgba(0, 65, 130, 0.10);
     backdrop-filter: blur(8px);
-}
 
+}
 
 .feature-icon svg {
     width: 29px;
@@ -264,6 +271,7 @@
         rgba(224, 250, 238, 0.90);
 
     color: #16a765;
+
 }
 
 .fare-icon {
@@ -272,7 +280,6 @@
     font-size: 27px;
     font-weight: 800;
 }
-
 
 .heart-icon {
     background: rgba(235, 229, 255, 0.92);
@@ -291,9 +298,8 @@
     background: rgba(8, 46, 112, 0.18);
 }
 
-
 /* =========================================================
-   VISUAL BOTTOM
+VISUAL BOTTOM
 ========================================================= */
 
 .visual-bottom {
@@ -306,16 +312,14 @@
     text-shadow: 0 2px 7px rgba(0, 0, 0, 0.35);
 }
 
-
-.visual-bottom span:not(:last-child)::after {
+.visual-bottom span()::after {
     content: "•";
     margin-left: 17px;
     color: #f2c500;
 }
 
-
 /* =========================================================
-   RIGHT LOGIN SECTION
+RIGHT LOGIN SECTION
 ========================================================= */
 
 .login-form-section {
@@ -334,8 +338,8 @@
 
     position: relative;
     overflow: hidden;
-}
 
+}
 
 .login-form-section::before {
     content: "";
@@ -349,9 +353,8 @@
     filter: blur(5px);
 }
 
-
 /* =========================================================
-   LOGIN CARD
+LOGIN CARD
 ========================================================= */
 
 .login-card {
@@ -374,8 +377,8 @@
     backdrop-filter: blur(20px);
     animation:
         loginCardEntrance 0.75s cubic-bezier(.22, 1, .36, 1) both;
-}
 
+}
 
 @keyframes loginCardEntrance {
 
@@ -392,8 +395,8 @@
         transform:
             translateY(0) scale(1);
     }
-}
 
+}
 
 .login-card {
     position: relative;
@@ -418,7 +421,7 @@
 }
 
 /* =========================================================
-   HEADING
+HEADING
 ========================================================= */
 
 .login-heading {
@@ -428,11 +431,9 @@
     gap: 20px;
 }
 
-
 .heading-copy {
     flex: 1;
 }
-
 
 .login-heading h1 {
     margin: 0;
@@ -445,12 +446,10 @@
     font-weight: 800;
 }
 
-
 .login-heading h1 span {
     display: block;
     color: #1478e9;
 }
-
 
 .login-heading p {
     max-width: 500px;
@@ -460,11 +459,11 @@
     color: #63728c;
     font-size: 14px;
     line-height: 1.65;
+
 }
 
-
 /* =========================================================
-   TICKET DECORATION
+TICKET DECORATION
 ========================================================= */
 
 .ticket-decoration {
@@ -473,7 +472,6 @@
     height: 95px;
     flex-shrink: 0;
 }
-
 
 .mini-ticket {
     width: 125px;
@@ -500,14 +498,13 @@
 
     box-shadow:
         0 10px 25px rgba(40, 120, 210, 0.10);
-}
 
+}
 
 .mini-ticket svg {
     width: 30px;
     height: 30px;
 }
-
 
 .mini-ticket span {
     font-size: 10px;
@@ -517,11 +514,11 @@
     font-weight: 800;
 
     text-align: center;
+
 }
 
-
 /* =========================================================
-   AUTH SWITCH
+AUTH SWITCH
 ========================================================= */
 
 .auth-switch {
@@ -534,8 +531,8 @@
     border-radius: 14px;
 
     background: #edf4fc;
-}
 
+}
 
 .auth-switch button {
     flex: 1;
@@ -560,8 +557,8 @@
 
     transition:
         .25s ease;
-}
 
+}
 
 .auth-switch button.active {
     color: #ffffff;
@@ -573,11 +570,11 @@
 
     box-shadow:
         0 6px 16px rgba(20, 90, 190, 0.20);
+
 }
 
-
 /* =========================================================
-   PHONE / EMAIL SWITCH
+PHONE / EMAIL SWITCH
 ========================================================= */
 
 .method-switch {
@@ -589,8 +586,8 @@
 
     margin:
         27px 0 18px;
-}
 
+}
 
 .method-switch button {
     display: flex;
@@ -614,8 +611,8 @@
     font-weight: 600;
 
     cursor: pointer;
-}
 
+}
 
 .switch-dot {
     width: 19px;
@@ -627,18 +624,16 @@
         2px solid #a8b6c9;
 
     position: relative;
-}
 
+}
 
 .method-switch button.active {
     color: #113d84;
 }
 
-
 .method-switch button.active .switch-dot {
     border-color: #087cf0;
 }
-
 
 .method-switch button.active .switch-dot::after {
     content: "";
@@ -654,11 +649,11 @@
     border-radius: 50%;
 
     background: #087cf0;
+
 }
 
-
 /* =========================================================
-   INPUT
+INPUT
 ========================================================= */
 
 .input-group-premium {
@@ -689,18 +684,18 @@
         border-color .25s ease,
         box-shadow .25s ease,
         background .25s ease;
+
 }
 
-
-.input-group-premium:focus-within {
+.input-group-premium {
     border-color: #2584eb;
 
     background: #ffffff;
 
     box-shadow:
         0 0 0 4px rgba(37, 132, 235, 0.08);
-}
 
+}
 
 .input-icon {
     width: 25px;
@@ -714,14 +709,13 @@
     justify-content: center;
 
     color: #173f7f;
-}
 
+}
 
 .input-icon svg {
     width: 22px;
     height: 22px;
 }
-
 
 .input-group-premium input {
     width: 100%;
@@ -737,16 +731,15 @@
     font-family: inherit;
 
     font-size: 14px;
-}
 
+}
 
 .input-group-premium input::placeholder {
     color: #8492a8;
 }
 
-
 /* =========================================================
-   ERROR
+ERROR
 ========================================================= */
 
 .form-error {
@@ -757,6 +750,7 @@
     font-size: 12px;
 
     font-weight: 600;
+
 }
 
 /* terms & conditions */
@@ -791,12 +785,12 @@
     justify-content: center;
 }
 
-.terms-label input:checked+.custom-checkbox {
+.terms-label input+.custom-checkbox {
     background: #176fe5;
     border-color: #176fe5;
 }
 
-.terms-label input:checked+.custom-checkbox::after {
+.terms-label input+.custom-checkbox::after {
     content: "";
     width: 5px;
     height: 9px;
@@ -813,7 +807,7 @@
 }
 
 /* =========================================================
-   PRIMARY BUTTON
+PRIMARY BUTTON
 ========================================================= */
 
 .primary-button {
@@ -861,8 +855,8 @@
     transition:
         transform .25s ease,
         box-shadow .25s ease;
-}
 
+}
 
 .primary-button::before {
     content: "";
@@ -886,40 +880,38 @@
 
     transition:
         left .65s ease;
-}
 
+}
 
 .primary-button:hover::before {
     left: 145%;
 }
 
-
-.primary-button:hover {
+.primary-button {
     transform:
         translateY(-2px);
 
     box-shadow:
         0 17px 32px rgba(18, 91, 190, 0.29);
+
 }
 
-
-.primary-button:disabled {
+.primary-button {
     cursor: not-allowed;
 
     opacity: .65;
 
     transform: none;
-}
 
+}
 
 .primary-button svg {
     width: 20px;
     height: 20px;
 }
 
-
 /* =========================================================
-   BOTTOM AUTH
+BOTTOM AUTH
 ========================================================= */
 
 .auth-bottom {
@@ -935,15 +927,15 @@
     color: #596980;
 
     font-size: 13px;
-}
 
+}
 
 .auth-bottom button {
     border: none;
 
     background: transparent;
 
-    color: #e5ac00;
+    color: #1155ba;
 
     padding: 0;
 
@@ -958,11 +950,11 @@
     text-underline-offset: 3px;
 
     cursor: pointer;
+
 }
 
-
 /* =========================================================
-   TRUST STRIP
+TRUST STRIP
 ========================================================= */
 
 .trust-strip {
@@ -979,8 +971,8 @@
 
     border-top:
         1px solid #e1e9f3;
-}
 
+}
 
 .trust-item {
     display: flex;
@@ -990,16 +982,16 @@
     gap: 9px;
 
     color: #17417e;
-}
 
+}
 
 .trust-item svg {
     width: 27px;
     height: 27px;
 
     flex-shrink: 0;
-}
 
+}
 
 .trust-item div {
     display: flex;
@@ -1007,25 +999,25 @@
     flex-direction: column;
 
     gap: 2px;
-}
 
+}
 
 .trust-item strong {
     font-size: 11px;
 
     font-weight: 750;
-}
 
+}
 
 .trust-item span {
     font-size: 9px;
 
     color: #7a899e;
+
 }
 
-
 /* =========================================================
-   OTP SCREEN
+OTP SCREEN
 ========================================================= */
 
 .otp-back-button {
@@ -1050,21 +1042,20 @@
     padding: 0;
 
     cursor: pointer;
-}
 
+}
 
 .otp-back-button svg {
     width: 20px;
     height: 20px;
 }
 
-
 .otp-header {
     text-align: center;
 
     margin-top: 28px;
-}
 
+}
 
 .otp-icon {
     width: 62px;
@@ -1088,14 +1079,13 @@
 
     box-shadow:
         0 10px 25px rgba(20, 110, 220, .10);
-}
 
+}
 
 .otp-icon svg {
     width: 31px;
     height: 31px;
 }
-
 
 .otp-header h2 {
     margin:
@@ -1108,8 +1098,8 @@
     font-weight: 800;
 
     letter-spacing: -1px;
-}
 
+}
 
 .otp-header p {
     margin: 0;
@@ -1117,8 +1107,8 @@
     color: #718099;
 
     font-size: 13px;
-}
 
+}
 
 .otp-header strong {
     display: block;
@@ -1128,11 +1118,11 @@
     color: #153b78;
 
     font-size: 14px;
+
 }
 
-
 /* =========================================================
-   OTP BOXES
+OTP BOXES
 ========================================================= */
 
 .otp-boxes {
@@ -1143,8 +1133,8 @@
     gap: 12px;
 
     margin-top: 28px;
-}
 
+}
 
 .otp-boxes input {
     width: 54px;
@@ -1173,10 +1163,10 @@
         border-color .2s ease,
         box-shadow .2s ease,
         transform .2s ease;
+
 }
 
-
-.otp-boxes input:focus {
+.otp-boxes input {
     border-color: #1679e9;
 
     background: #ffffff;
@@ -1186,11 +1176,11 @@
 
     transform:
         translateY(-2px);
+
 }
 
-
 /* =========================================================
-   OTP RESEND
+OTP RESEND
 ========================================================= */
 
 .otp-resend {
@@ -1201,15 +1191,15 @@
     color: #718098;
 
     font-size: 13px;
-}
 
+}
 
 .otp-resend strong {
     margin-left: 5px;
 
     color: #173d7b;
-}
 
+}
 
 .otp-resend button {
     border: none;
@@ -1229,13 +1219,12 @@
     text-decoration: underline;
 
     text-underline-offset: 3px;
+
 }
 
-
-
 /* =========================================================
-   FINAL DESKTOP RESPONSIVE COUPON FIX
-   ========================================================= */
+FINAL DESKTOP RESPONSIVE COUPON FIX
+========================================================= */
 
 @media (min-width: 1201px) {
 
@@ -1249,8 +1238,8 @@
         width: 300px;
         height: 300px;
     }
-}
 
+}
 
 @media (min-width: 901px) and (max-width: 1200px) {
 
@@ -1281,14 +1270,11 @@
     .visual-copy p {
         font-size: 14px;
     }
+
 }
 
-
-
-
-
 /* =========================================================
-   REDUCED MOTION
+REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1303,8 +1289,8 @@
 }
 
 /* =========================================================
-   ODBUS LOGIN PAGE - FINAL DESIGN OVERRIDES
-   ========================================================= */
+ODBUS LOGIN PAGE - FINAL DESIGN OVERRIDES
+========================================================= */
 
 /* Stronger white fade at the top of the travel image */
 .login-visual-section::after {
@@ -1324,8 +1310,6 @@
 .visual-content {
     z-index: 5;
 }
-
-
 
 .visual-copy p {
     font-size: 14px;
@@ -1383,7 +1367,7 @@
     letter-spacing: 2.5px;
 }
 
-.visual-bottom span:not(:last-child)::after {
+.visual-bottom span()::after {
     margin-left: 13px;
 }
 
@@ -1431,9 +1415,9 @@
     color: #103d82;
 }
 
-/* Position underline under the selected method */
-.method-switch button:nth-child(2).active~* {
-    transform: translateX(124px);
+/* Position underline under the selected method /
+.method-switch button(2).active~ {
+transform: translateX(124px);
 }
 
 /* Signup has three clean fields */
@@ -1441,7 +1425,7 @@
     margin-top: 11px;
 }
 
-.signup-input:first-child {
+.signup-input {
     margin-top: 20px;
 }
 
@@ -1456,7 +1440,7 @@
 }
 
 /* OTP screen spacing and card stability */
-.login-card:has(.otp-header) {
+.login-card(.otp-header) {
     min-height: 520px;
 }
 
@@ -1484,6 +1468,7 @@
         max-width: 620px;
         padding: 46px 52px 34px;
     }
+
 }
 
 /* Tablet / mobile */
@@ -1503,6 +1488,7 @@
         right: 22px;
         bottom: 20px;
     }
+
 }
 
 @media (max-width: 650px) {
@@ -1554,24 +1540,23 @@
         width: 43px;
         height: 53px;
     }
+
 }
 
-
 /* Selected Via Email underline */
-.method-switch:has(button:nth-child(2).active)::after {
+.method-switch(button(2).active)::after {
     transform: translateX(124px);
 }
 
 @media (max-width: 650px) {
-    .method-switch:has(button:nth-child(2).active)::after {
+    .method-switch(button(2).active)::after {
         transform: translateX(90px);
     }
 }
 
-
 /* =========================================================
-   FINAL CORRECTIONS
-   ========================================================= */
+FINAL CORRECTIONS
+========================================================= */
 
 /* Stronger soft-white fade at the very top of the travel image */
 .login-visual-section::after {
@@ -1604,10 +1589,9 @@
     }
 }
 
-
 /* =========================================================
-   ODBUS LOGIN - SMART DESKTOP / TABLET RESPONSIVE
-   Mobile version below 650px remains untouched
+ODBUS LOGIN - SMART DESKTOP / TABLET RESPONSIVE
+Mobile version below 650px remains untouched
 ========================================================= */
 
 @media (min-width: 651px) {
@@ -1625,8 +1609,8 @@
     }
 
     /* =====================================================
-       MAIN TWO-COLUMN LAYOUT
-    ===================================================== */
+   MAIN TWO-COLUMN LAYOUT
+===================================================== */
 
     .new-login-page {
         grid-template-columns:
@@ -1635,10 +1619,9 @@
         min-height: 100vh;
     }
 
-
     /* =====================================================
-       LEFT SIDE
-    ===================================================== */
+   LEFT SIDE
+===================================================== */
 
     .visual-content {
         padding:
@@ -1651,10 +1634,9 @@
         width: clamp(105px, 7.3vw, 140px);
     }
 
-
     /* =====================================================
-       LEFT TOP CONTENT
-    ===================================================== */
+   LEFT TOP CONTENT
+===================================================== */
 
     .visual-top {
         width: 100%;
@@ -1701,10 +1683,9 @@
         line-height: 1.5;
     }
 
-
     /* =====================================================
-       COUPON - AUTO SCALE
-    ===================================================== */
+   COUPON - AUTO SCALE
+===================================================== */
 
     .coupon-wrapper {
         flex:
@@ -1733,10 +1714,9 @@
         object-fit: contain;
     }
 
-
     /* =====================================================
-       RIGHT LOGIN AREA
-    ===================================================== */
+   RIGHT LOGIN AREA
+===================================================== */
 
     .login-form-section {
         min-width: 0;
@@ -1745,10 +1725,9 @@
             clamp(18px, 3vw, 55px) clamp(18px, 3vw, 55px);
     }
 
-
     /* =====================================================
-       LOGIN CARD - AUTO SCALE
-    ===================================================== */
+   LOGIN CARD - AUTO SCALE
+===================================================== */
 
     .login-card {
         width: 100%;
@@ -1763,10 +1742,9 @@
             clamp(20px, 1.6vw, 30px);
     }
 
-
     /* =====================================================
-       BACK HOME
-    ===================================================== */
+   BACK HOME
+===================================================== */
 
     .back-home-button {
         font-size:
@@ -1784,10 +1762,9 @@
             clamp(14px, 1vw, 17px);
     }
 
-
     /* =====================================================
-       LOGIN HEADING
-    ===================================================== */
+   LOGIN HEADING
+===================================================== */
 
     .login-heading {
         gap:
@@ -1816,10 +1793,9 @@
         line-height: 1.5;
     }
 
-
     /* =====================================================
-       SMALL TICKET
-    ===================================================== */
+   SMALL TICKET
+===================================================== */
 
     .ticket-decoration {
         width:
@@ -1856,10 +1832,9 @@
             clamp(7px, .55vw, 10px);
     }
 
-
     /* =====================================================
-       PHONE / EMAIL SWITCH
-    ===================================================== */
+   PHONE / EMAIL SWITCH
+===================================================== */
 
     .method-switch {
         gap:
@@ -1890,10 +1865,9 @@
             translateX(clamp(88px, 9vw, 124px));
     }
 
-
     /* =====================================================
-       INPUT
-    ===================================================== */
+   INPUT
+===================================================== */
 
     .input-group-premium {
         height:
@@ -1933,10 +1907,9 @@
             clamp(11px, .8vw, 14px);
     }
 
-
     /* =====================================================
-       PRIMARY BUTTON
-    ===================================================== */
+   PRIMARY BUTTON
+===================================================== */
 
     .primary-button {
         height:
@@ -1960,10 +1933,9 @@
             clamp(16px, 1.3vw, 20px);
     }
 
-
     /* =====================================================
-       AUTH BOTTOM
-    ===================================================== */
+   AUTH BOTTOM
+===================================================== */
 
     .auth-bottom {
         margin-top:
@@ -1973,10 +1945,9 @@
             clamp(10px, .75vw, 13px);
     }
 
-
     /* =====================================================
-       TRUST STRIP
-    ===================================================== */
+   TRUST STRIP
+===================================================== */
 
     .trust-strip {
         gap:
@@ -2012,10 +1983,9 @@
             clamp(7px, .52vw, 9px);
     }
 
-
     /* =====================================================
-       OTP DESKTOP / TABLET
-    ===================================================== */
+   OTP DESKTOP / TABLET
+===================================================== */
 
     .otp-header {
         margin-top:
@@ -2085,12 +2055,12 @@
         font-size:
             clamp(10px, .75vw, 13px);
     }
+
 }
 
-
 /* =========================================================
-   EXTRA COMPACT MODE
-   For 1366x768 / 1280x800 / similar laptops
+EXTRA COMPACT MODE
+For 1366x768 / 1280x800 / similar laptops
 ========================================================= */
 
 @media (min-width: 651px) and (max-width: 1400px) and (max-height: 850px) {
@@ -2177,12 +2147,12 @@
         margin-top: 18px;
         padding-top: 14px;
     }
+
 }
 
-
 /* =========================================================
-   IPAD / TABLET LANDSCAPE
-   651px - 1100px
+IPAD / TABLET LANDSCAPE
+651px - 1100px
 ========================================================= */
 
 @media (min-width: 651px) and (max-width: 1100px) {
@@ -2347,31 +2317,29 @@
     .trust-item span {
         font-size: 6.5px;
     }
+
 }
 
-
 /* =========================================================
-   IMPORTANT:
-   Mobile <=650px remains exactly as your existing design.
+IMPORTANT:
+Mobile <=650px remains exactly as your existing design.
 ========================================================= */
 
 @media (max-width: 650px) {
     /* No desktop responsive overrides here */
 }
 
-
 /* =========================================================
-   ODBUS MOBILE LOGIN
-   DEDICATED MOBILE DESIGN
+ODBUS MOBILE LOGIN
+DEDICATED MOBILE DESIGN
 ========================================================= */
 
 .mobile-login-page {
     display: none;
 }
 
-
 /* =========================================================
-   MOBILE ONLY
+MOBILE ONLY
 ========================================================= */
 
 @media (max-width: 650px) {
@@ -2402,10 +2370,9 @@
         overflow-x: hidden;
     }
 
-
     /* =====================================================
-       CARD
-    ===================================================== */
+   CARD
+===================================================== */
 
     .mobile-login-card {
         width: 100%;
@@ -2429,7 +2396,6 @@
             mobileCardIn .55s cubic-bezier(.22, 1, .36, 1) both;
     }
 
-
     @keyframes mobileCardIn {
 
         from {
@@ -2444,15 +2410,14 @@
 
     }
 
-
     /* =====================================================
-       HEADING
-    ===================================================== */
+   HEADING
+===================================================== */
 
     .mobile-login-heading {
         padding: 0 2px;
-    }
 
+    }
 
     .mobile-login-heading h1 {
         margin: 0;
@@ -2465,8 +2430,12 @@
         font-weight: 800;
 
         letter-spacing: -1.1px;
+        font-family: "Inter",
+            "Montserrat",
+            "Segoe UI",
+            Arial,
+            sans-serif;
     }
-
 
     .mobile-login-heading h1 span {
         display: block;
@@ -2475,7 +2444,6 @@
 
         color: #1478e9;
     }
-
 
     .mobile-login-heading p {
         margin: 12px 0 0;
@@ -2487,10 +2455,9 @@
         line-height: 1.6;
     }
 
-
     /* =====================================================
-       PHONE / EMAIL TABS
-    ===================================================== */
+   PHONE / EMAIL TABS
+===================================================== */
 
     .mobile-method-tabs {
         position: relative;
@@ -2505,7 +2472,6 @@
 
         border-bottom: 1px solid #dce6f2;
     }
-
 
     .mobile-method-tabs button {
         position: relative;
@@ -2531,11 +2497,9 @@
         cursor: pointer;
     }
 
-
     .mobile-method-tabs button.active {
         color: #123f82;
     }
-
 
     .mobile-method-tabs button.active::after {
         content: "";
@@ -2553,15 +2517,13 @@
         background: #1478e9;
     }
 
-
     .mobile-method-tabs button:nth-child(2).active::after {
         left: 0;
     }
 
-
     /* =====================================================
-       INPUT
-    ===================================================== */
+   INPUT
+===================================================== */
 
     .mobile-input {
         display: flex;
@@ -2590,7 +2552,6 @@
             background .2s ease;
     }
 
-
     .mobile-input:focus-within {
         border-color: #2584eb;
 
@@ -2599,7 +2560,6 @@
         box-shadow:
             0 0 0 4px rgba(37, 132, 235, .08);
     }
-
 
     .mobile-input-icon {
         width: 25px;
@@ -2617,12 +2577,10 @@
         color: #17417e;
     }
 
-
     .mobile-input-icon svg {
         width: 21px;
         height: 21px;
     }
-
 
     .mobile-input input {
         width: 100%;
@@ -2642,24 +2600,21 @@
         font-size: 13px;
     }
 
-
     .mobile-input input::placeholder {
         color: #8997aa;
     }
 
-
     /* =====================================================
-       SIGNUP INPUT SPACING
-    ===================================================== */
+   SIGNUP INPUT SPACING
+===================================================== */
 
     .mobile-input+.mobile-input {
         margin-top: 11px;
     }
 
-
     /* =====================================================
-       ERROR
-    ===================================================== */
+   ERROR
+===================================================== */
 
     .mobile-form-error {
         margin-top: 8px;
@@ -2671,10 +2626,9 @@
         font-weight: 600;
     }
 
-
     /* =====================================================
-       PRIMARY BUTTON
-    ===================================================== */
+   PRIMARY BUTTON
+===================================================== */
 
     .mobile-primary-button {
         position: relative;
@@ -2720,7 +2674,6 @@
             box-shadow .2s ease;
     }
 
-
     .mobile-primary-button::before {
         content: "";
 
@@ -2743,32 +2696,27 @@
         transition: left .65s ease;
     }
 
-
     .mobile-primary-button:active {
         transform: scale(.985);
     }
 
-
     .mobile-primary-button:active::before {
         left: 140%;
     }
-
 
     .mobile-primary-button svg {
         width: 19px;
         height: 19px;
     }
 
-
     .mobile-primary-button:disabled {
         opacity: .65;
         cursor: not-allowed;
     }
 
-
     /* =====================================================
-       SIGNUP / LOGIN
-    ===================================================== */
+   SIGNUP / LOGIN
+===================================================== */
 
     .mobile-auth-bottom {
         display: flex;
@@ -2785,7 +2733,6 @@
         font-size: 12px;
     }
 
-
     .mobile-auth-bottom button {
         padding: 0;
 
@@ -2793,7 +2740,7 @@
 
         background: transparent;
 
-        color: #dda900;
+        color: #1258be;
 
         font-family: inherit;
 
@@ -2808,11 +2755,10 @@
         cursor: pointer;
     }
 
-
     /* =====================================================
-       TRUST STRIP
-       3 ITEMS IN ONE ROW
-    ===================================================== */
+   TRUST STRIP
+   3 ITEMS IN ONE ROW
+===================================================== */
 
     .mobile-trust-strip {
         display: grid;
@@ -2832,7 +2778,6 @@
             1px solid #e1e9f3;
     }
 
-
     .mobile-trust-item {
         display: flex;
 
@@ -2849,14 +2794,12 @@
         color: #17417e;
     }
 
-
     .mobile-trust-item svg {
         width: 25px;
         height: 25px;
 
         margin-bottom: 6px;
     }
-
 
     .mobile-trust-item strong {
         font-size: 9px;
@@ -2867,7 +2810,6 @@
 
         white-space: nowrap;
     }
-
 
     .mobile-trust-item span {
         margin-top: 2px;
@@ -2881,10 +2823,9 @@
         white-space: nowrap;
     }
 
-
     /* =====================================================
-       OTP
-    ===================================================== */
+   OTP
+===================================================== */
 
     .mobile-otp-back {
         display: inline-flex;
@@ -2910,19 +2851,16 @@
         cursor: pointer;
     }
 
-
     .mobile-otp-back svg {
         width: 18px;
         height: 18px;
     }
-
 
     .mobile-otp-header {
         margin-top: 25px;
 
         text-align: center;
     }
-
 
     .mobile-otp-icon {
         width: 55px;
@@ -2948,12 +2886,10 @@
             0 10px 25px rgba(20, 110, 220, .10);
     }
 
-
     .mobile-otp-icon svg {
         width: 28px;
         height: 28px;
     }
-
 
     .mobile-otp-header h2 {
         margin: 16px 0 7px;
@@ -2969,7 +2905,6 @@
         letter-spacing: -.7px;
     }
 
-
     .mobile-otp-header p {
         margin: 0;
 
@@ -2977,7 +2912,6 @@
 
         font-size: 11px;
     }
-
 
     .mobile-otp-header strong {
         display: block;
@@ -2989,10 +2923,9 @@
         font-size: 13px;
     }
 
-
     /* =====================================================
-       OTP BOXES - 5 DIGITS
-    ===================================================== */
+   OTP BOXES - 5 DIGITS
+===================================================== */
 
     .mobile-otp-boxes {
         display: flex;
@@ -3003,7 +2936,6 @@
 
         margin-top: 25px;
     }
-
 
     .mobile-otp-boxes input {
         width: 44px;
@@ -3038,7 +2970,6 @@
             transform .2s ease;
     }
 
-
     .mobile-otp-boxes input:focus {
         border-color: #1679e9;
 
@@ -3050,10 +2981,9 @@
         transform: translateY(-2px);
     }
 
-
     /* =====================================================
-       OTP RESEND
-    ===================================================== */
+   OTP RESEND
+===================================================== */
 
     .mobile-otp-resend {
         margin-top: 18px;
@@ -3065,13 +2995,11 @@
         font-size: 11px;
     }
 
-
     .mobile-otp-resend strong {
         margin-left: 4px;
 
         color: #173d7b;
     }
-
 
     .mobile-otp-resend button {
         padding: 0;
@@ -3093,20 +3021,18 @@
         cursor: pointer;
     }
 
-
     /* =====================================================
-       OTP CARD
-    ===================================================== */
+   OTP CARD
+===================================================== */
 
     .mobile-login-card:has(.mobile-otp-header) {
-        min-height: 520px;
+        min-height: 460px;
     }
 
 }
 
-
 /* =========================================================
-   SMALL PHONES
+SMALL PHONES
 ========================================================= */
 
 @media (max-width: 380px) {
@@ -3115,7 +3041,6 @@
         padding: 8px 7px 18px;
     }
 
-
     .mobile-login-card {
         padding:
             24px 14px 18px;
@@ -3123,21 +3048,17 @@
         border-radius: 20px;
     }
 
-
     .mobile-login-heading h1 {
         font-size: 26px;
     }
-
 
     .mobile-login-heading p {
         font-size: 11px;
     }
 
-
     .mobile-otp-boxes {
         gap: 5px;
     }
-
 
     .mobile-otp-boxes input {
         width: 40px;
@@ -3146,18 +3067,15 @@
         flex-basis: 40px;
     }
 
-
     .mobile-trust-item strong {
         font-size: 8px;
     }
-
 
     .mobile-trust-item span {
         font-size: 7px;
     }
 
 }
-
 
 .mobile-logo-top {
     width: 100%;
@@ -3166,6 +3084,7 @@
     align-items: center;
 
     padding: 14px 0 12px;
+
 }
 
 .mobile-logo-top img {
@@ -3188,6 +3107,7 @@
     text-decoration: none;
     font-size: 11px;
     font-weight: 700;
+
 }
 
 .mobile-back-home svg {
@@ -3195,9 +3115,8 @@
     height: 17px;
 }
 
-
 /* =====================================================
-   MOBILE TERMS & CONDITIONS
+MOBILE TERMS & CONDITIONS
 ===================================================== */
 
 .mobile-terms-checkbox {
@@ -3220,6 +3139,7 @@
     font-size: 11px;
     line-height: 1.4;
     font-weight: 500;
+
 }
 
 /* Hide default checkbox */
@@ -3250,19 +3170,21 @@
         background 0.2s ease,
         border-color 0.2s ease,
         box-shadow 0.2s ease;
+
 }
 
 /* Checked state */
-.mobile-terms-label input:checked+.mobile-custom-checkbox {
+.mobile-terms-label input+.mobile-custom-checkbox {
     background: #176fe5;
     border-color: #176fe5;
 
     box-shadow:
         0 3px 8px rgba(23, 111, 229, 0.18);
+
 }
 
 /* Tick */
-.mobile-terms-label input:checked+.mobile-custom-checkbox::after {
+.mobile-terms-label input+.mobile-custom-checkbox::after {
     content: "";
 
     width: 5px;
@@ -3272,10 +3194,11 @@
     border-width: 0 2px 2px 0;
 
     transform: rotate(45deg) translate(-1px, -1px);
+
 }
 
 /* Focus */
-.mobile-terms-label:focus-within .mobile-custom-checkbox {
+.mobile-terms-label .mobile-custom-checkbox {
     box-shadow:
         0 0 0 3px rgba(23, 111, 229, 0.10);
 }
@@ -3292,11 +3215,12 @@
 
     text-decoration: underline;
     text-underline-offset: 2px;
+
 }
 
 /* =========================================================
-   DESKTOP / MOBILE VERSION CONTROL
-   ========================================================= */
+DESKTOP / MOBILE VERSION CONTROL
+========================================================= */
 
 .desktop-login-version {
     display: block;
@@ -3308,8 +3232,8 @@
 }
 
 /* =========================================================
-   MOBILE
-   ========================================================= */
+MOBILE
+========================================================= */
 
 @media (max-width: 650px) {
 
@@ -3322,4 +3246,566 @@
         width: 100%;
     }
 
+}
+
+/* =========================================================
+ODBUS MOBILE LOGIN — SINGLE-SCREEN LAYOUT + OFFER CARD
+Appended overrides: desktop styles remain untouched.
+========================================================= */
+@media (max-width: 650px) {
+    .mobile-login-version {
+        width: 100%;
+        min-height: 100svh;
+        overflow: hidden;
+    }
+
+    .mobile-login-page {
+        width: 100%;
+        /* height: 100svh; */
+        /* min-height: 0; */
+        /* padding: 5px 10px max(7px, env(safe-area-inset-bottom)); */
+        gap: 8px;
+        justify-content: center;
+        /* overflow: hidden; */
+        box-sizing: border-box;
+    }
+
+    .mobile-logo-top {
+        flex: 0 0 auto;
+        padding: 0 0 2px;
+        min-height: 0;
+    }
+
+    .mobile-logo-top img {
+        width: clamp(125px, 39vw, 155px);
+        max-height: 62px;
+        object-fit: contain;
+    }
+
+    .mobile-login-card {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 460px;
+        padding: 16px 15px 14px;
+        border-radius: 21px;
+        box-shadow: 0 10px 28px rgba(21, 67, 118, .10);
+        height: 409px;
+        justify-content: center;
+        align-items: center;
+        display: grid;
+    }
+
+    .mobile-back-home {
+        margin-bottom: 8px;
+        font-size: 10px;
+    }
+
+    .mobile-back-home svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .mobile-login-heading h1 {
+        font-size: clamp(24px, 7vw, 28px);
+        line-height: 1.02;
+        letter-spacing: -1px;
+    }
+
+    .mobile-login-heading p {
+        margin-top: 7px;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .mobile-method-tabs {
+        margin-top: 16px;
+        padding-bottom: 8px;
+    }
+
+    .mobile-method-tabs button {
+        font-size: 12px;
+    }
+
+    .mobile-method-tabs button.active::after {
+        bottom: -9px;
+        height: 2px;
+    }
+
+    .mobile-input {
+        height: 48px;
+        margin-top: 11px;
+        border-radius: 12px;
+    }
+
+    .mobile-primary-button {
+        height: 49px;
+        margin-top: 13px;
+        border-radius: 12px;
+        box-shadow: 0 8px 18px rgba(18, 91, 190, .18);
+    }
+
+    .mobile-auth-bottom {
+        margin-top: 14px;
+        font-size: 11px;
+        line-height: 1.3;
+    }
+
+    /* Replaces the old Support / Secure / Easy Booking row. */
+    .mobile-trust-strip {
+        display: none !important;
+    }
+
+    /* Signup and OTP have extra fields; allow scrolling only for those states. */
+    .mobile-login-page:has(.mobile-terms-checkbox),
+    .mobile-login-page:has(.mobile-otp-header) {
+        height: auto;
+        min-height: 100svh;
+        overflow-y: auto;
+    }
+
+}
+
+/* Compact-height phones: keep the login and offer compact. */
+@media (max-width: 650px) and (max-height: 740px) {
+    .mobile-login-page {
+        padding-top: 3px;
+        gap: 6px;
+    }
+
+    .mobile-logo-top img {
+        width: clamp(115px, 35vw, 140px);
+        max-height: 50px;
+    }
+
+    .mobile-login-card {
+        padding: 12px 13px 11px;
+        border-radius: 18px;
+    }
+
+    .mobile-back-home {
+        margin-bottom: 6px;
+    }
+
+    .mobile-login-heading h1 {
+        font-size: clamp(23px, 6.5vw, 26px);
+    }
+
+    .mobile-login-heading p {
+        margin-top: 5px;
+        font-size: 10.5px;
+        line-height: 1.32;
+    }
+
+    .mobile-method-tabs {
+        margin-top: 12px;
+        padding-bottom: 7px;
+    }
+
+    .mobile-input {
+        height: 44px;
+        margin-top: 9px;
+    }
+
+    .mobile-primary-button {
+        height: 45px;
+        margin-top: 10px;
+    }
+
+    .mobile-auth-bottom {
+        margin-top: 10px;
+    }
+
+}
+
+/* =========================================================
+OTP MOBILE LAYOUT
+========================================================= */
+@media (max-width: 767px) {
+    .mobile-login-page(.mobile-otp-header) {
+        min-height: 100svh;
+        height: auto;
+        padding: 6px 10px 14px;
+        gap: 8px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        justify-content: center;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-logo-top {
+        flex: 0 0 auto;
+        padding: 5px 0 3px;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-login-card {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 0;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 16px 14px 20px;
+        box-sizing: border-box;
+        border-radius: 20px;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-back {
+        align-self: flex-start;
+        min-height: 24px;
+        margin: 0;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-header {
+        flex: 0 0 auto;
+        margin-top: 18px;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 15px;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-icon svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-header h2 {
+        margin: 13px 0 6px;
+        font-size: clamp(23px, 6.2vw, 27px);
+        line-height: 1.12;
+        letter-spacing: -.55px;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-header p {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-header strong {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.35;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-boxes {
+        display: flex;
+        justify-content: center;
+        gap: clamp(5px, 1.8vw, 8px);
+        margin-top: 22px;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-boxes input {
+        width: clamp(38px, 11vw, 44px);
+        height: 48px;
+        flex: 0 0 clamp(38px, 11vw, 44px);
+        padding: 0;
+        border-radius: 11px;
+        font-size: 19px;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-form-error {
+        margin: 8px 0 0;
+        min-height: 0;
+        color: #d93025;
+        font-size: 11px;
+        line-height: 1.35;
+        text-align: center;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-primary-button {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 48px;
+        margin-top: 17px;
+        border-radius: 12px;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-resend {
+        margin-top: 16px;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+}
+
+@media (max-width: 360px) {
+    .mobile-login-page(.mobile-otp-header) .mobile-login-card {
+        padding: 14px 11px 17px;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-boxes {
+        gap: 5px;
+        margin-top: 19px;
+    }
+
+    .mobile-login-page:has(.mobile-otp-header) .mobile-otp-boxes input {
+        width: 39px;
+        flex-basis: 39px;
+        height: 46px;
+    }
+
+}
+
+/* Durga Puja offer */
+.mobile-offer-card.puja-premium-card {
+    --puja-gold: #f8d780;
+    --puja-cream: #fff7e7;
+
+    position: relative;
+    isolation: isolate;
+    display: block;
+    flex: 0 0 auto;
+    align-self: stretch;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    box-sizing: border-box;
+    margin: 10px auto 8px;
+    padding: 2px;
+    overflow: hidden;
+    border: 1px solid #e5bd67;
+    border-radius: 15px;
+    background: linear-gradient(125deg, #b67b30, #ffedac, #b77c30, #f9d779);
+    box-shadow: 0 5px 16px rgba(94, 20, 25, .13), 0 0 0 1px rgba(255, 225, 155, .25);
+    color: var(--puja-cream);
+    font-family: inherit;
+}
+
+.puja-premium-inner {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: clamp(9px, 2.5vw, 10px) clamp(8px, 2.5vw, 12px) clamp(7px, 2vw, 8px);
+    overflow: hidden;
+    border-radius: 12px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(255, 208, 112, .14), transparent 62%), linear-gradient(125deg, #521018, #801d25 48%, #58111a);
+}
+
+.puja-premium-inner::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    z-index: -1;
+    border: 1px solid rgba(255, 218, 133, .28);
+    border-radius: 9px;
+    pointer-events: none;
+}
+
+.puja-premium-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    color: var(--puja-gold);
+    font-size: clamp(9px, 2.5vw, 10px);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.puja-lotus {
+    color: #ffdf87;
+    font-size: 14px;
+    line-height: 1;
+    animation: puja-lotus-glow 3s ease-in-out infinite;
+}
+
+.puja-premium-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(5px, 1.5vw, 7px);
+}
+
+.puja-premium-copy {
+    min-width: 0;
+}
+
+.puja-welcome {
+    display: block;
+    margin-bottom: 5px;
+    color: #f5dba9;
+    font-size: clamp(7px, 2vw, 8px);
+    font-weight: 600;
+    letter-spacing: .4px;
+    line-height: 1.4;
+}
+
+.puja-premium-copy h3 {
+    margin: 0;
+    color: #fff9ed;
+    font-size: clamp(15px, 4.5vw, 20px);
+    font-weight: 800;
+    line-height: 1.2;
+    white-space: normal;
+}
+
+.puja-premium-copy h3 strong {
+    display: inline;
+    background: linear-gradient(180deg, #fff2bb 0%, #f5cc67 48%, #dca341 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 1px 0 rgba(40, 5, 5, .25));
+    white-space: nowrap;
+}
+
+.puja-premium-copy p {
+    margin: 4px 0 0;
+    color: #f8e8d3;
+    font-size: 9px;
+    line-height: 1.4;
+}
+
+.puja-premium-coupon {
+    min-width: 0;
+    padding: clamp(6px, 1.7vw, 7px) clamp(4px, 1.5vw, 6px);
+    border: 1px solid #e3bd65;
+    border-radius: 9px;
+    background: linear-gradient(145deg, #fff8e9, #f7e5bb);
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .55), 0 3px 8px rgba(35, 5, 8, .15);
+    text-align: center;
+}
+
+.puja-use-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #8b3030;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .65px;
+    white-space: nowrap;
+}
+
+.puja-code-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 6px 5px;
+    border: 1px dashed #bd8c39;
+    border-radius: 5px;
+    background: #fffdf7;
+    color: #701923;
+    font-size: clamp(10px, 2.8vw, 11px);
+    font-weight: 900;
+    letter-spacing: .25px;
+    white-space: nowrap;
+}
+
+.puja-copy-symbol {
+    color: #a66d23;
+    font-size: 15px;
+    line-height: 1;
+    display: contents;
+}
+
+.puja-code-note {
+    display: block;
+    margin-top: 5px;
+    color: #8a5b30;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+
+.puja-premium-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 220, 143, .24);
+    color: #f9dfaa;
+    font-size: 6.5px;
+    font-weight: 700;
+    letter-spacing: .7px;
+    text-align: center;
+}
+
+.puja-footer-line {
+    width: 17px;
+    height: 1px;
+    flex-shrink: 0;
+    background: #d5a54f;
+}
+
+.puja-star {
+    position: absolute;
+    z-index: 2;
+    color: #ffe8a1;
+    text-shadow: 0 0 7px rgba(255, 213, 115, .7);
+    pointer-events: none;
+    user-select: none;
+    animation: puja-star-twinkle 2.8s ease-in-out infinite;
+}
+
+.puja-star.star-one {
+    top: 12%;
+    left: 8%;
+    font-size: 12px;
+}
+
+.puja-star.star-two {
+    top: 18%;
+    right: 8%;
+    font-size: 15px;
+    animation-delay: .8s;
+}
+
+.puja-star.star-three {
+    bottom: 25%;
+    left: 48%;
+    font-size: 9px;
+    animation-delay: 1.3s;
+}
+
+.puja-star.star-four {
+    bottom: 20%;
+    right: 4%;
+    font-size: 12px;
+    animation-delay: .4s;
+}
+
+.puja-star.star-five {
+    top: 47%;
+    left: 4%;
+    font-size: 22px;
+    animation-delay: 1.7s;
+}
+
+@keyframes puja-star-twinkle {
+    0%, 100% {
+        opacity: .35;
+        transform: scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+@keyframes puja-lotus-glow {
+    0%, 100% {
+        opacity: .75;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px rgba(255, 218, 133, .55);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .puja-star,
+    .puja-lotus {
+        animation: none;
+    }
 }

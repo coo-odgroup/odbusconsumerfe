@@ -173,7 +173,7 @@
 
             <div class="login-card">
 
-                <a routerLink="/" class="back-home-button">
+                <a *ngIf="!showOtp" routerLink="/" class="back-home-button">
 
                     <svg viewBox="0 0 24 24" fill="none">
                         <path d="M19 12H5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -235,7 +235,7 @@
                         </h2>
 
                         <p>
-                            Enter the 6-digit code sent to
+                            Enter the 5-digit code sent to
                         </p>
 
                         <strong>
@@ -249,19 +249,24 @@
                     <div class="otp-boxes">
 
                         <input #otp0 maxlength="1" type="text" inputmode="numeric" autocomplete="one-time-code"
-                            [(ngModel)]="otp[0]" (input)="onOtpInput($event, 0)" (keydown)="onOtpKeyDown($event, 0)">
+                            [(ngModel)]="otp[0]" (input)="onOtpInput($event, 0)" (keydown)="onOtpKeyDown($event, 0)"
+                            (paste)="onOtpPaste($event, 0)">
 
                         <input #otp1 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[1]"
-                            (input)="onOtpInput($event, 1)" (keydown)="onOtpKeyDown($event, 1)">
+                            (input)="onOtpInput($event, 1)" (keydown)="onOtpKeyDown($event, 1)"
+                            (paste)="onOtpPaste($event, 1)">
 
                         <input #otp2 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[2]"
-                            (input)="onOtpInput($event, 2)" (keydown)="onOtpKeyDown($event, 2)">
+                            (input)="onOtpInput($event, 2)" (keydown)="onOtpKeyDown($event, 2)"
+                            (paste)="onOtpPaste($event, 2)">
 
                         <input #otp3 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[3]"
-                            (input)="onOtpInput($event, 3)" (keydown)="onOtpKeyDown($event, 3)">
+                            (input)="onOtpInput($event, 3)" (keydown)="onOtpKeyDown($event, 3)"
+                            (paste)="onOtpPaste($event, 3)">
 
                         <input #otp4 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[4]"
-                            (input)="onOtpInput($event, 4)" (keydown)="onOtpKeyDown($event, 4)">
+                            (input)="onOtpInput($event, 4)" (keydown)="onOtpKeyDown($event, 4)"
+                            (paste)="onOtpPaste($event, 4)">
 
 
 
@@ -659,7 +664,7 @@
 
         <div class="mobile-login-card">
 
-            <a routerLink="/" class="mobile-back-home">
+            <a *ngIf="!showOtp" routerLink="/" class="mobile-back-home">
 
                 <svg viewBox="0 0 24 24" fill="none">
                     <path d="M19 12H5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -742,23 +747,28 @@
                 <div class="mobile-otp-boxes">
 
                     <input #mobileOtp0 maxlength="1" type="text" inputmode="numeric" autocomplete="one-time-code"
-                        [(ngModel)]="otp[0]" (input)="onOtpInput($event, 0)" (keydown)="onOtpKeyDown($event, 0)">
+                        [(ngModel)]="otp[0]" (input)="onOtpInput($event, 0)" (keydown)="onOtpKeyDown($event, 0)"
+                        (paste)="onOtpPaste($event, 0)">
 
 
                     <input #mobileOtp1 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[1]"
-                        (input)="onOtpInput($event, 1)" (keydown)="onOtpKeyDown($event, 1)">
+                        (input)="onOtpInput($event, 1)" (keydown)="onOtpKeyDown($event, 1)"
+                        (paste)="onOtpPaste($event, 1)">
 
 
                     <input #mobileOtp2 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[2]"
-                        (input)="onOtpInput($event, 2)" (keydown)="onOtpKeyDown($event, 2)">
+                        (input)="onOtpInput($event, 2)" (keydown)="onOtpKeyDown($event, 2)"
+                        (paste)="onOtpPaste($event, 2)">
 
 
                     <input #mobileOtp3 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[3]"
-                        (input)="onOtpInput($event, 3)" (keydown)="onOtpKeyDown($event, 3)">
+                        (input)="onOtpInput($event, 3)" (keydown)="onOtpKeyDown($event, 3)"
+                        (paste)="onOtpPaste($event, 3)">
 
 
                     <input #mobileOtp4 maxlength="1" type="text" inputmode="numeric" [(ngModel)]="otp[4]"
-                        (input)="onOtpInput($event, 4)" (keydown)="onOtpKeyDown($event, 4)">
+                        (input)="onOtpInput($event, 4)" (keydown)="onOtpKeyDown($event, 4)"
+                        (paste)="onOtpPaste($event, 4)">
 
                 </div>
 
@@ -1107,103 +1117,70 @@
 
 
 
-                <!-- =================================================
-                     MOBILE TRUST FEATURES
-                     SINGLE ROW
-                ================================================== -->
-
-                <div class="mobile-trust-strip">
-
-
-                    <!-- Support -->
-
-                    <div class="mobile-trust-item">
-
-                        <svg viewBox="0 0 24 24" fill="none">
-
-                            <path d="M4 13V12A8 8 0 0 1 20 12V13" stroke="currentColor" stroke-width="1.7"
-                                stroke-linecap="round">
-                            </path>
-
-                            <path
-                                d="M4 13H7V18H5.5A2.5 2.5 0 0 1 3 15.5V14A1 1 0 0 1 4 13ZM20 13H17V18H18.5A2.5 2.5 0 0 0 21 15.5V14A1 1 0 0 0 20 13Z"
-                                stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
-                            </path>
-
-                        </svg>
-
-                        <strong>
-                            24/7 Support
-                        </strong>
-
-                        <span>
-                            Always here
-                        </span>
-
-                    </div>
-
-
-
-                    <!-- Secure -->
-
-                    <div class="mobile-trust-item">
-
-                        <svg viewBox="0 0 24 24" fill="none">
-
-                            <path d="M12 3L20 6V11C20 16.2 16.6 20.1 12 21C7.4 20.1 4 16.2 4 11V6L12 3Z"
-                                stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
-                            </path>
-
-                            <path d="M8.5 12L10.8 14.3L15.8 9.3" stroke="currentColor" stroke-width="1.8"
-                                stroke-linecap="round" stroke-linejoin="round">
-                            </path>
-
-                        </svg>
-
-                        <strong>
-                            Secure
-                        </strong>
-
-                        <span>
-                            Your data is safe
-                        </span>
-
-                    </div>
-
-
-
-                    <!-- Easy Booking -->
-
-                    <div class="mobile-trust-item">
-
-                        <svg viewBox="0 0 24 24" fill="none">
-
-                            <rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.8">
-                            </rect>
-
-                            <path d="M8 9H16M8 13H13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
-                            </path>
-
-                        </svg>
-
-                        <strong>
-                            Easy Booking
-                        </strong>
-
-                        <span>
-                            Simple & fast
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-
             </ng-container>
 
         </div>
 
+
+        <!-- Mobile offer card: displayed below the login box -->
+        <!-- <div class="mobile-offer-card" role="img" aria-label="ODBUS first booking offer">
+            <img src="assets/img/small_coupn.jpg" alt="Flat ₹100 off on your first booking with code ODBUS100">
+        </div> -->
+
+
+
+        <!-- Premium Durga Puja Offer Card -->
+        <div class="mobile-offer-card puja-premium-card">
+
+            <!-- Animated Star Decorations -->
+            <span class="puja-star star-one">✦</span>
+            <span class="puja-star star-two">✧</span>
+            <span class="puja-star star-three">✦</span>
+            <span class="puja-star star-four">✧</span>
+            <span class="puja-star star-five">·</span>
+
+            <div class="puja-premium-inner">
+
+                <div class="puja-premium-heading">
+                    <span class="puja-lotus">❋</span>
+                    <span>DURGA PUJA SPECIAL</span>
+                    <span class="puja-lotus">❋</span>
+                </div>
+
+                <div class="puja-premium-main">
+
+                    <div class="puja-premium-copy">
+                        <span class="puja-welcome">CELEBRATE THE FESTIVE JOURNEY</span>
+
+                        <h3>
+                            UP TO
+                            <strong>15% OFF</strong>
+                        </h3>
+
+                        <p>Make your Puja journey special</p>
+                    </div>
+
+                    <div class="puja-premium-coupon">
+                        <span class="puja-use-label">YOUR EXCLUSIVE CODE</span>
+
+                        <div class="puja-code-display">
+                            <span>PUJAYATRA</span>
+                            <span class="puja-copy-symbol" aria-hidden="true">▢</span>
+                        </div>
+
+                        <span class="puja-code-note">USE AT BOOKING</span>
+                    </div>
+
+                </div>
+
+                <div class="puja-premium-footer">
+                    <span class="puja-footer-line"></span>
+                    <span>YOUR JOURNEY. YOUR CELEBRATION.</span>
+                    <span class="puja-footer-line"></span>
+                </div>
+
+            </div>
+        </div>
     </div>
 
 </div>

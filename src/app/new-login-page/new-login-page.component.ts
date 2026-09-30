@@ -40,7 +40,7 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
      OTP INPUT REFERENCES
   ====================================================== */
 
-  @ViewChildren('otp0, otp1, otp2, otp3, otp4')
+  @ViewChildren('otp0, otp1, otp2, otp3, otp4, mobileOtp0, mobileOtp1, mobileOtp2, mobileOtp3, mobileOtp4')
   otpInputs!: QueryList<ElementRef>;
 
 
@@ -523,114 +523,121 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
      OTP INPUT
   ====================================================== */
 
-  onOtpInput(
-    event: any,
-    index: number
-  ): void {
+  onOtpInput(event: any, index: number): void {
+    const input = event.target as HTMLInputElement;
+    const digits = (input.value || '').replace(/\D/g, '');
 
-    const input =
-      event.target as HTMLInputElement;
-
-
-    let value =
-      input.value.replace(/\D/g, '');
-
-
-    if (!value) {
-
+    if (!digits) {
       this.otp[index] = '';
-
+      input.value = '';
       return;
     }
 
+    // Supports normal one-digit entry and browser OTP autofill.
+    const chars = digits.split('').slice(0, this.otp.length - index);
+    const visibleInputs = this.getVisibleOtpInputs();
 
-    /*
-     * Keep only one digit.
-     */
+    chars.forEach((digit, offset) => {
+      const targetIndex = index + offset;
+      this.otp[targetIndex] = digit;
+      if (visibleInputs[targetIndex]) {
+        visibleInputs[targetIndex].nativeElement.value = digit;
+      }
+    });
 
-    value =
-      value.charAt(0);
+    // Keep the active box synced with the model if the browser truncates input.
+    input.value = this.otp[index] || '';
 
-
-    this.otp[index] =
-      value;
-
-
-    input.value =
-      value;
-
-
-    /*
-     * Move to next box.
-     */
-
-    if (
-      index < 4 &&
-      value
-    ) {
-
-      this.focusOtp(index + 1);
-    }
-
-
-    /*
-     * Auto verify when all
-     * 5 digits are entered.
-     */
-
-    if (
-      this.otp.join('').length === 5
-    ) {
-
+    const nextIndex = index + chars.length;
+    if (this.otp.every(digit => !!digit)) {
       this.verifyOtp();
+      return;
     }
 
+    this.focusOtp(Math.min(nextIndex, this.otp.length - 1));
   }
 
+  onOtpPaste(event: ClipboardEvent, index: number): void {
+    event.preventDefault();
+    const pasted = event.clipboardData?.getData('text') || '';
+    const digits = pasted.replace(/\D/g, '').split('');
+    if (!digits.length) return;
+
+    const visibleInputs = this.getVisibleOtpInputs();
+    digits.slice(0, this.otp.length - index).forEach((digit, offset) => {
+      const targetIndex = index + offset;
+      this.otp[targetIndex] = digit;
+      if (visibleInputs[targetIndex]) {
+        visibleInputs[targetIndex].nativeElement.value = digit;
+      }
+    });
+
+    if (this.otp.every(digit => !!digit)) {
+      this.verifyOtp();
+    } else {
+      const firstEmpty = this.otp.findIndex(digit => !digit);
+      this.focusOtp(firstEmpty >= 0 ? firstEmpty : this.otp.length - 1);
+    }
+  }
 
   /* =====================================================
      OTP KEYBOARD
   ====================================================== */
 
-  onOtpKeyDown(
-    event: KeyboardEvent,
-    index: number
-  ): void {
+  onOtpKeyDown(event: KeyboardEvent, index: number): void {
+    const visibleInputs = this.getVisibleOtpInputs();
 
-    if (
-      event.key === 'Backspace' &&
-      !this.otp[index] &&
-      index > 0
-    ) {
+    if (event.key === 'Backspace') {
+      event.preventDefault();
 
-      this.focusOtp(index - 1);
+      if (this.otp[index]) {
+        this.otp[index] = '';
+        if (visibleInputs[index]) visibleInputs[index].nativeElement.value = '';
+        this.otpError = '';
+        this.focusOtp(index);
+      } else if (index > 0) {
+        this.otp[index - 1] = '';
+        if (visibleInputs[index - 1]) visibleInputs[index - 1].nativeElement.value = '';
+        this.otpError = '';
+        this.focusOtp(index - 1);
+      }
+      return;
     }
 
+    if (event.key === 'ArrowLeft' && index > 0) {
+      event.preventDefault();
+      this.focusOtp(index - 1);
+    } else if (event.key === 'ArrowRight' && index < this.otp.length - 1) {
+      event.preventDefault();
+      this.focusOtp(index + 1);
+    }
   }
-
 
   /* =====================================================
      FOCUS OTP
   ====================================================== */
 
-  private focusOtp(index: number): void {
-
-    const inputs =
-      this.otpInputs?.toArray();
-
-
-    if (
-      inputs &&
-      inputs[index]
-    ) {
-
-      inputs[index]
-        .nativeElement
-        .focus();
-    }
-
+  private getVisibleOtpInputs(): ElementRef<HTMLInputElement>[] {
+    return (this.otpInputs?.toArray() || []).filter(ref => {
+      const element = ref.nativeElement as HTMLInputElement;
+      return element.getClientRects().length > 0;
+    }) as ElementRef<HTMLInputElement>[];
   }
 
+  private focusOtp(index: number): void {
+    const inputs = this.getVisibleOtpInputs();
+    if (inputs[index]) {
+      inputs[index].nativeElement.focus();
+      inputs[index].nativeElement.select();
+    }
+  }
+
+  private clearOtpFields(): void {
+    this.otp = ['', '', '', '', ''];
+    this.getVisibleOtpInputs().forEach(ref => {
+      ref.nativeElement.value = '';
+    });
+  }
 
   /* =====================================================
      VERIFY OTP
@@ -741,6 +748,9 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
               res.message ||
               'Invalid OTP.';
 
+            this.clearOtpFields();
+            setTimeout(() => this.focusOtp(0), 0);
+
             this.notify.notify(
               this.otpError,
               'Error'
@@ -764,6 +774,9 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
           this.otpError =
             error?.error?.message ||
             'Invalid OTP.';
+
+          this.clearOtpFields();
+          setTimeout(() => this.focusOtp(0), 0);
 
           this.notify.notify(
             this.otpError,
@@ -1046,8 +1059,7 @@ export class NewLoginPageComponent implements OnInit, OnDestroy {
 
     this.showOtp = false;
 
-    this.otp =
-      ['', '', '', '', ''];
+    this.clearOtpFields();
 
     this.otpError = '';
 
