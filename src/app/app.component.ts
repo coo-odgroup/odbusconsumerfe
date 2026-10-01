@@ -98,7 +98,7 @@ export class AppComponent implements AfterViewInit {
     const url = this.router.url;
 
     return (
-      url.includes('become-an-agent') || url.includes('pnr') || url.includes('payment-status') || url.includes('newloginpage')
+      url.includes('become-an-agent') || url.includes('pnr') || url.includes('payment-status') || url.includes('newloginpage') || url.includes('login')
     );
   }
 
@@ -401,9 +401,9 @@ export class AppComponent implements AfterViewInit {
       return;
     }
 
-    setTimeout(() => {
-      this.loadGoogleTagManager();
-    }, 2000);
+    // setTimeout(() => {
+    //   this.loadGoogleTagManager();
+    // }, 2000);
 
   }
 
