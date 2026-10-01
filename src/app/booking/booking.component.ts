@@ -498,14 +498,14 @@ export class BookingComponent implements OnInit {
     const currentCoupon = this.couponForm.get('coupon_code')?.value;
 
     if (currentCoupon === couponCode) {
-      // Unselect → remove coupon
-      this.couponForm.patchValue({
-        coupon_code: '',
-      });
+      // Unselect coupon
+      this.couponForm
+        .get('coupon_code')
+        ?.setValue('', { emitEvent: true });
     } else {
       // Select coupon
       this.couponForm.patchValue({
-        coupon_code: couponCode,
+        coupon_code: couponCode
       });
     }
   }
@@ -608,6 +608,62 @@ export class BookingComponent implements OnInit {
         },
       );
     }
+  }
+
+  removeCoupon(): void {
+
+    const transactionId = this.bookTicketResponse?.transaction_id;
+
+    if (!transactionId) {
+      return;
+    }
+
+    this.spinner.show();
+
+    const params = {
+      transaction_id: transactionId
+    };
+
+    this.couponService.removeCoupon(params).subscribe(
+      (res) => {
+
+        this.spinner.hide();
+
+        if (res.status == 1) {
+
+          // Clear applied coupon
+          this.autoApplyCouponcode = '';
+          this.autoApplyCouponStatus = false;
+
+          // Clear coupon from booking form
+          this.bookForm1
+            .get('bookingInfo.coupon_code')
+            ?.setValue('', { emitEvent: false });
+
+          // Reset coupon data
+          this.couponData = {
+            totalAmount: this.bookingdata.PriceArray.totalFare,
+            discount: 0,
+            payableAmount: this.bookingdata.PriceArray.totalFare
+          } as Coupon;
+
+          // Clear selected coupon
+          this.selectedCoupon = null;
+
+        } else {
+          this.notify.notify(res.message, 'Error');
+        }
+      },
+      (error) => {
+
+        this.spinner.hide();
+
+        this.notify.notify(
+          error?.error?.message || 'Unable to remove coupon',
+          'Error'
+        );
+      }
+    );
   }
 
   countdown: any;
@@ -1029,6 +1085,7 @@ export class BookingComponent implements OnInit {
     history.pushState(null, '', location.href);
 
     this.CouponCode();
+
     this.couponForm.get('coupon_code')?.valueChanges.subscribe((value: string) => {
 
       if (!value || value.trim() === '') {
@@ -1036,19 +1093,6 @@ export class BookingComponent implements OnInit {
       }
 
     });
-  }
-
-  removeCoupon(): void {
-
-    this.autoApplyCouponcode = '';
-    this.autoApplyCouponStatus = false;
-
-    this.couponData = {
-      totalAmount: this.bookingdata.PriceArray.totalFare,
-      discount: 0,
-      payableAmount: this.bookingdata.PriceArray.totalFare,
-    } as Coupon;
-
   }
 
   selectedCoupon: any = null;

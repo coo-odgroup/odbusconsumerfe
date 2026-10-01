@@ -25,6 +25,14 @@ export class CouponService {
       )
   }
 
+  removeCoupon(params: any): Observable<any> {
+
+    return this.httpClient.post<any>(this.apiURL + '/RemoveCoupons', JSON.stringify(params), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
   couponcode(params: any): Observable<any> {
     return this.httpClient.post<any>(this.apiURL + '/CouponCode', JSON.stringify(params), this.httpOptions)
       .pipe(
