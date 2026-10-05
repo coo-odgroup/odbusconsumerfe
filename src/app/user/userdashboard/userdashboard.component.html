@@ -461,7 +461,7 @@
 
     <!-- // Mobile section -->
 
-    <div class="mobile-ticket-box shadow" *ngFor="let b of list.data; let i=index;">
+    <div class="mobile-ticket-box shadow" *ngFor="let b of paginatedBookings; let i=index;">
       <div class="row mob-tkbox-top">
         <div class="col-6" *ngIf="b.status == 2">
           <h5 class="cancel">Cancelled</h5>
@@ -512,7 +512,7 @@
         </div>
       </div>
     </div>
-    <div class="mobile-ticket-box shadow" *ngIf="list.data && list.data.length == 0">
+    <div class="mobile-ticket-box shadow" *ngIf="paginatedBookings && paginatedBookings.length == 0">
       <p>No tickets found.</p>
     </div>
 
