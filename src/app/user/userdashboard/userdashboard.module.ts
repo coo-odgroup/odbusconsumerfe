@@ -6,6 +6,7 @@ import { UserdashboardRoutingModule } from './userdashboard-routing.module';
 import { UserdashboardComponent } from './userdashboard.component';
 import { UserModule } from '../user.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     UserModule,
-    NgbModule
+    NgbModule,
+    SharedModule
   ]
 })
 export class UserdashboardModule { }

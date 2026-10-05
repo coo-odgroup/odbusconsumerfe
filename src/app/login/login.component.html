@@ -15,6 +15,8 @@
           src="assets/img/odbus-logo.svg"
           alt="ODBUS"
           class="login-logo-left"
+          [routerLink]="['/']"
+          style="cursor: pointer"
         />
 
         <!-- Top Content -->
@@ -481,9 +483,15 @@
 
               <span class="terms-text">
                 I agree to the
-                <span class="terms-link"><a routerLink="/terms-conditions">Terms and Conditions</a></span>
+                <span class="terms-link"
+                  ><a routerLink="/terms-conditions"
+                    >Terms and Conditions</a
+                  ></span
+                >
                 &nbsp;and
-                <span class="terms-link"><a routerLink="/privacy-policy">Privacy Policy</a></span>
+                <span class="terms-link"
+                  ><a routerLink="/privacy-policy">Privacy Policy</a></span
+                >
               </span>
             </label>
           </div>
@@ -625,7 +633,12 @@
 <div class="mobile-login-version">
   <div class="mobile-login-page">
     <div class="mobile-logo-top">
-      <img src="assets/img/odbus-logo.svg" alt="ODBUS" />
+      <img
+        src="assets/img/odbus-logo.svg"
+        alt="ODBUS"
+        [routerLink]="['/']"
+        style="cursor: pointer"
+      />
     </div>
 
     <!-- =================================================
@@ -1050,9 +1063,15 @@
 
             <span class="mobile-terms-text">
               I agree to the
-              <span class="mobile-terms-link"><a routerLink="/terms-conditions">Terms and Conditions</a></span>
-                &nbsp;and
-                <span class="mobile-terms-link"><a routerLink="/privacy-policy">Privacy Policy</a></span>
+              <span class="mobile-terms-link"
+                ><a routerLink="/terms-conditions"
+                  >Terms and Conditions</a
+                ></span
+              >
+              &nbsp;and
+              <span class="mobile-terms-link"
+                ><a routerLink="/privacy-policy">Privacy Policy</a></span
+              >
             </span>
           </label>
         </div>
@@ -1114,7 +1133,12 @@
         </div> -->
 
     <!-- Premium Durga Puja Offer Card -->
-    <div class="mobile-offer-card puja-premium-card" *ngIf="isDurgaPujaOfferValid">
+    <div
+      class="mobile-offer-card puja-premium-card"
+      *ngIf="isDurgaPujaOfferValid"
+      [routerLink]="['/offers']"
+      style="cursor: pointer;"
+    >
       <span class="puja-star star-one">✦</span>
       <span class="puja-star star-two">✧</span>
       <span class="puja-star star-three">✦</span>
@@ -1161,3 +1185,7 @@
     </div>
   </div>
 </div>
+
+<ng-container *ngIf="isMobile">
+  <app-footer-menu></app-footer-menu>
+</ng-container>
