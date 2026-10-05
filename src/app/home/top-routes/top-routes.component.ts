@@ -1,35 +1,30 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
 
+/**
+ * SPEED FIX:
+ * - Server and browser now render the SAME list (no window.innerWidth on the server),
+ *   so the section no longer collapses from ~28 cards to 5 after the app boots (mobile CLS).
+ * - "Show only 5 on mobile" is done with CSS (see top-routes.component.css), not JS.
+ * - Cards are real <a href> links, so Google can crawl every route page.
+ */
 @Component({
   selector: 'app-top-routes',
   templateUrl: './top-routes.component.html',
   styleUrls: ['./top-routes.component.css', '../home.component.css'],
 })
-export class TopRoutesComponent implements OnChanges {
-  constructor(private router: Router) {}
-
+export class TopRoutesComponent {
   @Input() popularRoutes: any[] = [];
-
-  displayedRoutes: any = [];
   showAllRoutes = false;
-  isMobile = false;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.isMobile = window.innerWidth <= 768;
-    if (changes['popularRoutes'] && this.popularRoutes?.length) {
-      this.displayedRoutes = this.isMobile
-        ? this.popularRoutes.slice(0, 5)
-        : this.popularRoutes;
-    }
+  routeLink(p: any): string {
+    return '/routes/' + p?.source_url + '-' + p?.destination_url + '-bus-services';
   }
 
-  viewAllRoutes() {
+  viewAllRoutes(): void {
     this.showAllRoutes = true;
-    this.displayedRoutes = this.popularRoutes;
   }
 
-  popularSearch(sr: any, ds: any) {
-    this.router.navigate(['routes/' + sr + '-' + ds + '-bus-services']);
+  trackByRoute(_: number, p: any) {
+    return (p?.source_url || '') + '-' + (p?.destination_url || '');
   }
 }

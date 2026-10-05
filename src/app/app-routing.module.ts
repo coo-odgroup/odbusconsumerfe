@@ -22,7 +22,6 @@ import { PaymentStatusComponent } from './payment-status/payment-status.componen
 import { CommonContentComponent } from './common-content/common-content.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { OnlinebusticketsComponent } from './onlinebustickets/onlinebustickets.component';
-import { NewLoginPageComponent } from './new-login-page/new-login-page.component';
 
 
 const userRoutePaths = [
@@ -55,7 +54,6 @@ export const routes: Routes = [
   { path: 'listing', component: SearchComponent },
   { path: 'success', component: SuccessComponent },
   { path: 'booking', component: BookingComponent },
-   { path: 'newloginpage', component: NewLoginPageComponent },
   {
     path: 'about-us',
     loadChildren: () =>

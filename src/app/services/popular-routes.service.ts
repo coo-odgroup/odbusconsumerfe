@@ -5,9 +5,8 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { BehaviorSubject, Observable, ReplaySubject, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, shareReplay } from 'rxjs/operators';
 import { GlobalConstants } from '../constants/global-constants';
-import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

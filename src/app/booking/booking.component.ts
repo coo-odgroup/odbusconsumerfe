@@ -37,7 +37,6 @@ import { Location } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonService } from '../services/common.service';
 import { PlatformLocation } from '@angular/common';
-import { EquirectangularReflectionMapping } from 'three';
 import { ManagebookingService } from '../services/managebooking.service';
 import { load } from '@cashfreepayments/cashfree-js';
 import { PagesService } from '../services/pages.service';

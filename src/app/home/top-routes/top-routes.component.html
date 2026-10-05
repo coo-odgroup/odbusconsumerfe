@@ -5,44 +5,38 @@
         <h3 class="title-section">Popular Routes</h3>
       </div>
       <div class="col-md-6 text-right">
-        <a routerLink="routes" class="btn btn-warning">All Routes</a>
+        <a routerLink="/routes" class="btn btn-warning">All Routes</a>
       </div>
     </div>
   </div>
   <div class="container">
-    <div class="row">
-      <div class="col-md-4 col-sm-6" *ngFor="let p of displayedRoutes">
-        <div
-          class="route-card"
-          (click)="popularSearch(p?.source_url, p?.destination_url)"
-          (keydown.enter)="popularSearch(p?.source_url, p?.destination_url)"
-          (keydown.space)="popularSearch(p?.source_url, p?.destination_url)"
-        >
+    <div class="row" [class.show-all]="showAllRoutes">
+      <div
+        class="col-md-4 col-sm-6 route-item"
+        *ngFor="let p of popularRoutes; let i = index; trackBy: trackByRoute"
+        [class.extra-route]="i >= 5"
+      >
+        <a class="route-card" [routerLink]="routeLink(p)">
           <div class="route-left">
             <img
               src="assets/img/Icon-metro-location.svg"
               width="16"
               height="26"
               class="route-icon"
-              alt="Location"
+              alt=""
               loading="lazy"
             />
-
             <div class="route-text">
               <span class="city">{{ p?.source }}</span>
               <span class="exchange">→</span>
               <span class="city">{{ p?.destination }}</span>
             </div>
           </div>
-        </div>
+        </a>
       </div>
 
-      <div class="col-md-12 text-center">
-        <button
-          *ngIf="isMobile && !showAllRoutes && popularRoutes?.length > 5"
-          (click)="viewAllRoutes()"
-          class="border-btn bh mt-3"
-        >
+      <div class="col-md-12 text-center view-all-wrap" *ngIf="!showAllRoutes && popularRoutes?.length > 5">
+        <button type="button" (click)="viewAllRoutes()" class="border-btn bh mt-3">
           View All
         </button>
       </div>

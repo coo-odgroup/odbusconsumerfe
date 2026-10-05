@@ -105,9 +105,9 @@ export class AppComponent implements AfterViewInit {
   ngOnInit() {
     // Show loader in browser until initial data is ready
     this.isBrowser = isPlatformBrowser(this.platformId);
-    if (this.isBrowser) {
-      this.spinner.show();
-    }
+    // if (this.isBrowser) {
+    //   this.spinner.show();
+    // }
 
     // Load browser-only data after startup; SSR should not call protected APIs.
     if (isPlatformBrowser(this.platformId)) {

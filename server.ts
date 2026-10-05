@@ -366,20 +366,85 @@ export function app(): express.Express {
   );
 
   // All regular routes use the Universal engine
-  server.get('*', (req, res) => {
-    // =========================================
-    // PREVENT SSR HTML PAGE CACHING
-    // =========================================
-    res.setHeader(
-      'Cache-Control',
-      'no-store, no-cache, must-revalidate, proxy-revalidate',
-    );
+//   server.get('*', (req, res) => {
+//     // =========================================
+//     // PREVENT SSR HTML PAGE CACHING
+//     // =========================================
+//     res.setHeader(
+//       'Cache-Control',
+//       'no-store, no-cache, must-revalidate, proxy-revalidate',
+//     );
 
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    res.setHeader('Surrogate-Control', 'no-store');
+//     res.setHeader('Pragma', 'no-cache');
+//     res.setHeader('Expires', '0');
+//     res.setHeader('Surrogate-Control', 'no-store');
 
-    // Optional security headers
+//     // Optional security headers
+//     res.setHeader('X-Content-Type-Options', 'nosniff');
+
+//     res.render(
+//       indexHtml,
+//       {
+//         req,
+//         providers: [
+//           { provide: APP_BASE_HREF, useValue: req.baseUrl || '/' },
+//           { provide: REQUEST, useValue: req },
+//         ],
+//       },
+//       (err: Error, html: string) => {
+//         if (err) {
+//           console.error('========================================');
+//           console.error('SSR RENDERING ERROR:');
+//           console.error('Error message:', err.message);
+//           console.error('Error name:', err.name);
+//           console.error('Stack trace:', err.stack);
+//           console.error('========================================');
+//           // Don't fallback silently - show the error to help debug
+//           // Fallback to client-side rendering if SSR fails
+//           const fs = require('fs');
+//           const indexPath = join(distFolder, 'index.html');
+//           if (existsSync(indexPath)) {
+//             console.warn('Falling back to static HTML due to SSR error');
+//             const indexContent = fs.readFileSync(indexPath, 'utf8');
+//             return res.send(indexContent);
+//           }
+//           return res
+//             .status(500)
+//             .send('SSR Error: ' + err.message + '\n\nStack: ' + err.stack);
+//         }
+//         // Log successful SSR rendering
+//         // console.log('SSR rendering successful for:', req.url);
+//         console.log(`[SSR] ${req.method} ${req.originalUrl} -> ${res.statusCode}`);
+
+//         if (html.includes('name="page-status" content="404"')) {
+//           res.status(404);
+//         }
+
+//         res.send(html);
+//       },
+//     );
+//   });
+
+server.get('*', (req, res) => {
+    const rule = cacheRuleFor(req.path);
+    const device = isMobileUA(req.headers['user-agent'] || '') ? 'm' : 'd';
+    const key = device + '|' + normaliseUrl(req.originalUrl);
+
+    if (rule) {
+      const hit = htmlCache.get(key);
+      if (hit && Date.now() - hit.at < rule.ttlMs) {
+        res.setHeader('Cache-Control', rule.header);
+        res.setHeader('X-SSR-Cache', 'HIT');
+        res.setHeader('Vary', 'User-Agent');
+        return res.status(hit.status).send(hit.html);
+      }
+      res.setHeader('Cache-Control', rule.header);
+      res.setHeader('Vary', 'User-Agent');
+      res.setHeader('X-SSR-Cache', 'MISS');
+    } else {
+      // private / transactional pages: never cache
+      res.setHeader('Cache-Control', 'private, no-store, no-cache, must-revalidate');
+    }
     res.setHeader('X-Content-Type-Options', 'nosniff');
 
     res.render(
@@ -393,39 +458,79 @@ export function app(): express.Express {
       },
       (err: Error, html: string) => {
         if (err) {
-          console.error('========================================');
-          console.error('SSR RENDERING ERROR:');
-          console.error('Error message:', err.message);
-          console.error('Error name:', err.name);
-          console.error('Stack trace:', err.stack);
-          console.error('========================================');
-          // Don't fallback silently - show the error to help debug
-          // Fallback to client-side rendering if SSR fails
-          const fs = require('fs');
+          console.error('[SSR ERROR]', req.originalUrl, err.message);
           const indexPath = join(distFolder, 'index.html');
           if (existsSync(indexPath)) {
-            console.warn('Falling back to static HTML due to SSR error');
-            const indexContent = fs.readFileSync(indexPath, 'utf8');
-            return res.send(indexContent);
+            res.setHeader('Cache-Control', 'no-store');
+            return res.send(fs.readFileSync(indexPath, 'utf8'));
           }
-          return res
-            .status(500)
-            .send('SSR Error: ' + err.message + '\n\nStack: ' + err.stack);
+          return res.status(500).send('Something went wrong. Please refresh.');
         }
-        // Log successful SSR rendering
-        // console.log('SSR rendering successful for:', req.url);
-        console.log(`[SSR] ${req.method} ${req.originalUrl} -> ${res.statusCode}`);
 
+        let status = 200;
         if (html.includes('name="page-status" content="404"')) {
-          res.status(404);
+          status = 404;
         }
 
-        res.send(html);
+        if (rule && status === 200) {
+          if (htmlCache.size >= MAX_CACHE_ENTRIES) {
+            // drop the oldest entry
+            const firstKey = htmlCache.keys().next().value;
+            htmlCache.delete(firstKey);
+          }
+          htmlCache.set(key, { html, status, at: Date.now() });
+        }
+
+        res.status(status).send(html);
       },
     );
   });
 
   return server;
+}
+
+// ======================================================================
+// SSR HTML cache helpers
+// ======================================================================
+const MAX_CACHE_ENTRIES = 1000;
+const htmlCache = new Map<string, { html: string; status: number; at: number }>();
+
+const PUBLIC_HEADER = (sMaxAge: number) =>
+  `public, max-age=0, s-maxage=${sMaxAge}, stale-while-revalidate=60`;
+
+// Only anonymous, same-for-everyone pages are cached. Booking/payment/account pages are not.
+const CACHE_RULES: { test: RegExp; ttlMs: number; header: string }[] = [
+  { test: /^\/$/, ttlMs: 5 * 60 * 1000, header: PUBLIC_HEADER(300) },
+  { test: /^\/routes(\/|$)/, ttlMs: 5 * 60 * 1000, header: PUBLIC_HEADER(300) },
+  { test: /^\/operators(\/|$)/, ttlMs: 30 * 60 * 1000, header: PUBLIC_HEADER(1800) },
+  { test: /^\/blog(\/|$)/, ttlMs: 30 * 60 * 1000, header: PUBLIC_HEADER(1800) },
+  {
+    test: /^\/(about-us|offers|testimonials|careers|contact-us|faq|terms-conditions|privacy-policy|cancelation-policy|advantage\/[^/]+|sitemap|online-bus-tickets)\/?$/,
+    ttlMs: 60 * 60 * 1000,
+    header: PUBLIC_HEADER(3600),
+  },
+];
+
+function cacheRuleFor(path: string) {
+  return CACHE_RULES.find((r) => r.test.test(path)) || null;
+}
+
+function isMobileUA(ua: string): boolean {
+  return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(ua);
+}
+
+// Ignore tracking parameters so ?utm_source=... or ?fbclid=... still hits the cache
+function normaliseUrl(url: string): string {
+  const [path, query] = url.split('?');
+  if (!query) {
+    return path;
+  }
+  const kept = query
+    .split('&')
+    .filter((p) => !/^(utm_[a-z]+|gclid|fbclid|gbraid|wbraid|msclkid|_ga)=/i.test(p))
+    .sort()
+    .join('&');
+  return kept ? path + '?' + kept : path;
 }
 
 function run(): void {
