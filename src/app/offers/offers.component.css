@@ -62,7 +62,9 @@
 
 .card {
   margin-bottom: 20px;
-  border: none !important;
+  border: 1px solid rgb(179, 201, 255) !important;
+  border-radius: 8px;
+  box-shadow: 0 8px 8px rgb(127 127 127 / 25%), 0 4px 12px rgba(7, 44, 107, 0.08);
 }
 
 .main-tnc {
