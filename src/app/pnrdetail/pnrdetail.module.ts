@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OffersRoutingModule } from './offers-routing.module';
-import { OffersComponent } from './offers.component';
 import { SharedModule } from '../shared/shared.module';
+import { PnrDetailsRoutingModule } from './pnrdetail-routing.module';
+import { PnrdetailComponent } from './pnrdetail.component';
+
+
 
 @NgModule({
   declarations: [
-    OffersComponent
+    PnrdetailComponent
   ],
   imports: [
     CommonModule,
-    OffersRoutingModule,
+    PnrDetailsRoutingModule,
     SharedModule
   ]
 })
-export class OffersModule {}
+export class PnrDetailsModule {}
