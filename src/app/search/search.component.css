@@ -1718,6 +1718,26 @@ ngb-rating.d-inline-flex {
 }
 
 
+/* seat card closed button */
+button.mob-close {
+  padding: 5px 10px !important;
+  display: flex !important;
+  position: relative !important;
+  top: 10px !important;
+  right: 10px !important;
+  border-radius: 10px !important;
+  background: #ffffff !important;
+  color: #002aff  !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle !important;
+  border: 2px solid #002aff  !important;
+  font-size: 25px !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+
+
 /* =========================================================
    FORM
    ========================================================= */

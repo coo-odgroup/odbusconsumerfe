@@ -17,7 +17,6 @@ import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { SupportComponent } from './support/support.component';
 import { NewsComponent } from './news/news.component';
-import { OffersComponent } from './offers/offers.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { ManagebookingdetailsComponent } from './managebookingdetails/managebookingdetails.component';
 import {ToastrModule} from 'ngx-toastr';
@@ -25,8 +24,6 @@ import { NgbDate, NgbDateParserFormatter, NgbModule,NgbProgressbarModule } from 
 import { CustomdateformatService } from "./services/customdateformat.service";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AuthInterceptor } from './shared/auth.interceptor';
-import { MyaccountComponent } from './user/myaccount/myaccount.component';
-// import { UsernavbarComponent } from './user/usernavbar/usernavbar.component';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { AuthGuard } from './helpers/auth.guard';
 import { CountdownModule } from 'ngx-countdown';
@@ -34,14 +31,11 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { AuthModule } from '@auth0/auth0-angular';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { LightboxModule } from 'ngx-lightbox';
-import { FilterPipe } from './filter.pipe';
 import { QRCodeModule } from 'angular2-qrcode';
 import { PnrdetailComponent } from './pnrdetail/pnrdetail.component';
 import { SuccessComponent } from './success/success.component';
 import { ProfiledeleteComponent } from './profiledelete/profiledelete.component';
-import { environment } from '../environments/environment';
 import { PaymentStatusModule } from './payment-status/payment-status.module';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RecentSearchComponent } from './home/recent-search/recent-search.component';
 import { AdvantageComponent } from './home/advantage/advantage.component';
@@ -54,7 +48,6 @@ import { RouteLinksComponent } from './home/route-links/route-links.component';
 import { TopOperatorsComponent } from './home/top-operators/top-operators.component';
 import { TopRoutesComponent } from './home/top-routes/top-routes.component';
 import { CommonContentComponent } from './common-content/common-content.component';
-import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SearchBoxMComponent } from './search-box-m/search-box-m.component';
 import { MobileAppDownloadComponent } from './home/mobile-app-download/mobile-app-download.component';
@@ -95,10 +88,8 @@ const ngWizardConfig: NgWizardConfig = {
     ManageBookingComponent,
     SupportComponent,
     NewsComponent,
-    OffersComponent,
     ManagebookingdetailsComponent,
-    // FilterPipe,
-    PnrdetailComponent,
+    // PnrdetailComponent,
     SuccessComponent,
     ProfiledeleteComponent,
     RecentSearchComponent,
@@ -112,7 +103,6 @@ const ngWizardConfig: NgWizardConfig = {
     TopOperatorsComponent,
     TopRoutesComponent,
     CommonContentComponent,
-    // FooterMenuComponent,
     SearchBoxComponent,
     SearchBoxMComponent,
     MobileAppDownloadComponent,
@@ -121,7 +111,6 @@ const ngWizardConfig: NgWizardConfig = {
     NewLoginPageComponent
   ],
   imports: [
-    // BrowserAnimationsModule,
     NoopAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     NgSelectModule,
@@ -138,14 +127,14 @@ const ngWizardConfig: NgWizardConfig = {
     NgbProgressbarModule,
     CountdownModule ,
     IvyCarouselModule,
-    AuthModule.forRoot({
-      domain: 'dev-seofied.us.auth0.com',
-      clientId: 'RsznkkMUqmJD0nUXjYv2LS8HPopT4xy1',
-      httpInterceptor: {
-        allowedList: ['*'] // Allow all requests to be intercepted
-      },
-      cacheLocation: 'localstorage' // Use localStorage for token storage
-    }),
+    // AuthModule.forRoot({
+    //   domain: 'dev-seofied.us.auth0.com',
+    //   clientId: 'RsznkkMUqmJD0nUXjYv2LS8HPopT4xy1',
+    //   httpInterceptor: {
+    //     allowedList: ['*'] // Allow all requests to be intercepted
+    //   },
+    //   cacheLocation: 'localstorage' // Use localStorage for token storage
+    // }),
     ImageCropperModule,
     LightboxModule,
     QRCodeModule,
