@@ -1,26 +1,3 @@
-/* .ng-autocomplete {
-  width: 100%;
-  z-index: 9;
-} */
-
-/* .banner-text {
-  font-size: 26px;
-  line-height: 42px;
-} */
-
-.my-countdown {
-  font-size: 24px;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 5px;
-  display: inline-block;
-
-}
-
-/* .ng-star-inserted{
-text-align: center;
-} */
-
 .jrny_dt {
   background-color: #fff !important;
   width: 240px !important;
@@ -2313,7 +2290,7 @@ input {
 .app-content h2 span {
   color: #132a72;
   font-size: 30px !important;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'Open Sans', sans-serif !important;
   letter-spacing: -1px;
 }
 

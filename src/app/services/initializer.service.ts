@@ -1,107 +1,134 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { AuthService } from './auth.service';
 import { CommonService } from './common.service';
 import { GlobalConstants } from '../constants/global-constants';
 
+/**
+ * SPEED FIX (TTFB + first load for new visitors)
+ *
+ * BEFORE: every single SSR request made 2 API calls in a row (/Auth, then /PopularInfo)
+ *         before Angular even started rendering. New browser visitors then made the SAME
+ *         2 calls again before the app could boot.
+ *
+ * AFTER:
+ *  - Server: the anonymous token and PopularInfo are kept in Node memory for a few minutes
+ *    and shared by all requests (they are not user-specific).
+ *  - Browser: PopularInfo is loaded from local storage when available, otherwise fetched.
+ */
+
+// Module-level cache: lives for the whole Node process (server only).
+const SERVER_TOKEN_TTL_MS = 20 * 60 * 1000;   // set BELOW your real token expiry
+const SERVER_POPULAR_TTL_MS = 10 * 60 * 1000;
+let serverToken: { value: string; at: number } | null = null;
+let serverPopular: { value: any; at: number } | null = null;
+let tokenInFlight: Promise<string | null> | null = null;
+let popularInFlight: Promise<any> | null = null;
+
 @Injectable()
 export class AppInitializerService {
-
   constructor(
     private auth: AuthService,
     private commonService: CommonService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
-  // Called by APP_INITIALIZER so requests made during SSR have a token too.
   load(): Promise<boolean> {
-    return this.getAuthToken().then(() => {
-      return this.fetchPopularInfo();
-    }).catch((err) => {
-      console.error('AppInitializer: error during initialization', err);
-      // Don't fail the entire app bootstrap; continue with what we have
-      return Promise.resolve(true);
-    });
+    return this.getAuthToken()
+      .then(() => this.fetchPopularInfo())
+      .then(() => true)
+      .catch((err) => {
+        console.error('AppInitializer: error during initialization', err);
+        return true; // never block bootstrap
+      });
   }
 
+  // ---------------- TOKEN ----------------
   private getAuthToken(): Promise<any> {
-    // Only attempt to use localStorage in the browser
     if (isPlatformBrowser(this.platformId)) {
       const existing = localStorage.getItem('AuthAccessToken');
       if (existing) {
         this.auth.setCurrentToken(existing);
         return Promise.resolve(true);
       }
+      return this.requestToken().then((t) => {
+        if (t) { localStorage.setItem('AuthAccessToken', t); }
+        this.auth.setCurrentToken(t);
+      });
     }
 
-    return new Promise(resolve => {
-      // Attempt to get token from backend. If it succeeds, store it for interceptor use.
+    // Server: reuse a cached token
+    if (serverToken && Date.now() - serverToken.at < SERVER_TOKEN_TTL_MS) {
+      this.auth.setCurrentToken(serverToken.value);
+      return Promise.resolve(true);
+    }
+    if (!tokenInFlight) {
+      tokenInFlight = this.requestToken().then((t) => {
+        if (t) { serverToken = { value: t, at: Date.now() }; }
+        tokenInFlight = null;
+        return t;
+      });
+    }
+    return tokenInFlight.then((t) => this.auth.setCurrentToken(t));
+  }
+
+  private requestToken(): Promise<string | null> {
+    return new Promise((resolve) => {
       this.auth.getToken().subscribe(
-        (res: any) => {
-          try {
-            const token = res && res.data ? res.data : null;
-            // Store token in memory for server-side use
-            this.auth.setCurrentToken(token);
-            // Store in localStorage for browser usage
-            if (isPlatformBrowser(this.platformId) && token) {
-              localStorage.setItem('AuthAccessToken', token);
-            }
-          } catch (e) {
-            // ignore storage errors
-          }
-          resolve(true);
-        },
+        (res: any) => resolve(res && res.data ? res.data : null),
         (err) => {
-          // Don't block app bootstrap if token fetch fails; log and continue.
           console.error('AppInitializer: failed to fetch auth token', err);
-          resolve(true);
-        }
+          resolve(null);
+        },
       );
     });
   }
 
+  // ---------------- POPULAR INFO ----------------
   private fetchPopularInfo(): Promise<any> {
-    // Check if we already have PopularInfo cached (browser only)
+    // Browser: returning visitor cache
     if (isPlatformBrowser(this.platformId)) {
-      const storedData = localStorage.getItem('PopularInfo');
-      if (storedData) {
+      const stored = localStorage.getItem('PopularInfo');
+      if (stored) {
         try {
-          const data = JSON.parse(storedData);
-          this.commonService.setPopularInfo(data);
-          // console.log('AppInitializer: Using cached PopularInfo');
+          this.commonService.setPopularInfo(JSON.parse(stored));
           return Promise.resolve(true);
-        } catch (e) {
-          console.error('AppInitializer: Error parsing cached PopularInfo', e);
-        }
+        } catch (e) {}
       }
+      return this.requestPopularInfo().then((data) => {
+        if (data) {
+          this.commonService.setPopularInfo(data);
+          localStorage.setItem('PopularInfo', JSON.stringify(data));
+        }
+      });
     }
 
-    // Fetch PopularInfo from API (both SSR and browser)
-    return new Promise(resolve => {
-      const param = {
-        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-        locationName: ""
-      };
+    // Server: shared in-memory cache
+    const putOnPage = (data: any) => {
+      if (data) {
+        this.commonService.setPopularInfo(data);
+      }
+    };
+    if (serverPopular && Date.now() - serverPopular.at < SERVER_POPULAR_TTL_MS) {
+      putOnPage(serverPopular.value);
+      return Promise.resolve(true);
+    }
+    if (!popularInFlight) {
+      popularInFlight = this.requestPopularInfo().then((data) => {
+        if (data) { serverPopular = { value: data, at: Date.now() }; }
+        popularInFlight = null;
+        return data;
+      });
+    }
+    return popularInFlight.then(putOnPage);
+  }
 
+  private requestPopularInfo(): Promise<any> {
+    const param = { user_id: GlobalConstants.MASTER_SETTING_USER_ID, locationName: '' };
+    return new Promise((resolve) => {
       this.commonService.PopularInfo(param).subscribe(
-        (resp: any) => {
-          try {
-            const data = resp && resp.data ? resp.data : resp;
-            this.commonService.setPopularInfo(data);
-            
-            // Cache in localStorage for browser usage
-            if (isPlatformBrowser(this.platformId)) {
-              localStorage.setItem('PopularInfo', JSON.stringify(data));
-            }
-            
-            resolve(true);
-          } catch (e) {
-            resolve(true); // Don't block app bootstrap
-          }
-        },
-        (err) => {
-          resolve(true); // Don't block app bootstrap if PopularInfo fetch fails
-        }
+        (resp: any) => resolve(resp && resp.data ? resp.data : resp),
+        () => resolve(null),
       );
     });
   }

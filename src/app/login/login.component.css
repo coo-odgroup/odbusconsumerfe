@@ -2430,11 +2430,7 @@ MOBILE ONLY
         font-weight: 800;
 
         letter-spacing: -1.1px;
-        font-family: "Inter",
-            "Montserrat",
-            "Segoe UI",
-            Arial,
-            sans-serif;
+        font-family: "Open Sans", sans-serif;
     }
 
     .mobile-login-heading h1 span {

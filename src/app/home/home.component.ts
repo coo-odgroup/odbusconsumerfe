@@ -323,7 +323,6 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
     try {
       this.masterSettingRecord = resp;
 
-      this.popular_routes = resp.popularRoutes || [];
       let topOperators = resp.topOperators || {};
       const mapped = Object.keys(topOperators).map((key) => topOperators[key]);
       this.topOperators = mapped || [];
@@ -544,9 +543,7 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
       }, 500);
     }
     this.generateCalendar();
-    if (isPlatformBrowser(this.platformId)) {
-      this.getHomeData();
-    }
+    this.getHomeData();
   }
 
   toggleCalendar() {
@@ -1235,35 +1232,38 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
         this.maintenance = res.data.maintenance;
         this.homePopup = res.data.website_popup;
-        this.advance_days_show = res.data.website_popup.advance_days_show;
+        this.advance_days_show = res?.data?.website_popup?.advance_days_show;
 
-        localStorage.setItem('advance_days_show', this.advance_days_show);
-        
+        if (isPlatformBrowser(this.platformId)) {
+          if (this.advance_days_show != null) {
+            localStorage.setItem('advance_days_show', this.advance_days_show);
+          }
 
-        const popupClosed = localStorage.getItem(
-          'maintenance_notice_dismissed',
-        );
+          const popupClosed = localStorage.getItem(
+            'maintenance_notice_dismissed',
+          );
 
-        if (this.maintenance?.maintenance_popup && !popupClosed) {
-          setTimeout(() => {
-            const popup = document.getElementById('maintenancePopup');
+          if (this.maintenance?.maintenance_popup && !popupClosed) {
+            setTimeout(() => {
+              const popup = document.getElementById('maintenancePopup');
 
-            if (popup) {
-              popup.style.display = 'flex';
-            }
-          }, 5000);
-        }
+              if (popup) {
+                popup.style.display = 'flex';
+              }
+            }, 5000);
+          }
 
-        // Website Popup
-        const websiteClosed = localStorage.getItem('website_popup_dismissed');
+          // Website Popup
+          const websiteClosed = localStorage.getItem('website_popup_dismissed');
 
-        if (this.homePopup && !websiteClosed) {
-          setTimeout(() => {
-            const popup = document.getElementById('websitePopup');
-            if (popup) {
-              popup.style.display = 'flex';
-            }
-          }, 10000);
+          if (this.homePopup && !websiteClosed) {
+            setTimeout(() => {
+              const popup = document.getElementById('websitePopup');
+              if (popup) {
+                popup.style.display = 'flex';
+              }
+            }, 10000);
+          }
         }
       }
     });
