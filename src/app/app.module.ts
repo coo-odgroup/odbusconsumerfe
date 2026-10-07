@@ -55,7 +55,6 @@ import { SharedModule } from './shared/shared.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { OnlinebusticketsComponent } from './onlinebustickets/onlinebustickets.component';
-import { NewLoginPageComponent } from './new-login-page/new-login-page.component';
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -108,7 +107,6 @@ const ngWizardConfig: NgWizardConfig = {
     MobileAppDownloadComponent,
     SitemapComponent,
     OnlinebusticketsComponent,
-    NewLoginPageComponent
   ],
   imports: [
     NoopAnimationsModule,
