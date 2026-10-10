@@ -76,24 +76,14 @@ export class FaqComponent implements OnInit {
 
   private fetchFaqs(): void {
     this.spinner.show();
-    const storageKey = 'faqs_data';
-
-    const cachedFaqs = localStorage.getItem(storageKey);
-
-    if (cachedFaqs) {
-      this.faqs = JSON.parse(cachedFaqs);
-      this.openIndex = this.faqs.map(() => 0);
-      this.spinner.hide();
-      return;
-    }
-    const payload = {};
+   const payload = {};
 
     this.http.post(this.apiurl + '/getfaqs', payload).subscribe((res: any) => {
       this.faqs = res.data;
       // Save for future use
-      localStorage.setItem(storageKey, JSON.stringify(this.faqs));
       this.openIndex = this.faqs.map(() => 0);
       this.spinner.hide();
     });
+    
   }
 }

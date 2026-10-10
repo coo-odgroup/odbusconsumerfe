@@ -40,8 +40,8 @@ export class PrivacyPolicyComponent implements OnInit {
   }
 
   menu() {
-    this.MenuActive = (this.MenuActive==false) ? true : false;
-    this.activeMenu='';
+    this.MenuActive = (this.MenuActive == false) ? true : false;
+    this.activeMenu = '';
   }
 
   signOut() {
@@ -50,24 +50,16 @@ export class PrivacyPolicyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const privacyPolicyContent = localStorage.getItem('privacyPolicyContent');
+    const param = {
+      user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+      page_url: 'privacy-policy',
+    };
 
-    if (privacyPolicyContent) {
-      const data = JSON.parse(privacyPolicyContent);
-      this.privacyPolicyContent(data);
-    } else {
-      const param = {
-        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-        page_url: 'privacy-policy',
-      };
-
-      this.pagesService.PageContent(param).subscribe(
-        res => {
-          localStorage.setItem('privacyPolicyContent', JSON.stringify(res.data));
-          this.privacyPolicyContent(res.data);
-        }
-      );
-    }
+    this.pagesService.PageContent(param).subscribe(
+      res => {
+        this.privacyPolicyContent(res.data);
+      }
+    );
   }
 
   privacyPolicyContent(res: any) {

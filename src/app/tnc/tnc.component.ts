@@ -46,24 +46,16 @@ export class TncComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const tncContent = localStorage.getItem('tncContent');
+    const param = {
+      user_id: GlobalConstants.MASTER_SETTING_USER_ID,
+      page_url: 'terms-conditions',
+    };
 
-    if (tncContent) {
-      const data = JSON.parse(tncContent);
-      this.tncContent(data);
-    } else {
-      const param = {
-        user_id: GlobalConstants.MASTER_SETTING_USER_ID,
-        page_url: 'terms-conditions',
-      };
-
-      this.pagesService.PageContent(param).subscribe(
-        res => {
-          localStorage.setItem('tncContent', JSON.stringify(res.data));
-          this.tncContent(res.data);
-        }
-      ); 
-    }
+    this.pagesService.PageContent(param).subscribe(
+      res => {
+        this.tncContent(res.data);
+      }
+    );
   }
 
   tncContent(res: any) {

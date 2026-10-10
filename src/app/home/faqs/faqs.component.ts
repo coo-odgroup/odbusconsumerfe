@@ -32,24 +32,10 @@ export class FaqsComponent implements OnInit {
 
 
   private fetchFaqs(): void {
-    const storageKey = 'faqs_data';
-
-    // Check localStorage first
-    const cachedFaqs = localStorage.getItem(storageKey);
-
-    if (cachedFaqs) {
-      this.faqs = JSON.parse(cachedFaqs);
-      this.openIndex = this.faqs.map(() => -1);
-      return;
-    }
-
     this.http.post(this.apiurl + '/getfaqs', {}).subscribe({
       next: (res: any) => {
         this.faqs = res.data;
         this.openIndex = this.faqs.map(() => -1);
-
-        // Save to localStorage
-        localStorage.setItem(storageKey, JSON.stringify(this.faqs));
       },
       // error: () => {
       //   this.spinner.hide();
