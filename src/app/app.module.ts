@@ -82,7 +82,7 @@ const ngWizardConfig: NgWizardConfig = {
     FooterComponent,
     HomeComponent,
     SearchComponent,
-    PageErrorComponent,
+    // PageErrorComponent,
     BookingComponent,
     ManageBookingComponent,
     SupportComponent,

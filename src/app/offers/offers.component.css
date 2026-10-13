@@ -67,6 +67,21 @@
   box-shadow: 0 8px 8px rgb(127 127 127 / 25%), 0 4px 12px rgba(7, 44, 107, 0.08);
 }
 
+.offer-card-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: inherit;
+}
+
+.offer-card-button:focus-visible {
+  outline: 3px solid #efc003;
+  outline-offset: 3px;
+}
+
 .main-tnc {
   background-color: #ffffff;
   border: #000026;

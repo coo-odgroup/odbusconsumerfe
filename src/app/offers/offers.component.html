@@ -49,13 +49,14 @@
           <div class="row">
             <div class="col-md-4" *ngFor="let o of allOffers; let i = index">
               <div class="card">
-                <a (click)="openOffer(i)">
+                <button type="button" class="offer-card-button" (click)="openOffer(i)"
+                  [attr.aria-label]="'View offer ' + (o.occassion || i + 1)">
                   <img *ngIf="
                       o.slider_photo &&
                       o.slider_photo != '' &&
                       o.slider_photo != null
                     " class="card-img-top" [src]="o.slider_photo" alt="{{ o.occassion }}" />
-                </a>
+                </button>
                 <div class="card-block"></div>
               </div>
             </div>
@@ -129,7 +130,7 @@
   <div class="mobile-mybooking-top">
     <div class="row">
       <div class="col-1 pr-0 pl-2 mob-arrow-left">
-        <a routerLink="/">
+        <a routerLink="/" aria-label="Back to home">
           <i class="fas fa-arrow-left"></i>
         </a>
       </div>
@@ -182,11 +183,12 @@
     <div class="row">
       <div class="col-12" *ngFor="let o of allOffers; let i = index">
         <div class="mobile-offer">
-          <a (click)="openOffer(i)">
+          <button type="button" class="offer-card-button" (click)="openOffer(i)"
+            [attr.aria-label]="'View offer ' + (o.occassion || i + 1)">
             <img *ngIf="
                 o.slider_photo && o.slider_photo != '' && o.slider_photo != null
               " src="{{ o.slider_photo }}" alt="{{ o.occassion }}" />
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -209,7 +211,7 @@
             <p>with the <strong>ODBUS App</strong></p>
 
             <a href="#" class="play-btn">
-              <img src="assets/img/app-down.webp" alt="Google Play">
+              <img src="assets/img/app-down-120.png" width="120" height="36" alt="Google Play">
             </a>
 
           </div>
@@ -296,7 +298,7 @@
     <!-- HEADER -->
     <div class="offer-popup-header">
       <h3>OFFER DETAILS</h3>
-      <button class="offer-close-btn" (click)="closeOfferModal()">×</button>
+      <button type="button" class="offer-close-btn" aria-label="Close offer details" (click)="closeOfferModal()">&times;</button>
     </div>
 
     <!-- BODY -->
