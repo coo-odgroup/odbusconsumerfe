@@ -534,8 +534,8 @@ function normaliseUrl(url: string): string {
 }
 
 function run(): void {
-  const port = process.env.PORT || 4000; // TEST
-  // const port = process.env.PORT || 4444; // LIVE
+  // const port = process.env.PORT || 4000; // TEST
+  const port = process.env.PORT || 4444; // LIVE
 
   // Start up the Node server
   const server = app();

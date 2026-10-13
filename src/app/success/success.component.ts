@@ -27,7 +27,7 @@ export class SuccessComponent implements OnInit {
   constructor(
     private deviceService: DeviceDetectorService,
     private router: Router,
-    private bookingDataService: BookticketService
+    private bookingDataService: BookticketService,
   ) {
     this.isMobile = this.deviceService.isMobile();
   }
@@ -60,7 +60,6 @@ export class SuccessComponent implements OnInit {
   }
 
   private pushPurchaseEvent(): void {
-
     const amount = Number(this.ticket_amount);
 
     if (!this.receipt_id || !amount || amount <= 0) {
@@ -84,5 +83,5 @@ export class SuccessComponent implements OnInit {
     window.dataLayer.push(purchaseEvent);
 
     sessionStorage.setItem(trackingKey, '1');
-  }
+  } 
 }

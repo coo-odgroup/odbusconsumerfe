@@ -111,15 +111,12 @@ export const routes: Routes = [
       import('./refund-policy/refund-policy.module').then(
         (m) => m.RefundPolicyModule,
       ),
+  },  
+  {
+    path: '404',
+    loadChildren: () =>
+      import('./page-error/page-error.module').then((m) => m.PageErrorModule),
   },
-  // {
-  //   path: 'become-an-agent',
-  //   loadChildren: () =>
-  //     import('./join-as-agent/join-as-agent.module').then(
-  //       (m) => m.JoinAsAgentModule,
-  //     ),
-  // },
-  { path: '404', component: PageErrorComponent },
   {
     path: 'thank-you',
     loadChildren: () =>
