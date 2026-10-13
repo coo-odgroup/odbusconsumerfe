@@ -323,6 +323,7 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
+
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   server.use((req, _res, next) => {
@@ -424,6 +425,27 @@ export function app(): express.Express {
 //       },
 //     );
 //   });
+
+  server.get('/c1', (req, res) => {
+    return res.redirect(
+      302,
+      'https://www.odbus.in/?utm_source=sms&utm_medium=crm&utm_campaign=cart_abandon_auto&utm_content=sms_1'
+    );
+  });
+
+  server.get('/c2', (req, res) => {
+    return res.redirect(
+      302,
+      'https://www.odbus.in/?utm_source=sms&utm_medium=crm&utm_campaign=cart_abandon_auto&utm_content=sms_2'
+    );
+  });
+
+  server.get('/cw', (req, res) => {
+    return res.redirect(
+      302,
+      'https://www.odbus.in/?utm_source=whatsapp&utm_medium=crm&utm_campaign=cart_abandon_auto&utm_content=wa_1'
+    );
+});
 
 server.get('*', (req, res) => {
     const rule = cacheRuleFor(req.path);
