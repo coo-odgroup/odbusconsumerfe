@@ -20,6 +20,8 @@ import { interval, Observable, Subscription, of } from 'rxjs';
 import { debounceTime, map, tap, catchError } from 'rxjs/operators';
 import { PopularRoutesService } from 'src/app/services/popular-routes.service';
 import { ExternalScriptService } from './services/external-script.service';
+import { AttributionService } from './core/services/attribution.service';
+
 
 declare global {
   interface Window {
@@ -84,7 +86,8 @@ export class AppComponent implements AfterViewInit {
     private seoService: SeoService,
     private spinner: NgxSpinnerService,
     private homeService: PopularRoutesService,
-    private externalScript: ExternalScriptService
+    private externalScript: ExternalScriptService,  
+    private attributionService : AttributionService
   ) {
     this.isMobile = this.detectMobile();
     this.router.events
@@ -179,6 +182,7 @@ export class AppComponent implements AfterViewInit {
 
       this.finishLoading();
     }
+    // this.attributionService.capture();
   }
 
   storeLocalStorage(): Observable<any> {

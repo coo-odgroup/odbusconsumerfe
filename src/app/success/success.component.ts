@@ -76,6 +76,7 @@ export class SuccessComponent implements OnInit {
 
     const purchaseEvent = {
       event: 'purchase',
+      pnr: String(this.pnrNumber),
       transaction_id: String(this.receipt_id),
       value: amount,
       currency: 'INR',

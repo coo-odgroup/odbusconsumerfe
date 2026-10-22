@@ -22,7 +22,12 @@
       content="nnyBKGhgqOIhqiJh__9LVCa5PGdzuRn42GrNZmXct_0"
     />
     <!-- Google Tag Manager -->
-    <script>
+    <script>    
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () {
+        window.dataLayer.push(arguments);
+      };
+      
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });

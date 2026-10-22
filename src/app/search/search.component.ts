@@ -2703,7 +2703,7 @@ export class SearchComponent implements OnInit {
 
   // Add by sahil -- for puja offer slider static
   showStaticSlider: boolean = false;
-  static_sliderImage = "https://provider.odbus.co.in/uploads/slider_photos/17903389602548.webp";
+  static_sliderImage = "https://provider.odbus.co.in/uploads/slider_photos/17922403512382.webp";
 
   checkStaticSlider(): void {
     if (!this.entdate) {
@@ -2720,8 +2720,8 @@ export class SearchComponent implements OnInit {
     // DD-MM-YYYY → YYYY-MM-DD
     const journeyDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
 
-    const startDate = '2026-10-14';
-    const endDate = '2026-10-18';
+    const startDate = '2026-10-18';
+    const endDate = '2026-10-26';
 
     this.showStaticSlider =
       journeyDate >= startDate &&
