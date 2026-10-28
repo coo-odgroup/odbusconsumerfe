@@ -101,7 +101,8 @@
   height: 2px;
   display: block;
   position: relative;
-  margin-top: 0 !important;
+  margin-top: 63px;
+  /* margin-top: 0 !important; */    /*if add banner then remove this margin-top: 63px; and add margin-top: 0 !important;*/
 }
 
 .line-span h2 {
@@ -130,10 +131,10 @@
   font-weight: 600;
 }
 
-/* section.top-routs {
+section.top-routs {
   padding: 2px 0 !important;
   margin-top: 140px !important;
-} */
+} /*if add banner then comment section.top-routs*/
 
 /* Mobile Version Support Start- */
 .mobile-mybooking-top {

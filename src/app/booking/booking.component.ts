@@ -41,6 +41,7 @@ import { ManagebookingService } from '../services/managebooking.service';
 import { load } from '@cashfreepayments/cashfree-js';
 import { PagesService } from '../services/pages.service';
 import { log } from 'console';
+import { BookingAttributionApiService } from '../core/services/booking-attribution-api.service';
 
 declare let Razorpay: any;
 
@@ -167,6 +168,7 @@ export class BookingComponent implements OnInit {
     private platformLocation: PlatformLocation,
     private managebookingService: ManagebookingService,
     private pagesService: PagesService,
+    private bookingAttributionApi: BookingAttributionApiService,
   ) {
     // this.razorpayService
     //   .lazyLoadLibrary('https://checkout.razorpay.com/v1/checkout.js')
@@ -573,6 +575,33 @@ export class BookingComponent implements OnInit {
       this.bookticketService.book(this.passengerData).subscribe(
         (res) => {
           if (res.status == 1) {
+
+
+            // Save attribution data after booking process is successful
+            // const bookingId = res.data.booking_id ?? res.data.id;
+
+            // if (bookingId) {
+            //   this.bookingAttributionApi
+            //     .saveAttribution(bookingId)
+            //     .subscribe({
+            //       next: (attrRes) => {
+            //         console.log('Attribution saved:', attrRes);
+            //       },
+            //       error: (error) => {
+            //         console.error(
+            //           'Attribution save failed:',
+            //           error
+            //         );
+            //       }
+            //     });
+            // } else {
+            //   console.warn(
+            //     'Booking ID not found; attribution was not sent.'
+            //   );
+            // }
+            //---------------------------
+
+
             if (
               res.data.totalAmount &&
               res.data.discount &&

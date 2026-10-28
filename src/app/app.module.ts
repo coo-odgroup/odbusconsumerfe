@@ -55,6 +55,7 @@ import { SharedModule } from './shared/shared.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { OnlinebusticketsComponent } from './onlinebustickets/onlinebustickets.component';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function appInit(appInitializerService: AppInitializerService) {
   return () => appInitializerService.load();
@@ -102,11 +103,8 @@ const ngWizardConfig: NgWizardConfig = {
     TopOperatorsComponent,
     TopRoutesComponent,
     CommonContentComponent,
-    SearchBoxComponent,
-    SearchBoxMComponent,
     MobileAppDownloadComponent,
     SitemapComponent,
-    OnlinebusticketsComponent,
   ],
   imports: [
     NoopAnimationsModule,
@@ -114,6 +112,7 @@ const ngWizardConfig: NgWizardConfig = {
     NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbTypeaheadModule,
     RouterModule,
     AppRoutingModule,
     NgbModule,

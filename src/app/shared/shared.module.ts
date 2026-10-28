@@ -1,19 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { FooterMenuComponent } from '../footer-menu/footer-menu.component';
+import { SearchBoxComponent } from '../search-box/search-box.component';
+import { SearchBoxMComponent } from '../search-box-m/search-box-m.component';
 
 @NgModule({
   declarations: [
-    FooterMenuComponent
+    SearchBoxComponent,
+    SearchBoxMComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgbTypeaheadModule
   ],
   exports: [
-    FooterMenuComponent
+    SearchBoxComponent,
+    SearchBoxMComponent,
   ]
 })
-export class SharedModule { }
+export class SharedModule {}
