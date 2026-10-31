@@ -1232,7 +1232,8 @@ ADVANTAGE CARD SLIDER WORKING BUTTONS
 
         this.maintenance = res.data.maintenance;
         this.homePopup = res.data.website_popup;
-        this.advance_days_show = res?.data?.website_popup?.advance_days_show;
+        // this.advance_days_show = res?.data?.website_popup?.advance_days_show;
+        this.advance_days_show = res.data.advance_days_show;
 
         if (isPlatformBrowser(this.platformId)) {
           if (this.advance_days_show != null) {

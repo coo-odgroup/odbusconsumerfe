@@ -730,6 +730,26 @@ export class SearchComponent implements OnInit {
             // });
 
             ////////////////////////////////////////////////////
+
+
+            this.dualsleeper_warning = '';
+
+            this.seatsLayoutRecord.upper_berth.forEach((at) => {
+              if (
+                t.colNumber == at.colNumber &&
+                Math.abs(t.rowNumber - at.rowNumber) === 1 &&
+                at.seatText != '' &&
+                t.seatText != at.seatText &&
+                at.bus_seats
+              ) {
+                const adjacentSelected = ubnames.includes(at.seatText);
+
+                if (!adjacentSelected) {
+                  this.dualsleeper_warning =
+                    'Another passenger may share this berth, or the operator may change your seat at boarding.';
+                }
+              }
+            });
           }
           return ubIds.indexOf(t.id.toString()) > -1;
         })
